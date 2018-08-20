@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.7.3)
+  - M13Checkbox (3.2.2)
+  - SmileLock (3.0.3)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - M13Checkbox
+  - SmileLock
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - M13Checkbox
+    - SmileLock
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  M13Checkbox: a8c2491cfbbca10797925fd0b9154a782bf40d89
+  SmileLock: 247b62849cedca324e70ccfad5d01714602d739e
+
+PODFILE CHECKSUM: db446beb387e391c86fdaf8758dd7f7acc4e9fe4
+
+COCOAPODS: 1.5.3

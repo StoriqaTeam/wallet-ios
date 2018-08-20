@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="111" id="dZc-CX-9UW" customClass="StqButtonCell" customModule="Wallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dZc-CX-9UW" id="fDU-zI-xpt">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="110.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYa-aF-mSv" customClass="StqButton" customModule="Wallet" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="15" width="375" height="50"/>
+                        <color key="backgroundColor" red="0.16078431372549021" green="0.69803921568627447" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="v1a-aG-ocp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <state key="normal" title="TITLE">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonTapHandler" destination="dZc-CX-9UW" eventType="touchUpInside" id="G0V-ZB-gEn"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="cYa-aF-mSv" firstAttribute="centerX" secondItem="fDU-zI-xpt" secondAttribute="centerX" id="0uC-JT-20l"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cYa-aF-mSv" secondAttribute="bottom" constant="10" id="8bt-WL-Gn6"/>
+                    <constraint firstItem="cYa-aF-mSv" firstAttribute="top" secondItem="fDU-zI-xpt" secondAttribute="top" constant="15" id="ZuV-kb-u7Y"/>
+                    <constraint firstItem="cYa-aF-mSv" firstAttribute="leading" secondItem="fDU-zI-xpt" secondAttribute="leading" id="ctE-EM-evz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="button" destination="cYa-aF-mSv" id="Hmj-yM-RYh"/>
+                <outlet property="horisontalMargin" destination="ctE-EM-evz" id="owa-u0-Jkr"/>
+            </connections>
+            <point key="canvasLocation" x="30.5" y="-5.5"/>
+        </tableViewCell>
+    </objects>
+</document>
