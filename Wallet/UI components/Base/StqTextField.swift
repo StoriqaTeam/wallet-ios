@@ -14,60 +14,43 @@ protocol StqTextFieldDelegate: class {
     func textFieldDidEndEditing(_ textField: StqTextField)
     func textField(_ textField: StqTextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     func textFieldShouldReturn(_ textField: StqTextField) -> Bool
+    func textFieldShouldClear(_ textField: StqTextField) -> Bool
 }
 
 extension StqTextFieldDelegate {
+    //optional methods
     func textFieldDidBeginEditing(_ textField: StqTextField) {}
     func textFieldDidEndEditing(_ textField: StqTextField) {}
     func textField(_ textField: StqTextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool { return true }
     func textFieldShouldReturn(_ textField: StqTextField) -> Bool { return true }
+    func textFieldShouldClear(_ textField: StqTextField) -> Bool { return true }
 }
 
-class StqTextField: UIView, ValidationFieldProtocol {
+class StqTextField: UIView {
     typealias ValueFormat = String
     
     private var contentView: UIView?
-    @IBOutlet private var textField: UITextField!
-    @IBOutlet private var imageView: UIImageView?
-    @IBOutlet private var imageParentView: UIView?
-    @IBOutlet private var imageParentViewWidth: NSLayoutConstraint?
-    
-    private let emptyColor = #colorLiteral(red: 0.9450980392, green: 0.9529411765, blue: 0.9607843137, alpha: 1)
-    private let nonEmptyColor = UIColor.white
+    @IBOutlet private var textField: UITextField! {
+        didSet {
+            textField.delegate = self
+            textField.font = UIFont.systemFont(ofSize: 17)
+        }
+    }
+    @IBOutlet private var imageView: UIImageView? {
+        didSet {
+            imageView?.tintColor = Constants.Colors.gray
+        }
+    }
+    @IBOutlet private var imageViewWidthConstraint: NSLayoutConstraint?
     
     weak var delegate: StqTextFieldDelegate?
-    var validationBlock: ((String)->Bool)?
     
-    var isValid: Bool {
-        guard let text = textField.text else {
-            return false
-        }
-        
-        guard let validationBlock = validationBlock else {
-            return true
-        }
-        
-        return validationBlock(text)
-    }
-    
-    var text: String? {
+    var text: String {
         set {
             textField.text = newValue
         }
         get {
-            return textField.text
-        }
-    }
-    
-    var value: String {
-        return text ?? ""
-    }
-    
-    var validValue: String? {
-        if isValid {
-            return text
-        } else {
-            return nil
+            return textField.text ?? ""
         }
     }
     
@@ -102,14 +85,12 @@ class StqTextField: UIView, ValidationFieldProtocol {
     }
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         backgroundColor = .clear //in case of setting from IB
-        textField.delegate = self
-        setActive()
-        
-        textField.font = UIFont.systemFont(ofSize: 16)
-        imageView?.tintColor = #colorLiteral(red: 0.831372549, green: 0.8352941176, blue: 0.8431372549, alpha: 1)
+        if imageHidden {
+            hideImage()
+        }
     }
-    
 }
 
 extension StqTextField {
@@ -146,40 +127,24 @@ extension StqTextField {
 }
 
 private extension StqTextField {
-    func setActive() {
-        let active = textField.isFirstResponder || !(textField.text?.isEmpty ?? true)
-        
-        if active {
-            contentView?.backgroundColor = nonEmptyColor
-            textField.textColor = .black
-            contentView?.roundCorners(borderWidth: 2, borderColor: Constants.Colors.brandColor)
-        } else {
-            contentView?.backgroundColor = emptyColor
-            textField.textColor = Constants.Colors.grayTextColor
-            contentView?.roundCorners(borderWidth: 0.0, borderColor: UIColor.clear)
-        }
-    }
-    
     func setImage(_ image: UIImage?) {
         imageView?.image = image
-        imageParentView?.isHidden = false
-        imageParentViewWidth?.constant = 40
+        imageView?.isHidden = false
+        imageViewWidthConstraint?.constant = 20
     }
     
     func hideImage() {
-        imageParentView?.isHidden = true
-        imageParentViewWidth?.constant = 10
+        imageView?.isHidden = true
+        imageViewWidthConstraint?.constant = 0
     }
 }
 
 extension StqTextField: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        setActive()
         delegate?.textFieldDidBeginEditing(self)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        setActive()
         delegate?.textFieldDidEndEditing(self)
     }
     
@@ -189,6 +154,10 @@ extension StqTextField: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return delegate?.textField(self, shouldChangeCharactersIn: range, replacementString: string) ?? true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return delegate?.textFieldShouldClear(self) ?? true
     }
     
     //TODO: validation

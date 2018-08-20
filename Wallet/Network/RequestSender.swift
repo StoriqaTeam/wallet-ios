@@ -20,31 +20,37 @@ enum ResponseType {
 class RequestSender {
     func send(_ request: Request, completion: ((ResponseType) -> Void)? ) {
         
-//        let url = URL(string: NetworkConfig.url)!
-//        let mutableUrlRequest = NSMutableURLRequest(url: url)
-//        mutableUrlRequest.httpMethod = "GET"
-//
-//        let cookie = UserDefaults.standard.value(forKey: "COOKIE") as! String
-//        mutableUrlRequest.setValue(cookie, forHTTPHeaderField: "Cookie")
+        //        let url = URL(string: NetworkConfig.url)!
+        //        let mutableUrlRequest = NSMutableURLRequest(url: url)
+        //        mutableUrlRequest.httpMethod = "GET"
+        //
+        //        let cookie = UserDefaults.standard.value(forKey: "COOKIE") as! String
+        //        mutableUrlRequest.setValue(cookie, forHTTPHeaderField: "Cookie")
         
         print("\nrequest headers: \n\(request.headers) \nrequest params: \n\(request.parameters ?? [:])\n")
+        
+        let queue = DispatchQueue(label: "RequestSender", qos: .background, attributes: .concurrent)
         
         Alamofire.request(NetworkConfig.url,
                           method: .post,
                           parameters: request.parameters,
                           encoding: JSONEncoding.default,
-                          headers: request.headers).responseJSON { (response) in
+                          headers: request.headers).responseJSON(queue: queue) { (response) in
                             print(response)
                             
                             if let error = response.result.error {
-                                completion?(.textError(message: error.localizedDescription))
+                                DispatchQueue.main.async {
+                                    completion?(.textError(message: error.localizedDescription))
+                                }
                                 return
                             }
                             
                             guard let responseData = response.data,
                                 let json = try? JSONSerialization.jsonObject(with: responseData, options: []),
                                 let dict = json as? [String: Any] else {
-                                    completion?(.unknownError)
+                                    DispatchQueue.main.async {
+                                        completion?(.unknownError)
+                                    }
                                     return
                             }
                             
@@ -54,17 +60,25 @@ class RequestSender {
                                 })
                                 
                                 guard !errors.isEmpty else {
-                                    completion?(.unknownError)
+                                    DispatchQueue.main.async {
+                                        completion?(.unknownError)
+                                    }
                                     return
                                 }
                                 
-                                completion?(.apiErrors(errors: errors))
+                                DispatchQueue.main.async {
+                                    completion?(.apiErrors(errors: errors))
+                                }
                                 
                             } else if let data = dict["data"] as? [String: AnyObject] {
-                                completion?(.success(data: data))
+                                DispatchQueue.main.async {
+                                    completion?(.success(data: data))
+                                }
                                 
                             } else {
-                                completion?(.unknownError)
+                                DispatchQueue.main.async {
+                                    completion?(.unknownError)
+                                }
                             }
         }
     }

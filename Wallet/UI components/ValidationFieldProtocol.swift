@@ -12,6 +12,6 @@ protocol ValidationFieldProtocol: class {
     associatedtype ValueFormat
     
     var isValid: Bool { get }
-    var value: ValueFormat { get }
-    var validValue: ValueFormat? { get }
+    var value: ValueFormat? { get }
+    var validationBlock: ((ValueFormat)->Bool)? { set get }
 }

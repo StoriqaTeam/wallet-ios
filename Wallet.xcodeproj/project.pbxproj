@@ -15,8 +15,7 @@
 		CE25B72D2125A2E10097230A /* StqButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* StqButton.swift */; };
 		CE25B72E2125A2E10097230A /* StqTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B72A2125A2E10097230A /* StqTextField.swift */; };
 		CE25B72F2125A2E10097230A /* StqButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B72B2125A2E10097230A /* StqButtonCell.swift */; };
-		CE25B7352125A3680097230A /* AgreementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7332125A3680097230A /* AgreementCell.swift */; };
-		CE25B7362125A3680097230A /* AgreementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25B7342125A3680097230A /* AgreementCell.xib */; };
+		CE25B7352125A3680097230A /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7332125A3680097230A /* AgreementView.swift */; };
 		CE25B7372125A8960097230A /* StqButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25B7282125A2E00097230A /* StqButtonCell.xib */; };
 		CE25B7382125A8960097230A /* StqTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25B7252125A2E00097230A /* StqTextField.xib */; };
 		CE25B7392125A8960097230A /* StqTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25B7262125A2E00097230A /* StqTextFieldCell.xib */; };
@@ -41,7 +40,7 @@
 		CE526C54212465A900A2EED2 /* WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C53212465A900A2EED2 /* WalletUITests.swift */; };
 		CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */; };
 		CE526C68212471CE00A2EED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C67212471CE00A2EED2 /* Constants.swift */; };
-		CE526C6E212474B600A2EED2 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C6D212474B600A2EED2 /* InitialViewController.swift */; };
+		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CEE72D5D2125990900991B0C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE72D5C2125990900991B0C /* RegistrationViewController.swift */; };
 		E8AA4A98B0213B85C9324E0C /* Pods_WalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2407DA6D79A3208812DC6CB /* Pods_WalletUITests.framework */; };
 /* End PBXBuildFile section */
@@ -78,8 +77,7 @@
 		CE25B7292125A2E00097230A /* StqButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StqButton.swift; sourceTree = "<group>"; };
 		CE25B72A2125A2E10097230A /* StqTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StqTextField.swift; sourceTree = "<group>"; };
 		CE25B72B2125A2E10097230A /* StqButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StqButtonCell.swift; sourceTree = "<group>"; };
-		CE25B7332125A3680097230A /* AgreementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementCell.swift; sourceTree = "<group>"; };
-		CE25B7342125A3680097230A /* AgreementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgreementCell.xib; sourceTree = "<group>"; };
+		CE25B7332125A3680097230A /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 		CE25B73A2125C8300097230A /* ValidationFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationFieldProtocol.swift; sourceTree = "<group>"; };
 		CE25B73E2126AA200097230A /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		CE25B7492126B5A50097230A /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
@@ -107,7 +105,7 @@
 		CE526C55212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CE526C67212471CE00A2EED2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CE526C6D212474B600A2EED2 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CEE72D5C2125990900991B0C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2407DA6D79A3208812DC6CB /* Pods_WalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +167,7 @@
 		CE25B7302125A2EE0097230A /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */,
 				CE25B7292125A2E00097230A /* StqButton.swift */,
 				CE25B72B2125A2E10097230A /* StqButtonCell.swift */,
 				CE25B7282125A2E00097230A /* StqButtonCell.xib */,
@@ -183,8 +182,7 @@
 		CE25B7312125A2FB0097230A /* Agreement */ = {
 			isa = PBXGroup;
 			children = (
-				CE25B7332125A3680097230A /* AgreementCell.swift */,
-				CE25B7342125A3680097230A /* AgreementCell.xib */,
+				CE25B7332125A3680097230A /* AgreementView.swift */,
 			);
 			path = Agreement;
 			sourceTree = "<group>";
@@ -245,14 +243,6 @@
 			path = PinInput;
 			sourceTree = "<group>";
 		};
-		CE25B7482126B53E0097230A /* Initial */ = {
-			isa = PBXGroup;
-			children = (
-				CE526C6D212474B600A2EED2 /* InitialViewController.swift */,
-			);
-			path = Initial;
-			sourceTree = "<group>";
-		};
 		CE25B74F2126EFEF0097230A /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,7 +286,6 @@
 				CE25B7452126B4E20097230A /* Functions */,
 				CE25B7462126B4F80097230A /* Helpers */,
 				CE526C3F212465A900A2EED2 /* Info.plist */,
-				CE25B7482126B53E0097230A /* Initial */,
 				CE25B74F2126EFEF0097230A /* Network */,
 				CE25B7472126B5220097230A /* PinInput */,
 				CE25B7442126B4C70097230A /* Storyboards */,
@@ -457,7 +446,6 @@
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
 				CE526C39212465A800A2EED2 /* Main.storyboard in Resources */,
-				CE25B7362125A3680097230A /* AgreementCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,15 +563,15 @@
 				CE25B72C2125A2E10097230A /* StqTextFieldCell.swift in Sources */,
 				CE25B72F2125A2E10097230A /* StqButtonCell.swift in Sources */,
 				CE25B73B2125C8300097230A /* ValidationFieldProtocol.swift in Sources */,
-				CE25B7352125A3680097230A /* AgreementCell.swift in Sources */,
+				CE25B7352125A3680097230A /* AgreementView.swift in Sources */,
 				CE25B73F2126AA200097230A /* Validations.swift in Sources */,
 				CE25B7512126F01E0097230A /* Request.swift in Sources */,
+				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
 				CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */,
 				CE526C68212471CE00A2EED2 /* Constants.swift in Sources */,
 				CE1EED752124BB8400BF39B8 /* LoginViewController.swift in Sources */,
 				CE25B74A2126B5A50097230A /* NetworkConfig.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
-				CE526C6E212474B600A2EED2 /* InitialViewController.swift in Sources */,
 				CE25B7572126F0BE0097230A /* LoginRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

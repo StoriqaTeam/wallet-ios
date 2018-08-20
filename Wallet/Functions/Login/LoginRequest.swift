@@ -8,20 +8,37 @@
 
 import Foundation
 
-class LoginRequest: Request {
-    var name = "getJWTByEmail"
-    private var inputName = "CreateJWTEmailInput"
+enum LoginInput: String, GraphQLMutationInput {
+    case email = "email"
+    case password = "password"
     
-    private lazy var query = "mutation \(name)($input: \(inputName)!) { \(name)(input: $input) { token } }"
+    static var name = "CreateJWTEmailInput"
+    var parameterString: String { return self.rawValue }
+}
+
+
+class LoginRequest: Request, GraphQLMutation {
+    
+    typealias Input = LoginInput
+    
+    var name: String {
+        return "getJWTByEmail"
+    }
+    var inputName: String {
+        return LoginInput.name
+    }
+    var fields: [String] {
+        return ["token"]
+    }
     
     init(email: String, password: String) {
         super.init()
         
-        let input = [
+        let input: [String: String] = [
             "clientMutationId": "1", //не используется
-            "email": email,
-            "password": password
-        ]
+            LoginInput.email.parameterString: email,
+            LoginInput.password.parameterString: password
+            ]
         
         let variables = [
             "input": input

@@ -8,22 +8,37 @@
 
 import Foundation
 
-class RegistrationRequest: Request {
-    var name = "createUser"
-    private var inputName = "CreateUserInput"
+enum RegistrationInput: String, GraphQLMutationInput {
+    case firstName
+    case lastName
+    case email
+    case password
     
-    private lazy var query = "mutation \(name)($input: \(inputName)!) { \(name)(input: $input) { id email firstName } }"
+    static var name = "CreateUserInput"
+    var parameterString: String { return self.rawValue }
+}
+
+class RegistrationRequest: Request, GraphQLMutation {
+    typealias Input = RegistrationInput
+    
+    var name: String {
+        return "createUser"
+    }
+    
+    var fields: [String] {
+        return ["id", "email", "firstName"]
+    }
     
     init(firstName: String, lastName: String, email: String, password: String)  {
         super.init()
         
-        let input = [
+        let input: [String: String] = [
             "clientMutationId": "1", //не используется
-            "email": email,
-            "password": password,
-            "firstName": firstName,
-            "lastName": lastName
-        ]
+            RegistrationInput.email.parameterString: email,
+            RegistrationInput.password.parameterString: password,
+            RegistrationInput.firstName.parameterString: firstName,
+            RegistrationInput.lastName.parameterString: lastName
+            ]
         
         let variables = [
             "input": input
