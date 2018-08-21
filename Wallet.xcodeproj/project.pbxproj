@@ -11,14 +11,8 @@
 		60AC208DB93701555B9756D2 /* Pods_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */; };
 		CE1BD73D212565B8006097E5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE1BD73C212565B8006097E5 /* Podfile */; };
 		CE1EED752124BB8400BF39B8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1EED742124BB8400BF39B8 /* LoginViewController.swift */; };
-		CE25B72C2125A2E10097230A /* StqTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7272125A2E00097230A /* StqTextFieldCell.swift */; };
 		CE25B72D2125A2E10097230A /* StqButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* StqButton.swift */; };
-		CE25B72E2125A2E10097230A /* StqTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B72A2125A2E10097230A /* StqTextField.swift */; };
-		CE25B72F2125A2E10097230A /* StqButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B72B2125A2E10097230A /* StqButtonCell.swift */; };
 		CE25B7352125A3680097230A /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7332125A3680097230A /* AgreementView.swift */; };
-		CE25B7372125A8960097230A /* StqButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25B7282125A2E00097230A /* StqButtonCell.xib */; };
-		CE25B7382125A8960097230A /* StqTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25B7252125A2E00097230A /* StqTextField.xib */; };
-		CE25B7392125A8960097230A /* StqTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25B7262125A2E00097230A /* StqTextFieldCell.xib */; };
 		CE25B73B2125C8300097230A /* ValidationFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B73A2125C8300097230A /* ValidationFieldProtocol.swift */; };
 		CE25B73F2126AA200097230A /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B73E2126AA200097230A /* Validations.swift */; };
 		CE25B74A2126B5A50097230A /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7492126B5A50097230A /* NetworkConfig.swift */; };
@@ -32,6 +26,8 @@
 		CE25B75F212723110097230A /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B75E212723110097230A /* RegistrationRequest.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
 		CE2C5CCF2125843000F153E7 /* PinInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCE2125843000F153E7 /* PinInputViewController.swift */; };
+		CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45A8BD212C029F0096DD5F /* StringExtension.swift */; };
+		CE45A8C0212C0D780096DD5F /* GraphQLMutation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45A8BF212C0D780096DD5F /* GraphQLMutation.swift */; };
 		CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C31212465A800A2EED2 /* AppDelegate.swift */; };
 		CE526C39212465A800A2EED2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE526C37212465A800A2EED2 /* Main.storyboard */; };
 		CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3A212465A900A2EED2 /* Assets.xcassets */; };
@@ -40,6 +36,7 @@
 		CE526C54212465A900A2EED2 /* WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C53212465A900A2EED2 /* WalletUITests.swift */; };
 		CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */; };
 		CE526C68212471CE00A2EED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C67212471CE00A2EED2 /* Constants.swift */; };
+		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CEE72D5D2125990900991B0C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE72D5C2125990900991B0C /* RegistrationViewController.swift */; };
 		E8AA4A98B0213B85C9324E0C /* Pods_WalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2407DA6D79A3208812DC6CB /* Pods_WalletUITests.framework */; };
@@ -70,13 +67,7 @@
 		BC4DE7AF801525F566BD53C3 /* Pods-WalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletTests/Pods-WalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE1BD73C212565B8006097E5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE1EED742124BB8400BF39B8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		CE25B7252125A2E00097230A /* StqTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StqTextField.xib; sourceTree = "<group>"; };
-		CE25B7262125A2E00097230A /* StqTextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StqTextFieldCell.xib; sourceTree = "<group>"; };
-		CE25B7272125A2E00097230A /* StqTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StqTextFieldCell.swift; sourceTree = "<group>"; };
-		CE25B7282125A2E00097230A /* StqButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StqButtonCell.xib; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* StqButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StqButton.swift; sourceTree = "<group>"; };
-		CE25B72A2125A2E10097230A /* StqTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StqTextField.swift; sourceTree = "<group>"; };
-		CE25B72B2125A2E10097230A /* StqButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StqButtonCell.swift; sourceTree = "<group>"; };
 		CE25B7332125A3680097230A /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 		CE25B73A2125C8300097230A /* ValidationFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationFieldProtocol.swift; sourceTree = "<group>"; };
 		CE25B73E2126AA200097230A /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
@@ -91,6 +82,8 @@
 		CE25B75E212723110097230A /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CE2C5CCE2125843000F153E7 /* PinInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinInputViewController.swift; sourceTree = "<group>"; };
+		CE45A8BD212C029F0096DD5F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		CE45A8BF212C0D780096DD5F /* GraphQLMutation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLMutation.swift; sourceTree = "<group>"; };
 		CE526C2E212465A800A2EED2 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE526C31212465A800A2EED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE526C38212465A800A2EED2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +98,7 @@
 		CE526C55212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CE526C67212471CE00A2EED2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CEE72D5C2125990900991B0C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,13 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */,
+				CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */,
 				CE25B7292125A2E00097230A /* StqButton.swift */,
-				CE25B72B2125A2E10097230A /* StqButtonCell.swift */,
-				CE25B7282125A2E00097230A /* StqButtonCell.xib */,
-				CE25B72A2125A2E10097230A /* StqTextField.swift */,
-				CE25B7252125A2E00097230A /* StqTextField.xib */,
-				CE25B7272125A2E00097230A /* StqTextFieldCell.swift */,
-				CE25B7262125A2E00097230A /* StqTextFieldCell.xib */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -247,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				CE25B7492126B5A50097230A /* NetworkConfig.swift */,
+				CE45A8BF212C0D780096DD5F /* GraphQLMutation.swift */,
 				CE25B7502126F01E0097230A /* Request.swift */,
 				CE25B74B2126BCFF0097230A /* RequestSender.swift */,
 				CE25B758212711620097230A /* ResponseError.swift */,
@@ -327,6 +317,7 @@
 			children = (
 				CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */,
 				CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */,
+				CE45A8BD212C029F0096DD5F /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -439,9 +430,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE25B7372125A8960097230A /* StqButtonCell.xib in Resources */,
-				CE25B7382125A8960097230A /* StqTextField.xib in Resources */,
-				CE25B7392125A8960097230A /* StqTextFieldCell.xib in Resources */,
 				CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */,
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
@@ -549,19 +537,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE45A8C0212C0D780096DD5F /* GraphQLMutation.swift in Sources */,
 				CE25B75F212723110097230A /* RegistrationRequest.swift in Sources */,
 				CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */,
 				CE25B72D2125A2E10097230A /* StqButton.swift in Sources */,
 				CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */,
 				CE25B75D212723040097230A /* RegistrationProvider.swift in Sources */,
+				CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */,
 				CEE72D5D2125990900991B0C /* RegistrationViewController.swift in Sources */,
 				CE25B7552126F0960097230A /* LoginProvider.swift in Sources */,
 				CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */,
 				CE25B759212711620097230A /* ResponseError.swift in Sources */,
-				CE25B72E2125A2E10097230A /* StqTextField.swift in Sources */,
 				CE2C5CCF2125843000F153E7 /* PinInputViewController.swift in Sources */,
-				CE25B72C2125A2E10097230A /* StqTextFieldCell.swift in Sources */,
-				CE25B72F2125A2E10097230A /* StqButtonCell.swift in Sources */,
 				CE25B73B2125C8300097230A /* ValidationFieldProtocol.swift in Sources */,
 				CE25B7352125A3680097230A /* AgreementView.swift in Sources */,
 				CE25B73F2126AA200097230A /* Validations.swift in Sources */,
@@ -572,6 +559,7 @@
 				CE1EED752124BB8400BF39B8 /* LoginViewController.swift in Sources */,
 				CE25B74A2126B5A50097230A /* NetworkConfig.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
+				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
 				CE25B7572126F0BE0097230A /* LoginRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

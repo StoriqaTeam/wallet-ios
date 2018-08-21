@@ -15,7 +15,7 @@ enum RegistrationInput: String, GraphQLMutationInput {
     case password
     
     static var name = "CreateUserInput"
-    var parameterString: String { return self.rawValue }
+    var fieldCode: String { return self.rawValue }
 }
 
 class RegistrationRequest: Request, GraphQLMutation {
@@ -34,10 +34,10 @@ class RegistrationRequest: Request, GraphQLMutation {
         
         let input: [String: String] = [
             "clientMutationId": "1", //не используется
-            RegistrationInput.email.parameterString: email,
-            RegistrationInput.password.parameterString: password,
-            RegistrationInput.firstName.parameterString: firstName,
-            RegistrationInput.lastName.parameterString: lastName
+            RegistrationInput.email.fieldCode: email,
+            RegistrationInput.password.fieldCode: password,
+            RegistrationInput.firstName.fieldCode: firstName,
+            RegistrationInput.lastName.fieldCode: lastName
             ]
         
         let variables = [

@@ -15,6 +15,29 @@ enum ResponseType {
     case textError(message: String)
     
     static var unknownError = ResponseType.textError(message: "Unknown error")
+    
+    func parseResponseErrors() -> (api: [ResponseAPIError.Message], default: String)? {
+        
+        switch self {
+        case .apiErrors(errors: let errors):
+            let apiErrors = errors.compactMap({ (error) -> ResponseAPIError.Message? in
+                return (error as? ResponseAPIError)?.message
+            })
+            
+            let defaultErrors = errors.compactMap({ (error) -> String? in
+                return (error as? ResponseDefaultError)?.details
+            }).reduce("", {
+                return $0 + "\n" + $1
+            })
+            
+            return (apiErrors, defaultErrors)
+        
+        default:
+            return nil
+        }
+        
+        
+    }
 }
 
 class RequestSender {

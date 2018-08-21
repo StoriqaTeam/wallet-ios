@@ -51,14 +51,33 @@ class ResponseError {
 }
 
 class ResponseAPIError: ResponseError {
+    class Message {
+        let code: String
+        let message: String
+        
+        init?(dictionary: [String: AnyObject]) {
+            guard let code = dictionary.keys.first,
+                let body = dictionary[code] as? [[String: AnyObject]] else {
+                    return nil
+            }
+            
+            let messages = body.compactMap { (message) -> String? in
+                return message["message"] as? String
+            }.reduce("", { $0 + " " + $1 }).trim()
+            
+            self.code = code
+            self.message = messages
+        }
+    }
+    
     let status: String
-    let message: [String: AnyObject]?
+    let message: Message?
     
     init?(_ details: [String: AnyObject]) {
         guard let status = details["status"] as? String,
             let messageData = (details["message"] as? String)?.data(using: String.Encoding.utf8),
-            let messageJson = try? JSONSerialization.jsonObject(with: messageData, options: []) as? [String: AnyObject],
-            let message = messageJson else {
+            let messageJson = (try? JSONSerialization.jsonObject(with: messageData, options: [])) as? [String: AnyObject],
+            let message = Message(dictionary: messageJson) else {
                 return nil
         }
         

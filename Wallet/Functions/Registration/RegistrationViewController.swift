@@ -10,29 +10,23 @@ import Foundation
 import UIKit
 
 class RegistrationViewController: UIViewController {
-    @IBOutlet var firstNameTextField: StqTextField! {
+    @IBOutlet var firstNameTextField: UnderlinedTextField! {
         didSet {
-            firstNameTextField.delegate = self
             firstNameTextField.placeholder = "First Name"
         }
     }
-    @IBOutlet var lastNameTextField: StqTextField! {
+    @IBOutlet var lastNameTextField: UnderlinedTextField! {
         didSet {
-            lastNameTextField.delegate = self
             lastNameTextField.placeholder = "Last Name"
         }
     }
-    @IBOutlet var emailTextField: StqTextField! {
+    @IBOutlet var emailTextField: UnderlinedTextField! {
         didSet {
-            emailTextField.keyboardType = .emailAddress
-            emailTextField.delegate = self
             emailTextField.placeholder = "Email"
         }
     }
-    @IBOutlet var passwordTextField: StqTextField! {
+    @IBOutlet var passwordTextField: UnderlinedTextField! {
         didSet {
-            passwordTextField.isSecureTextEntry = true
-            passwordTextField.delegate = self
             passwordTextField.placeholder = "Password"
         }
     }
@@ -58,29 +52,39 @@ class RegistrationViewController: UIViewController {
         updateContinueButton()
     }
     
-    @IBAction func signUp(_ sender: Any) {
+    @IBAction func signUp() {
+        guard let firstName = firstNameTextField.text,
+            let lastName = lastNameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text else {
+                print("signUp error - empty fields")
+                return
+        }
+        
         RegistrationProvider.shared.delegate = self
-        RegistrationProvider.shared.register(firstName: firstNameTextField.text, lastName: lastNameTextField.text, email: emailTextField.text, password: passwordTextField.text)
+        RegistrationProvider.shared.register(firstName: firstName, lastName: lastName, email: email, password: password)
     }
 }
 
 private extension RegistrationViewController {
     func updateContinueButton(firstName: String? = nil, lastName: String? = nil, email: String? = nil, password: String? = nil) {
-        signUpButton.isEnabled = fialdsAreValid(firstName: firstName, lastName: lastName, email: email, password: password)
+        signUpButton.isEnabled = fieldsAreValid(firstName: firstName, lastName: lastName, email: email, password: password)
     }
     
-    func fialdsAreValid(firstName: String? = nil, lastName: String? = nil, email: String? = nil, password: String? = nil) ->  Bool {
-        let firstName = firstName ?? firstNameTextField.text
-        let lastName = lastName ?? lastNameTextField.text
-        let email = email ?? emailTextField.text
-        let password = password ?? passwordTextField.text
+    func fieldsAreValid(firstName: String? = nil, lastName: String? = nil, email: String? = nil, password: String? = nil) ->  Bool {
+        guard let firstName = firstName ?? firstNameTextField.text,
+            let lastName = lastName ?? lastNameTextField.text,
+            let email = email ?? emailTextField.text,
+            let password = password ?? passwordTextField.text else {
+                return false
+        }
         
         return !firstName.isEmpty && !lastName.isEmpty && Validations.isValidEmail(email) && !password.isEmpty && agreementView.checkboxSelected
     }
 }
 
-extension RegistrationViewController: StqTextFieldDelegate {
-    func textField(_ textField: StqTextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+extension RegistrationViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //TODO: ограничение на длину полей
         //        updateContinueButton()
         guard let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else { return true }
@@ -97,7 +101,7 @@ extension RegistrationViewController: StqTextFieldDelegate {
         return true
     }
     
-    func textFieldShouldClear(_ textField: StqTextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         if textField == firstNameTextField {
             updateContinueButton(firstName: "")
         } else if textField == lastNameTextField {
@@ -110,8 +114,22 @@ extension RegistrationViewController: StqTextFieldDelegate {
         return true
     }
     
-    func textFieldShouldReturn(_ textField: StqTextField) -> Bool {
-        //TODO: переход на след поле
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        
+        if textField == firstNameTextField {
+            lastNameTextField.becomeFirstResponder()
+        } else if textField == lastNameTextField {
+            emailTextField.becomeFirstResponder()
+        } else if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            if fieldsAreValid() {
+                signUp()
+            } else {
+                print("invalid fields")
+            }
+        }
         
         return true
     }
@@ -121,27 +139,29 @@ extension RegistrationViewController: RegistrationProviderDelegate {
     func registrationProviderSucceed() {
         //TODO: registrationProviderSucceed
         self.showAlert(message: "succeed")
-
+        
     }
-
+    
     func registrationProviderFailedWithMessage(_ message: String) {
         self.showAlert(message: message)
-
-    }
-
-    func registrationProviderFailedWithErrors(_ errors: [ResponseError]) {
-        //TODO: registrationProviderFailedWithErrors
-        let desc = errors.map({ (error) -> String in
-            if let error = error as? ResponseAPIError {
-                return error.message?.description ?? ""
-            } else if let error = error as? ResponseDefaultError {
-                return error.details
-            }
-            return ""
-        })
-
-        self.showAlert(message: desc.description)
         
+    }
+    
+    func registrationProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
+        for error in errors {
+            switch error.code {
+            case RegistrationInput.firstName.fieldCode:
+                firstNameTextField.errorText = error.message
+            case RegistrationInput.lastName.fieldCode:
+                lastNameTextField.errorText = error.message
+            case RegistrationInput.email.fieldCode:
+                emailTextField.errorText = error.message
+            case RegistrationInput.password.fieldCode:
+                passwordTextField.errorText = error.message
+            default:
+                break
+            }
+        }
     }
 }
 

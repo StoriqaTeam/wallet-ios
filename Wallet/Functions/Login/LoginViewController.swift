@@ -10,24 +10,16 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController {
-    @IBOutlet private var emailTextField: StqTextField! {
+    @IBOutlet private var emailTextField: UnderlinedTextField! {
         didSet {
-            //TODO: delete this
-//            emailTextField.text = "admin@storiqa.com"
-            
-            emailTextField.keyboardType = .emailAddress
-            emailTextField.returnKeyType = .next
-            emailTextField.delegate = self
+            emailTextField.placeholder = "Email"
+            emailTextField.fieldCode = LoginInput.email.fieldCode
         }
     }
-    @IBOutlet private var passwordTextField: StqTextField! {
+    @IBOutlet private var passwordTextField: UnderlinedTextField! {
         didSet {
-            //TODO: delete this
-//            passwordTextField.text = "bqF5BkdsCS"
-            
-            passwordTextField.isSecureTextEntry = true
-            passwordTextField.returnKeyType = .go
-            passwordTextField.delegate = self
+            passwordTextField.placeholder = "Password"
+            passwordTextField.fieldCode = LoginInput.password.fieldCode
         }
     }
     @IBOutlet private var signInButton: StqButton! {
@@ -50,11 +42,18 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction private func signIn() {
-        print("signIn")
         
         dismissKeyboard()
+        
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            print("signIn error - empty fields")
+            return
+        }
+        
+        print("signIn")
+        
         LoginProvider.shared.delegate = self
-        LoginProvider.shared.login(email: emailTextField.text, password: passwordTextField.text)
+        LoginProvider.shared.login(email: email, password: password)
     }
     
     @IBAction func signUp(_ sender: Any) {
@@ -64,21 +63,23 @@ class LoginViewController: UIViewController {
 
 private extension LoginViewController {
     func updateContinueButton(email: String? = nil, password: String? = nil) {
-        signInButton.isEnabled = fialdsAreValid(email: email, password: password)
+        signInButton.isEnabled = fieldsAreValid(email: email, password: password)
     }
     
-    func fialdsAreValid(email: String? = nil, password: String? = nil) ->  Bool {
-        let email = email ?? emailTextField.text
-        let password = password ?? passwordTextField.text
+    func fieldsAreValid(email: String? = nil, password: String? = nil) ->  Bool {
+        guard let email = email ?? emailTextField.text,
+            let password = password ?? passwordTextField.text else {
+                return false
+        }
         
         return Validations.isValidEmail(email) && !password.isEmpty
     }
 }
 
-extension LoginViewController: StqTextFieldDelegate {
-    func textField(_ textField: StqTextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //TODO: ограничение на длину полей
-        //        updateContinueButton()
+        
         guard let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else { return true }
         
         if textField == emailTextField {
@@ -90,11 +91,11 @@ extension LoginViewController: StqTextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: StqTextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         updateContinueButton()
     }
     
-    func textFieldShouldClear(_ textField: StqTextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         if textField == emailTextField {
             updateContinueButton(email: "")
         } else if textField == passwordTextField {
@@ -103,14 +104,13 @@ extension LoginViewController: StqTextFieldDelegate {
         return true
     }
     
-    func textFieldShouldReturn(_ textField: StqTextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        
         if textField == emailTextField {
-            textField.endEditing(true)
             _ = passwordTextField.becomeFirstResponder()
         } else if textField == passwordTextField {
-            textField.endEditing(true)
-            
-            if fialdsAreValid() {
+            if fieldsAreValid() {
                 signIn()
             } else {
                 print("invalid fields")
@@ -131,17 +131,16 @@ extension LoginViewController: LoginProviderDelegate {
         self.showAlert(message: message)
     }
     
-    func loginProviderFailedWithErrors(_ errors: [ResponseError]) {
-        //TODO: loginProviderFailedWithErrors
-        let desc = errors.map({ (error) -> String in
-            if let error = error as? ResponseAPIError {
-                return error.message?.description ?? ""
-            } else if let error = error as? ResponseDefaultError {
-                return error.details
+    func loginProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
+        for error in errors {
+            switch error.code {
+            case LoginInput.email.fieldCode:
+                emailTextField.errorText = error.message
+            case LoginInput.password.fieldCode:
+                passwordTextField.errorText = error.message
+            default:
+                break
             }
-            return ""
-        })
-        
-        self.showAlert(message: desc.description)
+        }
     }
 }

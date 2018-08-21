@@ -11,7 +11,7 @@ import Foundation
 protocol RegistrationProviderDelegate: class {
     func registrationProviderSucceed()
     func registrationProviderFailedWithMessage(_ message: String)
-    func registrationProviderFailedWithErrors(_ errors: [ResponseError])
+    func registrationProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message])
 }
 
 class RegistrationProvider {
@@ -33,8 +33,16 @@ class RegistrationProvider {
                 
                 strongSelf.delegate?.registrationProviderSucceed()
                 
-            case .apiErrors(let errors):
-                strongSelf.delegate?.registrationProviderFailedWithErrors(errors)
+            case .apiErrors:
+                
+                if let errors = response.parseResponseErrors() {
+                    if !errors.api.isEmpty {
+                        strongSelf.delegate?.registrationProviderFailedWithApiErrors(errors.api)
+                    }
+                    if !errors.default.isEmpty {
+                        strongSelf.delegate?.registrationProviderFailedWithMessage(errors.default)
+                    }
+                }
                 
             case .textError(let message):
                 strongSelf.delegate?.registrationProviderFailedWithMessage(message)

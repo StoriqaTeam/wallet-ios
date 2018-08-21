@@ -13,7 +13,7 @@ enum LoginInput: String, GraphQLMutationInput {
     case password = "password"
     
     static var name = "CreateJWTEmailInput"
-    var parameterString: String { return self.rawValue }
+    var fieldCode: String { return self.rawValue }
 }
 
 
@@ -36,8 +36,8 @@ class LoginRequest: Request, GraphQLMutation {
         
         let input: [String: String] = [
             "clientMutationId": "1", //не используется
-            LoginInput.email.parameterString: email,
-            LoginInput.password.parameterString: password
+            LoginInput.email.fieldCode: email,
+            LoginInput.password.fieldCode: password
             ]
         
         let variables = [

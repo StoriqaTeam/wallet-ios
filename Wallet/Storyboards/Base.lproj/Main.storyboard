@@ -41,29 +41,30 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8d-sj-8Nc" userLabel="fields">
                                 <rect key="frame" x="26" y="129" width="323" height="224"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qjn-u4-8ir" customClass="StqTextField" customModule="Wallet" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C6w-3a-hSd" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="323" height="40"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="v1p-MR-5dc"/>
+                                            <constraint firstAttribute="height" constant="40" id="wpw-So-gLW"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="email"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ayr-ud-Hib" customClass="StqTextField" customModule="Wallet" customModuleProvider="target">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="hof-5l-feu" id="eNL-VM-ld7"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uSV-vM-cln" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="60" width="323" height="40"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="lT5-G1-kAO"/>
+                                            <constraint firstAttribute="height" constant="40" id="2v4-FG-Cz4"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password"/>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="imageHidden" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="email"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="hof-5l-feu" id="FCK-jt-8k9"/>
+                                        </connections>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yl0-XQ-iHW" customClass="StqButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="129" width="323" height="45"/>
                                         <constraints>
@@ -85,18 +86,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uSV-vM-cln" secondAttribute="trailing" id="4eI-24-27y"/>
                                     <constraint firstItem="zkK-XN-xbk" firstAttribute="centerX" secondItem="u8d-sj-8Nc" secondAttribute="centerX" id="6wG-yJ-SPv"/>
+                                    <constraint firstItem="uSV-vM-cln" firstAttribute="leading" secondItem="u8d-sj-8Nc" secondAttribute="leading" id="Baq-jE-ALS"/>
                                     <constraint firstAttribute="bottom" secondItem="zkK-XN-xbk" secondAttribute="bottom" id="GZU-OB-tO6"/>
-                                    <constraint firstAttribute="trailing" secondItem="Qjn-u4-8ir" secondAttribute="trailing" id="IOa-ck-e1a"/>
-                                    <constraint firstItem="Yl0-XQ-iHW" firstAttribute="top" secondItem="Ayr-ud-Hib" secondAttribute="bottom" constant="29" id="KL3-T1-UYw"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ayr-ud-Hib" secondAttribute="trailing" id="LRB-YE-mHw"/>
                                     <constraint firstAttribute="trailing" secondItem="Yl0-XQ-iHW" secondAttribute="trailing" id="O7P-io-lN8"/>
-                                    <constraint firstItem="Ayr-ud-Hib" firstAttribute="top" secondItem="Qjn-u4-8ir" secondAttribute="bottom" constant="20" id="Uft-qc-7pf"/>
+                                    <constraint firstItem="C6w-3a-hSd" firstAttribute="leading" secondItem="u8d-sj-8Nc" secondAttribute="leading" id="S0J-9L-V4q"/>
+                                    <constraint firstItem="Yl0-XQ-iHW" firstAttribute="top" secondItem="uSV-vM-cln" secondAttribute="bottom" constant="29" id="SBF-SA-kRk"/>
                                     <constraint firstItem="zkK-XN-xbk" firstAttribute="top" secondItem="Yl0-XQ-iHW" secondAttribute="bottom" constant="10" id="avR-hm-Fep"/>
                                     <constraint firstItem="Yl0-XQ-iHW" firstAttribute="leading" secondItem="u8d-sj-8Nc" secondAttribute="leading" id="f7W-r9-8AJ"/>
-                                    <constraint firstItem="Ayr-ud-Hib" firstAttribute="leading" secondItem="u8d-sj-8Nc" secondAttribute="leading" id="idU-SY-Abp"/>
-                                    <constraint firstItem="Qjn-u4-8ir" firstAttribute="leading" secondItem="u8d-sj-8Nc" secondAttribute="leading" id="zGL-yt-AGk"/>
-                                    <constraint firstItem="Qjn-u4-8ir" firstAttribute="top" secondItem="u8d-sj-8Nc" secondAttribute="top" id="zJ2-is-WKe"/>
+                                    <constraint firstItem="uSV-vM-cln" firstAttribute="top" secondItem="C6w-3a-hSd" secondAttribute="bottom" constant="20" id="kvO-S7-Dt4"/>
+                                    <constraint firstAttribute="trailing" secondItem="C6w-3a-hSd" secondAttribute="trailing" id="rwu-JI-sjo"/>
+                                    <constraint firstItem="C6w-3a-hSd" firstAttribute="top" secondItem="u8d-sj-8Nc" secondAttribute="top" id="xSl-I8-sdL"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdd-8l-Xmg" userLabel="social">
@@ -198,9 +199,9 @@
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="emailTextField" destination="Qjn-u4-8ir" id="B6K-56-HU3"/>
+                        <outlet property="emailTextField" destination="C6w-3a-hSd" id="SFr-DD-HKD"/>
                         <outlet property="forgotPasswordButton" destination="zkK-XN-xbk" id="Apy-ly-Ef7"/>
-                        <outlet property="passwordTextField" destination="Ayr-ud-Hib" id="dHj-MP-7fG"/>
+                        <outlet property="passwordTextField" destination="uSV-vM-cln" id="7U5-UP-bB9"/>
                         <outlet property="signInButton" destination="Yl0-XQ-iHW" id="k6Z-6v-7Zi"/>
                     </connections>
                 </viewController>
@@ -219,51 +220,59 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="euf-Kd-Tyw">
                                 <rect key="frame" x="40" y="56" width="295" height="611"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SmI-h0-8Xc" customClass="StqTextField" customModule="Wallet" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aS9-6b-1oG" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="8Dk-QX-Ohl"/>
+                                            <constraint firstAttribute="height" constant="40" id="cYf-q6-gKN"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="First Name"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B30-ZO-v3q" customClass="StqTextField" customModule="Wallet" customModuleProvider="target">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="aFq-bP-6Fq" id="Wu2-EB-Sk5"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O4w-yt-Qhc" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="295" height="40"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="t8g-4p-p3E"/>
+                                            <constraint firstAttribute="height" constant="40" id="dZR-NJ-l0b"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Last Name"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12s-yk-Ko2" customClass="StqTextField" customModule="Wallet" customModuleProvider="target">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="aFq-bP-6Fq" id="SmQ-dC-H2F"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Npw-kf-cQS" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="130" width="295" height="40"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="nc9-jX-cDS"/>
+                                            <constraint firstAttribute="height" constant="40" id="gyy-E0-fd2"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Qq-8J-l7o" customClass="StqTextField" customModule="Wallet" customModuleProvider="target">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="aFq-bP-6Fq" id="XGs-qp-ftU"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QLW-97-YPC" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="195" width="295" height="40"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="qg7-Kj-nJk"/>
+                                            <constraint firstAttribute="height" constant="40" id="ONs-fr-Tcx"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="aFq-bP-6Fq" id="uyH-ij-KuV"/>
+                                        </connections>
+                                    </textField>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tqy-hF-wZl" customClass="AgreementView" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="260" width="295" height="90"/>
+                                        <rect key="frame" x="0.0" y="260" width="295" height="68"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUs-Iy-6rb">
-                                                <rect key="frame" x="2" y="33" width="24" height="24"/>
+                                                <rect key="frame" x="2" y="22" width="24" height="24"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="gUs-Iy-6rb" secondAttribute="height" multiplier="1:1" id="T6o-ZM-BYm"/>
@@ -271,7 +280,7 @@
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="750" scrollEnabled="NO" editable="NO" text="I accept the terms of the license agreement and privacy policy" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hjg-dg-4yE">
-                                                <rect key="frame" x="42" y="8" width="253" height="74"/>
+                                                <rect key="frame" x="42" y="8" width="253" height="52"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" red="0.2901960784" green="0.31372549020000001" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -295,17 +304,17 @@
                                         </connections>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3k-de-5ZP" customClass="StqButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="375" width="295" height="45"/>
+                                        <rect key="frame" x="0.0" y="353" width="295" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="2x7-T6-pNt"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="signUp:" destination="aFq-bP-6Fq" eventType="touchUpInside" id="glI-UY-BeC"/>
+                                            <action selector="signUp" destination="aFq-bP-6Fq" eventType="touchUpInside" id="pLE-Qx-QU8"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeP-D8-X0i">
-                                        <rect key="frame" x="0.0" y="445" width="295" height="166"/>
+                                        <rect key="frame" x="0.0" y="423" width="295" height="188"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -323,10 +332,10 @@
                     <navigationItem key="navigationItem" id="LzT-dL-LVO"/>
                     <connections>
                         <outlet property="agreementView" destination="tqy-hF-wZl" id="3h4-Rc-XaK"/>
-                        <outlet property="emailTextField" destination="12s-yk-Ko2" id="KB0-R6-CdS"/>
-                        <outlet property="firstNameTextField" destination="SmI-h0-8Xc" id="Qma-dw-xxa"/>
-                        <outlet property="lastNameTextField" destination="B30-ZO-v3q" id="Mft-gj-nOa"/>
-                        <outlet property="passwordTextField" destination="2Qq-8J-l7o" id="90Z-8s-4T3"/>
+                        <outlet property="emailTextField" destination="Npw-kf-cQS" id="eCV-28-WaV"/>
+                        <outlet property="firstNameTextField" destination="aS9-6b-1oG" id="5al-dJ-aTL"/>
+                        <outlet property="lastNameTextField" destination="O4w-yt-Qhc" id="rIf-0f-PZR"/>
+                        <outlet property="passwordTextField" destination="QLW-97-YPC" id="WDd-ah-yEx"/>
                         <outlet property="signUpButton" destination="o3k-de-5ZP" id="fe0-N8-Igz"/>
                     </connections>
                 </viewController>
@@ -339,11 +348,11 @@
             <objects>
                 <viewController storyboardIdentifier="PasswordLoginViewController" id="iOj-88-yld" customClass="PinInputViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FMv-FH-q0d">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="yJ0-eS-O1v">
-                                <rect key="frame" x="51" y="30" width="274" height="543"/>
+                                <rect key="frame" x="51" y="50" width="274" height="567"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -355,13 +364,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7mc-8o-FfB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Enter Pin" id="QOS-FP-4IY">
-                        <barButtonItem key="leftBarButtonItem" image="backArrow" id="Gnw-6x-ciQ">
-                            <connections>
-                                <action selector="dismissViewController" destination="iOj-88-yld" id="g9g-EO-RMX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Enter Pin" id="QOS-FP-4IY"/>
                     <connections>
                         <outlet property="passwordStackView" destination="yJ0-eS-O1v" id="RTO-xN-YwG"/>
                     </connections>
@@ -369,23 +372,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eBY-46-jn7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2960" y="-830"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="LAK-mT-Bde">
-            <objects>
-                <navigationController id="um8-hD-nP5" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tuq-lx-ozO">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="iOj-88-yld" kind="relationship" relationship="rootViewController" id="MgN-jn-RZb"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JVv-Wc-e7E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3760" y="-829"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UV5-4N-g5y">
@@ -406,8 +392,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backArrow" width="36" height="36"/>
-        <image name="email" width="73" height="76"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
