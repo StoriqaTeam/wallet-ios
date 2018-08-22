@@ -48,41 +48,57 @@ class ResponseError {
         }
         return nil
     }
+    
+    static func getApiErrorMessages(errors: [ResponseError]) -> [ResponseAPIError.Message] {
+        let apiErrors = errors.flatMap({ (error) -> [ResponseAPIError.Message] in
+            return (error as? ResponseAPIError)?.messages ?? []
+        })
+        
+        return apiErrors
+    }
+    
+    static func getTextError(errors: [ResponseError]) -> String {
+        let defaultErrors = errors.compactMap({ (error) -> String? in
+            return (error as? ResponseDefaultError)?.details
+        }).reduce("", {
+            return $0 + "\n" + $1
+        })
+        
+        return defaultErrors.trim()
+    }
 }
 
 class ResponseAPIError: ResponseError {
     class Message {
-        let code: String
-        let message: String
+        let fieldCode: String
+        let text: String
         
-        init?(dictionary: [String: AnyObject]) {
-            guard let code = dictionary.keys.first,
-                let body = dictionary[code] as? [[String: AnyObject]] else {
-                    return nil
-            }
-            
-            let messages = body.compactMap { (message) -> String? in
+        init?(fieldCode: String, dictionary: [[String: AnyObject]]) {
+            let messages = dictionary.compactMap { (message) -> String? in
                 return message["message"] as? String
             }.reduce("", { $0 + " " + $1 }).trim()
             
-            self.code = code
-            self.message = messages
+            self.fieldCode = fieldCode
+            self.text = messages
         }
     }
     
     let status: String
-    let message: Message?
+    let messages: [Message]
     
     init?(_ details: [String: AnyObject]) {
         guard let status = details["status"] as? String,
             let messageData = (details["message"] as? String)?.data(using: String.Encoding.utf8),
-            let messageJson = (try? JSONSerialization.jsonObject(with: messageData, options: [])) as? [String: AnyObject],
-            let message = Message(dictionary: messageJson) else {
+            let messageJson = (try? JSONSerialization.jsonObject(with: messageData, options: [])) as? [String: [[String: AnyObject]]] else {
                 return nil
         }
         
+        let messages = messageJson.compactMap { (key, value) -> Message? in
+            return Message(fieldCode: key, dictionary: value)
+        }
+        
         self.status = status
-        self.message = message
+        self.messages = messages
         
         super.init(code: ErrorCode.API)
     }

@@ -21,7 +21,7 @@ enum RegistrationInput: String, GraphQLMutationInput {
 class RegistrationRequest: Request, GraphQLMutation {
     typealias Input = RegistrationInput
     
-    var name: String {
+    override var name: String {
         return "createUser"
     }
     

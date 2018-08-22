@@ -18,16 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let backButtonImage = #imageLiteral(resourceName: "backArrow")
-        let appearance = UINavigationBar.appearance()
-        appearance.backIndicatorImage = backButtonImage
-        appearance.backIndicatorTransitionMaskImage = backButtonImage
         
-        appearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 24)]
+        // UINavigationBar settings
+        let appearance = UINavigationBar.appearance()
+        //        let backButtonImage = #imageLiteral(resourceName: "backArrow")
+//        appearance.backIndicatorImage = backButtonImage
+//        appearance.backIndicatorTransitionMaskImage = backButtonImage
+//
+//        appearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 24)]
         appearance.setBackgroundImage(UIImage(), for: .default)
         appearance.shadowImage = UIImage()
         appearance.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        appearance.isTranslucent = true
+//        appearance.isTranslucent = true
         
         
 

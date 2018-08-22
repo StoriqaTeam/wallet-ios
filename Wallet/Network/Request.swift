@@ -10,6 +10,9 @@ import Foundation
 import Alamofire
 
 class Request {
+    var name: String {
+        return ""
+    }
     var parameters: [String : Any]?
     var headers: HTTPHeaders = [
         "Content-Type": "application/json"

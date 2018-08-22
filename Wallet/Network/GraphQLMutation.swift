@@ -16,26 +16,14 @@ protocol GraphQLMutationInput {
     init?(rawValue: String)
 }
 
-//extension GraphQLMutationInput {
-//    static func parseErrorMessage(_ message: ResponseAPIError.Message) -> (GraphQLMutationInput, String)? {
-//        
-//        if let input = Self.init(rawValue: message.code) {
-//            return (input, message.message)
-//        } else {
-//            return nil
-//        }
-//    }
-//}
-
 protocol GraphQLMutation {
     associatedtype Input: GraphQLMutationInput
     
-    var name: String { get }
     var fields: [String] { get }
     var query: String { get }
 }
 
-extension GraphQLMutation {
+extension GraphQLMutation where Self: Request {
     var query: String {
         let fields = self.fields.reduce("") { return $0 + " " + $1 }
         return "mutation \(name)($input: \(Input.name)!) { \(name)(input: $input) { \(fields) } }"

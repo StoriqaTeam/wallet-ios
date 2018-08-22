@@ -9,39 +9,21 @@
 import Foundation
 import Alamofire
 
-enum ResponseType {
-    case success(data: [String: AnyObject])
-    case apiErrors(errors: [ResponseError])
-    case textError(message: String)
-    
-    static var unknownError = ResponseType.textError(message: "Unknown error")
-    
-    func parseResponseErrors() -> (api: [ResponseAPIError.Message], default: String)? {
-        
-        switch self {
-        case .apiErrors(errors: let errors):
-            let apiErrors = errors.compactMap({ (error) -> ResponseAPIError.Message? in
-                return (error as? ResponseAPIError)?.message
-            })
-            
-            let defaultErrors = errors.compactMap({ (error) -> String? in
-                return (error as? ResponseDefaultError)?.details
-            }).reduce("", {
-                return $0 + "\n" + $1
-            })
-            
-            return (apiErrors, defaultErrors)
-        
-        default:
-            return nil
-        }
-        
-        
-    }
+protocol RequestSenderDelegate: class {
+    func requestSucceed(_ request: Request, data: [String: AnyObject])
+    func requestFailed(_ request: Request, apiErrors: [ResponseAPIError.Message])
+    func requestFailed(_ request: Request, message: String)
 }
 
-class RequestSender {
-    func send(_ request: Request, completion: ((ResponseType) -> Void)? ) {
+protocol AbstractRequestSender {
+    var delegate: RequestSenderDelegate? { set get }
+    func send(_ request: Request)
+}
+
+class RequestSender: AbstractRequestSender {
+    weak var delegate: RequestSenderDelegate?
+    
+    func send(_ request: Request) {
         
         //        let url = URL(string: NetworkConfig.url)!
         //        let mutableUrlRequest = NSMutableURLRequest(url: url)
@@ -61,18 +43,18 @@ class RequestSender {
                           headers: request.headers).responseJSON(queue: queue) { (response) in
                             print(response)
                             
+                            let unknownError = "Unknown error"
                             if let error = response.result.error {
-                                DispatchQueue.main.async {
-                                    completion?(.textError(message: error.localizedDescription))
+                                DispatchQueue.main.async {[weak self] in
+                                    self?.delegate?.requestFailed(request, message: error.localizedDescription)
                                 }
                                 return
                             }
                             
                             guard let responseData = response.data,
-                                let json = try? JSONSerialization.jsonObject(with: responseData, options: []),
-                                let dict = json as? [String: Any] else {
-                                    DispatchQueue.main.async {
-                                        completion?(.unknownError)
+                                let dict = (try? JSONSerialization.jsonObject(with: responseData, options: [])) as? [String: Any] else {
+                                    DispatchQueue.main.async {[weak self] in
+                                        self?.delegate?.requestFailed(request, message: unknownError)
                                     }
                                     return
                             }
@@ -83,24 +65,33 @@ class RequestSender {
                                 })
                                 
                                 guard !errors.isEmpty else {
-                                    DispatchQueue.main.async {
-                                        completion?(.unknownError)
+                                    DispatchQueue.main.async {[weak self] in
+                                        self?.delegate?.requestFailed(request, message: unknownError)
                                     }
                                     return
                                 }
                                 
-                                DispatchQueue.main.async {
-                                    completion?(.apiErrors(errors: errors))
+                                let apiErrors = ResponseError.getApiErrorMessages(errors: errors)
+                                if !apiErrors.isEmpty {
+                                    DispatchQueue.main.async {[weak self] in
+                                        self?.delegate?.requestFailed(request, apiErrors: apiErrors)
+                                    }
                                 }
                                 
+                                let defaultError = ResponseError.getTextError(errors: errors)
+                                if !defaultError.isEmpty {
+                                    DispatchQueue.main.async {[weak self] in
+                                        self?.delegate?.requestFailed(request, message: defaultError)
+                                    }
+                                }
                             } else if let data = dict["data"] as? [String: AnyObject] {
-                                DispatchQueue.main.async {
-                                    completion?(.success(data: data))
+                                DispatchQueue.main.async {[weak self] in
+                                    self?.delegate?.requestSucceed(request, data: data)
                                 }
                                 
                             } else {
-                                DispatchQueue.main.async {
-                                    completion?(.unknownError)
+                                DispatchQueue.main.async {[weak self] in
+                                    self?.delegate?.requestFailed(request, message: unknownError)
                                 }
                             }
         }

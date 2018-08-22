@@ -21,7 +21,7 @@ class LoginRequest: Request, GraphQLMutation {
     
     typealias Input = LoginInput
     
-    var name: String {
+    override var name: String {
         return "getJWTByEmail"
     }
     var inputName: String {

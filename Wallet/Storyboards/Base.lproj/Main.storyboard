@@ -20,10 +20,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1B-J3-zmV" userLabel="header">
-                                <rect key="frame" x="135" y="56" width="105" height="43"/>
+                                <rect key="frame" x="135" y="100" width="105" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opw-rW-D7Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="105" height="43"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="105" height="44"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                         <color key="textColor" red="0.22352941176470587" green="0.20000000000000001" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -31,6 +31,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="CSi-Nh-irP"/>
                                     <constraint firstItem="Opw-rW-D7Q" firstAttribute="leading" secondItem="r1B-J3-zmV" secondAttribute="leading" id="Jhc-dH-TBD"/>
                                     <constraint firstItem="Opw-rW-D7Q" firstAttribute="top" secondItem="r1B-J3-zmV" secondAttribute="top" id="TJ9-JJ-Fh0"/>
                                     <constraint firstItem="Opw-rW-D7Q" firstAttribute="centerX" secondItem="r1B-J3-zmV" secondAttribute="centerX" id="fBm-iT-igt"/>
@@ -39,7 +40,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8d-sj-8Nc" userLabel="fields">
-                                <rect key="frame" x="26" y="129" width="323" height="224"/>
+                                <rect key="frame" x="26" y="174" width="323" height="224"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C6w-3a-hSd" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="323" height="40"/>
@@ -50,6 +51,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                         <connections>
+                                            <outlet property="bottomConstraint" destination="kvO-S7-Dt4" id="Ysz-1i-cbc"/>
                                             <outlet property="delegate" destination="hof-5l-feu" id="eNL-VM-ld7"/>
                                         </connections>
                                     </textField>
@@ -60,8 +62,9 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
                                         <connections>
+                                            <outlet property="bottomConstraint" destination="SBF-SA-kRk" id="x7c-we-bvU"/>
                                             <outlet property="delegate" destination="hof-5l-feu" id="FCK-jt-8k9"/>
                                         </connections>
                                     </textField>
@@ -161,7 +164,6 @@
                                             <color key="titleColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="signUp:" destination="hof-5l-feu" eventType="touchUpInside" id="GqL-Vo-af1"/>
                                             <segue destination="aFq-bP-6Fq" kind="show" id="yUb-Re-nkb"/>
                                         </connections>
                                     </button>
@@ -189,7 +191,7 @@
                             <constraint firstItem="IlI-9H-CXb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nBB-oQ-iZW" secondAttribute="leading" constant="16" id="uCq-UV-uCw"/>
                             <constraint firstItem="r1B-J3-zmV" firstAttribute="centerX" secondItem="kwo-Hd-mXs" secondAttribute="centerX" id="urP-Hx-NL2"/>
                             <constraint firstItem="IlI-9H-CXb" firstAttribute="centerX" secondItem="kwo-Hd-mXs" secondAttribute="centerX" id="vXD-2o-ABN"/>
-                            <constraint firstItem="cdd-8l-Xmg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="u8d-sj-8Nc" secondAttribute="bottom" constant="30" id="xMb-DC-MIT"/>
+                            <constraint firstItem="cdd-8l-Xmg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="u8d-sj-8Nc" secondAttribute="bottom" constant="20" id="xMb-DC-MIT"/>
                             <constraint firstItem="IlI-9H-CXb" firstAttribute="top" secondItem="cdd-8l-Xmg" secondAttribute="bottom" constant="30" id="zwf-pE-OM9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nBB-oQ-iZW"/>
@@ -197,9 +199,8 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="mGt-Rr-VDh">
                         <barButtonItem key="backBarButtonItem" title=" " id="CM5-Vp-bV4"/>
                     </navigationItem>
-                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="emailTextField" destination="C6w-3a-hSd" id="SFr-DD-HKD"/>
+                        <outlet property="emailTextField" destination="C6w-3a-hSd" id="B3f-jp-jg1"/>
                         <outlet property="forgotPasswordButton" destination="zkK-XN-xbk" id="Apy-ly-Ef7"/>
                         <outlet property="passwordTextField" destination="uSV-vM-cln" id="7U5-UP-bB9"/>
                         <outlet property="signInButton" destination="Yl0-XQ-iHW" id="k6Z-6v-7Zi"/>
@@ -207,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YmY-YP-cHM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2959" y="-1643"/>
+            <point key="canvasLocation" x="-2959.1999999999998" y="-1643.0284857571216"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="R5R-PY-qfj">
@@ -217,59 +218,136 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="euf-Kd-Tyw">
-                                <rect key="frame" x="40" y="56" width="295" height="611"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="euf-Kd-Tyw">
+                                <rect key="frame" x="40" y="100" width="295" height="567"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aS9-6b-1oG" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ON-yo-FfS">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aS9-6b-1oG" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="cYf-q6-gKN"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                                <connections>
+                                                    <outlet property="bottomConstraint" destination="xb7-eL-gH0" id="2c1-ge-B7s"/>
+                                                    <outlet property="delegate" destination="aFq-bP-6Fq" id="Wu2-EB-Sk5"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="cYf-q6-gKN"/>
+                                            <constraint firstItem="aS9-6b-1oG" firstAttribute="leading" secondItem="9ON-yo-FfS" secondAttribute="leading" id="3N0-C0-LLl"/>
+                                            <constraint firstItem="aS9-6b-1oG" firstAttribute="top" secondItem="9ON-yo-FfS" secondAttribute="top" id="gEn-cu-QMV"/>
+                                            <constraint firstAttribute="trailing" secondItem="aS9-6b-1oG" secondAttribute="trailing" id="jA3-tE-Jtz"/>
+                                            <constraint firstAttribute="bottom" secondItem="aS9-6b-1oG" secondAttribute="bottom" id="xb7-eL-gH0"/>
                                         </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="aFq-bP-6Fq" id="Wu2-EB-Sk5"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O4w-yt-Qhc" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="295" height="40"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6W-x7-2O7">
+                                        <rect key="frame" x="0.0" y="50" width="295" height="40"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O4w-yt-Qhc" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="dZR-NJ-l0b"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                                <connections>
+                                                    <outlet property="bottomConstraint" destination="AGu-FB-su5" id="eo3-Nn-dsm"/>
+                                                    <outlet property="delegate" destination="aFq-bP-6Fq" id="SmQ-dC-H2F"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="dZR-NJ-l0b"/>
+                                            <constraint firstAttribute="bottom" secondItem="O4w-yt-Qhc" secondAttribute="bottom" id="AGu-FB-su5"/>
+                                            <constraint firstItem="O4w-yt-Qhc" firstAttribute="top" secondItem="a6W-x7-2O7" secondAttribute="top" id="Uli-wW-p57"/>
+                                            <constraint firstAttribute="trailing" secondItem="O4w-yt-Qhc" secondAttribute="trailing" id="Up0-G1-UzX"/>
+                                            <constraint firstItem="O4w-yt-Qhc" firstAttribute="leading" secondItem="a6W-x7-2O7" secondAttribute="leading" id="feT-Xz-i8e"/>
                                         </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="aFq-bP-6Fq" id="SmQ-dC-H2F"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Npw-kf-cQS" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="130" width="295" height="40"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wlr-KK-ScF">
+                                        <rect key="frame" x="0.0" y="100" width="295" height="40"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Npw-kf-cQS" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="gyy-E0-fd2"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                                <connections>
+                                                    <outlet property="bottomConstraint" destination="fBD-Nh-3Jd" id="cVB-oq-lak"/>
+                                                    <outlet property="delegate" destination="aFq-bP-6Fq" id="XGs-qp-ftU"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="gyy-E0-fd2"/>
+                                            <constraint firstItem="Npw-kf-cQS" firstAttribute="leading" secondItem="Wlr-KK-ScF" secondAttribute="leading" id="Mgn-R3-VJi"/>
+                                            <constraint firstItem="Npw-kf-cQS" firstAttribute="top" secondItem="Wlr-KK-ScF" secondAttribute="top" id="Vzu-QS-3mg"/>
+                                            <constraint firstAttribute="bottom" secondItem="Npw-kf-cQS" secondAttribute="bottom" id="fBD-Nh-3Jd"/>
+                                            <constraint firstAttribute="trailing" secondItem="Npw-kf-cQS" secondAttribute="trailing" id="sEJ-Sr-r5K"/>
                                         </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="aFq-bP-6Fq" id="XGs-qp-ftU"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QLW-97-YPC" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="195" width="295" height="40"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Uw-f9-UXB">
+                                        <rect key="frame" x="0.0" y="150" width="295" height="40"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QLW-97-YPC" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="ONs-fr-Tcx"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="bottomConstraint" destination="lR8-DN-CZb" id="YCB-P1-97L"/>
+                                                    <outlet property="delegate" destination="aFq-bP-6Fq" id="uyH-ij-KuV"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="ONs-fr-Tcx"/>
+                                            <constraint firstItem="QLW-97-YPC" firstAttribute="top" secondItem="3Uw-f9-UXB" secondAttribute="top" id="Vef-QE-8F5"/>
+                                            <constraint firstItem="QLW-97-YPC" firstAttribute="leading" secondItem="3Uw-f9-UXB" secondAttribute="leading" id="kbN-3l-xIn"/>
+                                            <constraint firstAttribute="bottom" secondItem="QLW-97-YPC" secondAttribute="bottom" id="lR8-DN-CZb"/>
+                                            <constraint firstAttribute="trailing" secondItem="QLW-97-YPC" secondAttribute="trailing" id="x2g-We-yP4"/>
                                         </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="aFq-bP-6Fq" id="uyH-ij-KuV"/>
-                                        </connections>
-                                    </textField>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJf-SU-rZz">
+                                        <rect key="frame" x="0.0" y="200" width="295" height="40"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q4t-Rx-FUQ" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="vy0-ak-5XD"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="bottomConstraint" destination="bZ4-Ym-Ns9" id="s6k-Ri-7Uy"/>
+                                                    <outlet property="delegate" destination="aFq-bP-6Fq" id="1Ks-4J-euH"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="q4t-Rx-FUQ" secondAttribute="trailing" id="4Hr-0z-kTW"/>
+                                            <constraint firstItem="q4t-Rx-FUQ" firstAttribute="leading" secondItem="gJf-SU-rZz" secondAttribute="leading" id="Faa-e9-PU9"/>
+                                            <constraint firstItem="q4t-Rx-FUQ" firstAttribute="top" secondItem="gJf-SU-rZz" secondAttribute="top" id="Lj5-dE-HQs"/>
+                                            <constraint firstAttribute="bottom" secondItem="q4t-Rx-FUQ" secondAttribute="bottom" id="bZ4-Ym-Ns9"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tqy-hF-wZl" customClass="AgreementView" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="260" width="295" height="68"/>
+                                        <rect key="frame" x="0.0" y="250" width="295" height="68"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUs-Iy-6rb">
                                                 <rect key="frame" x="2" y="22" width="24" height="24"/>
@@ -304,7 +382,7 @@
                                         </connections>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3k-de-5ZP" customClass="StqButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="353" width="295" height="45"/>
+                                        <rect key="frame" x="0.0" y="328" width="295" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="2x7-T6-pNt"/>
                                         </constraints>
@@ -314,7 +392,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeP-D8-X0i">
-                                        <rect key="frame" x="0.0" y="423" width="295" height="188"/>
+                                        <rect key="frame" x="0.0" y="383" width="295" height="184"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -336,7 +414,13 @@
                         <outlet property="firstNameTextField" destination="aS9-6b-1oG" id="5al-dJ-aTL"/>
                         <outlet property="lastNameTextField" destination="O4w-yt-Qhc" id="rIf-0f-PZR"/>
                         <outlet property="passwordTextField" destination="QLW-97-YPC" id="WDd-ah-yEx"/>
+                        <outlet property="repeatPasswordTextField" destination="q4t-Rx-FUQ" id="LGY-Qv-7u9"/>
                         <outlet property="signUpButton" destination="o3k-de-5ZP" id="fe0-N8-Igz"/>
+                        <outletCollection property="textFields" destination="aS9-6b-1oG" collectionClass="NSMutableArray" id="R3j-8b-MDq"/>
+                        <outletCollection property="textFields" destination="O4w-yt-Qhc" collectionClass="NSMutableArray" id="vTf-on-Bu8"/>
+                        <outletCollection property="textFields" destination="Npw-kf-cQS" collectionClass="NSMutableArray" id="pnC-HJ-UK3"/>
+                        <outletCollection property="textFields" destination="QLW-97-YPC" collectionClass="NSMutableArray" id="9kc-FQ-oy0"/>
+                        <outletCollection property="textFields" destination="q4t-Rx-FUQ" collectionClass="NSMutableArray" id="xWr-u0-acw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMj-Jc-mjA" userLabel="First Responder" sceneMemberID="firstResponder"/>

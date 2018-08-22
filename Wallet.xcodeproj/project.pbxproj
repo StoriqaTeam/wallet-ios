@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2CB6AFB44248AEC1D7EF7326 /* Pods_WalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A8724397CC4953A7F9E72E /* Pods_WalletTests.framework */; };
 		60AC208DB93701555B9756D2 /* Pods_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */; };
+		CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */; };
 		CE1BD73D212565B8006097E5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE1BD73C212565B8006097E5 /* Podfile */; };
 		CE1EED752124BB8400BF39B8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1EED742124BB8400BF39B8 /* LoginViewController.swift */; };
 		CE25B72D2125A2E10097230A /* StqButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* StqButton.swift */; };
@@ -65,6 +66,7 @@
 		9C21C637BF3AA6BA1C4DA088 /* Pods-Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		ADE2B87D000AB5C20D3AD8A0 /* Pods-Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		BC4DE7AF801525F566BD53C3 /* Pods-WalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletTests/Pods-WalletTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseType.swift; sourceTree = "<group>"; };
 		CE1BD73C212565B8006097E5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE1EED742124BB8400BF39B8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* StqButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StqButton.swift; sourceTree = "<group>"; };
@@ -205,13 +207,13 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		CE25B7452126B4E20097230A /* Functions */ = {
+		CE25B7452126B4E20097230A /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				CE25B7412126B4930097230A /* Login */,
 				CE25B7432126B4B90097230A /* Registration */,
 			);
-			path = Functions;
+			path = Features;
 			sourceTree = "<group>";
 		};
 		CE25B7462126B4F80097230A /* Helpers */ = {
@@ -240,6 +242,7 @@
 				CE25B7502126F01E0097230A /* Request.swift */,
 				CE25B74B2126BCFF0097230A /* RequestSender.swift */,
 				CE25B758212711620097230A /* ResponseError.swift */,
+				CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -273,7 +276,7 @@
 				CE526C31212465A800A2EED2 /* AppDelegate.swift */,
 				CE526C3A212465A900A2EED2 /* Assets.xcassets */,
 				CE526C72212485F900A2EED2 /* Extensions */,
-				CE25B7452126B4E20097230A /* Functions */,
+				CE25B7452126B4E20097230A /* Features */,
 				CE25B7462126B4F80097230A /* Helpers */,
 				CE526C3F212465A900A2EED2 /* Info.plist */,
 				CE25B74F2126EFEF0097230A /* Network */,
@@ -561,6 +564,7 @@
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
 				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
 				CE25B7572126F0BE0097230A /* LoginRequest.swift in Sources */,
+				CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
