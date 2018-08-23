@@ -8,10 +8,14 @@
 
 import Foundation
 import UIKit
-import SmileLock
 
 class PinInputViewController: UIViewController {
-    @IBOutlet weak var passwordStackView: UIStackView!
+    @IBOutlet private var passwordStackView: UIStackView!
+    @IBOutlet private var greetingContainerView: UIView!
+    @IBOutlet private var greetingVerticalSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet private var greetingLabel: UILabel!
+    
+    
     
     //MARK: Property
     var passwordContainerView: PasswordContainerView!
@@ -20,13 +24,29 @@ class PinInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Constants.Sizes.isSmallScreen {
+            greetingContainerView.isHidden = true
+            greetingVerticalSpacingConstraint.constant = 0
+            greetingLabel.text = ""
+        }
+        
         //create PasswordContainerView
         passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
         passwordContainerView.delegate = self
         
         //customize password UI
-        passwordContainerView.tintColor = .gray
+        passwordContainerView.tintColor = Constants.Colors.brandColor
         passwordContainerView.highlightedColor = Constants.Colors.brandColor
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        super.viewWillDisappear(animated)
     }
 }
 

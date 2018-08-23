@@ -26,6 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    private var pinIsSet: Bool {
+        //TODO: проверка, установлен ли пин
+        return true
+    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -39,11 +44,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if isFirstLaunch {
             isFirstLaunch = false
             initialViewController = Storyboard.main.viewController(identifier: "FirstLaunchVC")
+        } else if pinIsSet {
+            initialViewController = Storyboard.main.viewController(identifier: "PinLoginVC")
         } else {
             initialViewController = Storyboard.main.viewController(identifier: "LoginVC")
         }
         
-        self.window?.rootViewController = initialViewController
+        self.window?.rootViewController = UINavigationController(rootViewController: initialViewController)
         self.window?.makeKeyAndVisible()
         
         return true

@@ -19,7 +19,7 @@ open class PasswordDotView: UIView {
     }
     
     @IBInspectable
-    open var totalDotCount = 6 {
+    open var totalDotCount = 4 {
         didSet {
             setNeedsDisplay()
         }
@@ -40,8 +40,8 @@ open class PasswordDotView: UIView {
     }
 
     fileprivate var radius: CGFloat = 6
-    fileprivate let spacingRatio: CGFloat = 2
-    fileprivate let borderWidthRatio: CGFloat = 1 / 5
+    fileprivate let spacingRatio: CGFloat = 2.4
+    fileprivate let borderWidthRatio: CGFloat = 1 / 6
     
     fileprivate(set) open var isFull = false
     
