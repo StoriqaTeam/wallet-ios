@@ -77,7 +77,6 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDarkTextNavigationBar()
         addHideKeyboardGuesture()
         updateContinueButton()
         

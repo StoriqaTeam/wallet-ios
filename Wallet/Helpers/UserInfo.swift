@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UserInfo {
     static let shared = UserInfo()
@@ -15,9 +16,12 @@ class UserInfo {
     var isAuth = false
     var token = ""
     
+    //TODO: заменить на реальные данные
+    var photo = #imageLiteral(resourceName: "faceid")
+    var name = "Dmitrii"
+    
     func clear() {
         isAuth = false
         token = ""
     }
-    
 }

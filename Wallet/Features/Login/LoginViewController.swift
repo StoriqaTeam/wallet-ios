@@ -42,7 +42,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDarkTextNavigationBar()
         addHideKeyboardGuesture()
         updateContinueButton()
         
@@ -148,7 +147,7 @@ extension LoginViewController: LoginProviderDelegate {
             case LoginInput.email.fieldCode:
                 emailTextField.errorText = error.text
             case LoginInput.password.fieldCode:
-                passwordTextField.errorText = "Password should be between 8 and 30 symbols"
+                passwordTextField.errorText = error.text
             default:
                 break
             }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireNetworkActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,24 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //The network activity indicator will show and hide automatically as Alamofire requests start and complete.
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        
         // Override point for customization after application launch.
         setDefaultApperance()
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        let initialViewController: UIViewController
-        
-        if isFirstLaunch {
-            isFirstLaunch = false
-            initialViewController = Storyboard.main.viewController(identifier: "FirstLaunchVC")
-        } else if pinIsSet {
-            initialViewController = Storyboard.main.viewController(identifier: "PinLoginVC")
-        } else {
-            initialViewController = Storyboard.main.viewController(identifier: "LoginVC")
-        }
-        
-        self.window?.rootViewController = UINavigationController(rootViewController: initialViewController)
-        self.window?.makeKeyAndVisible()
+        setInitialVC()
         
         return true
     }
@@ -97,6 +86,28 @@ private extension AppDelegate {
         //        appearance.isTranslucent = true
     }
     
-    
+    func setInitialVC() {
+        // setting initial vc on storyboard and then resetting it programmatically causes memory leak
+        // othervise we get warning
+        // "Failed to instantiate the default view controller for UIMainStoryboardFile 'Main' - perhaps the designated entry point is not set?"
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let initialViewController: UIViewController
+        
+        if isFirstLaunch {
+            isFirstLaunch = false
+            initialViewController = Storyboard.main.viewController(identifier: "FirstLaunchVC")
+        } else if pinIsSet {
+            initialViewController = Storyboard.main.viewController(identifier: "PinLoginVC")
+        } else {
+            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //            initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+            initialViewController = Storyboard.main.viewController(identifier: "LoginVC")
+        }
+        
+        self.window?.rootViewController = initialViewController //UINavigationController(rootViewController: initialViewController)
+        self.window?.makeKeyAndVisible()
+    }
 }
 

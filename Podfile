@@ -8,6 +8,7 @@ target 'Wallet' do
   # Pods for Wallet
 
   pod 'Alamofire', '~> 4.7'
+  pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
 
   target 'WalletTests' do
     inherit! :search_paths
