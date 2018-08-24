@@ -125,6 +125,11 @@ private extension RegistrationViewController {
         updateContinueButton()
     }
     
+    @IBAction func signIn() {
+        let loginVC = Storyboard.main.viewController(identifier: "LoginVC")
+        self.navigationController?.setViewControllers([loginVC], animated: true)
+    }
+    
     @objc func textDidChange(_ notification: Notification) {
         updateContinueButton()
     }

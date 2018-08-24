@@ -7,7 +7,6 @@ target 'Wallet' do
 
   # Pods for Wallet
 
-  pod 'SmileLock'
   pod 'Alamofire', '~> 4.7'
 
   target 'WalletTests' do
