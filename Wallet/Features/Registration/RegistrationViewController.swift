@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class RegistrationViewController: UIViewController {
-    @IBOutlet var firstNameTextField: UnderlinedTextField! {
+    @IBOutlet private var firstNameTextField: UnderlinedTextField! {
         didSet {
             firstNameTextField.placeholder = "First name"
             firstNameTextField.layoutBlock = {[weak self] in
@@ -18,7 +18,7 @@ class RegistrationViewController: UIViewController {
             }
         }
     }
-    @IBOutlet var lastNameTextField: UnderlinedTextField! {
+    @IBOutlet private var lastNameTextField: UnderlinedTextField! {
         didSet {
             lastNameTextField.placeholder = "Last name"
             lastNameTextField.layoutBlock = {[weak self] in
@@ -26,7 +26,7 @@ class RegistrationViewController: UIViewController {
             }
         }
     }
-    @IBOutlet var emailTextField: UnderlinedTextField! {
+    @IBOutlet private var emailTextField: UnderlinedTextField! {
         didSet {
             emailTextField.placeholder = "Email"
             emailTextField.layoutBlock = {[weak self] in
@@ -34,7 +34,7 @@ class RegistrationViewController: UIViewController {
             }
         }
     }
-    @IBOutlet var passwordTextField: UnderlinedTextField! {
+    @IBOutlet private var passwordTextField: UnderlinedTextField! {
         didSet {
             passwordTextField.placeholder = "Password"
             passwordTextField.layoutBlock = {[weak self] in
@@ -42,7 +42,7 @@ class RegistrationViewController: UIViewController {
             }
         }
     }
-    @IBOutlet var repeatPasswordTextField: UnderlinedTextField! {
+    @IBOutlet private var repeatPasswordTextField: UnderlinedTextField! {
         didSet {
             repeatPasswordTextField.placeholder = "Repeat password"
             repeatPasswordTextField.layoutBlock = {[weak self] in
@@ -51,25 +51,28 @@ class RegistrationViewController: UIViewController {
         }
     }
     
-    @IBOutlet var agreementTickImageView: UIImageView! {
+    @IBOutlet private var agreementTickImageView: UIImageView! {
         didSet {
             setAgreementTintColor()
         }
     }
-    @IBOutlet var agreementLabel: UILabel! {
+    @IBOutlet private var agreementLabel: UILabel! {
         didSet {
             agreementLabel.textColor = Constants.Colors.gray
             agreementLabel.text = "I accept the terms of the license agreement and privacy policy"
         }
     }
 
-    @IBOutlet var signUpButton: DefaultButton! {
+    @IBOutlet private var signUpButton: DefaultButton! {
         didSet {
             signUpButton.title = "Sign up"
         }
     }
     
-    @IBOutlet var textFields: [UnderlinedTextField]!
+    @IBOutlet private var textFields: [UnderlinedTextField]!
+    @IBOutlet private var singInTopSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet private var stackViewTopSpace: NSLayoutConstraint!
+    @IBOutlet private var scrollView: UIScrollView!
     
     private var isAcceptedAgreement = false
     private let acceptedAgreementColor = Constants.Colors.brandColor
@@ -91,6 +94,17 @@ class RegistrationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
         super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if scrollView.contentSize.height > 0 {
+            let delta = view.frame.height - scrollView.contentSize.height - stackViewTopSpace.constant
+            if delta > 0 {
+                singInTopSpaceConstraint.constant = 16 + delta
+            }
+        }
     }
     
     deinit {

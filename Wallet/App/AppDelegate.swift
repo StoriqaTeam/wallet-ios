@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private var pinIsSet: Bool {
         //TODO: проверка, установлен ли пин
-        return true
+        return false
     }
 
 
@@ -106,7 +106,7 @@ private extension AppDelegate {
             initialViewController = Storyboard.main.viewController(identifier: "LoginVC")
         }
         
-        self.window?.rootViewController = initialViewController //UINavigationController(rootViewController: initialViewController)
+        self.window?.rootViewController = UINavigationController(rootViewController: initialViewController)
         self.window?.makeKeyAndVisible()
     }
 }
