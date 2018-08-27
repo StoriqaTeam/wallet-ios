@@ -18,10 +18,13 @@ class UnderlinedTextField: UITextField {
         }
     }
 
-    private var errorLabel: UILabel?
     var lineView: UIView?
-    private let errorColor = #colorLiteral(red: 0.9215686275, green: 0.2705882353, blue: 0.3529411765, alpha: 1)
     private let underlineColor = Constants.Colors.lightGray
+    
+    private var errorLabel: UILabel?
+    private let errorLabelVerticalMargin: CGFloat = 4
+    private let errorLabelHorizontalMargin: CGFloat = 2
+    private let errorColor = #colorLiteral(red: 0.9215686275, green: 0.2705882353, blue: 0.3529411765, alpha: 1)
     private var bottomConstraintBackup: CGFloat = 0
     
     var layoutBlock: (() -> Void)?
@@ -52,10 +55,10 @@ class UnderlinedTextField: UITextField {
     }
     
     private func showError() {
-        let width = self.frame.width - 4
+        let width = self.frame.width - errorLabelHorizontalMargin * 2
         
         if errorLabel == nil {
-            errorLabel = UILabel(frame: CGRect(x: 2, y: self.frame.height + 4, width: width, height: 20))
+            errorLabel = UILabel(frame: CGRect(x: errorLabelHorizontalMargin, y: self.frame.height + errorLabelVerticalMargin, width: width, height: 20))
             errorLabel!.font = UIFont.systemFont(ofSize: 12)
             errorLabel?.numberOfLines = 0
         }
@@ -69,14 +72,16 @@ class UnderlinedTextField: UITextField {
             errorLabel.text = errorText
 
             if let height = errorText?.height(withConstrainedWidth: width, font: errorLabel.font) {
-                let frame = CGRect(x: errorLabel.frame.origin.x, y: errorLabel.frame.origin.y, width: errorLabel.frame.width, height: height)
+                let frame = CGRect(origin: errorLabel.frame.origin, size: CGSize(width: errorLabel.frame.width, height: height))
                 errorLabel.frame = frame
                 
                 if let bottomConstraint = bottomConstraint {
                     bottomConstraintBackup = bottomConstraint.constant
                     
-                    if height + 4 > bottomConstraintBackup {
-                        let newValue = bottomConstraint.constant + height + 4
+                    // resize if not enough space
+                    let delta = height + errorLabelVerticalMargin - bottomConstraintBackup
+                    if delta > 0 {
+                        let newValue = bottomConstraintBackup + delta
                         
                         if newValue != bottomConstraintBackup {
                             bottomConstraint.constant = newValue

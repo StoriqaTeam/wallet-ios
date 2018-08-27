@@ -10,10 +10,11 @@ import Foundation
 import UIKit
 
 extension UIView {
-    func roundCorners(radius: CGFloat = 6.0, borderWidth: CGFloat = 0.0, borderColor: UIColor = .clear) {
+    func roundCorners(radius: CGFloat, borderWidth: CGFloat = 0.0, borderColor: UIColor = .clear) {
         layer.cornerRadius = radius
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor.cgColor
+        layer.masksToBounds = true
     }
     
     func dropShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offSet: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 6, scale: Bool = true) {

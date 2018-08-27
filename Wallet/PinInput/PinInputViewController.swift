@@ -14,8 +14,8 @@ class PinInputViewController: UIViewController {
     @IBOutlet private var greetingContainerView: UIView!
     @IBOutlet private var greetingVerticalSpacingConstraint: NSLayoutConstraint!
     @IBOutlet private var greetingLabel: UILabel!
-    
-    
+    @IBOutlet private var userPhotoImageView: UIImageView!
+    @IBOutlet private var userPhotoContainerView: ActivityIndicatorView!
     
     //MARK: Property
     var passwordContainerView: PasswordContainerView!
@@ -28,7 +28,13 @@ class PinInputViewController: UIViewController {
             greetingContainerView.isHidden = true
             greetingVerticalSpacingConstraint.constant = 0
             greetingLabel.text = ""
+        } else {
+            greetingLabel.text = UserInfo.shared.name + ", good day"
         }
+        
+        userPhotoImageView.image = UserInfo.shared.photo
+        userPhotoImageView.roundCorners(radius: userPhotoImageView.frame.height / 2)
+        userPhotoImageView.backgroundColor = UIColor.init(white: 0.95, alpha: 1)
         
         //create PasswordContainerView
         passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
@@ -64,6 +70,11 @@ extension PinInputViewController: PasswordInputCompleteProtocol {
             self.validationSuccess()
         } else {
             passwordContainerView.clearInput()
+            if let error = error,
+                let message = BiometricsAuthErrorParser.errorMessageForLAErrorCode(error: error) {
+                print(message)
+                self.showAlert(message: message)
+            }
         }
     }
 }
@@ -75,11 +86,19 @@ private extension PinInputViewController {
     
     func validationSuccess() {
         print("*️⃣ success!")
-        dismiss(animated: true, completion: nil)
+        showActivityIndicator()
     }
     
     func validationFail() {
         print("*️⃣ failure!")
         passwordContainerView.wrongPassword()
+    }
+    
+    func showActivityIndicator() {
+        userPhotoContainerView.showActivityIndicator()
+    }
+    
+    func hideActivityIndicator() {
+        userPhotoContainerView.hideActivityIndicator()
     }
 }

@@ -66,7 +66,7 @@ open class PasswordContainerView: UIView {
         }
     }
     
-    open var touchAuthenticationReason = "Touch to unlock"
+    open var touchAuthenticationReason = "Authentication is needed to access your account"
     
     //MARK: AutoLayout
     open var width: CGFloat = 0 {
@@ -138,6 +138,11 @@ open class PasswordContainerView: UIView {
     
     @IBAction func touchAuthenticationAction(_ sender: UIButton) {
         guard isTouchAuthenticationAvailable else { return }
+        
+        // Hide "Enter Password" button
+        touchIDContext.localizedFallbackTitle = ""
+        
+        // show the authentication UI
         touchIDContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: touchAuthenticationReason) { (success, error) in
             DispatchQueue.main.async {
                 if success {
