@@ -27,7 +27,7 @@ class RegistrationProvider {
     func register(firstName: String, lastName: String, email: String, password: String) {
         let request = RegistrationRequest(firstName: firstName, lastName: lastName, email: email, password: password)
         
-        requestSender.send(request)
+        requestSender.sentGrqphQLRequest(request)
     }
 }
 

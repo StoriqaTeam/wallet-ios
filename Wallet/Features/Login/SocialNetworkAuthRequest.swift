@@ -1,42 +1,40 @@
 //
-//  LoginRequest.swift
+//  SocialNetworkAuthRequest.swift
 //  Wallet
 //
-//  Created by user on 17.08.2018.
+//  Created by user on 24.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import Foundation
 
-enum LoginInput: String, GraphQLMutationInput {
-    case email = "email"
-    case password = "password"
+enum SocialNetworkAuthInput: String, GraphQLMutationInput {
+    case provider = "provider"
+    case token = "token"
     
-    static var name = "CreateJWTEmailInput"
+    static var name = "CreateJWTProviderInput"
     var fieldCode: String { return self.rawValue }
 }
 
-
-class LoginRequest: Request, GraphQLMutation {
-    
-    typealias Input = LoginInput
+class SocialNetworkAuthRequest: Request, GraphQLMutation {
+    typealias Input = SocialNetworkAuthInput
     
     override var name: String {
-        return "getJWTByEmail"
+        return "getJWTByProvider"
     }
     
     var fields: [String] {
         return ["token"]
     }
     
-    init(email: String, password: String) {
+    init(provider: SocialNetworkTokenProvider, authToken: String) {
         super.init()
         
         let input: [String: String] = [
             "clientMutationId": "1", //не используется
-            LoginInput.email.fieldCode: email,
-            LoginInput.password.fieldCode: password
-            ]
+            SocialNetworkAuthInput.provider.fieldCode: provider.name,
+            SocialNetworkAuthInput.token.fieldCode: authToken
+        ]
         
         let variables = [
             "input": input

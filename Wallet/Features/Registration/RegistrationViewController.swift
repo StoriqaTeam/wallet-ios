@@ -56,6 +56,7 @@ class RegistrationViewController: UIViewController {
             setAgreementTintColor()
         }
     }
+    
     @IBOutlet private var agreementLabel: UILabel! {
         didSet {
             agreementLabel.textColor = Constants.Colors.gray
@@ -69,9 +70,15 @@ class RegistrationViewController: UIViewController {
         }
     }
     
+    @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView! {
+        didSet {
+            socialNetworkAuthView.setUp(delegate: self, type: .register)
+        }
+    }
+    
     @IBOutlet private var textFields: [UnderlinedTextField]!
-    @IBOutlet private var singInTopSpaceConstraint: NSLayoutConstraint!
     @IBOutlet private var stackViewTopSpace: NSLayoutConstraint!
+    @IBOutlet private var signInTopSpace: NSLayoutConstraint!
     @IBOutlet private var scrollView: UIScrollView!
     
     private var isAcceptedAgreement = false
@@ -102,7 +109,7 @@ class RegistrationViewController: UIViewController {
         if scrollView.contentSize.height > 0 {
             let delta = view.frame.height - scrollView.contentSize.height - stackViewTopSpace.constant
             if delta > 0 {
-                singInTopSpaceConstraint.constant = 16 + delta
+                signInTopSpace.constant = delta
             }
         }
     }
@@ -136,11 +143,6 @@ private extension RegistrationViewController {
         isAcceptedAgreement = !isAcceptedAgreement
         setAgreementTintColor()
         updateContinueButton()
-    }
-    
-    @IBAction func signIn() {
-        let loginVC = Storyboard.main.viewController(identifier: "LoginVC")
-        self.navigationController?.setViewControllers([loginVC], animated: true)
     }
     
     @objc func textDidChange(_ notification: Notification) {
@@ -262,6 +264,17 @@ extension RegistrationViewController: RegistrationProviderDelegate {
             default:
                 break
             }
+        }
+    }
+}
+
+//MARK: - SocialNetworkAuthViewDelegate
+extension RegistrationViewController: SocialNetworkAuthViewDelegate {
+    func socialNetworkAuthViewDidTapFooterButton() {
+        if let loginVC = Storyboard.main.viewController(identifier: "LoginVC") {
+            self.navigationController?.setViewControllers([loginVC], animated: true)
+        } else {
+            //TODO: кастомная обработка ошибки
         }
     }
 }

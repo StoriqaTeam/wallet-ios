@@ -39,6 +39,11 @@ class LoginViewController: UIViewController {
             forgotPasswordButton.setTitle("I forgot password", for: .normal)
         }
     }
+    @IBOutlet var socialNetworkAuthView: SocialNetworkAuthView! {
+        didSet {
+            socialNetworkAuthView.setUp(delegate: self, type: .login)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,11 +84,6 @@ private extension LoginViewController {
         
         LoginProvider.shared.delegate = self
         LoginProvider.shared.login(email: email, password: password)
-    }
-    
-    @IBAction func register() {
-        let registerVC = Storyboard.main.viewController(identifier: "RegistrationVC")
-        self.navigationController?.setViewControllers([registerVC], animated: true)
     }
     
     @objc func textDidChange(_ notification: Notification) {
@@ -151,6 +151,17 @@ extension LoginViewController: LoginProviderDelegate {
             default:
                 break
             }
+        }
+    }
+}
+
+//MARK: - SocialNetworkAuthViewDelegate
+extension LoginViewController: SocialNetworkAuthViewDelegate {
+    func socialNetworkAuthViewDidTapFooterButton() {
+        if let registerVC = Storyboard.main.viewController(identifier: "RegistrationVC") {
+            self.navigationController?.setViewControllers([registerVC], animated: true)
+        } else {
+            //TODO: кастомная обработка ошибки
         }
     }
 }

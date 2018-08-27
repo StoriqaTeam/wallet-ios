@@ -17,13 +17,22 @@ protocol RequestSenderDelegate: class {
 
 protocol AbstractRequestSender {
     var delegate: RequestSenderDelegate? { set get }
+    func sentGrqphQLRequest(_ request: Request)
     func send(_ request: Request)
 }
 
 class RequestSender: AbstractRequestSender {
     weak var delegate: RequestSenderDelegate?
     
+    func sentGrqphQLRequest(_ request: Request) {
+        send(request, url: NetworkConfig.graphqlUrl)
+    }
+    
     func send(_ request: Request) {
+        send(request, url: NetworkConfig.url)
+    }
+    
+    private func send(_ request: Request, url: String) {
         
         //        let url = URL(string: NetworkConfig.url)!
         //        let mutableUrlRequest = NSMutableURLRequest(url: url)
@@ -36,7 +45,7 @@ class RequestSender: AbstractRequestSender {
         
         let queue = DispatchQueue(label: "RequestSender", qos: .background, attributes: .concurrent)
         
-        Alamofire.request(NetworkConfig.url,
+        Alamofire.request(url,
                           method: .post,
                           parameters: request.parameters,
                           encoding: JSONEncoding.default,

@@ -8,6 +8,20 @@
 
 import Foundation
 
+enum SocialNetworkTokenProvider {
+    case google
+    case facebook
+    
+    var name: String {
+        switch self {
+        case .google:
+            return "GOOGLE"
+        case .facebook:
+            return "FACEBOOK"
+        }
+    }
+}
+
 protocol LoginProviderDelegate: class {
     func loginProviderSucceed()
     func loginProviderFailedWithMessage(_ message: String)
@@ -26,7 +40,12 @@ class LoginProvider {
     
     func login(email: String, password: String) {
         let request = LoginRequest(email: email, password: password)
-        requestSender.send(request)
+        requestSender.sentGrqphQLRequest(request)
+    }
+    
+    func login(provider: SocialNetworkTokenProvider, authToken: String) {
+        let request = SocialNetworkAuthRequest(provider: provider, authToken: authToken)
+        requestSender.sentGrqphQLRequest(request)
     }
 }
 

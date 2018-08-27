@@ -9,6 +9,11 @@ target 'Wallet' do
 
   pod 'Alamofire', '~> 4.7'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
+  
+  #social networks
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'GoogleSignIn'
 
   target 'WalletTests' do
     inherit! :search_paths

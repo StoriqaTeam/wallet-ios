@@ -19,9 +19,22 @@ enum Storyboard {
         }
     }
     
-    func viewController(identifier: String) -> UIViewController {
+    func viewController(identifier: String, fatal: Bool = false) -> UIViewController? {
+        
         let storyboard = UIStoryboard(name: name, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: identifier)
-        return vc
+        
+        if fatal {
+            let vc = storyboard.instantiateViewController(withIdentifier: identifier)
+            return vc
+        } else {
+            if let availableIdentifiers = storyboard.value(forKey: "identifierToNibNameMap") as? [String: Any] {
+                if availableIdentifiers[identifier] != nil {
+                    let vc = storyboard.instantiateViewController(withIdentifier: identifier)
+                    return vc
+                }
+            }
+            print("No ViewController with identifier '\(identifier)' on ")
+            return nil
+        }
     }
 }
