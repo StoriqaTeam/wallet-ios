@@ -250,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				CE25B7412126B4930097230A /* Login */,
+				CE25B7472126B5220097230A /* PinInput */,
 				CE25B7432126B4B90097230A /* Registration */,
 			);
 			path = Screens;
@@ -323,7 +324,6 @@
 				CE25B7462126B4F80097230A /* Helpers */,
 				CE526C3F212465A900A2EED2 /* Info.plist */,
 				CE25B74F2126EFEF0097230A /* Network */,
-				CE25B7472126B5220097230A /* PinInput */,
 				CE25B7442126B4C70097230A /* Storyboards */,
 				CE526C6F21247F8500A2EED2 /* UI components */,
 			);
