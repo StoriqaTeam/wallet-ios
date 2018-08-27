@@ -59,7 +59,7 @@ class RegistrationViewController: UIViewController {
     
     @IBOutlet private var agreementLabel: UILabel! {
         didSet {
-            agreementLabel.textColor = Constants.Colors.gray
+            agreementLabel.textColor = UIColor.secondaryTextGrey
             agreementLabel.text = "I accept the terms of the license agreement and privacy policy"
         }
     }
@@ -82,24 +82,22 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     
     private var isAcceptedAgreement = false
-    private let acceptedAgreementColor = Constants.Colors.brandColor
-    private let nonAcceptedAgreementColor = Constants.Colors.lightGray
+    private let acceptedAgreementColor = UIColor.brightSkyBlue
+    private let nonAcceptedAgreementColor = UIColor.lightGray
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addHideKeyboardGuesture()
         updateContinueButton()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        navigationController?.setNavigationBarHidden(false, animated: animated);
         super.viewWillDisappear(animated)
     }
     
@@ -112,6 +110,11 @@ class RegistrationViewController: UIViewController {
                 signInTopSpace.constant = delta
             }
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
     }
     
     deinit {
@@ -253,13 +256,13 @@ extension RegistrationViewController: RegistrationProviderDelegate {
     func registrationProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
         for error in errors {
             switch error.fieldCode {
-            case RegistrationInput.firstName.fieldCode:
+            case "firstName":
                 firstNameTextField.errorText = error.text
-            case RegistrationInput.lastName.fieldCode:
+            case "lastName":
                 lastNameTextField.errorText = error.text
-            case RegistrationInput.email.fieldCode:
+            case "email":
                 emailTextField.errorText = error.text
-            case RegistrationInput.password.fieldCode:
+            case "password":
                 passwordTextField.errorText = error.text
             default:
                 break
@@ -271,10 +274,17 @@ extension RegistrationViewController: RegistrationProviderDelegate {
 //MARK: - SocialNetworkAuthViewDelegate
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
     func socialNetworkAuthViewDidTapFooterButton() {
+        guard let navigationController = navigationController else {
+            log.warn("navigationController is nil")
+            return
+        }
+        
         if let loginVC = Storyboard.main.viewController(identifier: "LoginVC") {
-            self.navigationController?.setViewControllers([loginVC], animated: true)
-        } else {
-            //TODO: кастомная обработка ошибки
+            var vcs = navigationController.viewControllers
+            vcs.removeLast()
+            vcs.append(loginVC)
+            
+            navigationController.setViewControllers(vcs, animated: true)
         }
     }
 }

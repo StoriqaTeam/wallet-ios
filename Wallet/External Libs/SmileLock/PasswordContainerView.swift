@@ -143,14 +143,23 @@ open class PasswordContainerView: UIView {
         touchIDContext.localizedFallbackTitle = ""
         
         // show the authentication UI
-        touchIDContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: touchAuthenticationReason) { (success, error) in
+        touchIDContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: touchAuthenticationReason) { [weak self] (success, error) in
             DispatchQueue.main.async {
-                if success {
-                    self.passwordDotView.inputDotCount = self.passwordDotView.totalDotCount
-                    // instantiate LAContext again for avoiding the situation that PasswordContainerView stay in memory when authenticate successfully
-                    self.touchIDContext = LAContext()
+                guard let strongSelf = self else {
+                    log.error("self is nil")
+                    return
                 }
-                self.delegate?.touchAuthenticationComplete(self, success: success, error: error)
+                
+                if success {
+                    strongSelf.passwordDotView.inputDotCount = strongSelf.passwordDotView.totalDotCount
+                    // instantiate LAContext again for avoiding the situation that PasswordContainerView stay in memory when authenticate successfully
+                    strongSelf.touchIDContext = LAContext()
+                }
+                if let delegate = strongSelf.delegate {
+                    delegate.touchAuthenticationComplete(strongSelf, success: success, error: error)
+                } else {
+                    log.warn("delegate is nil")
+                }
             }
         }
     }
@@ -159,7 +168,11 @@ open class PasswordContainerView: UIView {
 private extension PasswordContainerView {
     func checkInputComplete() {
         if inputString.count == passwordDotView.totalDotCount {
-            delegate?.passwordInputComplete(self, input: inputString)
+            if let delegate = delegate {
+                delegate.passwordInputComplete(self, input: inputString)
+            } else {
+                log.warn("delegate is nil")
+            }
         }
     }
     

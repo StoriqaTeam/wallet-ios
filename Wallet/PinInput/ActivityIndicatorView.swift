@@ -15,7 +15,7 @@ class ActivityIndicatorView: UIView {
     func showActivityIndicator() {
         if circleLayer == nil {
             let radius = self.frame.height / 2
-            circleLayer = WCGraintCircleLayer(bounds: self.bounds, position: CGPoint(x: radius, y: radius), fromColor: Constants.Colors.brandColor, toColor: UIColor.white, linewidth: 2.0)
+            circleLayer = WCGraintCircleLayer(bounds: self.bounds, position: CGPoint(x: radius, y: radius), fromColor: UIColor.brightSkyBlue, toColor: UIColor.white, linewidth: 2.0)
         }
         
         if let circleLayer = circleLayer {

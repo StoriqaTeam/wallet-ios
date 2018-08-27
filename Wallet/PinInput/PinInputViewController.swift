@@ -41,8 +41,8 @@ class PinInputViewController: UIViewController {
         passwordContainerView.delegate = self
         
         //customize password UI
-        passwordContainerView.tintColor = Constants.Colors.brandColor
-        passwordContainerView.highlightedColor = Constants.Colors.brandColor
+        passwordContainerView.tintColor = UIColor.brightSkyBlue
+        passwordContainerView.highlightedColor = UIColor.brightSkyBlue
     }
     
     override func viewWillAppear(_ animated: Bool) {

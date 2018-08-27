@@ -79,7 +79,11 @@ open class PasswordInputView: UIView {
 
     @objc func touchDown() {
         //delegate callback
-        delegate?.passwordInputView(self, tappedString: numberString)
+        if let delegate = delegate {
+            delegate.passwordInputView(self, tappedString: numberString)
+        } else {
+            log.warn("delegate is nil")
+        }
         
         //now touch down, so set touch up flag --> false
         touchUpFlag = false

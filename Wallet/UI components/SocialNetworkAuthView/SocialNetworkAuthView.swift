@@ -78,7 +78,11 @@ class SocialNetworkAuthView: UIView {
     }
     
     @IBAction func footerButtonTapHandler(_ sender: UIButton) {
-        delegate?.socialNetworkAuthViewDidTapFooterButton()
+        if let delegate = delegate {
+            delegate.socialNetworkAuthViewDidTapFooterButton()
+        } else {
+            log.warn("delegate is nil")
+        }
     }
     
     @IBAction func facebookButtonTapHandler(_ sender: UIButton) {

@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 class LightButton: BaseButton {
-    private var borderColor: UIColor = Constants.Colors.brandColor
+    private var borderColor: UIColor = UIColor.brightSkyBlue
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup(color: Constants.Colors.brandColor)
+        setup(color: UIColor.brightSkyBlue)
     }
     
     override var frame: CGRect {

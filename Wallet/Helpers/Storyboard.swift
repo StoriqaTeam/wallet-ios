@@ -33,7 +33,8 @@ enum Storyboard {
                     return vc
                 }
             }
-            print("No ViewController with identifier '\(identifier)' on ")
+            
+            Fallback.couldNotInstantiateViewController(identifier: identifier, storyBoard: name, fatal: fatal)
             return nil
         }
     }

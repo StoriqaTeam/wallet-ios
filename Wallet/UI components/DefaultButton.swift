@@ -13,10 +13,10 @@ class DefaultButton: BaseButton {
     private var needsShadow: Bool = false
     private var shadowLayer: CAShapeLayer?
 
-    private var enabledBackgroundColor = Constants.Colors.brandColor
+    private var enabledBackgroundColor = UIColor.brightSkyBlue
     private var disabledBackgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 0.12)
     private var enabledTitleColor = UIColor.white
-    private var disabledTitleColor = Constants.Colors.gray
+    private var disabledTitleColor = UIColor.secondaryTextGrey
     
     override var isEnabled: Bool {
         didSet {

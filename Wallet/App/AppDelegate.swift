@@ -139,7 +139,7 @@ private extension AppDelegate {
             self.window?.rootViewController = UINavigationController(rootViewController: initialViewController)
             self.window?.makeKeyAndVisible()
         } else {
-            //TODO: кастомная обработка ошибки
+            log.error("initialViewController is nil")
         }
     }
 }

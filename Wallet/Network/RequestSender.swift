@@ -9,30 +9,21 @@
 import Foundation
 import Alamofire
 
-protocol RequestSenderDelegate: class {
-    func requestSucceed(_ request: Request, data: [String: AnyObject])
-    func requestFailed(_ request: Request, apiErrors: [ResponseAPIError.Message])
-    func requestFailed(_ request: Request, message: String)
-}
-
 protocol AbstractRequestSender {
-    var delegate: RequestSenderDelegate? { set get }
-    func sentGrqphQLRequest(_ request: Request)
-    func send(_ request: Request)
+    func sentGrqphQLRequest(_ request: Request, completion: @escaping (ResponseType)->Void)
+    func send(_ request: Request, completion: @escaping (ResponseType)->Void)
 }
 
 class RequestSender: AbstractRequestSender {
-    weak var delegate: RequestSenderDelegate?
-    
-    func sentGrqphQLRequest(_ request: Request) {
-        send(request, url: NetworkConfig.graphqlUrl)
+    func sentGrqphQLRequest(_ request: Request, completion: @escaping (ResponseType)->Void) {
+        send(request, url: NetworkConfig.graphqlUrl, completion: completion)
     }
     
-    func send(_ request: Request) {
-        send(request, url: NetworkConfig.url)
+    func send(_ request: Request, completion: @escaping (ResponseType)->Void) {
+        send(request, url: NetworkConfig.url, completion: completion)
     }
     
-    private func send(_ request: Request, url: String) {
+    private func send(_ request: Request, url: String, completion: @escaping (ResponseType)->Void) {
         
         //        let url = URL(string: NetworkConfig.url)!
         //        let mutableUrlRequest = NSMutableURLRequest(url: url)
@@ -41,7 +32,7 @@ class RequestSender: AbstractRequestSender {
         //        let cookie = UserDefaults.standard.value(forKey: "COOKIE") as! String
         //        mutableUrlRequest.setValue(cookie, forHTTPHeaderField: "Cookie")
         
-        print("\nrequest headers: \n\(request.headers) \nrequest params: \n\(request.parameters ?? [:])\n")
+        log.debug("\nrequest headers: \n\(request.headers) \nrequest params: \n\(request.parameters )\n")
         
         let queue = DispatchQueue(label: "RequestSender", qos: .background, attributes: .concurrent)
         
@@ -50,20 +41,19 @@ class RequestSender: AbstractRequestSender {
                           parameters: request.parameters,
                           encoding: JSONEncoding.default,
                           headers: request.headers).responseJSON(queue: queue) { (response) in
-                            print(response)
+                            log.debug(response)
                             
-                            let unknownError = "Unknown error"
                             if let error = response.result.error {
-                                DispatchQueue.main.async {[weak self] in
-                                    self?.delegate?.requestFailed(request, message: error.localizedDescription)
+                                DispatchQueue.main.async {
+                                    completion(ResponseType.textError(message: error.localizedDescription))
                                 }
                                 return
                             }
                             
                             guard let responseData = response.data,
-                                let dict = (try? JSONSerialization.jsonObject(with: responseData, options: [])) as? [String: Any] else {
-                                    DispatchQueue.main.async {[weak self] in
-                                        self?.delegate?.requestFailed(request, message: unknownError)
+                                let dict = (try? JSONSerialization.jsonObject(with: responseData, options: [])) as? [String: AnyObject] else {
+                                    DispatchQueue.main.async {
+                                        completion(.unknownError)
                                     }
                                     return
                             }
@@ -74,33 +64,32 @@ class RequestSender: AbstractRequestSender {
                                 })
                                 
                                 guard !errors.isEmpty else {
-                                    DispatchQueue.main.async {[weak self] in
-                                        self?.delegate?.requestFailed(request, message: unknownError)
+                                    DispatchQueue.main.async {
+                                        completion(.unknownError)
                                     }
                                     return
                                 }
                                 
                                 let apiErrors = ResponseError.getApiErrorMessages(errors: errors)
                                 if !apiErrors.isEmpty {
-                                    DispatchQueue.main.async {[weak self] in
-                                        self?.delegate?.requestFailed(request, apiErrors: apiErrors)
+                                    DispatchQueue.main.async {
+                                        completion(ResponseType.apiErrors(errors: apiErrors))
                                     }
                                 }
                                 
                                 let defaultError = ResponseError.getTextError(errors: errors)
                                 if !defaultError.isEmpty {
-                                    DispatchQueue.main.async {[weak self] in
-                                        self?.delegate?.requestFailed(request, message: defaultError)
+                                    DispatchQueue.main.async {
+                                        completion(.textError(message: defaultError))
                                     }
                                 }
                             } else if let data = dict["data"] as? [String: AnyObject] {
-                                DispatchQueue.main.async {[weak self] in
-                                    self?.delegate?.requestSucceed(request, data: data)
+                                DispatchQueue.main.async {
+                                    completion(.success(data: data))
                                 }
-                                
                             } else {
-                                DispatchQueue.main.async {[weak self] in
-                                    self?.delegate?.requestFailed(request, message: unknownError)
+                                DispatchQueue.main.async {
+                                    completion(.unknownError)
                                 }
                             }
         }
