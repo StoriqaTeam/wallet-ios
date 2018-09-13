@@ -13,10 +13,10 @@ class DefaultButton: BaseButton {
     private var needsShadow: Bool = false
     private var shadowLayer: CAShapeLayer?
 
-    private var enabledBackgroundColor = UIColor.brightSkyBlue
+    private var enabledBackgroundColor = UIColor.mainBlue
     private var disabledBackgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 0.12)
     private var enabledTitleColor = UIColor.white
-    private var disabledTitleColor = UIColor.secondaryTextGrey
+    private var disabledTitleColor = UIColor.secondaryGrey
     
     override var isEnabled: Bool {
         didSet {
@@ -50,7 +50,7 @@ class DefaultButton: BaseButton {
         super.layoutSubviews()
         
         if needsShadow {
-            dropShadow(color: enabledBackgroundColor, opacity: 0.4, radius: 10)
+            dropShadow(color: enabledBackgroundColor, opacity: 0.6, radius: 10)
         } else {
             //hides shadow
             layer.shadowOpacity = 0

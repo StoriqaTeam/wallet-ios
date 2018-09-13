@@ -75,7 +75,7 @@
                                             <constraint firstAttribute="height" constant="25" id="jMN-86-neb"/>
                                         </constraints>
                                         <color key="tintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="showPassword"/>
+                                        <state key="normal" image="eyeClosed"/>
                                         <connections>
                                             <action selector="togglePasswordVisibility:" destination="uSV-vM-cln" eventType="touchUpInside" id="fcU-bL-v0c"/>
                                         </connections>
@@ -287,7 +287,7 @@
                                                             <constraint firstAttribute="height" constant="25" id="Rjn-jT-00P"/>
                                                         </constraints>
                                                         <color key="tintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <state key="normal" image="showPassword"/>
+                                                        <state key="normal" image="eyeClosed"/>
                                                         <connections>
                                                             <action selector="togglePasswordVisibility:" destination="QLW-97-YPC" eventType="touchUpInside" id="DJB-aW-iOg"/>
                                                         </connections>
@@ -326,7 +326,7 @@
                                                             <constraint firstAttribute="height" constant="25" id="Paf-x4-dGX"/>
                                                         </constraints>
                                                         <color key="tintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <state key="normal" image="showPassword"/>
+                                                        <state key="normal" image="eyeClosed"/>
                                                         <connections>
                                                             <action selector="togglePasswordVisibility:" destination="q4t-Rx-FUQ" eventType="touchUpInside" id="Uph-5v-ZSF"/>
                                                         </connections>
@@ -617,7 +617,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="showPassword" width="25" height="21"/>
+        <image name="eyeClosed" width="16" height="16"/>
         <image name="tick" width="384" height="384"/>
     </resources>
 </document>

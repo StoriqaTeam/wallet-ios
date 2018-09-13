@@ -9,19 +9,19 @@
 import Foundation
 
 extension UIColor {
-    @nonobjc class var blackMainText: UIColor {
-        return UIColor(white: 0.0, alpha: 1.0)
+    
+    @nonobjc class var primaryGrey: UIColor {
+        return UIColor(red: 140.0 / 255.0, green: 140.0 / 255.0, blue: 140.0 / 255.0, alpha: 1.0)
     }
-    @nonobjc class var disableButton: UIColor {
-        return UIColor(white: 170.0 / 255.0, alpha: 1.0)
+    @nonobjc class var secondaryGrey: UIColor {
+        return UIColor(red: 200.0 / 255.0, green: 200.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
     }
-    @nonobjc class var secondaryTextGrey: UIColor {
-        return UIColor(white: 140.0 / 255.0, alpha: 1.0)
+    @nonobjc class var captionGrey: UIColor {
+        return UIColor(red: 135.0 / 255.0, green: 157.0 / 255.0, blue: 185.0 / 255.0, alpha: 1.0)
     }
-    @nonobjc class var brightSkyBlue: UIColor {
+    @nonobjc class var mainBlue: UIColor {
         return UIColor(red: 0.0, green: 178.0 / 255.0, blue: 1.0, alpha: 1.0)
     }
-    
     
     //not from styleguide
     @nonobjc class var lightGray: UIColor {

@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
     }
     @IBOutlet private var forgotPasswordButton: UIButton! {
         didSet {
-            forgotPasswordButton.setTitleColor(UIColor.brightSkyBlue, for: .normal)
+            forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
             forgotPasswordButton.setTitle("I forgot password", for: .normal)
         }
     }
@@ -163,6 +163,16 @@ extension LoginViewController: LoginProviderDelegate {
 
 //MARK: - SocialNetworkAuthViewDelegate
 extension LoginViewController: SocialNetworkAuthViewDelegate {
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
+        LoginProvider.shared.delegate = self
+        LoginProvider.shared.login(provider: provider, authToken: token)
+    }
+    
+    func socialNetworkAuthFailed() {
+        //TODO: error message
+        self.showAlert(message: "socialNetworkAuthFailed")
+    }
+    
     func socialNetworkAuthViewDidTapFooterButton() {
         guard let navigationController = navigationController else {
             log.warn("navigationController is nil")

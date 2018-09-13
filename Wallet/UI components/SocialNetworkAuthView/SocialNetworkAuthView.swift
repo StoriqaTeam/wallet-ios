@@ -14,6 +14,8 @@ import GoogleSignIn
 
 protocol SocialNetworkAuthViewDelegate: class {
     func socialNetworkAuthViewDidTapFooterButton()
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String)
+    func socialNetworkAuthFailed()
 }
 
 class SocialNetworkAuthView: UIView {
@@ -50,12 +52,7 @@ class SocialNetworkAuthView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        //для входа через google нужно зарегить приложение в гугл консоли с типом iOS-client
-        //на это есть тикет, когда будет готово - можно делать дальше
-        
-        //для facebook нет доступа к полю gender, разобраться, почему
-        
+    
         // Uncomment to automatically sign in the user.
 //        GIDSignIn.sharedInstance().uiDelegate = self
 //        GIDSignIn.sharedInstance().signInSilently()
@@ -88,17 +85,30 @@ class SocialNetworkAuthView: UIView {
     @IBAction func facebookButtonTapHandler(_ sender: UIButton) {
         let loginManager = FacebookLoginManager()
         
-        loginManager.logIn(readPermissions: [.userGender, .publicProfile, .email], viewController: delegate) { loginResult in
+        loginManager.logIn(readPermissions: [.userGender, .publicProfile, .email], viewController: delegate) { [weak self] loginResult in
+            guard let strongSelf = self else {
+                log.warn("self is nil")
+                return
+            }
+            guard let delegate = strongSelf.delegate else {
+                log.warn("delegate is nil")
+                return
+            }
+            
             switch loginResult {
             case .failed(let error):
-                print(error)
+                log.debug(error)
+                delegate.socialNetworkAuthFailed()
             case .cancelled:
-                print("User cancelled login.")
+                log.debug("User cancelled login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                print("Logged in!")
-                print("grantedPermissions: \(grantedPermissions)")
-                print("declinedPermissions: \(declinedPermissions)")
-                print("accessToken: \(accessToken)")
+                log.debug("Logged in!")
+                log.debug("grantedPermissions: \(grantedPermissions)")
+                log.debug("declinedPermissions: \(declinedPermissions)")
+                log.debug("accessToken: \(accessToken)")
+                
+                //TODO: get user email from facebook?
+                delegate.socialNetworkAuthSucceed(provider: .facebook, token: accessToken.authenticationToken, email: "")
             }
         }
     }
@@ -114,7 +124,15 @@ extension SocialNetworkAuthView: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         print("sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!)")
         print(user.authentication.accessToken)
-        //TODO: sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!)
+        if let error = error {
+            log.debug("Falied signIn with google account \(error.localizedDescription)")
+            delegate?.socialNetworkAuthFailed()
+        } else if let token = user?.authentication?.accessToken {
+            delegate?.socialNetworkAuthSucceed(provider: .google, token: token, email: user?.profile?.email ?? "")
+        } else {
+            log.debug("Falied signIn with google account: user token empty")
+            delegate?.socialNetworkAuthFailed()
+        }
     }
 }
 
@@ -127,8 +145,7 @@ extension SocialNetworkAuthView: GIDSignInUIDelegate {
     }
     
     // Present a view that prompts the user to sign in with Google
-    func sign(_ signIn: GIDSignIn!,
-              present viewController: UIViewController!) {
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
         print("signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!)")
         //TODO: signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!)
     }

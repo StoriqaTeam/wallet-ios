@@ -14,6 +14,9 @@
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
 		CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */; };
 		CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */; };
+		CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE185479214A602C009D1360 /* PopupViewController.xib */; };
+		CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547B214A605B009D1360 /* PopupViewController.swift */; };
+		CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547D214A637E009D1360 /* UIFontExtension.swift */; };
 		CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */; };
 		CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */; };
@@ -84,6 +87,9 @@
 		CE0E5A66212D569A003E2C5E /* LightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightButton.swift; sourceTree = "<group>"; };
 		CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		CE185479214A602C009D1360 /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = "<group>"; };
+		CE18547B214A605B009D1360 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		CE18547D214A637E009D1360 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
 		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
@@ -198,6 +204,15 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		CE185478214A5FEB009D1360 /* PopupViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE18547B214A605B009D1360 /* PopupViewController.swift */,
+				CE185479214A602C009D1360 /* PopupViewController.xib */,
+			);
+			path = PopupViewController;
+			sourceTree = "<group>";
+		};
 		CE1A47C6212E960000418C11 /* External Libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +266,7 @@
 			children = (
 				CE25B7412126B4930097230A /* Login */,
 				CE25B7472126B5220097230A /* PinInput */,
+				CE185478214A5FEB009D1360 /* PopupViewController */,
 				CE25B7432126B4B90097230A /* Registration */,
 			);
 			path = Screens;
@@ -369,6 +385,7 @@
 				CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */,
 				CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */,
 				CEDDDF012134354400490781 /* UIColorExtension.swift */,
+				CE18547D214A637E009D1360 /* UIFontExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -494,6 +511,7 @@
 				CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
+				CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
 				CE526C39212465A800A2EED2 /* Main.storyboard in Resources */,
 				CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */,
@@ -642,6 +660,7 @@
 				CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */,
 				CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */,
 				CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */,
+				CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */,
 				CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */,
 				CE25B75D212723040097230A /* RegistrationProvider.swift in Sources */,
 				CEDDDEFF2130501900490781 /* SocialNetworkAuthRequest.swift in Sources */,
@@ -653,6 +672,7 @@
 				CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */,
 				CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */,
 				CE25B759212711620097230A /* ResponseError.swift in Sources */,
+				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
 				CE2C5CCF2125843000F153E7 /* PinInputViewController.swift in Sources */,
 				CE25B73F2126AA200097230A /* Validations.swift in Sources */,

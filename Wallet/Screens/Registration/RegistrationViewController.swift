@@ -59,11 +59,11 @@ class RegistrationViewController: UIViewController {
     
     @IBOutlet private var agreementLabel: UILabel! {
         didSet {
-            agreementLabel.textColor = UIColor.secondaryTextGrey
+            agreementLabel.textColor = UIColor.secondaryGrey
             agreementLabel.text = "I accept the terms of the license agreement and privacy policy"
         }
     }
-
+    
     @IBOutlet private var signUpButton: DefaultButton! {
         didSet {
             signUpButton.title = "Sign up"
@@ -82,7 +82,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     
     private var isAcceptedAgreement = false
-    private let acceptedAgreementColor = UIColor.brightSkyBlue
+    private let acceptedAgreementColor = UIColor.mainBlue
     private let nonAcceptedAgreementColor = UIColor.lightGray
     
     override func viewDidLoad() {
@@ -212,6 +212,45 @@ private extension RegistrationViewController {
         passwordTextField.isSecureTextEntry = true
         repeatPasswordTextField.isSecureTextEntry = true
     }
+    
+    func showRegisterSuccess(email: String) {
+        //TODO: image, action
+        if let popupVC = PopupViewController.create(image: #imageLiteral(resourceName: "faceid"), title: "Email sent successfully", text: "Check the mail! We sent instruction how to confirm your account to your email address \(email)", actionTitle: "Sign in", actionBlock: {[weak self] in
+            self?.showSignInViewController()
+        }, hasCloseButton: false) {
+            popupVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            present(popupVC, animated: true)
+        } else {
+            log.error("couldn't create PopupViewController")
+        }
+    }
+    
+    func showRegisterError() {
+        //TODO: image, action
+        if let popupVC = PopupViewController.create(image: #imageLiteral(resourceName: "faceid"), title: "Oops! Something gone wrong!", text: "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!", actionTitle: "Try again", actionBlock: {
+            print("button tapped")
+        }, hasCloseButton: true) {
+            popupVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            present(popupVC, animated: true)
+        } else {
+            log.error("couldn't create PopupViewController")
+        }
+    }
+    
+    func showSignInViewController() {
+        guard let navigationController = navigationController else {
+            log.warn("navigationController is nil")
+            return
+        }
+        
+        if let loginVC = Storyboard.main.viewController(identifier: "LoginVC") {
+            var vcs = navigationController.viewControllers
+            vcs.removeLast()
+            vcs.append(loginVC)
+            
+            navigationController.setViewControllers(vcs, animated: true)
+        }
+    }
 }
 
 //MARK: - UITextFieldDelegate
@@ -246,11 +285,13 @@ extension RegistrationViewController: RegistrationProviderDelegate {
         //TODO: registrationProviderSucceed
         self.showAlert(message: "succeed")
         
+        showRegisterSuccess(email: emailTextField.text ?? "")
     }
     
     func registrationProviderFailedWithMessage(_ message: String) {
         self.showAlert(message: message)
         
+        showRegisterError()
     }
     
     func registrationProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
@@ -273,19 +314,16 @@ extension RegistrationViewController: RegistrationProviderDelegate {
 
 //MARK: - SocialNetworkAuthViewDelegate
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
+        showRegisterSuccess(email: email)
+    }
+    
+    func socialNetworkAuthFailed() {
+        showRegisterError()
+    }
+    
     func socialNetworkAuthViewDidTapFooterButton() {
-        guard let navigationController = navigationController else {
-            log.warn("navigationController is nil")
-            return
-        }
-        
-        if let loginVC = Storyboard.main.viewController(identifier: "LoginVC") {
-            var vcs = navigationController.viewControllers
-            vcs.removeLast()
-            vcs.append(loginVC)
-            
-            navigationController.setViewControllers(vcs, animated: true)
-        }
+       showSignInViewController()
     }
 }
 
