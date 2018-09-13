@@ -112,6 +112,8 @@ class SocialNetworkAuthView: UIView {
 
 extension SocialNetworkAuthView: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        print("sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!)")
+        print(user.authentication.accessToken)
         //TODO: sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!)
     }
 }
@@ -120,18 +122,21 @@ extension SocialNetworkAuthView: GIDSignInUIDelegate {
     // Stop the UIActivityIndicatorView animation that was started when the user
     // pressed the Sign In button
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
+        print("signInWillDispatch(signIn: GIDSignIn!, error: NSError!)")
         //TODO: signInWillDispatch(signIn: GIDSignIn!, error: NSError!)
     }
     
     // Present a view that prompts the user to sign in with Google
     func sign(_ signIn: GIDSignIn!,
               present viewController: UIViewController!) {
+        print("signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!)")
         //TODO: signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!)
     }
     
     // Dismiss the "Sign in with Google" view
     func sign(_ signIn: GIDSignIn!,
               dismiss viewController: UIViewController!) {
+        print("signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!)")
         //TODO: signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!)
     }
 }

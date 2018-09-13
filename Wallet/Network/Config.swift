@@ -11,7 +11,7 @@ import Slog
 
 let facebookAppId = "fb425217154570731"
 //TODO: нужен новый client id от гугла, специально для приложения
-let googleClientId = "245895770851-38n6to49r49reccloeepeutocvk2hne3.apps.googleusercontent.com"
+let googleClientId = "245895770851-qlolkejdjnske28jmbdgs89969o0a7ec.apps.googleusercontent.com"
 let log = Slog(level: .debug, useEmoji: true)
 
 class NetworkConfig {
