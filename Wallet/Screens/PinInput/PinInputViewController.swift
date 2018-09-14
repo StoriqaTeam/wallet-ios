@@ -29,7 +29,7 @@ class PinInputViewController: UIViewController {
             greetingVerticalSpacingConstraint.constant = 0
             greetingLabel.text = ""
         } else {
-            greetingLabel.text = UserInfo.shared.name + ", good day"
+            greetingLabel.text = UserInfo.shared.name + "greeting".localized()
         }
         
         userPhotoImageView.image = UserInfo.shared.photo

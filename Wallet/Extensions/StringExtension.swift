@@ -29,6 +29,13 @@ extension String {
     }
 }
 
+extension String {
+    func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
+        //If the string is not found, we show **<key>** for debugging.
+        return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
+    }
+}
+
 extension NSAttributedString {
     func height(withConstrainedWidth width: CGFloat) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)

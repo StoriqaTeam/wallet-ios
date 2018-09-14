@@ -21,8 +21,8 @@ class PasswordRecoveryViewController: PasswordRecoveryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        subtitleLabel.text = "Enter email address where new password recovering instructions will be sent to."
-        confirmButton.title = "Reset password"
+        subtitleLabel.text = "email_for_psw_recovery".localized()
+        confirmButton.title = "reset_password".localized()
     }
     
     override func textDidChange(_ notification: Notification) {
@@ -56,8 +56,8 @@ extension PasswordRecoveryViewController: ProviderDelegate {
     func providerSucceed() {
         //TODO: image, title, text, action
         presentPopup(image: #imageLiteral(resourceName: "faceid"),
-                     title: "Email sent successfully",
-                     text: "Check the mail! We sent instruction how to confirm your account to your email address \(emailTextField.text ?? "") ",
+                     title: "email_sent".localized(),
+                     text: "TODO: text",
             actionTitle: "Ok",
             hasCloseButton: false,
             actionBlock: {[weak self] in
@@ -71,9 +71,9 @@ extension PasswordRecoveryViewController: ProviderDelegate {
         let text = message == Constants.Errors.unknown ? Constants.Errors.userFriendly : message
         
         presentPopup(image: #imageLiteral(resourceName: "faceid"),
-                     title: "Oops! Something gone wrong!",
+                     title: "smth_went_wrong".localized(),
                      text: text,
-            actionTitle: "Try again",
+            actionTitle: "try_again".localized(),
             hasCloseButton: true,
             actionBlock: {})
     }

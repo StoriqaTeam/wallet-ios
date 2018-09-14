@@ -107,7 +107,7 @@ class SocialNetworkAuthView: UIView {
                 log.debug("declinedPermissions: \(declinedPermissions)")
                 log.debug("accessToken: \(accessToken)")
                 
-                //TODO: get user email from facebook?
+                //TODO: is it possible to get user email from facebook?
                 delegate.socialNetworkAuthSucceed(provider: .facebook, token: accessToken.authenticationToken, email: "")
             }
         }
@@ -139,6 +139,7 @@ extension SocialNetworkAuthView: GIDSignInDelegate {
 extension SocialNetworkAuthView: GIDSignInUIDelegate {
     // Stop the UIActivityIndicatorView animation that was started when the user
     // pressed the Sign In button
+    
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
         print("signInWillDispatch(signIn: GIDSignIn!, error: NSError!)")
         //TODO: signInWillDispatch(signIn: GIDSignIn!, error: NSError!)

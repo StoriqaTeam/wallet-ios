@@ -26,6 +26,7 @@
 		CE18548D214BA978009D1360 /* PasswordRecoveryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548C214BA978009D1360 /* PasswordRecoveryRequest.swift */; };
 		CE18548F214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548E214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift */; };
 		CE185491214BD578009D1360 /* ProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185490214BD578009D1360 /* ProviderDelegate.swift */; };
+		CE185494214BE558009D1360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE185496214BE558009D1360 /* Localizable.strings */; };
 		CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */; };
 		CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */; };
@@ -108,6 +109,7 @@
 		CE18548C214BA978009D1360 /* PasswordRecoveryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryRequest.swift; sourceTree = "<group>"; };
 		CE18548E214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmRequest.swift; sourceTree = "<group>"; };
 		CE185490214BD578009D1360 /* ProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDelegate.swift; sourceTree = "<group>"; };
+		CE185495214BE558009D1360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
 		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */,
 				CE526C3A212465A900A2EED2 /* Assets.xcassets */,
 				CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */,
+				CE185496214BE558009D1360 /* Localizable.strings */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -309,12 +312,12 @@
 		CE25B7462126B4F80097230A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				CE25B73E2126AA200097230A /* Validations.swift */,
-				CEDDDF032134499B00490781 /* Fallbacks.swift */,
 				CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */,
 				CE526C67212471CE00A2EED2 /* Constants.swift */,
-				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
+				CEDDDF032134499B00490781 /* Fallbacks.swift */,
 				CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */,
+				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
+				CE25B73E2126AA200097230A /* Validations.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
 				CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */,
+				CE185494214BE558009D1360 /* Localizable.strings in Resources */,
 				CE185480214AA044009D1360 /* PasswordRecovery.storyboard in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
 				CE526C39212465A800A2EED2 /* Main.storyboard in Resources */,
@@ -769,6 +773,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CE185496214BE558009D1360 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE185495214BE558009D1360 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		CE526C37212465A800A2EED2 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

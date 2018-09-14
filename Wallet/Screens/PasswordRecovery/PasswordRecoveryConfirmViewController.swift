@@ -11,7 +11,7 @@ import Foundation
 class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController {
     @IBOutlet private var passwordTextField: UnderlinedTextField! {
         didSet {
-            passwordTextField.placeholder = "Password"
+            passwordTextField.placeholder = "password".localized()
             passwordTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -19,7 +19,7 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
     }
     @IBOutlet private var repeatPasswordTextField: UnderlinedTextField! {
         didSet {
-            repeatPasswordTextField.placeholder = "Repeat password"
+            repeatPasswordTextField.placeholder = "repeat_password".localized()
             repeatPasswordTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -43,8 +43,8 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        subtitleLabel.text = "Create new password and confirm it."
-        confirmButton.title = "Confirm new password"
+        subtitleLabel.text = "psw_recovery_confirm_subtitle".localized()
+        confirmButton.title = "confirm_new_password".localized()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "backArrow"), style: .plain, target: nil, action: #selector(dismissViewController))
     }
@@ -62,7 +62,7 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
         if formIsValid {
             if password != repeatPassword {
                 //TODO: сообщение
-                repeatPasswordTextField.errorText = "Passwords are not equeal"
+                repeatPasswordTextField.errorText = "passwords_nonequeal".localized()
                 formIsValid = false
             } else {
                 repeatPasswordTextField.errorText = nil
@@ -121,8 +121,8 @@ extension PasswordRecoveryConfirmViewController: ProviderDelegate {
     func providerSucceed() {
         //TODO: image, title, text
         presentPopup(image: #imageLiteral(resourceName: "faceid"),
-                     title: "Password was successfully set up",
-                     text: "You have successfully set up new password.",
+                     title: "psw_recovery_result_success_title".localized(),
+                     text: "psw_recovery_result_success_subtitle".localized(),
             actionTitle: "Sign in",
             hasCloseButton: false,
             actionBlock: {[weak self] in
@@ -136,9 +136,9 @@ extension PasswordRecoveryConfirmViewController: ProviderDelegate {
         let text = message == Constants.Errors.unknown ? Constants.Errors.userFriendly : message
         
         presentPopup(image: #imageLiteral(resourceName: "faceid"),
-                     title: "Oops! Something gone wrong!",
+                     title: "smth_went_wrong".localized(),
                      text: text,
-                     actionTitle: "Try again",
+                     actionTitle: "try_again".localized(),
                      hasCloseButton: true,
                      actionBlock: {})
     }

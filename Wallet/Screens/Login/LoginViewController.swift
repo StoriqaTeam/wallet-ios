@@ -12,7 +12,7 @@ import UIKit
 class LoginViewController: UIViewController {
     @IBOutlet private var emailTextField: UnderlinedTextField! {
         didSet {
-            emailTextField.placeholder = "Email"
+            emailTextField.placeholder = "email".localized()
             emailTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet private var passwordTextField: UnderlinedTextField! {
         didSet {
-            passwordTextField.placeholder = "Password"
+            passwordTextField.placeholder = "password".localized()
             passwordTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -30,13 +30,13 @@ class LoginViewController: UIViewController {
     
     @IBOutlet private var signInButton: DefaultButton! {
         didSet {
-            signInButton.title = "Get started"
+            signInButton.title = "get_started".localized()
         }
     }
     @IBOutlet private var forgotPasswordButton: UIButton! {
         didSet {
             forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
-            forgotPasswordButton.setTitle("I forgot password", for: .normal)
+            forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
         }
     }
     @IBOutlet var socialNetworkAuthView: SocialNetworkAuthView! {

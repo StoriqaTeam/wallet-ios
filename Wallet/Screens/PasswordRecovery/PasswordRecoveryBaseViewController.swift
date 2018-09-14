@@ -11,7 +11,7 @@ import Foundation
 class PasswordRecoveryBaseViewController: UIViewController {
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = "Password recovery"
+            titleLabel.text = "password_recovery".localized()
             titleLabel.font = UIFont.title
         }
     }
@@ -31,7 +31,6 @@ class PasswordRecoveryBaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Password recovery"
         addHideKeyboardGuesture()
         
         resetPasswordButtonBottomConstraint.constant = buttonBottomSpace
