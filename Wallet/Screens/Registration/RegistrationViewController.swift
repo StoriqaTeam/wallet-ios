@@ -275,17 +275,17 @@ extension RegistrationViewController: UITextFieldDelegate {
     }
 }
 
-//MARK: - RegistrationProviderDelegate
-extension RegistrationViewController: RegistrationProviderDelegate {
-    func registrationProviderSucceed() {
+//MARK: - ProviderDelegate
+extension RegistrationViewController: ProviderDelegate {
+    func providerSucceed() {
         showRegisterSuccess(email: emailTextField.text ?? "")
     }
     
-    func registrationProviderFailedWithMessage(_ message: String) {
+    func providerFailedWithMessage(_ message: String) {
         showRegisterError(message)
     }
     
-    func registrationProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
+    func providerFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
         for error in errors {
             switch error.fieldCode {
             case "firstName":

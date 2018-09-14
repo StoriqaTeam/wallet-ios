@@ -25,6 +25,7 @@
 		CE18548B214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548A214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift */; };
 		CE18548D214BA978009D1360 /* PasswordRecoveryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548C214BA978009D1360 /* PasswordRecoveryRequest.swift */; };
 		CE18548F214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548E214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift */; };
+		CE185491214BD578009D1360 /* ProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185490214BD578009D1360 /* ProviderDelegate.swift */; };
 		CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */; };
 		CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */; };
@@ -106,6 +107,7 @@
 		CE18548A214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmProvider.swift; sourceTree = "<group>"; };
 		CE18548C214BA978009D1360 /* PasswordRecoveryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryRequest.swift; sourceTree = "<group>"; };
 		CE18548E214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmRequest.swift; sourceTree = "<group>"; };
+		CE185490214BD578009D1360 /* ProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDelegate.swift; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
 		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				CE25B74B2126BCFF0097230A /* RequestSender.swift */,
 				CE25B758212711620097230A /* ResponseError.swift */,
 				CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */,
+				CE185490214BD578009D1360 /* ProviderDelegate.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
 				CEE72D5D2125990900991B0C /* RegistrationViewController.swift in Sources */,
 				CE185483214AA278009D1360 /* PasswordRecoveryViewController.swift in Sources */,
+				CE185491214BD578009D1360 /* ProviderDelegate.swift in Sources */,
 				CE25B7552126F0960097230A /* LoginProvider.swift in Sources */,
 				CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */,
 				CE185487214B9EF7009D1360 /* PasswordRecoveryConfirmViewController.swift in Sources */,

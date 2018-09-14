@@ -8,16 +8,10 @@
 
 import Foundation
 
-protocol PasswordRecoveryProviderDelegate: class {
-    func passwordRecoveryProviderSucceed()
-    func passwordRecoveryProviderFailedWithMessage(_ message: String)
-    func passwordRecoveryProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message])
-}
-
 class PasswordRecoveryProvider {
     static let shared = PasswordRecoveryProvider()
     var requestSender: AbstractRequestSender = RequestSender()
-    weak var delegate: PasswordRecoveryProviderDelegate?
+    weak var delegate: ProviderDelegate?
     
     private init() { }
     
@@ -39,16 +33,16 @@ class PasswordRecoveryProvider {
                 log.debug(data)
                 if let success = data[request.name]?["success"] as? Bool {
                     //TODO:может ли вернуться false в поле success?
-                    delegate.passwordRecoveryProviderSucceed()
+                    delegate.providerSucceed()
                 } else {
-                    delegate.passwordRecoveryProviderFailedWithMessage(Constants.Errors.serverResponse)
+                    delegate.providerFailedWithMessage(Constants.Errors.serverResponse)
                 }
                 
             case .textError(let message):
-                delegate.passwordRecoveryProviderFailedWithMessage(message)
+                delegate.providerFailedWithMessage(message)
                 
             case .apiErrors(let apiErrors):
-                delegate.passwordRecoveryProviderFailedWithApiErrors(apiErrors)
+                delegate.providerFailedWithApiErrors(apiErrors)
             }
         }
     }

@@ -144,18 +144,18 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
-//MARK: - RegistrationProviderDelegate
-extension LoginViewController: LoginProviderDelegate {
-    func loginProviderSucceed() {
+//MARK: - ProviderDelegate
+extension LoginViewController: ProviderDelegate {
+    func providerSucceed() {
         //TODO: loginProviderSucceed
         self.showAlert(message: "succeed")
     }
     
-    func loginProviderFailedWithMessage(_ message: String) {
+    func providerFailedWithMessage(_ message: String) {
         self.showAlert(message: message)
     }
     
-    func loginProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
+    func providerFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
         for error in errors {
             switch error.fieldCode {
             case "email":

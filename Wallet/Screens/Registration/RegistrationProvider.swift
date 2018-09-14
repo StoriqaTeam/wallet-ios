@@ -8,16 +8,10 @@
 
 import Foundation
 
-protocol RegistrationProviderDelegate: class {
-    func registrationProviderSucceed()
-    func registrationProviderFailedWithMessage(_ message: String)
-    func registrationProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message])
-}
-
 class RegistrationProvider {
     static let shared = RegistrationProvider()
     var requestSender: AbstractRequestSender = RequestSender()
-    weak var delegate: RegistrationProviderDelegate?
+    weak var delegate: ProviderDelegate?
     
     private init() { }
     
@@ -40,13 +34,13 @@ class RegistrationProvider {
                 log.debug(data)
                 
                 //TODO: какие данные получать?
-                delegate.registrationProviderSucceed()
+                delegate.providerSucceed()
                 
             case .textError(let message):
-                delegate.registrationProviderFailedWithMessage(message)
+                delegate.providerFailedWithMessage(message)
                 
             case .apiErrors(let apiErrors):
-                delegate.registrationProviderFailedWithApiErrors(apiErrors)
+                delegate.providerFailedWithApiErrors(apiErrors)
             }
         }
     }

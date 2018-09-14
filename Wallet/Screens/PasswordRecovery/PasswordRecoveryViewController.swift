@@ -51,9 +51,9 @@ private extension PasswordRecoveryViewController {
     }
 }
 
-//MARK: - PasswordRecoveryProviderDelegate
-extension PasswordRecoveryViewController: PasswordRecoveryProviderDelegate {
-    func passwordRecoveryProviderSucceed() {
+//MARK: - ProviderDelegate
+extension PasswordRecoveryViewController: ProviderDelegate {
+    func providerSucceed() {
         //TODO: image, title, text, action
         presentPopup(image: #imageLiteral(resourceName: "faceid"),
                      title: "Email sent successfully",
@@ -65,7 +65,7 @@ extension PasswordRecoveryViewController: PasswordRecoveryProviderDelegate {
         })
     }
     
-    func passwordRecoveryProviderFailedWithMessage(_ message: String) {
+    func providerFailedWithMessage(_ message: String) {
         //TODO: image, title
         
         let text = message == Constants.Errors.unknown ? Constants.Errors.userFriendly : message
@@ -78,7 +78,7 @@ extension PasswordRecoveryViewController: PasswordRecoveryProviderDelegate {
             actionBlock: {})
     }
     
-    func passwordRecoveryProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
+    func providerFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
         var errorDict = [String: String]()
         
         let kEmail = "email"

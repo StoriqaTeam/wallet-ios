@@ -116,9 +116,9 @@ extension PasswordRecoveryConfirmViewController {
     }
 }
 
-//MARK: - PasswordRecoveryProviderDelegate
-extension PasswordRecoveryConfirmViewController: PasswordRecoveryProviderDelegate {
-    func passwordRecoveryProviderSucceed() {
+//MARK: - ProviderDelegate
+extension PasswordRecoveryConfirmViewController: ProviderDelegate {
+    func providerSucceed() {
         //TODO: image, title, text
         presentPopup(image: #imageLiteral(resourceName: "faceid"),
                      title: "Password was successfully set up",
@@ -130,7 +130,7 @@ extension PasswordRecoveryConfirmViewController: PasswordRecoveryProviderDelegat
         })
     }
     
-    func passwordRecoveryProviderFailedWithMessage(_ message: String) {
+    func providerFailedWithMessage(_ message: String) {
         //TODO: image, title
         
         let text = message == Constants.Errors.unknown ? Constants.Errors.userFriendly : message
@@ -143,7 +143,7 @@ extension PasswordRecoveryConfirmViewController: PasswordRecoveryProviderDelegat
                      actionBlock: {})
     }
     
-    func passwordRecoveryProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
+    func providerFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
         var errorDict = [String: String]()
         
         let kPassword = "password"

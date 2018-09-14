@@ -22,16 +22,10 @@ enum SocialNetworkTokenProvider {
     }
 }
 
-protocol LoginProviderDelegate: class {
-    func loginProviderSucceed()
-    func loginProviderFailedWithMessage(_ message: String)
-    func loginProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message])
-}
-
 class LoginProvider {
     static let shared = LoginProvider()
     var requestSender: AbstractRequestSender = RequestSender()
-    weak var delegate: LoginProviderDelegate?
+    weak var delegate: ProviderDelegate?
     
     private init() { }
     
@@ -71,16 +65,16 @@ class LoginProvider {
             //TODO: хранить в keychain?
             if let token = data[request.name]?["token"] as? String {
                 UserInfo.shared.token = token
-                delegate.loginProviderSucceed()
+                delegate.providerSucceed()
             } else {
-                delegate.loginProviderFailedWithMessage(Constants.Errors.serverResponse)
+                delegate.providerFailedWithMessage(Constants.Errors.serverResponse)
             }
             
         case .textError(let message):
-            delegate.loginProviderFailedWithMessage(message)
+            delegate.providerFailedWithMessage(message)
             
         case .apiErrors(let apiErrors):
-            delegate.loginProviderFailedWithApiErrors(apiErrors)
+            delegate.providerFailedWithApiErrors(apiErrors)
         }
     }
 }
