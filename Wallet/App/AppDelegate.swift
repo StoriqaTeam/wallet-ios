@@ -93,12 +93,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let token = String(urlStr.dropFirst(appSchemeName.count))
             
-            if let controller = PasswordRecoveryConfirmViewController.create(token: token) {
-                if let window = self.window, let rootViewController = window.rootViewController {
-                    var currentController = rootViewController
-                    while let presentedController = currentController.presentedViewController {
-                        currentController = presentedController
-                    }
+            if let window = self.window, let rootViewController = window.rootViewController {
+                var currentController = rootViewController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                if let root = (currentController as? UINavigationController)?.viewControllers.last,
+                    root is PasswordRecoveryConfirmViewController {
+                    // PasswordRecoveryConfirmViewController is already opened
+                    return true
+                }
+                if let controller = PasswordRecoveryConfirmViewController.create(token: token) {
                     currentController.present(controller, animated: true, completion: nil)
                 }
             }
