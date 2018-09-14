@@ -24,7 +24,7 @@ class RegistrationProvider {
     func register(firstName: String, lastName: String, email: String, password: String) {
         let request = RegistrationRequest(firstName: firstName, lastName: lastName, email: email, password: password)
         
-        requestSender.sentGrqphQLRequest(request) {[weak self] (response) in
+        requestSender.sendGrqphQLRequest(request) {[weak self] (response) in
             guard let strongSelf = self else {
                 log.warn("self is nil")
                 return

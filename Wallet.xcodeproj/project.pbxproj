@@ -17,6 +17,14 @@
 		CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE185479214A602C009D1360 /* PopupViewController.xib */; };
 		CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547B214A605B009D1360 /* PopupViewController.swift */; };
 		CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547D214A637E009D1360 /* UIFontExtension.swift */; };
+		CE185480214AA044009D1360 /* PasswordRecovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE18547F214AA044009D1360 /* PasswordRecovery.storyboard */; };
+		CE185483214AA278009D1360 /* PasswordRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185482214AA278009D1360 /* PasswordRecoveryViewController.swift */; };
+		CE185485214AC0C6009D1360 /* PasswordRecoveryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185484214AC0C6009D1360 /* PasswordRecoveryProvider.swift */; };
+		CE185487214B9EF7009D1360 /* PasswordRecoveryConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185486214B9EF7009D1360 /* PasswordRecoveryConfirmViewController.swift */; };
+		CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */; };
+		CE18548B214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548A214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift */; };
+		CE18548D214BA978009D1360 /* PasswordRecoveryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548C214BA978009D1360 /* PasswordRecoveryRequest.swift */; };
+		CE18548F214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548E214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift */; };
 		CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */; };
 		CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */; };
@@ -90,6 +98,14 @@
 		CE185479214A602C009D1360 /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = "<group>"; };
 		CE18547B214A605B009D1360 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		CE18547D214A637E009D1360 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		CE18547F214AA044009D1360 /* PasswordRecovery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordRecovery.storyboard; sourceTree = "<group>"; };
+		CE185482214AA278009D1360 /* PasswordRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryViewController.swift; sourceTree = "<group>"; };
+		CE185484214AC0C6009D1360 /* PasswordRecoveryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryProvider.swift; sourceTree = "<group>"; };
+		CE185486214B9EF7009D1360 /* PasswordRecoveryConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmViewController.swift; sourceTree = "<group>"; };
+		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
+		CE18548A214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmProvider.swift; sourceTree = "<group>"; };
+		CE18548C214BA978009D1360 /* PasswordRecoveryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryRequest.swift; sourceTree = "<group>"; };
+		CE18548E214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmRequest.swift; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
 		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
@@ -213,6 +229,20 @@
 			path = PopupViewController;
 			sourceTree = "<group>";
 		};
+		CE185481214AA244009D1360 /* PasswordRecovery */ = {
+			isa = PBXGroup;
+			children = (
+				CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */,
+				CE18548A214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift */,
+				CE18548E214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift */,
+				CE185486214B9EF7009D1360 /* PasswordRecoveryConfirmViewController.swift */,
+				CE185484214AC0C6009D1360 /* PasswordRecoveryProvider.swift */,
+				CE18548C214BA978009D1360 /* PasswordRecoveryRequest.swift */,
+				CE185482214AA278009D1360 /* PasswordRecoveryViewController.swift */,
+			);
+			path = PasswordRecovery;
+			sourceTree = "<group>";
+		};
 		CE1A47C6212E960000418C11 /* External Libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				CE526C37212465A800A2EED2 /* Main.storyboard */,
+				CE18547F214AA044009D1360 /* PasswordRecovery.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -264,6 +295,7 @@
 		CE25B7452126B4E20097230A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CE185481214AA244009D1360 /* PasswordRecovery */,
 				CE25B7412126B4930097230A /* Login */,
 				CE25B7472126B5220097230A /* PinInput */,
 				CE185478214A5FEB009D1360 /* PopupViewController */,
@@ -512,6 +544,7 @@
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
 				CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */,
+				CE185480214AA044009D1360 /* PasswordRecovery.storyboard in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
 				CE526C39212465A800A2EED2 /* Main.storyboard in Resources */,
 				CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */,
@@ -668,8 +701,11 @@
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
 				CEE72D5D2125990900991B0C /* RegistrationViewController.swift in Sources */,
+				CE185483214AA278009D1360 /* PasswordRecoveryViewController.swift in Sources */,
 				CE25B7552126F0960097230A /* LoginProvider.swift in Sources */,
 				CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */,
+				CE185487214B9EF7009D1360 /* PasswordRecoveryConfirmViewController.swift in Sources */,
+				CE18548D214BA978009D1360 /* PasswordRecoveryRequest.swift in Sources */,
 				CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */,
 				CE25B759212711620097230A /* ResponseError.swift in Sources */,
 				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
@@ -680,6 +716,8 @@
 				CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */,
 				CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */,
 				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
+				CE18548F214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift in Sources */,
+				CE18548B214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift in Sources */,
 				CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */,
 				CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */,
 				CE526C68212471CE00A2EED2 /* Constants.swift in Sources */,
@@ -687,9 +725,11 @@
 				CE25B74A2126B5A50097230A /* Config.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
 				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
+				CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */,
 				CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */,
 				CE25B7572126F0BE0097230A /* LoginRequest.swift in Sources */,
 				CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */,
+				CE185485214AC0C6009D1360 /* PasswordRecoveryProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

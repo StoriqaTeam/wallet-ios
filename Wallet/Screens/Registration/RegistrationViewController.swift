@@ -199,10 +199,6 @@ private extension RegistrationViewController {
     }
     
     
-    func hideErrorForTextField(_ textField: UITextField) {
-        (textField as? UnderlinedTextField)?.errorText = nil
-    }
-    
     func setAgreementTintColor() {
         agreementTickImageView.tintColor = isAcceptedAgreement ? acceptedAgreementColor : nonAcceptedAgreementColor
     }
@@ -214,27 +210,27 @@ private extension RegistrationViewController {
     }
     
     func showRegisterSuccess(email: String) {
-        //TODO: image, action
-        if let popupVC = PopupViewController.create(image: #imageLiteral(resourceName: "faceid"), title: "Email sent successfully", text: "Check the mail! We sent instruction how to confirm your account to your email address \(email)", actionTitle: "Sign in", actionBlock: {[weak self] in
-            self?.showSignInViewController()
-        }, hasCloseButton: false) {
-            popupVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            present(popupVC, animated: true)
-        } else {
-            log.error("couldn't create PopupViewController")
-        }
+        //TODO: image
+        presentPopup(image: #imageLiteral(resourceName: "faceid"),
+                     title: "Email sent successfully",
+                     text: "Check the mail! We sent instruction how to confirm your account to your email address \(email) ",
+                     actionTitle: "Sign in",
+                     hasCloseButton: false,
+                     actionBlock: {[weak self] in
+                        self?.showSignInViewController()
+        })
     }
     
-    func showRegisterError() {
+    func showRegisterError(_ message: String) {
         //TODO: image, action
-        if let popupVC = PopupViewController.create(image: #imageLiteral(resourceName: "faceid"), title: "Oops! Something gone wrong!", text: "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!", actionTitle: "Try again", actionBlock: {
-            print("button tapped")
-        }, hasCloseButton: true) {
-            popupVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            present(popupVC, animated: true)
-        } else {
-            log.error("couldn't create PopupViewController")
-        }
+        presentPopup(image: #imageLiteral(resourceName: "faceid"),
+                     title: "Oops! Something gone wrong!",
+                     text: message,
+                     actionTitle: "Try again",
+                     hasCloseButton: true,
+                     actionBlock: {
+                        print("button tapped")
+        })
     }
     
     func showSignInViewController() {
@@ -275,23 +271,18 @@ extension RegistrationViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        hideErrorForTextField(textField)
+        (textField as? UnderlinedTextField)?.errorText = nil
     }
 }
 
 //MARK: - RegistrationProviderDelegate
 extension RegistrationViewController: RegistrationProviderDelegate {
     func registrationProviderSucceed() {
-        //TODO: registrationProviderSucceed
-        self.showAlert(message: "succeed")
-        
         showRegisterSuccess(email: emailTextField.text ?? "")
     }
     
     func registrationProviderFailedWithMessage(_ message: String) {
-        self.showAlert(message: message)
-        
-        showRegisterError()
+        showRegisterError(message)
     }
     
     func registrationProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
@@ -319,7 +310,8 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
     }
     
     func socialNetworkAuthFailed() {
-        showRegisterError()
+        //TODO: текст
+        showRegisterError(Constants.Errors.userFriendly)
     }
     
     func socialNetworkAuthViewDidTapFooterButton() {

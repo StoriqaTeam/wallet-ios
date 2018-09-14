@@ -19,6 +19,8 @@ class Constants {
     class Errors {
         static let internalApp = "Internal app error"
         static let serverResponse = "Server response error"
+        static let unknown = "Unknown error"
+        static let userFriendly = "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!"
     }
 }
 

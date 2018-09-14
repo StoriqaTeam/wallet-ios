@@ -13,7 +13,7 @@ import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     var window: UIWindow?
     
     private var isFirstLaunch: Bool {
@@ -78,6 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
+        let appSchemeName = "storiqaWallet://"
+        
         let urlStr = url.absoluteString
         if urlStr.contains(facebookAppId) {
             return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
@@ -86,6 +88,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                      sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                      annotation: options[UIApplicationOpenURLOptionsKey.annotation])
             
+        } else if urlStr.hasPrefix(appSchemeName) {
+            log.debug(urlStr)
+            
+            let token = String(urlStr.dropFirst(appSchemeName.count))
+            
+            if let controller = PasswordRecoveryConfirmViewController.create(token: token) {
+                if let window = self.window, let rootViewController = window.rootViewController {
+                    var currentController = rootViewController
+                    while let presentedController = currentController.presentedViewController {
+                        currentController = presentedController
+                    }
+                    currentController.present(controller, animated: true, completion: nil)
+                }
+            }
         }
         return true
     }
@@ -104,9 +120,10 @@ private extension AppDelegate {
         
         // UINavigationBar settings
         let appearance = UINavigationBar.appearance()
-        //        let backButtonImage = #imageLiteral(resourceName: "backArrow")
-        //        appearance.backIndicatorImage = backButtonImage
-        //        appearance.backIndicatorTransitionMaskImage = backButtonImage
+        let backButtonImage = #imageLiteral(resourceName: "backArrow")
+        appearance.backIndicatorImage = backButtonImage
+        appearance.backIndicatorTransitionMaskImage = backButtonImage
+        appearance.tintColor = UIColor.darkGray
         //
         //        appearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 24)]
         appearance.setBackgroundImage(UIImage(), for: .default)

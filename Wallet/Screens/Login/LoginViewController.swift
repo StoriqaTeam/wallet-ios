@@ -92,6 +92,18 @@ private extension LoginViewController {
         LoginProvider.shared.login(email: email, password: password)
     }
     
+    @IBAction private func forgotPasswordTapped() {
+        guard let navigationController = navigationController else {
+            log.warn("navigationController is nil")
+            return
+        }
+        
+        guard let vc = Storyboard.passwordRecovery.viewController(identifier: "PasswordRecoveryVC") else {
+            return
+        }
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
     @objc func textDidChange(_ notification: Notification) {
         updateContinueButton()
     }
@@ -113,10 +125,6 @@ private extension LoginViewController {
         emailTextField.errorText = nil
         passwordTextField.errorText = nil
     }
-    
-    func hideErrorForTextField(_ textField: UITextField) {
-        (textField as? UnderlinedTextField)?.errorText = nil
-    }
 }
 
 //MARK: - UITextFieldDelegate
@@ -132,7 +140,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        hideErrorForTextField(textField)
+        (textField as? UnderlinedTextField)?.errorText = nil
     }
 }
 

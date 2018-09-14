@@ -11,11 +11,14 @@ import UIKit
 
 enum Storyboard {
     case main
+    case passwordRecovery
     
     var name: String {
         switch self {
         case .main:
             return "Main"
+        case .passwordRecovery:
+            return "PasswordRecovery"
         }
     }
     
