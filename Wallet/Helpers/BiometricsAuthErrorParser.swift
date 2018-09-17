@@ -1,16 +1,21 @@
 //
-//  BiometricsAuthErrorParser.swift
+//  BiometricAuthErrorParser.swift
 //  Wallet
 //
-//  Created by user on 23.08.2018.
+//  Created by Storiqa on 23.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import Foundation
 import LocalAuthentication
 
-class BiometricsAuthErrorParser {
-    static func errorMessageForLAErrorCode(error: Error) -> String? {
+//TODO: rename file after fixing project tree
+protocol BiometricAuthErrorParserProtocol {
+    func errorMessageForLAErrorCode(error: Error?) -> String?
+}
+
+class BiometricAuthErrorParser: BiometricAuthErrorParserProtocol {
+    func errorMessageForLAErrorCode(error: Error?) -> String? {
         
         guard let error = error as? LAError else {
             return nil
