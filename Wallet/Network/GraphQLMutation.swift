@@ -8,24 +8,35 @@
 
 import Foundation
 
-
-protocol GraphQLMutationInput {
-    static var name: String { get }
-    var fieldCode: String { get }
-    
-    init?(rawValue: String)
-}
-
 protocol GraphQLMutation {
-    associatedtype Input: GraphQLMutationInput
-    
     var fields: [String] { get }
     var query: String { get }
+    var inputName: String { get }
 }
 
 extension GraphQLMutation where Self: Request {
     var query: String {
         let fields = self.fields.reduce("") { return $0 + " " + $1 }
-        return "mutation \(name)($input: \(Input.name)!) { \(name)(input: $input) { \(fields) } }"
+        return "mutation \(name)($input: \(inputName)!) { \(name)(input: $input) { \(fields) } }"
+    }
+    
+    init(input: [String: String]) {
+        var input = input
+        input["clientMutationId"] = "1"
+        
+        let variables = [
+            "input": input
+        ]
+    
+        self.init(parameters: [:])
+        
+        
+        let parameters: [String : Any] = [
+            "operationName": name,
+            "query": query,
+            "variables": variables
+        ]
+        
+        self.parameters = parameters
     }
 }

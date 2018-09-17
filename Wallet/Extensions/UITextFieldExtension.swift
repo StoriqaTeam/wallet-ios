@@ -12,6 +12,7 @@ import UIKit
 extension UITextField {
     @IBAction func togglePasswordVisibility(_ sender: UIButton) {
         isSecureTextEntry = !isSecureTextEntry
+        sender.setImage((isSecureTextEntry ? #imageLiteral(resourceName: "eyeClosed") : #imageLiteral(resourceName: "eyeOpened")), for: .normal)
         
         if let existingText = text, isSecureTextEntry {
             /* When toggling to secure text, all text will be purged if the user

@@ -21,6 +21,7 @@ extension UIViewController {
     
     private func setNavigationBarTextColor(_ color: UIColor) {
         guard let navigationBar = navigationController?.navigationBar else {
+            log.warn("navigationBar is nil")
             return
         }
         

@@ -35,8 +35,13 @@ class LoginViewController: UIViewController {
     }
     @IBOutlet private var forgotPasswordButton: UIButton! {
         didSet {
-            forgotPasswordButton.setTitleColor(Constants.Colors.brandColor, for: .normal)
+            forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
             forgotPasswordButton.setTitle("I forgot password", for: .normal)
+        }
+    }
+    @IBOutlet var socialNetworkAuthView: SocialNetworkAuthView! {
+        didSet {
+            socialNetworkAuthView.setUp(delegate: self, type: .login)
         }
     }
     
@@ -44,18 +49,24 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         addHideKeyboardGuesture()
         updateContinueButton()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        //can be no navigationController here, no fallback
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        //can be no navigationController here, no fallback
+        navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
+    }
+   
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
     }
     
     deinit {
@@ -79,11 +90,6 @@ private extension LoginViewController {
         
         LoginProvider.shared.delegate = self
         LoginProvider.shared.login(email: email, password: password)
-    }
-    
-    @IBAction func register() {
-        let registerVC = Storyboard.main.viewController(identifier: "RegistrationVC")
-        self.navigationController?.setViewControllers([registerVC], animated: true)
     }
     
     @objc func textDidChange(_ notification: Notification) {
@@ -144,13 +150,41 @@ extension LoginViewController: LoginProviderDelegate {
     func loginProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
         for error in errors {
             switch error.fieldCode {
-            case LoginInput.email.fieldCode:
+            case "email":
                 emailTextField.errorText = error.text
-            case LoginInput.password.fieldCode:
+            case "password":
                 passwordTextField.errorText = error.text
             default:
                 break
             }
+        }
+    }
+}
+
+//MARK: - SocialNetworkAuthViewDelegate
+extension LoginViewController: SocialNetworkAuthViewDelegate {
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
+        LoginProvider.shared.delegate = self
+        LoginProvider.shared.login(provider: provider, authToken: token)
+    }
+    
+    func socialNetworkAuthFailed() {
+        //TODO: error message
+        self.showAlert(message: "socialNetworkAuthFailed")
+    }
+    
+    func socialNetworkAuthViewDidTapFooterButton() {
+        guard let navigationController = navigationController else {
+            log.warn("navigationController is nil")
+            return
+        }
+        
+        if let registerVC = Storyboard.main.viewController(identifier: "RegistrationVC") {
+            var vcs = navigationController.viewControllers
+            vcs.removeLast()
+            vcs.append(registerVC)
+            
+            navigationController.setViewControllers(vcs, animated: true)
         }
     }
 }

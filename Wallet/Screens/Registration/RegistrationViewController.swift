@@ -56,43 +56,48 @@ class RegistrationViewController: UIViewController {
             setAgreementTintColor()
         }
     }
+    
     @IBOutlet private var agreementLabel: UILabel! {
         didSet {
-            agreementLabel.textColor = Constants.Colors.gray
+            agreementLabel.textColor = UIColor.secondaryGrey
             agreementLabel.text = "I accept the terms of the license agreement and privacy policy"
         }
     }
-
+    
     @IBOutlet private var signUpButton: DefaultButton! {
         didSet {
             signUpButton.title = "Sign up"
         }
     }
     
+    @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView! {
+        didSet {
+            socialNetworkAuthView.setUp(delegate: self, type: .register)
+        }
+    }
+    
     @IBOutlet private var textFields: [UnderlinedTextField]!
-    @IBOutlet private var singInTopSpaceConstraint: NSLayoutConstraint!
     @IBOutlet private var stackViewTopSpace: NSLayoutConstraint!
+    @IBOutlet private var signInTopSpace: NSLayoutConstraint!
     @IBOutlet private var scrollView: UIScrollView!
     
     private var isAcceptedAgreement = false
-    private let acceptedAgreementColor = Constants.Colors.brandColor
-    private let nonAcceptedAgreementColor = Constants.Colors.lightGray
+    private let acceptedAgreementColor = UIColor.mainBlue
+    private let nonAcceptedAgreementColor = UIColor.lightGray
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addHideKeyboardGuesture()
         updateContinueButton()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        navigationController?.setNavigationBarHidden(false, animated: animated);
         super.viewWillDisappear(animated)
     }
     
@@ -102,9 +107,14 @@ class RegistrationViewController: UIViewController {
         if scrollView.contentSize.height > 0 {
             let delta = view.frame.height - scrollView.contentSize.height - stackViewTopSpace.constant
             if delta > 0 {
-                singInTopSpaceConstraint.constant = 16 + delta
+                signInTopSpace.constant = delta
             }
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
     }
     
     deinit {
@@ -136,11 +146,6 @@ private extension RegistrationViewController {
         isAcceptedAgreement = !isAcceptedAgreement
         setAgreementTintColor()
         updateContinueButton()
-    }
-    
-    @IBAction func signIn() {
-        let loginVC = Storyboard.main.viewController(identifier: "LoginVC")
-        self.navigationController?.setViewControllers([loginVC], animated: true)
     }
     
     @objc func textDidChange(_ notification: Notification) {
@@ -207,6 +212,45 @@ private extension RegistrationViewController {
         passwordTextField.isSecureTextEntry = true
         repeatPasswordTextField.isSecureTextEntry = true
     }
+    
+    func showRegisterSuccess(email: String) {
+        //TODO: image, action
+        if let popupVC = PopupViewController.create(image: #imageLiteral(resourceName: "faceid"), title: "Email sent successfully", text: "Check the mail! We sent instruction how to confirm your account to your email address \(email)", actionTitle: "Sign in", actionBlock: {[weak self] in
+            self?.showSignInViewController()
+        }, hasCloseButton: false) {
+            popupVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            present(popupVC, animated: true)
+        } else {
+            log.error("couldn't create PopupViewController")
+        }
+    }
+    
+    func showRegisterError() {
+        //TODO: image, action
+        if let popupVC = PopupViewController.create(image: #imageLiteral(resourceName: "faceid"), title: "Oops! Something gone wrong!", text: "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!", actionTitle: "Try again", actionBlock: {
+            print("button tapped")
+        }, hasCloseButton: true) {
+            popupVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            present(popupVC, animated: true)
+        } else {
+            log.error("couldn't create PopupViewController")
+        }
+    }
+    
+    func showSignInViewController() {
+        guard let navigationController = navigationController else {
+            log.warn("navigationController is nil")
+            return
+        }
+        
+        if let loginVC = Storyboard.main.viewController(identifier: "LoginVC") {
+            var vcs = navigationController.viewControllers
+            vcs.removeLast()
+            vcs.append(loginVC)
+            
+            navigationController.setViewControllers(vcs, animated: true)
+        }
+    }
 }
 
 //MARK: - UITextFieldDelegate
@@ -241,28 +285,45 @@ extension RegistrationViewController: RegistrationProviderDelegate {
         //TODO: registrationProviderSucceed
         self.showAlert(message: "succeed")
         
+        showRegisterSuccess(email: emailTextField.text ?? "")
     }
     
     func registrationProviderFailedWithMessage(_ message: String) {
         self.showAlert(message: message)
         
+        showRegisterError()
     }
     
     func registrationProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
         for error in errors {
             switch error.fieldCode {
-            case RegistrationInput.firstName.fieldCode:
+            case "firstName":
                 firstNameTextField.errorText = error.text
-            case RegistrationInput.lastName.fieldCode:
+            case "lastName":
                 lastNameTextField.errorText = error.text
-            case RegistrationInput.email.fieldCode:
+            case "email":
                 emailTextField.errorText = error.text
-            case RegistrationInput.password.fieldCode:
+            case "password":
                 passwordTextField.errorText = error.text
             default:
                 break
             }
         }
+    }
+}
+
+//MARK: - SocialNetworkAuthViewDelegate
+extension RegistrationViewController: SocialNetworkAuthViewDelegate {
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
+        showRegisterSuccess(email: email)
+    }
+    
+    func socialNetworkAuthFailed() {
+        showRegisterError()
+    }
+    
+    func socialNetworkAuthViewDidTapFooterButton() {
+       showSignInViewController()
     }
 }
 

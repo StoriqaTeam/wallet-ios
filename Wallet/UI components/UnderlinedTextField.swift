@@ -19,7 +19,7 @@ class UnderlinedTextField: UITextField {
     }
 
     var lineView: UIView?
-    private let underlineColor = Constants.Colors.lightGray
+    private let underlineColor = UIColor.lightGray
     
     private var errorLabel: UILabel?
     private let errorLabelVerticalMargin: CGFloat = 4

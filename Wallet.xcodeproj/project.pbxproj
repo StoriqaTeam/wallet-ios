@@ -14,6 +14,9 @@
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
 		CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */; };
 		CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */; };
+		CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE185479214A602C009D1360 /* PopupViewController.xib */; };
+		CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547B214A605B009D1360 /* PopupViewController.swift */; };
+		CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547D214A637E009D1360 /* UIFontExtension.swift */; };
 		CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */; };
 		CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */; };
@@ -21,9 +24,8 @@
 		CE1BD73D212565B8006097E5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE1BD73C212565B8006097E5 /* Podfile */; };
 		CE1EED752124BB8400BF39B8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1EED742124BB8400BF39B8 /* LoginViewController.swift */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
-		CE25B73B2125C8300097230A /* ValidationFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B73A2125C8300097230A /* ValidationFieldProtocol.swift */; };
 		CE25B73F2126AA200097230A /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B73E2126AA200097230A /* Validations.swift */; };
-		CE25B74A2126B5A50097230A /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7492126B5A50097230A /* NetworkConfig.swift */; };
+		CE25B74A2126B5A50097230A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7492126B5A50097230A /* Config.swift */; };
 		CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74B2126BCFF0097230A /* RequestSender.swift */; };
 		CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74D2126BEDB0097230A /* UserInfo.swift */; };
 		CE25B7512126F01E0097230A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7502126F01E0097230A /* Request.swift */; };
@@ -48,6 +50,11 @@
 		CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
+		CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */; };
+		CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */; };
+		CEDDDEFF2130501900490781 /* SocialNetworkAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDEFE2130501900490781 /* SocialNetworkAuthRequest.swift */; };
+		CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDF012134354400490781 /* UIColorExtension.swift */; };
+		CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDF032134499B00490781 /* Fallbacks.swift */; };
 		CEE72D5D2125990900991B0C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE72D5C2125990900991B0C /* RegistrationViewController.swift */; };
 		E8AA4A98B0213B85C9324E0C /* Pods_WalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2407DA6D79A3208812DC6CB /* Pods_WalletUITests.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +87,9 @@
 		CE0E5A66212D569A003E2C5E /* LightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightButton.swift; sourceTree = "<group>"; };
 		CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		CE185479214A602C009D1360 /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = "<group>"; };
+		CE18547B214A605B009D1360 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		CE18547D214A637E009D1360 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
 		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
@@ -87,9 +97,8 @@
 		CE1BD73C212565B8006097E5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE1EED742124BB8400BF39B8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
-		CE25B73A2125C8300097230A /* ValidationFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationFieldProtocol.swift; sourceTree = "<group>"; };
 		CE25B73E2126AA200097230A /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
-		CE25B7492126B5A50097230A /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		CE25B7492126B5A50097230A /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		CE25B74B2126BCFF0097230A /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		CE25B7502126F01E0097230A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -120,6 +129,12 @@
 		CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsAuthErrorParser.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthView.swift; sourceTree = "<group>"; };
+		CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNetworkAuthView.xib; sourceTree = "<group>"; };
+		CEDDDEFE2130501900490781 /* SocialNetworkAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthRequest.swift; sourceTree = "<group>"; };
+		CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Wallet-Bridging-Header.h"; path = "Wallet/App/Wallet-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		CEDDDF012134354400490781 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		CEDDDF032134499B00490781 /* Fallbacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fallbacks.swift; sourceTree = "<group>"; };
 		CEE72D5C2125990900991B0C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2407DA6D79A3208812DC6CB /* Pods_WalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,10 +197,20 @@
 			isa = PBXGroup;
 			children = (
 				CE526C31212465A800A2EED2 /* AppDelegate.swift */,
+				CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */,
 				CE526C3A212465A900A2EED2 /* Assets.xcassets */,
 				CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		CE185478214A5FEB009D1360 /* PopupViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE18547B214A605B009D1360 /* PopupViewController.swift */,
+				CE185479214A602C009D1360 /* PopupViewController.xib */,
+			);
+			path = PopupViewController;
 			sourceTree = "<group>";
 		};
 		CE1A47C6212E960000418C11 /* External Libs */ = {
@@ -207,24 +232,13 @@
 			path = SmileLock;
 			sourceTree = "<group>";
 		};
-		CE25B7302125A2EE0097230A /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */,
-				CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */,
-				CE25B7292125A2E00097230A /* DefaultButton.swift */,
-				CE0E5A64212D5681003E2C5E /* BaseButton.swift */,
-				CE0E5A66212D569A003E2C5E /* LightButton.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		CE25B7412126B4930097230A /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				CE1EED742124BB8400BF39B8 /* LoginViewController.swift */,
 				CE25B7542126F0960097230A /* LoginProvider.swift */,
 				CE25B7562126F0BE0097230A /* LoginRequest.swift */,
+				CEDDDEFE2130501900490781 /* SocialNetworkAuthRequest.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -247,19 +261,22 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		CE25B7452126B4E20097230A /* Features */ = {
+		CE25B7452126B4E20097230A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				CE25B7412126B4930097230A /* Login */,
+				CE25B7472126B5220097230A /* PinInput */,
+				CE185478214A5FEB009D1360 /* PopupViewController */,
 				CE25B7432126B4B90097230A /* Registration */,
 			);
-			path = Features;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		CE25B7462126B4F80097230A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				CE25B73E2126AA200097230A /* Validations.swift */,
+				CEDDDF032134499B00490781 /* Fallbacks.swift */,
 				CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */,
 				CE526C67212471CE00A2EED2 /* Constants.swift */,
 				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
@@ -280,7 +297,7 @@
 		CE25B74F2126EFEF0097230A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				CE25B7492126B5A50097230A /* NetworkConfig.swift */,
+				CE25B7492126B5A50097230A /* Config.swift */,
 				CE45A8BF212C0D780096DD5F /* GraphQLMutation.swift */,
 				CE25B7502126F01E0097230A /* Request.swift */,
 				CE25B74B2126BCFF0097230A /* RequestSender.swift */,
@@ -319,11 +336,10 @@
 				CE0E5A6C212D9394003E2C5E /* App */,
 				CE1A47C6212E960000418C11 /* External Libs */,
 				CE526C72212485F900A2EED2 /* Extensions */,
-				CE25B7452126B4E20097230A /* Features */,
+				CE25B7452126B4E20097230A /* Screens */,
 				CE25B7462126B4F80097230A /* Helpers */,
 				CE526C3F212465A900A2EED2 /* Info.plist */,
 				CE25B74F2126EFEF0097230A /* Network */,
-				CE25B7472126B5220097230A /* PinInput */,
 				CE25B7442126B4C70097230A /* Storyboards */,
 				CE526C6F21247F8500A2EED2 /* UI components */,
 			);
@@ -351,8 +367,12 @@
 		CE526C6F21247F8500A2EED2 /* UI components */ = {
 			isa = PBXGroup;
 			children = (
-				CE25B7302125A2EE0097230A /* Base */,
-				CE25B73A2125C8300097230A /* ValidationFieldProtocol.swift */,
+				CEDDDEF921302D8200490781 /* SocialNetworkAuthView */,
+				CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */,
+				CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */,
+				CE25B7292125A2E00097230A /* DefaultButton.swift */,
+				CE0E5A64212D5681003E2C5E /* BaseButton.swift */,
+				CE0E5A66212D569A003E2C5E /* LightButton.swift */,
 			);
 			path = "UI components";
 			sourceTree = "<group>";
@@ -364,8 +384,19 @@
 				CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */,
 				CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */,
 				CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */,
+				CEDDDF012134354400490781 /* UIColorExtension.swift */,
+				CE18547D214A637E009D1360 /* UIFontExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CEDDDEF921302D8200490781 /* SocialNetworkAuthView */ = {
+			isa = PBXGroup;
+			children = (
+				CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */,
+				CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */,
+			);
+			path = SocialNetworkAuthView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +411,7 @@
 				CE526C2B212465A800A2EED2 /* Frameworks */,
 				CE526C2C212465A800A2EED2 /* Resources */,
 				F7A86E839A909184787126A8 /* [CP] Embed Pods Frameworks */,
+				828773B83939D997C861019B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -477,7 +509,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */,
+				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
+				CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
 				CE526C39212465A800A2EED2 /* Main.storyboard in Resources */,
 				CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */,
@@ -517,6 +551,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		828773B83939D997C861019B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Wallet/Pods-Wallet-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wallet/Pods-Wallet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A1C3B3CA24810E069E4936AB /* [CP] Check Pods Manifest.lock */ = {
@@ -564,11 +616,29 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Wallet/Pods-Wallet-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Slog/Slog.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Slog.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -590,26 +660,31 @@
 				CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */,
 				CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */,
 				CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */,
+				CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */,
 				CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */,
 				CE25B75D212723040097230A /* RegistrationProvider.swift in Sources */,
+				CEDDDEFF2130501900490781 /* SocialNetworkAuthRequest.swift in Sources */,
 				CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */,
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
 				CEE72D5D2125990900991B0C /* RegistrationViewController.swift in Sources */,
 				CE25B7552126F0960097230A /* LoginProvider.swift in Sources */,
 				CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */,
+				CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */,
 				CE25B759212711620097230A /* ResponseError.swift in Sources */,
+				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
+				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
 				CE2C5CCF2125843000F153E7 /* PinInputViewController.swift in Sources */,
-				CE25B73B2125C8300097230A /* ValidationFieldProtocol.swift in Sources */,
 				CE25B73F2126AA200097230A /* Validations.swift in Sources */,
 				CE25B7512126F01E0097230A /* Request.swift in Sources */,
+				CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */,
 				CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */,
 				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
 				CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */,
 				CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */,
 				CE526C68212471CE00A2EED2 /* Constants.swift in Sources */,
 				CE1EED752124BB8400BF39B8 /* LoginViewController.swift in Sources */,
-				CE25B74A2126B5A50097230A /* NetworkConfig.swift in Sources */,
+				CE25B74A2126B5A50097230A /* Config.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
 				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
 				CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */,
@@ -789,15 +864,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TM9C3QQWUR;
+				DEVELOPMENT_TEAM = HS8AM3WUSX;
 				INFOPLIST_FILE = Wallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Storiqa.Wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.storiqa.mobilewallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wallet/App/Wallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -809,15 +885,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TM9C3QQWUR;
+				DEVELOPMENT_TEAM = HS8AM3WUSX;
 				INFOPLIST_FILE = Wallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Storiqa.Wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.storiqa.mobilewallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wallet/App/Wallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

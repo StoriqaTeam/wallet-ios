@@ -13,15 +13,19 @@ class Request {
     var name: String {
         return ""
     }
-    var parameters: [String : Any]?
+    var parameters: [String : Any]
     var headers: HTTPHeaders = [
         "Content-Type": "application/json"
     ]
+    
+    required init(parameters: [String : Any]) {
+        self.parameters = parameters
+    }
 }
 
 class AuthRequest: Request {
-    override init() {
-        super.init()
+    required init(parameters: [String : Any]) {
+        super.init(parameters: parameters)
         headers["Authorization"] = "Bearer \(UserInfo.shared.token)"
     }
 }
