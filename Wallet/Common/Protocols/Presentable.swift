@@ -2,12 +2,11 @@
 //  Presentable.swift
 //  UniversaWallet
 //
-//  Created by Artur Guseinov on 27/04/2018.
-//  Copyright © 2018 Universa. All rights reserved.
+//  Created by Storiqa on 27/04/2018.
+//  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import UIKit
-import SnapKit
 
 protocol Presentable {
     
@@ -27,7 +26,6 @@ protocol Presentable {
     func present(in container: UIView, parent: UIViewController)
 }
 
-
 extension Presentable where Self: UIViewController {
     
     var viewController: UIViewController {
@@ -43,23 +41,9 @@ extension Presentable where Self: UIViewController {
     }
     
     func presentAsNavController(from fromViewController: UIViewController) {
-        let navigation = NavigationController(rootViewController: viewController)
+        let navigation = UINavigationController(rootViewController: viewController)
         navigation.isNavigationBarHidden = true
         fromViewController.present(navigation, animated: true, completion: nil)
-    }
-    
-    func presentAsRoot() {
-        if let navigation = AppDelegate.currentWindow.rootViewController as? NavigationController {
-            navigation.pushViewController(viewController, animated: true)
-            {
-                navigation.viewControllers = [self.viewController]
-            }
-            let _ = viewController.view
-        } else {
-            let navigation = NavigationController(rootViewController: viewController)
-            AppDelegate.currentWindow.rootViewController = navigation
-            let _ = viewController.view // setting rootViewController does not trigger viewDidLoad and other methods, wtf? this is a hack, not sure how to solve it now
-        }
     }
     
     func present(from viewController: UIViewController) {
@@ -94,14 +78,8 @@ extension Presentable where Self: UIViewController {
     
     func present(in container: UIView, parent: UIViewController) {
         parent.addChildViewController(self)
-        
         container.addSubview(view)
-        view.snp.makeConstraints { make in
-            make.edges.equalTo(container)
-        }
-        
         didMove(toParentViewController: parent)
     }
-    
 }
 
