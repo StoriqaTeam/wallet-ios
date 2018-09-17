@@ -133,7 +133,6 @@ private extension AppDelegate {
     
         let barButtonApperance = UIBarButtonItem.appearance()
         barButtonApperance.setTitleTextAttributes([.font: UIFont.boldSystemFont(ofSize: 0.1), .foregroundColor: UIColor.clear], for: .normal)
-        
     }
     
     func setInitialVC() {
@@ -147,8 +146,6 @@ private extension AppDelegate {
         } else if pinIsSet {
             initialViewController = Storyboard.main.viewController(identifier: "PinLoginVC")
         } else {
-            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //            initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
             initialViewController = Storyboard.main.viewController(identifier: "LoginVC")
         }
         
