@@ -37,7 +37,7 @@ class PopupViewController: UIViewController {
     private var actionBlock: (()->())?
     
     static func create(image: UIImage, title: String, text: String? = nil, attributedText: NSAttributedString? = nil, actionTitle: String,
-                       actionBlock: @escaping (()->()), hasCloseButton: Bool = true) -> PopupViewController? {
+                       actionBlock: (()->())?, hasCloseButton: Bool = true) -> PopupViewController? {
         let bundle = Bundle(for: self)
         let nib = UINib(nibName: "PopupViewController", bundle: bundle)
         

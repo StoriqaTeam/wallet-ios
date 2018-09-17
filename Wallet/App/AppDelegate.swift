@@ -13,7 +13,7 @@ import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     var window: UIWindow?
     
     private var isFirstLaunch: Bool {
@@ -78,6 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
+        let appSchemeName = "storiqaWallet://"
+        
         let urlStr = url.absoluteString
         if urlStr.contains(facebookAppId) {
             return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
@@ -86,11 +88,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                      sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                      annotation: options[UIApplicationOpenURLOptionsKey.annotation])
             
+        } else if urlStr.hasPrefix(appSchemeName) {
+            log.debug(urlStr)
+            
+            let token = String(urlStr.dropFirst(appSchemeName.count))
+            
+            if let window = self.window, let rootViewController = window.rootViewController {
+                var currentController = rootViewController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                if let root = (currentController as? UINavigationController)?.viewControllers.last,
+                    root is PasswordRecoveryConfirmViewController {
+                    // PasswordRecoveryConfirmViewController is already opened
+                    return true
+                }
+                if let controller = PasswordRecoveryConfirmViewController.create(token: token) {
+                    currentController.present(controller, animated: true, completion: nil)
+                }
+            }
         }
         return true
     }
     
-    
+    //TODO: нужно ли
     func application(_ application: UIApplication,
                      open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return GIDSignIn.sharedInstance().handle(url,
@@ -104,15 +125,20 @@ private extension AppDelegate {
         
         // UINavigationBar settings
         let appearance = UINavigationBar.appearance()
-        //        let backButtonImage = #imageLiteral(resourceName: "backArrow")
-        //        appearance.backIndicatorImage = backButtonImage
-        //        appearance.backIndicatorTransitionMaskImage = backButtonImage
+        let backButtonImage = #imageLiteral(resourceName: "backArrow")
+        appearance.backIndicatorImage = backButtonImage
+        appearance.backIndicatorTransitionMaskImage = backButtonImage
+        appearance.tintColor = UIColor.darkGray
         //
         //        appearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 24)]
         appearance.setBackgroundImage(UIImage(), for: .default)
         appearance.shadowImage = UIImage()
         appearance.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         //        appearance.isTranslucent = true
+        
+        let barButtonApperance = UIBarButtonItem.appearance()
+        barButtonApperance.setTitleTextAttributes([.font: UIFont.boldSystemFont(ofSize: 0.1), .foregroundColor: UIColor.clear], for: .normal)
+        
     }
     
     func setInitialVC() {
@@ -124,16 +150,16 @@ private extension AppDelegate {
         
         let initialViewController: UIViewController?
         
-        if isFirstLaunch {
-            isFirstLaunch = false
-            initialViewController = Storyboard.main.viewController(identifier: "FirstLaunchVC", fatal: true)
-        } else if pinIsSet {
+//        if isFirstLaunch {
+//            isFirstLaunch = false
+//            initialViewController = Storyboard.main.viewController(identifier: "FirstLaunchVC", fatal: true)
+//        } else if pinIsSet {
             initialViewController = Storyboard.main.viewController(identifier: "PinLoginVC")
-        } else {
-            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //            initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
-            initialViewController = Storyboard.main.viewController(identifier: "LoginVC")
-        }
+//        } else {
+//            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            //            initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+//            initialViewController = Storyboard.main.viewController(identifier: "LoginVC")
+//        }
         
         if let initialViewController = initialViewController {
             self.window?.rootViewController = UINavigationController(rootViewController: initialViewController)
@@ -144,6 +170,7 @@ private extension AppDelegate {
     }
 }
 
+//TODO: нужно ли
 extension AppDelegate: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {

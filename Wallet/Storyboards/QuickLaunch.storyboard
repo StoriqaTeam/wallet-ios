@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Quick launch-->
+        <scene sceneID="jaO-9F-MZe">
+            <objects>
+                <viewController storyboardIdentifier="QuickLaunchVC" title="Quick launch" id="VVB-xb-732" customClass="QuickLaunchViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Pb-Jj-LAx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Wanna use quick launch?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPb-Nm-Nk6">
+                                <rect key="frame" x="68" y="56" width="240" height="57.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="df6-5M-gKb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="cCa-qq-e1r">
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="534"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aNJ-4c-L8Y">
+                                <rect key="frame" x="28" y="518" width="319" height="141"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MKa-2J-7VK">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="37"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Choose the way to confirm your identity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdZ-Yn-rLn">
+                                                <rect key="frame" x="69" y="0.0" width="181" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="181" id="CSV-rJ-I9m"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="VdZ-Yn-rLn" firstAttribute="centerX" secondItem="MKa-2J-7VK" secondAttribute="centerX" id="GMj-hc-VB2"/>
+                                            <constraint firstItem="VdZ-Yn-rLn" firstAttribute="top" secondItem="MKa-2J-7VK" secondAttribute="top" id="hac-m7-nP3"/>
+                                            <constraint firstAttribute="bottom" secondItem="VdZ-Yn-rLn" secondAttribute="bottom" constant="8" id="lvN-hA-dKF"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9DJ-dK-ZQL" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="45" width="319" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="C71-s0-wjn"/>
+                                        </constraints>
+                                        <state key="normal" title="Set up quick launch"/>
+                                        <connections>
+                                            <action selector="performAction:" destination="VVB-xb-732" eventType="touchUpInside" id="czg-N4-zYc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pJ-mk-CN2" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="97" width="319" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Kyn-yB-KVL"/>
+                                        </constraints>
+                                        <state key="normal" title="Do not use"/>
+                                        <connections>
+                                            <action selector="cancelSetup:" destination="VVB-xb-732" eventType="touchUpInside" id="sFm-3M-y73"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cCa-qq-e1r" firstAttribute="width" secondItem="2Pb-Jj-LAx" secondAttribute="width" id="2SO-ve-Ugi"/>
+                            <constraint firstItem="aNJ-4c-L8Y" firstAttribute="leading" secondItem="mpq-yu-Crm" secondAttribute="leading" constant="28" id="4IM-3S-k0C"/>
+                            <constraint firstItem="oPb-Nm-Nk6" firstAttribute="centerX" secondItem="2Pb-Jj-LAx" secondAttribute="centerX" id="8ST-r1-UMv"/>
+                            <constraint firstItem="cCa-qq-e1r" firstAttribute="height" secondItem="2Pb-Jj-LAx" secondAttribute="height" multiplier="0.8" id="9An-lc-97V"/>
+                            <constraint firstItem="cCa-qq-e1r" firstAttribute="centerY" secondItem="2Pb-Jj-LAx" secondAttribute="centerY" id="EbZ-Ij-gS0"/>
+                            <constraint firstItem="oPb-Nm-Nk6" firstAttribute="top" secondItem="mpq-yu-Crm" secondAttribute="top" constant="36" id="G58-wq-aBP"/>
+                            <constraint firstItem="mpq-yu-Crm" firstAttribute="bottom" secondItem="aNJ-4c-L8Y" secondAttribute="bottom" constant="8" id="jrx-2q-FPX"/>
+                            <constraint firstItem="aNJ-4c-L8Y" firstAttribute="centerX" secondItem="2Pb-Jj-LAx" secondAttribute="centerX" id="nUi-rs-jnJ"/>
+                            <constraint firstItem="cCa-qq-e1r" firstAttribute="centerX" secondItem="2Pb-Jj-LAx" secondAttribute="centerX" id="sEL-90-mf6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mpq-yu-Crm"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="9DJ-dK-ZQL" id="ldv-I6-QDz"/>
+                        <outlet property="cancelButton" destination="1pJ-mk-CN2" id="02n-8I-de3"/>
+                        <outlet property="imageView" destination="cCa-qq-e1r" id="D9T-Sq-8hl"/>
+                        <outlet property="subtitleLabel" destination="VdZ-Yn-rLn" id="egx-ck-goo"/>
+                        <outlet property="titleLabel" destination="oPb-Nm-Nk6" id="bSd-gQ-bFp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c0W-FB-Lra" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1327" y="-18"/>
+        </scene>
+        <!--Quick launch-->
+        <scene sceneID="bhQ-BV-OJI">
+            <objects>
+                <viewController storyboardIdentifier="PinQuickLaunchVC" title="Quick launch" id="vX7-hS-SmK" customClass="PinQuickLaunchViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FaJ-yv-jWJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Set up PIN code?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVU-8o-gxQ">
+                                <rect key="frame" x="68" y="56" width="240" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="10D-MW-ruE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="bnP-dJ-hgw">
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="534"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0yZ-yR-cXD">
+                                <rect key="frame" x="28" y="563" width="319" height="96"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvd-Ac-KzA" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="9wY-0A-Hq3"/>
+                                        </constraints>
+                                        <state key="normal" title="Set up PIN code"/>
+                                        <connections>
+                                            <action selector="performAction:" destination="vX7-hS-SmK" eventType="touchUpInside" id="Mto-1S-hla"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCm-f1-hTK" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="52" width="319" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="62v-2B-AZo"/>
+                                        </constraints>
+                                        <state key="normal" title="Do not use"/>
+                                        <connections>
+                                            <action selector="cancelSetup:" destination="vX7-hS-SmK" eventType="touchUpInside" id="R3F-lX-Y9M"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0yZ-yR-cXD" firstAttribute="centerX" secondItem="FaJ-yv-jWJ" secondAttribute="centerX" id="AHg-NF-m0H"/>
+                            <constraint firstItem="foa-7A-yBe" firstAttribute="bottom" secondItem="0yZ-yR-cXD" secondAttribute="bottom" constant="8" id="J8y-Li-Co7"/>
+                            <constraint firstItem="bnP-dJ-hgw" firstAttribute="height" secondItem="FaJ-yv-jWJ" secondAttribute="height" multiplier="0.8" id="UUQ-P9-Juc"/>
+                            <constraint firstItem="YVU-8o-gxQ" firstAttribute="top" secondItem="foa-7A-yBe" secondAttribute="top" constant="36" id="VG7-cF-htB"/>
+                            <constraint firstItem="YVU-8o-gxQ" firstAttribute="centerX" secondItem="FaJ-yv-jWJ" secondAttribute="centerX" id="Y0u-CX-Ps7"/>
+                            <constraint firstItem="0yZ-yR-cXD" firstAttribute="leading" secondItem="foa-7A-yBe" secondAttribute="leading" constant="28" id="prV-qd-YJr"/>
+                            <constraint firstItem="bnP-dJ-hgw" firstAttribute="width" secondItem="FaJ-yv-jWJ" secondAttribute="width" id="q0U-9L-kVI"/>
+                            <constraint firstItem="bnP-dJ-hgw" firstAttribute="centerX" secondItem="FaJ-yv-jWJ" secondAttribute="centerX" id="vDU-mJ-40Z"/>
+                            <constraint firstItem="bnP-dJ-hgw" firstAttribute="centerY" secondItem="FaJ-yv-jWJ" secondAttribute="centerY" id="yQv-gi-sHv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="foa-7A-yBe"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="mvd-Ac-KzA" id="jbD-kP-ULy"/>
+                        <outlet property="cancelButton" destination="tCm-f1-hTK" id="hUW-le-NMX"/>
+                        <outlet property="imageView" destination="bnP-dJ-hgw" id="bsn-2Y-ydj"/>
+                        <outlet property="titleLabel" destination="YVU-8o-gxQ" id="f2A-E7-gcj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W3E-mu-HQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1327" y="693"/>
+        </scene>
+        <!--Quick launch-->
+        <scene sceneID="bVe-ed-8rM">
+            <objects>
+                <viewController storyboardIdentifier="TouchIdQuickLaunchVC" title="Quick launch" id="CIW-B1-423" customClass="TouchIdQuickLaunchViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s8C-Ha-QIG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaG-nT-8Cu">
+                                <rect key="frame" x="68" y="56" width="240" height="57.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="hMA-Mk-I8E"/>
+                                </constraints>
+                                <string key="text">Set up fingerprint
+launch?</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="Mgg-82-aOM">
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="534"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tbz-z6-ldd">
+                                <rect key="frame" x="28" y="563" width="319" height="96"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPV-7A-ANL" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="pjC-6N-onb"/>
+                                        </constraints>
+                                        <state key="normal" title="Use Touch ID"/>
+                                        <connections>
+                                            <action selector="performAction:" destination="CIW-B1-423" eventType="touchUpInside" id="q1J-kT-JHN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bav-7X-nCg" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="52" width="319" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="4Cn-z7-WJl"/>
+                                        </constraints>
+                                        <state key="normal" title="Do not use"/>
+                                        <connections>
+                                            <action selector="cancelSetup:" destination="CIW-B1-423" eventType="touchUpInside" id="cTb-zA-jwt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Mgg-82-aOM" firstAttribute="centerX" secondItem="s8C-Ha-QIG" secondAttribute="centerX" id="5T3-zb-vNm"/>
+                            <constraint firstItem="Mgg-82-aOM" firstAttribute="height" secondItem="s8C-Ha-QIG" secondAttribute="height" multiplier="0.8" id="8Nh-x8-zHb"/>
+                            <constraint firstItem="JaG-nT-8Cu" firstAttribute="top" secondItem="qTr-Y3-Ubq" secondAttribute="top" constant="36" id="SaZ-TC-zaE"/>
+                            <constraint firstItem="Tbz-z6-ldd" firstAttribute="centerX" secondItem="s8C-Ha-QIG" secondAttribute="centerX" id="VL5-Se-uO1"/>
+                            <constraint firstItem="Mgg-82-aOM" firstAttribute="width" secondItem="s8C-Ha-QIG" secondAttribute="width" id="aLF-c8-5mr"/>
+                            <constraint firstItem="Mgg-82-aOM" firstAttribute="centerY" secondItem="s8C-Ha-QIG" secondAttribute="centerY" id="k6B-0S-fRT"/>
+                            <constraint firstItem="JaG-nT-8Cu" firstAttribute="centerX" secondItem="s8C-Ha-QIG" secondAttribute="centerX" id="mYQ-UV-g2c"/>
+                            <constraint firstItem="Tbz-z6-ldd" firstAttribute="leading" secondItem="qTr-Y3-Ubq" secondAttribute="leading" constant="28" id="pSE-wR-eLS"/>
+                            <constraint firstItem="qTr-Y3-Ubq" firstAttribute="bottom" secondItem="Tbz-z6-ldd" secondAttribute="bottom" constant="8" id="qXF-JU-yIP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qTr-Y3-Ubq"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="FPV-7A-ANL" id="XMI-a1-gzv"/>
+                        <outlet property="cancelButton" destination="Bav-7X-nCg" id="INe-z5-bSF"/>
+                        <outlet property="imageView" destination="Mgg-82-aOM" id="BeQ-E7-i7x"/>
+                        <outlet property="titleLabel" destination="JaG-nT-8Cu" id="UY7-eL-9Zf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="taU-HE-ehA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1327" y="1418"/>
+        </scene>
+        <!--Enter 4-digit PIN-->
+        <scene sceneID="ePs-1G-5Nk">
+            <objects>
+                <viewController storyboardIdentifier="PinSetupVC" title="Enter 4-digit PIN" id="f7a-W8-tna" customClass="PinSetupViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z0Z-cT-7pF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hzs-Ua-Uz6">
+                                <rect key="frame" x="0.0" y="50" width="374" height="519"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="pex-Yc-9Y2">
+                                        <rect key="frame" x="56.5" y="0.0" width="261" height="519"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="261" id="6gS-uz-Bq8"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="pex-Yc-9Y2" firstAttribute="centerX" secondItem="Hzs-Ua-Uz6" secondAttribute="centerX" id="6o3-Ei-XEB"/>
+                                    <constraint firstItem="pex-Yc-9Y2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hzs-Ua-Uz6" secondAttribute="leading" id="Att-4m-8mh"/>
+                                    <constraint firstItem="pex-Yc-9Y2" firstAttribute="top" secondItem="Hzs-Ua-Uz6" secondAttribute="top" id="Ltd-Ad-YV8"/>
+                                    <constraint firstItem="pex-Yc-9Y2" firstAttribute="centerY" secondItem="Hzs-Ua-Uz6" secondAttribute="centerY" id="b9W-8K-2W5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Hzs-Ua-Uz6" firstAttribute="leading" secondItem="TUw-hK-Iqf" secondAttribute="leading" id="94j-ss-E0o"/>
+                            <constraint firstItem="Hzs-Ua-Uz6" firstAttribute="top" secondItem="TUw-hK-Iqf" secondAttribute="top" constant="30" id="BEj-jx-GBh"/>
+                            <constraint firstItem="Hzs-Ua-Uz6" firstAttribute="centerX" secondItem="z0Z-cT-7pF" secondAttribute="centerX" id="dxh-2l-GmU"/>
+                            <constraint firstItem="Hzs-Ua-Uz6" firstAttribute="centerY" secondItem="z0Z-cT-7pF" secondAttribute="centerY" constant="-24" id="fan-Mn-kjJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TUw-hK-Iqf"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Enter Pin" id="NH8-t0-Q1S"/>
+                    <connections>
+                        <outlet property="passwordStackView" destination="pex-Yc-9Y2" id="014-HF-apu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Nd-qs-wnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-540" y="692"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="quickLaunch" width="377" height="428"/>
+    </resources>
+</document>

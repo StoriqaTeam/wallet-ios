@@ -13,5 +13,5 @@ enum ResponseType {
     case apiErrors(errors: [ResponseAPIError.Message])
     case textError(message: String)
     
-    static var unknownError = ResponseType.textError(message: "Unknown error")
+    static var unknownError = ResponseType.textError(message: Constants.Errors.unknown)
 }

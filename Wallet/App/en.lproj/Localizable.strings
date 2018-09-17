@@ -1,0 +1,66 @@
+/* 
+  Localizable.strings
+  Wallet
+
+  Created by user on 14.09.2018.
+  Copyright © 2018 Storiqa. All rights reserved.
+*/
+
+//TextFields
+
+"email" = "Email";
+"first_name" = "First name";
+"last_name" = "Last name";
+"password" = "Password";
+"repeat_password" = "Repeat password";
+
+//Buttons
+"get_started" = "Get started";
+"forgot_password" = "I forgot password";
+"sign_up" = "Sign up";
+"sign_in" = "Sign in";
+"try_again" = "Try again";
+"confirm_new_password" = "Confirm new password";
+"reset_password" = "Reset password";
+"set_up_pin" = "Set up PIN code";
+"use_touchId" = "Use Touch ID";
+"register" = "Register";
+"sign_in" = "Sign in";
+
+"set_up_quick_launch" = "Set up quick launch";
+"do_not_use" = "Do not use";
+
+//Other controls
+"accept_agreement" = "I accept the terms of the license agreement and privacy policy";
+
+//Titles
+"enter_pin" = "Enter 4-digit PIN";
+"confirm_pin" = "Confirm PIN";
+
+//Labels
+"greeting" = ", good day";
+"password_recovery" = "Password recovery";
+"psw_recovery_confirm_subtitle" = "Create new password and confirm it.";
+"email_for_psw_recovery" = "Enter email address where new password recovering instructions will be sent to.";
+"quick_launch_title" = "Wanna use quick launch?";
+"quick_launch_subtitle" = "Choose the way to confirm your identity";
+"pin_quick_launch_title" = "Set up PIN code?";
+"touchId_quick_launch_title" = "Set up fingerprint launch?";
+"have_account" = "Have an account?";
+"have_no_account" = "Haven’t got account?";
+"sign_in_social" = "Sign in via social account";
+"sign_up_social" = "Sign up via social account";
+
+//Messages
+"passwords_nonequeal" = "Passwords are not equeal";
+"email_sent" = "Email sent successfully";
+"check_email" = "Check the mail! We sent instruction how to confirm your account to your email address ";
+"smth_went_wrong" = "Oops! Something gone wrong!";
+"psw_recovery_result_success_title" = "Password was successfully set up";
+"psw_recovery_result_success_subtitle" = "You have successfully set up new password.";
+
+//Error constants
+"server_response_error" = "Server response error";
+"unknown_error" = "Unknown error";
+"user_friendly_error" = "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!";
+"pins_not_match_alert" = "Codes do not match. Try again.";

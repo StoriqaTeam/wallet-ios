@@ -1,23 +1,22 @@
 //
-//  RegistrationProvider.swift
+//  PasswordRecoveryProvider.swift
 //  Wallet
 //
-//  Created by user on 17.08.2018.
+//  Created by user on 13.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import Foundation
 
-class RegistrationProvider {
-    static let shared = RegistrationProvider()
+class PasswordRecoveryProvider {
+    static let shared = PasswordRecoveryProvider()
     var requestSender: AbstractRequestSender = RequestSender()
     weak var delegate: ProviderDelegate?
     
     private init() { }
     
-    func register(firstName: String, lastName: String, email: String, password: String) {
-        let request = RegistrationRequest(firstName: firstName, lastName: lastName, email: email, password: password)
-        
+    func resetPassword(email: String) {
+        let request = PasswordRecoveryRequest(email: email)
         requestSender.sendGrqphQLRequest(request) {[weak self] (response) in
             guard let strongSelf = self else {
                 log.warn("self is nil")
@@ -32,9 +31,12 @@ class RegistrationProvider {
             switch response {
             case .success(let data):
                 log.debug(data)
-                
-                //TODO: какие данные получать?
-                delegate.providerSucceed()
+                if let success = data[request.name]?["success"] as? Bool {
+                    //TODO:может ли вернуться false в поле success?
+                    delegate.providerSucceed()
+                } else {
+                    delegate.providerFailedWithMessage(Constants.Errors.serverResponse)
+                }
                 
             case .textError(let message):
                 delegate.providerFailedWithMessage(message)

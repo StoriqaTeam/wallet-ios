@@ -10,12 +10,12 @@ import Foundation
 import Alamofire
 
 protocol AbstractRequestSender {
-    func sentGrqphQLRequest(_ request: Request, completion: @escaping (ResponseType)->Void)
+    func sendGrqphQLRequest(_ request: Request, completion: @escaping (ResponseType)->Void)
     func send(_ request: Request, completion: @escaping (ResponseType)->Void)
 }
 
 class RequestSender: AbstractRequestSender {
-    func sentGrqphQLRequest(_ request: Request, completion: @escaping (ResponseType)->Void) {
+    func sendGrqphQLRequest(_ request: Request, completion: @escaping (ResponseType)->Void) {
         send(request, url: NetworkConfig.graphqlUrl, completion: completion)
     }
     

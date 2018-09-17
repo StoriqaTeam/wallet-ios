@@ -12,7 +12,7 @@ import UIKit
 class LoginViewController: UIViewController {
     @IBOutlet private var emailTextField: UnderlinedTextField! {
         didSet {
-            emailTextField.placeholder = "Email"
+            emailTextField.placeholder = "email".localized()
             emailTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet private var passwordTextField: UnderlinedTextField! {
         didSet {
-            passwordTextField.placeholder = "Password"
+            passwordTextField.placeholder = "password".localized()
             passwordTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -30,13 +30,13 @@ class LoginViewController: UIViewController {
     
     @IBOutlet private var signInButton: DefaultButton! {
         didSet {
-            signInButton.title = "Get started"
+            signInButton.title = "get_started".localized()
         }
     }
     @IBOutlet private var forgotPasswordButton: UIButton! {
         didSet {
             forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
-            forgotPasswordButton.setTitle("I forgot password", for: .normal)
+            forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
         }
     }
     @IBOutlet var socialNetworkAuthView: SocialNetworkAuthView! {
@@ -92,6 +92,18 @@ private extension LoginViewController {
         LoginProvider.shared.login(email: email, password: password)
     }
     
+    @IBAction private func forgotPasswordTapped() {
+        guard let navigationController = navigationController else {
+            log.warn("navigationController is nil")
+            return
+        }
+        
+        guard let vc = Storyboard.passwordRecovery.viewController(identifier: "PasswordRecoveryVC") else {
+            return
+        }
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
     @objc func textDidChange(_ notification: Notification) {
         updateContinueButton()
     }
@@ -113,10 +125,6 @@ private extension LoginViewController {
         emailTextField.errorText = nil
         passwordTextField.errorText = nil
     }
-    
-    func hideErrorForTextField(_ textField: UITextField) {
-        (textField as? UnderlinedTextField)?.errorText = nil
-    }
 }
 
 //MARK: - UITextFieldDelegate
@@ -132,22 +140,31 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        hideErrorForTextField(textField)
+        (textField as? UnderlinedTextField)?.errorText = nil
     }
 }
 
-//MARK: - RegistrationProviderDelegate
-extension LoginViewController: LoginProviderDelegate {
-    func loginProviderSucceed() {
-        //TODO: loginProviderSucceed
-        self.showAlert(message: "succeed")
+//MARK: - ProviderDelegate
+extension LoginViewController: ProviderDelegate {
+    func providerSucceed() {
+        if let _ = UserDefaults.standard.object(forKey: Constants.Keys.kIsQuickLaunchSet) {
+            //was set if key has any value
+            //TODO: authorized zone
+            
+        } else if let quickLaunchVC = Storyboard.quickLaunch.viewController(identifier: "QuickLaunchVC") {
+            //TODO: вернуть
+//            UserDefaults.standard.set(true, forKey: Constants.Keys.kIsQuickLaunchSet)
+            
+            let nvc = UINavigationController(rootViewController: quickLaunchVC)
+            present(nvc, animated: true, completion: nil)
+        }
     }
     
-    func loginProviderFailedWithMessage(_ message: String) {
+    func providerFailedWithMessage(_ message: String) {
         self.showAlert(message: message)
     }
     
-    func loginProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
+    func providerFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
         for error in errors {
             switch error.fieldCode {
             case "email":

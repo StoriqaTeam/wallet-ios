@@ -22,7 +22,7 @@ extension GraphQLMutation where Self: Request {
     
     init(input: [String: String]) {
         var input = input
-        input["clientMutationId"] = "1"
+        input["clientMutationId"] = ""
         
         let variables = [
             "input": input

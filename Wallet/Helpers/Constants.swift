@@ -14,11 +14,13 @@ class Constants {
     
     class Keys {
         static let kIsFirstLaunch = "isFirstLaunch"
+        static let kIsQuickLaunchSet = "isQuickLaunchSet"
     }
     
     class Errors {
-        static let internalApp = "Internal app error"
-        static let serverResponse = "Server response error"
+        static let serverResponse = "server_response_error".localized()
+        static let unknown = "unknown_error".localized()
+        static let userFriendly = "user_friendly_error".localized()
     }
 }
 

@@ -64,13 +64,13 @@ class SocialNetworkAuthView: UIView {
         
         switch type {
         case .login:
-            titleLabel.text = "Sign in via social account"
-            footerTitleLabel.text = "Haven’t got account?"
-            footerButton.setTitle("Register", for: .normal)
+            titleLabel.text = "sign_in_social".localized()
+            footerTitleLabel.text = "have_no_account".localized()
+            footerButton.setTitle("register".localized(), for: .normal)
         case .register:
-            titleLabel.text = "Sign up via social account"
-            footerTitleLabel.text = "Have an account?"
-            footerButton.setTitle("Sign in", for: .normal)
+            titleLabel.text = "sign_up_social".localized()
+            footerTitleLabel.text = "have_account".localized()
+            footerButton.setTitle("sign_in".localized(), for: .normal)
         }
     }
     
@@ -107,7 +107,7 @@ class SocialNetworkAuthView: UIView {
                 log.debug("declinedPermissions: \(declinedPermissions)")
                 log.debug("accessToken: \(accessToken)")
                 
-                //TODO: get user email from facebook?
+                //TODO: is it possible to get user email from facebook?
                 delegate.socialNetworkAuthSucceed(provider: .facebook, token: accessToken.authenticationToken, email: "")
             }
         }
@@ -139,6 +139,7 @@ extension SocialNetworkAuthView: GIDSignInDelegate {
 extension SocialNetworkAuthView: GIDSignInUIDelegate {
     // Stop the UIActivityIndicatorView animation that was started when the user
     // pressed the Sign In button
+    
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
         print("signInWillDispatch(signIn: GIDSignIn!, error: NSError!)")
         //TODO: signInWillDispatch(signIn: GIDSignIn!, error: NSError!)

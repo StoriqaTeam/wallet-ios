@@ -12,7 +12,7 @@ import UIKit
 class RegistrationViewController: UIViewController {
     @IBOutlet private var firstNameTextField: UnderlinedTextField! {
         didSet {
-            firstNameTextField.placeholder = "First name"
+            firstNameTextField.placeholder = "first_name".localized()
             firstNameTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -20,7 +20,7 @@ class RegistrationViewController: UIViewController {
     }
     @IBOutlet private var lastNameTextField: UnderlinedTextField! {
         didSet {
-            lastNameTextField.placeholder = "Last name"
+            lastNameTextField.placeholder = "last_name".localized()
             lastNameTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -28,7 +28,7 @@ class RegistrationViewController: UIViewController {
     }
     @IBOutlet private var emailTextField: UnderlinedTextField! {
         didSet {
-            emailTextField.placeholder = "Email"
+            emailTextField.placeholder = "email".localized()
             emailTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -36,7 +36,7 @@ class RegistrationViewController: UIViewController {
     }
     @IBOutlet private var passwordTextField: UnderlinedTextField! {
         didSet {
-            passwordTextField.placeholder = "Password"
+            passwordTextField.placeholder = "password".localized()
             passwordTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -44,7 +44,7 @@ class RegistrationViewController: UIViewController {
     }
     @IBOutlet private var repeatPasswordTextField: UnderlinedTextField! {
         didSet {
-            repeatPasswordTextField.placeholder = "Repeat password"
+            repeatPasswordTextField.placeholder = "repeat_password".localized()
             repeatPasswordTextField.layoutBlock = {[weak self] in
                 self?.view.layoutIfNeeded()
             }
@@ -60,13 +60,13 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var agreementLabel: UILabel! {
         didSet {
             agreementLabel.textColor = UIColor.secondaryGrey
-            agreementLabel.text = "I accept the terms of the license agreement and privacy policy"
+            agreementLabel.text = "accept_agreement".localized()
         }
     }
     
     @IBOutlet private var signUpButton: DefaultButton! {
         didSet {
-            signUpButton.title = "Sign up"
+            signUpButton.title = "sign_up".localized()
         }
     }
     
@@ -184,7 +184,7 @@ private extension RegistrationViewController {
         if formIsValid {
             if passwordTextField.text != repeatPasswordTextField.text {
                 //TODO: сообщение
-                repeatPasswordTextField.errorText = "Passwords are not equeal"
+                repeatPasswordTextField.errorText = "passwords_nonequeal".localized()
                 formIsValid = false
             } else {
                 repeatPasswordTextField.errorText = nil
@@ -199,10 +199,6 @@ private extension RegistrationViewController {
     }
     
     
-    func hideErrorForTextField(_ textField: UITextField) {
-        (textField as? UnderlinedTextField)?.errorText = nil
-    }
-    
     func setAgreementTintColor() {
         agreementTickImageView.tintColor = isAcceptedAgreement ? acceptedAgreementColor : nonAcceptedAgreementColor
     }
@@ -214,27 +210,27 @@ private extension RegistrationViewController {
     }
     
     func showRegisterSuccess(email: String) {
-        //TODO: image, action
-        if let popupVC = PopupViewController.create(image: #imageLiteral(resourceName: "faceid"), title: "Email sent successfully", text: "Check the mail! We sent instruction how to confirm your account to your email address \(email)", actionTitle: "Sign in", actionBlock: {[weak self] in
-            self?.showSignInViewController()
-        }, hasCloseButton: false) {
-            popupVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            present(popupVC, animated: true)
-        } else {
-            log.error("couldn't create PopupViewController")
-        }
+        //TODO: image
+        presentPopup(image: #imageLiteral(resourceName: "faceid"),
+                     title: "email_sent".localized(),
+                     text: "check_email".localized() + email,
+                     actionTitle: "sign_in".localized(),
+                     hasCloseButton: false,
+                     actionBlock: {[weak self] in
+                        self?.showSignInViewController()
+        })
     }
     
-    func showRegisterError() {
+    func showRegisterError(_ message: String) {
         //TODO: image, action
-        if let popupVC = PopupViewController.create(image: #imageLiteral(resourceName: "faceid"), title: "Oops! Something gone wrong!", text: "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!", actionTitle: "Try again", actionBlock: {
-            print("button tapped")
-        }, hasCloseButton: true) {
-            popupVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            present(popupVC, animated: true)
-        } else {
-            log.error("couldn't create PopupViewController")
-        }
+        presentPopup(image: #imageLiteral(resourceName: "faceid"),
+                     title: "smth_went_wrong".localized(),
+                     text: message,
+                     actionTitle: "try_again".localized(),
+                     hasCloseButton: true,
+                     actionBlock: {
+                        print("button tapped")
+        })
     }
     
     func showSignInViewController() {
@@ -275,26 +271,21 @@ extension RegistrationViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        hideErrorForTextField(textField)
+        (textField as? UnderlinedTextField)?.errorText = nil
     }
 }
 
-//MARK: - RegistrationProviderDelegate
-extension RegistrationViewController: RegistrationProviderDelegate {
-    func registrationProviderSucceed() {
-        //TODO: registrationProviderSucceed
-        self.showAlert(message: "succeed")
-        
+//MARK: - ProviderDelegate
+extension RegistrationViewController: ProviderDelegate {
+    func providerSucceed() {
         showRegisterSuccess(email: emailTextField.text ?? "")
     }
     
-    func registrationProviderFailedWithMessage(_ message: String) {
-        self.showAlert(message: message)
-        
-        showRegisterError()
+    func providerFailedWithMessage(_ message: String) {
+        showRegisterError(message)
     }
     
-    func registrationProviderFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
+    func providerFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
         for error in errors {
             switch error.fieldCode {
             case "firstName":
@@ -319,7 +310,8 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
     }
     
     func socialNetworkAuthFailed() {
-        showRegisterError()
+        //TODO: текст
+        showRegisterError(Constants.Errors.userFriendly)
     }
     
     func socialNetworkAuthViewDidTapFooterButton() {

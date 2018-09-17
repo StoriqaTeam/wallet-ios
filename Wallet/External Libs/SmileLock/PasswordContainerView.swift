@@ -74,8 +74,8 @@ open class PasswordContainerView: UIView {
             self.widthConstraint.constant = width
         }
     }
-    fileprivate let kDefaultWidth: CGFloat = 261
-    fileprivate let kDefaultHeight: CGFloat = 390
+    fileprivate var kDefaultWidth: CGFloat = 261
+    fileprivate var kDefaultHeight: CGFloat = 400
     fileprivate var widthConstraint: NSLayoutConstraint!
     
     fileprivate func configureConstraints() {
@@ -94,8 +94,10 @@ open class PasswordContainerView: UIView {
         return view
     }
     
-    open class func create(in stackView: UIStackView, digit: Int) -> PasswordContainerView {
+    open class func create(in stackView: UIStackView, digit: Int, defaultWidth: CGFloat = 261, defaultHeight: CGFloat = 400) -> PasswordContainerView {
         let passwordContainerView = create(withDigit: digit)
+        passwordContainerView.kDefaultWidth = defaultWidth
+        passwordContainerView.kDefaultHeight = defaultHeight
         stackView.addArrangedSubview(passwordContainerView)
         return passwordContainerView
     }
