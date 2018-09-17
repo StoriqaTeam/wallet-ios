@@ -138,7 +138,6 @@ private extension AppDelegate {
         
         let barButtonApperance = UIBarButtonItem.appearance()
         barButtonApperance.setTitleTextAttributes([.font: UIFont.boldSystemFont(ofSize: 0.1), .foregroundColor: UIColor.clear], for: .normal)
-        
     }
     
     func setInitialVC() {
@@ -150,16 +149,14 @@ private extension AppDelegate {
         
         let initialViewController: UIViewController?
         
-//        if isFirstLaunch {
-//            isFirstLaunch = false
-//            initialViewController = Storyboard.main.viewController(identifier: "FirstLaunchVC", fatal: true)
-//        } else if pinIsSet {
+        if isFirstLaunch {
+            isFirstLaunch = false
+            initialViewController = Storyboard.main.viewController(identifier: "FirstLaunchVC", fatal: true)
+        } else if pinIsSet {
             initialViewController = Storyboard.main.viewController(identifier: "PinLoginVC")
-//        } else {
-//            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            //            initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
-//            initialViewController = Storyboard.main.viewController(identifier: "LoginVC")
-//        }
+        } else {
+            initialViewController = Storyboard.main.viewController(identifier: "LoginVC")
+        }
         
         if let initialViewController = initialViewController {
             self.window?.rootViewController = UINavigationController(rootViewController: initialViewController)

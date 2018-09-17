@@ -78,6 +78,6 @@ extension PinSetupViewController: PasswordInputCompleteProtocol {
         }
     }
     
-    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: Error?) { }
+    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: String?) { }
 }
 

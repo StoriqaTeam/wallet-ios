@@ -65,15 +65,14 @@ extension PinInputViewController: PasswordInputCompleteProtocol {
         }
     }
     
-    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: Error?) {
+    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: String?) {
         if success {
             self.validationSuccess()
         } else {
             passwordContainerView.clearInput()
-            if let error = error,
-                let message = BiometricsAuthErrorParser.errorMessageForLAErrorCode(error: error) {
-                print(message)
-                self.showAlert(message: message)
+            if let error = error {
+                log.warn(error)
+                self.showAlert(message: error)
             }
         }
     }

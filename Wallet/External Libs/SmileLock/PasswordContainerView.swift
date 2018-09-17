@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import LocalAuthentication
 
 public protocol PasswordInputCompleteProtocol: class {
     func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String)
-    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: Error?)
+    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: String?)
 }
 
 open class PasswordContainerView: UIView {
@@ -23,7 +22,8 @@ open class PasswordContainerView: UIView {
     
     //MARK: Property
     open weak var delegate: PasswordInputCompleteProtocol?
-    fileprivate var touchIDContext = LAContext()
+    
+    private let biometryAuthProvider: BiometricAuthProviderProtocol = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
     
     fileprivate var inputString: String = "" {
         didSet {
@@ -55,7 +55,7 @@ open class PasswordContainerView: UIView {
     }
     
     open var isTouchAuthenticationAvailable: Bool {
-        return touchIDContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+        return biometryAuthProvider.canAuthWithBiometry
     }
     
     open var touchAuthenticationEnabled = false {
@@ -141,11 +141,7 @@ open class PasswordContainerView: UIView {
     @IBAction func touchAuthenticationAction(_ sender: UIButton) {
         guard isTouchAuthenticationAvailable else { return }
         
-        // Hide "Enter Password" button
-        touchIDContext.localizedFallbackTitle = ""
-        
-        // show the authentication UI
-        touchIDContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: touchAuthenticationReason) { [weak self] (success, error) in
+        biometryAuthProvider.authWithBiometry { [weak self] (success, errorMessage) in
             DispatchQueue.main.async {
                 guard let strongSelf = self else {
                     log.error("self is nil")
@@ -154,11 +150,9 @@ open class PasswordContainerView: UIView {
                 
                 if success {
                     strongSelf.passwordDotView.inputDotCount = strongSelf.passwordDotView.totalDotCount
-                    // instantiate LAContext again for avoiding the situation that PasswordContainerView stay in memory when authenticate successfully
-                    strongSelf.touchIDContext = LAContext()
                 }
                 if let delegate = strongSelf.delegate {
-                    delegate.touchAuthenticationComplete(strongSelf, success: success, error: error)
+                    delegate.touchAuthenticationComplete(strongSelf, success: success, error: errorMessage)
                 } else {
                     log.warn("delegate is nil")
                 }
@@ -189,20 +183,18 @@ private extension PasswordContainerView {
     }
     
     func setAuthButtonImnage() {
-        let touchIdImage = #imageLiteral(resourceName: "touchId")
-        let faceIdImage = #imageLiteral(resourceName: "faceid")
+        let image: UIImage?
         
-        if #available(iOS 11.0, *) {
-            switch(touchIDContext.biometryType) {
-            case .faceID:
-                touchAuthenticationButton.setImage(faceIdImage, for: UIControlState())
-            default:
-                touchAuthenticationButton.setImage(touchIdImage, for: UIControlState())
-            }
-        } else {
-            touchAuthenticationButton.setImage(touchIdImage, for: UIControlState())
+        switch biometryAuthProvider.biometricAuthType {
+        case .faceId:
+            image = #imageLiteral(resourceName: "faceid")
+        case .touchId:
+            image = #imageLiteral(resourceName: "touchId")
+        default:
+            image = nil
         }
         
+        touchAuthenticationButton.setImage(image, for: UIControlState())
         touchAuthenticationButton.tintColor = tintColor
     }
 }
