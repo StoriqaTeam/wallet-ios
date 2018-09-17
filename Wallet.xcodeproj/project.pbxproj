@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2CB6AFB44248AEC1D7EF7326 /* Pods_WalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A8724397CC4953A7F9E72E /* Pods_WalletTests.framework */; };
 		60AC208DB93701555B9756D2 /* Pods_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */; };
+		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
+		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
+		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
 		CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */; };
 		CE0E5A65212D5681003E2C5E /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A64212D5681003E2C5E /* BaseButton.swift */; };
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
@@ -95,6 +98,9 @@
 		80BC3700A8F4F4895DBC04C6 /* Pods-WalletUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletUITests/Pods-WalletUITests.release.xcconfig"; sourceTree = "<group>"; };
 		95A8724397CC4953A7F9E72E /* Pods_WalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C21C637BF3AA6BA1C4DA088 /* Pods-Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.release.xcconfig"; sourceTree = "<group>"; };
+		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
+		A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
 		ADE2B87D000AB5C20D3AD8A0 /* Pods-Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		BC4DE7AF801525F566BD53C3 /* Pods-WalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletTests/Pods-WalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseType.swift; sourceTree = "<group>"; };
@@ -162,7 +168,7 @@
 		CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthView.swift; sourceTree = "<group>"; };
 		CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNetworkAuthView.xib; sourceTree = "<group>"; };
 		CEDDDEFE2130501900490781 /* SocialNetworkAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthRequest.swift; sourceTree = "<group>"; };
-		CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Wallet-Bridging-Header.h"; path = "Wallet/App/Wallet-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Wallet-Bridging-Header.h"; path = "Wallet/Other/Wallet-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		CEDDDF012134354400490781 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CEDDDF032134499B00490781 /* Fallbacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fallbacks.swift; sourceTree = "<group>"; };
 		CEE72D5C2125990900991B0C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -223,16 +229,96 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CE0E5A6C212D9394003E2C5E /* App */ = {
+		A58EE3B0214FFD370096C155 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A58EE3B1214FFD430096C155 /* PresentationLayer */,
+				A58EE3B2214FFD510096C155 /* BusinessLayer */,
+				A58EE3B3214FFD5D0096C155 /* ApplicationLayer */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A58EE3B1214FFD430096C155 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CE25B7452126B4E20097230A /* Screens */,
+				CE526C6F21247F8500A2EED2 /* UI components */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		A58EE3B2214FFD510096C155 /* BusinessLayer */ = {
+			isa = PBXGroup;
+			children = (
+				A58EE3B7214FFE130096C155 /* Providers */,
+			);
+			path = BusinessLayer;
+			sourceTree = "<group>";
+		};
+		A58EE3B3214FFD5D0096C155 /* ApplicationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				A58EE3C2215004710096C155 /* ApplicationConfigurator */,
 				CE526C31212465A800A2EED2 /* AppDelegate.swift */,
+			);
+			path = ApplicationLayer;
+			sourceTree = "<group>";
+		};
+		A58EE3B4214FFD810096C155 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				A58EE3B6214FFDBC0096C155 /* ThirdParty */,
 				CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */,
 				CE526C3A212465A900A2EED2 /* Assets.xcassets */,
 				CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */,
 				CE185496214BE558009D1360 /* Localizable.strings */,
+				CE1BD73C212565B8006097E5 /* Podfile */,
 			);
-			path = App;
+			path = Other;
+			sourceTree = "<group>";
+		};
+		A58EE3B5214FFD880096C155 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A58EE3BA2150032E0096C155 /* Protocols */,
+				CE526C72212485F900A2EED2 /* Extensions */,
+				CE25B7462126B4F80097230A /* Helpers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A58EE3B6214FFDBC0096C155 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A47D1212E9C0200418C11 /* SmileLock */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		A58EE3B7214FFE130096C155 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				CE25B74F2126EFEF0097230A /* Network */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		A58EE3BA2150032E0096C155 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A58EE3BB2150037E0096C155 /* Presentable.swift */,
+				A58EE3BE215003CE0096C155 /* Configurable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A58EE3C2215004710096C155 /* ApplicationConfigurator */ = {
+			isa = PBXGroup;
+			children = (
+				A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */,
+			);
+			path = ApplicationConfigurator;
 			sourceTree = "<group>";
 		};
 		CE15A378214F8BE6008B311D /* QuickLaunch */ = {
@@ -267,14 +353,6 @@
 				CE185482214AA278009D1360 /* PasswordRecoveryViewController.swift */,
 			);
 			path = PasswordRecovery;
-			sourceTree = "<group>";
-		};
-		CE1A47C6212E960000418C11 /* External Libs */ = {
-			isa = PBXGroup;
-			children = (
-				CE1A47D1212E9C0200418C11 /* SmileLock */,
-			);
-			path = "External Libs";
 			sourceTree = "<group>";
 		};
 		CE1A47D1212E9C0200418C11 /* SmileLock */ = {
@@ -373,7 +451,6 @@
 			children = (
 				CE526C30212465A800A2EED2 /* Wallet */,
 				3AD23EBFB46F9DD62D872C36 /* Frameworks */,
-				CE1BD73C212565B8006097E5 /* Podfile */,
 				0A8E927335E4454C81DE3B38 /* Pods */,
 				CE526C2F212465A800A2EED2 /* Products */,
 				CE526C47212465A900A2EED2 /* WalletTests */,
@@ -394,15 +471,11 @@
 		CE526C30212465A800A2EED2 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				CE0E5A6C212D9394003E2C5E /* App */,
-				CE1A47C6212E960000418C11 /* External Libs */,
-				CE526C72212485F900A2EED2 /* Extensions */,
-				CE25B7452126B4E20097230A /* Screens */,
-				CE25B7462126B4F80097230A /* Helpers */,
+				A58EE3B0214FFD370096C155 /* Classes */,
+				A58EE3B4214FFD810096C155 /* Other */,
+				A58EE3B5214FFD880096C155 /* Common */,
 				CE526C3F212465A900A2EED2 /* Info.plist */,
-				CE25B74F2126EFEF0097230A /* Network */,
 				CE25B7442126B4C70097230A /* Storyboards */,
-				CE526C6F21247F8500A2EED2 /* UI components */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -748,10 +821,12 @@
 				CE25B759212711620097230A /* ResponseError.swift in Sources */,
 				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
+				A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */,
 				CE2C5CCF2125843000F153E7 /* PinInputViewController.swift in Sources */,
 				CE25B73F2126AA200097230A /* Validations.swift in Sources */,
 				CE25B7512126F01E0097230A /* Request.swift in Sources */,
 				CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */,
+				A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */,
 				CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */,
 				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
 				CE18548F214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift in Sources */,
@@ -759,6 +834,7 @@
 				CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */,
 				CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */,
 				CE526C68212471CE00A2EED2 /* Constants.swift in Sources */,
+				A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */,
 				CE1EED752124BB8400BF39B8 /* LoginViewController.swift in Sources */,
 				CE25B74A2126B5A50097230A /* Config.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
@@ -956,7 +1032,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.storiqa.mobilewallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Wallet/App/Wallet-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Wallet/Other/Wallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -974,7 +1050,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.storiqa.mobilewallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Wallet/App/Wallet-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Wallet/Other/Wallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
