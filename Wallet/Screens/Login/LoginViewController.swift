@@ -147,8 +147,17 @@ extension LoginViewController: UITextFieldDelegate {
 //MARK: - ProviderDelegate
 extension LoginViewController: ProviderDelegate {
     func providerSucceed() {
-        //TODO: loginProviderSucceed
-        self.showAlert(message: "succeed")
+        if let _ = UserDefaults.standard.object(forKey: Constants.Keys.kIsQuickLaunchSet) {
+            //was set if key has any value
+            //TODO: authorized zone
+            
+        } else if let quickLaunchVC = Storyboard.quickLaunch.viewController(identifier: "QuickLaunchVC") {
+            //TODO: вернуть
+//            UserDefaults.standard.set(true, forKey: Constants.Keys.kIsQuickLaunchSet)
+            
+            let nvc = UINavigationController(rootViewController: quickLaunchVC)
+            present(nvc, animated: true, completion: nil)
+        }
     }
     
     func providerFailedWithMessage(_ message: String) {

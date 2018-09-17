@@ -64,13 +64,13 @@ class SocialNetworkAuthView: UIView {
         
         switch type {
         case .login:
-            titleLabel.text = "Sign in via social account"
-            footerTitleLabel.text = "Haven’t got account?"
-            footerButton.setTitle("Register", for: .normal)
+            titleLabel.text = "sign_in_social".localized()
+            footerTitleLabel.text = "have_no_account".localized()
+            footerButton.setTitle("register".localized(), for: .normal)
         case .register:
-            titleLabel.text = "Sign up via social account"
-            footerTitleLabel.text = "Have an account?"
-            footerButton.setTitle("Sign in", for: .normal)
+            titleLabel.text = "sign_up_social".localized()
+            footerTitleLabel.text = "have_account".localized()
+            footerButton.setTitle("sign_in".localized(), for: .normal)
         }
     }
     

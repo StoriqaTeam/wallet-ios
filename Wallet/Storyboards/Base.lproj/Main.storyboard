@@ -90,7 +90,7 @@
                                             <action selector="signIn" destination="hof-5l-feu" eventType="touchUpInside" id="b3f-m9-yUr"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkK-XN-xbk">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkK-XN-xbk" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="85.5" y="184" width="152" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Xvl-1a-pRw"/>

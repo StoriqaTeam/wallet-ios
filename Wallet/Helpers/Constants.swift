@@ -14,6 +14,7 @@ class Constants {
     
     class Keys {
         static let kIsFirstLaunch = "isFirstLaunch"
+        static let kIsQuickLaunchSet = "isQuickLaunchSet"
     }
     
     class Errors {

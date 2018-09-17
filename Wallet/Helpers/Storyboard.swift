@@ -12,6 +12,7 @@ import UIKit
 enum Storyboard {
     case main
     case passwordRecovery
+    case quickLaunch
     
     var name: String {
         switch self {
@@ -19,6 +20,8 @@ enum Storyboard {
             return "Main"
         case .passwordRecovery:
             return "PasswordRecovery"
+        case .quickLaunch:
+            return "QuickLaunch"
         }
     }
     
