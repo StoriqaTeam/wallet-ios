@@ -1,0 +1,25 @@
+### Headers settings
+company: Storiqa
+
+### Xcode project settings
+project_name: wallet-ios
+xcodeproj_path: Wallet.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_target: Wallet
+
+# The file path for new modules
+project_file_path: Wallet
+
+# The Xcode group path to new modules
+project_group_path: Wallet
+
+
+### Templates
+
+catalogs:
+- 'Templates'
+
+templates:
+- {name: swifty_viper, local: ./Templates/swifty_viper}
