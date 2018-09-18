@@ -187,30 +187,24 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
 extension RegistrationViewController {
     private func configFields() {
     
-        firstNameTextField.placeholder = "first_name".localized()
-        firstNameTextField.layoutBlock = {[weak self] in
+        let layoutBlock: (() -> Void) = {[weak self] in
             self?.view.layoutIfNeeded()
         }
+        
+        firstNameTextField.placeholder = "first_name".localized()
+        firstNameTextField.layoutBlock = layoutBlock
         
         lastNameTextField.placeholder = "last_name".localized()
-        lastNameTextField.layoutBlock = {[weak self] in
-            self?.view.layoutIfNeeded()
-        }
+        lastNameTextField.layoutBlock = layoutBlock
         
         emailTextField.placeholder = "email".localized()
-        emailTextField.layoutBlock = {[weak self] in
-            self?.view.layoutIfNeeded()
-        }
+        emailTextField.layoutBlock = layoutBlock
         
         passwordTextField.placeholder = "password".localized()
-        passwordTextField.layoutBlock = {[weak self] in
-            self?.view.layoutIfNeeded()
-        }
+        passwordTextField.layoutBlock = layoutBlock
         
         repeatPasswordTextField.placeholder = "repeat_password".localized()
-        repeatPasswordTextField.layoutBlock = {[weak self] in
-            self?.view.layoutIfNeeded()
-        }
+        repeatPasswordTextField.layoutBlock = layoutBlock
         
         setAgreementTintColor()
         

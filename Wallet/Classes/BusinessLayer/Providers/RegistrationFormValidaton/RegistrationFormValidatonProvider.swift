@@ -52,8 +52,6 @@ class RegistrationFormValidatonProvider: RegistrationFormValidatonProviderProtoc
             return nil
         }
         
-        
-        
         return password != repeatPassword ? "passwords_nonequeal".localized() : nil
     }
     
