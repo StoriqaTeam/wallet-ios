@@ -1,15 +1,20 @@
 //
-//  LoginViewController.swift
-//  Wallet
+//  LoginLoginViewController.swift
+//  wallet-ios
 //
-//  Created by user on 15.08.2018.
+//  Created by Storiqa on 17/09/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
+
 class LoginViewController: UIViewController {
+
+    var output: LoginViewOutput!
+    
+    // MARK: - Outlets
+    
     @IBOutlet private var emailTextField: UnderlinedTextField! {
         didSet {
             emailTextField.placeholder = "email".localized()
@@ -33,49 +38,33 @@ class LoginViewController: UIViewController {
             signInButton.title = "get_started".localized()
         }
     }
+    
     @IBOutlet private var forgotPasswordButton: UIButton! {
         didSet {
             forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
             forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
         }
     }
+    
     @IBOutlet var socialNetworkAuthView: SocialNetworkAuthView! {
         didSet {
             socialNetworkAuthView.setUp(delegate: self, type: .login)
         }
     }
+
+
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addHideKeyboardGuesture()
         updateContinueButton()
+        setDelegates()
+        output.viewIsReady()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //can be no navigationController here, no fallback
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
+    // MARK: - Actions
     
-    override func viewWillDisappear(_ animated: Bool) {
-        //can be no navigationController here, no fallback
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-        super.viewWillDisappear(animated)
-    }
-   
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-}
-
-//MARK: - Actions
-private extension LoginViewController {
     @IBAction private func signIn() {
         dismissKeyboard()
         passwordTextField.isSecureTextEntry = true
@@ -93,41 +82,100 @@ private extension LoginViewController {
     }
     
     @IBAction private func forgotPasswordTapped() {
-        guard let navigationController = navigationController else {
-            log.warn("navigationController is nil")
-            return
-        }
+//        guard let navigationController = navigationController else {
+//            log.warn("navigationController is nil")
+//            return
+//        }
         
-        guard let vc = Storyboard.passwordRecovery.viewController(identifier: "PasswordRecoveryVC") else {
-            return
-        }
-        navigationController.pushViewController(vc, animated: true)
+//        guard let vc = Storyboard.passwordRecovery.viewController(identifier: "PasswordRecoveryVC") else {
+//            return
+//        }
+//        navigationController.pushViewController(vc, animated: true)
     }
     
     @objc func textDidChange(_ notification: Notification) {
         updateContinueButton()
     }
-}
-
-//MARK: - Helpers
-private extension LoginViewController {
-    func updateContinueButton() {
-        guard let email = emailTextField.text,
-            let password = passwordTextField.text else {
-                signInButton.isEnabled = false
-                return
-        }
-        
-        signInButton.isEnabled = Validations.isValidEmail(email) && !password.isEmpty
-    }
     
-    func hideAllErrors() {
-        emailTextField.errorText = nil
-        passwordTextField.errorText = nil
+}
+
+
+// MARK: - LoginViewInput
+
+extension LoginViewController: LoginViewInput {
+
+    func setupInitialState() {
+
     }
 }
 
-//MARK: - UITextFieldDelegate
+
+//MARK: - ProviderDelegate
+extension LoginViewController: ProviderDelegate {
+    func providerSucceed() {
+        if let _ = UserDefaults.standard.object(forKey: Constants.Keys.kIsQuickLaunchSet) {
+            //was set if key has any value
+            //TODO: authorized zone
+
+        } else if let quickLaunchVC = Storyboard.quickLaunch.viewController(identifier: "QuickLaunchVC") {
+            //TODO: вернуть
+//            UserDefaults.standard.set(true, forKey: Constants.Keys.kIsQuickLaunchSet)
+
+            let nvc = UINavigationController(rootViewController: quickLaunchVC)
+            present(nvc, animated: true, completion: nil)
+        }
+    }
+
+    func providerFailedWithMessage(_ message: String) {
+        self.showAlert(message: message)
+    }
+
+    func providerFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
+        for error in errors {
+            switch error.fieldCode {
+            case "email":
+                emailTextField.errorText = error.text
+            case "password":
+                passwordTextField.errorText = error.text
+            default:
+                break
+            }
+        }
+    }
+}
+
+
+// MARK: - SocialNetworkAuthViewDelegate
+
+extension LoginViewController: SocialNetworkAuthViewDelegate {
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
+//        LoginProvider.shared.delegate = self
+        LoginProvider.shared.login(provider: provider, authToken: token)
+    }
+
+    func socialNetworkAuthFailed() {
+        //TODO: error message
+        self.showAlert(message: "socialNetworkAuthFailed")
+    }
+
+    func socialNetworkAuthViewDidTapFooterButton() {
+        guard let navigationController = navigationController else {
+            log.warn("navigationController is nil")
+            return
+        }
+
+        if let registerVC = Storyboard.main.viewController(identifier: "RegistrationVC") {
+            var vcs = navigationController.viewControllers
+            vcs.removeLast()
+            vcs.append(registerVC)
+
+            navigationController.setViewControllers(vcs, animated: true)
+        }
+    }
+}
+
+// MARK: UITextFieldDelegate
+
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTextField {
@@ -144,64 +192,22 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
-//MARK: - ProviderDelegate
-extension LoginViewController: ProviderDelegate {
-    func providerSucceed() {
-        if let _ = UserDefaults.standard.object(forKey: Constants.Keys.kIsQuickLaunchSet) {
-            //was set if key has any value
-            //TODO: authorized zone
-            
-        } else if let quickLaunchVC = Storyboard.quickLaunch.viewController(identifier: "QuickLaunchVC") {
-            //TODO: вернуть
-//            UserDefaults.standard.set(true, forKey: Constants.Keys.kIsQuickLaunchSet)
-            
-            let nvc = UINavigationController(rootViewController: quickLaunchVC)
-            present(nvc, animated: true, completion: nil)
-        }
-    }
-    
-    func providerFailedWithMessage(_ message: String) {
-        self.showAlert(message: message)
-    }
-    
-    func providerFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
-        for error in errors {
-            switch error.fieldCode {
-            case "email":
-                emailTextField.errorText = error.text
-            case "password":
-                passwordTextField.errorText = error.text
-            default:
-                break
-            }
-        }
-    }
-}
 
-//MARK: - SocialNetworkAuthViewDelegate
-extension LoginViewController: SocialNetworkAuthViewDelegate {
-    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
-        LoginProvider.shared.delegate = self
-        LoginProvider.shared.login(provider: provider, authToken: token)
-    }
-    
-    func socialNetworkAuthFailed() {
-        //TODO: error message
-        self.showAlert(message: "socialNetworkAuthFailed")
-    }
-    
-    func socialNetworkAuthViewDidTapFooterButton() {
-        guard let navigationController = navigationController else {
-            log.warn("navigationController is nil")
-            return
+// MARK: Private methods
+
+extension LoginViewController {
+    private func updateContinueButton() {
+        guard let email = emailTextField.text,
+            let password = passwordTextField.text else {
+                signInButton.isEnabled = false
+                return
         }
         
-        if let registerVC = Storyboard.main.viewController(identifier: "RegistrationVC") {
-            var vcs = navigationController.viewControllers
-            vcs.removeLast()
-            vcs.append(registerVC)
-            
-            navigationController.setViewControllers(vcs, animated: true)
-        }
+        signInButton.isEnabled = Validations.isValidEmail(email) && !password.isEmpty
+    }
+
+    private func setDelegates() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 }

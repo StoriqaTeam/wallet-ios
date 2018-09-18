@@ -46,6 +46,10 @@ extension Presentable where Self: UIViewController {
         fromViewController.present(navigation, animated: true, completion: nil)
     }
     
+    func presentAsRoot() {
+        AppDelegate.currentWindow.rootViewController = viewController
+    }
+    
     func present(from viewController: UIViewController) {
         viewController.navigationController?.pushViewController(self, animated: true)
     }

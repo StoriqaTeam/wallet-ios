@@ -10,10 +10,10 @@ xcodeproj_path: Wallet.xcodeproj
 project_target: Wallet
 
 # The file path for new modules
-project_file_path: Wallet
+project_file_path: Wallet/Classes/PresentationLayer
 
 # The Xcode group path to new modules
-project_group_path: Wallet
+project_group_path: Wallet/Classes/PresentationLayer
 
 
 ### Templates
