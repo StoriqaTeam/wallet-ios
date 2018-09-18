@@ -37,7 +37,7 @@ class RegistrationFormValidatonProvider: RegistrationFormValidatonProviderProtoc
         let formIsValid =
             !firstName.isEmpty &&
             !lastName.isEmpty &&
-            Validations.isValidEmail(email) &&
+            email.isValidEmail() &&
             !password.isEmpty &&
             !repeatPassword.isEmpty &&
             form.agreement &&
