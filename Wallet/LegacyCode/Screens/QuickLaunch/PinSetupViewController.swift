@@ -35,7 +35,7 @@ class PinSetupViewController: UIViewController {
 }
 
 extension PinSetupViewController: PasswordInputCompleteProtocol {
-    func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String) {
+    func passwordInputComplete(input: String) {
         if isFirstEntry {
             isFirstEntry = false
             pinCode = input
@@ -47,7 +47,7 @@ extension PinSetupViewController: PasswordInputCompleteProtocol {
                     log.error("self is nil")
                     return
                 }
-                passwordContainerView.clearInput()
+                strongSelf.passwordContainerView.clearInput()
                 strongSelf.title = "confirm_pin".localized()
             }
             
@@ -78,6 +78,6 @@ extension PinSetupViewController: PasswordInputCompleteProtocol {
         }
     }
     
-    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: String?) { }
+    func touchAuthenticationComplete(success: Bool, error: String?) { }
 }
 

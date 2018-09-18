@@ -16,7 +16,7 @@ class PasswordInputPresenter: NSObject {
     var interactor: PasswordInputInteractorInput!
     var router: PasswordInputRouterInput!
     
-    let kPasswordDigits = 4
+    private let kPasswordDigits = 4
     
 }
 
@@ -36,7 +36,7 @@ extension PasswordInputPresenter: PasswordInputViewOutput {
         view.setupInitialState()
     }
     
-    func passwordInputComplete(_ password: String) {
+    func inputComplete(_ password: String) {
         interactor.validatePassword(password)
     }
 
@@ -47,11 +47,11 @@ extension PasswordInputPresenter: PasswordInputViewOutput {
 
 extension PasswordInputPresenter: PasswordInputInteractorOutput {
     func passwordIsCorrect() {
-        view.pinValidationSuccess()
+        view.inputSucceed()
     }
     
     func passwordIsWrong() {
-        view.pinValidationFail()
+        view.inputFailed()
     }
 }
 
@@ -59,7 +59,6 @@ extension PasswordInputPresenter: PasswordInputInteractorOutput {
 // MARK: - PasswordInputModuleInput
 
 extension PasswordInputPresenter: PasswordInputModuleInput {
-    
     func present() {
         view.present()
     }
@@ -72,12 +71,22 @@ extension PasswordInputPresenter: PasswordInputModuleInput {
 
 // MARK: - PasswordInputCompleteProtocol
 extension PasswordInputPresenter: PasswordInputCompleteProtocol {
-    func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String) {
-        
+    func passwordInputComplete(input: String) {
+        interactor.validatePassword(input)
     }
     
-    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: String?) {
-        
+    func touchAuthenticationComplete(success: Bool, error: String?) {
+        if success {
+            view.inputSucceed()
+        } else {
+            view.clearInput()
+            if let error = error {
+                log.warn(error)
+                
+                //TODO: debug
+                view.showAlert(title: "Touch ID failed", message: error)
+            }
+        }
     }
 }
 

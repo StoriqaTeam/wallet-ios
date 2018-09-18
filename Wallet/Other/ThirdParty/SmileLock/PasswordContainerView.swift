@@ -8,8 +8,8 @@
 import UIKit
 
 public protocol PasswordInputCompleteProtocol: class {
-    func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String)
-    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: String?)
+    func passwordInputComplete(input: String)
+    func touchAuthenticationComplete(success: Bool, error: String?)
 }
 
 open class PasswordContainerView: UIView {
@@ -75,7 +75,7 @@ open class PasswordContainerView: UIView {
         }
     }
     fileprivate var kDefaultWidth: CGFloat = 261
-    fileprivate var kDefaultHeight: CGFloat = 400
+    fileprivate var kDefaultHeight: CGFloat = 390
     fileprivate var widthConstraint: NSLayoutConstraint!
     
     fileprivate func configureConstraints() {
@@ -94,7 +94,7 @@ open class PasswordContainerView: UIView {
         return view
     }
     
-    open class func create(in stackView: UIStackView, digit: Int, defaultWidth: CGFloat = 261, defaultHeight: CGFloat = 400) -> PasswordContainerView {
+    open class func create(in stackView: UIStackView, digit: Int, defaultWidth: CGFloat = 261, defaultHeight: CGFloat = 390) -> PasswordContainerView {
         let passwordContainerView = create(withDigit: digit)
         passwordContainerView.kDefaultWidth = defaultWidth
         passwordContainerView.kDefaultHeight = defaultHeight
@@ -152,7 +152,7 @@ open class PasswordContainerView: UIView {
                     strongSelf.passwordDotView.inputDotCount = strongSelf.passwordDotView.totalDotCount
                 }
                 if let delegate = strongSelf.delegate {
-                    delegate.touchAuthenticationComplete(strongSelf, success: success, error: errorMessage)
+                    delegate.touchAuthenticationComplete(success: success, error: errorMessage)
                 } else {
                     log.warn("delegate is nil")
                 }
@@ -165,7 +165,7 @@ private extension PasswordContainerView {
     func checkInputComplete() {
         if inputString.count == passwordDotView.totalDotCount {
             if let delegate = delegate {
-                delegate.passwordInputComplete(self, input: inputString)
+                delegate.passwordInputComplete(input: inputString)
             } else {
                 log.warn("delegate is nil")
             }
