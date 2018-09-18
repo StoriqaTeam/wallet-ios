@@ -20,8 +20,8 @@ class PasswordInputViewController: UIViewController {
     @IBOutlet private var userPhotoImageView: UIImageView!
     @IBOutlet private var userPhotoContainerView: ActivityIndicatorView!
     
-    var passwordContainerView: PasswordContainerView!
-    let kPasswordDigit = 4
+    private var passwordContainerView: PasswordContainerView!
+    private let kPasswordDigit = 4
 
 
     // MARK: Life cycle
@@ -52,6 +52,16 @@ class PasswordInputViewController: UIViewController {
 extension PasswordInputViewController: PasswordInputViewInput {
     
     func setupInitialState() { }
+    
+    func pinValidationSuccess() {
+        print("*️⃣ success!")
+        showActivityIndicator()
+    }
+    
+    func pinValidationFail() {
+        print("*️⃣ failure!")
+        passwordContainerView.wrongPassword()
+    }
 
 }
 
@@ -60,16 +70,12 @@ extension PasswordInputViewController: PasswordInputViewInput {
 
 extension PasswordInputViewController: PasswordInputCompleteProtocol {
     func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String) {
-        if validation(input) {
-            validationSuccess()
-        } else {
-            validationFail()
-        }
+        output.passwordInputComplete(input)
     }
     
     func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: String?) {
         if success {
-            self.validationSuccess()
+            pinValidationSuccess()
         } else {
             passwordContainerView.clearInput()
             if let error = error {
@@ -115,16 +121,6 @@ extension PasswordInputViewController {
     // FIXME: - Вынести в отдельный сервис
     private func validation(_ input: String) -> Bool {
         return input == "1234"
-    }
-    
-    private func validationSuccess() {
-        print("*️⃣ success!")
-        showActivityIndicator()
-    }
-    
-    private func validationFail() {
-        print("*️⃣ failure!")
-        passwordContainerView.wrongPassword()
     }
     
     private func showActivityIndicator() {

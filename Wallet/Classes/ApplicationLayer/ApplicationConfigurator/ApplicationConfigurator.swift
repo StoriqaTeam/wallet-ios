@@ -12,7 +12,7 @@ class ApplicationConfigurator: Configurable {
     
     private var isPinSet: Bool {
         //TODO: проверка, установлен ли пин
-        return false
+        return true
     }
     
     private var isFirstLaunch: Bool {

@@ -12,4 +12,5 @@ import UIKit
 protocol PasswordInputViewOutput: class {
     func viewIsReady()
     func setPasswordView(view: PasswordContainerView)
+    func passwordInputComplete(_ password: String)
 }
