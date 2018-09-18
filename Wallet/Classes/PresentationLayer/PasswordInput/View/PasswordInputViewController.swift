@@ -21,8 +21,7 @@ class PasswordInputViewController: UIViewController {
     @IBOutlet private var userPhotoContainerView: ActivityIndicatorView!
     
     private var passwordContainerView: PasswordContainerView!
-    private let kPasswordDigit = 4
-
+    
 
     // MARK: Life cycle
 
@@ -30,7 +29,7 @@ class PasswordInputViewController: UIViewController {
         super.viewDidLoad()
         configureUserPhoto()
         configureGreeting()
-        configurePasswordView()
+        passwordContainerView = output.setPasswordView(in: passwordStackView)
         output.viewIsReady()
     }
     
@@ -53,39 +52,21 @@ extension PasswordInputViewController: PasswordInputViewInput {
     
     func setupInitialState() { }
     
-    func pinValidationSuccess() {
+    func inputSucceed() {
         print("*️⃣ success!")
         showActivityIndicator()
     }
     
-    func pinValidationFail() {
+    func inputFailed() {
         print("*️⃣ failure!")
         passwordContainerView.wrongPassword()
     }
-
-}
-
-
-// MARK: - PasswordInputCompleteProtocol
-
-extension PasswordInputViewController: PasswordInputCompleteProtocol {
-    func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String) {
-        output.passwordInputComplete(input)
-    }
     
-    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: String?) {
-        if success {
-            pinValidationSuccess()
-        } else {
-            passwordContainerView.clearInput()
-            if let error = error {
-                log.warn(error)
-                self.showAlert(message: error)
-            }
-        }
+    func clearInput() {
+        passwordContainerView.clearInput()
     }
-}
 
+}
 
 // MARK: - Private methods
 
@@ -101,26 +82,10 @@ extension PasswordInputViewController {
         }
     }
     
-    private func configurePasswordView() {
-        
-        //create PasswordContainerView
-        passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
-        passwordContainerView.delegate = self
-        
-        //customize password UI
-        passwordContainerView.tintColor = UIColor.mainBlue
-        passwordContainerView.highlightedColor = UIColor.mainBlue
-    }
-    
     private func configureUserPhoto() {
         userPhotoImageView.image = UserInfo.shared.photo
         userPhotoImageView.roundCorners(radius: userPhotoImageView.frame.height / 2)
         userPhotoImageView.backgroundColor = UIColor.init(white: 0.95, alpha: 1)
-    }
-    
-    // FIXME: - Вынести в отдельный сервис
-    private func validation(_ input: String) -> Bool {
-        return input == "1234"
     }
     
     private func showActivityIndicator() {

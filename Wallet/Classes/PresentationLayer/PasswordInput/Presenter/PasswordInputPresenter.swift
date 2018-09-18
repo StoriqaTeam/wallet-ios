@@ -16,21 +16,27 @@ class PasswordInputPresenter {
     var interactor: PasswordInputInteractorInput!
     var router: PasswordInputRouterInput!
     
+    private let kPasswordDigits = 4
+    
 }
 
 
 // MARK: - PasswordInputViewOutput
 
 extension PasswordInputPresenter: PasswordInputViewOutput {
-    func setPasswordView(view: PasswordContainerView) {
-        
+    func setPasswordView(in stackView: UIStackView) -> PasswordContainerView  {
+        let passView = PasswordContainerView.create(in: stackView, digit: kPasswordDigits)
+        passView.delegate = self
+        passView.tintColor = UIColor.mainBlue
+        passView.highlightedColor = UIColor.mainBlue
+        return passView
     }
 
     func viewIsReady() {
         view.setupInitialState()
     }
     
-    func passwordInputComplete(_ password: String) {
+    func inputComplete(_ password: String) {
         interactor.validatePassword(password)
     }
 
@@ -41,11 +47,11 @@ extension PasswordInputPresenter: PasswordInputViewOutput {
 
 extension PasswordInputPresenter: PasswordInputInteractorOutput {
     func passwordIsCorrect() {
-        view.pinValidationSuccess()
+        view.inputSucceed()
     }
     
     func passwordIsWrong() {
-        view.pinValidationFail()
+        view.inputFailed()
     }
 }
 
@@ -53,7 +59,6 @@ extension PasswordInputPresenter: PasswordInputInteractorOutput {
 // MARK: - PasswordInputModuleInput
 
 extension PasswordInputPresenter: PasswordInputModuleInput {
-    
     func present() {
         view.present()
     }
@@ -62,3 +67,28 @@ extension PasswordInputPresenter: PasswordInputModuleInput {
         view.present(from: viewController)
     }
 }
+
+
+// MARK: - PasswordInputCompleteProtocol
+extension PasswordInputPresenter: PasswordInputCompleteProtocol {
+    func passwordInputComplete(input: String) {
+        interactor.validatePassword(input)
+    }
+    
+    func touchAuthenticationComplete(success: Bool, error: String?) {
+        if success {
+            view.inputSucceed()
+        } else {
+            view.clearInput()
+            if let error = error {
+                log.warn(error)
+                
+                //TODO: debug
+                view.showAlert(title: "Touch ID failed", message: error)
+            }
+        }
+    }
+}
+
+
+

@@ -11,6 +11,8 @@ import UIKit
 
 protocol PasswordInputViewInput: class, Presentable {
     func setupInitialState()
-    func pinValidationSuccess()
-    func pinValidationFail()
+    func inputSucceed()
+    func inputFailed()
+    func clearInput()
+    func showAlert(title: String, message: String)
 }

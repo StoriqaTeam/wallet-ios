@@ -63,6 +63,15 @@ class LoginViewController: UIViewController {
         output.viewIsReady()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Actions
     
     @IBAction private func signIn() {
