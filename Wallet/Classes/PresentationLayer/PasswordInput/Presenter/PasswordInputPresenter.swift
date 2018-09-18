@@ -9,12 +9,14 @@
 import UIKit
 
 
-class PasswordInputPresenter {
+class PasswordInputPresenter: NSObject {
     
     weak var view: PasswordInputViewInput!
     weak var output: PasswordInputModuleOutput?
     var interactor: PasswordInputInteractorInput!
     var router: PasswordInputRouterInput!
+    
+    let kPasswordDigits = 4
     
 }
 
@@ -22,10 +24,13 @@ class PasswordInputPresenter {
 // MARK: - PasswordInputViewOutput
 
 extension PasswordInputPresenter: PasswordInputViewOutput {
-    func setPasswordView(view: PasswordContainerView) {
-        
+    func setPasswordView(in stackView: UIStackView) -> PasswordContainerView  {
+        let passView = PasswordContainerView.create(in: stackView, digit: kPasswordDigits)
+        passView.delegate = self
+        passView.tintColor = UIColor.mainBlue
+        passView.highlightedColor = UIColor.mainBlue
+        return passView
     }
-    
 
     func viewIsReady() {
         view.setupInitialState()
@@ -53,3 +58,18 @@ extension PasswordInputPresenter: PasswordInputModuleInput {
         view.present(from: viewController)
     }
 }
+
+
+// MARK: - PasswordInputCompleteProtocol
+extension PasswordInputPresenter: PasswordInputCompleteProtocol {
+    func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String) {
+        
+    }
+    
+    func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: String?) {
+        
+    }
+}
+
+
+
