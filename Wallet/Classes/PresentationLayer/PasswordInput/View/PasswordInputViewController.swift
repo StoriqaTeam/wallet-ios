@@ -21,7 +21,7 @@ class PasswordInputViewController: UIViewController {
     @IBOutlet private var userPhotoContainerView: ActivityIndicatorView!
     
     var passwordContainerView: PasswordContainerView!
-    let kPasswordDigit = 4
+//    let kPasswordDigit = 4
 
 
     // MARK: Life cycle
@@ -31,6 +31,7 @@ class PasswordInputViewController: UIViewController {
         configureUserPhoto()
         configureGreeting()
         configurePasswordView()
+        passwordContainerView = output.setPasswordView(in: passwordStackView)
         output.viewIsReady()
     }
     
@@ -98,12 +99,8 @@ extension PasswordInputViewController {
     private func configurePasswordView() {
         
         //create PasswordContainerView
-        passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
-        passwordContainerView.delegate = self
-        
-        //customize password UI
-        passwordContainerView.tintColor = UIColor.mainBlue
-        passwordContainerView.highlightedColor = UIColor.mainBlue
+//        passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
+//        passwordContainerView.delegate = self
     }
     
     private func configureUserPhoto() {
