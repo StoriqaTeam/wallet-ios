@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--First Launch View Controller-->
+        <scene sceneID="yCC-a9-hi2">
+            <objects>
+                <viewController storyboardIdentifier="FirstLaunchVC" id="1ZA-KR-Ckj" customClass="FirstLaunchViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9yg-aO-dPp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLy-W4-uNU">
+                                <rect key="frame" x="37.5" y="531" width="300" height="106"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjw-WQ-0cb" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="7AM-9T-r6P"/>
+                                        </constraints>
+                                        <state key="normal" title="Get started"/>
+                                        <connections>
+                                            <action selector="getStartedPressed:" destination="1ZA-KR-Ckj" eventType="touchUpInside" id="0nq-jc-T50"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-MI-siA" customClass="LightButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="61" width="300" height="45"/>
+                                        <state key="normal" title="Sign in"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="BqQ-6b-s58"/>
+                                    <constraint firstAttribute="trailing" secondItem="gZA-MI-siA" secondAttribute="trailing" id="MOI-fE-XuS"/>
+                                    <constraint firstItem="gZA-MI-siA" firstAttribute="height" secondItem="kjw-WQ-0cb" secondAttribute="height" id="Z9H-DF-bwl"/>
+                                    <constraint firstItem="gZA-MI-siA" firstAttribute="leading" secondItem="gLy-W4-uNU" secondAttribute="leading" id="fFq-Oa-Bmx"/>
+                                    <constraint firstAttribute="trailing" secondItem="kjw-WQ-0cb" secondAttribute="trailing" id="mbL-Oe-chP"/>
+                                    <constraint firstItem="kjw-WQ-0cb" firstAttribute="top" secondItem="gLy-W4-uNU" secondAttribute="top" id="q2N-76-Ez8"/>
+                                    <constraint firstAttribute="bottom" secondItem="gZA-MI-siA" secondAttribute="bottom" id="rNc-13-7p5"/>
+                                    <constraint firstItem="gZA-MI-siA" firstAttribute="top" secondItem="kjw-WQ-0cb" secondAttribute="bottom" constant="16" id="sl8-du-00j"/>
+                                    <constraint firstItem="kjw-WQ-0cb" firstAttribute="leading" secondItem="gLy-W4-uNU" secondAttribute="leading" id="upY-g7-UhA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gLy-W4-uNU" firstAttribute="centerX" secondItem="9yg-aO-dPp" secondAttribute="centerX" id="8Nv-Zs-xju"/>
+                            <constraint firstItem="qil-kT-1Lu" firstAttribute="bottom" secondItem="gLy-W4-uNU" secondAttribute="bottom" constant="30" id="8ya-Sh-PML"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qil-kT-1Lu"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gqr-Io-a8U"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQe-d3-OPS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5004" y="-2468"/>
+        </scene>
+    </scenes>
+</document>
