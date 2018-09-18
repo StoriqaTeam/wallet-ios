@@ -10,5 +10,5 @@ import UIKit
 
 
 protocol LoginRouterInput: class {
-
+    func showRegistration()
 }

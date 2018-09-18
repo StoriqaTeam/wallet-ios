@@ -8,12 +8,13 @@
 
 import Foundation
 
-class RegistrationProvider {
-    static let shared = RegistrationProvider()
-    var requestSender: AbstractRequestSender = RequestSender()
+protocol RegistrationProviderProtocol {
+    func register(firstName: String, lastName: String, email: String, password: String)
+}
+
+class RegistrationProvider: RegistrationProviderProtocol {
+    private let requestSender: AbstractRequestSender = RequestSender()
     weak var delegate: ProviderDelegate?
-    
-    private init() { }
     
     func register(firstName: String, lastName: String, email: String, password: String) {
         let request = RegistrationRequest(firstName: firstName, lastName: lastName, email: email, password: password)

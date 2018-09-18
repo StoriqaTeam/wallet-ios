@@ -27,6 +27,9 @@ extension LoginPresenter: LoginViewOutput {
         view.setupInitialState()
     }
 
+    func showRegistration() {
+        router.showRegistration()
+    }
 }
 
 

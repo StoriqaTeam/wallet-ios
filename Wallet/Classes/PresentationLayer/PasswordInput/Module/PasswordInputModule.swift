@@ -13,7 +13,7 @@ class PasswordInputModule {
         let presenter = PasswordInputPresenter()
         
         
-        // Ingection
+        // Injection
         let pinValidator = PinValidationProvider()
         let interactor = PasswordInputInteractor(pinValidator: pinValidator)
         
