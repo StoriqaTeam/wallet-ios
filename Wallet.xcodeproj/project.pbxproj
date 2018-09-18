@@ -29,6 +29,9 @@
 		8DCE3EEDBEA0BC7E7957D47D /* PasswordInputModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B43F6C7017C03C18BCB6DF /* PasswordInputModuleInput.swift */; };
 		A50086012150BD2B00C47015 /* PasswordInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A50086002150BD2B00C47015 /* PasswordInput.storyboard */; };
 		A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A50086042150D5D600C47015 /* FirstLaunch.storyboard */; };
+		A50086092150F95B00C47015 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086082150F95B00C47015 /* API.swift */; };
+		A500860B2150F9E700C47015 /* NetworkLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500860A2150F9E700C47015 /* NetworkLoadable.swift */; };
+		A500860D2150FA1600C47015 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500860C2150FA1600C47015 /* Result.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
 		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
@@ -160,6 +163,9 @@
 		A1B27BA5EC4202B73FE8F821 /* PasswordInputInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordInputInteractorInput.swift; sourceTree = "<group>"; };
 		A50086002150BD2B00C47015 /* PasswordInput.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordInput.storyboard; sourceTree = "<group>"; };
 		A50086042150D5D600C47015 /* FirstLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstLaunch.storyboard; sourceTree = "<group>"; };
+		A50086082150F95B00C47015 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		A500860A2150F9E700C47015 /* NetworkLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoadable.swift; sourceTree = "<group>"; };
+		A500860C2150FA1600C47015 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
@@ -428,6 +434,14 @@
 			path = LegacyCode;
 			sourceTree = "<group>";
 		};
+		A50086062150F94300C47015 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A50086082150F95B00C47015 /* API.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		A534883D230884E6416A5516 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,6 +523,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A50086062150F94300C47015 /* Networking */,
 				CE5FAF932150ED48009E707E /* PinValidation */,
 				A50086022150C48B00C47015 /* Biometric */,
 				A50085FF2150BC5000C47015 /* LoginProviders */,
@@ -523,6 +538,7 @@
 			children = (
 				A58EE3BB2150037E0096C155 /* Presentable.swift */,
 				A58EE3BE215003CE0096C155 /* Configurable.swift */,
+				A500860A2150F9E700C47015 /* NetworkLoadable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -671,6 +687,7 @@
 				CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */,
 				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
 				CE25B73E2126AA200097230A /* Validations.swift */,
+				A500860C2150FA1600C47015 /* Result.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1087,6 +1104,7 @@
 				CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */,
 				CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */,
 				CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */,
+				A500860B2150F9E700C47015 /* NetworkLoadable.swift in Sources */,
 				CE5FAF8A214FB25C009E707E /* PinQuickLaunchViewController.swift in Sources */,
 				CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */,
 				CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */,
@@ -1114,6 +1132,7 @@
 				CE25B73F2126AA200097230A /* Validations.swift in Sources */,
 				CE25B7512126F01E0097230A /* Request.swift in Sources */,
 				A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */,
+				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */,
 				A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */,
 				CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */,
@@ -1160,6 +1179,7 @@
 				559A9C4888FBB801ECBBE758 /* FirstLaunchViewInput.swift in Sources */,
 				3560EFC2F72358E0759F3690 /* FirstLaunchViewOutput.swift in Sources */,
 				48D375B575D57A4CF0D1F591 /* FirstLaunchViewController.swift in Sources */,
+				A500860D2150FA1600C47015 /* Result.swift in Sources */,
 				299D987919399E29BA78858E /* FirstLaunchPresenter.swift in Sources */,
 				D38A8FA13AAF73DEB072ECF1 /* FirstLaunchInteractorInput.swift in Sources */,
 				7A80EBB895B1151398C2D79F /* FirstLaunchInteractorOutput.swift in Sources */,
