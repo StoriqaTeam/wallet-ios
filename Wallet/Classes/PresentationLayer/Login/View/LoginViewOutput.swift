@@ -10,5 +10,6 @@ import UIKit
 
 
 protocol LoginViewOutput: class {
-    func viewIsReady()  
+    func viewIsReady()
+    func showRegistration()
 }

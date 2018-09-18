@@ -12,7 +12,7 @@ class ApplicationConfigurator: Configurable {
     
     private var isPinSet: Bool {
         //TODO: проверка, установлен ли пин
-        return true
+        return false
     }
     
     private var isFirstLaunch: Bool {
@@ -38,7 +38,7 @@ class ApplicationConfigurator: Configurable {
 // MARK: - Private methods
 extension ApplicationConfigurator {
     
-    private func setInitialVC() {
+    private func setInitialVC() {        
         if isFirstLaunch {
             isFirstLaunch = false
             FirstLaunchModule.create().present()

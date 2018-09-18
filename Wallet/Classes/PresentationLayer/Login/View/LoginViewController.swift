@@ -160,18 +160,7 @@ extension LoginViewController: SocialNetworkAuthViewDelegate {
     }
 
     func socialNetworkAuthViewDidTapFooterButton() {
-        guard let navigationController = navigationController else {
-            log.warn("navigationController is nil")
-            return
-        }
-
-        if let registerVC = Storyboard.main.viewController(identifier: "RegistrationVC") {
-            var vcs = navigationController.viewControllers
-            vcs.removeLast()
-            vcs.append(registerVC)
-
-            navigationController.setViewControllers(vcs, animated: true)
-        }
+        output.showRegistration()
     }
 }
 

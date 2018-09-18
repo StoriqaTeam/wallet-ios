@@ -17,5 +17,7 @@ class LoginRouter {
 // MARK: - LoginRouterInput
 
 extension LoginRouter: LoginRouterInput {
-    
+    func showRegistration() {
+        RegistrationModule.create().present()
+    }
 }
