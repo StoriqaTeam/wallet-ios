@@ -82,15 +82,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction private func forgotPasswordTapped() {
-//        guard let navigationController = navigationController else {
-//            log.warn("navigationController is nil")
-//            return
-//        }
-        
-//        guard let vc = Storyboard.passwordRecovery.viewController(identifier: "PasswordRecoveryVC") else {
-//            return
-//        }
-//        navigationController.pushViewController(vc, animated: true)
+
     }
     
     @objc func textDidChange(_ notification: Notification) {
