@@ -18,6 +18,6 @@ class FirstLaunchRouter {
 
 extension FirstLaunchRouter: FirstLaunchRouterInput {
     func showRegistration() {
-        // TODO: Create registration module and present
+        RegistrationModule.create().present()
     }
 }
