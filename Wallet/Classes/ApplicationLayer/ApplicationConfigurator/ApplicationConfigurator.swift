@@ -7,30 +7,21 @@
 //
 
 import Foundation
+import AlamofireNetworkActivityIndicator
 
 class ApplicationConfigurator: Configurable {
     
-    private var isPinSet: Bool {
-        //TODO: проверка, установлен ли пин
-        return false
-    }
+    private let keychain: KeychainProvider
+    private let defaults: DefaultsProvider
     
-    private var isFirstLaunch: Bool {
-        set {
-            UserDefaults.standard.set(isFirstLaunch, forKey: Constants.Keys.kIsFirstLaunch)
-        }
-        get {
-            if let _ = UserDefaults.standard.object(forKey: Constants.Keys.kIsFirstLaunch) {
-                //not a firstLaunch if key has any value
-                return false
-            } else {
-                return true
-            }
-        }
+    init(keychain: KeychainProvider, defaults: DefaultsProvider) {
+        self.keychain = keychain
+        self.defaults = defaults
     }
     
     func configure() {
         setInitialVC()
+        setGID()
     }
 }
 
@@ -38,14 +29,25 @@ class ApplicationConfigurator: Configurable {
 // MARK: - Private methods
 extension ApplicationConfigurator {
     
-    private func setInitialVC() {        
-        if isFirstLaunch {
-            isFirstLaunch = false
+    private func setInitialVC() {
+        
+        if defaults.isFirstLaunch {
+            defaults.isFirstLaunch = false
             FirstLaunchModule.create().present()
-        } else if isPinSet {
+        } else if isPinSet() {
             PasswordInputModule.create().present()
         } else {
             LoginModule.create().present()
         }
+    }
+    
+    private func isPinSet() -> Bool {
+        return keychain.pincode != nil
+    }
+    
+    private func setGID() {
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        GIDSignIn.sharedInstance().clientID = googleClientId
+        GIDSignIn.sharedInstance().delegate = AppDelegate.currentDelegate
     }
 }

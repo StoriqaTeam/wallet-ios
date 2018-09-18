@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     private var configurators: [Configurable] = {
-        return [ApplicationConfigurator()]
+        return [ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider())]
     }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -28,12 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for configurator in configurators {
             configurator.configure()
         }
-        
-        NetworkActivityIndicatorManager.shared.isEnabled = true
-
-        // Google initialize sign-in
-        GIDSignIn.sharedInstance().clientID = googleClientId
-        GIDSignIn.sharedInstance().delegate = self
         
         return true
     }
