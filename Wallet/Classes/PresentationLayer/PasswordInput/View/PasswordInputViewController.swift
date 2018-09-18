@@ -88,8 +88,6 @@ extension PasswordInputViewController {
         userPhotoImageView.backgroundColor = UIColor.init(white: 0.95, alpha: 1)
     }
     
-    // FIXME: - Вынести в отдельный сервис
-    
     private func showActivityIndicator() {
         userPhotoContainerView.showActivityIndicator()
     }

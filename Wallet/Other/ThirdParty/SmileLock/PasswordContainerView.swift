@@ -74,6 +74,8 @@ open class PasswordContainerView: UIView {
             self.widthConstraint.constant = width
         }
     }
+    
+    // FIXME: - resolve hardcode
     fileprivate var kDefaultWidth: CGFloat = 261
     fileprivate var kDefaultHeight: CGFloat = 390
     fileprivate var widthConstraint: NSLayoutConstraint!

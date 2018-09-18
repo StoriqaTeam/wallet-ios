@@ -9,7 +9,7 @@
 import UIKit
 
 
-class PasswordInputPresenter: NSObject {
+class PasswordInputPresenter {
     
     weak var view: PasswordInputViewInput!
     weak var output: PasswordInputModuleOutput?
