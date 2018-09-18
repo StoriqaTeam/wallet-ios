@@ -10,5 +10,6 @@ import Foundation
 
 
 protocol PasswordInputInteractorOutput: class {
-
+    func passwordIsCorrect()
+    func passwordIsWrong()
 }

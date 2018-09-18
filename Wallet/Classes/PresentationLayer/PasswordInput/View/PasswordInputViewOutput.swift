@@ -11,5 +11,6 @@ import UIKit
 
 protocol PasswordInputViewOutput: class {
     func viewIsReady()
-    func setPasswordView(in stackView: UIStackView) -> PasswordContainerView 
+    func setPasswordView(in stackView: UIStackView) -> PasswordContainerView
+    func passwordInputComplete(_ password: String)
 }

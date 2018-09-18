@@ -11,7 +11,11 @@ class PasswordInputModule {
     class func create() -> PasswordInputModuleInput {
         let router = PasswordInputRouter()
         let presenter = PasswordInputPresenter()
-        let interactor = PasswordInputInteractor()
+        
+        
+        // Ingection
+        let pinValidator = PinValidationProvider()
+        let interactor = PasswordInputInteractor(pinValidator: pinValidator)
         
         let passwordInputSb = UIStoryboard(name: "PasswordInput", bundle: nil)
         let viewController = passwordInputSb.instantiateViewController(withIdentifier: "PinLoginVC") as! PasswordInputViewController

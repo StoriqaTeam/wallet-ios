@@ -35,6 +35,10 @@ extension PasswordInputPresenter: PasswordInputViewOutput {
     func viewIsReady() {
         view.setupInitialState()
     }
+    
+    func passwordInputComplete(_ password: String) {
+        interactor.validatePassword(password)
+    }
 
 }
 
@@ -42,7 +46,13 @@ extension PasswordInputPresenter: PasswordInputViewOutput {
 // MARK: - PasswordInputInteractorOutput
 
 extension PasswordInputPresenter: PasswordInputInteractorOutput {
-
+    func passwordIsCorrect() {
+        view.pinValidationSuccess()
+    }
+    
+    func passwordIsWrong() {
+        view.pinValidationFail()
+    }
 }
 
 

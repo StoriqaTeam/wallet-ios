@@ -88,6 +88,7 @@
 		CE5FAF8A214FB25C009E707E /* PinQuickLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF89214FB25C009E707E /* PinQuickLaunchViewController.swift */; };
 		CE5FAF8C214FB26F009E707E /* TouchIdQuickLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF8B214FB26F009E707E /* TouchIdQuickLaunchViewController.swift */; };
 		CE5FAF8E214FB280009E707E /* PinSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF8D214FB280009E707E /* PinSetupViewController.swift */; };
+		CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */; };
 		CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */; };
 		CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
@@ -230,6 +231,7 @@
 		CE5FAF89214FB25C009E707E /* PinQuickLaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchViewController.swift; sourceTree = "<group>"; };
 		CE5FAF8B214FB26F009E707E /* TouchIdQuickLaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchIdQuickLaunchViewController.swift; sourceTree = "<group>"; };
 		CE5FAF8D214FB280009E707E /* PinSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupViewController.swift; sourceTree = "<group>"; };
+		CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinValidationProvider.swift; sourceTree = "<group>"; };
 		CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsAuthErrorParser.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				CE5FAF932150ED48009E707E /* PinValidation */,
 				A50086022150C48B00C47015 /* Biometric */,
 				A50085FF2150BC5000C47015 /* LoginProviders */,
 				A58EE3C7215038D30096C155 /* LoginProvider */,
@@ -763,6 +766,14 @@
 				CE18547D214A637E009D1360 /* UIFontExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE5FAF932150ED48009E707E /* PinValidation */ = {
+			isa = PBXGroup;
+			children = (
+				CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */,
+			);
+			path = PinValidation;
 			sourceTree = "<group>";
 		};
 		CEDDDEF921302D8200490781 /* SocialNetworkAuthView */ = {
@@ -1094,6 +1105,7 @@
 				CE185487214B9EF7009D1360 /* PasswordRecoveryConfirmViewController.swift in Sources */,
 				CE18548D214BA978009D1360 /* PasswordRecoveryRequest.swift in Sources */,
 				CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */,
+				CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */,
 				CE5FAF8C214FB26F009E707E /* TouchIdQuickLaunchViewController.swift in Sources */,
 				CE25B759212711620097230A /* ResponseError.swift in Sources */,
 				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
