@@ -92,7 +92,6 @@
 		CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45A8BD212C029F0096DD5F /* StringExtension.swift */; };
 		CE45A8C0212C0D780096DD5F /* GraphQLMutation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45A8BF212C0D780096DD5F /* GraphQLMutation.swift */; };
 		CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C31212465A800A2EED2 /* AppDelegate.swift */; };
-		CE526C39212465A800A2EED2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE526C37212465A800A2EED2 /* Main.storyboard */; };
 		CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3A212465A900A2EED2 /* Assets.xcassets */; };
 		CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */; };
 		CE526C49212465A900A2EED2 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C48212465A900A2EED2 /* WalletTests.swift */; };
@@ -254,7 +253,6 @@
 		CE45A8BF212C0D780096DD5F /* GraphQLMutation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLMutation.swift; sourceTree = "<group>"; };
 		CE526C2E212465A800A2EED2 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE526C31212465A800A2EED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE526C38212465A800A2EED2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE526C3A212465A900A2EED2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE526C3D212465A900A2EED2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE526C3F212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -620,8 +618,6 @@
 			children = (
 				A50086172151241300C47015 /* DefaultsProvider */,
 				A500860E215108B200C47015 /* KeychainProvider */,
-				A50086062150F94300C47015 /* Networking */,
-				CE5FAF932150ED48009E707E /* PinValidation */,
 				A50086022150C48B00C47015 /* Biometric */,
 				A50085FF2150BC5000C47015 /* LoginProviders */,
 				CE25B74F2126EFEF0097230A /* Network */,
@@ -742,7 +738,6 @@
 		CE25B7442126B4C70097230A /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				CE526C37212465A800A2EED2 /* Main.storyboard */,
 				CE18547F214AA044009D1360 /* PasswordRecovery.storyboard */,
 				CE185497214C0241009D1360 /* QuickLaunch.storyboard */,
 			);
@@ -1075,7 +1070,6 @@
 				CE185498214C0241009D1360 /* QuickLaunch.storyboard in Resources */,
 				CE185480214AA044009D1360 /* PasswordRecovery.storyboard in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
-				CE526C39212465A800A2EED2 /* Main.storyboard in Resources */,
 				CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */,
 				A58EE3C62150379E0096C155 /* Login.storyboard in Resources */,
 			);
@@ -1364,14 +1358,6 @@
 				CE185495214BE558009D1360 /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		CE526C37212465A800A2EED2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE526C38212465A800A2EED2 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */ = {
