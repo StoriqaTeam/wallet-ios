@@ -32,6 +32,10 @@
 		A50086092150F95B00C47015 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086082150F95B00C47015 /* API.swift */; };
 		A500860B2150F9E700C47015 /* NetworkLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500860A2150F9E700C47015 /* NetworkLoadable.swift */; };
 		A500860D2150FA1600C47015 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500860C2150FA1600C47015 /* Result.swift */; };
+		A50086102151166100C47015 /* KeychainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500860F2151166100C47015 /* KeychainProvider.swift */; };
+		A50086142151182A00C47015 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086132151182A00C47015 /* EnumCollection.swift */; };
+		A50086162151237B00C47015 /* Data+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086152151237B00C47015 /* Data+Helpers.swift */; };
+		A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086182151242B00C47015 /* DefaultsProvider.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
 		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
@@ -166,6 +170,10 @@
 		A50086082150F95B00C47015 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A500860A2150F9E700C47015 /* NetworkLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoadable.swift; sourceTree = "<group>"; };
 		A500860C2150FA1600C47015 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		A500860F2151166100C47015 /* KeychainProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainProvider.swift; sourceTree = "<group>"; };
+		A50086132151182A00C47015 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
+		A50086152151237B00C47015 /* Data+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Helpers.swift"; sourceTree = "<group>"; };
+		A50086182151242B00C47015 /* DefaultsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsProvider.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
@@ -413,6 +421,7 @@
 			children = (
 				CE25B7562126F0BE0097230A /* LoginRequest.swift */,
 				CEDDDEFE2130501900490781 /* SocialNetworkAuthRequest.swift */,
+				CE25B7542126F0960097230A /* LoginProvider.swift */,
 			);
 			path = LoginProviders;
 			sourceTree = "<group>";
@@ -440,6 +449,22 @@
 				A50086082150F95B00C47015 /* API.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		A500860E215108B200C47015 /* KeychainProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A500860F2151166100C47015 /* KeychainProvider.swift */,
+			);
+			name = KeychainProvider;
+			sourceTree = "<group>";
+		};
+		A50086172151241300C47015 /* DefaultsProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A50086182151242B00C47015 /* DefaultsProvider.swift */,
+			);
+			path = DefaultsProvider;
 			sourceTree = "<group>";
 		};
 		A534883D230884E6416A5516 /* Router */ = {
@@ -523,11 +548,12 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A50086172151241300C47015 /* DefaultsProvider */,
+				A500860E215108B200C47015 /* KeychainProvider */,
 				A50086062150F94300C47015 /* Networking */,
 				CE5FAF932150ED48009E707E /* PinValidation */,
 				A50086022150C48B00C47015 /* Biometric */,
 				A50085FF2150BC5000C47015 /* LoginProviders */,
-				A58EE3C7215038D30096C155 /* LoginProvider */,
 				CE25B74F2126EFEF0097230A /* Network */,
 			);
 			path = Providers;
@@ -549,14 +575,6 @@
 				A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */,
 			);
 			path = ApplicationConfigurator;
-			sourceTree = "<group>";
-		};
-		A58EE3C7215038D30096C155 /* LoginProvider */ = {
-			isa = PBXGroup;
-			children = (
-				CE25B7542126F0960097230A /* LoginProvider.swift */,
-			);
-			path = LoginProvider;
 			sourceTree = "<group>";
 		};
 		A6E59BF615E501F4C255E401 /* View */ = {
@@ -688,6 +706,7 @@
 				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
 				CE25B73E2126AA200097230A /* Validations.swift */,
 				A500860C2150FA1600C47015 /* Result.swift */,
+				A50086132151182A00C47015 /* EnumCollection.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -781,6 +800,7 @@
 				CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */,
 				CEDDDF012134354400490781 /* UIColorExtension.swift */,
 				CE18547D214A637E009D1360 /* UIFontExtension.swift */,
+				A50086152151237B00C47015 /* Data+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1138,6 +1158,7 @@
 				CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */,
 				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
 				CE18548F214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift in Sources */,
+				A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */,
 				CE18548B214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift in Sources */,
 				CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */,
 				CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */,
@@ -1145,11 +1166,13 @@
 				A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */,
 				CE25B74A2126B5A50097230A /* Config.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
+				A50086142151182A00C47015 /* EnumCollection.swift in Sources */,
 				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
 				CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */,
 				CE15A37A214F8E32008B311D /* QuickLaunchViewController.swift in Sources */,
 				CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */,
 				CE25B7572126F0BE0097230A /* LoginRequest.swift in Sources */,
+				A50086102151166100C47015 /* KeychainProvider.swift in Sources */,
 				CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */,
 				CE185485214AC0C6009D1360 /* PasswordRecoveryProvider.swift in Sources */,
 				210AB6BCC83B235B9CA055B9 /* LoginViewInput.swift in Sources */,
@@ -1163,6 +1186,7 @@
 				BC265F78A4724A6201226822 /* LoginRouter.swift in Sources */,
 				00EAF6788F8B93E22E1921A7 /* LoginModuleInput.swift in Sources */,
 				85DE84599B70A7C4900FE60F /* LoginModuleOutput.swift in Sources */,
+				A50086162151237B00C47015 /* Data+Helpers.swift in Sources */,
 				DCF2945472E263853448156F /* LoginModule.swift in Sources */,
 				E454D06D1C3D8744B3F666F2 /* PasswordInputViewInput.swift in Sources */,
 				1C7D0973BE0C18FFA5224647 /* PasswordInputViewOutput.swift in Sources */,
