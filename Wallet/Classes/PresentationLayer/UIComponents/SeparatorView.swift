@@ -17,7 +17,7 @@ class SeparatorView: UIView {
         let height = self.constraints.first { (constraint) -> Bool in
             return constraint.firstAttribute == NSLayoutAttribute.height
         }
-        height?.constant = Constants.Sizes.lineWidth
         
+        height?.constant = Constants.Sizes.lineWidth
     }
 }

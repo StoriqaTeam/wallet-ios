@@ -11,6 +11,5 @@ import UIKit
 
 protocol LoginModuleInput: class {
     var output: LoginModuleOutput? { get set }
-    func present(from viewController: UIViewController)
     func present()
 }
