@@ -12,9 +12,9 @@ class PasswordInputModule {
         let router = PasswordInputRouter()
         let presenter = PasswordInputPresenter()
         
-        
         // Injection
-        let pinValidator = PinValidationProvider()
+        let keychainProvider = KeychainProvider()
+        let pinValidator = PinValidationProvider(keychainProvider: keychainProvider)
         let interactor = PasswordInputInteractor(pinValidator: pinValidator)
         
         let passwordInputSb = UIStoryboard(name: "PasswordInput", bundle: nil)

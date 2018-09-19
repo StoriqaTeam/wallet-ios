@@ -13,8 +13,18 @@ protocol PinValidationProviderProtocol {
 }
 
 class PinValidationProvider: PinValidationProviderProtocol {
+    
+    private let keychainProvider: KeychainProviderProtocol
+    
+    init(keychainProvider: KeychainProviderProtocol) {
+        self.keychainProvider = keychainProvider
+    }
+    
     func pinIsValid(_ pin: String) -> Bool {
-        //TODO: stub
-        return pin == "1234"
+        guard let correctPin = keychainProvider.pincode else {
+            return false
+        }
+        
+        return pin == correctPin
     }
 }

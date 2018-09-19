@@ -11,10 +11,10 @@ import AlamofireNetworkActivityIndicator
 
 class ApplicationConfigurator: Configurable {
     
-    private let keychain: KeychainProvider
-    private let defaults: DefaultsProvider
+    private var keychain: KeychainProviderProtocol
+    private var defaults: DefaultsProviderProtocol
     
-    init(keychain: KeychainProvider, defaults: DefaultsProvider) {
+    init(keychain: KeychainProviderProtocol, defaults: DefaultsProviderProtocol) {
         self.keychain = keychain
         self.defaults = defaults
     }
