@@ -45,7 +45,7 @@ extension LoginPresenter: LoginInteractorOutput {
 extension LoginPresenter: LoginModuleInput {
     
     func present() {
-        view.present()
+        view.presentAsNavController()
     }
 
     func present(from viewController: UIViewController) {

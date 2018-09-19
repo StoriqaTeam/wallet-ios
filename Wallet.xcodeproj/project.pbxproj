@@ -43,6 +43,7 @@
 		A50086142151182A00C47015 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086132151182A00C47015 /* EnumCollection.swift */; };
 		A50086162151237B00C47015 /* Data+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086152151237B00C47015 /* Data+Helpers.swift */; };
 		A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086182151242B00C47015 /* DefaultsProvider.swift */; };
+		A512020021514D4600D44A22 /* ProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185490214BD578009D1360 /* ProviderDelegate.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
 		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
@@ -69,7 +70,6 @@
 		CE18548B214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548A214BA95B009D1360 /* PasswordRecoveryConfirmProvider.swift */; };
 		CE18548D214BA978009D1360 /* PasswordRecoveryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548C214BA978009D1360 /* PasswordRecoveryRequest.swift */; };
 		CE18548F214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18548E214BA987009D1360 /* PasswordRecoveryConfirmRequest.swift */; };
-		CE185491214BD578009D1360 /* ProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185490214BD578009D1360 /* ProviderDelegate.swift */; };
 		CE185494214BE558009D1360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE185496214BE558009D1360 /* Localizable.strings */; };
 		CE185498214C0241009D1360 /* QuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE185497214C0241009D1360 /* QuickLaunch.storyboard */; };
 		CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */; };
@@ -78,13 +78,10 @@
 		CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */; };
 		CE1BD73D212565B8006097E5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE1BD73C212565B8006097E5 /* Podfile */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
-		CE25B73F2126AA200097230A /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B73E2126AA200097230A /* Validations.swift */; };
 		CE25B74A2126B5A50097230A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7492126B5A50097230A /* Config.swift */; };
 		CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74B2126BCFF0097230A /* RequestSender.swift */; };
 		CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74D2126BEDB0097230A /* UserInfo.swift */; };
 		CE25B7512126F01E0097230A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7502126F01E0097230A /* Request.swift */; };
-		CE25B7552126F0960097230A /* LoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7542126F0960097230A /* LoginProvider.swift */; };
-		CE25B7572126F0BE0097230A /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7562126F0BE0097230A /* LoginRequest.swift */; };
 		CE25B759212711620097230A /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B758212711620097230A /* ResponseError.swift */; };
 		CE25B75D212723040097230A /* RegistrationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B75C212723040097230A /* RegistrationProvider.swift */; };
 		CE25B75F212723110097230A /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B75E212723110097230A /* RegistrationRequest.swift */; };
@@ -110,7 +107,6 @@
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */; };
 		CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */; };
-		CEDDDEFF2130501900490781 /* SocialNetworkAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDEFE2130501900490781 /* SocialNetworkAuthRequest.swift */; };
 		CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDF012134354400490781 /* UIColorExtension.swift */; };
 		CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDF032134499B00490781 /* Fallbacks.swift */; };
 		CF065C7C011BD01324225AAD /* PasswordInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CE138506AFD7883213BB9 /* PasswordInputViewController.swift */; };
@@ -243,8 +239,6 @@
 		CE25B74B2126BCFF0097230A /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		CE25B7502126F01E0097230A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		CE25B7542126F0960097230A /* LoginProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProvider.swift; sourceTree = "<group>"; };
-		CE25B7562126F0BE0097230A /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		CE25B758212711620097230A /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		CE25B75C212723040097230A /* RegistrationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationProvider.swift; sourceTree = "<group>"; };
 		CE25B75E212723110097230A /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
@@ -276,7 +270,6 @@
 		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthView.swift; sourceTree = "<group>"; };
 		CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNetworkAuthView.xib; sourceTree = "<group>"; };
-		CEDDDEFE2130501900490781 /* SocialNetworkAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthRequest.swift; sourceTree = "<group>"; };
 		CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Wallet-Bridging-Header.h"; path = "Wallet/Other/Wallet-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		CEDDDF012134354400490781 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CEDDDF032134499B00490781 /* Fallbacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fallbacks.swift; sourceTree = "<group>"; };
@@ -483,16 +476,6 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		A50085FF2150BC5000C47015 /* LoginProviders */ = {
-			isa = PBXGroup;
-			children = (
-				CE25B7562126F0BE0097230A /* LoginRequest.swift */,
-				CEDDDEFE2130501900490781 /* SocialNetworkAuthRequest.swift */,
-				CE25B7542126F0960097230A /* LoginProvider.swift */,
-			);
-			path = LoginProviders;
-			sourceTree = "<group>";
-		};
 		A50086022150C48B00C47015 /* Biometric */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,7 +602,6 @@
 				A50086172151241300C47015 /* DefaultsProvider */,
 				A500860E215108B200C47015 /* KeychainProvider */,
 				A50086022150C48B00C47015 /* Biometric */,
-				A50085FF2150BC5000C47015 /* LoginProviders */,
 				CE25B74F2126EFEF0097230A /* Network */,
 				A50086062150F94300C47015 /* Networking */,
 				CE5FAF932150ED48009E707E /* PinValidation */,
@@ -1218,18 +1200,16 @@
 				CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */,
 				A500860B2150F9E700C47015 /* NetworkLoadable.swift in Sources */,
 				CE5FAF8A214FB25C009E707E /* PinQuickLaunchViewController.swift in Sources */,
+				A512020021514D4600D44A22 /* ProviderDelegate.swift in Sources */,
 				CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */,
 				CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */,
 				CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */,
 				CE25B75D212723040097230A /* RegistrationProvider.swift in Sources */,
-				CEDDDEFF2130501900490781 /* SocialNetworkAuthRequest.swift in Sources */,
 				CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */,
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
 				CE185483214AA278009D1360 /* PasswordRecoveryViewController.swift in Sources */,
 				CE5FAF8E214FB280009E707E /* PinSetupViewController.swift in Sources */,
-				CE185491214BD578009D1360 /* ProviderDelegate.swift in Sources */,
-				CE25B7552126F0960097230A /* LoginProvider.swift in Sources */,
 				CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */,
 				CE185487214B9EF7009D1360 /* PasswordRecoveryConfirmViewController.swift in Sources */,
 				CE18548D214BA978009D1360 /* PasswordRecoveryRequest.swift in Sources */,
@@ -1240,7 +1220,6 @@
 				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
 				A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */,
-				CE25B73F2126AA200097230A /* Validations.swift in Sources */,
 				CE25B7512126F01E0097230A /* Request.swift in Sources */,
 				A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */,
 				A50086092150F95B00C47015 /* API.swift in Sources */,
@@ -1263,7 +1242,6 @@
 				CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */,
 				CE15A37A214F8E32008B311D /* QuickLaunchViewController.swift in Sources */,
 				CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */,
-				CE25B7572126F0BE0097230A /* LoginRequest.swift in Sources */,
 				A50086102151166100C47015 /* KeychainProvider.swift in Sources */,
 				CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */,
 				CE185485214AC0C6009D1360 /* PasswordRecoveryProvider.swift in Sources */,

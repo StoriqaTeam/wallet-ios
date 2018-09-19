@@ -15,43 +15,11 @@ class LoginViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet private var emailTextField: UnderlinedTextField! {
-        didSet {
-            emailTextField.placeholder = "email".localized()
-            emailTextField.layoutBlock = {[weak self] in
-                self?.view.layoutIfNeeded()
-            }
-        }
-    }
-    
-    @IBOutlet private var passwordTextField: UnderlinedTextField! {
-        didSet {
-            passwordTextField.placeholder = "password".localized()
-            passwordTextField.layoutBlock = {[weak self] in
-                self?.view.layoutIfNeeded()
-            }
-        }
-    }
-    
-    @IBOutlet private var signInButton: DefaultButton! {
-        didSet {
-            signInButton.title = "get_started".localized()
-        }
-    }
-    
-    @IBOutlet private var forgotPasswordButton: UIButton! {
-        didSet {
-            forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
-            forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
-        }
-    }
-    
-    @IBOutlet var socialNetworkAuthView: SocialNetworkAuthView! {
-        didSet {
-            socialNetworkAuthView.setUp(delegate: self, type: .login)
-        }
-    }
-
+    @IBOutlet private var emailTextField: UnderlinedTextField!
+    @IBOutlet private var passwordTextField: UnderlinedTextField!
+    @IBOutlet private var signInButton: DefaultButton!
+    @IBOutlet private var forgotPasswordButton: UIButton!
+    @IBOutlet var socialNetworkAuthView: SocialNetworkAuthView!
 
     // MARK: - Life cycle
     
@@ -59,13 +27,18 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         addHideKeyboardGuesture()
         updateContinueButton()
+        configureControls()
         setDelegates()
+        setSocialView()
         output.viewIsReady()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: Notification.Name.UITextFieldTextDidChange,
+                                               object: nil)
     }
     
     deinit {
@@ -77,17 +50,6 @@ class LoginViewController: UIViewController {
     @IBAction private func signIn() {
         dismissKeyboard()
         passwordTextField.isSecureTextEntry = true
-        
-        guard let email = emailTextField.text,
-            let password = passwordTextField.text else {
-                print("signIn error - empty fields")
-                return
-        }
-        
-        print("signIn")
-        
-        LoginProvider.shared.delegate = self
-        LoginProvider.shared.login(email: email, password: password)
     }
     
     @IBAction private func forgotPasswordTapped() {
@@ -97,7 +59,6 @@ class LoginViewController: UIViewController {
     @objc func textDidChange(_ notification: Notification) {
         updateContinueButton()
     }
-    
 }
 
 
@@ -106,42 +67,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewInput {
 
     func setupInitialState() {
-
-    }
-}
-
-
-//MARK: - ProviderDelegate
-extension LoginViewController: ProviderDelegate {
-    func providerSucceed() {
-        if let _ = UserDefaults.standard.object(forKey: Constants.Keys.kIsQuickLaunchSet) {
-            //was set if key has any value
-            //TODO: authorized zone
-
-        } else if let quickLaunchVC = Storyboard.quickLaunch.viewController(identifier: "QuickLaunchVC") {
-            //TODO: вернуть
-//            UserDefaults.standard.set(true, forKey: Constants.Keys.kIsQuickLaunchSet)
-
-            let nvc = UINavigationController(rootViewController: quickLaunchVC)
-            present(nvc, animated: true, completion: nil)
-        }
-    }
-
-    func providerFailedWithMessage(_ message: String) {
-        self.showAlert(message: message)
-    }
-
-    func providerFailedWithApiErrors(_ errors: [ResponseAPIError.Message]) {
-        for error in errors {
-            switch error.fieldCode {
-            case "email":
-                emailTextField.errorText = error.text
-            case "password":
-                passwordTextField.errorText = error.text
-            default:
-                break
-            }
-        }
+        
     }
 }
 
@@ -150,8 +76,7 @@ extension LoginViewController: ProviderDelegate {
 
 extension LoginViewController: SocialNetworkAuthViewDelegate {
     func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
-//        LoginProvider.shared.delegate = self
-        LoginProvider.shared.login(provider: provider, authToken: token)
+        
     }
 
     func socialNetworkAuthFailed() {
@@ -163,6 +88,7 @@ extension LoginViewController: SocialNetworkAuthViewDelegate {
         output.showRegistration()
     }
 }
+
 
 // MARK: UITextFieldDelegate
 
@@ -193,7 +119,27 @@ extension LoginViewController {
                 return
         }
         
-        signInButton.isEnabled = Validations.isValidEmail(email) && !password.isEmpty
+        signInButton.isEnabled = email.isValidEmail() && !password.isEmpty
+    }
+    
+    private func configureControls() {
+        emailTextField.placeholder = "email".localized()
+        emailTextField.layoutBlock = {[weak self] in
+            self?.view.layoutIfNeeded()
+        }
+        
+        passwordTextField.placeholder = "password".localized()
+        passwordTextField.layoutBlock = {[weak self] in
+            self?.view.layoutIfNeeded()
+        }
+        
+        signInButton.title = "get_started".localized()
+        forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
+        forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
+    }
+    
+    private func setSocialView() {
+        socialNetworkAuthView.setUp(delegate: self, type: .login)
     }
 
     private func setDelegates() {
