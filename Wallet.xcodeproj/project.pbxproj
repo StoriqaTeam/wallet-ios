@@ -86,8 +86,6 @@
 		CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */; };
 		CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */; };
 		CE15A37A214F8E32008B311D /* QuickLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15A379214F8E32008B311D /* QuickLaunchViewController.swift */; };
-		CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE185479214A602C009D1360 /* PopupViewController.xib */; };
-		CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547B214A605B009D1360 /* PopupViewController.swift */; };
 		CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547D214A637E009D1360 /* UIFontExtension.swift */; };
 		CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */; };
 		CE185494214BE558009D1360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE185496214BE558009D1360 /* Localizable.strings */; };
@@ -276,8 +274,6 @@
 		CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		CE15A379214F8E32008B311D /* QuickLaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLaunchViewController.swift; sourceTree = "<group>"; };
-		CE185479214A602C009D1360 /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = "<group>"; };
-		CE18547B214A605B009D1360 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		CE18547D214A637E009D1360 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
 		CE185490214BD578009D1360 /* ProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDelegate.swift; sourceTree = "<group>"; };
@@ -886,15 +882,6 @@
 			path = QuickLaunch;
 			sourceTree = "<group>";
 		};
-		CE185478214A5FEB009D1360 /* PopupViewController */ = {
-			isa = PBXGroup;
-			children = (
-				CE18547B214A605B009D1360 /* PopupViewController.swift */,
-				CE185479214A602C009D1360 /* PopupViewController.xib */,
-			);
-			path = PopupViewController;
-			sourceTree = "<group>";
-		};
 		CE1A47D1212E9C0200418C11 /* SmileLock */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,7 +905,6 @@
 			isa = PBXGroup;
 			children = (
 				CE15A378214F8BE6008B311D /* QuickLaunch */,
-				CE185478214A5FEB009D1360 /* PopupViewController */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1277,7 +1263,6 @@
 				CE5FAFAD215253D1009E707E /* PopUp.storyboard in Resources */,
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
 				A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */,
-				CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */,
 				CE185494214BE558009D1360 /* Localizable.strings in Resources */,
 				CE185498214C0241009D1360 /* QuickLaunch.storyboard in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
@@ -1430,7 +1415,6 @@
 				A500860B2150F9E700C47015 /* NetworkLoadable.swift in Sources */,
 				CE5FAF8A214FB25C009E707E /* PinQuickLaunchViewController.swift in Sources */,
 				CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */,
-				CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */,
 				CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */,
 				CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */,
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
