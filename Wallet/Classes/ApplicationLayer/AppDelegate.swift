@@ -37,9 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appSchemeName = "storiqaWallet://"
         
         let urlStr = url.absoluteString
-        if urlStr.contains(facebookAppId) {
+        if urlStr.contains(Constants.NetworkAuth.kFacebookAppId) {
             return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-        } else if urlStr.contains(googleClientId) {
+        } else if urlStr.contains(Constants.NetworkAuth.kGoogleClientId) {
             return GIDSignIn.sharedInstance().handle(url as URL?,
                                                      sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                      annotation: options[UIApplicationOpenURLOptionsKey.annotation])

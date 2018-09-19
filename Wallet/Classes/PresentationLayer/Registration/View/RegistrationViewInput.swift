@@ -13,7 +13,4 @@ protocol RegistrationViewInput: class, Presentable {
     func setupInitialState()
     func setButtonEnabled(_ enabled: Bool)
     func showPasswordsNotEqual(message: String?)
-    
-    //TODO: we don't know the structure of api errors yet
-    func showApiErrors(_ apiErrors: [ResponseAPIError.Message])
 }

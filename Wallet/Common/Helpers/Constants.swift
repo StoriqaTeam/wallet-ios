@@ -8,6 +8,10 @@
 
 import Foundation
 import UIKit
+import Slog
+
+let log = Slog(level: .debug, useEmoji: true)
+
 
 class Constants {
     typealias Sizes = SizeConstants
@@ -21,6 +25,11 @@ class Constants {
         static let serverResponse = "server_response_error".localized()
         static let unknown = "unknown_error".localized()
         static let userFriendly = "user_friendly_error".localized()
+    }
+    
+    class NetworkAuth {
+        static let kFacebookAppId = "fb425217154570731"
+        static let kGoogleClientId = "245895770851-qlolkejdjnske28jmbdgs89969o0a7ec.apps.googleusercontent.com"
     }
 }
 

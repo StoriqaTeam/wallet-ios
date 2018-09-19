@@ -46,7 +46,7 @@ extension ApplicationConfigurator {
     
     private func setGID() {
         NetworkActivityIndicatorManager.shared.isEnabled = true
-        GIDSignIn.sharedInstance().clientID = googleClientId
+        GIDSignIn.sharedInstance().clientID = Constants.NetworkAuth.kGoogleClientId
         GIDSignIn.sharedInstance().delegate = AppDelegate.currentDelegate
     }
 }

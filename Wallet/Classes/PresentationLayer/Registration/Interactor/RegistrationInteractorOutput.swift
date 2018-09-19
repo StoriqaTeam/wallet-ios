@@ -12,9 +12,5 @@ import Foundation
 protocol RegistrationInteractorOutput: class {
     func registrationSucceed(email: String)
     func registrationFailed(message: String)
-    
-    //TODO: we don't know the structure of api errors yet
-    func registrationFailed(apiErrors: [ResponseAPIError.Message])
-    
     func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?)
 }

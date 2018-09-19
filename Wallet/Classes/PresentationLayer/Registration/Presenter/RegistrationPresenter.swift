@@ -69,11 +69,6 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     func registrationFailed(message: String) {
         router.showFailure(message: message, from: view.viewController)
     }
-    
-    func registrationFailed(apiErrors: [ResponseAPIError.Message]) {
-        view.showApiErrors(apiErrors)
-    }
-    
 }
 
 
