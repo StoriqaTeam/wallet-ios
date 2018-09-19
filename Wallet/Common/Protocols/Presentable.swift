@@ -42,6 +42,13 @@ extension Presentable where Self: UIViewController {
     
     func presentAsNavController() {
         let navigation = UINavigationController(rootViewController: viewController)
+        
+        // Config nav bar
+        navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigation.navigationBar.shadowImage = UIImage()
+        navigation.navigationBar.isTranslucent = true
+        navigation.view.backgroundColor = .clear
+        
         AppDelegate.currentWindow.rootViewController = navigation
     }
     

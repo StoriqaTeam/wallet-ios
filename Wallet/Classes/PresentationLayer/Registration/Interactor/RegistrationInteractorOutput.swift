@@ -17,5 +17,4 @@ protocol RegistrationInteractorOutput: class {
     func registrationFailed(apiErrors: [ResponseAPIError.Message])
     
     func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?)
-    func setPasswordsNotEqual(message: String?)
 }

@@ -13,9 +13,8 @@ class RegistrationModule {
         let presenter = RegistrationPresenter()
         
         //Injection
-        let registrationProvider = RegistrationProvider()
         let validationProvider = RegistrationFormValidatonProvider()
-        let interactor = RegistrationInteractor(registrationProvider: registrationProvider, formValidationProvider: validationProvider)
+        let interactor = RegistrationInteractor(formValidationProvider: validationProvider)
         
         let registrationSb = UIStoryboard(name: "Registration", bundle: nil)
         let viewController = registrationSb.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationViewController

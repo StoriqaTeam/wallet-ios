@@ -13,10 +13,13 @@ class LoginRouter {
 
 }
 
-
 // MARK: - LoginRouterInput
 
 extension LoginRouter: LoginRouterInput {
+    func showPasswordRecovery(from viewController: UIViewController) {
+        PasswordEmailRecoveryModule.create().present(from: viewController)
+    }
+    
     func showRegistration() {
         RegistrationModule.create().present()
     }

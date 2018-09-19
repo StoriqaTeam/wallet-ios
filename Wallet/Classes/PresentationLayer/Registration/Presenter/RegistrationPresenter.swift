@@ -62,10 +62,6 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
         view.showPasswordsNotEqual(message: passwordsEqualityMessage)
     }
     
-    func setPasswordsNotEqual(message: String?) {
-        view.showPasswordsNotEqual(message: message)
-    }
-    
     func registrationSucceed(email: String) {
         view.showSuccess(email: email)
     }

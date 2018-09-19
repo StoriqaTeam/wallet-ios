@@ -22,6 +22,10 @@ class LoginPresenter {
 // MARK: - LoginViewOutput
 
 extension LoginPresenter: LoginViewOutput {
+    func showPasswordRecovery() {
+        router.showPasswordRecovery(from: view.viewController)
+    }
+    
 
     func viewIsReady() {
         view.setupInitialState()

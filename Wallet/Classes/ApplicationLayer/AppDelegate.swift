@@ -62,9 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     return true
                 }
                 
-                if let controller = PasswordRecoveryConfirmViewController.create(token: token) {
-                    currentController.present(controller, animated: true, completion: nil)
-                }
+                PasswordRecoveryConfirmModule.create().present(from: currentController)
             }
         }
         
