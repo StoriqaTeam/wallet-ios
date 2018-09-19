@@ -12,4 +12,5 @@ import UIKit
 protocol LoginViewOutput: class {
     func viewIsReady()
     func showRegistration()
+    func showPasswordRecovery()
 }

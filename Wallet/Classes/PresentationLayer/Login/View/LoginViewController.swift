@@ -91,7 +91,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction private func forgotPasswordTapped() {
-
+        output.showPasswordRecovery()
     }
     
     @objc func textDidChange(_ notification: Notification) {

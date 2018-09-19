@@ -11,4 +11,5 @@ import UIKit
 
 protocol LoginRouterInput: class {
     func showRegistration()
+    func showPasswordRecovery(from viewController: UIViewController)
 }

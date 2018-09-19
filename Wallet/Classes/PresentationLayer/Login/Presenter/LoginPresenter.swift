@@ -22,6 +22,10 @@ class LoginPresenter {
 // MARK: - LoginViewOutput
 
 extension LoginPresenter: LoginViewOutput {
+    func showPasswordRecovery() {
+        router.showPasswordRecovery(from: view.viewController)
+    }
+    
 
     func viewIsReady() {
         view.setupInitialState()
@@ -45,7 +49,7 @@ extension LoginPresenter: LoginInteractorOutput {
 extension LoginPresenter: LoginModuleInput {
     
     func present() {
-        view.present()
+        view.presentAsNavController()
     }
 
     func present(from viewController: UIViewController) {

@@ -9,18 +9,8 @@
 import Foundation
 
 class PasswordRecoveryBaseViewController: UIViewController {
-    @IBOutlet private var titleLabel: UILabel! {
-        didSet {
-            titleLabel.text = "password_recovery".localized()
-            titleLabel.font = UIFont.title
-        }
-    }
-    @IBOutlet var subtitleLabel: UILabel! {
-        didSet {
-            subtitleLabel.font = UIFont.subtitle
-            subtitleLabel.textColor = UIColor.primaryGrey
-        }
-    }
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var confirmButton: DefaultButton!
     
     @IBOutlet private var resetPasswordButtonBottomConstraint: NSLayoutConstraint!
@@ -32,12 +22,7 @@ class PasswordRecoveryBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addHideKeyboardGuesture()
-        
-        resetPasswordButtonBottomConstraint.constant = buttonBottomSpace
-        if Constants.Sizes.isSmallScreen {
-            headerVerticalSpaceConstraint.constant = 16
-            subtitleTopSpaceConstraint.constant = 16
-        }
+        configureInterface()
         
         confirmButton.isEnabled = false
     }
@@ -55,6 +40,20 @@ class PasswordRecoveryBaseViewController: UIViewController {
     
     @objc func textDidChange(_ notification: Notification) {
         assertionFailure("method must be overriden in child class")
+    }
+    
+    func configureInterface() {
+        titleLabel.text = "password_recovery".localized()
+        titleLabel.font = UIFont.title
+        
+        subtitleLabel.font = UIFont.subtitle
+        subtitleLabel.textColor = UIColor.primaryGrey
+        
+        resetPasswordButtonBottomConstraint.constant = buttonBottomSpace
+        if Constants.Sizes.isSmallScreen {
+            headerVerticalSpaceConstraint.constant = 16
+            subtitleTopSpaceConstraint.constant = 16
+        }
     }
 }
 

@@ -14,7 +14,7 @@ protocol Presentable {
     var parent: UIViewController? { get }
     
     func present()
-    func presentAsNavController(from fromViewController: UIViewController)
+    func presentAsNavController()
     func presentAsRoot()
     func present(from viewController: UIViewController)
     func presentModal(from viewController: UIViewController)
@@ -40,10 +40,16 @@ extension Presentable where Self: UIViewController {
         AppDelegate.currentWindow.rootViewController = viewController
     }
     
-    func presentAsNavController(from fromViewController: UIViewController) {
+    func presentAsNavController() {
         let navigation = UINavigationController(rootViewController: viewController)
-        navigation.isNavigationBarHidden = true
-        fromViewController.present(navigation, animated: true, completion: nil)
+        
+        // Config nav bar
+        navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigation.navigationBar.shadowImage = UIImage()
+        navigation.navigationBar.isTranslucent = true
+        navigation.view.backgroundColor = .clear
+        
+        AppDelegate.currentWindow.rootViewController = navigation
     }
     
     func presentAsRoot() {

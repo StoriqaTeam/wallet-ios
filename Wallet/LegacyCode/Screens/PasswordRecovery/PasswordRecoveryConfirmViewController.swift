@@ -9,22 +9,8 @@
 import Foundation
 
 class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController {
-    @IBOutlet private var passwordTextField: UnderlinedTextField! {
-        didSet {
-            passwordTextField.placeholder = "password".localized()
-            passwordTextField.layoutBlock = {[weak self] in
-                self?.view.layoutIfNeeded()
-            }
-        }
-    }
-    @IBOutlet private var repeatPasswordTextField: UnderlinedTextField! {
-        didSet {
-            repeatPasswordTextField.placeholder = "repeat_password".localized()
-            repeatPasswordTextField.layoutBlock = {[weak self] in
-                self?.view.layoutIfNeeded()
-            }
-        }
-    }
+    @IBOutlet private var passwordTextField: UnderlinedTextField!
+    @IBOutlet private var repeatPasswordTextField: UnderlinedTextField!
     
     var token: String?
     
@@ -42,9 +28,6 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        subtitleLabel.text = "psw_recovery_confirm_subtitle".localized()
-        confirmButton.title = "confirm_new_password".localized()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "backArrow"), style: .plain, target: nil, action: #selector(dismissViewController))
     }
@@ -71,6 +54,24 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
         
         confirmButton.isEnabled = formIsValid
     }
+    
+    override func configureInterface() {
+        super.configureInterface()
+        
+        let layoutBlock: (() -> Void) = {[weak self] in
+            self?.view.layoutIfNeeded()
+        }
+        
+        subtitleLabel.text = "psw_recovery_confirm_subtitle".localized()
+        confirmButton.title = "confirm_new_password".localized()
+        
+        passwordTextField.placeholder = "password".localized()
+        passwordTextField.layoutBlock = layoutBlock
+        
+        repeatPasswordTextField.placeholder = "repeat_password".localized()
+        repeatPasswordTextField.layoutBlock = layoutBlock
+    }
+    
 }
 
 private extension PasswordRecoveryConfirmViewController {
