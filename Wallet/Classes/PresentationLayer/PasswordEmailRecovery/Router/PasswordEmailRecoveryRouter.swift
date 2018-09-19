@@ -22,11 +22,11 @@ extension PasswordEmailRecoveryRouter: PasswordEmailRecoveryRouterInput {
         //FIXME: - вынести в модуль popup vc
         //TODO: image, title, text, action
         viewController.presentPopup(image: #imageLiteral(resourceName: "faceid"),
-                     title: "email_sent".localized(),
-                     text: "TODO: text",
-                     actionTitle: "Ok",
-                     hasCloseButton: false,
-                     actionBlock: {})
+                                    title: "email_sent".localized(),
+                                    text: "TODO: text",
+                                    actionTitle: "Ok",
+                                    hasCloseButton: false,
+                                    actionBlock: {})
     }
     
     func showFailure(message: String, from viewController: UIViewController) {

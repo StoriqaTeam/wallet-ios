@@ -48,7 +48,12 @@ class PasswordEmailRecoveryViewController: PasswordRecoveryBaseViewController {
     }
     
     override func textDidChange(_ notification: Notification) {
-        output.validateEmail(emailTextField.text)
+        guard let email = emailTextField.text else {
+            confirmButton.isEnabled = false
+            return
+        }
+        
+        confirmButton.isEnabled = Validations.isValidEmail(email)
     }
 }
 

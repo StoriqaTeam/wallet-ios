@@ -12,23 +12,12 @@ import Foundation
 class PasswordEmailRecoveryInteractor {
     weak var output: PasswordEmailRecoveryInteractorOutput!
     
-    private let formValidator: PasswordEmailRecoveryFormValidatorProtocol
-    
-    init(formValidator: PasswordEmailRecoveryFormValidatorProtocol) {
-        self.formValidator = formValidator
-    }
-    
 }
 
 
 // MARK: - PasswordEmailRecoveryInteractorInput
 
 extension PasswordEmailRecoveryInteractor: PasswordEmailRecoveryInteractorInput {
-    func validateForm(email: String) {
-        let isValid = formValidator.emailIsValid(email)
-        output.setFormIsValid(isValid)
-    }
-    
     func resetPassword(email: String) {
         //TODO: implement in new provider
         log.warn("implement resetPassword provider")

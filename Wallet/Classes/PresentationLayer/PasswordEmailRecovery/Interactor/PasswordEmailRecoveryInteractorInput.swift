@@ -10,6 +10,5 @@ import Foundation
 
 
 protocol PasswordEmailRecoveryInteractorInput: class {
-    func validateForm(email: String)
     func resetPassword(email: String)
 }

@@ -11,6 +11,5 @@ import UIKit
 
 protocol PasswordEmailRecoveryViewOutput: class {
     func viewIsReady()
-    func validateEmail(_ email: String?)
     func resetPassword(email: String)
 }

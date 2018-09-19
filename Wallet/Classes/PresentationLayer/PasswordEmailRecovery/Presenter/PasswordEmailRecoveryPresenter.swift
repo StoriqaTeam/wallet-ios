@@ -23,15 +23,6 @@ class PasswordEmailRecoveryPresenter {
 
 extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryViewOutput {
     
-    func validateEmail(_ email: String?) {
-        guard let email = email else {
-            view.setButtonEnabled(false)
-            return
-        }
-        
-        interactor.validateForm(email: email)
-    }
-    
     func resetPassword(email: String) {
        interactor.resetPassword(email: email)
     }
