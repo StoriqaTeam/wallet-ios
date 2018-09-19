@@ -653,7 +653,7 @@
 		A58EE3B1214FFD430096C155 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				CE526C6F21247F8500A2EED2 /* UI components */,
+				CE526C6F21247F8500A2EED2 /* UIComponents */,
 				CBDC562DBB37E87E10321A50 /* Login */,
 				E298913915285D81F5C290ED /* PasswordInput */,
 				1F5CC2762745A1888809B71C /* FirstLaunch */,
@@ -917,7 +917,7 @@
 			path = WalletUITests;
 			sourceTree = "<group>";
 		};
-		CE526C6F21247F8500A2EED2 /* UI components */ = {
+		CE526C6F21247F8500A2EED2 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
 				CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */,
@@ -928,7 +928,7 @@
 				CE0E5A64212D5681003E2C5E /* BaseButton.swift */,
 				CE0E5A66212D569A003E2C5E /* LightButton.swift */,
 			);
-			path = "UI components";
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		CE526C72212485F900A2EED2 /* Extensions */ = {
