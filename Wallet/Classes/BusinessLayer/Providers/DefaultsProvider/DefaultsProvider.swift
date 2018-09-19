@@ -8,8 +8,11 @@
 
 import Foundation
 
+protocol DefaultsProviderProtocol: class {
+    var isFirstLaunch: Bool { set get }
+}
 
-class DefaultsProvider {
+class DefaultsProvider: DefaultsProviderProtocol {
     
     enum DefaultsKey: String, EnumCollection {
         case isFirstLaunch

@@ -60,15 +60,3 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
-
-//Popup
-extension UIViewController {
-    func presentPopup(image: UIImage, title: String, text: String? = nil, attributedText: NSAttributedString? = nil, actionTitle: String, hasCloseButton: Bool = true, actionBlock: (()->())?) {
-        if let popupVC = PopupViewController.create(image: image, title: title, text: text, attributedText: attributedText, actionTitle: actionTitle, actionBlock: actionBlock, hasCloseButton: hasCloseButton) {
-            popupVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            present(popupVC, animated: true)
-        } else {
-            log.error("couldn't create PopupViewController")
-        }
-    }
-}

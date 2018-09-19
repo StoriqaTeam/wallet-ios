@@ -63,11 +63,11 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     }
     
     func registrationSucceed(email: String) {
-        view.showSuccess(email: email)
+        router.showSuccess(email: email, from: view.viewController)
     }
     
     func registrationFailed(message: String) {
-        view.showError(message: message)
+        router.showFailure(message: message, from: view.viewController)
     }
     
     func registrationFailed(apiErrors: [ResponseAPIError.Message]) {

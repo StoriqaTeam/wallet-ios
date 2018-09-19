@@ -11,15 +11,15 @@ import AlamofireNetworkActivityIndicator
 
 class ApplicationConfigurator: Configurable {
     
-    private let keychain: KeychainProvider
-    private let defaults: DefaultsProvider
+    private let keychain: KeychainProviderProtocol
+    private let defaults: DefaultsProviderProtocol
     
-    init(keychain: KeychainProvider, defaults: DefaultsProvider) {
+    init(keychain: KeychainProviderProtocol, defaults: DefaultsProviderProtocol) {
         self.keychain = keychain
         self.defaults = defaults
     }
     
-    func configure() {
+    func configure() { 
         setInitialVC()
         setGID()
     }
@@ -30,7 +30,6 @@ class ApplicationConfigurator: Configurable {
 extension ApplicationConfigurator {
     
     private func setInitialVC() {
-        
         if defaults.isFirstLaunch {
             defaults.isFirstLaunch = false
             FirstLaunchModule.create().present()

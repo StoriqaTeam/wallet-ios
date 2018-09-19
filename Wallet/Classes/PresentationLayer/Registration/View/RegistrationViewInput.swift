@@ -11,8 +11,6 @@ import UIKit
 
 protocol RegistrationViewInput: class, Presentable {
     func setupInitialState()
-    func showSuccess(email: String)
-    func showError(message: String)
     func setButtonEnabled(_ enabled: Bool)
     func showPasswordsNotEqual(message: String?)
     

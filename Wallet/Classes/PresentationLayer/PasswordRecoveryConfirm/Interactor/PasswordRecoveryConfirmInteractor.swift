@@ -12,9 +12,11 @@ import Foundation
 class PasswordRecoveryConfirmInteractor {
     weak var output: PasswordRecoveryConfirmInteractorOutput!
 
+    private let token: String
     private let formValidator: PasswordRecoveryConfirmFormValidatorProtocol
     
-    init(formValidator: PasswordRecoveryConfirmFormValidatorProtocol) {
+    init(token: String, formValidator: PasswordRecoveryConfirmFormValidatorProtocol) {
+        self.token = token
         self.formValidator = formValidator
     }
     
