@@ -11,11 +11,19 @@ import Foundation
 
 class LoginInteractor {
     weak var output: LoginInteractorOutput!
+    
+    private let socialViewVM: SocialNetworkAuthViewModel
+    
+    init(socialViewVM: SocialNetworkAuthViewModel) {
+        self.socialViewVM = socialViewVM
+    }
 }
 
 
 // MARK: - LoginInteractorInput
 
 extension LoginInteractor: LoginInteractorInput {
-
+    func getSocialVM() -> SocialNetworkAuthViewModel {
+        return socialViewVM
+    }
 }

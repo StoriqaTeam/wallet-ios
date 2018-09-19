@@ -20,27 +20,33 @@ extension PasswordRecoveryConfirmRouter: PasswordRecoveryConfirmRouterInput {
     func showSuccess(from viewController: UIViewController) {
         
         //FIXME: - вынести в модуль popup vc
-        //TODO: image, title, text
+        //TODO: image, title, text, action
         
-        viewController.presentPopup(image: #imageLiteral(resourceName: "faceid"),
-                     title: "psw_recovery_result_success_title".localized(),
-                     text: "psw_recovery_result_success_subtitle".localized(),
-                     actionTitle: "Sign in",
-                     hasCloseButton: false,
-                     actionBlock: {})
+        let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
+                                            title: "psw_recovery_result_success_title".localized(),
+                                            text: "psw_recovery_result_success_subtitle".localized(),
+                                            attributedText: nil,
+                                            actionButtonTitle: "sign_in".localized(),
+                                            hasCloseButton: false,
+                                            actionBlock: {},
+                                            closeBlock: nil)
+        PopUpModule.create(apperance: popUpApperance).present(from: viewController)
     }
     
     func showFailure(message: String, from viewController: UIViewController) {
         
         //FIXME: - вынести в модуль popup vc
-        //TODO: image, title
+        //TODO: image, title, action
         
-        viewController.presentPopup(image: #imageLiteral(resourceName: "faceid"),
-                     title: "smth_went_wrong".localized(),
-                     text: message,
-                     actionTitle: "try_again".localized(),
-                     hasCloseButton: true,
-                     actionBlock: {})
+        let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
+                                            title: "smth_went_wrong".localized(),
+                                            text: message,
+                                            attributedText: nil,
+                                            actionButtonTitle: "try_again".localized(),
+                                            hasCloseButton: true,
+                                            actionBlock: {},
+                                            closeBlock: {})
+        PopUpModule.create(apperance: popUpApperance).present(from: viewController)
     }
     
 }

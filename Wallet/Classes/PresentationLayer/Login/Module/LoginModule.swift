@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import FacebookLogin
 
 
 class LoginModule {
@@ -11,7 +12,9 @@ class LoginModule {
     class func create() -> LoginModuleInput {
         let router = LoginRouter()
         let presenter = LoginPresenter()
-        let interactor = LoginInteractor()
+        
+        let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: LoginManager())
+        let interactor = LoginInteractor(socialViewVM: socialVM)
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
