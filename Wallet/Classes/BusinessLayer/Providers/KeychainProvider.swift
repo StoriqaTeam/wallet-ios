@@ -9,7 +9,7 @@
 import Foundation
 import Security
 
-protocol KeychainProviderProtocol {
+protocol KeychainProviderProtocol: class {
     var pincode: String? { set get }
     func deleteAll()
 }

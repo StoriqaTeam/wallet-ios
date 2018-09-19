@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol DefaultsProviderProtocol {
+protocol DefaultsProviderProtocol: class {
     var isFirstLaunch: Bool { set get }
 }
 
