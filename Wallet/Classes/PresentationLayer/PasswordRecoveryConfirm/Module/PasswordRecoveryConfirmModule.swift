@@ -16,7 +16,6 @@ class PasswordRecoveryConfirmModule {
         let validator = PasswordRecoveryConfirmFormValidator()
         let interactor = PasswordRecoveryConfirmInteractor(formValidator: validator)
         
-        
         let storyboard = UIStoryboard(name: "PasswordRecoveryConfirm", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PasswordRecoveryConfirmVC") as! PasswordRecoveryConfirmViewController
 

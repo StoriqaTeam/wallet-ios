@@ -86,13 +86,13 @@
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
 		CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */; };
 		CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */; };
-		CE15A37A214F8E32008B311D /* QuickLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15A379214F8E32008B311D /* QuickLaunchViewController.swift */; };
+		CE15A37A214F8E32008B311D /* QuickLaunchViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15A379214F8E32008B311D /* QuickLaunchViewController_old.swift */; };
 		CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE185479214A602C009D1360 /* PopupViewController.xib */; };
 		CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547B214A605B009D1360 /* PopupViewController.swift */; };
 		CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547D214A637E009D1360 /* UIFontExtension.swift */; };
 		CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */; };
 		CE185494214BE558009D1360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE185496214BE558009D1360 /* Localizable.strings */; };
-		CE185498214C0241009D1360 /* QuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE185497214C0241009D1360 /* QuickLaunch.storyboard */; };
+		CE185498214C0241009D1360 /* QuickLaunch_old.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE185497214C0241009D1360 /* QuickLaunch_old.storyboard */; };
 		CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */; };
 		CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */; };
@@ -123,6 +123,8 @@
 		CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFA221514BBF009E707E /* PasswordEmailRecovery.storyboard */; };
 		CE5FAFA921523784009E707E /* PasswordRecoveryConfirm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFA821523784009E707E /* PasswordRecoveryConfirm.storyboard */; };
 		CE5FAFAB2152420D009E707E /* PasswordRecoveryConfirmFormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAFAA2152420D009E707E /* PasswordRecoveryConfirmFormValidator.swift */; };
+		CE5FAFAF21527CAB009E707E /* QuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFAE21527CAB009E707E /* QuickLaunch.storyboard */; };
+		CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAFB2215286D8009E707E /* QuickLaunchProvider.swift */; };
 		CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */; };
 		CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
@@ -270,14 +272,14 @@
 		CE0E5A66212D569A003E2C5E /* LightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightButton.swift; sourceTree = "<group>"; };
 		CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
-		CE15A379214F8E32008B311D /* QuickLaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLaunchViewController.swift; sourceTree = "<group>"; };
+		CE15A379214F8E32008B311D /* QuickLaunchViewController_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLaunchViewController_old.swift; sourceTree = "<group>"; };
 		CE185479214A602C009D1360 /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = "<group>"; };
 		CE18547B214A605B009D1360 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		CE18547D214A637E009D1360 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
 		CE185490214BD578009D1360 /* ProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDelegate.swift; sourceTree = "<group>"; };
 		CE185495214BE558009D1360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CE185497214C0241009D1360 /* QuickLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuickLaunch.storyboard; sourceTree = "<group>"; };
+		CE185497214C0241009D1360 /* QuickLaunch_old.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuickLaunch_old.storyboard; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
 		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
@@ -315,6 +317,8 @@
 		CE5FAFA221514BBF009E707E /* PasswordEmailRecovery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordEmailRecovery.storyboard; sourceTree = "<group>"; };
 		CE5FAFA821523784009E707E /* PasswordRecoveryConfirm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordRecoveryConfirm.storyboard; sourceTree = "<group>"; };
 		CE5FAFAA2152420D009E707E /* PasswordRecoveryConfirmFormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmFormValidator.swift; sourceTree = "<group>"; };
+		CE5FAFAE21527CAB009E707E /* QuickLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuickLaunch.storyboard; sourceTree = "<group>"; };
+		CE5FAFB2215286D8009E707E /* QuickLaunchProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLaunchProvider.swift; sourceTree = "<group>"; };
 		CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsAuthErrorParser.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -457,7 +461,6 @@
 				B0783ED865276AD802C71A8B /* QuickLaunchRouterInput.swift */,
 				81C6FB667D6F74E21E62DD15 /* QuickLaunchRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -499,7 +502,6 @@
 			children = (
 				866A43D544C532EAB54E7B80 /* QuickLaunchPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -535,8 +537,8 @@
 				FB061958AA4F9CCD8A95A48C /* QuickLaunchViewInput.swift */,
 				D5A1CDC303071909C61FFEA7 /* QuickLaunchViewOutput.swift */,
 				F6E02B43649E0ECD2535CDF0 /* QuickLaunchViewController.swift */,
+				CE5FAFAE21527CAB009E707E /* QuickLaunch.storyboard */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -563,7 +565,6 @@
 				4358BCC88C550903126F1444 /* QuickLaunchInteractorOutput.swift */,
 				87885221F8558DE638669A14 /* QuickLaunchInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -596,7 +597,6 @@
 				FE3A59EE5B1296368A192DF4 /* QuickLaunchModuleOutput.swift */,
 				175FE257678A8696EAB653BE /* QuickLaunchModule.swift */,
 			);
-			name = Module;
 			path = Module;
 			sourceTree = "<group>";
 		};
@@ -800,6 +800,7 @@
 				A50086062150F94300C47015 /* Networking */,
 				CE5FAF932150ED48009E707E /* PinValidation */,
 				CE5FAF9C21512965009E707E /* RegistrationFormValidaton */,
+				CE5FAFB0215286B1009E707E /* QuickLaunch */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -868,7 +869,7 @@
 		CE15A378214F8BE6008B311D /* QuickLaunch */ = {
 			isa = PBXGroup;
 			children = (
-				CE15A379214F8E32008B311D /* QuickLaunchViewController.swift */,
+				CE15A379214F8E32008B311D /* QuickLaunchViewController_old.swift */,
 				CE5FAF89214FB25C009E707E /* PinQuickLaunchViewController.swift */,
 				CE5FAF8B214FB26F009E707E /* TouchIdQuickLaunchViewController.swift */,
 				CE5FAF8D214FB280009E707E /* PinSetupViewController.swift */,
@@ -899,7 +900,7 @@
 		CE25B7442126B4C70097230A /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				CE185497214C0241009D1360 /* QuickLaunch.storyboard */,
+				CE185497214C0241009D1360 /* QuickLaunch_old.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1046,6 +1047,14 @@
 			path = PasswordRecovery;
 			sourceTree = "<group>";
 		};
+		CE5FAFB0215286B1009E707E /* QuickLaunch */ = {
+			isa = PBXGroup;
+			children = (
+				CE5FAFB2215286D8009E707E /* QuickLaunchProvider.swift */,
+			);
+			path = QuickLaunch;
+			sourceTree = "<group>";
+		};
 		CEDDDEF921302D8200490781 /* SocialNetworkAuthView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1086,7 +1095,6 @@
 				14D926461E093F954A57515F /* Router */,
 				6958715DECA6DCB6DC67676A /* Module */,
 			);
-			name = QuickLaunch;
 			path = QuickLaunch;
 			sourceTree = "<group>";
 		};
@@ -1281,7 +1289,8 @@
 				A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */,
 				CE18547A214A602C009D1360 /* PopupViewController.xib in Resources */,
 				CE185494214BE558009D1360 /* Localizable.strings in Resources */,
-				CE185498214C0241009D1360 /* QuickLaunch.storyboard in Resources */,
+				CE185498214C0241009D1360 /* QuickLaunch_old.storyboard in Resources */,
+				CE5FAFAF21527CAB009E707E /* QuickLaunch.storyboard in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
 				CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */,
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
@@ -1435,6 +1444,7 @@
 				CE18547C214A605B009D1360 /* PopupViewController.swift in Sources */,
 				CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */,
 				CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */,
+				CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */,
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
 				CE5FAF8E214FB280009E707E /* PinSetupViewController.swift in Sources */,
@@ -1464,7 +1474,7 @@
 				A50086142151182A00C47015 /* EnumCollection.swift in Sources */,
 				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
 				CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */,
-				CE15A37A214F8E32008B311D /* QuickLaunchViewController.swift in Sources */,
+				CE15A37A214F8E32008B311D /* QuickLaunchViewController_old.swift in Sources */,
 				CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */,
 				A50086102151166100C47015 /* KeychainProvider.swift in Sources */,
 				CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */,

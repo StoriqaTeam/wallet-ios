@@ -11,6 +11,11 @@ import Foundation
 
 class QuickLaunchInteractor {
     weak var output: QuickLaunchInteractorOutput!
+    
+    private let qiuckLaunchProvider: QuickLaunchProviderProtocol
+    init(qiuckLaunchProvider: QuickLaunchProviderProtocol) {
+        self.qiuckLaunchProvider = qiuckLaunchProvider
+    }
 }
 
 

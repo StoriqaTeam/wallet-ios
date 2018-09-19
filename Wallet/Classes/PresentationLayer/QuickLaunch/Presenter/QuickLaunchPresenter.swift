@@ -15,6 +15,12 @@ class QuickLaunchPresenter {
     weak var output: QuickLaunchModuleOutput?
     var interactor: QuickLaunchInteractorInput!
     var router: QuickLaunchRouterInput!
+ 
+    let screenApperance: QuickLaunchScreenApperance
+    
+    init(screenApperance: QuickLaunchScreenApperance) {
+        self.screenApperance = screenApperance
+    }
     
 }
 
@@ -24,7 +30,7 @@ class QuickLaunchPresenter {
 extension QuickLaunchPresenter: QuickLaunchViewOutput {
 
     func viewIsReady() {
-        view.setupInitialState()
+        view.setupInitialState(screenApperance: screenApperance)
     }
 
 }
