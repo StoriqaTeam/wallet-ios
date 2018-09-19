@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol LoginInteractorInput: class {
-
+    func getSocialVM() -> SocialNetworkAuthViewModel
 }

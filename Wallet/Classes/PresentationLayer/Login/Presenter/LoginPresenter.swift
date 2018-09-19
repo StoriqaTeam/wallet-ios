@@ -29,6 +29,8 @@ extension LoginPresenter: LoginViewOutput {
 
     func viewIsReady() {
         view.setupInitialState()
+        let vm = interactor.getSocialVM()
+        view.setSocialView(viewModel: vm)
     }
 
     func showRegistration() {

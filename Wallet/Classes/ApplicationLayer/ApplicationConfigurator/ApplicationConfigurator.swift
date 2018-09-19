@@ -30,7 +30,6 @@ class ApplicationConfigurator: Configurable {
 extension ApplicationConfigurator {
     
     private func setInitialVC() {
-        
         if defaults.isFirstLaunch {
             defaults.isFirstLaunch = false
             FirstLaunchModule.create().present()

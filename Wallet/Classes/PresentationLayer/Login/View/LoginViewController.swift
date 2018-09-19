@@ -65,9 +65,11 @@ class LoginViewController: UIViewController {
 // MARK: - LoginViewInput
 
 extension LoginViewController: LoginViewInput {
-
-    func setupInitialState() {
-        
+    
+    func setupInitialState() { }
+    
+    func setSocialView(viewModel: SocialNetworkAuthViewModel) {
+        socialNetworkAuthView.bindViewModel(viewModel)
     }
 }
 
@@ -75,7 +77,7 @@ extension LoginViewController: LoginViewInput {
 // MARK: - SocialNetworkAuthViewDelegate
 
 extension LoginViewController: SocialNetworkAuthViewDelegate {
-    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
+    func socialNetworkAuthSucceed(token: String) {
         
     }
 
@@ -139,7 +141,7 @@ extension LoginViewController {
     }
     
     private func setSocialView() {
-        socialNetworkAuthView.setUp(delegate: self, type: .login)
+        socialNetworkAuthView.setUp(from: self, delegate: self, type: .login)
     }
 
     private func setDelegates() {

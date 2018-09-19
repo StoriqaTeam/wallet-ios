@@ -167,8 +167,8 @@ extension RegistrationViewController: UITextFieldDelegate {
 //MARK: - SocialNetworkAuthViewDelegate
 
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
-    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
-        showRegisterSuccess(email: email)
+    func socialNetworkAuthSucceed(token: String) {
+        showRegisterSuccess(email: token)
     }
     
     func socialNetworkAuthFailed() {
@@ -212,7 +212,7 @@ extension RegistrationViewController {
         agreementLabel.text = "accept_agreement".localized()
 
         signUpButton.title = "sign_up".localized()
-        socialNetworkAuthView.setUp(delegate: self, type: .register)
+//        socialNetworkAuthView.setUp(delegate: self, type: .register)
     }
     
     private func updateContinueButton() {
