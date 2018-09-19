@@ -101,14 +101,6 @@ class RegistrationViewController: UIViewController {
 extension RegistrationViewController: RegistrationViewInput {
     func setupInitialState() { }
 
-    func showSuccess(email: String) {
-        showRegisterSuccess(email: email)
-    }
-    
-    func showError(message: String) {
-        showError(message: message)
-    }
-    
     func showApiErrors(_ apiErrors: [ResponseAPIError.Message]) {
         for error in apiErrors {
             switch error.fieldCode {
@@ -240,27 +232,32 @@ extension RegistrationViewController {
     }
     
     private func showRegisterSuccess(email: String) {
-        //TODO: image
-        presentPopup(image: #imageLiteral(resourceName: "faceid"),
-                     title: "email_sent".localized(),
-                     text: "check_email".localized() + email,
-                     actionTitle: "sign_in".localized(),
-                     hasCloseButton: false,
-                     actionBlock: {[weak self] in
-                        self?.showSignInViewController()
-        })
+        //FIXME: - Pop up shold not be created from view. Fix when social auth module is ready
+        //TODO: image, action
+        let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
+                                            title: "email_sent".localized(),
+                                            text: "check_email".localized() + email,
+                                            attributedText: nil,
+                                            actionButtonTitle: "sign_in".localized(),
+                                            hasCloseButton: false,
+                                            actionBlock: {},
+                                            closeBlock: nil)
+        PopUpModule.create(apperance: popUpApperance).present(from: viewController)
+        
     }
     
     private func showRegisterError(_ message: String) {
+        //FIXME: - Pop up shold not be created from view. Fix when social auth module is ready
         //TODO: image, action
-        presentPopup(image: #imageLiteral(resourceName: "faceid"),
-                     title: "smth_went_wrong".localized(),
-                     text: message,
-                     actionTitle: "try_again".localized(),
-                     hasCloseButton: true,
-                     actionBlock: {
-                        print("button tapped")
-        })
+        let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
+                                            title: "smth_went_wrong".localized(),
+                                            text: message,
+                                            attributedText: nil,
+                                            actionButtonTitle: "try_again".localized(),
+                                            hasCloseButton: true,
+                                            actionBlock: {},
+                                            closeBlock: {})
+        PopUpModule.create(apperance: popUpApperance).present(from: viewController)
     }
     
     private func showSignInViewController() {
