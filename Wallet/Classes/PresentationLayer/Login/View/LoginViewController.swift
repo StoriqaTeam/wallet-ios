@@ -49,6 +49,7 @@ class LoginViewController: UIViewController {
     
     @IBAction private func signIn() {
         dismissKeyboard()
+        passwordTextField.isSecureTextEntry = true
     }
     
     @IBAction private func forgotPasswordTapped() {
