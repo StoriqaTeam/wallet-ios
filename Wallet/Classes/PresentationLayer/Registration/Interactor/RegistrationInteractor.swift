@@ -12,11 +12,9 @@ import Foundation
 class RegistrationInteractor {
     weak var output: RegistrationInteractorOutput!
     
-    private var registrationProvider: RegistrationProviderProtocol
     private let formValidationProvider: RegistrationFormValidatonProviderProtocol
     
-    init(registrationProvider: RegistrationProviderProtocol, formValidationProvider: RegistrationFormValidatonProviderProtocol) {
-        self.registrationProvider = registrationProvider
+    init(formValidationProvider: RegistrationFormValidatonProviderProtocol) {
         self.formValidationProvider = formValidationProvider
     }
     
@@ -35,7 +33,8 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     }
     
     func register(firstName: String, lastName: String, email: String, password: String) {
-        registrationProvider.register(firstName: firstName, lastName: lastName, email: email, password: password)
+        // TODO: - implement new provider
+        
     }
     
 }

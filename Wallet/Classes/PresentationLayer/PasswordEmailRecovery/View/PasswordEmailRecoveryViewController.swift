@@ -53,7 +53,7 @@ class PasswordEmailRecoveryViewController: PasswordRecoveryBaseViewController {
             return
         }
         
-        confirmButton.isEnabled = Validations.isValidEmail(email)
+        confirmButton.isEnabled = email.isValidEmail()
     }
 }
 

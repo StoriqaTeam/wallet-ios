@@ -2,13 +2,13 @@
 //  StringExtension.swift
 //  Wallet
 //
-//  Created by user on 21.08.2018.
+//  Created by Storiqa on 21.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
-import Foundation
 
 import UIKit
+
 extension String {
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
@@ -51,3 +51,19 @@ extension NSAttributedString {
         return ceil(boundingBox.width)
     }
 }
+
+extension String {
+    func isValidEmail() -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        return self.matchesReqex(emailRegEx)
+    }
+}
+
+private extension String {
+    func matchesReqex(_ regex: String) -> Bool {
+        let test = NSPredicate(format:"SELF MATCHES %@", regex)
+        let matches = test.evaluate(with: self)
+        return matches
+    }
+}
+

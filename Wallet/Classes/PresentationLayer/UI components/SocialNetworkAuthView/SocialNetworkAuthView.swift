@@ -2,15 +2,28 @@
 //  SocialNetworkAuthView.swift
 //  Wallet
 //
-//  Created by user on 24.08.2018.
+//  Created by Storiqa on 24.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import FacebookCore
 import FacebookLogin
 import GoogleSignIn
+
+enum SocialNetworkTokenProvider {
+    case google
+    case facebook
+    
+    var name: String {
+        switch self {
+        case .google:
+            return "GOOGLE"
+        case .facebook:
+            return "FACEBOOK"
+        }
+    }
+}
 
 protocol SocialNetworkAuthViewDelegate: class {
     func socialNetworkAuthViewDidTapFooterButton()
@@ -20,6 +33,7 @@ protocol SocialNetworkAuthViewDelegate: class {
 
 class SocialNetworkAuthView: UIView {
     typealias FacebookLoginManager = LoginManager
+    
     enum SocialNetworkAuthViewType {
         case login
         case register
@@ -44,36 +58,6 @@ class SocialNetworkAuthView: UIView {
         contentView = view
     }
     
-    private func loadViewFromNib() -> UIView? {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "SocialNetworkAuthView", bundle: bundle)
-        return nib.instantiate(withOwner: self, options: nil).first as? UIView
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    
-        // Uncomment to automatically sign in the user.
-//        GIDSignIn.sharedInstance().uiDelegate = self
-//        GIDSignIn.sharedInstance().signInSilently()
-    }
-    
-    func setUp(delegate: (UIViewController & SocialNetworkAuthViewDelegate), type: SocialNetworkAuthViewType) {
-        self.delegate = delegate
-        self.formType = type
-        
-        switch type {
-        case .login:
-            titleLabel.text = "sign_in_social".localized()
-            footerTitleLabel.text = "have_no_account".localized()
-            footerButton.setTitle("register".localized(), for: .normal)
-        case .register:
-            titleLabel.text = "sign_up_social".localized()
-            footerTitleLabel.text = "have_account".localized()
-            footerButton.setTitle("sign_in".localized(), for: .normal)
-        }
-    }
-    
     @IBAction func footerButtonTapHandler(_ sender: UIButton) {
         if let delegate = delegate {
             delegate.socialNetworkAuthViewDidTapFooterButton()
@@ -90,6 +74,7 @@ class SocialNetworkAuthView: UIView {
                 log.warn("self is nil")
                 return
             }
+            
             guard let delegate = strongSelf.delegate else {
                 log.warn("delegate is nil")
                 return
@@ -117,6 +102,33 @@ class SocialNetworkAuthView: UIView {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
+    }
+    
+    func setUp(delegate: (UIViewController & SocialNetworkAuthViewDelegate), type: SocialNetworkAuthViewType) {
+        self.delegate = delegate
+        self.formType = type
+        
+        switch type {
+        case .login:
+            titleLabel.text = "sign_in_social".localized()
+            footerTitleLabel.text = "have_no_account".localized()
+            footerButton.setTitle("register".localized(), for: .normal)
+        case .register:
+            titleLabel.text = "sign_up_social".localized()
+            footerTitleLabel.text = "have_account".localized()
+            footerButton.setTitle("sign_in".localized(), for: .normal)
+        }
+    }
+}
+
+
+// MARK: - Private methods
+
+extension SocialNetworkAuthView {
+    private func loadViewFromNib() -> UIView? {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: "SocialNetworkAuthView", bundle: bundle)
+        return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
 }
 
