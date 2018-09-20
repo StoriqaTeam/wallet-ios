@@ -11,6 +11,7 @@ import Security
 
 protocol KeychainProviderProtocol: class {
     var pincode: String? { set get }
+    var isBiometryAuthEnabled: Bool { set get }
     func deleteAll()
 }
 
@@ -30,6 +31,7 @@ class KeychainProvider: KeychainProviderProtocol {
     
     enum KeychainKeys: String, EnumCollection {
         case pincode
+        case isBiometryAuthEnabled
     }
     
     
@@ -39,6 +41,15 @@ class KeychainProvider: KeychainProviderProtocol {
         }
         set {
             setString(newValue, for: .pincode)
+        }
+    }
+    
+    var isBiometryAuthEnabled: Bool {
+        get {
+            return getBool(for: .isBiometryAuthEnabled)
+        }
+        set {
+            setBool(newValue, for: .isBiometryAuthEnabled)
         }
     }
     

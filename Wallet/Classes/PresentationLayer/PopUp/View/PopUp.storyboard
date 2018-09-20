@@ -70,22 +70,26 @@
                                                         <rect key="frame" x="0.0" y="304.5" width="262.5" height="29.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jX8-2l-lzy" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jX8-2l-lzy" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="354" width="262.5" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="2kf-XB-pXc"/>
                                                         </constraints>
-                                                        <state key="normal" title="Action"/>
+                                                        <state key="normal" title="Action">
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="actionButtonTapped:" destination="6Jv-IR-8HX" eventType="touchUpInside" id="mcd-PH-VY0"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18a-1A-B4Q" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18a-1A-B4Q" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="418" width="262.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="gv2-1l-v1q"/>
                                                         </constraints>
-                                                        <state key="normal" title="Close"/>
+                                                        <state key="normal" title="Close">
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="cancelButtonTapped:" destination="6Jv-IR-8HX" eventType="touchUpInside" id="zOI-hE-KvB"/>
                                                         </connections>

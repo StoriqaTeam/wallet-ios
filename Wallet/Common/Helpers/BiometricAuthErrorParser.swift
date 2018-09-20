@@ -9,7 +9,8 @@
 import Foundation
 import LocalAuthentication
 
-//TODO: rename file after fixing project tree
+
+//FIXME: rename file after fixing project tree
 protocol BiometricAuthErrorParserProtocol {
     func errorMessageForLAErrorCode(error: Error?) -> String?
 }

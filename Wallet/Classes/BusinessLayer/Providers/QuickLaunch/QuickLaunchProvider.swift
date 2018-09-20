@@ -60,6 +60,8 @@ class QuickLaunchProvider: QuickLaunchProviderProtocol {
     }
     
     func activateBiometryLogin() {
+        keychainProvider.isBiometryAuthEnabled = true
+        
         //TODO: save authData and token to keychain
         
         log.debug("//TODO: save authData and token to keychain")

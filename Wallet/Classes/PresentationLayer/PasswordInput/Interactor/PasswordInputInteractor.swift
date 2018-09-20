@@ -23,6 +23,7 @@ class PasswordInputInteractor {
 // MARK: - PasswordInputInteractorInput
 
 extension PasswordInputInteractor: PasswordInputInteractorInput {
+    
     func validatePassword(_ password: String) {
         if pinValidator.pinIsValid(password) {
             output.passwordIsCorrect()
@@ -30,4 +31,9 @@ extension PasswordInputInteractor: PasswordInputInteractorInput {
             output.passwordIsWrong()
         }
     }
+    
+    func isBiometryAuthEnabled() -> Bool {
+        return pinValidator.isBiometryAuthEnabled()
+    }
+    
 }

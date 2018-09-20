@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 
 class PinSetupPresenter {
@@ -69,7 +70,8 @@ extension PinSetupPresenter: PinSetupInteractorOutput {
         view.viewController.showAlert(message: "pins_not_match_alert".localized())
         
         view.setTitle(title: firstInputTitle)
-        view.clearInput()
+        view.wrongInput()
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
     
 }
@@ -88,7 +90,9 @@ extension PinSetupPresenter: PinSetupModuleInput {
 // MARK: - PasswordInputCompleteProtocol
 extension PinSetupPresenter: PasswordInputCompleteProtocol {
     func passwordInputComplete(input: String) {
-        interactor.pinInputCompleted(input)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.interactor.pinInputCompleted(input)
+        }
     }
     
     func touchAuthenticationComplete(success: Bool, error: String?) { }

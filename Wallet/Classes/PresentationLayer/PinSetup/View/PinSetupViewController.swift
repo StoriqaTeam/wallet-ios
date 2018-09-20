@@ -48,4 +48,8 @@ extension PinSetupViewController: PinSetupViewInput {
         passwordContainerView.clearInput()
     }
     
+    func wrongInput() {
+        passwordContainerView.wrongPassword()
+    }
+    
 }
