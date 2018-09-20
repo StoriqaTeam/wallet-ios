@@ -8,24 +8,33 @@
 
 import Foundation
 import UIKit
+import Slog
 
-class Constants {
+let log = Slog(level: .debug, useEmoji: true)
+
+
+struct Constants {
     typealias Sizes = SizeConstants
     
-    class Keys {
+    struct Keys {
         static let kIsFirstLaunch = "isFirstLaunch"
         static let kIsQuickLaunchSet = "isQuickLaunchSet"
     }
     
-    class Errors {
+    struct Errors {
         static let serverResponse = "server_response_error".localized()
         static let unknown = "unknown_error".localized()
         static let userFriendly = "user_friendly_error".localized()
     }
+    
+    struct NetworkAuth {
+        static let kFacebookAppId = "fb425217154570731"
+        static let kGoogleClientId = "245895770851-qlolkejdjnske28jmbdgs89969o0a7ec.apps.googleusercontent.com"
+    }
 }
 
 
-class SizeConstants {
+struct SizeConstants {
     static let screenWith = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
     

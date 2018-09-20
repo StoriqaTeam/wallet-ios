@@ -132,14 +132,9 @@
 		CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */; };
 		CE1BD73D212565B8006097E5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE1BD73C212565B8006097E5 /* Podfile */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
-		CE25B74A2126B5A50097230A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7492126B5A50097230A /* Config.swift */; };
-		CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74B2126BCFF0097230A /* RequestSender.swift */; };
 		CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74D2126BEDB0097230A /* UserInfo.swift */; };
-		CE25B7512126F01E0097230A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7502126F01E0097230A /* Request.swift */; };
-		CE25B759212711620097230A /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B758212711620097230A /* ResponseError.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
 		CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45A8BD212C029F0096DD5F /* StringExtension.swift */; };
-		CE45A8C0212C0D780096DD5F /* GraphQLMutation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45A8BF212C0D780096DD5F /* GraphQLMutation.swift */; };
 		CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C31212465A800A2EED2 /* AppDelegate.swift */; };
 		CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3A212465A900A2EED2 /* Assets.xcassets */; };
 		CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */; };
@@ -357,13 +352,11 @@
 		C4D2F13364BE6B168335FE8E /* PopUpViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		C5B88B7B4A3CC91B28D220E0 /* PinSetupRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupRouterInput.swift; sourceTree = "<group>"; };
 		C82D0537B4CB1FBCDB8A1D56 /* FirstLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchInteractor.swift; sourceTree = "<group>"; };
-		CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseType.swift; sourceTree = "<group>"; };
 		CE0E5A64212D5681003E2C5E /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		CE0E5A66212D569A003E2C5E /* LightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightButton.swift; sourceTree = "<group>"; };
 		CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		CE18547D214A637E009D1360 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
-		CE185490214BD578009D1360 /* ProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDelegate.swift; sourceTree = "<group>"; };
 		CE185495214BE558009D1360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
 		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
@@ -371,14 +364,10 @@
 		CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
 		CE1BD73C212565B8006097E5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
-		CE25B7492126B5A50097230A /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		CE25B74B2126BCFF0097230A /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		CE25B73E2126AA200097230A /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		CE25B7502126F01E0097230A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		CE25B758212711620097230A /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CE45A8BD212C029F0096DD5F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		CE45A8BF212C0D780096DD5F /* GraphQLMutation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLMutation.swift; sourceTree = "<group>"; };
 		CE526C2E212465A800A2EED2 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE526C31212465A800A2EED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE526C3A212465A900A2EED2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1031,7 +1020,6 @@
 				A50086172151241300C47015 /* DefaultsProvider */,
 				A500860E215108B200C47015 /* KeychainProvider */,
 				A50086022150C48B00C47015 /* Biometric */,
-				CE25B74F2126EFEF0097230A /* Network */,
 				A50086062150F94300C47015 /* Networking */,
 				CE5FAF932150ED48009E707E /* PinValidation */,
 				CE5FAF9C21512965009E707E /* RegistrationFormValidaton */,
@@ -1172,20 +1160,6 @@
 				A50086132151182A00C47015 /* EnumCollection.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		CE25B74F2126EFEF0097230A /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				CE25B7492126B5A50097230A /* Config.swift */,
-				CE45A8BF212C0D780096DD5F /* GraphQLMutation.swift */,
-				CE25B7502126F01E0097230A /* Request.swift */,
-				CE25B74B2126BCFF0097230A /* RequestSender.swift */,
-				CE25B758212711620097230A /* ResponseError.swift */,
-				CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */,
-				CE185490214BD578009D1360 /* ProviderDelegate.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		CE526C25212465A800A2EED2 = {
@@ -1720,7 +1694,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0E5A65212D5681003E2C5E /* BaseButton.swift in Sources */,
-				CE45A8C0212C0D780096DD5F /* GraphQLMutation.swift in Sources */,
 				CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */,
 				CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */,
 				CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */,
@@ -1733,13 +1706,13 @@
 				CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */,
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
-				CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */,
+				CE5FAF8E214FB280009E707E /* PinSetupViewController.swift in Sources */,
+				CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */,
 				CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */,
-				CE25B759212711620097230A /* ResponseError.swift in Sources */,
+				CE5FAF8C214FB26F009E707E /* TouchIdQuickLaunchViewController.swift in Sources */,
 				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
 				A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */,
-				CE25B7512126F01E0097230A /* Request.swift in Sources */,
 				A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */,
 				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */,
@@ -1751,14 +1724,12 @@
 				CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */,
 				CE526C68212471CE00A2EED2 /* Constants.swift in Sources */,
 				A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */,
-				CE25B74A2126B5A50097230A /* Config.swift in Sources */,
 				CE5FAF9F215129A6009E707E /* RegistrationFormValidatonProvider.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
 				A50086142151182A00C47015 /* EnumCollection.swift in Sources */,
 				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
 				CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */,
 				A50086102151166100C47015 /* KeychainProvider.swift in Sources */,
-				CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */,
 				210AB6BCC83B235B9CA055B9 /* LoginViewInput.swift in Sources */,
 				C479078B225F756B4A8BD97E /* LoginViewOutput.swift in Sources */,
 				AAF839BB8A7DB1396F7FAC33 /* LoginViewController.swift in Sources */,

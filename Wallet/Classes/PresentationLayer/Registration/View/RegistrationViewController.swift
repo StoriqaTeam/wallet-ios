@@ -101,23 +101,6 @@ class RegistrationViewController: UIViewController {
 
 extension RegistrationViewController: RegistrationViewInput {
     func setupInitialState() { }
-
-    func showApiErrors(_ apiErrors: [ResponseAPIError.Message]) {
-        for error in apiErrors {
-            switch error.fieldCode {
-            case "firstName":
-                firstNameTextField.errorText = error.text
-            case "lastName":
-                lastNameTextField.errorText = error.text
-            case "email":
-                emailTextField.errorText = error.text
-            case "password":
-                passwordTextField.errorText = error.text
-            default:
-                break
-            }
-        }
-    }
     
     func setButtonEnabled(_ enabled: Bool) {
         signUpButton.isEnabled = enabled
