@@ -35,7 +35,7 @@ extension LoginInteractor: LoginInteractorInput {
         //TODO: implement in new provider
         log.warn("implement login provider")
         
-        // stub
+        // FIXME: - stub
         if arc4random_uniform(2) == 0 {
             if !defaultProvider.isQuickLaunchShown {
                 output.showQuickLaunch(authData: .email(email: email, password: password), token: "")
@@ -54,7 +54,7 @@ extension LoginInteractor: LoginInteractorInput {
         //TODO: implement in new provider
         log.warn("implement login provider")
         
-        // stub
+        // FIXME: - stub
         if arc4random_uniform(2) == 0 {
             if !defaultProvider.isQuickLaunchShown {
                 output.showQuickLaunch(authData: .socialProvider(provider: tokenProvider, token: socialNetworkToken), token: "")

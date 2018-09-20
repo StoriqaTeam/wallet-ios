@@ -2,7 +2,7 @@
 //  WalletUITests.swift
 //  WalletUITests
 //
-//  Created by user on 15.08.2018.
+//  Created by Storiqa on 15.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 

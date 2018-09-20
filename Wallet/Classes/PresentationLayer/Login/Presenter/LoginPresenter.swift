@@ -63,8 +63,12 @@ extension LoginPresenter: LoginInteractorOutput {
     func loginFailed(message: String) {
         //TODO: display login failure
         
-        //delete this
+        
+        // FIXME: - stub
+        
         view.viewController.showAlert(title: "", message: message)
+        
+        //-----------------------------------------
     }
     
 }

@@ -36,7 +36,7 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         // TODO: - implement new provider
         log.warn("implement registration provider")
         
-        // stub
+        // FIXME: - stub
         if arc4random_uniform(2) == 0 {
             output.registrationSucceed(email: email)
         } else {
