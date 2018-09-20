@@ -17,9 +17,14 @@ class QuickLaunchModule {
         let presenter = QuickLaunchPresenter()
         
         //Injections
+        let defaultsProvider = DefaultsProvider()
         let keychainProvider = KeychainProvider()
         let biometricAuthProvider = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
-        let provider = QuickLaunchProvider(authData: authData, token: token, keychainProvider: keychainProvider, biometricAuthProvider: biometricAuthProvider)
+        let provider = QuickLaunchProvider(authData: authData,
+                                           token: token,
+                                           defaultsProvider: defaultsProvider,
+                                           keychainProvider: keychainProvider,
+                                           biometricAuthProvider: biometricAuthProvider)
         let interactor = QuickLaunchInteractor(qiuckLaunchProvider: provider)
         
         let storyboard = UIStoryboard(name: "QuickLaunch", bundle: nil)

@@ -10,7 +10,6 @@ import Foundation
 
 protocol PinValidationProviderProtocol {
     func pinIsValid(_ pin: String) -> Bool
-    func isBiometryAuthEnabled() -> Bool
 }
 
 class PinValidationProvider: PinValidationProviderProtocol {
@@ -27,10 +26,6 @@ class PinValidationProvider: PinValidationProviderProtocol {
         }
         
         return pin == correctPin
-    }
-    
-    func isBiometryAuthEnabled() -> Bool {
-        return keychainProvider.isBiometryAuthEnabled
     }
     
 }

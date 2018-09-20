@@ -11,6 +11,7 @@ import Foundation
 protocol DefaultsProviderProtocol: class {
     var isFirstLaunch: Bool { set get }
     var isQuickLaunchShown: Bool { set get }
+    var isBiometryAuthEnabled: Bool { set get }
 }
 
 class DefaultsProvider: DefaultsProviderProtocol {
@@ -18,6 +19,7 @@ class DefaultsProvider: DefaultsProviderProtocol {
     enum DefaultsKey: String, EnumCollection {
         case isFirstLaunch
         case isQuickLaunchShown
+        case isBiometryAuthEnabled
     }
     
     
@@ -33,11 +35,21 @@ class DefaultsProvider: DefaultsProviderProtocol {
     
     var isQuickLaunchShown: Bool {
         get {
-            guard let first = getBool(.isQuickLaunchShown) else { return false }
-            return first
+            guard let shown = getBool(.isQuickLaunchShown) else { return false }
+            return shown
         }
         set {
             setBool(newValue, key: .isQuickLaunchShown)
+        }
+    }
+    
+    var isBiometryAuthEnabled: Bool {
+        get {
+            guard let enabled = getBool(.isBiometryAuthEnabled) else { return false }
+            return enabled
+        }
+        set {
+            setBool(newValue, key: .isBiometryAuthEnabled)
         }
     }
     
