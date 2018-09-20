@@ -23,6 +23,7 @@ class BaseQuickLaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInterface()
+        disableBackNavigation()
     }
     
     private func configureInterface() {
@@ -30,5 +31,10 @@ class BaseQuickLaunchViewController: UIViewController {
         subtitleLabel?.font = UIFont.subtitle
         subtitleLabel?.textColor = .greyishBrown
         cancelButton.setTitle("do_not_use".localized(), for: .normal)
+    }
+    
+    private func disableBackNavigation() {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        navigationItem.hidesBackButton = true
     }
 }

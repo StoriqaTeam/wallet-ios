@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Enter 4-digit PIN-->
+        <scene sceneID="OgA-1R-D8p">
+            <objects>
+                <viewController storyboardIdentifier="PinSetupVC" title="Enter 4-digit PIN" id="DpD-qI-S3Y" customClass="PinSetupViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pgj-H0-C7e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xO-S6-Zv8">
+                                <rect key="frame" x="0.0" y="50" width="374" height="519"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="Z2x-wN-oUn">
+                                        <rect key="frame" x="56.5" y="0.0" width="261" height="519"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="261" id="eZq-qg-FVN"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Z2x-wN-oUn" firstAttribute="top" secondItem="2xO-S6-Zv8" secondAttribute="top" id="8mw-aC-kVn"/>
+                                    <constraint firstItem="Z2x-wN-oUn" firstAttribute="centerX" secondItem="2xO-S6-Zv8" secondAttribute="centerX" id="N59-Ro-cSb"/>
+                                    <constraint firstItem="Z2x-wN-oUn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2xO-S6-Zv8" secondAttribute="leading" id="NBV-T7-4ki"/>
+                                    <constraint firstItem="Z2x-wN-oUn" firstAttribute="centerY" secondItem="2xO-S6-Zv8" secondAttribute="centerY" id="fIx-gR-NeT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2xO-S6-Zv8" firstAttribute="top" secondItem="PJj-nP-KlR" secondAttribute="top" constant="30" id="3dh-PL-H96"/>
+                            <constraint firstItem="2xO-S6-Zv8" firstAttribute="leading" secondItem="PJj-nP-KlR" secondAttribute="leading" id="8Mr-tJ-o3K"/>
+                            <constraint firstItem="2xO-S6-Zv8" firstAttribute="centerY" secondItem="Pgj-H0-C7e" secondAttribute="centerY" constant="-24" id="Lf3-vF-aw1"/>
+                            <constraint firstItem="2xO-S6-Zv8" firstAttribute="centerX" secondItem="Pgj-H0-C7e" secondAttribute="centerX" id="Rz4-Kg-MPX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PJj-nP-KlR"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Enter Pin" id="hJ9-Re-AeR"/>
+                    <connections>
+                        <outlet property="passwordStackView" destination="Z2x-wN-oUn" id="Jnq-Wh-r85"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tu1-fd-iaX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-540" y="692"/>
+        </scene>
+    </scenes>
+</document>

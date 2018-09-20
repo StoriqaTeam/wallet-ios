@@ -40,15 +40,15 @@ class QuickLaunchProvider: QuickLaunchProviderProtocol {
     
     func setPin(_ pin: String) {
         self.pin = pin
-        
-        //TODO: save authData and token to keychain
-        
-        log.debug("//TODO: save authData and token to keychain")
     }
     
     func isPinConfirmed(_ pinConfirmation: String) -> Bool {
         if pin == pinConfirmation {
             keychainProvider.pincode = pin
+            
+            //TODO: save authData and token to keychain
+            
+            log.debug("//TODO: save authData and token to keychain")
             return true
         } else {
             pin = nil

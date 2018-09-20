@@ -1,5 +1,5 @@
 //
-//  PinQuickLaunchRouter.swift
+//  PinSetupRouter.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 20/09/2018.
@@ -9,19 +9,14 @@
 import Foundation
 
 
-class PinQuickLaunchRouter {
+class PinSetupRouter {
 
 }
 
 
-// MARK: - PinQuickLaunchRouterInput
+// MARK: - PinSetupRouterInput
 
-extension PinQuickLaunchRouter: PinQuickLaunchRouterInput {
-    
-    func showPinSetup(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController) {
-        PinSetupModule.create(qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
-    }
-    
+extension PinSetupRouter: PinSetupRouterInput {
     func showAuthorizedZone() {
         //TODO: showAuthorizedZone
         log.debug("TODO: showAuthorizedZone")

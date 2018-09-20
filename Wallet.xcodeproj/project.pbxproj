@@ -27,6 +27,7 @@
 		29640821A6A627670C90FB72 /* PopUpModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9342E2EEEB9FD01F7454A /* PopUpModule.swift */; };
 		299D987919399E29BA78858E /* FirstLaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC2A11D9B65A4016994E69 /* FirstLaunchPresenter.swift */; };
 		2A0B02DF31C6E9429FE0E3CC /* PasswordRecoveryConfirmModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828AF8FEE8A24D752C2FA7A4 /* PasswordRecoveryConfirmModuleOutput.swift */; };
+		2A19AADF0DD8BF43FC246A74 /* PinSetupViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A9A2D92E74B7C610DD3FE3 /* PinSetupViewOutput.swift */; };
 		2AB82AFB4252B3D2787F924C /* PasswordRecoveryConfirmInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF0DE6FD8C9683A638BCD75 /* PasswordRecoveryConfirmInteractorInput.swift */; };
 		2C2605E9EBCF195BDD25DF7F /* PinQuickLaunchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975BD0D3F70E223C9AB39665 /* PinQuickLaunchModule.swift */; };
 		2CB6AFB44248AEC1D7EF7326 /* Pods_WalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A8724397CC4953A7F9E72E /* Pods_WalletTests.framework */; };
@@ -49,6 +50,7 @@
 		4B42C53D0968DE8E1FFE0BAE /* RegistrationViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A24D3A19D2AAD73DEEA15 /* RegistrationViewInput.swift */; };
 		4D12ADD2691133DFA814DD26 /* PinQuickLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E77C7652077B01BFAD892D /* PinQuickLaunchViewController.swift */; };
 		4E5BC89F50726A6F7AA8256E /* PasswordInputInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B27BA5EC4202B73FE8F821 /* PasswordInputInteractorInput.swift */; };
+		4F27BDC61CC80C07B40BA53D /* PinSetupRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B88B7B4A3CC91B28D220E0 /* PinSetupRouterInput.swift */; };
 		4F5F2068B8E9EC880B224354 /* PinQuickLaunchInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F445895F6A316E81F21C7EEB /* PinQuickLaunchInteractorOutput.swift */; };
 		4FD0957C495AB450B60609F7 /* BiometryQuickLaunchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43559932D5A196CC84D01225 /* BiometryQuickLaunchModule.swift */; };
 		5190C80AF91A79F1263D9412 /* BiometryQuickLaunchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4C9E9BF72EBCC926DA594D /* BiometryQuickLaunchInteractor.swift */; };
@@ -66,6 +68,7 @@
 		70D0185949E966619D914F17 /* PopUpViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420B604421EEAE11A4CE026F /* PopUpViewOutput.swift */; };
 		7802FA10023A55BCB10D8538 /* FirstLaunchModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49396E582D646CBCCC1A469 /* FirstLaunchModuleInput.swift */; };
 		7A80EBB895B1151398C2D79F /* FirstLaunchInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219DFCAB6CBDC3E890FAF9C9 /* FirstLaunchInteractorOutput.swift */; };
+		7B69B52D9D87B8566F124536 /* PinSetupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FCBD96969A196C8C385425 /* PinSetupInteractor.swift */; };
 		7BB2AD26A425C207E35F2F71 /* QuickLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E02B43649E0ECD2535CDF0 /* QuickLaunchViewController.swift */; };
 		7D2290D15CEAF84FA8628C09 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F382C2DE8685587EC1DC8E /* RegistrationViewController.swift */; };
 		806176EA94EC87C0F56391B6 /* PasswordEmailRecoveryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9382E17D9F1AE337DF105E81 /* PasswordEmailRecoveryRouter.swift */; };
@@ -79,7 +82,9 @@
 		8DCE3EEDBEA0BC7E7957D47D /* PasswordInputModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B43F6C7017C03C18BCB6DF /* PasswordInputModuleInput.swift */; };
 		93D422C2B6717A2E6C0B2903 /* BiometryQuickLaunchInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A58646680E6F707CC3318D /* BiometryQuickLaunchInteractorOutput.swift */; };
 		943FD1525EFA0861E6AA1193 /* PinQuickLaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C35C227A0EB43501E053516 /* PinQuickLaunchPresenter.swift */; };
+		9B102E1CDAB4C764C2D1EC8E /* PinSetupViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840C4C35D8B6DF585C991F2 /* PinSetupViewInput.swift */; };
 		9B162F9E0DE1551AF5090C60 /* PopUpRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CB4BA6CB14E8E91E28D49 /* PopUpRouterInput.swift */; };
+		9ED262790FC8BC9BE0AD4D6F /* PinSetupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABCA1BD63695156C7C53148 /* PinSetupRouter.swift */; };
 		A1895A9521B8A57EA1BC3561 /* PasswordEmailRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48103454DCB87F4930BCC86F /* PasswordEmailRecoveryViewController.swift */; };
 		A35080A95A411AAFFCADC2F4 /* PasswordRecoveryConfirmViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1A26B2D9F5AAEC2BD7BC9 /* PasswordRecoveryConfirmViewInput.swift */; };
 		A3AC2118172F25D9C46E786B /* BiometryQuickLaunchModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5A824C395BB830146A296 /* BiometryQuickLaunchModuleOutput.swift */; };
@@ -100,6 +105,7 @@
 		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
 		A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C32150215B0096C155 /* BiometricAuthProvider.swift */; };
 		A58EE3C62150379E0096C155 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58EE3C52150379E0096C155 /* Login.storyboard */; };
+		A6F5B3DAAEA6C2400283BAE8 /* PinSetupModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D614C3F339D50C93566CA /* PinSetupModuleInput.swift */; };
 		AAF839BB8A7DB1396F7FAC33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E68F2791C11BF019BE072 /* LoginViewController.swift */; };
 		B039B47DC64841F3151D9B32 /* PinQuickLaunchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A547672EF418EFEC87450DB /* PinQuickLaunchInteractor.swift */; };
 		B2EE15BCB20ED6ED71584DC2 /* QuickLaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C6FB667D6F74E21E62DD15 /* QuickLaunchRouter.swift */; };
@@ -116,9 +122,7 @@
 		CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */; };
 		CE0E5A65212D5681003E2C5E /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A64212D5681003E2C5E /* BaseButton.swift */; };
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
-		CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */; };
 		CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */; };
-		CE15A37A214F8E32008B311D /* QuickLaunchViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15A379214F8E32008B311D /* QuickLaunchViewController_old.swift */; };
 		CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547D214A637E009D1360 /* UIFontExtension.swift */; };
 		CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */; };
 		CE185494214BE558009D1360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE185496214BE558009D1360 /* Localizable.strings */; };
@@ -143,9 +147,6 @@
 		CE526C54212465A900A2EED2 /* WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C53212465A900A2EED2 /* WalletUITests.swift */; };
 		CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */; };
 		CE526C68212471CE00A2EED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C67212471CE00A2EED2 /* Constants.swift */; };
-		CE5FAF8A214FB25C009E707E /* PinQuickLaunchViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF89214FB25C009E707E /* PinQuickLaunchViewController_old.swift */; };
-		CE5FAF8C214FB26F009E707E /* TouchIdQuickLaunchViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF8B214FB26F009E707E /* TouchIdQuickLaunchViewController_old.swift */; };
-		CE5FAF8E214FB280009E707E /* PinSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF8D214FB280009E707E /* PinSetupViewController.swift */; };
 		CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */; };
 		CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAF97215104B4009E707E /* Registration.storyboard */; };
 		CE5FAF9F215129A6009E707E /* RegistrationFormValidatonProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF9E215129A6009E707E /* RegistrationFormValidatonProvider.swift */; };
@@ -155,11 +156,11 @@
 		CE5FAFAD215253D1009E707E /* PopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFAC215253D1009E707E /* PopUp.storyboard */; };
 		CE5FAFAF21527CAB009E707E /* QuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFAE21527CAB009E707E /* QuickLaunch.storyboard */; };
 		CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAFB2215286D8009E707E /* QuickLaunchProvider.swift */; };
-		CE5FAFB4215296EF009E707E /* QuickLaunch_old.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE185497214C0241009D1360 /* QuickLaunch_old.storyboard */; };
 		CE5FAFB521529738009E707E /* QuickLaunchModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3A59EE5B1296368A192DF4 /* QuickLaunchModuleOutput.swift */; };
 		CE5FAFB721537DD7009E707E /* BaseQuickLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAFB621537DD7009E707E /* BaseQuickLaunchViewController.swift */; };
 		CE5FAFB92153801F009E707E /* PinQuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFB82153801F009E707E /* PinQuickLaunch.storyboard */; };
 		CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBA21538653009E707E /* BiometryQuickLaunch.storyboard */; };
+		CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBE2153949B009E707E /* PinSetup.storyboard */; };
 		CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */; };
 		CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
@@ -167,14 +168,17 @@
 		CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */; };
 		CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */; };
 		CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDF012134354400490781 /* UIColorExtension.swift */; };
-		CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDF032134499B00490781 /* Fallbacks.swift */; };
 		CF065C7C011BD01324225AAD /* PasswordInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CE138506AFD7883213BB9 /* PasswordInputViewController.swift */; };
 		CFF9F4C159614776247E0C56 /* RegistrationModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8FADE0EC6E66D44DA3DEE6 /* RegistrationModuleOutput.swift */; };
 		D10F92311EC6645E14E46422 /* PasswordEmailRecoveryModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E6A797943DE019CDDA1AD /* PasswordEmailRecoveryModule.swift */; };
 		D38A8FA13AAF73DEB072ECF1 /* FirstLaunchInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE751DD4EE8019385CAB39 /* FirstLaunchInteractorInput.swift */; };
 		D673BB210C0EE94821BDEFFA /* RegistrationInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0E3A857DFE2A14FC37739D /* RegistrationInteractorInput.swift */; };
+		D7DD0EC3E4E6A4C5308142EB /* PinSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326A8299B31FE823B00820F8 /* PinSetupViewController.swift */; };
+		D8725E388DDC6EC37245C900 /* PinSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E90039309C4346C217E120 /* PinSetupPresenter.swift */; };
 		DA1A1B4454CF99D98B79BD28 /* LoginRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6003FC56CA2CEFC5BC47FE /* LoginRouterInput.swift */; };
 		DAD66F6925304312D772B826 /* FirstLaunchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20AFFE8EBAFA104AF111038 /* FirstLaunchModule.swift */; };
+		DB0167269CDCA1A26EFD340D /* PinSetupInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36364E63D962C92F146BA8E7 /* PinSetupInteractorInput.swift */; };
+		DBDC98669AC4320EAFC55E3F /* PinSetupInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9529FD71E76E63F3678FC5B7 /* PinSetupInteractorOutput.swift */; };
 		DCCD990699B49FC6A3B47B52 /* LoginInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF1D54551EE7E6F7D7E705B /* LoginInteractorOutput.swift */; };
 		DCF2945472E263853448156F /* LoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEA23B5D83156F44A5A3317 /* LoginModule.swift */; };
 		DF3822DC4DAE4101FC197A94 /* FirstLaunchModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B0E62CF2C459C211FC08E /* FirstLaunchModuleOutput.swift */; };
@@ -185,6 +189,7 @@
 		E20B13748E606969CEE8DA51 /* PasswordEmailRecoveryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F945069D7FE2645D21FEC36C /* PasswordEmailRecoveryInteractor.swift */; };
 		E25A0E75B3C836260DA96051 /* PasswordRecoveryConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F96950A5C35E3D0F8701CF8 /* PasswordRecoveryConfirmViewController.swift */; };
 		E275BFADE175B146D991425C /* RegistrationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207839F20F5A178A4E265E9B /* RegistrationModule.swift */; };
+		E2ED95B2BB076E4FB9B465A9 /* PinSetupModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5232549A6E9E79B8513CB8E0 /* PinSetupModule.swift */; };
 		E327B31544D170306C8912F6 /* PopUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92A70B2DE1269BAE2D165B8 /* PopUpRouter.swift */; };
 		E454D06D1C3D8744B3F666F2 /* PasswordInputViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782A15357B69ED5C10B1D116 /* PasswordInputViewInput.swift */; };
 		E4760D4F175190FCE277280C /* PasswordRecoveryConfirmViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DFDAFBB213DB18269D4ACB /* PasswordRecoveryConfirmViewOutput.swift */; };
@@ -196,6 +201,7 @@
 		ED225EB78E206616574BF490 /* FirstLaunchRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D51FC7D64513BC6DC4B967 /* FirstLaunchRouterInput.swift */; };
 		F0860FFB36B83A22321647FC /* PasswordRecoveryConfirmRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6A8BFFDED60CFD82E34C1 /* PasswordRecoveryConfirmRouter.swift */; };
 		F0868C4BC96F8724DDDD2386 /* RegistrationViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E8C721E669CD10C070F89 /* RegistrationViewOutput.swift */; };
+		F34BB7AD7D33FF940EFBBD05 /* PinSetupModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA72FDAEEE7FB56C574DA /* PinSetupModuleOutput.swift */; };
 		F724C3EE1C872FF0DF3C37D7 /* PasswordInputModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB5A3DC24D8C7A866DD767 /* PasswordInputModuleOutput.swift */; };
 		F84105BB46F917B0AB9317C9 /* BiometryQuickLaunchRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780B0994FB4C72C4468647B0 /* BiometryQuickLaunchRouterInput.swift */; };
 		F91599534C9DC69FA45F1EF4 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CA8F79C9B850C18EE16038 /* RegistrationPresenter.swift */; };
@@ -229,20 +235,25 @@
 		0F8AF32F0B960F8792570D3E /* PinQuickLaunchInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchInteractorInput.swift; sourceTree = "<group>"; };
 		0FE47F775464F7BD41756322 /* PopUpViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpViewInput.swift; sourceTree = "<group>"; };
 		10EA168845DE25F12215A68E /* PinQuickLaunchRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchRouterInput.swift; sourceTree = "<group>"; };
+		12A9A2D92E74B7C610DD3FE3 /* PinSetupViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupViewOutput.swift; sourceTree = "<group>"; };
 		14801C46CD8CE051B726A955 /* LoginModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleInput.swift; sourceTree = "<group>"; };
 		173B08554CD8BCEDCB6E671D /* BiometryQuickLaunchViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchViewOutput.swift; sourceTree = "<group>"; };
 		175FE257678A8696EAB653BE /* QuickLaunchModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchModule.swift; sourceTree = "<group>"; };
+		1840C4C35D8B6DF585C991F2 /* PinSetupViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupViewInput.swift; sourceTree = "<group>"; };
 		189CB4BA6CB14E8E91E28D49 /* PopUpRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpRouterInput.swift; sourceTree = "<group>"; };
 		190E8C721E669CD10C070F89 /* RegistrationViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationViewOutput.swift; sourceTree = "<group>"; };
 		1C9D7991BF974085777B0BB7 /* QuickLaunchModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchModuleInput.swift; sourceTree = "<group>"; };
 		207839F20F5A178A4E265E9B /* RegistrationModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationModule.swift; sourceTree = "<group>"; };
 		20D51FC7D64513BC6DC4B967 /* FirstLaunchRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchRouterInput.swift; sourceTree = "<group>"; };
 		219DFCAB6CBDC3E890FAF9C9 /* FirstLaunchInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchInteractorOutput.swift; sourceTree = "<group>"; };
+		270D614C3F339D50C93566CA /* PinSetupModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupModuleInput.swift; sourceTree = "<group>"; };
 		2AA1A26B2D9F5AAEC2BD7BC9 /* PasswordRecoveryConfirmViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmViewInput.swift; sourceTree = "<group>"; };
 		2DBF2A22248EF5C4AF19A2F8 /* PasswordEmailRecoveryInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryInteractorInput.swift; sourceTree = "<group>"; };
 		30759375BE660B1458C46BAE /* PasswordInputInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordInputInteractor.swift; sourceTree = "<group>"; };
 		31E77C7652077B01BFAD892D /* PinQuickLaunchViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchViewController.swift; sourceTree = "<group>"; };
+		326A8299B31FE823B00820F8 /* PinSetupViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupViewController.swift; sourceTree = "<group>"; };
 		35AF729F909A27BAAB3F2603 /* RegistrationInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
+		36364E63D962C92F146BA8E7 /* PinSetupInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupInteractorInput.swift; sourceTree = "<group>"; };
 		390C23610EB031515F3F3FD6 /* PasswordEmailRecoveryModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryModuleInput.swift; sourceTree = "<group>"; };
 		3CBC2A11D9B65A4016994E69 /* FirstLaunchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchPresenter.swift; sourceTree = "<group>"; };
 		3CF7B40D3A60AB3A135372B4 /* BiometryQuickLaunchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchPresenter.swift; sourceTree = "<group>"; };
@@ -257,6 +268,7 @@
 		4B4ED0815E61CF22DB8393CF /* PasswordEmailRecoveryPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryPresenter.swift; sourceTree = "<group>"; };
 		4E6003FC56CA2CEFC5BC47FE /* LoginRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouterInput.swift; sourceTree = "<group>"; };
 		4F96950A5C35E3D0F8701CF8 /* PasswordRecoveryConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmViewController.swift; sourceTree = "<group>"; };
+		5232549A6E9E79B8513CB8E0 /* PinSetupModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupModule.swift; sourceTree = "<group>"; };
 		57CB5A3DC24D8C7A866DD767 /* PasswordInputModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordInputModuleOutput.swift; sourceTree = "<group>"; };
 		5A68B00BA0B92698B76FD538 /* BiometryQuickLaunchInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchInteractorInput.swift; sourceTree = "<group>"; };
 		5C35C227A0EB43501E053516 /* PinQuickLaunchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchPresenter.swift; sourceTree = "<group>"; };
@@ -288,14 +300,17 @@
 		81C6FB667D6F74E21E62DD15 /* QuickLaunchRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchRouter.swift; sourceTree = "<group>"; };
 		828AF8FEE8A24D752C2FA7A4 /* PasswordRecoveryConfirmModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmModuleOutput.swift; sourceTree = "<group>"; };
 		85A6A8BFFDED60CFD82E34C1 /* PasswordRecoveryConfirmRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmRouter.swift; sourceTree = "<group>"; };
+		85E90039309C4346C217E120 /* PinSetupPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupPresenter.swift; sourceTree = "<group>"; };
 		866A43D544C532EAB54E7B80 /* QuickLaunchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchPresenter.swift; sourceTree = "<group>"; };
 		86BE08D431D523C941B8A2CA /* PopUpInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpInteractorOutput.swift; sourceTree = "<group>"; };
 		87885221F8558DE638669A14 /* QuickLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchInteractor.swift; sourceTree = "<group>"; };
 		87FA43E8B1A61C3C3CDE60A7 /* PopUpModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpModuleInput.swift; sourceTree = "<group>"; };
+		87FCBD96969A196C8C385425 /* PinSetupInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupInteractor.swift; sourceTree = "<group>"; };
 		8A547672EF418EFEC87450DB /* PinQuickLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchInteractor.swift; sourceTree = "<group>"; };
 		8BF1D54551EE7E6F7D7E705B /* LoginInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorOutput.swift; sourceTree = "<group>"; };
 		9382E17D9F1AE337DF105E81 /* PasswordEmailRecoveryRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryRouter.swift; sourceTree = "<group>"; };
 		9385B8417057A339D5D2CFEE /* PasswordEmailRecoveryViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryViewInput.swift; sourceTree = "<group>"; };
+		9529FD71E76E63F3678FC5B7 /* PinSetupInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupInteractorOutput.swift; sourceTree = "<group>"; };
 		95A8724397CC4953A7F9E72E /* Pods_WalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		975BD0D3F70E223C9AB39665 /* PinQuickLaunchModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchModule.swift; sourceTree = "<group>"; };
 		976B40A786A61A1F2C083835 /* PasswordInputInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordInputInteractorOutput.swift; sourceTree = "<group>"; };
@@ -305,6 +320,7 @@
 		9E17B58F33D0B0EC0E02E670 /* BiometryQuickLaunchRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchRouter.swift; sourceTree = "<group>"; };
 		A12D33681916760FB8F37D8E /* BiometryQuickLaunchViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchViewInput.swift; sourceTree = "<group>"; };
 		A1B27BA5EC4202B73FE8F821 /* PasswordInputInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordInputInteractorInput.swift; sourceTree = "<group>"; };
+		A34AA72FDAEEE7FB56C574DA /* PinSetupModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupModuleOutput.swift; sourceTree = "<group>"; };
 		A50086002150BD2B00C47015 /* PasswordInput.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordInput.storyboard; sourceTree = "<group>"; };
 		A50086042150D5D600C47015 /* FirstLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstLaunch.storyboard; sourceTree = "<group>"; };
 		A50086082150F95B00C47015 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -332,31 +348,29 @@
 		B8DFDAFBB213DB18269D4ACB /* PasswordRecoveryConfirmViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmViewOutput.swift; sourceTree = "<group>"; };
 		B92A70B2DE1269BAE2D165B8 /* PopUpRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpRouter.swift; sourceTree = "<group>"; };
 		BA5EBFF4CABBEDECFEEA987F /* PasswordRecoveryConfirmPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmPresenter.swift; sourceTree = "<group>"; };
+		BABCA1BD63695156C7C53148 /* PinSetupRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupRouter.swift; sourceTree = "<group>"; };
 		BC4DE7AF801525F566BD53C3 /* Pods-WalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletTests/Pods-WalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BD2BB9E942735421F64D092F /* FirstLaunchViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchViewController.swift; sourceTree = "<group>"; };
 		C21A24D3A19D2AAD73DEEA15 /* RegistrationViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationViewInput.swift; sourceTree = "<group>"; };
 		C3E7D90E600F2A8F3F1D9300 /* LoginViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewOutput.swift; sourceTree = "<group>"; };
 		C3EE751DD4EE8019385CAB39 /* FirstLaunchInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchInteractorInput.swift; sourceTree = "<group>"; };
 		C4D2F13364BE6B168335FE8E /* PopUpViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		C5B88B7B4A3CC91B28D220E0 /* PinSetupRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupRouterInput.swift; sourceTree = "<group>"; };
 		C82D0537B4CB1FBCDB8A1D56 /* FirstLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchInteractor.swift; sourceTree = "<group>"; };
 		CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseType.swift; sourceTree = "<group>"; };
 		CE0E5A64212D5681003E2C5E /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		CE0E5A66212D569A003E2C5E /* LightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightButton.swift; sourceTree = "<group>"; };
-		CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
-		CE15A379214F8E32008B311D /* QuickLaunchViewController_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLaunchViewController_old.swift; sourceTree = "<group>"; };
 		CE18547D214A637E009D1360 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
 		CE185490214BD578009D1360 /* ProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDelegate.swift; sourceTree = "<group>"; };
 		CE185495214BE558009D1360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CE185497214C0241009D1360 /* QuickLaunch_old.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuickLaunch_old.storyboard; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
 		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
 		CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
 		CE1BD73C212565B8006097E5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
-		CE25B73E2126AA200097230A /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		CE25B7492126B5A50097230A /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		CE25B74B2126BCFF0097230A /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -378,9 +392,6 @@
 		CE526C55212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CE526C67212471CE00A2EED2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CE5FAF89214FB25C009E707E /* PinQuickLaunchViewController_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchViewController_old.swift; sourceTree = "<group>"; };
-		CE5FAF8B214FB26F009E707E /* TouchIdQuickLaunchViewController_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchIdQuickLaunchViewController_old.swift; sourceTree = "<group>"; };
-		CE5FAF8D214FB280009E707E /* PinSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupViewController.swift; sourceTree = "<group>"; };
 		CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinValidationProvider.swift; sourceTree = "<group>"; };
 		CE5FAF97215104B4009E707E /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		CE5FAF9E215129A6009E707E /* RegistrationFormValidatonProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormValidatonProvider.swift; sourceTree = "<group>"; };
@@ -393,6 +404,7 @@
 		CE5FAFB621537DD7009E707E /* BaseQuickLaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseQuickLaunchViewController.swift; sourceTree = "<group>"; };
 		CE5FAFB82153801F009E707E /* PinQuickLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PinQuickLaunch.storyboard; sourceTree = "<group>"; };
 		CE5FAFBA21538653009E707E /* BiometryQuickLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BiometryQuickLaunch.storyboard; sourceTree = "<group>"; };
+		CE5FAFBE2153949B009E707E /* PinSetup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PinSetup.storyboard; sourceTree = "<group>"; };
 		CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsAuthErrorParser.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -401,7 +413,6 @@
 		CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNetworkAuthView.xib; sourceTree = "<group>"; };
 		CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Wallet-Bridging-Header.h"; path = "Wallet/Other/Wallet-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		CEDDDF012134354400490781 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		CEDDDF032134499B00490781 /* Fallbacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fallbacks.swift; sourceTree = "<group>"; };
 		CF962FEE45869770D4CEE25A /* PasswordRecoveryConfirmInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmInteractor.swift; sourceTree = "<group>"; };
 		D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D49396E582D646CBCCC1A469 /* FirstLaunchModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchModuleInput.swift; sourceTree = "<group>"; };
@@ -796,6 +807,18 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
+		74E1EE79A36215B0DCA248BA /* PinSetup */ = {
+			isa = PBXGroup;
+			children = (
+				CFD5FC04F18BBDD59AE29874 /* View */,
+				CF7728B4F1EEE795D6F82F7B /* Presenter */,
+				B90828930B61D8754E0B5BA4 /* Interactor */,
+				B19C4A1751BF807CA83CE829 /* Router */,
+				CB0C6C14F23EAD92D741F255 /* Module */,
+			);
+			path = PinSetup;
+			sourceTree = "<group>";
+		};
 		7C3BA4968353AE0FB00EA5A2 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,15 +914,6 @@
 			path = Biometric;
 			sourceTree = "<group>";
 		};
-		A50086032150C4C800C47015 /* LegacyCode */ = {
-			isa = PBXGroup;
-			children = (
-				CE25B7442126B4C70097230A /* Storyboards */,
-				CE25B7452126B4E20097230A /* Screens */,
-			);
-			path = LegacyCode;
-			sourceTree = "<group>";
-		};
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -957,6 +971,7 @@
 				D1A05278CDB8B0ADE5A9E419 /* QuickLaunch */,
 				145754F06027B916A9383527 /* PinQuickLaunch */,
 				E463DB1BBB09AD64D8E037EB /* BiometryQuickLaunch */,
+				74E1EE79A36215B0DCA248BA /* PinSetup */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -1075,6 +1090,15 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		B19C4A1751BF807CA83CE829 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C5B88B7B4A3CC91B28D220E0 /* PinSetupRouterInput.swift */,
+				BABCA1BD63695156C7C53148 /* PinSetupRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		B76D0D4B8FA14BD3B34B245C /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -1085,12 +1109,32 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		B90828930B61D8754E0B5BA4 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				36364E63D962C92F146BA8E7 /* PinSetupInteractorInput.swift */,
+				9529FD71E76E63F3678FC5B7 /* PinSetupInteractorOutput.swift */,
+				87FCBD96969A196C8C385425 /* PinSetupInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
 		C8F2C4517605AB053895013E /* Module */ = {
 			isa = PBXGroup;
 			children = (
 				05B43F6C7017C03C18BCB6DF /* PasswordInputModuleInput.swift */,
 				57CB5A3DC24D8C7A866DD767 /* PasswordInputModuleOutput.swift */,
 				72281BFA29D45AEE30F5DBB5 /* PasswordInputModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		CB0C6C14F23EAD92D741F255 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				270D614C3F339D50C93566CA /* PinSetupModuleInput.swift */,
+				A34AA72FDAEEE7FB56C574DA /* PinSetupModuleOutput.swift */,
+				5232549A6E9E79B8513CB8E0 /* PinSetupModule.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -1107,17 +1151,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		CE15A378214F8BE6008B311D /* QuickLaunch */ = {
-			isa = PBXGroup;
-			children = (
-				CE15A379214F8E32008B311D /* QuickLaunchViewController_old.swift */,
-				CE5FAF89214FB25C009E707E /* PinQuickLaunchViewController_old.swift */,
-				CE5FAF8B214FB26F009E707E /* TouchIdQuickLaunchViewController_old.swift */,
-				CE5FAF8D214FB280009E707E /* PinSetupViewController.swift */,
-			);
-			path = QuickLaunch;
-			sourceTree = "<group>";
-		};
 		CE1A47D1212E9C0200418C11 /* SmileLock */ = {
 			isa = PBXGroup;
 			children = (
@@ -1129,31 +1162,12 @@
 			path = SmileLock;
 			sourceTree = "<group>";
 		};
-		CE25B7442126B4C70097230A /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				CE185497214C0241009D1360 /* QuickLaunch_old.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		CE25B7452126B4E20097230A /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				CE15A378214F8BE6008B311D /* QuickLaunch */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		CE25B7462126B4F80097230A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */,
 				CE526C67212471CE00A2EED2 /* Constants.swift */,
-				CEDDDF032134499B00490781 /* Fallbacks.swift */,
-				CE0E5A6A212D73E7003E2C5E /* Storyboard.swift */,
 				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
-				CE25B73E2126AA200097230A /* Validations.swift */,
 				A500860C2150FA1600C47015 /* Result.swift */,
 				A50086132151182A00C47015 /* EnumCollection.swift */,
 			);
@@ -1203,7 +1217,6 @@
 				A58EE3B4214FFD810096C155 /* Other */,
 				A58EE3B5214FFD880096C155 /* Common */,
 				CE526C3F212465A900A2EED2 /* Info.plist */,
-				A50086032150C4C800C47015 /* LegacyCode */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1305,6 +1318,25 @@
 				01CCE6AE3B2D04CEB962D43C /* Module */,
 			);
 			path = PasswordRecoveryConfirm;
+			sourceTree = "<group>";
+		};
+		CF7728B4F1EEE795D6F82F7B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				85E90039309C4346C217E120 /* PinSetupPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CFD5FC04F18BBDD59AE29874 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1840C4C35D8B6DF585C991F2 /* PinSetupViewInput.swift */,
+				12A9A2D92E74B7C610DD3FE3 /* PinSetupViewOutput.swift */,
+				326A8299B31FE823B00820F8 /* PinSetupViewController.swift */,
+				CE5FAFBE2153949B009E707E /* PinSetup.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D091D2624CFD0805ED34AB9B /* Interactor */ = {
@@ -1535,6 +1567,7 @@
 			files = (
 				CE5FAFA921523784009E707E /* PasswordRecoveryConfirm.storyboard in Resources */,
 				CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */,
+				CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
 				A50086012150BD2B00C47015 /* PasswordInput.storyboard in Resources */,
 				CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */,
@@ -1543,7 +1576,6 @@
 				A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */,
 				CE185494214BE558009D1360 /* Localizable.strings in Resources */,
 				CE5FAFAF21527CAB009E707E /* QuickLaunch.storyboard in Resources */,
-				CE5FAFB4215296EF009E707E /* QuickLaunch_old.storyboard in Resources */,
 				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
 				CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */,
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
@@ -1695,18 +1727,14 @@
 				CE5FAFB521529738009E707E /* QuickLaunchModuleOutput.swift in Sources */,
 				CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */,
 				A500860B2150F9E700C47015 /* NetworkLoadable.swift in Sources */,
-				CE5FAF8A214FB25C009E707E /* PinQuickLaunchViewController_old.swift in Sources */,
 				CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */,
 				CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */,
 				CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */,
 				CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */,
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
-				CE5FAF8E214FB280009E707E /* PinSetupViewController.swift in Sources */,
 				CE25B74C2126BCFF0097230A /* RequestSender.swift in Sources */,
-				CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */,
 				CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */,
-				CE5FAF8C214FB26F009E707E /* TouchIdQuickLaunchViewController_old.swift in Sources */,
 				CE25B759212711620097230A /* ResponseError.swift in Sources */,
 				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
@@ -1729,8 +1757,6 @@
 				A50086142151182A00C47015 /* EnumCollection.swift in Sources */,
 				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
 				CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */,
-				CE15A37A214F8E32008B311D /* QuickLaunchViewController_old.swift in Sources */,
-				CE0E5A6B212D73E7003E2C5E /* Storyboard.swift in Sources */,
 				A50086102151166100C47015 /* KeychainProvider.swift in Sources */,
 				CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */,
 				210AB6BCC83B235B9CA055B9 /* LoginViewInput.swift in Sources */,
@@ -1857,6 +1883,18 @@
 				1D29389B7211768F5C82EF1B /* BiometryQuickLaunchModuleInput.swift in Sources */,
 				A3AC2118172F25D9C46E786B /* BiometryQuickLaunchModuleOutput.swift in Sources */,
 				4FD0957C495AB450B60609F7 /* BiometryQuickLaunchModule.swift in Sources */,
+				9B102E1CDAB4C764C2D1EC8E /* PinSetupViewInput.swift in Sources */,
+				2A19AADF0DD8BF43FC246A74 /* PinSetupViewOutput.swift in Sources */,
+				D7DD0EC3E4E6A4C5308142EB /* PinSetupViewController.swift in Sources */,
+				D8725E388DDC6EC37245C900 /* PinSetupPresenter.swift in Sources */,
+				DB0167269CDCA1A26EFD340D /* PinSetupInteractorInput.swift in Sources */,
+				DBDC98669AC4320EAFC55E3F /* PinSetupInteractorOutput.swift in Sources */,
+				7B69B52D9D87B8566F124536 /* PinSetupInteractor.swift in Sources */,
+				4F27BDC61CC80C07B40BA53D /* PinSetupRouterInput.swift in Sources */,
+				9ED262790FC8BC9BE0AD4D6F /* PinSetupRouter.swift in Sources */,
+				A6F5B3DAAEA6C2400283BAE8 /* PinSetupModuleInput.swift in Sources */,
+				F34BB7AD7D33FF940EFBBD05 /* PinSetupModuleOutput.swift in Sources */,
+				E2ED95B2BB076E4FB9B465A9 /* PinSetupModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

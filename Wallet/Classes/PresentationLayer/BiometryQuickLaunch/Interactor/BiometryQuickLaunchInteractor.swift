@@ -13,6 +13,7 @@ class BiometryQuickLaunchInteractor {
     weak var output: BiometryQuickLaunchInteractorOutput!
     
     private let qiuckLaunchProvider: QuickLaunchProviderProtocol
+    
     init(qiuckLaunchProvider: QuickLaunchProviderProtocol) {
         self.qiuckLaunchProvider = qiuckLaunchProvider
     }

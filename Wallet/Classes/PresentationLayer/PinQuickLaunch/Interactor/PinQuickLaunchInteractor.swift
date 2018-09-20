@@ -13,6 +13,7 @@ class PinQuickLaunchInteractor {
     weak var output: PinQuickLaunchInteractorOutput!
     
     private let qiuckLaunchProvider: QuickLaunchProviderProtocol
+    
     init(qiuckLaunchProvider: QuickLaunchProviderProtocol) {
         self.qiuckLaunchProvider = qiuckLaunchProvider
     }
