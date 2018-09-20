@@ -30,10 +30,20 @@ class BiometryQuickLaunchViewController: BaseQuickLaunchViewController {
     
     @IBAction func performAction(_ sender: UIButton) {
         output.performAction()
+        showAlert(title: "", message: "Приложение должно перейти в авторизованную зону")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            LoginModule.create().present()
+        }
+        
+        
     }
     
     @IBAction func cancelSetup(_ sender: UIButton) {
         output.cancelSetup()
+        showAlert(title: "", message: "Приложение должно перейти в авторизованную зону")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            LoginModule.create().present()
+        }
     }
     
 }

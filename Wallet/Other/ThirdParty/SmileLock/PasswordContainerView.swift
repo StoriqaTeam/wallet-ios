@@ -167,7 +167,7 @@ private extension PasswordContainerView {
     func checkInputComplete() {
         if inputString.count == passwordDotView.totalDotCount {
             if let delegate = delegate {
-                delegate.passwordInputComplete(input: inputString)
+                delegate.passwordInputComplete(input: inputString)      
             } else {
                 log.warn("delegate is nil")
             }

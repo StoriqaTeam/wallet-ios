@@ -54,6 +54,8 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
         }
         
         output.confirmReset(newPassword: password)
+        LoginModule.create().present()
+        
     }
     
     override func textDidChange(_ notification: Notification) {

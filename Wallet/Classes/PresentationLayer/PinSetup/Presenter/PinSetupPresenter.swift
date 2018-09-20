@@ -49,6 +49,10 @@ extension PinSetupPresenter: PinSetupViewOutput {
 extension PinSetupPresenter: PinSetupInteractorOutput {
     
     func showAuthorizedZone() {
+        view.viewController.showAlert(message: "Далее приложение должно перейти в авторизованную зону")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            LoginModule.create().present()
+        }
         router.showAuthorizedZone()
     }
     
