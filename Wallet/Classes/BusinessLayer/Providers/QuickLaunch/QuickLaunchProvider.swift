@@ -23,7 +23,6 @@ class QuickLaunchProvider: QuickLaunchProviderProtocol {
     
     private var pin: String?
     
-    //FIXME: use KeychainProviderProvider when available
     private let keychainProvider: KeychainProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
     
