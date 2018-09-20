@@ -11,4 +11,5 @@ import Foundation
 
 protocol PasswordInputInteractorInput: class {
     func validatePassword(_ password: String)
+    func isBiometryAuthEnabled() -> Bool
 }

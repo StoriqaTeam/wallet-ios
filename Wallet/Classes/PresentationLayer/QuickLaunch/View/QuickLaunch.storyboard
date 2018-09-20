@@ -54,22 +54,26 @@
                                             <constraint firstItem="RSD-dp-r8q" firstAttribute="centerX" secondItem="ev0-xC-A5j" secondAttribute="centerX" id="eJe-cm-Y4W"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NM-Ms-gHQ" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NM-Ms-gHQ" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="45" width="319" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="b4r-TP-RdL"/>
                                         </constraints>
-                                        <state key="normal" title="Set up quick launch"/>
+                                        <state key="normal" title="Set up quick launch">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="performAction:" destination="qxa-kj-BLd" eventType="touchUpInside" id="OCG-Wf-mu2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4V-Ra-ynD" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4V-Ra-ynD" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="97" width="319" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="QpW-T8-yy8"/>
                                         </constraints>
-                                        <state key="normal" title="Do not use"/>
+                                        <state key="normal" title="Do not use">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="cancelSetup:" destination="qxa-kj-BLd" eventType="touchUpInside" id="vz8-fC-34P"/>
                                         </connections>

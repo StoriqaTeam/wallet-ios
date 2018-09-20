@@ -25,7 +25,7 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
     private let errorParser: BiometricAuthErrorParserProtocol
     private let context = LAContext()
     
-    //TODO: localization
+    //FIXME: - localization
     private let touchAuthenticationReason = "Authentication is needed to access your account"//.localized()
     
     init(errorParser: BiometricAuthErrorParserProtocol) {

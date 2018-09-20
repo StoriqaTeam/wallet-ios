@@ -14,8 +14,10 @@ class PasswordInputModule {
         
         // Injection
         let keychainProvider = KeychainProvider()
+        let defaultsProvider = DefaultsProvider()
+        let biometricAuthProvider = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
         let pinValidator = PinValidationProvider(keychainProvider: keychainProvider)
-        let interactor = PasswordInputInteractor(pinValidator: pinValidator)
+        let interactor = PasswordInputInteractor(defaultsProvider: defaultsProvider, pinValidator: pinValidator, biometricAuthProvider: biometricAuthProvider)
         
         let passwordInputSb = UIStoryboard(name: "PasswordInput", bundle: nil)
         let viewController = passwordInputSb.instantiateViewController(withIdentifier: "PinLoginVC") as! PasswordInputViewController

@@ -119,7 +119,6 @@
 		C479078B225F756B4A8BD97E /* LoginViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E7D90E600F2A8F3F1D9300 /* LoginViewOutput.swift */; };
 		C6DE89D0E5755BA05866C1DD /* PopUpInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BE08D431D523C941B8A2CA /* PopUpInteractorOutput.swift */; };
 		CD2529EF44F08CF6C8BDE01E /* QuickLaunchViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB061958AA4F9CCD8A95A48C /* QuickLaunchViewInput.swift */; };
-		CE0E5A5F212C35DE003E2C5E /* ResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A5E212C35DE003E2C5E /* ResponseType.swift */; };
 		CE0E5A65212D5681003E2C5E /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A64212D5681003E2C5E /* BaseButton.swift */; };
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
 		CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */; };
@@ -157,7 +156,7 @@
 		CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBA21538653009E707E /* BiometryQuickLaunch.storyboard */; };
 		CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBE2153949B009E707E /* PinSetup.storyboard */; };
 		CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */; };
-		CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */; };
+		CE7546C4212EF0F100757CB8 /* BiometricAuthErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7546C3212EF0F100757CB8 /* BiometricAuthErrorParser.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */; };
@@ -364,7 +363,6 @@
 		CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
 		CE1BD73C212565B8006097E5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
-		CE25B73E2126AA200097230A /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CE45A8BD212C029F0096DD5F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -395,7 +393,7 @@
 		CE5FAFBA21538653009E707E /* BiometryQuickLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BiometryQuickLaunch.storyboard; sourceTree = "<group>"; };
 		CE5FAFBE2153949B009E707E /* PinSetup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PinSetup.storyboard; sourceTree = "<group>"; };
 		CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
-		CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsAuthErrorParser.swift; sourceTree = "<group>"; };
+		CE7546C3212EF0F100757CB8 /* BiometricAuthErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthErrorParser.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthView.swift; sourceTree = "<group>"; };
@@ -1153,7 +1151,7 @@
 		CE25B7462126B4F80097230A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */,
+				CE7546C3212EF0F100757CB8 /* BiometricAuthErrorParser.swift */,
 				CE526C67212471CE00A2EED2 /* Constants.swift */,
 				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
 				A500860C2150FA1600C47015 /* Result.swift */,
@@ -1706,10 +1704,7 @@
 				CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */,
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
-				CE5FAF8E214FB280009E707E /* PinSetupViewController.swift in Sources */,
-				CEDDDF042134499B00490781 /* Fallbacks.swift in Sources */,
 				CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */,
-				CE5FAF8C214FB26F009E707E /* TouchIdQuickLaunchViewController.swift in Sources */,
 				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
 				A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */,
@@ -1717,7 +1712,7 @@
 				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */,
 				A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */,
-				CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */,
+				CE7546C4212EF0F100757CB8 /* BiometricAuthErrorParser.swift in Sources */,
 				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
 				A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */,
 				CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */,

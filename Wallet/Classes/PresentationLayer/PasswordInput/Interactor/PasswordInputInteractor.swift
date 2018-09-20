@@ -12,10 +12,14 @@ import Foundation
 class PasswordInputInteractor {
     weak var output: PasswordInputInteractorOutput!
     
+    private let defaultsProvider: DefaultsProviderProtocol
     private let pinValidator: PinValidationProviderProtocol
+    private let biometricAuthProvider: BiometricAuthProviderProtocol
     
-    init(pinValidator: PinValidationProviderProtocol) {
+    init(defaultsProvider: DefaultsProviderProtocol, pinValidator: PinValidationProviderProtocol, biometricAuthProvider: BiometricAuthProviderProtocol) {
+        self.defaultsProvider = defaultsProvider
         self.pinValidator = pinValidator
+        self.biometricAuthProvider = biometricAuthProvider
     }
 }
 
@@ -23,6 +27,7 @@ class PasswordInputInteractor {
 // MARK: - PasswordInputInteractorInput
 
 extension PasswordInputInteractor: PasswordInputInteractorInput {
+    
     func validatePassword(_ password: String) {
         if pinValidator.pinIsValid(password) {
             output.passwordIsCorrect()
@@ -30,4 +35,9 @@ extension PasswordInputInteractor: PasswordInputInteractorInput {
             output.passwordIsWrong()
         }
     }
+    
+    func isBiometryAuthEnabled() -> Bool {
+        return biometricAuthProvider.canAuthWithBiometry && defaultsProvider.isBiometryAuthEnabled
+    }
+    
 }
