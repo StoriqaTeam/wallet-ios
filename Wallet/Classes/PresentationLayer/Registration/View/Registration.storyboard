@@ -235,12 +235,14 @@
                                                     <constraint firstItem="OsN-HV-DSg" firstAttribute="top" secondItem="T8K-At-rSI" secondAttribute="top" constant="12" id="uap-rc-RwF"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOt-m6-3BK" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOt-m6-3BK" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="364" width="323" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="8yF-J6-P8Q"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="signUp" destination="lxi-07-NyW" eventType="touchUpInside" id="qfs-zR-uoL"/>
                                                 </connections>
@@ -256,7 +258,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="Dht-iT-YMs" firstAttribute="leading" secondItem="Enf-A8-mrG" secondAttribute="leading" id="AOM-oX-Ots"/>
                                                     <constraint firstItem="Dht-iT-YMs" firstAttribute="top" secondItem="Enf-A8-mrG" secondAttribute="top" id="FXf-KR-iG4"/>

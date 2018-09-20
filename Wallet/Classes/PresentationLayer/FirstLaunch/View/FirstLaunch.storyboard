@@ -21,19 +21,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLy-W4-uNU">
                                 <rect key="frame" x="37.5" y="531" width="300" height="106"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjw-WQ-0cb" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjw-WQ-0cb" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="7AM-9T-r6P"/>
                                         </constraints>
-                                        <state key="normal" title="Get started"/>
+                                        <state key="normal" title="Get started">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="getStartedPressed:" destination="1ZA-KR-Ckj" eventType="touchUpInside" id="0nq-jc-T50"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-MI-siA" customClass="LightButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-MI-siA" customClass="LightButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="61" width="300" height="45"/>
-                                        <state key="normal" title="Sign in"/>
+                                        <state key="normal" title="Sign in">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

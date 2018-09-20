@@ -77,7 +77,7 @@
                                             <action selector="togglePasswordVisibility:" destination="OUb-B4-Dho" eventType="touchUpInside" id="pKD-xD-2jK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxg-LK-ot9" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxg-LK-ot9" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="129" width="323" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="OFb-OY-k6H"/>

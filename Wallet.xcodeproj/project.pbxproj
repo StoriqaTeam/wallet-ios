@@ -141,6 +141,7 @@
 		A50086162151237B00C47015 /* Data+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086152151237B00C47015 /* Data+Helpers.swift */; };
 		A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086182151242B00C47015 /* DefaultsProvider.swift */; };
 		A50BF8AC215409B500FB0DA2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BF8AB215409B500FB0DA2 /* Theme.swift */; };
+		A50BF8AE215410CC00FB0DA2 /* BiometricAuthErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BF8AD215410CB00FB0DA2 /* BiometricAuthErrorParser.swift */; };
 		A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */; };
 		A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A512020B2153D68A00D44A22 /* MainTabBar.storyboard */; };
 		A5669D37C5A3E197CE60ACEB /* PasswordEmailRecoveryModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C23610EB031515F3F3FD6 /* PasswordEmailRecoveryModuleInput.swift */; };
@@ -221,7 +222,6 @@
 		CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBA21538653009E707E /* BiometryQuickLaunch.storyboard */; };
 		CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBE2153949B009E707E /* PinSetup.storyboard */; };
 		CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */; };
-		CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */; };
@@ -448,6 +448,7 @@
 		A50086152151237B00C47015 /* Data+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Helpers.swift"; sourceTree = "<group>"; };
 		A50086182151242B00C47015 /* DefaultsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsProvider.swift; sourceTree = "<group>"; };
 		A50BF8AB215409B500FB0DA2 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A50BF8AD215410CB00FB0DA2 /* BiometricAuthErrorParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricAuthErrorParser.swift; sourceTree = "<group>"; };
 		A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthViewModel.swift; sourceTree = "<group>"; };
 		A512020B2153D68A00D44A22 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
@@ -538,7 +539,6 @@
 		CE5FAFBE2153949B009E707E /* PinSetup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PinSetup.storyboard; sourceTree = "<group>"; };
 		CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CE6782F3DF8CA9544D645F0A /* MainTabBarRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarRouter.swift; sourceTree = "<group>"; };
-		CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsAuthErrorParser.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthView.swift; sourceTree = "<group>"; };
@@ -1624,7 +1624,7 @@
 		CE25B7462126B4F80097230A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				CE7546C3212EF0F100757CB8 /* BiometricsAuthErrorParser.swift */,
+				A50BF8AD215410CB00FB0DA2 /* BiometricAuthErrorParser.swift */,
 				CE526C67212471CE00A2EED2 /* Constants.swift */,
 				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
 				A500860C2150FA1600C47015 /* Result.swift */,
@@ -2259,7 +2259,6 @@
 				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */,
 				A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */,
-				CE7546C4212EF0F100757CB8 /* BiometricsAuthErrorParser.swift in Sources */,
 				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
 				A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */,
 				CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */,
@@ -2467,6 +2466,7 @@
 				679C8567C9F7F0A5585CAC4D /* DepositRouterInput.swift in Sources */,
 				1499BCCDEF796FDA812A7DBC /* DepositRouter.swift in Sources */,
 				BCA4BFC5046C983A17062737 /* DepositModuleInput.swift in Sources */,
+				A50BF8AE215410CC00FB0DA2 /* BiometricAuthErrorParser.swift in Sources */,
 				DA6B0429F75C1AA3AFBCE034 /* DepositModuleOutput.swift in Sources */,
 				B5A1F3DA30062BA22A89D136 /* DepositModule.swift in Sources */,
 				B50FF909921B25C1CF5C6045 /* SettingsViewInput.swift in Sources */,

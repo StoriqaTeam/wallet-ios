@@ -27,4 +27,5 @@ class PinValidationProvider: PinValidationProviderProtocol {
         
         return pin == correctPin
     }
+    
 }

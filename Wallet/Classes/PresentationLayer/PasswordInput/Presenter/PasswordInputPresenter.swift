@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 
 class PasswordInputPresenter {
@@ -30,6 +31,7 @@ extension PasswordInputPresenter: PasswordInputViewOutput {
         passView.delegate = self
         passView.tintColor = UIColor.mainBlue
         passView.highlightedColor = UIColor.mainBlue
+        passView.touchAuthenticationEnabled = interactor.isBiometryAuthEnabled()
         return passView
     }
 
@@ -57,6 +59,7 @@ extension PasswordInputPresenter: PasswordInputInteractorOutput {
     
     func passwordIsWrong() {
         view.inputFailed()
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
 }
 

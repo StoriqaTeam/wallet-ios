@@ -23,12 +23,19 @@ class QuickLaunchProvider: QuickLaunchProviderProtocol {
     
     private var pin: String?
     
+    private let defaultsProvider: DefaultsProviderProtocol
     private let keychainProvider: KeychainProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
     
-    init(authData: AuthData, token: String, keychainProvider: KeychainProviderProtocol, biometricAuthProvider: BiometricAuthProviderProtocol) {
+    init(authData: AuthData,
+         token: String,
+         defaultsProvider: DefaultsProviderProtocol,
+         keychainProvider: KeychainProviderProtocol,
+         biometricAuthProvider: BiometricAuthProviderProtocol) {
+        
         self.authData = authData
         self.token = token
+        self.defaultsProvider = defaultsProvider
         self.keychainProvider = keychainProvider
         self.biometricAuthProvider = biometricAuthProvider
     }
@@ -60,6 +67,8 @@ class QuickLaunchProvider: QuickLaunchProviderProtocol {
     }
     
     func activateBiometryLogin() {
+        defaultsProvider.isBiometryAuthEnabled = true
+        
         //TODO: save authData and token to keychain
         
         log.debug("//TODO: save authData and token to keychain")
