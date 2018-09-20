@@ -24,6 +24,7 @@ class PasswordInputPresenter {
 // MARK: - PasswordInputViewOutput
 
 extension PasswordInputPresenter: PasswordInputViewOutput {
+    
     func setPasswordView(in stackView: UIStackView) -> PasswordContainerView  {
         let passView = PasswordContainerView.create(in: stackView, digit: kPasswordDigits)
         passView.delegate = self
@@ -38,6 +39,10 @@ extension PasswordInputPresenter: PasswordInputViewOutput {
     
     func inputComplete(_ password: String) {
         interactor.validatePassword(password)
+    }
+    
+    func showAuthorizationZone() {
+        router.showMainTabBar()
     }
 
 }
