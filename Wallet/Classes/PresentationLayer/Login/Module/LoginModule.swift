@@ -13,8 +13,10 @@ class LoginModule {
         let router = LoginRouter()
         let presenter = LoginPresenter()
         
+        //Injections
+        let defaultsProvider = DefaultsProvider()
         let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: LoginManager())
-        let interactor = LoginInteractor(socialViewVM: socialVM)
+        let interactor = LoginInteractor(socialViewVM: socialVM, defaultProvider: defaultsProvider)
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController

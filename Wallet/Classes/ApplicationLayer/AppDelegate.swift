@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Wallet
 //
-//  Created by user on 15.08.2018.
+//  Created by Storiqa on 15.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -69,13 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    //TODO: нужно ли
-    func application(_ application: UIApplication,
-                     open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url,
-                                                 sourceApplication: sourceApplication,
-                                                 annotation: annotation)
-    }
 }
 
 
@@ -87,34 +80,5 @@ extension AppDelegate {
     
     static var currentWindow: UIWindow {
         return currentDelegate.window!
-    }
-}
-
-//TODO: нужно ли
-extension AppDelegate: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("\(error.localizedDescription)")
-        } else {
-            // Perform any operations on signed in user here.
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
-            
-            //TODO: sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!)
-            
-            print(userId,idToken,fullName,givenName,familyName,email)
-        }
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
-              withError error: Error!) {
-        
-        //TODO: sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!)
-        // Perform any operations when the user disconnects from app here.
-        // ...
     }
 }

@@ -43,6 +43,7 @@ class RegistrationViewController: UIViewController {
         configFields()
         addHideKeyboardGuesture()
         updateContinueButton()
+        setSocialView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -142,7 +143,7 @@ extension RegistrationViewController: UITextFieldDelegate {
 //MARK: - SocialNetworkAuthViewDelegate
 
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
-    func socialNetworkAuthSucceed(token: String) {
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String) {
         showRegisterSuccess(email: token)
     }
     
@@ -187,7 +188,6 @@ extension RegistrationViewController {
         agreementLabel.text = "accept_agreement".localized()
 
         signUpButton.title = "sign_up".localized()
-//        socialNetworkAuthView.setUp(delegate: self, type: .register)
     }
     
     private func updateContinueButton() {
@@ -245,6 +245,10 @@ extension RegistrationViewController {
     
     private func showSignInViewController() {
         output.showLogin()
+    }
+    
+    private func setSocialView() {
+        socialNetworkAuthView.setUp(from: self, delegate: self, type: .register)
     }
 }
 

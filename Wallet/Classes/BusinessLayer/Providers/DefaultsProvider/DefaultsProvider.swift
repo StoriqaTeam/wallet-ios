@@ -10,12 +10,14 @@ import Foundation
 
 protocol DefaultsProviderProtocol: class {
     var isFirstLaunch: Bool { set get }
+    var isQuickLaunchShown: Bool { set get }
 }
 
 class DefaultsProvider: DefaultsProviderProtocol {
     
     enum DefaultsKey: String, EnumCollection {
         case isFirstLaunch
+        case isQuickLaunchShown
     }
     
     
@@ -28,6 +30,17 @@ class DefaultsProvider: DefaultsProviderProtocol {
             setBool(newValue, key: .isFirstLaunch)
         }
     }
+    
+    var isQuickLaunchShown: Bool {
+        get {
+            guard let first = getBool(.isQuickLaunchShown) else { return false }
+            return first
+        }
+        set {
+            setBool(newValue, key: .isQuickLaunchShown)
+        }
+    }
+    
 }
 
 

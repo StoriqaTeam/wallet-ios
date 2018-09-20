@@ -22,10 +22,10 @@ class LoginPresenter {
 // MARK: - LoginViewOutput
 
 extension LoginPresenter: LoginViewOutput {
+    
     func showPasswordRecovery() {
         router.showPasswordRecovery(from: view.viewController)
     }
-    
 
     func viewIsReady() {
         view.setupInitialState()
@@ -36,13 +36,41 @@ extension LoginPresenter: LoginViewOutput {
     func showRegistration() {
         router.showRegistration()
     }
+    
+    func signIn(email: String, password: String) {
+        interactor.signIn(email: email, password: password)
+    }
+    
+    func signIn(tokenProvider: SocialNetworkTokenProvider, token: String) {
+        interactor.signIn(tokenProvider: tokenProvider, socialNetworkToken: token)
+    }
+    
 }
 
 
 // MARK: - LoginInteractorOutput
 
 extension LoginPresenter: LoginInteractorOutput {
-
+    
+    func loginSucceed() {
+        //TODO: display authorized zone
+    }
+    
+    func showQuickLaunch(authData: AuthData, token: String) {
+        router.showQuickLaunch(authData: authData, token: token, from: view.viewController)
+    }
+    
+    func loginFailed(message: String) {
+        //TODO: display login failure
+        
+        
+        // FIXME: - stub
+        
+        view.viewController.showAlert(title: "", message: message)
+        
+        //-----------------------------------------
+    }
+    
 }
 
 

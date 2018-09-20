@@ -2,7 +2,7 @@
   Localizable.strings
   Wallet
 
-  Created by user on 14.09.2018.
+  Created by Storiqa on 14.09.2018.
   Copyright © 2018 Storiqa. All rights reserved.
 */
 
@@ -24,6 +24,7 @@
 "reset_password" = "Reset password";
 "set_up_pin" = "Set up PIN code";
 "use_touchId" = "Use Touch ID";
+"use_faceId" = "Use Face ID";
 "register" = "Register";
 "sign_in" = "Sign in";
 
@@ -46,6 +47,7 @@
 "quick_launch_subtitle" = "Choose the way to confirm your identity";
 "pin_quick_launch_title" = "Set up PIN code?";
 "touchId_quick_launch_title" = "Set up fingerprint launch?";
+"faceId_quick_launch_title" = "Set up Face ID launch?";
 "have_account" = "Have an account?";
 "have_no_account" = "Haven’t got account?";
 "sign_in_social" = "Sign in via social account";

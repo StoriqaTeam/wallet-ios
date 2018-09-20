@@ -11,4 +11,6 @@ import Foundation
 
 protocol LoginInteractorInput: class {
     func getSocialVM() -> SocialNetworkAuthViewModel
+    func signIn(email: String, password: String)
+    func signIn(tokenProvider: SocialNetworkTokenProvider, socialNetworkToken: String)
 }

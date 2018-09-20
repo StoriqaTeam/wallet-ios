@@ -13,4 +13,6 @@ protocol LoginViewOutput: class {
     func viewIsReady()
     func showRegistration()
     func showPasswordRecovery()
+    func signIn(email: String, password: String)
+    func signIn(tokenProvider: SocialNetworkTokenProvider, token: String)
 }

@@ -10,5 +10,7 @@ import Foundation
 
 
 protocol LoginInteractorOutput: class {
-
+    func loginSucceed()
+    func loginFailed(message: String)
+    func showQuickLaunch(authData: AuthData, token: String)
 }

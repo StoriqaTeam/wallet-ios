@@ -18,8 +18,7 @@ class PasswordRecoveryConfirmRouter {
 
 extension PasswordRecoveryConfirmRouter: PasswordRecoveryConfirmRouterInput {
     func showSuccess(from viewController: UIViewController) {
-        
-        //FIXME: - вынести в модуль popup vc
+
         //TODO: image, title, text, action
         
         let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
@@ -34,8 +33,7 @@ extension PasswordRecoveryConfirmRouter: PasswordRecoveryConfirmRouterInput {
     }
     
     func showFailure(message: String, from viewController: UIViewController) {
-        
-        //FIXME: - вынести в модуль popup vc
+    
         //TODO: image, title, action
         
         let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),

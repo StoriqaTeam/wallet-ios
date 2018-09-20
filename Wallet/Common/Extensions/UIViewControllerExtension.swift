@@ -2,7 +2,7 @@
 //  UIViewControllerExtension.swift
 //  Wallet
 //
-//  Created by user on 16.08.2018.
+//  Created by Storiqa on 16.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
