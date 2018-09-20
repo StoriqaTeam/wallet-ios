@@ -22,5 +22,9 @@ class QuickLaunchInteractor {
 // MARK: - QuickLaunchInteractorInput
 
 extension QuickLaunchInteractor: QuickLaunchInteractorInput {
-
+    
+    func getProvider() -> QuickLaunchProviderProtocol {
+        return qiuckLaunchProvider
+    }
+    
 }

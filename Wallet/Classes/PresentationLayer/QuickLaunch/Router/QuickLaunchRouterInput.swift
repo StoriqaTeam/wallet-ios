@@ -10,5 +10,6 @@ import UIKit
 
 
 protocol QuickLaunchRouterInput: class {
-
+    func showPinQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController)
+    func showAuthorizedZone()
 }

@@ -9,7 +9,8 @@
 import Foundation
 
 protocol QuickLaunchProviderProtocol {
-    func isTouchIdAvailable() -> Bool
+    func isBiometryAvailable() -> Bool
+    func getBiometryType() -> BiometricAuthType
     func setPin(_ pin: String)
     func isPinConfirmed(_ pinConfirmation: String) -> Bool
     func activateBiometryLogin()
@@ -17,28 +18,32 @@ protocol QuickLaunchProviderProtocol {
 
 class QuickLaunchProvider: QuickLaunchProviderProtocol {
     
-    private let email: String
-    private let password: String
+    private let authData: AuthData
+    private let token: String
     
     private var pin: String?
     
     //FIXME: use KeychainProviderProvider when available
-    private let keychainProvider: KeychainProvider
+    private let keychainProvider: KeychainProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
     
-    init(authData: AuthData, keychainProvider: KeychainProvider, biometricAuthProvider: BiometricAuthProviderProtocol) {
-        self.email = authData.email
-        self.password = authData.password
+    init(authData: AuthData, token: String, keychainProvider: KeychainProviderProtocol, biometricAuthProvider: BiometricAuthProviderProtocol) {
+        self.authData = authData
+        self.token = token
         self.keychainProvider = keychainProvider
         self.biometricAuthProvider = biometricAuthProvider
     }
     
-    func isTouchIdAvailable() -> Bool {
+    func isBiometryAvailable() -> Bool {
         return biometricAuthProvider.canAuthWithBiometry
     }
     
     func setPin(_ pin: String) {
         self.pin = pin
+        
+        //TODO: save authData and token to keychain
+        
+        log.debug("//TODO: save authData and token to keychain")
     }
     
     func isPinConfirmed(_ pinConfirmation: String) -> Bool {
@@ -51,9 +56,14 @@ class QuickLaunchProvider: QuickLaunchProviderProtocol {
         }
     }
     
+    func getBiometryType() -> BiometricAuthType {
+        return biometricAuthProvider.biometricAuthType
+    }
+    
     func activateBiometryLogin() {
-        //TODO: save login and password to keychain
+        //TODO: save authData and token to keychain
         
+        log.debug("//TODO: save authData and token to keychain")
     }
     
 }

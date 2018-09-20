@@ -1,0 +1,30 @@
+//
+//  Created by Storiqa on 20/09/2018.
+//  Copyright © 2018 Storiqa. All rights reserved.
+//
+
+import UIKit
+
+
+class BiometryQuickLaunchModule {
+    
+    class func create(qiuckLaunchProvider: QuickLaunchProviderProtocol) -> BiometryQuickLaunchModuleInput {
+        let router = BiometryQuickLaunchRouter()
+        let presenter = BiometryQuickLaunchPresenter()
+        let interactor = BiometryQuickLaunchInteractor(qiuckLaunchProvider: qiuckLaunchProvider)
+        
+        let storyboard = UIStoryboard(name: "BiometryQuickLaunch", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "BiometryQuickLaunchVC") as! BiometryQuickLaunchViewController
+
+        interactor.output = presenter
+
+        viewController.output = presenter
+
+        presenter.view = viewController
+        presenter.router = router
+        presenter.interactor = interactor
+        
+        return presenter
+    }
+    
+}

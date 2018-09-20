@@ -23,4 +23,9 @@ extension LoginRouter: LoginRouterInput {
     func showRegistration() {
         RegistrationModule.create().present()
     }
+    
+    func showQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController) {
+        QuickLaunchModule.create(authData: authData, token: token).present(from: viewController)
+    }
+    
 }

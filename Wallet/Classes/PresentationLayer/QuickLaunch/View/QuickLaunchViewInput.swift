@@ -10,5 +10,5 @@ import UIKit
 
 
 protocol QuickLaunchViewInput: class, Presentable {
-    func setupInitialState(screenApperance: QuickLaunchScreenApperance)
+    func setupInitialState()
 }

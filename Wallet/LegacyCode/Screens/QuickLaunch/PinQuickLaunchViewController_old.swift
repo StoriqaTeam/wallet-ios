@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PinQuickLaunchViewController: QuickLaunchViewController {
+class PinQuickLaunchViewController_old: QuickLaunchViewController_old {
     override func config() {
         titleLabel.text = "pin_quick_launch_title".localized()
         actionButton.setTitle("set_up_pin".localized(), for: .normal)

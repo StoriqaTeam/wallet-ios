@@ -1,19 +1,20 @@
 //
-//  QuickLaunchViewController.swift
+//  PinQuickLaunchViewController.swift
 //  wallet-ios
 //
-//  Created by Storiqa on 19/09/2018.
+//  Created by Storiqa on 20/09/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import UIKit
 
-class QuickLaunchViewController: BaseQuickLaunchViewController {
 
-    var output: QuickLaunchViewOutput!
-    
+class PinQuickLaunchViewController: BaseQuickLaunchViewController {
+
+    var output: PinQuickLaunchViewOutput!
+
     // MARK: Life cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
@@ -21,10 +22,10 @@ class QuickLaunchViewController: BaseQuickLaunchViewController {
     }
     
     private func configureInterface() {
-        titleLabel.text = "quick_launch_title".localized()
+        //TODO: image
+        titleLabel.text = "pin_quick_launch_title".localized()
         imageView.image = #imageLiteral(resourceName: "quickLaunch")
-        subtitleLabel?.text = "quick_launch_subtitle".localized()
-        actionButton.setTitle("set_up_quick_launch".localized(), for: .normal)
+        actionButton.setTitle("set_up_pin".localized(), for: .normal)
     }
     
     // MARK: Actions
@@ -36,13 +37,16 @@ class QuickLaunchViewController: BaseQuickLaunchViewController {
     @IBAction func cancelSetup(_ sender: UIButton) {
         output.cancelSetup()
     }
+
 }
 
 
-// MARK: - QuickLaunchViewInput
+// MARK: - PinQuickLaunchViewInput
 
-extension QuickLaunchViewController: QuickLaunchViewInput {
+extension PinQuickLaunchViewController: PinQuickLaunchViewInput {
     
-    func setupInitialState() { }
-    
+    func setupInitialState() {
+
+    }
+
 }

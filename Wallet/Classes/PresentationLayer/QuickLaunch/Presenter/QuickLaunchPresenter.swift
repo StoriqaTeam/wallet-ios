@@ -15,24 +15,26 @@ class QuickLaunchPresenter {
     weak var output: QuickLaunchModuleOutput?
     var interactor: QuickLaunchInteractorInput!
     var router: QuickLaunchRouterInput!
- 
-    let screenApperance: QuickLaunchScreenApperance
-    
-    init(screenApperance: QuickLaunchScreenApperance) {
-        self.screenApperance = screenApperance
-    }
-    
+
 }
 
 
 // MARK: - QuickLaunchViewOutput
 
 extension QuickLaunchPresenter: QuickLaunchViewOutput {
-
+    
     func viewIsReady() {
-        view.setupInitialState(screenApperance: screenApperance)
+        view.setupInitialState()
     }
 
+    func performAction() {
+        router.showPinQuickLaunch(qiuckLaunchProvider: interactor.getProvider(), from: view.viewController)
+    }
+    
+    func cancelSetup() {
+        router.showAuthorizedZone()
+    }
+    
 }
 
 
@@ -48,6 +50,6 @@ extension QuickLaunchPresenter: QuickLaunchInteractorOutput {
 extension QuickLaunchPresenter: QuickLaunchModuleInput {
 
     func present(from viewController: UIViewController) {
-        view.present(from: viewController)
+        view.presentAsNavController()
     }
 }

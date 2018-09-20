@@ -8,7 +8,7 @@
 
 import Foundation
 
-class QuickLaunchViewController: UIViewController {
+class QuickLaunchViewController_old: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var subtitleLabel: UILabel? {

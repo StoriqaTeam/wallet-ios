@@ -11,12 +11,12 @@ import FacebookLogin
 
 
 protocol SocialNetworkAuthViewModelProtocol: class {
-    func signInWithResult(_ result: Result<String>)
+    func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String)>)
 }
 
 
 class SocialNetworkAuthViewModel: NSObject {
-    typealias Token = String
+    typealias Token = (provider: SocialNetworkTokenProvider, token: String)
     
     weak var delegate: SocialNetworkAuthViewModelProtocol!
     
@@ -54,7 +54,7 @@ class SocialNetworkAuthViewModel: NSObject {
                 log.debug("grantedPermissions: \(grantedPermissions)")
                 log.debug("declinedPermissions: \(declinedPermissions)")
                 log.debug("accessToken: \(accessToken)")
-                let result: Result<Token> = .success(accessToken.authenticationToken)
+                let result: Result<Token> = .success((SocialNetworkTokenProvider.facebook, accessToken.authenticationToken))
                 self?.delegate.signInWithResult(result)
             }
         }
@@ -74,7 +74,7 @@ extension SocialNetworkAuthViewModel: GIDSignInDelegate {
             let err = SocialNetworkViewModelError.failToSign(error: error)
             result = .failure(err)
         } else if let token = user?.authentication?.accessToken {
-            result = .success(token)
+            result = .success((SocialNetworkTokenProvider.google, token))
         } else {
             log.debug("Falied signIn with google account: user token empty")
             let err = SocialNetworkViewModelError.userTokenIsEmpty

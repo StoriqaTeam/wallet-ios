@@ -50,6 +50,14 @@ class LoginViewController: UIViewController {
     @IBAction private func signIn() {
         dismissKeyboard()
         passwordTextField.isSecureTextEntry = true
+        
+        guard let email = emailTextField.text,
+            let password = passwordTextField.text else {
+                log.error("login error - empty fields")
+                return
+        }
+        
+        output.signIn(email: email, password: password)
     }
     
     @IBAction private func forgotPasswordTapped() {
@@ -77,8 +85,8 @@ extension LoginViewController: LoginViewInput {
 // MARK: - SocialNetworkAuthViewDelegate
 
 extension LoginViewController: SocialNetworkAuthViewDelegate {
-    func socialNetworkAuthSucceed(token: String) {
-        
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String) {
+        output.signIn(tokenProvider: provider, token: token)
     }
 
     func socialNetworkAuthFailed() {

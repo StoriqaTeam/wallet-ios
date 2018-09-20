@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TouchIdQuickLaunchViewController: QuickLaunchViewController {
+class TouchIdQuickLaunchViewController_old: QuickLaunchViewController_old {
     override func config() {
         titleLabel.text = "touchId_quick_launch_title".localized()
         actionButton.setTitle("use_touchId".localized(), for: .normal)
