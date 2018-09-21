@@ -19,7 +19,7 @@ class MyWalletViewController: UIViewController {
     
     // MARK: variables
     
-    private let addNewButton = ResizableNavigationBarButton.create(title: "Add new \u{FF0B}")
+    private let addNewButton = ResizableNavigationBarButton.create(title: "add_new".localized() + " \u{FF0B}")
     private let accountCellIdentifier = "AccountViewCell"
     
     // MARK: Life cycle
@@ -81,7 +81,7 @@ extension MyWalletViewController {
     private func configureNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.topItem?.title = "My wallet"
+        navigationController?.navigationBar.topItem?.title = "my_wallet".localized()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         
