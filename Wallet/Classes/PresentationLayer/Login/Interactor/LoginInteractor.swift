@@ -16,7 +16,9 @@ class LoginInteractor {
     private let defaultProvider: DefaultsProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
     
-    init(socialViewVM: SocialNetworkAuthViewModel, defaultProvider: DefaultsProviderProtocol, biometricAuthProvider: BiometricAuthProviderProtocol) {
+    init(socialViewVM: SocialNetworkAuthViewModel,
+         defaultProvider: DefaultsProviderProtocol,
+         biometricAuthProvider: BiometricAuthProviderProtocol) {
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
         self.biometricAuthProvider = biometricAuthProvider
