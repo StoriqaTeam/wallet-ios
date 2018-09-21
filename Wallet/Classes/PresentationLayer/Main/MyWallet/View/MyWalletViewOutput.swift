@@ -10,5 +10,7 @@ import UIKit
 
 
 protocol MyWalletViewOutput: class {
-    func viewIsReady()  
+    func viewIsReady()
+    func accountsCount() -> Int
+    func accountModel(for indexPath: IndexPath) -> AccountModel
 }

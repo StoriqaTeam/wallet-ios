@@ -10,5 +10,6 @@ import Foundation
 
 
 protocol MyWalletInteractorInput: class {
-
+    func accountsCount() -> Int 
+    func accountModel(for indexPath: IndexPath) -> AccountModel?
 }

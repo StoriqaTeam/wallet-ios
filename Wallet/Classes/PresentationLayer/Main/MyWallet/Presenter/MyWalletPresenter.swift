@@ -22,11 +22,23 @@ class MyWalletPresenter {
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletViewOutput {
-
+    
     func viewIsReady() {
-        view.setupInitialState()
+        view.setupInitialState(flowLayout: collectionFlowLayout)
+    }
+    
+    func accountsCount() -> Int {
+        return interactor.accountsCount()
     }
 
+    func accountModel(for indexPath: IndexPath)  -> AccountModel {
+        guard let account = interactor.accountModel(for: indexPath) else {
+            fatalError()
+        }
+        
+        return account
+    }
+    
 }
 
 
@@ -47,5 +59,36 @@ extension MyWalletPresenter: MyWalletModuleInput {
 
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
+    }
+}
+
+
+// MARK: - Private methods
+
+extension MyWalletPresenter {
+    private var collectionFlowLayout: UICollectionViewFlowLayout {
+        let spacing: CGFloat
+        let width: CGFloat
+        let height: CGFloat
+        
+        if Constants.Sizes.isSmallScreen {
+            spacing = 12
+            width = Constants.Sizes.screenWith - spacing * 2
+            height = width / 1.7
+        } else {
+            spacing = 17
+            width = 336
+            height = 198
+        }
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        
+        flowLayout.minimumLineSpacing = spacing
+        flowLayout.minimumInteritemSpacing = spacing
+        flowLayout.sectionInset.top = spacing
+        flowLayout.sectionInset.bottom = spacing
+        flowLayout.itemSize = CGSize(width: width, height: height)
+        
+        return flowLayout
     }
 }
