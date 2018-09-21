@@ -44,6 +44,8 @@ class RegistrationViewController: UIViewController {
         addHideKeyboardGuesture()
         updateContinueButton()
         setSocialView()
+        
+        //TODO: new icon for agreementTickImageView
     }
     
     override func viewDidLayoutSubviews() {
