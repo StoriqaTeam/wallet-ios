@@ -104,6 +104,10 @@ class RegistrationViewController: UIViewController {
 extension RegistrationViewController: RegistrationViewInput {
     func setupInitialState() { }
     
+    func setSocialView(viewModel: SocialNetworkAuthViewModel) {
+        socialNetworkAuthView.bindViewModel(viewModel)
+    }
+    
     func setButtonEnabled(_ enabled: Bool) {
         signUpButton.isEnabled = enabled
     }
@@ -146,12 +150,11 @@ extension RegistrationViewController: UITextFieldDelegate {
 
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
     func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String) {
-        showRegisterSuccess(email: token)
+        output.socialNetworkRegisterSucceed()
     }
     
     func socialNetworkAuthFailed() {
-        //TODO: текст
-        showRegisterError(Constants.Errors.userFriendly)
+        output.socialNetworkRegisterFailed()
     }
     
     func socialNetworkAuthViewDidTapFooterButton() {
@@ -214,35 +217,6 @@ extension RegistrationViewController {
         //hide password just in case
         passwordTextField.isSecureTextEntry = true
         repeatPasswordTextField.isSecureTextEntry = true
-    }
-    
-    private func showRegisterSuccess(email: String) {
-        //FIXME: - Pop up shold not be created from view. Fix when social auth module is ready
-        //TODO: image, action
-        let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
-                                            title: "email_sent".localized(),
-                                            text: "check_email".localized() + email,
-                                            attributedText: nil,
-                                            actionButtonTitle: "sign_in".localized(),
-                                            hasCloseButton: false,
-                                            actionBlock: {},
-                                            closeBlock: nil)
-        PopUpModule.create(apperance: popUpApperance).present(from: viewController)
-        
-    }
-    
-    private func showRegisterError(_ message: String) {
-        //FIXME: - Pop up shold not be created from view. Fix when social auth module is ready
-        //TODO: image, action
-        let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
-                                            title: "smth_went_wrong".localized(),
-                                            text: message,
-                                            attributedText: nil,
-                                            actionButtonTitle: "try_again".localized(),
-                                            hasCloseButton: true,
-                                            actionBlock: {},
-                                            closeBlock: {})
-        PopUpModule.create(apperance: popUpApperance).present(from: viewController)
     }
     
     private func showSignInViewController() {
