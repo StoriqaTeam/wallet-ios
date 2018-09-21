@@ -27,6 +27,7 @@
 "use_faceId" = "Use Face ID";
 "register" = "Register";
 "sign_in" = "Sign in";
+"add_new" = "Add new";
 
 "set_up_quick_launch" = "Set up quick launch";
 "do_not_use" = "Do not use";
@@ -37,6 +38,7 @@
 //Titles
 "enter_pin" = "Enter 4-digit PIN";
 "confirm_pin" = "Confirm PIN";
+"my_wallet" = "My wallet";
 
 //Labels
 "greeting" = ", good day";

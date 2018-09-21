@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,17 +17,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyWallet module" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMj-NN-eno">
-                                <rect key="frame" x="121.5" y="323" width="132" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nxK-Lh-jgQ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="17" minimumInteritemSpacing="17" id="dkI-IX-Dse">
+                                    <size key="itemSize" width="336" height="198"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="17" maxX="0.0" maxY="17"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ja1-eI-WGh">
+                                        <rect key="frame" x="19.5" y="17" width="336" height="198"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="336" height="198"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="aZD-B3-BFA" id="XgU-lB-PXO"/>
+                                    <outlet property="delegate" destination="aZD-B3-BFA" id="TSv-I4-ooS"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JMj-NN-eno" firstAttribute="centerY" secondItem="IXN-jW-1ZI" secondAttribute="centerY" id="5wC-PP-Xu1"/>
-                            <constraint firstItem="JMj-NN-eno" firstAttribute="centerX" secondItem="IXN-jW-1ZI" secondAttribute="centerX" id="B1i-73-MXb"/>
+                            <constraint firstItem="nxK-Lh-jgQ" firstAttribute="leading" secondItem="iyw-Od-pLW" secondAttribute="leading" id="6fG-LF-uPf"/>
+                            <constraint firstItem="iyw-Od-pLW" firstAttribute="bottom" secondItem="nxK-Lh-jgQ" secondAttribute="bottom" id="Aro-Xj-ojq"/>
+                            <constraint firstItem="nxK-Lh-jgQ" firstAttribute="top" secondItem="iyw-Od-pLW" secondAttribute="top" id="j44-4t-3xG"/>
+                            <constraint firstItem="iyw-Od-pLW" firstAttribute="trailing" secondItem="nxK-Lh-jgQ" secondAttribute="trailing" id="uIJ-ft-AVc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iyw-Od-pLW"/>
                     </view>
@@ -37,12 +56,12 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="walletTabBarItem" destination="Mdj-TS-7d4" id="gdp-JN-YT7"/>
+                        <outlet property="collectionView" destination="nxK-Lh-jgQ" id="0v7-vD-X2K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SfZ-GB-bAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-505" y="129"/>
+            <point key="canvasLocation" x="-506.39999999999998" y="128.18590704647679"/>
         </scene>
     </scenes>
     <resources>
