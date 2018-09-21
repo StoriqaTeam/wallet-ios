@@ -15,11 +15,10 @@ class MyWalletViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet weak var walletTabBarItem: UITabBarItem!
     
     // MARK: variables
     
-    private let addNewButton = ResizableNavigationBarButton.create(title: "add_new".localized() + " \u{FF0B}")
+    private let addNewButton = ResizableNavigationBarButton(title: "add_new".localized() + " \u{FF0B}")
     private let accountCellIdentifier = "AccountViewCell"
     
     // MARK: Life cycle

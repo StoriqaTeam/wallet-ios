@@ -32,7 +32,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
     }
 
     func accountModel(for indexPath: IndexPath)  -> AccountModel {
-        guard let account = interactor.accountModel(for: indexPath) else {
+        guard let account = interactor.accountModel(for: indexPath.row) else {
             fatalError()
         }
         

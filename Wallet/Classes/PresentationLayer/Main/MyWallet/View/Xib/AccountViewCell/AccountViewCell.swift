@@ -11,8 +11,8 @@ import UIKit
 class AccountViewCell: UICollectionViewCell {
 
     @IBOutlet private var backgroundImage: UIImageView!
-    @IBOutlet private var amountLabel: UILabel!
-    @IBOutlet private var convertedAmountLabel: UILabel!
+    @IBOutlet private var cryptoAmountLabel: UILabel!
+    @IBOutlet private var fiatAmountLabel: UILabel!
     @IBOutlet private var holderName: UILabel!
     
     @IBOutlet private var labels: [UILabel]!
@@ -24,8 +24,8 @@ class AccountViewCell: UICollectionViewCell {
     
     func configWithAccountModel(_ model: AccountModel) {
         backgroundImage.image = model.imageForType
-        amountLabel.text = model.cryptoAmount
-        convertedAmountLabel.text = model.fiatAmount
+        cryptoAmountLabel.text = model.cryptoAmount
+        fiatAmountLabel.text = model.fiatAmount
         holderName.text = model.holderName
         
         let color = model.textColorForType

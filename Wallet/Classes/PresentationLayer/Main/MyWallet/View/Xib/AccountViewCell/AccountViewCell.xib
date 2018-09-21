@@ -90,9 +90,9 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
-                <outlet property="amountLabel" destination="jrD-1J-cJF" id="1vv-rY-v9j"/>
                 <outlet property="backgroundImage" destination="meN-tH-Zba" id="lIm-6S-FrS"/>
-                <outlet property="convertedAmountLabel" destination="vR8-mx-wew" id="Pgk-cN-xYN"/>
+                <outlet property="cryptoAmountLabel" destination="jrD-1J-cJF" id="1vv-rY-v9j"/>
+                <outlet property="fiatAmountLabel" destination="vR8-mx-wew" id="Pgk-cN-xYN"/>
                 <outlet property="holderName" destination="0me-vv-UvR" id="ZG6-xF-ePv"/>
                 <outletCollection property="labels" destination="jrD-1J-cJF" collectionClass="NSMutableArray" id="x84-tV-7jw"/>
                 <outletCollection property="labels" destination="vR8-mx-wew" collectionClass="NSMutableArray" id="ZTt-Pv-Wnd"/>

@@ -57,7 +57,6 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="nxK-Lh-jgQ" id="0v7-vD-X2K"/>
-                        <outlet property="walletTabBarItem" destination="Mdj-TS-7d4" id="gdp-JN-YT7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SfZ-GB-bAp" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -28,19 +28,21 @@ private struct BarButtonConst {
 
 class ResizableNavigationBarButton: UIButton {
     
-    static func create(title: String, tintColor: UIColor = .mainBlue) -> ResizableNavigationBarButton {
-        let btn = ResizableNavigationBarButton(type: .custom)
+    init(title: String, tintColor: UIColor = .mainBlue) {
+        super.init(frame: .zero)
         
-        btn.setTitle(title, for: .normal)
-        btn.setTitleColor(tintColor, for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .medium)
-        btn.roundCorners(radius: BarButtonConst.ButtonHeightForLargeState / 2,
+        setTitle(title, for: .normal)
+        setTitleColor(tintColor, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        roundCorners(radius: BarButtonConst.ButtonHeightForLargeState / 2,
                          borderWidth: Constants.Sizes.lineWidth,
                          borderColor: UIColor.mainBlue)
-        btn.clipsToBounds = true
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        
-        return btn
+        clipsToBounds = true
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     func addToNavigationBar(_ navigationBar: UINavigationBar) {

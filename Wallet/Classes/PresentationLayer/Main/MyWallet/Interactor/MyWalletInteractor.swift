@@ -28,12 +28,12 @@ extension MyWalletInteractor: MyWalletInteractorInput {
         return accounts.count
     }
     
-    func accountModel(for indexPath: IndexPath) -> AccountModel? {
-        guard accounts.count > indexPath.row else {
+    func accountModel(for index: Int) -> AccountModel? {
+        guard accounts.count > index else {
                 fatalError()
         }
         
-        return accounts[indexPath.row]
+        return accounts[index]
     }
     
 }
