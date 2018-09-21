@@ -27,4 +27,19 @@ class PinQuickLaunchModule {
         return presenter
     }
     
+    
+    class func create(authData: AuthData, token: String) -> PinQuickLaunchModuleInput {
+        //Injections
+        let defaultsProvider = DefaultsProvider()
+        let keychainProvider = KeychainProvider()
+        let biometricAuthProvider = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
+        let provider = QuickLaunchProvider(authData: authData,
+                                           token: token,
+                                           defaultsProvider: defaultsProvider,
+                                           keychainProvider: keychainProvider,
+                                           biometricAuthProvider: biometricAuthProvider)
+        
+        return create(qiuckLaunchProvider: provider)
+    }
+    
 }

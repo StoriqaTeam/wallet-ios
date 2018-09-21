@@ -11,6 +11,7 @@ import UIKit
 
 protocol RegistrationViewInput: class, Presentable {
     func setupInitialState()
+    func setSocialView(viewModel: SocialNetworkAuthViewModel)
     func setButtonEnabled(_ enabled: Bool)
     func showPasswordsNotEqual(message: String?)
 }

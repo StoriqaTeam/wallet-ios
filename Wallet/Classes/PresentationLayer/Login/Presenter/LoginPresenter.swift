@@ -60,6 +60,10 @@ extension LoginPresenter: LoginInteractorOutput {
         router.showQuickLaunch(authData: authData, token: token, from: view.viewController)
     }
     
+    func showPinQuickLaunch(authData: AuthData, token: String) {
+        router.showPinQuickLaunch(authData: authData, token: token, from: view.viewController)
+    }
+    
     func loginFailed(message: String) {
         //TODO: display login failure
         

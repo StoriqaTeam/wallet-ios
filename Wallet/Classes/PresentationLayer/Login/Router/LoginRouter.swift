@@ -28,4 +28,8 @@ extension LoginRouter: LoginRouterInput {
         QuickLaunchModule.create(authData: authData, token: token).present(from: viewController)
     }
     
+    func showPinQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController) {
+        PinQuickLaunchModule.create(authData: authData, token: token).present(from: viewController)
+    }
+    
 }

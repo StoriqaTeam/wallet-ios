@@ -28,7 +28,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="Pfx-cf-DyO">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pinQuickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="Pfx-cf-DyO">
                                 <rect key="frame" x="0.0" y="66.5" width="375" height="534"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="T8w-o0-Yxg">
@@ -88,6 +88,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="quickLaunch" width="377" height="428"/>
+        <image name="pinQuickLaunch" width="375" height="448"/>
     </resources>
 </document>

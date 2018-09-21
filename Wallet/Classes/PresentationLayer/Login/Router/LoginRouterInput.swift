@@ -13,4 +13,5 @@ protocol LoginRouterInput: class {
     func showRegistration()
     func showPasswordRecovery(from viewController: UIViewController)
     func showQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController)
+    func showPinQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController)
 }

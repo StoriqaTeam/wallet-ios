@@ -19,7 +19,7 @@ class QuickLaunchRouter {
 extension QuickLaunchRouter: QuickLaunchRouterInput {
     
     func showPinQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController) {
-        PinQuickLaunchModule.create(qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
+        PinSetupModule.create(qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
     }
     
     func showAuthorizedZone() {

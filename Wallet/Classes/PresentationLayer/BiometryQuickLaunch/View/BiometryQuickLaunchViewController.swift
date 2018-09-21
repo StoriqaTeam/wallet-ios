@@ -18,12 +18,6 @@ class BiometryQuickLaunchViewController: BaseQuickLaunchViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
-        configureInterface()
-    }
-    
-    private func configureInterface() {
-        //TODO: image
-        imageView.image = #imageLiteral(resourceName: "quickLaunch")
     }
     
     // MARK: Actions

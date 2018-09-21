@@ -22,7 +22,6 @@ class QuickLaunchViewController: BaseQuickLaunchViewController {
     
     private func configureInterface() {
         titleLabel.text = "quick_launch_title".localized()
-        imageView.image = #imageLiteral(resourceName: "quickLaunch")
         subtitleLabel?.text = "quick_launch_subtitle".localized()
         actionButton.setTitle("set_up_quick_launch".localized(), for: .normal)
     }

@@ -10,6 +10,7 @@ import Foundation
 
 
 protocol RegistrationInteractorInput: class {
+    func getSocialVM() -> SocialNetworkAuthViewModel
     func validateForm(_ form: RegistrationForm)
     func register(firstName: String, lastName: String, email: String, password: String)
 }

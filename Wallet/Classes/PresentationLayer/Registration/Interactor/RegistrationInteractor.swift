@@ -12,9 +12,11 @@ import Foundation
 class RegistrationInteractor {
     weak var output: RegistrationInteractorOutput!
     
+    private let socialViewVM: SocialNetworkAuthViewModel
     private let formValidationProvider: RegistrationFormValidatonProviderProtocol
     
-    init(formValidationProvider: RegistrationFormValidatonProviderProtocol) {
+    init(socialViewVM: SocialNetworkAuthViewModel, formValidationProvider: RegistrationFormValidatonProviderProtocol) {
+        self.socialViewVM = socialViewVM
         self.formValidationProvider = formValidationProvider
     }
     
@@ -24,6 +26,10 @@ class RegistrationInteractor {
 // MARK: - RegistrationInteractorInput
 
 extension RegistrationInteractor: RegistrationInteractorInput {
+    
+    func getSocialVM() -> SocialNetworkAuthViewModel {
+        return socialViewVM
+    }
     
     func validateForm(_ form: RegistrationForm) {
         let valid = formValidationProvider.formIsValid(form)

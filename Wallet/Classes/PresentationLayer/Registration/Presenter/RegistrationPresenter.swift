@@ -25,6 +25,8 @@ extension RegistrationPresenter: RegistrationViewOutput {
 
     func viewIsReady() {
         view.setupInitialState()
+        let vm = interactor.getSocialVM()
+        view.setSocialView(viewModel: vm)
     }
 
     func register(firstName: String, lastName: String, email: String, password: String) {
@@ -49,6 +51,16 @@ extension RegistrationPresenter: RegistrationViewOutput {
     
     func showLogin() {
         router.showLogin()
+    }
+    
+    func socialNetworkRegisterSucceed() {
+        //TODO: будем ли передавать email
+        router.showSuccess(email: "", from: view.viewController)
+    }
+    
+    func socialNetworkRegisterFailed() {
+        //TODO: сообщение при регистрации через соц сети
+        router.showFailure(message: Constants.Errors.userFriendly, from: view.viewController)
     }
     
 }

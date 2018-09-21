@@ -22,9 +22,7 @@ class PinQuickLaunchViewController: BaseQuickLaunchViewController {
     }
     
     private func configureInterface() {
-        //TODO: image
         titleLabel.text = "pin_quick_launch_title".localized()
-        imageView.image = #imageLiteral(resourceName: "quickLaunch")
         actionButton.setTitle("set_up_pin".localized(), for: .normal)
     }
     
