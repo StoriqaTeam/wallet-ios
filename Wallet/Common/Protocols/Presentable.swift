@@ -48,6 +48,8 @@ extension Presentable where Self: UIViewController {
         navigation.navigationBar.shadowImage = UIImage()
         navigation.navigationBar.isTranslucent = true
         navigation.view.backgroundColor = .clear
+        navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
+        navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
         
         AppDelegate.currentWindow.rootViewController = navigation
     }

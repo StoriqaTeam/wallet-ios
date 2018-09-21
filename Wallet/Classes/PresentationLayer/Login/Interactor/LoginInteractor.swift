@@ -14,10 +14,12 @@ class LoginInteractor {
     
     private let socialViewVM: SocialNetworkAuthViewModel
     private let defaultProvider: DefaultsProviderProtocol
+    private let biometricAuthProvider: BiometricAuthProviderProtocol
     
-    init(socialViewVM: SocialNetworkAuthViewModel, defaultProvider: DefaultsProviderProtocol) {
+    init(socialViewVM: SocialNetworkAuthViewModel, defaultProvider: DefaultsProviderProtocol, biometricAuthProvider: BiometricAuthProviderProtocol) {
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
+        self.biometricAuthProvider = biometricAuthProvider
     }
     
 }
@@ -36,17 +38,8 @@ extension LoginInteractor: LoginInteractorInput {
         log.warn("implement login provider")
         
         // FIXME: - stub
-        if arc4random_uniform(2) == 0 {
-            if !defaultProvider.isQuickLaunchShown {
-                output.showQuickLaunch(authData: .email(email: email, password: password), token: "")
-            } else {
-                output.loginSucceed()
-            }
-        } else {
-            output.loginFailed(message: Constants.Errors.userFriendly)
-        }
+        signInStub(authData: .email(email: email, password: password))
         // ------------------------------
-        
         
     }
     
@@ -55,15 +48,27 @@ extension LoginInteractor: LoginInteractorInput {
         log.warn("implement login provider")
         
         // FIXME: - stub
+        signInStub(authData: .socialProvider(provider: tokenProvider, token: socialNetworkToken))
+        // ------------------------------
+    }
+    
+    
+    // FIXME: - stub
+    private func signInStub(authData: AuthData) {
         if arc4random_uniform(2) == 0 {
             if !defaultProvider.isQuickLaunchShown {
-                output.showQuickLaunch(authData: .socialProvider(provider: tokenProvider, token: socialNetworkToken), token: "")
+                if biometricAuthProvider.canAuthWithBiometry {
+                    output.showQuickLaunch(authData: authData, token: "")
+                } else {
+                    output.showPinQuickLaunch(authData: authData, token: "")
+                }
             } else {
                 output.loginSucceed()
             }
         } else {
             output.loginFailed(message: Constants.Errors.userFriendly)
         }
-        // ------------------------------
     }
+    // ------------------------------
+    
 }

@@ -30,7 +30,7 @@ launch?</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="R11-Wv-KYj">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biometryQuickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="R11-Wv-KYj">
                                 <rect key="frame" x="0.0" y="66.5" width="375" height="534"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PoN-le-L3Z">
@@ -90,6 +90,6 @@ launch?</string>
         </scene>
     </scenes>
     <resources>
-        <image name="quickLaunch" width="377" height="428"/>
+        <image name="biometryQuickLaunch" width="375" height="448"/>
     </resources>
 </document>
