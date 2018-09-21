@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Exchange View Controller-->
+        <scene sceneID="M5F-gL-JOA">
+            <objects>
+                <viewController storyboardIdentifier="exchangeVC" id="i4R-Jh-qH0" customClass="ExchangeViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9ZT-ot-2xQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange module" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5W1-c3-6ee">
+                                <rect key="frame" x="119" y="323" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5W1-c3-6ee" firstAttribute="centerY" secondItem="9ZT-ot-2xQ" secondAttribute="centerY" id="XsG-aq-BWw"/>
+                            <constraint firstItem="5W1-c3-6ee" firstAttribute="centerX" secondItem="9ZT-ot-2xQ" secondAttribute="centerX" id="jHK-4v-dgu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="S4I-mK-2y6"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="exchangeTab" id="34z-bV-L1i">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="weB-yh-zXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-127" y="159"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="exchangeTab" width="26" height="22"/>
+    </resources>
+</document>

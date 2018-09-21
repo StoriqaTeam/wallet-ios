@@ -38,6 +38,10 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    func wrapToNavigationController() -> UINavigationController {
+        let navigationController = UINavigationController(rootViewController: self)
+        return navigationController
+    }
     
 }
 

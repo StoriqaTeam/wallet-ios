@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Send View Controller-->
+        <scene sceneID="pKT-SP-AQ0">
+            <objects>
+                <viewController storyboardIdentifier="sendVC" id="Bkl-J1-fPG" customClass="SendViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wUO-IZ-s0R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Module" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpp-DL-Md9">
+                                <rect key="frame" x="137" y="323" width="101" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Rpp-DL-Md9" firstAttribute="centerX" secondItem="wUO-IZ-s0R" secondAttribute="centerX" id="5uh-3N-dyU"/>
+                            <constraint firstItem="Rpp-DL-Md9" firstAttribute="centerY" secondItem="wUO-IZ-s0R" secondAttribute="centerY" id="zuz-aP-pfg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MjC-hx-34g"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="sendTab" id="Shk-u3-bph">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-7"/>
+                        <inset key="largeContentSizeImageInsets" minX="7" minY="-1" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ixR-Cr-ErN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-26.399999999999999" y="161.46926536731635"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="sendTab" width="11" height="18"/>
+    </resources>
+</document>
