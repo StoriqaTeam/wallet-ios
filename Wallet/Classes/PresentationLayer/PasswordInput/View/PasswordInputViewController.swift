@@ -53,13 +53,8 @@ extension PasswordInputViewController: PasswordInputViewInput {
     func setupInitialState() { }
     
     func inputSucceed() {
-        print("*️⃣ success!")
-        showAlert(message: "Вы ввели верный пин. Далее приложение должно перейти в авторизованную зону")
         showActivityIndicator()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            LoginModule.create().present()
-        }
+        output.showAuthorizationZone()
     }
     
     func inputFailed() {
