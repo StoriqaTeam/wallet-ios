@@ -10,6 +10,7 @@ import Foundation
 
 protocol PinValidationProviderProtocol {
     func pinIsValid(_ pin: String) -> Bool
+    func resetPin()
 }
 
 class PinValidationProvider: PinValidationProviderProtocol {
@@ -26,6 +27,10 @@ class PinValidationProvider: PinValidationProviderProtocol {
         }
         
         return pin == correctPin
+    }
+    
+    func resetPin() {
+        keychainProvider.pincode = nil
     }
     
 }

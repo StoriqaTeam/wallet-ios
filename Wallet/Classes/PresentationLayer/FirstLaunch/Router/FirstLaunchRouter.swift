@@ -17,6 +17,10 @@ class FirstLaunchRouter {
 // MARK: - FirstLaunchRouterInput
 
 extension FirstLaunchRouter: FirstLaunchRouterInput {
+    func showLogin() {
+        LoginModule.create().present()
+    }
+    
     func showRegistration() {
         RegistrationModule.create().present()
     }

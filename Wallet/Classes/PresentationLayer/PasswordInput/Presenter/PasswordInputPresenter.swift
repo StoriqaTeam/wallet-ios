@@ -47,12 +47,31 @@ extension PasswordInputPresenter: PasswordInputViewOutput {
         router.showMainTabBar()
     }
 
+    func iForgotPinPressed() {
+        //TODO: message, localization
+        
+        let alertController = UIAlertController(title: nil, message: "Do you want to reset your pin?", preferredStyle: .actionSheet)
+        
+        let resetPin = UIAlertAction(title: "Reset pin", style: .default, handler: { [weak self] (alert: UIAlertAction) -> Void in
+            self?.interactor.resetPin()
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(resetPin)
+        alertController.addAction(cancelAction)
+        
+        view.presentAlertController(alertController)
+        
+    }
+    
 }
 
 
 // MARK: - PasswordInputInteractorOutput
 
 extension PasswordInputPresenter: PasswordInputInteractorOutput {
+    
     func passwordIsCorrect() {
         view.inputSucceed()
     }
@@ -61,6 +80,11 @@ extension PasswordInputPresenter: PasswordInputInteractorOutput {
         view.inputFailed()
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
+    
+    func pinWasReset() {
+        router.showLogin()
+    }
+    
 }
 
 

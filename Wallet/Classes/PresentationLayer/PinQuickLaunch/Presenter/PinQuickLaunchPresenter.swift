@@ -32,7 +32,7 @@ extension PinQuickLaunchPresenter: PinQuickLaunchViewOutput {
     }
     
     func cancelSetup() {
-        interactor.cancelSetup()
+        router.showAuthorizedZone()
     }
     
 }
@@ -41,14 +41,6 @@ extension PinQuickLaunchPresenter: PinQuickLaunchViewOutput {
 // MARK: - PinQuickLaunchInteractorOutput
 
 extension PinQuickLaunchPresenter: PinQuickLaunchInteractorOutput {
-    
-    func showAuthorizedZone() {
-        router.showAuthorizedZone()
-    }
-    
-    func showBiometryQuickSetup(qiuckLaunchProvider: QuickLaunchProviderProtocol) {
-        router.showBiometryQuickLaunch(qiuckLaunchProvider: qiuckLaunchProvider, from: view.viewController)
-    }
     
 }
 

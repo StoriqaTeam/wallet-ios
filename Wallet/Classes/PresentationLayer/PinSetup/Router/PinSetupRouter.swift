@@ -18,8 +18,7 @@ class PinSetupRouter {
 
 extension PinSetupRouter: PinSetupRouterInput {
     func showAuthorizedZone() {
-        //TODO: showAuthorizedZone
-        log.debug("TODO: showAuthorizedZone")
+        MainTabBarModule.create().present()
     }
     
     func showBiometryQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController) {

@@ -24,6 +24,10 @@ class FirstLaunchViewController: UIViewController {
     @IBAction func getStartedPressed(_ sender: UIButton) {
         output.showRegistration()
     }
+    
+    @IBAction func signInPressed(_ sender: UIButton) {
+        output.showLogin()
+    }
 }
 
 

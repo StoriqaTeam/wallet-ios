@@ -11,4 +11,5 @@ import UIKit
 
 protocol PasswordInputRouterInput: class {
     func showMainTabBar()
+    func showLogin()
 }

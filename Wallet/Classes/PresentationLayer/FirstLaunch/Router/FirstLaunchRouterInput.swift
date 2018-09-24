@@ -11,4 +11,5 @@ import UIKit
 
 protocol FirstLaunchRouterInput: class {
     func showRegistration()
+    func showLogin()
 }
