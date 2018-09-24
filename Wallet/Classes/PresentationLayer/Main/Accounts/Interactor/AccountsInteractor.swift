@@ -14,12 +14,12 @@ class AccountsInteractor {
     private let account: Account
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: LastTransactionsDataManager!
-    private let fakeAccountLinker: AccountsLinkerProtocol
+    private let accountLinker: AccountsLinkerProtocol
     
     init(accountLinker: AccountsLinkerProtocol,
          account: Account) {
         
-        self.fakeAccountLinker = accountLinker
+        self.accountLinker = accountLinker
         self.account = account
     }
 }
@@ -43,21 +43,19 @@ extension AccountsInteractor: AccountsInteractorInput {
     }
     
     func createAccountsDataManager(with collectionView: UICollectionView) {
-        let allAccounts = fakeAccountLinker.getAllAccounts()
+        let allAccounts = accountLinker.getAllAccounts()
         let accountsManager = AccountsDataManager(accounts: allAccounts)
         accountsManager.setCollectionView(collectionView)
-        accountsManager.registerXib()
         accountsDataManager = accountsManager
     }
     
     func createTransactionsDataManager(with tableView: UITableView) {
-        guard let transactions = fakeAccountLinker.getTransactionsFor(account: account) else {
+        guard let transactions = accountLinker.getTransactionsFor(account: account) else {
             fatalError("Given Account do not exist")
         }
         
         let txDataManager = LastTransactionsDataManager(transactions: transactions)
         txDataManager.setTableView(tableView)
-        txDataManager.registerXib()
         transactionDataManager = txDataManager
     }
 }

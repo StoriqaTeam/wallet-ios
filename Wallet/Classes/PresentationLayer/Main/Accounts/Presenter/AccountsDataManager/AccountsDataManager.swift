@@ -30,6 +30,7 @@ class AccountsDataManager: NSObject {
         accountsCollectionView = view
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
+        registerXib()
     }
     
     func updateAccounts(_ accounts: [Account]) {
@@ -37,10 +38,6 @@ class AccountsDataManager: NSObject {
         accountsCollectionView.reloadData()
     }
     
-    func registerXib() {
-        let nib = UINib(nibName: kAccountCellIdentifier, bundle: nil)
-        accountsCollectionView.register(nib, forCellWithReuseIdentifier: kAccountCellIdentifier)
-    }
 }
 
 
@@ -93,5 +90,10 @@ extension AccountsDataManager {
         let numberOfItems = layout.collectionView?.numberOfItems(inSection: 0)
         let safeIndex = max(0, min(numberOfItems! - 1, index))
         return safeIndex
+    }
+    
+    private func registerXib() {
+        let nib = UINib(nibName: kAccountCellIdentifier, bundle: nil)
+        accountsCollectionView.register(nib, forCellWithReuseIdentifier: kAccountCellIdentifier)
     }
 }

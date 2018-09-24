@@ -28,18 +28,13 @@ class LastTransactionsDataManager: NSObject {
     func setTableView(_ view: UITableView) {
         lastTransactionsTableView = view
         lastTransactionsTableView.dataSource = self
+        registerXib()
     }
     
     func updateTransactions(_ transactions: [Transaction]) {
         self.transactions = transactions
         self.lastTransactionsTableView.reloadData()
     }
-    
-    func registerXib() {
-        let nib = UINib(nibName: "TransactionCell", bundle: nil)
-        lastTransactionsTableView.register(nib, forCellReuseIdentifier: kTransactionCellId)
-    }
-
 }
 
 
@@ -55,5 +50,15 @@ extension LastTransactionsDataManager: UITableViewDataSource {
        let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kTransactionCellId, for: indexPath) as! TransactionTableViewCell
         cell.configureWith(transaction: transaction)
         return cell
+    }
+}
+
+
+// MARK: - Private methods
+
+extension LastTransactionsDataManager {
+    private func registerXib() {
+        let nib = UINib(nibName: "TransactionCell", bundle: nil)
+        lastTransactionsTableView.register(nib, forCellReuseIdentifier: kTransactionCellId)
     }
 }
