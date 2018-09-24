@@ -50,10 +50,6 @@ extension PinSetupPresenter: PinSetupViewOutput {
 extension PinSetupPresenter: PinSetupInteractorOutput {
     
     func showAuthorizedZone() {
-        view.viewController.showAlert(message: "Далее приложение должно перейти в авторизованную зону")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            LoginModule.create().present()
-        }
         router.showAuthorizedZone()
     }
     
@@ -90,9 +86,7 @@ extension PinSetupPresenter: PinSetupModuleInput {
 // MARK: - PasswordInputCompleteProtocol
 extension PinSetupPresenter: PasswordInputCompleteProtocol {
     func passwordInputComplete(input: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.interactor.pinInputCompleted(input)
-        }
+        interactor.pinInputCompleted(input)
     }
     
     func touchAuthenticationComplete(success: Bool, error: String?) { }

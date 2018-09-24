@@ -11,5 +11,4 @@ import Foundation
 
 protocol PinQuickLaunchInteractorInput: class {
     func getProvider() -> QuickLaunchProviderProtocol
-    func cancelSetup()
 }

@@ -17,37 +17,34 @@ class RegistrationRouter {
 // MARK: - RegistrationRouterInput
 
 extension RegistrationRouter: RegistrationRouterInput {
+    func showSuccess(email: String,
+                     popUpDelegate: PopUpRegistrationSuccessVMDelegate,
+                     from viewController: UIViewController) {
+        let viewModel = PopUpRegistrationSuccessVM(email: email)
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showFailure(message: String,
+                     popUpDelegate: PopUpRegistrationFailedVMDelegate,
+                     from viewController: UIViewController) {
+        let viewModel = PopUpRegistrationFailedVM(message: message)
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showSocialNetworkFailure(message: String, from viewController: UIViewController) {
+        let viewModel = PopUpSocialRegistrationFailedVM(message: message)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showAuthorizedZone() {
+        MainTabBarModule.create().present()
+    }
+    
     
     func showLogin() {
         LoginModule.create().present()
-    }
-    
-    func showSuccess(email: String, from viewController: UIViewController) {
-        //TODO: image, action
-        
-        let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
-                                            title: "email_sent".localized(),
-                                            text: "check_email".localized() + email,
-                                            attributedText: nil,
-                                            actionButtonTitle: "sign_in".localized(),
-                                            hasCloseButton: false,
-                                            actionBlock: {},
-                                            closeBlock: nil)
-        PopUpModule.create(apperance: popUpApperance).present(from: viewController)
-    }
-    
-    func showFailure(message: String, from viewController: UIViewController) {
-        //TODO: image, action
-        
-        let popUpApperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
-                                            title: "smth_went_wrong".localized(),
-                                            text: message,
-                                            attributedText: nil,
-                                            actionButtonTitle: "try_again".localized(),
-                                            hasCloseButton: true,
-                                            actionBlock: {},
-                                            closeBlock: {})
-        PopUpModule.create(apperance: popUpApperance).present(from: viewController)
     }
     
 }

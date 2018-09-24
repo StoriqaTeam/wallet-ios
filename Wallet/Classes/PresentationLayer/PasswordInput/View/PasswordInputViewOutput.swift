@@ -14,4 +14,5 @@ protocol PasswordInputViewOutput: class {
     func setPasswordView(in stackView: UIStackView) -> PasswordContainerView
     func inputComplete(_ password: String)
     func showAuthorizationZone()
+    func iForgotPinPressed()
 }

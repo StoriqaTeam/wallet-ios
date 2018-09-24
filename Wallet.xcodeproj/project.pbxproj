@@ -250,6 +250,14 @@
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C902154EB7A00962356 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8F2154EB7A00962356 /* Account.swift */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
+		CEFC9C942158CF1900962356 /* PopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C932158CF1900962356 /* PopUpViewModel.swift */; };
+		CEFC9C9821590D1200962356 /* PopUpRegistrationSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C9721590D1200962356 /* PopUpRegistrationSuccessVM.swift */; };
+		CEFC9C9A21590D1B00962356 /* PopUpRegistrationFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C9921590D1B00962356 /* PopUpRegistrationFailedVM.swift */; };
+		CEFC9C9C21590D3E00962356 /* PopUpSocialRegistrationFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C9B21590D3E00962356 /* PopUpSocialRegistrationFailedVM.swift */; };
+		CEFC9C9E21590D8400962356 /* PopUpPasswordEmailRecoverySuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C9D21590D8400962356 /* PopUpPasswordEmailRecoverySuccessVM.swift */; };
+		CEFC9CA021590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C9F21590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift */; };
+		CEFC9CA221590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CA121590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift */; };
+		CEFC9CA421590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CA321590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift */; };
 		CF065C7C011BD01324225AAD /* PasswordInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CE138506AFD7883213BB9 /* PasswordInputViewController.swift */; };
 		CFF9F4C159614776247E0C56 /* RegistrationModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8FADE0EC6E66D44DA3DEE6 /* RegistrationModuleOutput.swift */; };
 		D029C2BDAA326AE7EB885D7C /* ExchangeViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD7ACE12CF166AA12D406E /* ExchangeViewInput.swift */; };
@@ -597,6 +605,14 @@
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C8F2154EB7A00962356 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
+		CEFC9C932158CF1900962356 /* PopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewModel.swift; sourceTree = "<group>"; };
+		CEFC9C9721590D1200962356 /* PopUpRegistrationSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpRegistrationSuccessVM.swift; sourceTree = "<group>"; };
+		CEFC9C9921590D1B00962356 /* PopUpRegistrationFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpRegistrationFailedVM.swift; sourceTree = "<group>"; };
+		CEFC9C9B21590D3E00962356 /* PopUpSocialRegistrationFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSocialRegistrationFailedVM.swift; sourceTree = "<group>"; };
+		CEFC9C9D21590D8400962356 /* PopUpPasswordEmailRecoverySuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordEmailRecoverySuccessVM.swift; sourceTree = "<group>"; };
+		CEFC9C9F21590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordEmailRecoveryFailedVM.swift; sourceTree = "<group>"; };
+		CEFC9CA121590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordRecoveryConfirmSuccessVM.swift; sourceTree = "<group>"; };
+		CEFC9CA321590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordRecoveryConfirmFailedVM.swift; sourceTree = "<group>"; };
 		CF962FEE45869770D4CEE25A /* PasswordRecoveryConfirmInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmInteractor.swift; sourceTree = "<group>"; };
 		D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D49396E582D646CBCCC1A469 /* FirstLaunchModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchModuleInput.swift; sourceTree = "<group>"; };
@@ -747,6 +763,9 @@
 				0F0E3A857DFE2A14FC37739D /* RegistrationInteractorInput.swift */,
 				F102CE15CBE076997898FA67 /* RegistrationInteractorOutput.swift */,
 				35AF729F909A27BAAB3F2603 /* RegistrationInteractor.swift */,
+				CEFC9C9721590D1200962356 /* PopUpRegistrationSuccessVM.swift */,
+				CEFC9C9921590D1B00962356 /* PopUpRegistrationFailedVM.swift */,
+				CEFC9C9B21590D3E00962356 /* PopUpSocialRegistrationFailedVM.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -814,6 +833,7 @@
 				0FE47F775464F7BD41756322 /* PopUpViewInput.swift */,
 				420B604421EEAE11A4CE026F /* PopUpViewOutput.swift */,
 				C4D2F13364BE6B168335FE8E /* PopUpViewController.swift */,
+				CEFC9C932158CF1900962356 /* PopUpViewModel.swift */,
 				CE5FAFAC215253D1009E707E /* PopUp.storyboard */,
 			);
 			path = View;
@@ -2047,6 +2067,8 @@
 				2DBF2A22248EF5C4AF19A2F8 /* PasswordEmailRecoveryInteractorInput.swift */,
 				7E66E11D8FF05AEB1F443E12 /* PasswordEmailRecoveryInteractorOutput.swift */,
 				F945069D7FE2645D21FEC36C /* PasswordEmailRecoveryInteractor.swift */,
+				CEFC9C9D21590D8400962356 /* PopUpPasswordEmailRecoverySuccessVM.swift */,
+				CEFC9C9F21590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2119,6 +2141,8 @@
 				0AF0DE6FD8C9683A638BCD75 /* PasswordRecoveryConfirmInteractorInput.swift */,
 				7D0F35F384B2BAFEA7A4D50D /* PasswordRecoveryConfirmInteractorOutput.swift */,
 				CF962FEE45869770D4CEE25A /* PasswordRecoveryConfirmInteractor.swift */,
+				CEFC9CA121590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift */,
+				CEFC9CA321590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2481,11 +2505,13 @@
 				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
 				CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */,
 				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
+				CEFC9CA421590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift in Sources */,
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
 				A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */,
 				A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */,
 				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */,
+				CEFC9C9821590D1200962356 /* PopUpRegistrationSuccessVM.swift in Sources */,
 				A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */,
 				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
 				A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */,
@@ -2496,6 +2522,7 @@
 				CE5FAF9F215129A6009E707E /* RegistrationFormValidatonProvider.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
 				A50086142151182A00C47015 /* EnumCollection.swift in Sources */,
+				CEFC9C942158CF1900962356 /* PopUpViewModel.swift in Sources */,
 				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
 				CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */,
 				A50086102151166100C47015 /* KeychainProvider.swift in Sources */,
@@ -2504,10 +2531,12 @@
 				AAF839BB8A7DB1396F7FAC33 /* LoginViewController.swift in Sources */,
 				5DE6ED8A9BE6136BA743C454 /* LoginPresenter.swift in Sources */,
 				DFDE5A674BD838BB7BB04166 /* LoginInteractorInput.swift in Sources */,
+				CEFC9C9C21590D3E00962356 /* PopUpSocialRegistrationFailedVM.swift in Sources */,
 				DCCD990699B49FC6A3B47B52 /* LoginInteractorOutput.swift in Sources */,
 				2FEA8584021E0A7A53B742A5 /* LoginInteractor.swift in Sources */,
 				DA1A1B4454CF99D98B79BD28 /* LoginRouterInput.swift in Sources */,
 				BC265F78A4724A6201226822 /* LoginRouter.swift in Sources */,
+				CEFC9CA021590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift in Sources */,
 				00EAF6788F8B93E22E1921A7 /* LoginModuleInput.swift in Sources */,
 				85DE84599B70A7C4900FE60F /* LoginModuleOutput.swift in Sources */,
 				A50086162151237B00C47015 /* Data+Helpers.swift in Sources */,
@@ -2570,6 +2599,7 @@
 				CE5FAFAB2152420D009E707E /* PasswordRecoveryConfirmFormValidator.swift in Sources */,
 				E25A0E75B3C836260DA96051 /* PasswordRecoveryConfirmViewController.swift in Sources */,
 				39D7E17D89D8B4417C0931DE /* PasswordRecoveryConfirmPresenter.swift in Sources */,
+				CEFC9C9A21590D1B00962356 /* PopUpRegistrationFailedVM.swift in Sources */,
 				2AB82AFB4252B3D2787F924C /* PasswordRecoveryConfirmInteractorInput.swift in Sources */,
 				1E6B3F5DDE41BEA1DC5FAD1D /* PasswordRecoveryConfirmInteractorOutput.swift in Sources */,
 				0AD8715BD2694513BA2BE25C /* PasswordRecoveryConfirmInteractor.swift in Sources */,
@@ -2593,6 +2623,7 @@
 				29640821A6A627670C90FB72 /* PopUpModule.swift in Sources */,
 				CD2529EF44F08CF6C8BDE01E /* QuickLaunchViewInput.swift in Sources */,
 				45FACDCCDC36DDB4D6F0E6BC /* QuickLaunchViewOutput.swift in Sources */,
+				CEFC9CA221590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift in Sources */,
 				7BB2AD26A425C207E35F2F71 /* QuickLaunchViewController.swift in Sources */,
 				3E4A7DC8C6C37F13F5714565 /* QuickLaunchPresenter.swift in Sources */,
 				6CF496C0626DE43C8B12A28C /* QuickLaunchInteractorInput.swift in Sources */,
@@ -2677,6 +2708,7 @@
 				3CF59DC5D81EA7FC56AE2D5E /* SendInteractor.swift in Sources */,
 				7F478B40359F79AE643EF8EC /* SendRouterInput.swift in Sources */,
 				91222D27E9ACA0B31B779533 /* SendRouter.swift in Sources */,
+				CEFC9C9E21590D8400962356 /* PopUpPasswordEmailRecoverySuccessVM.swift in Sources */,
 				09A1CEBCE8C1B2CD243902EC /* SendModuleInput.swift in Sources */,
 				342AB1F25E5B5D468E2F7687 /* SendModuleOutput.swift in Sources */,
 				225C1777C92B40C17A58275B /* SendModule.swift in Sources */,

@@ -34,7 +34,6 @@ class PinQuickLaunchViewController: BaseQuickLaunchViewController {
     
     @IBAction func cancelSetup(_ sender: UIButton) {
         output.cancelSetup()
-        showAlert(message: "Далее приложение должно перейти в авторизованную зону")
     }
 
 }

@@ -12,16 +12,14 @@ struct PopUpApperance {
     let attributedText: NSAttributedString?
     let actionButtonTitle: String
     let hasCloseButton: Bool
-    let actionBlock: (()->())
-    let closeBlock: (()->())?
 }
 
 class PopUpModule {
     
-    class func create(apperance: PopUpApperance) -> PopUpModuleInput {
+    class func create(viewModel: PopUpViewModelProtocol) -> PopUpModuleInput {
         let router = PopUpRouter()
-        let presenter = PopUpPresenter(viewApperance: apperance)
-        let interactor = PopUpInteractor()
+        let presenter = PopUpPresenter()
+        let interactor = PopUpInteractor(viewModel: viewModel)
         
         let storyboard = UIStoryboard(name: "PopUp", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PopUpVC") as! PopUpViewController

@@ -42,6 +42,13 @@ class PasswordInputViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
         super.viewWillDisappear(animated)
     }
+    
+    
+    // MARK: Life cycle
+    
+    @IBAction func iForgotPinPressed(_ sender: UIButton) {
+        output.iForgotPinPressed()
+    }
 
 }
 
@@ -61,6 +68,7 @@ extension PasswordInputViewController: PasswordInputViewInput {
         print("*️⃣ failure!")
         passwordContainerView.wrongPassword()
         showAlert(message: "Вы ввели НЕверный пин")
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             LoginModule.create().present()
         }
@@ -68,6 +76,10 @@ extension PasswordInputViewController: PasswordInputViewInput {
     
     func clearInput() {
         passwordContainerView.clearInput()
+    }
+    
+    func presentAlertController(_ alertVC: UIAlertController) {
+        self.present(alertVC, animated: true, completion: nil)
     }
 
 }

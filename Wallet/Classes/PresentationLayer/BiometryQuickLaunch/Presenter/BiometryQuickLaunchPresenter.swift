@@ -30,6 +30,7 @@ extension BiometryQuickLaunchPresenter: BiometryQuickLaunchViewOutput {
 
     func performAction() {
         interactor.activateBiometryLogin()
+        router.showAuthorizedZone()
     }
     
     func cancelSetup() {

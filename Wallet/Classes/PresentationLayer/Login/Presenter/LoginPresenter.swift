@@ -53,7 +53,7 @@ extension LoginPresenter: LoginViewOutput {
 extension LoginPresenter: LoginInteractorOutput {
     
     func loginSucceed() {
-        //TODO: display authorized zone
+        router.showAuthorizedZone()
     }
     
     func showQuickLaunch(authData: AuthData, token: String) {

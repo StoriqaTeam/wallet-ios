@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class RegistrationPresenter {
     
     weak var view: RegistrationViewInput!
@@ -30,7 +29,8 @@ extension RegistrationPresenter: RegistrationViewOutput {
     }
 
     func register(firstName: String, lastName: String, email: String, password: String) {
-        interactor.register(firstName: firstName, lastName: lastName, email: email, password: password)
+        let registrationData = RegistrationData(firstName: firstName, lastName: lastName, email: email, password: password)
+        interactor.register(registrationData: registrationData)
     }
     
     func validateFields(firstName: String?,
@@ -55,12 +55,12 @@ extension RegistrationPresenter: RegistrationViewOutput {
     
     func socialNetworkRegisterSucceed() {
         //TODO: будем ли передавать email
-        router.showSuccess(email: "", from: view.viewController)
+        router.showSuccess(email: "", popUpDelegate: self, from: view.viewController)
     }
     
     func socialNetworkRegisterFailed() {
         //TODO: сообщение при регистрации через соц сети
-        router.showFailure(message: Constants.Errors.userFriendly, from: view.viewController)
+        router.showSocialNetworkFailure(message: Constants.Errors.userFriendly, from: view.viewController)
     }
     
 }
@@ -75,11 +75,11 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     }
     
     func registrationSucceed(email: String) {
-        router.showSuccess(email: email, from: view.viewController)
+        router.showSuccess(email: email, popUpDelegate: self, from: view.viewController)
     }
     
     func registrationFailed(message: String) {
-        router.showFailure(message: message, from: view.viewController)
+        router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
     }
 }
 
@@ -96,3 +96,29 @@ extension RegistrationPresenter: RegistrationModuleInput {
         view.present(from: viewController)
     }
 }
+
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension RegistrationPresenter: PopUpRegistrationSuccessVMDelegate {
+    
+    func showAuthorizedZone() {
+        router.showAuthorizedZone()
+    }
+    
+}
+
+
+
+// MARK: - PopUpRegistrationFailedVMDelegate
+
+extension RegistrationPresenter: PopUpRegistrationFailedVMDelegate {
+    
+    func retry() {
+        interactor.retryRegistration()
+    }
+    
+}
+
+
+
