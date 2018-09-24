@@ -31,10 +31,6 @@ class ApplicationConfigurator: Configurable {
 extension ApplicationConfigurator {
     
     private func setInitialVC() {
-        //TODO: delete
-//        defaults.isFirstLaunch = true
-//        defaults.isQuickLaunchShown = false
-        
         if defaults.isFirstLaunch {
             defaults.isFirstLaunch = false
             FirstLaunchModule.create().present()
