@@ -23,8 +23,7 @@ extension QuickLaunchRouter: QuickLaunchRouterInput {
     }
     
     func showAuthorizedZone() {
-        //TODO: showAuthorizedZone
-        log.debug("TODO: showAuthorizedZone")
+        MainTabBarModule.create().present()
     }
     
 }

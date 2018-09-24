@@ -14,5 +14,6 @@ protocol PasswordInputViewInput: class, Presentable {
     func inputSucceed()
     func inputFailed()
     func clearInput()
+    func presentAlertController(_ alertVC: UIAlertController)
     func showAlert(title: String, message: String)
 }

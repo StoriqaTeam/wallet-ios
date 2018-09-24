@@ -32,4 +32,8 @@ extension LoginRouter: LoginRouterInput {
         PinQuickLaunchModule.create(authData: authData, token: token).present(from: viewController)
     }
     
+    func showAuthorizedZone() {
+        MainTabBarModule.create().present()
+    }
+    
 }

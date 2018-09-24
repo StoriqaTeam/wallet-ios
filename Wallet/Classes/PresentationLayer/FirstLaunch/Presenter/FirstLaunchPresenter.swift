@@ -31,6 +31,10 @@ extension FirstLaunchPresenter: FirstLaunchViewOutput {
         router.showRegistration()
     }
 
+    func showLogin() {
+        router.showLogin()
+    }
+    
 }
 
 

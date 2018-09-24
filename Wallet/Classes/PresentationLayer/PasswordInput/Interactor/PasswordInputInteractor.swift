@@ -40,4 +40,10 @@ extension PasswordInputInteractor: PasswordInputInteractorInput {
         return biometricAuthProvider.canAuthWithBiometry && defaultsProvider.isBiometryAuthEnabled
     }
     
+    func resetPin() {
+        defaultsProvider.isQuickLaunchShown = false
+        pinValidator.resetPin()
+        output.pinWasReset()
+    }
+    
 }

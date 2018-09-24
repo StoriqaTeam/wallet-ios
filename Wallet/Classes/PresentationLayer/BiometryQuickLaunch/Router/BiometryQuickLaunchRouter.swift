@@ -19,8 +19,7 @@ class BiometryQuickLaunchRouter {
 extension BiometryQuickLaunchRouter: BiometryQuickLaunchRouterInput {
     
     func showAuthorizedZone() {
-        //TODO: showAuthorizedZone
-        log.debug("TODO: showAuthorizedZone")
+        MainTabBarModule.create().present()
     }
     
 }
