@@ -11,11 +11,21 @@ import Foundation
 
 class PopUpInteractor {
     weak var output: PopUpInteractorOutput!
+    
+    private let viewModel: PopUpViewModelProtocol
+    
+    init(viewModel: PopUpViewModelProtocol) {
+        self.viewModel = viewModel
+    }
 }
 
 
 // MARK: - PopUpInteractorInput
 
 extension PopUpInteractor: PopUpInteractorInput {
-
+    
+    func getViewModel() -> PopUpViewModelProtocol {
+        return viewModel
+    }
+    
 }

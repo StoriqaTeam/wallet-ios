@@ -8,9 +8,17 @@
 
 import Foundation
 
+struct RegistrationData {
+    let firstName: String
+    let lastName: String
+    let email: String
+    let password: String
+}
 
 class RegistrationInteractor {
     weak var output: RegistrationInteractorOutput!
+    
+    private var registrationData: RegistrationData?
     
     private let socialViewVM: SocialNetworkAuthViewModel
     private let formValidationProvider: RegistrationFormValidatonProviderProtocol
@@ -38,17 +46,24 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         output.setFormIsValid(valid, passwordsEqualityMessage: passwordsEqualMessage)
     }
     
-    func register(firstName: String, lastName: String, email: String, password: String) {
+    func register(registrationData: RegistrationData) {
+        self.registrationData = registrationData
+        
         // TODO: - implement new provider
         log.warn("implement registration provider")
         
         // FIXME: - stub
         if arc4random_uniform(2) == 0 {
-            output.registrationSucceed(email: email)
+            output.registrationSucceed(email: registrationData.email)
         } else {
             output.registrationFailed(message: Constants.Errors.userFriendly)
         }
         // ------------------------------
+    }
+    
+    func retryRegistration() {
+        guard let registrationData = registrationData else { fatalError() }
+        register(registrationData: registrationData)
     }
     
 }

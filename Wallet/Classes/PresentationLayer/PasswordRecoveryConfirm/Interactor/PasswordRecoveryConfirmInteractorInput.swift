@@ -12,4 +12,5 @@ import Foundation
 protocol PasswordRecoveryConfirmInteractorInput: class {
     func confirmReset(newPassword: String)
     func validateForm(newPassword: String?, passwordConfirm: String?)
+    func retry()
 }

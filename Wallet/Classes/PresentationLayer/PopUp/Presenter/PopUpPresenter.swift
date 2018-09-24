@@ -16,12 +16,6 @@ class PopUpPresenter {
     var interactor: PopUpInteractorInput!
     var router: PopUpRouterInput!
     
-    private let viewApperance: PopUpApperance
-    
-    init(viewApperance: PopUpApperance) {
-        self.viewApperance = viewApperance
-    }
-    
 }
 
 
@@ -30,7 +24,8 @@ class PopUpPresenter {
 extension PopUpPresenter: PopUpViewOutput {
 
     func viewIsReady() {
-        view.setupInitialState(apperance: viewApperance)
+        let vm = interactor.getViewModel()
+        view.setupInitialState(vm: vm)
     }
 
 }

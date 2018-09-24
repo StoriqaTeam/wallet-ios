@@ -100,6 +100,7 @@ extension SocialNetworkAuthView: SocialNetworkAuthViewModelProtocol {
     func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String)>) {
         switch result {
         case .failure(let error):
+            delegate?.socialNetworkAuthFailed()
             print(error.localizedDescription)
         case .success(let token):
             delegate?.socialNetworkAuthSucceed(provider: token.provider, token: token.token)

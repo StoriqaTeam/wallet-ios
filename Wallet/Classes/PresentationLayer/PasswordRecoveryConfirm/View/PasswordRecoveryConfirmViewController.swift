@@ -54,7 +54,6 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
         }
         
         output.confirmReset(newPassword: password)
-        LoginModule.create().present()
         
     }
     

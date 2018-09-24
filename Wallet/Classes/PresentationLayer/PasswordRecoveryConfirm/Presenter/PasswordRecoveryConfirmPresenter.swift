@@ -47,11 +47,11 @@ extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmInteractorOut
     }
 
     func passwordRecoverySucceed() {
-        router.showSuccess(from: view.viewController)
+        router.showSuccess(popUpDelegate: self, from: view.viewController)
     }
     
     func passwordRecoveryFailed(message: String) {
-        router.showFailure(message: message, from: view.viewController)
+        router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
     }
     
 }
@@ -60,8 +60,31 @@ extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmInteractorOut
 // MARK: - PasswordRecoveryConfirmModuleInput
 
 extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmModuleInput {
-
+    
     func present(from viewController: UIViewController) {
         view.presentModal(from: viewController)
     }
+}
+
+
+// MARK: - PopUpPasswordRecoveryConfirmSuccessVMDelegate
+
+extension PasswordRecoveryConfirmPresenter: PopUpPasswordRecoveryConfirmSuccessVMDelegate {
+    
+    func signIn() {
+        // replace saved in keychain data
+        router.showAuthorizedZone()
+    }
+    
+}
+
+
+// MARK: - PopUpPasswordRecoveryConfirmFailedVMDelegate
+
+extension PasswordRecoveryConfirmPresenter: PopUpPasswordRecoveryConfirmFailedVMDelegate {
+    
+    func retry() {
+        interactor.retry()
+    }
+    
 }

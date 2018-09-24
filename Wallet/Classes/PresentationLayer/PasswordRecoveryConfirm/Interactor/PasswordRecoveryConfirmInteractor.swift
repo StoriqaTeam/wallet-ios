@@ -12,6 +12,8 @@ import Foundation
 class PasswordRecoveryConfirmInteractor {
     weak var output: PasswordRecoveryConfirmInteractorOutput!
 
+    private var password: String?
+    
     private let token: String
     private let formValidator: PasswordRecoveryConfirmFormValidatorProtocol
     
@@ -35,6 +37,7 @@ extension PasswordRecoveryConfirmInteractor: PasswordRecoveryConfirmInteractorIn
     }
     
     func confirmReset(newPassword: String) {
+        self.password = newPassword
         
         //TODO: implement in new provider
         log.warn("implement resetPassword provider")
@@ -49,4 +52,9 @@ extension PasswordRecoveryConfirmInteractor: PasswordRecoveryConfirmInteractorIn
         
     }
 
+    func retry() {
+        guard let password = password else { fatalError() }
+        confirmReset(newPassword: password)
+    }
+    
 }

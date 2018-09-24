@@ -12,6 +12,7 @@ import Foundation
 class PasswordEmailRecoveryInteractor {
     weak var output: PasswordEmailRecoveryInteractorOutput!
     
+    private var email: String?
 }
 
 
@@ -19,6 +20,8 @@ class PasswordEmailRecoveryInteractor {
 
 extension PasswordEmailRecoveryInteractor: PasswordEmailRecoveryInteractorInput {
     func resetPassword(email: String) {
+        self.email = email
+        
         //TODO: implement in new provider
         log.warn("implement resetPassword provider")
         
@@ -29,5 +32,10 @@ extension PasswordEmailRecoveryInteractor: PasswordEmailRecoveryInteractorInput 
             output.emailSendingFailed(message: Constants.Errors.userFriendly)
         }
         // ------------------------------
+    }
+    
+    func retry() {
+        guard let email = email else { fatalError() }
+        resetPassword(email: email)
     }
 }
