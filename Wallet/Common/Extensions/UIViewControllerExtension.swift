@@ -39,8 +39,18 @@ extension UIViewController {
     }
     
     func wrapToNavigationController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: self)
-        return navigationController
+        let navigation = UINavigationController(rootViewController: self)
+        navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigation.navigationBar.shadowImage = UIImage()
+        navigation.navigationBar.isTranslucent = true
+        navigation.view.backgroundColor = .clear
+        navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
+        navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
+        navigation.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "",
+                                                                              style: .plain,
+                                                                              target: nil,
+                                                                              action: nil)
+        return navigation
     }
     
 }

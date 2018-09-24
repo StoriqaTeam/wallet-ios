@@ -17,5 +17,9 @@ class MyWalletRouter {
 // MARK: - MyWalletRouterInput
 
 extension MyWalletRouter: MyWalletRouterInput {
+    func showAccountsWith(selectedAccount: Account, from fromViewController: UIViewController) {
+        AccountsModule.create(account: selectedAccount).present(from: fromViewController)
+    }
+    
     
 }

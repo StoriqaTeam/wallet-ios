@@ -8,15 +8,26 @@
 
 import Foundation
 
-enum AccountType {
+enum AccountType: String {
     case stq
     case stqBlack
     case stqGold
     case eth
     case btc
+    
+    var ICO: String {
+        switch self {
+        case .btc:
+            return "BTC"
+        case .eth:
+            return "ETH"
+        default:
+            return "STQ"
+        }
+    }
 }
 
-struct AccountModel {
+struct Account {
     let type: AccountType
     let cryptoAmount: String
     let fiatAmount: String
@@ -43,4 +54,8 @@ struct AccountModel {
             return .black
         }
     }
+}
+
+extension Account: Equatable {
+    
 }

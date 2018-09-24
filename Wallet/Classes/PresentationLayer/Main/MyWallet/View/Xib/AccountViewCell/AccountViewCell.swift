@@ -22,7 +22,7 @@ class AccountViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configWithAccountModel(_ model: AccountModel) {
+    func configWithAccountModel(_ model: Account) {
         backgroundImage.image = model.imageForType
         cryptoAmountLabel.text = model.cryptoAmount
         fiatAmountLabel.text = model.fiatAmount
