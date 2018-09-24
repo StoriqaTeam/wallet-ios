@@ -10,6 +10,5 @@ import Foundation
 
 
 protocol PinQuickLaunchInteractorOutput: class {
-    func showAuthorizedZone()
-    func showBiometryQuickSetup(qiuckLaunchProvider: QuickLaunchProviderProtocol)
+    
 }

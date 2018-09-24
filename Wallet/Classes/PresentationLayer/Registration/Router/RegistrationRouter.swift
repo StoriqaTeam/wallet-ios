@@ -31,7 +31,9 @@ extension RegistrationRouter: RegistrationRouterInput {
                                             attributedText: nil,
                                             actionButtonTitle: "sign_in".localized(),
                                             hasCloseButton: false,
-                                            actionBlock: {},
+                                            actionBlock: {
+                                                MainTabBarModule.create().present()
+                                            },
                                             closeBlock: nil)
         PopUpModule.create(apperance: popUpApperance).present(from: viewController)
     }
@@ -45,8 +47,8 @@ extension RegistrationRouter: RegistrationRouterInput {
                                             attributedText: nil,
                                             actionButtonTitle: "try_again".localized(),
                                             hasCloseButton: true,
-                                            actionBlock: {},
-                                            closeBlock: {})
+                                            actionBlock: { /* TODO: send request again */ },
+                                            closeBlock: { /* do nothing, just close popup */  })
         PopUpModule.create(apperance: popUpApperance).present(from: viewController)
     }
     

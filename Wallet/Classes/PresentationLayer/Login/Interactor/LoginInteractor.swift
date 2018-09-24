@@ -54,19 +54,24 @@ extension LoginInteractor: LoginInteractorInput {
         // ------------------------------
     }
     
+    private func loginSucceed(authData: AuthData) {
+        if !defaultProvider.isQuickLaunchShown {
+            if biometricAuthProvider.canAuthWithBiometry {
+                output.showQuickLaunch(authData: authData, token: "")
+            } else {
+                output.showPinQuickLaunch(authData: authData, token: "")
+            }
+            
+            defaultProvider.isQuickLaunchShown = true
+        } else {
+            output.loginSucceed()
+        }
+    }
     
     // FIXME: - stub
     private func signInStub(authData: AuthData) {
         if arc4random_uniform(2) == 0 {
-            if !defaultProvider.isQuickLaunchShown {
-                if biometricAuthProvider.canAuthWithBiometry {
-                    output.showQuickLaunch(authData: authData, token: "")
-                } else {
-                    output.showPinQuickLaunch(authData: authData, token: "")
-                }
-            } else {
-                output.loginSucceed()
-            }
+            loginSucceed(authData: authData)
         } else {
             output.loginFailed(message: Constants.Errors.userFriendly)
         }

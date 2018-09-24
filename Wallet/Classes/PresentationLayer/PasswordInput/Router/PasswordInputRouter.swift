@@ -17,6 +17,10 @@ class PasswordInputRouter {
 // MARK: - PasswordInputRouterInput
 
 extension PasswordInputRouter: PasswordInputRouterInput {
+    func showLogin() {
+        LoginModule.create().present()
+    }
+    
     func showMainTabBar() {
         MainTabBarModule.create().present()
     }

@@ -166,10 +166,10 @@ open class PasswordContainerView: UIView {
 private extension PasswordContainerView {
     func checkInputComplete() {
         if inputString.count == passwordDotView.totalDotCount {
-            if let delegate = delegate {
-                delegate.passwordInputComplete(input: inputString)      
-            } else {
-                log.warn("delegate is nil")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                if let inputString = self?.inputString {
+                    self?.delegate?.passwordInputComplete(input: inputString)
+                }
             }
         }
     }

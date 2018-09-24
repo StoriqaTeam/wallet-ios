@@ -12,4 +12,5 @@ import UIKit
 protocol FirstLaunchViewOutput: class {
     func viewIsReady()
     func showRegistration()
+    func showLogin()
 }

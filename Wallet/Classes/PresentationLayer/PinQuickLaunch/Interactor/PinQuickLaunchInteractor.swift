@@ -28,14 +28,5 @@ extension PinQuickLaunchInteractor: PinQuickLaunchInteractorInput {
     func getProvider() -> QuickLaunchProviderProtocol {
         return qiuckLaunchProvider
     }
-    
-    func cancelSetup() {
-        
-        if qiuckLaunchProvider.isBiometryAvailable() {
-            output.showBiometryQuickSetup(qiuckLaunchProvider: qiuckLaunchProvider)
-        } else {
-            output.showAuthorizedZone()
-        }
-    }
-    
+
 }
