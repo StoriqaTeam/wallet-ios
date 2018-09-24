@@ -22,6 +22,11 @@ class MyWalletPresenter {
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletViewOutput {
+    func selectItemAt(index: Int) {
+        let selectedAccount = interactor.accountModel(for: index)
+        router.showAccountsWith(selectedAccount: selectedAccount, from: view.viewController)
+    }
+    
     
     func viewIsReady() {
         view.setupInitialState(flowLayout: collectionFlowLayout)
@@ -31,11 +36,8 @@ extension MyWalletPresenter: MyWalletViewOutput {
         return interactor.accountsCount()
     }
 
-    func accountModel(for indexPath: IndexPath)  -> AccountModel {
-        guard let account = interactor.accountModel(for: indexPath.row) else {
-            fatalError()
-        }
-        
+    func accountModel(for indexPath: IndexPath)  -> Account {
+        let account = interactor.accountModel(for: indexPath.row)
         return account
     }
     

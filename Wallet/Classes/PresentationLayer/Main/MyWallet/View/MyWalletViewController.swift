@@ -27,7 +27,7 @@ class MyWalletViewController: UIViewController {
         super.viewDidLoad()
         configureNavBar()
         registerReusableCells()
-        
+        setDelegates()
         output.viewIsReady()
     }
     
@@ -77,6 +77,12 @@ extension MyWalletViewController: MyWalletViewInput {
 // MARK: - Private methods
 
 extension MyWalletViewController {
+    
+    private func setDelegates() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
     private func configureNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = .white
@@ -108,7 +114,9 @@ extension MyWalletViewController {
 // MARK: - UICollectionViewDelegate
 
 extension MyWalletViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        output.selectItemAt(index: indexPath.row)
+    }
 }
 
 

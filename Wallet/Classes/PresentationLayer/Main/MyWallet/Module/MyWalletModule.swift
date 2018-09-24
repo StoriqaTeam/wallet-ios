@@ -5,13 +5,23 @@
 
 import UIKit
 
+class FakeAccountProvider: AccountsProviderProtocol {
+    func getAllAccounts() -> [Account] {
+        return [Account(type: .stqBlack, cryptoAmount: "145,678,445.00", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii"),
+                Account(type: .eth, cryptoAmount: "892.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii"),
+                Account(type: .btc, cryptoAmount: "123.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii")]
+    }
+}
+
 
 class MyWalletModule {
     
     class func create() -> MyWalletModuleInput {
         let router = MyWalletRouter()
         let presenter = MyWalletPresenter()
-        let interactor = MyWalletInteractor()
+        
+        let fakeAccountsProvider = FakeAccountProvider()
+        let interactor = MyWalletInteractor(accountsProvider: fakeAccountsProvider)
         
         let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)
         let viewController = myWalletSb.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController
