@@ -11,4 +11,5 @@ import Foundation
 
 protocol PasswordEmailRecoveryInteractorInput: class {
     func resetPassword(email: String)
+    func retry()
 }

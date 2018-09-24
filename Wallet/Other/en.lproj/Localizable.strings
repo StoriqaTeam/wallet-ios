@@ -28,6 +28,7 @@
 "register" = "Register";
 "sign_in" = "Sign in";
 "add_new" = "Add new";
+"ok" = "Ok";
 
 "set_up_quick_launch" = "Set up quick launch";
 "do_not_use" = "Do not use";

@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol PopUpInteractorInput: class {
-
+    func getViewModel() -> PopUpViewModelProtocol
 }

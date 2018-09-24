@@ -10,6 +10,10 @@ import UIKit
 
 
 protocol PasswordRecoveryConfirmRouterInput: class {
-    func showSuccess(from viewController: UIViewController)
-    func showFailure(message: String, from viewController: UIViewController)
+    func showSuccess(popUpDelegate: PopUpPasswordRecoveryConfirmSuccessVMDelegate,
+                     from viewController: UIViewController)
+    func showFailure(message: String,
+                     popUpDelegate: PopUpPasswordRecoveryConfirmFailedVMDelegate,
+                     from viewController: UIViewController)
+    func showAuthorizedZone()
 }

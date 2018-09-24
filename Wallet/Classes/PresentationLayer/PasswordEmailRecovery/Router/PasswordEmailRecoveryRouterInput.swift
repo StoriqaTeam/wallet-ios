@@ -10,6 +10,9 @@ import UIKit
 
 
 protocol PasswordEmailRecoveryRouterInput: class {
-    func showSuccess(from viewController: UIViewController)
-    func showFailure(message: String, from viewController: UIViewController)
+    func showSuccess(popUpDelegate: PopUpPasswordEmailRecoverySuccessVMDelegate,
+                     from viewController: UIViewController)
+    func showFailure(message: String,
+                     popUpDelegate: PopUpPasswordEmailRecoveryFailedVMDelegate,
+                     from viewController: UIViewController)
 }

@@ -11,6 +11,12 @@ import UIKit
 
 protocol RegistrationRouterInput: class {
     func showLogin()
-    func showSuccess(email: String, from viewController: UIViewController)
-    func showFailure(message: String, from viewController: UIViewController)
+    func showSuccess(email: String,
+                     popUpDelegate: PopUpRegistrationSuccessVMDelegate,
+                     from viewController: UIViewController)
+    func showFailure(message: String,
+                     popUpDelegate: PopUpRegistrationFailedVMDelegate,
+                     from viewController: UIViewController)
+    func showSocialNetworkFailure(message: String, from viewController: UIViewController)
+    func showAuthorizedZone()
 }

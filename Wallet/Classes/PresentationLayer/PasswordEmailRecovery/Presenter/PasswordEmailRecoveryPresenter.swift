@@ -43,11 +43,11 @@ extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryInteractorOutput 
     
     
     func emailSentSuccessfully() {
-        router.showSuccess(from: view.viewController)
+        router.showSuccess(popUpDelegate: self, from: view.viewController)
     }
     
     func emailSendingFailed(message: String) {
-        router.showFailure(message: message, from: view.viewController)
+        router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
     }
     
 }
@@ -61,4 +61,25 @@ extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryModuleInput {
         view.present(from: viewController)
     }
     
+}
+
+
+// MARK: - PopUpPasswordEmailRecoverySuccessVMDelegate
+
+extension PasswordEmailRecoveryPresenter: PopUpPasswordEmailRecoverySuccessVMDelegate {
+    
+    func closePasswordRecovery() {
+        view.dismiss()
+    }
+    
+}
+
+
+// MARK: - PopUpPasswordEmailRecoveryFailedVMDelegate
+
+extension PasswordEmailRecoveryPresenter: PopUpPasswordEmailRecoveryFailedVMDelegate {
+    
+    func retry() {
+        interactor.retry()
+    }
 }

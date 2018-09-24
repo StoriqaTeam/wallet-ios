@@ -11,6 +11,7 @@ import UIKit
 class PopUpViewController: UIViewController {
 
     var output: PopUpViewOutput!
+    var viewModel: PopUpViewModelProtocol!
 
     // MARK: - IBOutlets
     
@@ -20,11 +21,6 @@ class PopUpViewController: UIViewController {
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var actionButton: DefaultButton!
     @IBOutlet private var closeButton: BaseButton!
-    
-    // MARK: - Variables
-
-    private var actionBlock: (()->())?
-    private var closeBlock: (()->())?
     
     // MARK: - Life cycle
 
@@ -63,12 +59,12 @@ class PopUpViewController: UIViewController {
     
     @IBAction func actionButtonTapped(_ sender: UIButton) {
         dismissViewController()
-        actionBlock?()
+        viewModel.performAction()
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         dismissViewController()
-        closeBlock?()
+        viewModel.cancelAction()
     }
     
 }
@@ -78,21 +74,21 @@ class PopUpViewController: UIViewController {
 
 extension PopUpViewController: PopUpViewInput {
     
-    func setupInitialState(apperance: PopUpApperance) {
-        imageView.image = apperance.image
-        titleLabel.text = apperance.title
-        if let attributedText = apperance.attributedText {
+    func setupInitialState(vm: PopUpViewModelProtocol) {
+        self.viewModel = vm
+        
+        imageView.image = vm.apperance.image
+        titleLabel.text = vm.apperance.title
+        if let attributedText = vm.apperance.attributedText {
             textLabel.attributedText = attributedText
-        } else if let text = apperance.text {
+        } else if let text = vm.apperance.text {
             textLabel.text = text
         } else {
             textLabel.text = ""
         }
-        actionButton.setTitle(apperance.actionButtonTitle, for: .normal)
-        actionBlock = apperance.actionBlock
-        closeBlock = apperance.closeBlock
+        actionButton.setTitle(vm.apperance.actionButtonTitle, for: .normal)
         
-        if !apperance.hasCloseButton {
+        if !vm.apperance.hasCloseButton {
             closeButton.removeFromSuperview()
         }
     }
