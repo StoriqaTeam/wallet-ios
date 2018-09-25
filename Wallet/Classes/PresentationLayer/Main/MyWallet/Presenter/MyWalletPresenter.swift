@@ -15,7 +15,7 @@ class MyWalletPresenter {
     weak var output: MyWalletModuleOutput?
     var interactor: MyWalletInteractorInput!
     var router: MyWalletRouterInput!
-    
+    var mainTabBar: UITabBarController!
 }
 
 
@@ -24,7 +24,9 @@ class MyWalletPresenter {
 extension MyWalletPresenter: MyWalletViewOutput {
     func selectItemAt(index: Int) {
         let selectedAccount = interactor.accountModel(for: index)
-        router.showAccountsWith(selectedAccount: selectedAccount, from: view.viewController)
+        router.showAccountsWith(selectedAccount: selectedAccount,
+                                from: view.viewController,
+                                tabBar: mainTabBar)
     }
     
     

@@ -17,6 +17,9 @@ class AccountsViewController: UIViewController {
     @IBOutlet weak var accountsCollectionView: UICollectionView!
     @IBOutlet weak var accountsPageControl: UIPageControl!
     @IBOutlet weak var lastTransactionsTableView: UITableView!
+    @IBOutlet weak var changeButton: RouteButton!
+    @IBOutlet weak var depositButton: RouteButton!
+    @IBOutlet weak var sendButton: RouteButton!
     
 
     // MARK: Life cycle
@@ -27,6 +30,12 @@ class AccountsViewController: UIViewController {
         output.accountsCollectionView(accountsCollectionView)
         output.transactionTableView(lastTransactionsTableView)
         output.viewIsReady()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.configureCollections()
     }
     
     
@@ -48,7 +57,9 @@ extension AccountsViewController: AccountsViewInput {
     }
 
     func setupInitialState() {
-
+        configureNavBar()
+        lastTransactionsTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        configureButtons()
     }
 }
 
@@ -60,5 +71,23 @@ extension AccountsViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.largeTitleDisplayMode = .never
         setDarkTextNavigationBar()
+    }
+    
+    private func configureButtons() {
+        changeButton.configure(.deposit)
+        changeButton.delegate = self
+        sendButton.configure(.send)
+        sendButton.delegate = self
+        depositButton.configure(.deposit)
+        depositButton.delegate = self
+    }
+}
+
+
+// MARK: - RouteButtonDelegate
+
+extension AccountsViewController: RouteButtonDelegate {
+    func didTap(type: RouteButtonType) {
+       output.handleCustomButton(type: type)
     }
 }
