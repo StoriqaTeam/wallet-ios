@@ -24,10 +24,10 @@ class AccountsPresenter {
 
 extension AccountsPresenter: AccountsViewOutput {
     func configureCollections() {
-        interactor.scrolCollection()
+        interactor.scrollCollection()
     }
     
-    func handlCustomButton(type: RouteButtonType) {
+    func handleCustomButton(type: RouteButtonType) {
         let account = interactor.getCurrentAccount()
         switch type {
         case .change:

@@ -13,6 +13,6 @@ protocol AccountsViewOutput: class {
     func accountsCollectionView(_ collectionView: UICollectionView)
     func transactionTableView(_ tableView: UITableView)
     func viewIsReady()
-    func handlCustomButton(type: RouteButtonType)
+    func handleCustomButton(type: RouteButtonType)
     func configureCollections()
 }

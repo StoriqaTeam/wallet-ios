@@ -34,7 +34,7 @@ extension AccountsInteractor: AccountsInteractorInput {
         output.ISODidChange(self.account.type.ICO)
     }
     
-    func scrolCollection() {
+    func scrollCollection() {
         let index = resolveAccountIndex(account: account)
         accountsDataManager.scrollTo(index: index)
     }

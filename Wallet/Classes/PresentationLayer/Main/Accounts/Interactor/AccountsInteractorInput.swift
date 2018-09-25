@@ -17,5 +17,5 @@ protocol AccountsInteractorInput: class {
     func createTransactionsDataManager(with tableView: UITableView)
     func setTransactionDataManagerDelegate(_ delegate: LastTransactionsDataManagerDelegate)
     func setCurrentAccountWith(index: Int)
-    func scrolCollection()
+    func scrollCollection()
 }

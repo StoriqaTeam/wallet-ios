@@ -88,6 +88,6 @@ extension AccountsViewController {
 
 extension AccountsViewController: RouteButtonDelegate {
     func didTap(type: RouteButtonType) {
-       output.handlCustomButton(type: type)
+       output.handleCustomButton(type: type)
     }
 }
