@@ -66,9 +66,10 @@ class FakeAccountLinker: AccountsLinkerProtocol {
 
 class AccountsModule {
     
-    class func create(account: Account) -> AccountsModuleInput {
+    class func create(account: Account, tabBar: UITabBarController) -> AccountsModuleInput {
         let router = AccountsRouter()
         let presenter = AccountsPresenter()
+        presenter.mainTabBar = tabBar
         
         let fakeAccountsProvider = FakeAccountProvider()
         let fakeTransactionsProvider = FakeTransactionsProvider()
@@ -88,5 +89,7 @@ class AccountsModule {
         
         return presenter
     }
+    
+    
     
 }

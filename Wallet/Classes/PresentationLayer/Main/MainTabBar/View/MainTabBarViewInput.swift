@@ -11,5 +11,6 @@ import UIKit
 
 protocol MainTabBarViewInput: class, Presentable {
     var viewControllers: [UIViewController]? { get set }
+    var mainTabBar: UITabBarController? { get }
     func setupInitialState()
 }

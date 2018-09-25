@@ -44,6 +44,10 @@ extension DepositPresenter: DepositModuleInput {
         return view.viewController
     }
     
+    func present() {
+        view.present()
+    }
+    
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }

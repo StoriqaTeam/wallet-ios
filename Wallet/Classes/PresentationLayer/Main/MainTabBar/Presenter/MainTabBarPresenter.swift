@@ -17,7 +17,7 @@ class MainTabBarPresenter {
     var router: MainTabBarRouterInput!
     
     private lazy var myWalletModule: MyWalletModuleInput = {
-        let module = MyWalletModule.create()
+        let module = MyWalletModule.create(tabBar: view.mainTabBar!)
         module.output = self
         return module
     }()
@@ -44,7 +44,7 @@ extension MainTabBarPresenter: MainTabBarViewOutput {
 // MARK: - MainTabBarInteractorOutput
 
 extension MainTabBarPresenter: MainTabBarInteractorOutput {
-
+    
 }
 
 

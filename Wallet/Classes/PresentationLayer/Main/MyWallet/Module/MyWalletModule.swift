@@ -37,4 +37,26 @@ class MyWalletModule {
         return presenter
     }
     
+    class func create(tabBar: UITabBarController) -> MyWalletModuleInput {
+        let router = MyWalletRouter()
+        let presenter = MyWalletPresenter()
+        presenter.mainTabBar = tabBar
+        
+        let fakeAccountsProvider = FakeAccountProvider()
+        let interactor = MyWalletInteractor(accountsProvider: fakeAccountsProvider)
+        
+        let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)
+        let viewController = myWalletSb.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController
+        
+        interactor.output = presenter
+        
+        viewController.output = presenter
+        
+        presenter.view = viewController
+        presenter.router = router
+        presenter.interactor = interactor
+        
+        return presenter
+    }
+    
 }

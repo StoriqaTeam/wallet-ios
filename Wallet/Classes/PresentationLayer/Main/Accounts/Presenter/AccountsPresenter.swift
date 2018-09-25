@@ -15,6 +15,7 @@ class AccountsPresenter {
     weak var output: AccountsModuleOutput?
     var interactor: AccountsInteractorInput!
     var router: AccountsRouterInput!
+    var mainTabBar: UITabBarController!
     
 }
 
@@ -22,6 +23,22 @@ class AccountsPresenter {
 // MARK: - AccountsViewOutput
 
 extension AccountsPresenter: AccountsViewOutput {
+    func configureCollections() {
+        interactor.scrollCollection()
+    }
+    
+    func handleCustomButton(type: RouteButtonType) {
+        let account = interactor.getCurrentAccount()
+        switch type {
+        case .change:
+            mainTabBar.selectedIndex = 2
+        case .deposit:
+            mainTabBar.selectedIndex = 3
+        case .send:
+            mainTabBar.selectedIndex = 1
+        }
+    }
+    
     func transactionTableView(_ tableView: UITableView) {
         interactor.createTransactionsDataManager(with: tableView)
     }
@@ -47,7 +64,9 @@ extension AccountsPresenter: AccountsViewOutput {
 // MARK: - AccountsInteractorOutput
 
 extension AccountsPresenter: AccountsInteractorOutput {
-    
+    func ISODidChange(_ iso: String) {
+         view.viewController.title = "Account \(iso)"
+    }
 }
 
 
@@ -65,6 +84,7 @@ extension AccountsPresenter: AccountsModuleInput {
 
 extension AccountsPresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
+        interactor.setCurrentAccountWith(index: newIndex)
         view.setNewPage(newIndex)
     }
 }
