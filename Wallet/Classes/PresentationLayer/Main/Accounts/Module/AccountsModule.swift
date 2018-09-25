@@ -15,7 +15,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                         cryptoAmount: 2,
                         timestamp: Date(),
                         status: .confirmed,
-                        opponent: .contact(name: "Satoshi N.")),
+                        opponent: .contact(contact: Contact(givenName: "Satoshi", familyName: "B.", mobile: "123-456-789", imageData: nil))),
             
             Transaction(currency: .eth,
                         direction: .receive,

@@ -35,8 +35,8 @@ extension TransactionTableViewCell {
         switch transaction.opponent {
         case .address(address: let address):
             opponentLabel.text = address
-        case .contact(name: let contact):
-            opponentLabel.text = contact
+        case .contact(contact: let contact):
+            opponentLabel.text = contact.name
         }
         
         switch direction {

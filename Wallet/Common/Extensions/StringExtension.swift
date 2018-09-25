@@ -27,6 +27,10 @@ extension String {
     func trim() -> String {
         return self.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
     }
+    
+    func clearedPhoneNumber() -> String {
+        return self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
+    }
 }
 
 extension String {

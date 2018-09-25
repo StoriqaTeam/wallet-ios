@@ -36,7 +36,7 @@ enum Status {
 }
 
 enum OpponentType {
-    case contact(name: String)
+    case contact(contact: Contact)
     case address(address: String)
 }
 

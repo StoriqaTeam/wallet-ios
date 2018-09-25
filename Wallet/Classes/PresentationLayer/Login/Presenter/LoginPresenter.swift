@@ -84,6 +84,10 @@ extension LoginPresenter: LoginModuleInput {
     
     func present() {
         view.presentAsNavController()
+        
+        
+        //FIXME: - delete this!
+        ReceiverModule.create().present(from: view.viewController)
     }
 
     func present(from viewController: UIViewController) {

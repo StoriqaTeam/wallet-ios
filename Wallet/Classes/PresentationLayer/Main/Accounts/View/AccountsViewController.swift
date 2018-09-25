@@ -12,7 +12,6 @@ import UIKit
 class AccountsViewController: UIViewController {
 
     var output: AccountsViewOutput!
-    private let kTxCellIdentifier = "transactionCell"
     
     @IBOutlet weak var accountsCollectionView: UICollectionView!
     @IBOutlet weak var accountsPageControl: UIPageControl!
@@ -35,7 +34,6 @@ class AccountsViewController: UIViewController {
     @IBAction func viewAllPressed(_ sender: UIButton) {
         showAlert(title:"", message: "Need Transaction list screen design")
     }
-    
     
 }
 
