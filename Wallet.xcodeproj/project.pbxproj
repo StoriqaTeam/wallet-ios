@@ -218,7 +218,6 @@
 		CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */; };
 		CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */; };
-		CE1BD73D212565B8006097E5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE1BD73C212565B8006097E5 /* Podfile */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
 		CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74D2126BEDB0097230A /* UserInfo.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
@@ -570,7 +569,6 @@
 		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
 		CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
-		CE1BD73C212565B8006097E5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -1612,7 +1610,6 @@
 				CE526C3A212465A900A2EED2 /* Assets.xcassets */,
 				CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */,
 				CE185496214BE558009D1360 /* Localizable.strings */,
-				CE1BD73C212565B8006097E5 /* Podfile */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -2364,7 +2361,6 @@
 				CE185494214BE558009D1360 /* Localizable.strings in Resources */,
 				CE5FAFAF21527CAB009E707E /* QuickLaunch.storyboard in Resources */,
 				A5E8D9A82153EBD600AC6A7E /* Exchange.storyboard in Resources */,
-				CE1BD73D212565B8006097E5 /* Podfile in Resources */,
 				A51CB55A21590F6800CDC80C /* TransactionCell.xib in Resources */,
 				CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */,
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
