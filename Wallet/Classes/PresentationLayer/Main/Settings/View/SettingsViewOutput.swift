@@ -10,5 +10,6 @@ import UIKit
 
 
 protocol SettingsViewOutput: class {
-    func viewIsReady()  
+    func viewIsReady()
+    func resetApplication()
 }

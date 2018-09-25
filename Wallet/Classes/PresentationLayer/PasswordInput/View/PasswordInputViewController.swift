@@ -67,7 +67,7 @@ extension PasswordInputViewController: PasswordInputViewInput {
     func inputFailed() {
         print("*️⃣ failure!")
         passwordContainerView.wrongPassword()
-        showAlert(message: "Вы ввели НЕверный пин")
+        showAlert(message: "Wrong password")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             LoginModule.create().present()
