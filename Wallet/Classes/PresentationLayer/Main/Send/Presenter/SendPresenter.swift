@@ -15,7 +15,6 @@ class SendPresenter {
     weak var output: SendModuleOutput?
     var interactor: SendInteractorInput!
     var router: SendRouterInput!
-    
 }
 
 
@@ -39,8 +38,13 @@ extension SendPresenter: SendInteractorOutput {
 // MARK: - SendModuleInput
 
 extension SendPresenter: SendModuleInput {
+
     var viewController: UIViewController {
         return view.viewController
+    }
+    
+    func present() {
+        view.present()
     }
     
 

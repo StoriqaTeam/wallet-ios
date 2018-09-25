@@ -8,7 +8,7 @@ import UIKit
 
 class ExchangeModule {
     
-    class func create() -> ExchangeModuleInput {
+    class func create(account: Account) -> ExchangeModuleInput {
         let router = ExchangeRouter()
         let presenter = ExchangePresenter()
         let interactor = ExchangeInteractor()
@@ -20,6 +20,25 @@ class ExchangeModule {
 
         viewController.output = presenter
 
+        presenter.view = viewController
+        presenter.router = router
+        presenter.interactor = interactor
+        
+        return presenter
+    }
+    
+    class func create() -> ExchangeModuleInput {
+        let router = ExchangeRouter()
+        let presenter = ExchangePresenter()
+        let interactor = ExchangeInteractor()
+        
+        let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
+        let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController
+        
+        interactor.output = presenter
+        
+        viewController.output = presenter
+        
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor

@@ -159,6 +159,10 @@
 		A51CB5552158FF6300CDC80C /* AccountsLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB5542158FF6300CDC80C /* AccountsLinker.swift */; };
 		A51CB55821590F4700CDC80C /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB55721590F4700CDC80C /* TransactionTableViewCell.swift */; };
 		A51CB55A21590F6800CDC80C /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51CB55921590F6800CDC80C /* TransactionCell.xib */; };
+		A51CB55D215942F400CDC80C /* RouteButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51CB55C215942F400CDC80C /* RouteButton.xib */; };
+		A51CB55F2159431200CDC80C /* RoutrButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB55E2159431200CDC80C /* RoutrButton.swift */; };
+		A51CB561215945A200CDC80C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB560215945A200CDC80C /* UIView+Helpers.swift */; };
+		A51CB56321594E4A00CDC80C /* LoadableFromXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */; };
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
@@ -501,6 +505,10 @@
 		A51CB5542158FF6300CDC80C /* AccountsLinker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsLinker.swift; sourceTree = "<group>"; };
 		A51CB55721590F4700CDC80C /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		A51CB55921590F6800CDC80C /* TransactionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
+		A51CB55C215942F400CDC80C /* RouteButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RouteButton.xib; sourceTree = "<group>"; };
+		A51CB55E2159431200CDC80C /* RoutrButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutrButton.swift; sourceTree = "<group>"; };
+		A51CB560215945A200CDC80C /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
+		A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableFromXib.swift; sourceTree = "<group>"; };
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
@@ -1514,6 +1522,15 @@
 			path = Xib;
 			sourceTree = "<group>";
 		};
+		A51CB55B215942DA00CDC80C /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				A51CB55C215942F400CDC80C /* RouteButton.xib */,
+				A51CB55E2159431200CDC80C /* RoutrButton.swift */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
 		A534883D230884E6416A5516 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -1897,6 +1914,7 @@
 		CE526C6F21247F8500A2EED2 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A51CB55B215942DA00CDC80C /* Xibs */,
 				CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */,
 				CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */,
 				CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */,
@@ -1918,6 +1936,8 @@
 				CEDDDF012134354400490781 /* UIColorExtension.swift */,
 				CE18547D214A637E009D1360 /* UIFontExtension.swift */,
 				A50086152151237B00C47015 /* Data+Helpers.swift */,
+				A51CB560215945A200CDC80C /* UIView+Helpers.swift */,
+				A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2350,6 +2370,7 @@
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
 				A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */,
+				A51CB55D215942F400CDC80C /* RouteButton.xib in Resources */,
 				CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */,
 				A58EE3C62150379E0096C155 /* Login.storyboard in Resources */,
 				CE5FAFB92153801F009E707E /* PinQuickLaunch.storyboard in Resources */,
@@ -2537,6 +2558,7 @@
 				DA1A1B4454CF99D98B79BD28 /* LoginRouterInput.swift in Sources */,
 				BC265F78A4724A6201226822 /* LoginRouter.swift in Sources */,
 				CEFC9CA021590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift in Sources */,
+				A51CB56321594E4A00CDC80C /* LoadableFromXib.swift in Sources */,
 				00EAF6788F8B93E22E1921A7 /* LoginModuleInput.swift in Sources */,
 				85DE84599B70A7C4900FE60F /* LoginModuleOutput.swift in Sources */,
 				A50086162151237B00C47015 /* Data+Helpers.swift in Sources */,
@@ -2669,6 +2691,7 @@
 				DB0167269CDCA1A26EFD340D /* PinSetupInteractorInput.swift in Sources */,
 				DBDC98669AC4320EAFC55E3F /* PinSetupInteractorOutput.swift in Sources */,
 				7B69B52D9D87B8566F124536 /* PinSetupInteractor.swift in Sources */,
+				A51CB55F2159431200CDC80C /* RoutrButton.swift in Sources */,
 				4F27BDC61CC80C07B40BA53D /* PinSetupRouterInput.swift in Sources */,
 				9ED262790FC8BC9BE0AD4D6F /* PinSetupRouter.swift in Sources */,
 				A6F5B3DAAEA6C2400283BAE8 /* PinSetupModuleInput.swift in Sources */,
@@ -2703,6 +2726,7 @@
 				808AA9FAC10B0D3D3CB59FC4 /* SendViewOutput.swift in Sources */,
 				E78F4EC67B3E8FDF9D609118 /* SendViewController.swift in Sources */,
 				070336A292D45E0D80B57B4D /* SendPresenter.swift in Sources */,
+				A51CB561215945A200CDC80C /* UIView+Helpers.swift in Sources */,
 				B0E5A86CA04385F2DB04472E /* SendInteractorInput.swift in Sources */,
 				5D5AB809379ECAA0157B7C0A /* SendInteractorOutput.swift in Sources */,
 				3CF59DC5D81EA7FC56AE2D5E /* SendInteractor.swift in Sources */,

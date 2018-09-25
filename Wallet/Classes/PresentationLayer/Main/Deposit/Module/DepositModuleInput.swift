@@ -13,4 +13,5 @@ protocol DepositModuleInput: class {
     var output: DepositModuleOutput? { get set }
     var viewController: UIViewController { get }
     func present(from viewController: UIViewController)
+    func present()
 }

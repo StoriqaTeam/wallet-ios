@@ -17,6 +17,12 @@ struct Theme {
         static let blue = UIColor(red: 0/255, green: 178/255, blue: 255/255, alpha: 1)
     }
     
+    struct Button {
+        struct Color {
+            static let greyBorder = UIColor(red: 135/255, green: 157/255, blue: 185/255, alpha: 0.12)
+        }
+    }
+    
     struct Text {
         struct Color {
             static let red = UIColor(red: 245/255, green: 0/255, blue: 57/255, alpha: 1)

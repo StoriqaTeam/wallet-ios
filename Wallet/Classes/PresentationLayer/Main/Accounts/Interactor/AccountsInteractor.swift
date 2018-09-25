@@ -11,7 +11,7 @@ import Foundation
 class AccountsInteractor {
     
     weak var output: AccountsInteractorOutput!
-    private let account: Account
+    private var account: Account
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: LastTransactionsDataManager!
     private let accountLinker: AccountsLinkerProtocol
@@ -28,7 +28,21 @@ class AccountsInteractor {
 // MARK: - AccountsInteractorInput
 
 extension AccountsInteractor: AccountsInteractorInput {
+    func setCurrentAccountWith(index: Int) {
+        let allAccounts = accountLinker.getAllAccounts()
+        self.account = allAccounts[index]
+        output.ISODidChange(self.account.type.ICO)
+    }
     
+    func scrolCollection() {
+        let index = resolveAccountIndex(account: account)
+        accountsDataManager.scrollTo(index: index)
+    }
+    
+    func getCurrentAccount() -> Account {
+        return account
+    }
+        
     func getInitialCurrencyISO() -> String {
         return account.type.ICO
     }
@@ -57,5 +71,15 @@ extension AccountsInteractor: AccountsInteractorInput {
         let txDataManager = LastTransactionsDataManager(transactions: transactions)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
+    }
+}
+
+
+// MARK: - Private methods
+
+extension AccountsInteractor {
+    func resolveAccountIndex(account: Account) -> Int {
+        let allAccounts = accountLinker.getAllAccounts()
+        return allAccounts.index{$0 == account}!
     }
 }

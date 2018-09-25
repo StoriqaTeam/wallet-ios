@@ -13,4 +13,5 @@ protocol ExchangeModuleInput: class {
     var output: ExchangeModuleOutput? { get set }
     func present(from viewController: UIViewController)
     var viewController: UIViewController { get }
+    func present()
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RouteButton" customModule="Wallet" customModuleProvider="target">
+            <connections>
+                <outlet property="image" destination="2jZ-mg-eGG" id="0lj-dk-LUV"/>
+                <outlet property="title" destination="NE6-6B-7hJ" id="xha-m1-Wdx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="nwK-KT-1Bi">
+            <rect key="frame" x="0.0" y="0.0" width="103" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ChangeBtnImg" translatesAutoresizingMaskIntoConstraints="NO" id="2jZ-mg-eGG">
+                    <rect key="frame" x="7" y="16" width="15" height="12"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Change" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE6-6B-7hJ">
+                    <rect key="frame" x="33" y="13" width="48" height="16"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="NE6-6B-7hJ" firstAttribute="leading" secondItem="2jZ-mg-eGG" secondAttribute="trailing" constant="8" id="7d8-Yf-Tl9"/>
+                <constraint firstItem="2jZ-mg-eGG" firstAttribute="leading" secondItem="6bY-7b-TKq" secondAttribute="leading" constant="13" id="BGM-RC-G5D"/>
+                <constraint firstItem="2jZ-mg-eGG" firstAttribute="centerY" secondItem="6bY-7b-TKq" secondAttribute="centerY" id="STR-er-xit"/>
+                <constraint firstItem="NE6-6B-7hJ" firstAttribute="centerY" secondItem="6bY-7b-TKq" secondAttribute="centerY" id="xuU-Zd-WwB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="6bY-7b-TKq"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="EQV-sP-fk9" appends="YES" id="JCN-3l-072"/>
+            </connections>
+            <point key="canvasLocation" x="-641" y="-13"/>
+        </view>
+        <tapGestureRecognizer id="EQV-sP-fk9">
+            <connections>
+                <action selector="handlePan:" destination="-1" id="99p-00-9S5"/>
+                <outlet property="delegate" destination="-1" id="j8m-El-rh0"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="ChangeBtnImg" width="16" height="13"/>
+    </resources>
+</document>

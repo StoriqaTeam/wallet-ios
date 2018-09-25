@@ -10,5 +10,5 @@ import UIKit
 
 
 protocol MainTabBarViewOutput: class {
-    func viewIsReady()  
+    func viewIsReady()
 }
