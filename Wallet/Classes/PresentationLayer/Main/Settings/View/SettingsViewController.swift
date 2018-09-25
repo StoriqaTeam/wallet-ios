@@ -21,6 +21,9 @@ class SettingsViewController: UIViewController {
         output.viewIsReady()
     }
 
+    @IBAction func resetPressed(_ sender: UIButton) {
+        output.resetApplication()
+    }
 }
 
 

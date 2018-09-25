@@ -22,7 +22,11 @@ class SettingsPresenter {
 // MARK: - SettingsViewOutput
 
 extension SettingsPresenter: SettingsViewOutput {
-
+    func resetApplication() {
+        interactor.deleteAppData()
+        router.showLogin()
+    }
+    
     func viewIsReady() {
         view.setupInitialState()
     }

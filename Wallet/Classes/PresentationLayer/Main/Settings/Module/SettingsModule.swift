@@ -11,7 +11,10 @@ class SettingsModule {
     class func create() -> SettingsModuleInput {
         let router = SettingsRouter()
         let presenter = SettingsPresenter()
-        let interactor = SettingsInteractor()
+        
+        let defaultProvider = DefaultsProvider()
+        let keychainProvider = KeychainProvider()
+        let interactor = SettingsInteractor(defaults: defaultProvider, keychain: keychainProvider)
         
         let settingsSb = UIStoryboard(name: "Settings", bundle: nil)
         let viewController = settingsSb.instantiateViewController(withIdentifier: "settingsVC") as! SettingsViewController

@@ -17,5 +17,7 @@ class SettingsRouter {
 // MARK: - SettingsRouterInput
 
 extension SettingsRouter: SettingsRouterInput {
-    
+    func showLogin() {
+        LoginModule.create().present()
+    }
 }
