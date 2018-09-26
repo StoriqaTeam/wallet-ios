@@ -10,5 +10,8 @@ import Foundation
 
 
 protocol ExchangeInteractorInput: class {
-
+    func createAccountsDataManager(with collectionView: UICollectionView)
+    func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate)
+    func createWalletsDataManager(with tableView: UITableView)
+    func setWalletsDataManagerDelegate(_ delegate: WalletsDataManagerDelegate)
 }
