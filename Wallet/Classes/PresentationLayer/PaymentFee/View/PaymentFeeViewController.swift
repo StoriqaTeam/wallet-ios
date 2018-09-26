@@ -64,6 +64,16 @@ class PaymentFeeViewController: UIViewController {
         //TODO: локализации
         
         title = "Payment Fee"
+        addressTitleLabel.font = UIFont.caption
+        receiverTitleLabel.font = UIFont.caption
+        paymentFeeTitleLabel.font = UIFont.caption
+        subtotalTitleLabel.font = UIFont.caption
+        
+        paymentFeeLowLabel.font = UIFont.smallText
+        paymentFeeMediumLabel.font = UIFont.smallText
+        paymentFeeHighLabel.font = UIFont.smallText
+        
+        
         paymentFeeSlider.setValue(0, animated: false)
     }
     
