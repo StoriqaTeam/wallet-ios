@@ -101,7 +101,7 @@ extension SocialNetworkAuthView: SocialNetworkAuthViewModelProtocol {
         switch result {
         case .failure(let error):
             delegate?.socialNetworkAuthFailed()
-            print(error.localizedDescription)
+            log.warn(error.localizedDescription)
         case .success(let token):
             delegate?.socialNetworkAuthSucceed(provider: token.provider, token: token.token)
         }
@@ -116,19 +116,19 @@ extension SocialNetworkAuthView: GIDSignInUIDelegate {
     // pressed the Sign In button
     
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
-        print("signInWillDispatch(signIn: GIDSignIn!, error: \(error)")
+        log.debug("signInWillDispatch(signIn: GIDSignIn!, error: \(error)")
         //TODO: signInWillDispatch(signIn: GIDSignIn!, error: NSError!)
     }
     
     // Present a view that prompts the user to sign in with Google
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-        print("signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!)")
+        log.debug("signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!)")
         //TODO: signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!)
     }
     
     // Dismiss the "Sign in with Google" view
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-        print("signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!)")
+        log.debug("signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!)")
         //TODO: signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!)
     }
 }

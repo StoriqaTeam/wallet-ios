@@ -12,6 +12,7 @@ enum Currency: String {
     case btc
     case eth
     case stq
+    case fiat
     
     var ISO: String {
         switch self {
@@ -21,6 +22,8 @@ enum Currency: String {
             return "ETH"
         case .stq:
             return "STQ"
+        case .fiat:
+            return "$"
         }
     }
     
@@ -33,6 +36,8 @@ enum Currency: String {
             return #imageLiteral(resourceName: "currency_eth")
         case .stq:
             return #imageLiteral(resourceName: "currency_stq")
+        case .fiat:
+            return #imageLiteral(resourceName: "currency_fiat")
         }
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 
 protocol PaymentFeeInteractorInput: class {
     func getPaymentFeeScreenData() -> PaymentFeeScreenData
-    func getSendProvider() -> SendProviderProtocol
+    func getSendTransactionBuilder() -> SendTransactionBuilderProtocol
     func setPaymentFee(index: Int)
     func getFeeAndWait() -> (fee: String, wait: String)
     func getSubtotal() -> String

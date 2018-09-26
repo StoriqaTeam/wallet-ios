@@ -13,12 +13,12 @@ class ReceiverInteractor {
     weak var output: ReceiverInteractorOutput!
     
     private var contactsDataManager: ContactsDataManager!
-    private let contactsProvider: ContactsProviderProtocol
-    private let sendProvider: SendProviderProtocol
+    private let deviceContactsProvider: DeviceContactsProviderProtocol
+    private let sendProvider: SendTransactionBuilderProtocol
     
-    init(contactsProvider: ContactsProviderProtocol,
-         sendProvider: SendProviderProtocol) {
-        self.contactsProvider = contactsProvider
+    init(deviceContactsProvider: DeviceContactsProviderProtocol,
+         sendProvider: SendTransactionBuilderProtocol) {
+        self.deviceContactsProvider = deviceContactsProvider
         self.sendProvider = sendProvider
     }
     
@@ -30,7 +30,12 @@ class ReceiverInteractor {
 extension ReceiverInteractor: ReceiverInteractorInput {
     
     func getHeaderApperance() -> SendingHeaderData {
-        return sendProvider.getSendingHeaderData()
+        
+        let header = SendingHeaderData(amount: sendProvider.getAmountStr(),
+                                       amountInTransactionCurrency: sendProvider.getAmountInTransactionCurrencyStr(),
+                                       currencyImage: sendProvider.receiverCurrency.image)
+        
+        return header
     }
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
@@ -41,7 +46,7 @@ extension ReceiverInteractor: ReceiverInteractorInput {
         sendProvider.setContact(contact)
     }
     
-    func getSendProvider() -> SendProviderProtocol {
+    func getSendTransactionBuilder() -> SendTransactionBuilderProtocol {
         return sendProvider
     }
     
@@ -49,7 +54,7 @@ extension ReceiverInteractor: ReceiverInteractorInput {
         contactsDataManager = ContactsDataManager()
         contactsDataManager.setTableView(tableView)
         
-        contactsProvider.fetchContacts { [weak self] (result) in
+        deviceContactsProvider.fetchContacts { [weak self] (result) in
             switch result {
             case .success(let sections):
                 DispatchQueue.main.async {
@@ -71,7 +76,7 @@ extension ReceiverInteractor: ReceiverInteractorInput {
     }
     
     func searchContact(text: String) {
-        let filteredContacts = contactsProvider.searchContact(text: text)
+        let filteredContacts = deviceContactsProvider.searchContact(text: text)
         
         if filteredContacts.isEmpty {
             contactsDataManager.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"), placeholderText: "There is no such number in system.\nUse another way to send funds.")

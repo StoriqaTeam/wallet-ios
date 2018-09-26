@@ -113,6 +113,7 @@ extension ContactsDataManager {
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         tableView.tableFooterView = UIView() //removing empty cells
+        tableView.keyboardDismissMode = .onDrag
     }
     
     private func registerXib() {

@@ -65,7 +65,7 @@ extension PasswordInputViewController: PasswordInputViewInput {
     }
     
     func inputFailed() {
-        print("*️⃣ failure!")
+        log.debug("*️⃣ failure!")
         passwordContainerView.wrongPassword()
         showAlert(message: "Wrong password")
         

@@ -8,7 +8,7 @@ import UIKit
 
 class PaymentFeeModule {
     
-    class func create(sendProvider: SendProviderProtocol) -> PaymentFeeModuleInput {
+    class func create(sendProvider: SendTransactionBuilderProtocol) -> PaymentFeeModuleInput {
         let router = PaymentFeeRouter()
         let presenter = PaymentFeePresenter()
         let interactor = PaymentFeeInteractor(sendProvider: sendProvider)

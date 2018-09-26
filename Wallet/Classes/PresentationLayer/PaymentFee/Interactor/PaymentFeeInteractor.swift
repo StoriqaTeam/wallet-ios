@@ -12,9 +12,9 @@ import Foundation
 class PaymentFeeInteractor {
     weak var output: PaymentFeeInteractorOutput!
     
-    private let sendProvider: SendProviderProtocol
+    private let sendProvider: SendTransactionBuilderProtocol
     
-    init(sendProvider: SendProviderProtocol) {
+    init(sendProvider: SendTransactionBuilderProtocol) {
         self.sendProvider = sendProvider
     }
 
@@ -32,12 +32,30 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         return sendProvider.getFeeAndWait()
     }
     
-    func getSendProvider() -> SendProviderProtocol {
+    func getSendTransactionBuilder() -> SendTransactionBuilderProtocol {
         return sendProvider
     }
     
     func getPaymentFeeScreenData() -> PaymentFeeScreenData {
-        return sendProvider.getPaymentFeeScreenData()
+        
+        let header = SendingHeaderData(amount: sendProvider.getAmountStr(),
+                                 amountInTransactionCurrency: sendProvider.getAmountInTransactionCurrencyStr(),
+                                 currencyImage: sendProvider.receiverCurrency.image)
+        let address: String
+        
+        switch sendProvider.opponentType! {
+        case .contact:
+            //TODO: будем получать?
+            address = "test address"
+        case .address(let addr):
+            address = addr
+        }
+        
+        return PaymentFeeScreenData(header: header,
+                                    address: address,
+                                    receiverName: sendProvider.getReceiverName(),
+                                    paymentFeeValuesCount: sendProvider.getFeeWaitCount())
+        
     }
 
     func getSubtotal() -> String {

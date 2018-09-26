@@ -11,5 +11,6 @@ import UIKit
 
 protocol QRScannerModuleInput: class {
     var output: QRScannerModuleOutput? { get set }
+    
     func present(from viewController: UIViewController)
 }

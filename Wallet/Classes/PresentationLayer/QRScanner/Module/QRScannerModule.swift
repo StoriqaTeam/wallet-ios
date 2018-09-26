@@ -8,13 +8,14 @@ import UIKit
 
 class QRScannerModule {
     
-    class func create(sendProvider: SendProviderProtocol) -> QRScannerModuleInput {
+    class func create(sendProvider: SendTransactionBuilderProtocol) -> QRScannerModuleInput {
         let router = QRScannerRouter()
         let presenter = QRScannerPresenter()
         
         //Injections
         let resolver = QRCodeResolver()
-        let interactor = QRScannerInteractor(sendProvider: sendProvider, qrCodeResolver: resolver)
+        let interactor = QRScannerInteractor(sendProvider: sendProvider,
+                                             qrCodeResolver: resolver)
         
         let loginSb = UIStoryboard(name: "QRScanner", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "QRScannerVC") as! QRScannerViewController

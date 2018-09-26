@@ -8,13 +8,13 @@ import UIKit
 
 class ReceiverModule {
     
-    class func create(sendProvider: SendProviderProtocol) -> ReceiverModuleInput {
+    class func create(sendProvider: SendTransactionBuilderProtocol) -> ReceiverModuleInput {
         let router = ReceiverRouter()
         let presenter = ReceiverPresenter()
         
         //Injections
-        let contactsProvider = ContactsProvider()
-        let interactor = ReceiverInteractor(contactsProvider: contactsProvider,
+        let deviceContactsProvider = DeviceContactsProvider()
+        let interactor = ReceiverInteractor(deviceContactsProvider: deviceContactsProvider,
                                             sendProvider: sendProvider)
         
         let accountsVC = UIStoryboard(name: "Receiver", bundle: nil)

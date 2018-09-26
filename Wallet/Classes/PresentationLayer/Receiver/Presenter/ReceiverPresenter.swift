@@ -24,12 +24,12 @@ class ReceiverPresenter {
 extension ReceiverPresenter: ReceiverViewOutput {
     
     func nextButtonPressed() {
-        let sendProvider = interactor.getSendProvider()
+        let sendProvider = interactor.getSendTransactionBuilder()
         router.showPaymentFee(sendProvider: sendProvider, from: view.viewController)
     }
     
     func scanButtonPressed() {
-        let sendProvider = interactor.getSendProvider()
+        let sendProvider = interactor.getSendTransactionBuilder()
         interactor.setScannedDelegate(self)
         router.showScanner(sendProvider: sendProvider, from: view.viewController)
     }

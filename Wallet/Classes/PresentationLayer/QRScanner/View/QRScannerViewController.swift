@@ -7,15 +7,11 @@
 //
 
 import UIKit
-import AVFoundation
 
 
 class QRScannerViewController: UIViewController {
 
     var output: QRScannerViewOutput!
-    
-    var captureSession: AVCaptureSession!
-    var previewLayer: AVCaptureVideoPreviewLayer!
     
     // MARK: Life cycle
     

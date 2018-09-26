@@ -8,6 +8,12 @@
 
 import UIKit
 
+struct SendingHeaderData {
+    let amount: String
+    let amountInTransactionCurrency: String
+    let currencyImage: UIImage
+}
+
 class SendingHeaderView: LoadableFromXib {
     
     // IBOutlets

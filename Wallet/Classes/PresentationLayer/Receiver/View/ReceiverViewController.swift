@@ -51,6 +51,7 @@ class ReceiverViewController: UIViewController {
         
         sendToTitleLabel.text = "send_to".localized()
         inputTextField.placeholder = "receiver_input_placeholder".localized()
+        inputTextField.autocorrectionType = .no
         scanQRButton.setTitle("scan_QR".localized() + "   ", for: .normal)
         nextButton.setTitle("next".localized(), for: .normal)
     }
@@ -90,6 +91,7 @@ extension ReceiverViewController: ReceiverViewInput {
 // MARK: - Private methods
 
 extension ReceiverViewController {
+    
     private func configureNavBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.largeTitleDisplayMode = .never
@@ -99,4 +101,5 @@ extension ReceiverViewController {
     @objc private func textDidChange(_ notification: Notification) {
         output.inputDidChange(inputTextField.text ?? "")
     }
+    
 }

@@ -8,6 +8,13 @@
 
 import UIKit
 
+struct PaymentFeeScreenData {
+    let header: SendingHeaderData
+    let address: String
+    let receiverName: String
+    let paymentFeeValuesCount: Int
+}
+
 
 class PaymentFeeViewController: UIViewController {
 

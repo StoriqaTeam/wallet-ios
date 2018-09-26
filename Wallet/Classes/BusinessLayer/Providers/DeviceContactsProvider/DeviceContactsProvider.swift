@@ -1,5 +1,5 @@
 //
-//  ContactsProvider.swift
+//  DeviceContactsProvider.swift
 //  Wallet
 //
 //  Created by Storiqa on 24.09.2018.
@@ -9,39 +9,17 @@
 import Foundation
 import Contacts
 
-@objc class Contact: NSObject {
-    @objc let givenName: String
-    @objc let familyName: String
-    let mobile: String
-    let image: UIImage?
-    
-    lazy var clearedPhoneNumber = mobile.clearedPhoneNumber()
-    lazy var name: String = givenName + (givenName.isEmpty ? "" : " ") + familyName
-    
-    init(givenName: String, familyName: String, mobile: String, imageData: Data?) {
-        self.givenName = givenName
-        self.familyName = familyName
-        self.mobile = mobile
-        
-        if let imageData = imageData {
-            self.image = UIImage(data: imageData)
-        } else {
-            self.image = nil
-        }
-    }
-}
-
 struct ContactsSection {
     let title: String
     let contacts: [Contact]
 }
 
-protocol ContactsProviderProtocol {
+protocol DeviceContactsProviderProtocol {
     func fetchContacts(completion: @escaping (Result<[ContactsSection]>)->())
     func searchContact(text: String) -> [ContactsSection]
 }
 
-class ContactsProvider: ContactsProviderProtocol {
+class DeviceContactsProvider: DeviceContactsProviderProtocol {
     
     //TODO: message in info plist
     
@@ -64,7 +42,7 @@ class ContactsProvider: ContactsProviderProtocol {
             }
             
             if granted {
-                print("Access granted")
+                log.debug("Access granted")
                 let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactThumbnailImageDataKey]
                 let fetchRequest = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
                 
@@ -100,7 +78,6 @@ class ContactsProvider: ContactsProviderProtocol {
                     completion(Result.failure(error))
                     log.warn(error.localizedDescription)
                 }
-                
                 
             } else {
                 //TODO: show smth on case of declined access
@@ -139,13 +116,15 @@ class ContactsProvider: ContactsProviderProtocol {
 
 //MARK: - Private methods
 
-extension ContactsProvider {
+extension DeviceContactsProvider {
+    
     private func setUpCollation(contacts: [Contact], sortOrderSelector: Selector) -> [ContactsSection] {
         // create a locale collation object, by which we can get section index titles of current locale. (locale = local contry/language)
         let collation = UILocalizedIndexedCollation.current()
         let sections = collation.partitionContacts(array: contacts, collationStringSelector: sortOrderSelector)
         return sections
     }
+    
 }
 
 private extension UILocalizedIndexedCollation {
@@ -157,11 +136,13 @@ private extension UILocalizedIndexedCollation {
         for _ in self.sectionTitles {
             unsortedSections.append([]) //appending an empty array
         }
+        
         //2. Put each objects into a section
         for item in array {
             let index: Int = self.section(for: item, collationStringSelector:collationStringSelector)
             unsortedSections[index].append(item)
         }
+        
         //3. sorting the array of each sections
         var sections = [ContactsSection]()
         for index in 0 ..< unsortedSections.count {
@@ -172,6 +153,7 @@ private extension UILocalizedIndexedCollation {
                 sections.append(section)
             }
         }
+        
         return sections
     }
 }

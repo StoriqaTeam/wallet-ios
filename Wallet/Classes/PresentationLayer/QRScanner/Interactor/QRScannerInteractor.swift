@@ -14,10 +14,10 @@ class QRScannerInteractor: NSObject {
     weak var output: QRScannerInteractorOutput!
     
     private var captureSession: AVCaptureSession!
-    private let sendProvider: SendProviderProtocol
+    private let sendProvider: SendTransactionBuilderProtocol
     private let qrCodeResolver: QRCodeResolverProtocol
     
-    init(sendProvider: SendProviderProtocol, qrCodeResolver: QRCodeResolverProtocol) {
+    init(sendProvider: SendTransactionBuilderProtocol, qrCodeResolver: QRCodeResolverProtocol) {
         self.sendProvider = sendProvider
         self.qrCodeResolver = qrCodeResolver
     }
@@ -96,7 +96,7 @@ extension QRScannerInteractor: AVCaptureMetadataOutputObjectsDelegate {
 
 extension QRScannerInteractor {
     private func found(address: String) {
-        print(address)
+        log.debug("found address: " + address)
         sendProvider.setScannedAddress(address)
         
         output.codeDetected()
