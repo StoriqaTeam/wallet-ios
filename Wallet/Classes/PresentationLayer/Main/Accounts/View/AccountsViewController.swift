@@ -26,7 +26,6 @@ class AccountsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
         output.accountsCollectionView(accountsCollectionView)
         output.transactionTableView(lastTransactionsTableView)
         output.viewIsReady()
@@ -57,7 +56,6 @@ extension AccountsViewController: AccountsViewInput {
     }
 
     func setupInitialState() {
-        configureNavBar()
         lastTransactionsTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
         configureButtons()
     }
@@ -67,12 +65,6 @@ extension AccountsViewController: AccountsViewInput {
 // MARK: - Private methods
 
 extension AccountsViewController {
-    private func configureNavBar() {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationItem.largeTitleDisplayMode = .never
-        setDarkTextNavigationBar()
-    }
-    
     private func configureButtons() {
         changeButton.configure(.deposit)
         changeButton.delegate = self
