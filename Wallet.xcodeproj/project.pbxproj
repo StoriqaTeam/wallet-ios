@@ -704,7 +704,7 @@
 		CEFC9CA121590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordRecoveryConfirmSuccessVM.swift; sourceTree = "<group>"; };
 		CEFC9CA321590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordRecoveryConfirmFailedVM.swift; sourceTree = "<group>"; };
 		CEFC9CAD215A140800962356 /* ContactsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsProvider.swift; sourceTree = "<group>"; };
-		CEFC9CAF215A141600962356 /* Receiver.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Receiver.storyboard; path = ../../../../../../../Downloads/backups/Receiver/Receiver.storyboard; sourceTree = "<group>"; };
+		CEFC9CAF215A141600962356 /* Receiver.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Receiver.storyboard; sourceTree = "<group>"; };
 		CEFC9CB2215A182E00962356 /* ContactsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDataManager.swift; sourceTree = "<group>"; };
 		CEFC9CB5215A59E700962356 /* SendProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendProvider.swift; sourceTree = "<group>"; };
 		CEFC9CB8215A5BE400962356 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };

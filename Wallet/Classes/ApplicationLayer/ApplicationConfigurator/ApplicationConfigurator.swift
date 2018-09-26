@@ -23,7 +23,7 @@ class ApplicationConfigurator: Configurable {
         MainTabBarModule.create().present()
 //        setInitialVC()
         setGID()
-    }
+    }    
 }
 
 
