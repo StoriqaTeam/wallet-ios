@@ -16,25 +16,13 @@ protocol ContactsDataManagerDelegate: class {
 class ContactsDataManager: NSObject {
     weak var delegate: ContactsDataManagerDelegate?
     private var tableView: UITableView!
-    private var contacts: [ContactsSection]
-    private var placeHolderView: UIView?
+    private var contacts = [ContactsSection]()
     private let kContactCell = "ContactCell"
-    
-    init(contacts: [ContactsSection]) {
-        self.contacts = contacts
-        placeHolderView = nil
-    }
-    
-    init(placeHolderView: UIView) {
-        self.placeHolderView = placeHolderView
-        contacts = [ContactsSection]()
-    }
     
     func setTableView(_ view: UITableView) {
         tableView = view
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundView = placeHolderView
         
         configTableView()
         registerXib()
@@ -42,17 +30,18 @@ class ContactsDataManager: NSObject {
     
     func updateContacts(_ contacts: [ContactsSection]) {
         self.contacts = contacts
-        placeHolderView = nil
         
-        self.tableView.backgroundView = placeHolderView
+        self.tableView.backgroundView = nil
         self.tableView.reloadData()
     }
     
-    func updateEmpty(_ placeHolderView: UIView) {
+    func updateEmpty(placeholderImage: UIImage, placeholderText: String) {
         contacts.removeAll()
-        self.placeHolderView = placeHolderView
         
-        self.tableView.backgroundView = placeHolderView
+        let placeholder = ErrorView(frame: tableView.frame)
+        placeholder.setup(image: placeholderImage, text: placeholderText)
+        
+        self.tableView.backgroundView = placeholder
         self.tableView.reloadData()
     }
     

@@ -10,6 +10,6 @@ import UIKit
 
 
 protocol ReceiverViewInput: class, Presentable {
-    func setupInitialState(amount: String, convertedAmount: String)
+    func setupInitialState(apperance: SendingHeaderViewApperance)
     func setInput(_ input: String)
 }

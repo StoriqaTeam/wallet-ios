@@ -10,12 +10,16 @@ import Foundation
 
 
 class ReceiverRouter {
-
+    
 }
 
 
 // MARK: - ReceiverRouterInput
 
 extension ReceiverRouter: ReceiverRouterInput {
+    
+    func showScanner(sendProvider: SendProviderProtocol, from viewController: UIViewController) {
+        QRScannerModule.create(sendProvider: sendProvider).present(from: viewController)
+    }
     
 }

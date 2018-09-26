@@ -23,6 +23,18 @@ enum Currency: String {
             return "STQ"
         }
     }
+    
+    var image: UIImage {
+        switch self {
+        case .btc:
+            //replace btc image
+            return #imageLiteral(resourceName: "currency_btc")
+        case .eth:
+            return #imageLiteral(resourceName: "currency_eth")
+        case .stq:
+            return #imageLiteral(resourceName: "currency_stq")
+        }
+    }
 }
 
 enum Direction {

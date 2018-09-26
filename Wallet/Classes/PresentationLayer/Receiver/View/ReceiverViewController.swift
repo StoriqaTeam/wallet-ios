@@ -71,10 +71,10 @@ extension ReceiverViewController: ReceiverViewInput {
         inputTextField.text = input
     }
     
-    func setupInitialState(amount: String, convertedAmount: String) {
-        senderView.setup(amount: amount,
-                         convertedAmount: convertedAmount,
-                         editBlock: { [weak self] in self?.output.editButtonPressed() })
+    func setupInitialState(apperance: SendingHeaderViewApperance) {
+        senderView.setup(apperance: apperance, editBlock: { [weak self] in
+            self?.output.editButtonPressed()
+        })
     }
 }
 

@@ -23,8 +23,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tpi-0Z-S4t">
+                <imageView userInteractionEnabled="NO" alpha="0.22" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="currency_btc" translatesAutoresizingMaskIntoConstraints="NO" id="Tpi-0Z-S4t">
                     <rect key="frame" x="298" y="35" width="44" height="44"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="0RV-wc-orB"/>
                         <constraint firstAttribute="width" constant="44" id="Kq0-g0-NSb"/>
@@ -82,6 +83,7 @@
         </view>
     </objects>
     <resources>
+        <image name="currency_btc" width="18" height="25"/>
         <image name="edit" width="13" height="13"/>
     </resources>
 </document>

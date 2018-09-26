@@ -12,11 +12,14 @@ import Foundation
 class ReceiverInteractor {
     weak var output: ReceiverInteractorOutput!
     
-    private let contactsProvider: ContactsProviderProtocol
     private var contactsDataManager: ContactsDataManager!
+    private let contactsProvider: ContactsProviderProtocol
+    private let sendProvider: SendProviderProtocol
     
-    init(contactsProvider: ContactsProviderProtocol) {
+    init(contactsProvider: ContactsProviderProtocol,
+         sendProvider: SendProviderProtocol) {
         self.contactsProvider = contactsProvider
+        self.sendProvider = sendProvider
     }
     
 }
@@ -26,12 +29,26 @@ class ReceiverInteractor {
 
 extension ReceiverInteractor: ReceiverInteractorInput {
     
-    func createContactsDataManager(with tableView: UITableView) {
+    func getHeaderApperance() -> SendingHeaderViewApperance {
+        let amount = sendProvider.amount! + " " + sendProvider.receiverCurrency!.ISO
+        let amountInSelfAccCurrency = "=" + sendProvider.amountInSelfAccCurrency! + " " + sendProvider.selectedAccount!.currency.ISO
+        let image = sendProvider.receiverCurrency!.image
         
-        //TODO: placeholder view
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        view.backgroundColor = UIColor.cyan
-        contactsDataManager = ContactsDataManager(placeHolderView: view)
+        return SendingHeaderViewApperance(amount: amount,
+                                          amountInSelfAccCurrency: amountInSelfAccCurrency,
+                                          currencyImage: image)
+    }
+    
+    func setScannedDelegate(_ delegate: QRScannerDelegate) {
+        sendProvider.scanDelegate = delegate
+    }
+    
+    func getSendProvider() -> SendProviderProtocol {
+        return sendProvider
+    }
+    
+    func createContactsDataManager(with tableView: UITableView) {
+        contactsDataManager = ContactsDataManager()
         contactsDataManager.setTableView(tableView)
         
         contactsProvider.fetchContacts { [weak self] (result) in
@@ -41,12 +58,9 @@ extension ReceiverInteractor: ReceiverInteractorInput {
                     self?.contactsDataManager.updateContacts(sections)
                 }
             case .failure(let error):
-                //TODO: placeholder view
-                let view = UIView()
-                view.backgroundColor = UIColor.red
-                
                 DispatchQueue.main.async {
-                    self?.contactsDataManager.updateEmpty(view)
+                    //TODO: text and image in case of no access to contacts
+                    self?.contactsDataManager.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"), placeholderText: error.localizedDescription)
                 }
                 log.warn(error.localizedDescription)
             }
@@ -60,7 +74,12 @@ extension ReceiverInteractor: ReceiverInteractorInput {
     
     func searchContact(text: String) {
         let filteredContacts = contactsProvider.searchContact(text: text)
-        contactsDataManager.updateContacts(filteredContacts)
+        
+        if filteredContacts.isEmpty {
+            contactsDataManager.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"), placeholderText: "There is no such number in system.\nUse another way to send funds.")
+        } else {
+            contactsDataManager.updateContacts(filteredContacts)
+        }
     }
 
 }

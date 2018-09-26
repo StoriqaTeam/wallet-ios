@@ -32,6 +32,7 @@ struct Account: Equatable {
     let cryptoAmount: String
     let fiatAmount: String
     let holderName: String
+    let currency: Currency
     
     var imageForType: UIImage {
         switch type {

@@ -10,7 +10,11 @@ import Foundation
 
 
 protocol ReceiverInteractorInput: class {
+    
     func createContactsDataManager(with tableView: UITableView)
     func setContactsDataManagerDelegate(_ delegate: ContactsDataManagerDelegate)
     func searchContact(text: String)
+    func getSendProvider() -> SendProviderProtocol
+    func setScannedDelegate(_ delegate: QRScannerDelegate)
+    func getHeaderApperance() -> SendingHeaderViewApperance
 }

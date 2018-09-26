@@ -8,13 +8,14 @@ import UIKit
 
 class ReceiverModule {
     
-    class func create() -> ReceiverModuleInput {
+    class func create(sendProvider: SendProviderProtocol) -> ReceiverModuleInput {
         let router = ReceiverRouter()
         let presenter = ReceiverPresenter()
         
         //Injections
         let contactsProvider = ContactsProvider()
-        let interactor = ReceiverInteractor(contactsProvider: contactsProvider)
+        let interactor = ReceiverInteractor(contactsProvider: contactsProvider,
+                                            sendProvider: sendProvider)
         
         let accountsVC = UIStoryboard(name: "Receiver", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "ReceiverVC") as! ReceiverViewController

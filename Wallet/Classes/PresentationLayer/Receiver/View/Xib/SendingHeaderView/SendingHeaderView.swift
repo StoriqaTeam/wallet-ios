@@ -8,8 +8,14 @@
 
 import UIKit
 
-class SendingHeaderView: UIView {
+struct SendingHeaderViewApperance {
+    let amount: String
+    let amountInSelfAccCurrency: String
+    let currencyImage: UIImage
+}
 
+class SendingHeaderView: LoadableFromXib {
+    
     // IBOutlets
     @IBOutlet private var sendingTitleLabel: UILabel!
     @IBOutlet private var amountLabel: UILabel!
@@ -19,24 +25,17 @@ class SendingHeaderView: UIView {
     
     // Properties
     private var editBlock: (()->())?
-    private var contentView: UIView?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = UIColor.captionGrey
-        self.roundCorners([.topRight, .bottomRight], radius: 12)
-        sendingTitleLabel.text = "sending".localized()
+        configInterface()
     }
     
-    func setup(amount: String, convertedAmount: String, editBlock: @escaping (()->())) {
+    func setup(apperance: SendingHeaderViewApperance, editBlock: @escaping (()->())) {
+        amountLabel.text = apperance.amount
+        convertedAmountLabel.text = apperance.amountInSelfAccCurrency
+        currencyImageView.image = apperance.currencyImage
         self.editBlock = editBlock
-        amountLabel.text = amount
-        convertedAmountLabel.text = convertedAmount
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        loadViewFromNib()
     }
     
     // IBActions
@@ -49,15 +48,13 @@ class SendingHeaderView: UIView {
 // MARK: - Private methods
 
 extension SendingHeaderView {
-    private func loadViewFromNib() {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "SendingHeaderView", bundle: bundle)
-        guard let authView = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
-            fatalError("Fail to load SocialNetworkAuthView")
-        }
+    
+    private func configInterface() {
         
-        authView.frame = bounds
-        addSubview(authView)
-        contentView = authView
+        backgroundColor = UIColor.captionGrey
+        self.roundCorners([.topRight, .bottomRight], radius: 12)
+        sendingTitleLabel.text = "sending".localized()
+        currencyImageView.tintColor = .white
     }
+    
 }

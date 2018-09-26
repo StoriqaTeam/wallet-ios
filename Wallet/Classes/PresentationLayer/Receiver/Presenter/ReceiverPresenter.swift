@@ -22,13 +22,15 @@ class ReceiverPresenter {
 // MARK: - ReceiverViewOutput
 
 extension ReceiverPresenter: ReceiverViewOutput {
+    
     func scanButtonPressed() {
-        
+        let sendProvider = interactor.getSendProvider()
+        interactor.setScannedDelegate(self)
+        router.showScanner(sendProvider: sendProvider, from: view.viewController)
     }
     
     func editButtonPressed() {
         //TODO: action for edit button?
-        view.dismiss()
     }
     
     func inputDidChange(_ input: String) {
@@ -41,7 +43,8 @@ extension ReceiverPresenter: ReceiverViewOutput {
     }
     
     func viewIsReady() {
-        view.setupInitialState(amount: "0.000000 BTC", convertedAmount: "00000.00 STQ")
+        let apperance = interactor.getHeaderApperance()
+        view.setupInitialState(apperance: apperance)
         interactor.setContactsDataManagerDelegate(self)
     }
 
@@ -70,10 +73,21 @@ extension ReceiverPresenter: ReceiverModuleInput {
 extension ReceiverPresenter: ContactsDataManagerDelegate {
     
     func contactSelected(_ contact: Contact) {
-        //TODO: address??
         view.setInput(contact.mobile)
     }
     
 }
+
+
+// MARK: - QRScannerDelegate
+
+extension ReceiverPresenter: QRScannerDelegate {
+    
+    func didScanAddress(_ address: String) {
+        view.setInput(address)
+    }
+    
+}
+
 
 
