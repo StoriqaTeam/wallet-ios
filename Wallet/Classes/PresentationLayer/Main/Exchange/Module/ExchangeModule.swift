@@ -11,7 +11,12 @@ class ExchangeModule {
     class func create(account: Account) -> ExchangeModuleInput {
         let router = ExchangeRouter()
         let presenter = ExchangePresenter()
-        let interactor = ExchangeInteractor()
+        
+        let accountsProvider = FakeAccountProvider()
+        let transactionsProvider = FakeTransactionsProvider()
+        let accountLinker = FakeAccountLinker(fakeAccProvider: accountsProvider, fakeTxProvider: transactionsProvider)
+        
+        let interactor = ExchangeInteractor(accountsLinker: accountLinker, account: account)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController
@@ -30,7 +35,11 @@ class ExchangeModule {
     class func create() -> ExchangeModuleInput {
         let router = ExchangeRouter()
         let presenter = ExchangePresenter()
-        let interactor = ExchangeInteractor()
+        
+        let accountsProvider = FakeAccountProvider()
+        let transactionsProvider = FakeTransactionsProvider()
+        let accountLinker = FakeAccountLinker(fakeAccProvider: accountsProvider, fakeTxProvider: transactionsProvider)
+        let interactor = ExchangeInteractor(accountsLinker: accountLinker, account: nil)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController

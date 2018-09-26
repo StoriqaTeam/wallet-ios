@@ -167,6 +167,9 @@
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
 		A5669D37C5A3E197CE60ACEB /* PasswordEmailRecoveryModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C23610EB031515F3F3FD6 /* PasswordEmailRecoveryModuleInput.swift */; };
+		A56B4C69215B84430017B337 /* WalletsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B4C68215B84430017B337 /* WalletsDataManager.swift */; };
+		A56B4C6C215B879C0017B337 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56B4C6B215B879C0017B337 /* CurrencyCell.xib */; };
+		A56B4C6E215B8A2D0017B337 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B4C6D215B8A2D0017B337 /* WalletTableViewCell.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
 		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
@@ -511,6 +514,9 @@
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
+		A56B4C68215B84430017B337 /* WalletsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsDataManager.swift; sourceTree = "<group>"; };
+		A56B4C6B215B879C0017B337 /* CurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
+		A56B4C6D215B8A2D0017B337 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
@@ -1299,6 +1305,7 @@
 		7F6ABC95483217EF42A7791F /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A56B4C67215B84190017B337 /* CurrenciesDataManager */,
 				C234B947F0B3F129CC45D8DB /* ExchangePresenter.swift */,
 			);
 			path = Presenter;
@@ -1328,6 +1335,7 @@
 		85CC306C8B7ED5B34644C5ED /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A56B4C6A215B87880017B337 /* Xib */,
 				11AD7ACE12CF166AA12D406E /* ExchangeViewInput.swift */,
 				A04617CEE34362F8864083DE /* ExchangeViewOutput.swift */,
 				BC8627BDF0C5D57632E5C188 /* ExchangeViewController.swift */,
@@ -1552,6 +1560,23 @@
 				A55A197521554BF600330EB8 /* AccountsDataManager.swift */,
 			);
 			path = AccountsDataManager;
+			sourceTree = "<group>";
+		};
+		A56B4C67215B84190017B337 /* CurrenciesDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				A56B4C68215B84430017B337 /* WalletsDataManager.swift */,
+			);
+			path = CurrenciesDataManager;
+			sourceTree = "<group>";
+		};
+		A56B4C6A215B87880017B337 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				A56B4C6B215B879C0017B337 /* CurrencyCell.xib */,
+				A56B4C6D215B8A2D0017B337 /* WalletTableViewCell.swift */,
+			);
+			path = Xib;
 			sourceTree = "<group>";
 		};
 		A58EE3B0214FFD370096C155 /* Classes */ = {
@@ -2357,6 +2382,7 @@
 				CE5FAFAD215253D1009E707E /* PopUp.storyboard in Resources */,
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
 				A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */,
+				A56B4C6C215B879C0017B337 /* CurrencyCell.xib in Resources */,
 				A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */,
 				CE185494214BE558009D1360 /* Localizable.strings in Resources */,
 				CE5FAFAF21527CAB009E707E /* QuickLaunch.storyboard in Resources */,
@@ -2535,6 +2561,7 @@
 				CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */,
 				CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */,
 				CE526C68212471CE00A2EED2 /* Constants.swift in Sources */,
+				A56B4C6E215B8A2D0017B337 /* WalletTableViewCell.swift in Sources */,
 				A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */,
 				CE5FAF9F215129A6009E707E /* RegistrationFormValidatonProvider.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
@@ -2746,6 +2773,7 @@
 				490A73840930B45425B9C531 /* ExchangeModule.swift in Sources */,
 				A51CB54F2158FED500CDC80C /* TransactionDataStoreProvider.swift in Sources */,
 				D5483A7FE6757D0655D72ADE /* DepositViewInput.swift in Sources */,
+				A56B4C69215B84430017B337 /* WalletsDataManager.swift in Sources */,
 				F6FFC06886618EE0C23D164A /* DepositViewOutput.swift in Sources */,
 				48AE3AD16EB72471782C5432 /* DepositViewController.swift in Sources */,
 				A69BEB443BFB8D712A5DD1E7 /* DepositPresenter.swift in Sources */,

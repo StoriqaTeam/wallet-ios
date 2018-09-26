@@ -10,5 +10,7 @@ import UIKit
 
 
 protocol ExchangeViewOutput: class {
-    func viewIsReady()  
+    func viewIsReady()
+    func accountsCollectionView(_ collectionView: UICollectionView)
+    func walletsTableView(_ tableView: UITableView)
 }

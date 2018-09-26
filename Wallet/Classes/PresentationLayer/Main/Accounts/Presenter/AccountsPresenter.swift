@@ -28,7 +28,6 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func handleCustomButton(type: RouteButtonType) {
-        let account = interactor.getCurrentAccount()
         switch type {
         case .change:
             mainTabBar.selectedIndex = 2
@@ -53,8 +52,7 @@ extension AccountsPresenter: AccountsViewOutput {
     
     func viewIsReady() {
         view.setupInitialState()
-        let iso = interactor.getInitialCurrencyISO()
-        view.viewController.title = "Account \(iso)"
+        configureNavBar()
         interactor.setAccountsDataManagerDelegate(self)
         interactor.setTransactionDataManagerDelegate(self)
     }
@@ -120,5 +118,13 @@ extension AccountsPresenter {
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 19, 0, 19)
         flowLayout.scrollDirection = .horizontal
         return flowLayout
+    }
+    
+    private func configureNavBar() {
+        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
+        view.viewController.navigationItem.largeTitleDisplayMode = .never
+        view.viewController.setDarkTextNavigationBar()
+        let iso = interactor.getInitialCurrencyISO()
+        view.viewController.title = "Account \(iso)"
     }
 }

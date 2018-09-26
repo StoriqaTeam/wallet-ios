@@ -11,4 +11,5 @@ import UIKit
 
 protocol ExchangeViewInput: class, Presentable {
     func setupInitialState()
+    func setNewPage(_ index: Int)
 }

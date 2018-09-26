@@ -13,23 +13,44 @@ class ExchangeViewController: UIViewController {
 
     var output: ExchangeViewOutput!
 
-
+    @IBOutlet weak var accountsCollectionView: UICollectionView!
+    @IBOutlet weak var accountsPageControl: UIPageControl!
+    @IBOutlet weak var walletsTableView: UITableView!
+    
+    
     // MARK: Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        output.accountsCollectionView(accountsCollectionView)
+        output.walletsTableView(walletsTableView)
         output.viewIsReady()
     }
-
+    
 }
 
 
 // MARK: - ExchangeViewInput
 
 extension ExchangeViewController: ExchangeViewInput {
-    
     func setupInitialState() {
-
+        configureWalletsTableView()
+    }
+    
+    func setNewPage(_ index: Int) {
+        accountsPageControl.currentPage = index
     }
 
+}
+
+
+// MARK: - Private methods
+
+extension ExchangeViewController {
+    
+    private func configureWalletsTableView() {
+        walletsTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        walletsTableView.tableFooterView = UIView()
+        walletsTableView.isScrollEnabled = false
+    }
 }
