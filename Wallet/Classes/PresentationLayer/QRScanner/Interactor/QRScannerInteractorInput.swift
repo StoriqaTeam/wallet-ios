@@ -11,5 +11,6 @@ import AVFoundation
 
 
 protocol QRScannerInteractorInput: class {
-    func createPreviewLayer() -> AVCaptureVideoPreviewLayer?
+    func setScannedAddress(_ address: String)
+    func isValidAddress(_ address: String) -> Bool
 }

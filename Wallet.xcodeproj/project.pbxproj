@@ -277,7 +277,7 @@
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CED822D4215A796500693B92 /* QRScanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED822D3215A796500693B92 /* QRScanner.storyboard */; };
-		CED822D7215A92F500693B92 /* QRCodeResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822D6215A92F500693B92 /* QRCodeResolver.swift */; };
+		CED822D7215A92F500693B92 /* QRCodeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822D6215A92F500693B92 /* QRCodeValidator.swift */; };
 		CED822DA215B5C0A00693B92 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED822D9215B5C0A00693B92 /* ErrorView.xib */; };
 		CED822DC215B5C1500693B92 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822DB215B5C1500693B92 /* ErrorView.swift */; };
 		CED822DE215B685500693B92 /* PaymentFee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED822DD215B685500693B92 /* PaymentFee.storyboard */; };
@@ -693,7 +693,7 @@
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CED822D3215A796500693B92 /* QRScanner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRScanner.storyboard; sourceTree = "<group>"; };
-		CED822D6215A92F500693B92 /* QRCodeResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeResolver.swift; sourceTree = "<group>"; };
+		CED822D6215A92F500693B92 /* QRCodeValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeValidator.swift; sourceTree = "<group>"; };
 		CED822D9215B5C0A00693B92 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		CED822DB215B5C1500693B92 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CED822DD215B685500693B92 /* PaymentFee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentFee.storyboard; sourceTree = "<group>"; };
@@ -1938,7 +1938,7 @@
 				CE5FAFB0215286B1009E707E /* QuickLaunch */,
 				CEFC9CAC215A13EF00962356 /* DeviceContactsProvider */,
 				CEFC9CB4215A59B200962356 /* SendTransactionBuilder */,
-				CED822D5215A92E600693B92 /* QRCodeResolver */,
+				CED822D5215A92E600693B92 /* QRCodeValidator */,
 				A51CB54A2158E80400CDC80C /* TransactionsProvider.swift */,
 				CED822E1215BC31400693B92 /* CurrencyConverter */,
 				CED822E8215BE07B00693B92 /* CurrencyFormatter */,
@@ -2292,12 +2292,12 @@
 			path = QuickLaunch;
 			sourceTree = "<group>";
 		};
-		CED822D5215A92E600693B92 /* QRCodeResolver */ = {
+		CED822D5215A92E600693B92 /* QRCodeValidator */ = {
 			isa = PBXGroup;
 			children = (
-				CED822D6215A92F500693B92 /* QRCodeResolver.swift */,
+				CED822D6215A92F500693B92 /* QRCodeValidator.swift */,
 			);
-			path = QRCodeResolver;
+			path = QRCodeValidator;
 			sourceTree = "<group>";
 		};
 		CED822D8215B5BEF00693B92 /* ErrorView */ = {
@@ -2999,7 +2999,7 @@
 				CEFC9C902154EB7A00962356 /* Account.swift in Sources */,
 				EBA3144E74DD09EC8832E45F /* FirstLaunchInteractor.swift in Sources */,
 				ED225EB78E206616574BF490 /* FirstLaunchRouterInput.swift in Sources */,
-				CED822D7215A92F500693B92 /* QRCodeResolver.swift in Sources */,
+				CED822D7215A92F500693B92 /* QRCodeValidator.swift in Sources */,
 				B5D0A50EC37F23DE647B941B /* FirstLaunchRouter.swift in Sources */,
 				7802FA10023A55BCB10D8538 /* FirstLaunchModuleInput.swift in Sources */,
 				DF3822DC4DAE4101FC197A94 /* FirstLaunchModuleOutput.swift in Sources */,

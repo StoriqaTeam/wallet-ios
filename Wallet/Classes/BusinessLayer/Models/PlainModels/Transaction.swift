@@ -30,7 +30,7 @@ enum Currency: String {
     var image: UIImage {
         switch self {
         case .btc:
-            //replace btc image
+            //FIXME: replace btc image
             return #imageLiteral(resourceName: "currency_btc")
         case .eth:
             return #imageLiteral(resourceName: "currency_eth")

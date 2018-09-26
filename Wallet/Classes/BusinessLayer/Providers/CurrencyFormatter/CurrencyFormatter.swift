@@ -17,7 +17,12 @@ protocol CurrencyFormatterProtocol {
 class CurrencyFormatter: CurrencyFormatterProtocol {
     
     func getStringFrom(amount: Decimal, currency: Currency) -> String {
-        return amount.description + " " + currency.ISO
+        switch currency {
+        case .fiat:
+            return currency.ISO + amount.description
+        default:
+            return amount.description + " " + currency.ISO
+        }
     }
     
 }

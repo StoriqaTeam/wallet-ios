@@ -10,6 +10,5 @@ import Foundation
 
 
 protocol QRScannerInteractorOutput: class {
-    func codeDetected()
-    func failed(title: String, message: String)
+    
 }

@@ -17,7 +17,7 @@ class PaymentFeeInteractor {
     init(sendProvider: SendTransactionBuilderProtocol) {
         self.sendProvider = sendProvider
     }
-
+    
 }
 
 
@@ -39,8 +39,8 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
     func getPaymentFeeScreenData() -> PaymentFeeScreenData {
         
         let header = SendingHeaderData(amount: sendProvider.getAmountStr(),
-                                 amountInTransactionCurrency: sendProvider.getAmountInTransactionCurrencyStr(),
-                                 currencyImage: sendProvider.receiverCurrency.image)
+                                       amountInTransactionCurrency: sendProvider.getAmountInTransactionCurrencyStr(),
+                                       currencyImage: sendProvider.receiverCurrency.image)
         let address: String
         
         switch sendProvider.opponentType! {
@@ -52,14 +52,14 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         }
         
         let data = PaymentFeeScreenData(header: header,
-                                    address: address,
-                                    receiverName: sendProvider.getReceiverName(),
-                                    paymentFeeValuesCount: sendProvider.getFeeWaitCount())
+                                        address: address,
+                                        receiverName: sendProvider.getReceiverName(),
+                                        paymentFeeValuesCount: sendProvider.getFeeWaitCount())
         
         return data
         
     }
-
+    
     func getSubtotal() -> String {
         return sendProvider.getSubtotal()
     }

@@ -1,5 +1,5 @@
 //
-//  QRCodeResolver.swift
+//  QRCodeValidator.swift
 //  Wallet
 //
 //  Created by user on 25.09.2018.
@@ -9,12 +9,12 @@
 import Foundation
 
 
-protocol QRCodeResolverProtocol {
+protocol QRCodeValidatorProtocol {
     func isBTCWalletAddress(_ code: String) -> Bool
     func isETHWalletAddress(_ code: String) -> Bool
 }
 
-class QRCodeResolver: QRCodeResolverProtocol {
+class QRCodeValidator: QRCodeValidatorProtocol {
 
     func isBTCWalletAddress(_ code: String) -> Bool {
         //TODO: isBTCWalletAddress

@@ -13,9 +13,9 @@ class QRScannerModule {
         let presenter = QRScannerPresenter()
         
         //Injections
-        let resolver = QRCodeResolver()
+        let resolver = QRCodeValidator()
         let interactor = QRScannerInteractor(sendProvider: sendProvider,
-                                             qrCodeResolver: resolver)
+                                             qrCodeValidator: resolver)
         
         let loginSb = UIStoryboard(name: "QRScanner", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "QRScannerVC") as! QRScannerViewController

@@ -22,22 +22,22 @@ class PaymentFeeViewController: UIViewController {
 
     // MARK: IBOutlets
     
-    @IBOutlet var senderView: SendingHeaderView!
-    @IBOutlet var addressTitleLabel: UILabel!
-    @IBOutlet var addressLabel: UILabel!
-    @IBOutlet var receiverTitleLabel: UILabel!
-    @IBOutlet var receiverLabel: UILabel!
-    @IBOutlet var paymentFeeTitleLabel: UILabel!
-    @IBOutlet var paymentFeeLabel: UILabel!
-    @IBOutlet var paymentFeeSlider: UISlider!
-    @IBOutlet var paymentFeeLowLabel: UILabel!
-    @IBOutlet var paymentFeeMediumLabel: UILabel!
-    @IBOutlet var paymentFeeHighLabel: UILabel!
-    @IBOutlet var medianWaitTitleLabel: UILabel!
-    @IBOutlet var medianWaitLabel: UILabel!
-    @IBOutlet var subtotalTitleLabel: UILabel!
-    @IBOutlet var subtotalLabel: UILabel!
-    @IBOutlet var sendButton: DefaultButton!
+    @IBOutlet private var senderView: SendingHeaderView!
+    @IBOutlet private var addressTitleLabel: UILabel!
+    @IBOutlet private var addressLabel: UILabel!
+    @IBOutlet private var receiverTitleLabel: UILabel!
+    @IBOutlet private var receiverLabel: UILabel!
+    @IBOutlet private var paymentFeeTitleLabel: UILabel!
+    @IBOutlet private var paymentFeeLabel: UILabel!
+    @IBOutlet private var paymentFeeSlider: UISlider!
+    @IBOutlet private var paymentFeeLowLabel: UILabel!
+    @IBOutlet private var paymentFeeMediumLabel: UILabel!
+    @IBOutlet private var paymentFeeHighLabel: UILabel!
+    @IBOutlet private var medianWaitTitleLabel: UILabel!
+    @IBOutlet private var medianWaitLabel: UILabel!
+    @IBOutlet private var subtotalTitleLabel: UILabel!
+    @IBOutlet private var subtotalLabel: UILabel!
+    @IBOutlet private var sendButton: DefaultButton!
     
     // MARK: Variables
     
@@ -65,23 +65,6 @@ class PaymentFeeViewController: UIViewController {
         super.viewDidLoad()
         output.viewIsReady()
         configInterface()
-    }
-    
-    private func configInterface() {
-        //TODO: локализации
-        
-        title = "Payment Fee"
-        addressTitleLabel.font = UIFont.caption
-        receiverTitleLabel.font = UIFont.caption
-        paymentFeeTitleLabel.font = UIFont.caption
-        subtotalTitleLabel.font = UIFont.caption
-        
-        paymentFeeLowLabel.font = UIFont.smallText
-        paymentFeeMediumLabel.font = UIFont.smallText
-        paymentFeeHighLabel.font = UIFont.smallText
-        
-        
-        paymentFeeSlider.setValue(0, animated: false)
     }
     
     // MARK: IBActions
@@ -127,11 +110,29 @@ extension PaymentFeeViewController: PaymentFeeViewInput {
     
 }
 
+// MARK: - Private methods
 
 extension PaymentFeeViewController {
     
     private func updateSelectedFee() {
         output.newFeeSelected(currentSliderStep)
+    }
+    
+    private func configInterface() {
+        //TODO: локализации
+        
+        title = "Payment Fee"
+        addressTitleLabel.font = UIFont.caption
+        receiverTitleLabel.font = UIFont.caption
+        paymentFeeTitleLabel.font = UIFont.caption
+        subtotalTitleLabel.font = UIFont.caption
+        
+        paymentFeeLowLabel.font = UIFont.smallText
+        paymentFeeMediumLabel.font = UIFont.smallText
+        paymentFeeHighLabel.font = UIFont.smallText
+        
+        
+        paymentFeeSlider.setValue(0, animated: false)
     }
     
 }
