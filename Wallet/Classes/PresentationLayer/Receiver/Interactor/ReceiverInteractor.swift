@@ -63,7 +63,8 @@ extension ReceiverInteractor: ReceiverInteractorInput {
             case .failure(let error):
                 DispatchQueue.main.async {
                     //TODO: text and image in case of no access to contacts
-                    self?.contactsDataManager.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"), placeholderText: error.localizedDescription)
+                    self?.contactsDataManager.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                                                          placeholderText: error.localizedDescription)
                 }
                 log.warn(error.localizedDescription)
             }
@@ -79,7 +80,8 @@ extension ReceiverInteractor: ReceiverInteractorInput {
         let filteredContacts = deviceContactsProvider.searchContact(text: text)
         
         if filteredContacts.isEmpty {
-            contactsDataManager.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"), placeholderText: "There is no such number in system.\nUse another way to send funds.")
+            contactsDataManager.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                                            placeholderText: "There is no such number in system.\nUse another way to send funds.")
         } else {
             contactsDataManager.updateContacts(filteredContacts)
         }

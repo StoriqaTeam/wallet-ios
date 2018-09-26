@@ -54,7 +54,10 @@ class DeviceContactsProvider: DeviceContactsProviderProtocol {
                     try store.enumerateContacts(with: fetchRequest, usingBlock: { ( contact, error) -> Void in
                         
                         guard let phoneNumber = contact.phoneNumbers.first?.value.stringValue else {return}
-                        contacts.append(Contact(givenName: contact.givenName, familyName: contact.familyName, mobile: phoneNumber, imageData: contact.thumbnailImageData))
+                        contacts.append(Contact(givenName: contact.givenName,
+                                                familyName: contact.familyName,
+                                                mobile: phoneNumber, imageData:
+                            contact.thumbnailImageData))
                         
                     })
                     
@@ -70,7 +73,8 @@ class DeviceContactsProvider: DeviceContactsProviderProtocol {
                     
                     strongSelf.sortSelector = sortSelector
                     
-                    let sortedContacts = strongSelf.setUpCollation(contacts: contacts, sortOrderSelector: sortSelector)
+                    let sortedContacts = strongSelf.setUpCollation(contacts: contacts,
+                                                                   sortOrderSelector: sortSelector)
                     let result = Result.success(sortedContacts)
                     completion(result)
                 }

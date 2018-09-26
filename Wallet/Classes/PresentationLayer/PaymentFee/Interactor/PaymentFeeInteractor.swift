@@ -51,10 +51,12 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
             address = addr
         }
         
-        return PaymentFeeScreenData(header: header,
+        let data = PaymentFeeScreenData(header: header,
                                     address: address,
                                     receiverName: sendProvider.getReceiverName(),
                                     paymentFeeValuesCount: sendProvider.getFeeWaitCount())
+        
+        return data
         
     }
 
