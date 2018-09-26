@@ -23,6 +23,11 @@ class ReceiverPresenter {
 
 extension ReceiverPresenter: ReceiverViewOutput {
     
+    func nextButtonPressed() {
+        let sendProvider = interactor.getSendProvider()
+        router.showPaymentFee(sendProvider: sendProvider, from: view.viewController)
+    }
+    
     func scanButtonPressed() {
         let sendProvider = interactor.getSendProvider()
         interactor.setScannedDelegate(self)
@@ -34,6 +39,8 @@ extension ReceiverPresenter: ReceiverViewOutput {
     }
     
     func inputDidChange(_ input: String) {
+        //TODO: нужны проверки, валидный ли номер, чтобы активировать кнопку. Пока кнопка активируется только по клику на контакт и скану
+        view.setNextButtonHidden(true)
         interactor.searchContact(text: input)
     }
     
@@ -45,6 +52,7 @@ extension ReceiverPresenter: ReceiverViewOutput {
     func viewIsReady() {
         let apperance = interactor.getHeaderApperance()
         view.setupInitialState(apperance: apperance)
+        view.setNextButtonHidden(true)
         interactor.setContactsDataManagerDelegate(self)
     }
 
@@ -73,7 +81,9 @@ extension ReceiverPresenter: ReceiverModuleInput {
 extension ReceiverPresenter: ContactsDataManagerDelegate {
     
     func contactSelected(_ contact: Contact) {
+        interactor.setContact(contact)
         view.setInput(contact.mobile)
+        view.setNextButtonHidden(false)
     }
     
 }
@@ -85,6 +95,7 @@ extension ReceiverPresenter: QRScannerDelegate {
     
     func didScanAddress(_ address: String) {
         view.setInput(address)
+        view.setNextButtonHidden(false)
     }
     
 }

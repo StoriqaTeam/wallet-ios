@@ -11,4 +11,5 @@ import UIKit
 
 protocol ReceiverRouterInput: class {
     func showScanner(sendProvider: SendProviderProtocol, from viewController: UIViewController)
+    func showPaymentFee(sendProvider: SendProviderProtocol, from viewController: UIViewController)
 }

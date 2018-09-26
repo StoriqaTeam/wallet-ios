@@ -16,5 +16,7 @@ protocol ReceiverInteractorInput: class {
     func searchContact(text: String)
     func getSendProvider() -> SendProviderProtocol
     func setScannedDelegate(_ delegate: QRScannerDelegate)
-    func getHeaderApperance() -> SendingHeaderViewApperance
+    func setContact(_ contact: Contact)
+    func getHeaderApperance() -> SendingHeaderData
+    
 }

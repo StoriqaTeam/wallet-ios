@@ -29,18 +29,16 @@ class ReceiverInteractor {
 
 extension ReceiverInteractor: ReceiverInteractorInput {
     
-    func getHeaderApperance() -> SendingHeaderViewApperance {
-        let amount = sendProvider.amount! + " " + sendProvider.receiverCurrency!.ISO
-        let amountInSelfAccCurrency = "=" + sendProvider.amountInSelfAccCurrency! + " " + sendProvider.selectedAccount!.currency.ISO
-        let image = sendProvider.receiverCurrency!.image
-        
-        return SendingHeaderViewApperance(amount: amount,
-                                          amountInSelfAccCurrency: amountInSelfAccCurrency,
-                                          currencyImage: image)
+    func getHeaderApperance() -> SendingHeaderData {
+        return sendProvider.getSendingHeaderData()
     }
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
         sendProvider.scanDelegate = delegate
+    }
+    
+    func setContact(_ contact: Contact) {
+        sendProvider.setContact(contact)
     }
     
     func getSendProvider() -> SendProviderProtocol {

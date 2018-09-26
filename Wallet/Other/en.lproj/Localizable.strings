@@ -32,6 +32,8 @@
 "set_up_quick_launch" = "Set up quick launch";
 "do_not_use" = "Do not use";
 "scan_QR" = "Scan QR-code";
+"next" = "Next";
+"send" = "Send";
 
 //Other controls
 "accept_agreement" = "I accept the terms of the license agreement and privacy policy";

@@ -84,15 +84,6 @@ extension LoginPresenter: LoginModuleInput {
     
     func present() {
         view.presentAsNavController()
-        
-        
-        //FIXME: - delete this!
-        let sendProvider = SendProvider()
-        sendProvider.amount = "0000000.00"
-        sendProvider.amountInSelfAccCurrency = "00.0000000"
-        sendProvider.selectedAccount = Account(type: .stqBlack, cryptoAmount: "145,678,445.00", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .stq)
-        sendProvider.receiverCurrency = .btc
-        ReceiverModule.create(sendProvider: sendProvider).present(from: view.viewController)
     }
 
     func present(from viewController: UIViewController) {

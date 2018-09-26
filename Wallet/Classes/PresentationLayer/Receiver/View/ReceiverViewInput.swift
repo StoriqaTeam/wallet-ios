@@ -10,6 +10,7 @@ import UIKit
 
 
 protocol ReceiverViewInput: class, Presentable {
-    func setupInitialState(apperance: SendingHeaderViewApperance)
+    func setupInitialState(apperance: SendingHeaderData)
     func setInput(_ input: String)
+    func setNextButtonHidden(_ hidden: Bool)
 }

@@ -24,6 +24,12 @@ extension SendPresenter: SendViewOutput {
 
     func viewIsReady() {
         view.setupInitialState()
+        
+        
+        //FIXME: - delete this!
+        let sendProvider = SendProvider()
+        sendProvider.set(selectedAccount: Account(type: .stqBlack, cryptoAmount: "145,678,445.00", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .stq), receiverCurrency: .btc, amount: "0000000.00")
+        ReceiverModule.create(sendProvider: sendProvider).present(from: view.viewController)
     }
 }
 

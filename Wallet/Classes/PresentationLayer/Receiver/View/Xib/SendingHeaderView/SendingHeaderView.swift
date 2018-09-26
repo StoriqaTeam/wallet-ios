@@ -8,12 +8,6 @@
 
 import UIKit
 
-struct SendingHeaderViewApperance {
-    let amount: String
-    let amountInSelfAccCurrency: String
-    let currencyImage: UIImage
-}
-
 class SendingHeaderView: LoadableFromXib {
     
     // IBOutlets
@@ -31,9 +25,9 @@ class SendingHeaderView: LoadableFromXib {
         configInterface()
     }
     
-    func setup(apperance: SendingHeaderViewApperance, editBlock: @escaping (()->())) {
+    func setup(apperance: SendingHeaderData, editBlock: @escaping (()->())) {
         amountLabel.text = apperance.amount
-        convertedAmountLabel.text = apperance.amountInSelfAccCurrency
+        convertedAmountLabel.text = apperance.amountInTransactionCurrency
         currencyImageView.image = apperance.currencyImage
         self.editBlock = editBlock
     }

@@ -15,4 +15,5 @@ protocol ReceiverViewOutput: class {
     func inputDidChange(_ input: String)
     func editButtonPressed()
     func scanButtonPressed()
+    func nextButtonPressed()
 }

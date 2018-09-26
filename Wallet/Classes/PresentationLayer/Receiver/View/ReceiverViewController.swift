@@ -17,11 +17,10 @@ class ReceiverViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet private var senderView: SendingHeaderView!
-    
     @IBOutlet private var sendToTitleLabel: UILabel!
     @IBOutlet private var scanQRButton: UIButton!
     @IBOutlet private var inputTextField: UnderlinedTextField!
-    
+    @IBOutlet private var nextButton: UIButton!
     @IBOutlet private var contactsTableView: UITableView!
     
     // MARK: Life cycle
@@ -53,12 +52,17 @@ class ReceiverViewController: UIViewController {
         sendToTitleLabel.text = "send_to".localized()
         inputTextField.placeholder = "receiver_input_placeholder".localized()
         scanQRButton.setTitle("scan_QR".localized() + "   ", for: .normal)
+        nextButton.setTitle("next".localized(), for: .normal)
     }
     
     // MARK: Actions
     
     @IBAction private func scanButtonPressed() {
         output.scanButtonPressed()
+    }
+    
+    @IBAction private func nextButtonPressed() {
+        output.nextButtonPressed()
     }
 }
 
@@ -67,11 +71,15 @@ class ReceiverViewController: UIViewController {
 
 extension ReceiverViewController: ReceiverViewInput {
     
+    func setNextButtonHidden(_ hidden: Bool) {
+        nextButton.isHidden = hidden
+    }
+    
     func setInput(_ input: String) {
         inputTextField.text = input
     }
     
-    func setupInitialState(apperance: SendingHeaderViewApperance) {
+    func setupInitialState(apperance: SendingHeaderData) {
         senderView.setup(apperance: apperance, editBlock: { [weak self] in
             self?.output.editButtonPressed()
         })
