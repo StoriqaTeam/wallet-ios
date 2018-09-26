@@ -27,11 +27,12 @@ enum AccountType: String {
     }
 }
 
-struct Account {
+struct Account: Equatable {
     let type: AccountType
     let cryptoAmount: String
     let fiatAmount: String
     let holderName: String
+    let currency: Currency
     
     var imageForType: UIImage {
         switch type {
@@ -56,6 +57,6 @@ struct Account {
     }
 }
 
-extension Account: Equatable {
-    
-}
+//extension Account: Equatable {
+//
+//}

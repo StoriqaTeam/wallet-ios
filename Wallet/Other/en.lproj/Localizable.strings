@@ -29,9 +29,11 @@
 "sign_in" = "Sign in";
 "add_new" = "Add new";
 "ok" = "Ok";
-
 "set_up_quick_launch" = "Set up quick launch";
 "do_not_use" = "Do not use";
+"scan_QR" = "Scan QR-code";
+"next" = "Next";
+"send" = "Send";
 
 //Other controls
 "accept_agreement" = "I accept the terms of the license agreement and privacy policy";
@@ -40,6 +42,11 @@
 "enter_pin" = "Enter 4-digit PIN";
 "confirm_pin" = "Confirm PIN";
 "my_wallet" = "My wallet";
+"receiver" = "Receiver";
+"sending" = "SENDING";
+"send_to" = "SEND TO";
+"receiver_input_placeholder" = "Wallet address or phone number";
+
 
 //Labels
 "greeting" = ", good day";

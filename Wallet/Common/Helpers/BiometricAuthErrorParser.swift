@@ -49,7 +49,7 @@ class BiometricAuthErrorParser: BiometricAuthErrorParserProtocol {
             message = "TouchID is not available on the device"
             
         case LAError.invalidContext:
-            print("The context is invalid: LAContext passed to this call has been previously invalidated.")
+            log.error("The context is invalid: LAContext passed to this call has been previously invalidated.")
             return nil
             
         case LAError.userFallback,
