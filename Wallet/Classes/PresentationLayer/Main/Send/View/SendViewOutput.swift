@@ -18,4 +18,5 @@ protocol SendViewOutput: class {
     func getAmountWithCurrency() -> String
     func getAmountWithoutCurrency() -> String
     func configureCollections()
+    func nextButtonPressed()
 }

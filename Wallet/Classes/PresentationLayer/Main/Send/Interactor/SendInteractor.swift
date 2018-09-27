@@ -28,6 +28,10 @@ class SendInteractor {
 
 extension SendInteractor: SendInteractorInput {
     
+    func getTransactionBuilder() -> SendTransactionBuilderProtocol {
+        return sendProvider
+    }
+    
     func setCurrentAccountWith(index: Int) {
         let allAccounts = accountsProvider.getAllAccounts()
         sendProvider.selectedAccount = allAccounts[index]

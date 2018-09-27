@@ -27,6 +27,11 @@ class SendPresenter {
 
 extension SendPresenter: SendViewOutput {
     
+    func nextButtonPressed() {
+        let builder = interactor.getTransactionBuilder()
+        router.showReceiver(sendProvider: builder, from: view.viewController)
+    }
+    
     func receiverCurrencyChanged(_ index: Int) {
         interactor.setReceiverCurrency(currencies[index])
     }

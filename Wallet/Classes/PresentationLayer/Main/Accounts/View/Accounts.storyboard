@@ -18,9 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0u-Ov-ITA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="428"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GfI-G7-68y">
                                 <rect key="frame" x="0.0" y="64" width="375" height="215"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tFh-Y1-Nbx">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -40,11 +44,11 @@
                             </collectionView>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="JQk-CT-8tr">
                                 <rect key="frame" x="168" y="279" width="39" height="37"/>
-                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.69803921568627447" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="pageIndicatorTintColor" white="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </pageControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSS-QD-8hf">
-                                <rect key="frame" x="0.0" y="360.5" width="375" height="48"/>
+                                <rect key="frame" x="0.0" y="380" width="375" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last transactions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfX-zu-jvq">
                                         <rect key="frame" x="21" y="16" width="105" height="16"/>
@@ -72,63 +76,70 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t8M-lF-stc">
-                                <rect key="frame" x="0.0" y="408.5" width="375" height="258.5"/>
+                                <rect key="frame" x="0.0" y="428" width="375" height="239"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Xf-y0-eZb">
-                                <rect key="frame" x="0.0" y="316" width="375" height="44.5"/>
+                                <rect key="frame" x="0.0" y="316" width="375" height="64"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mW7-Nb-lY5" customClass="RouteButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="0.0" width="98.5" height="44.5"/>
+                                        <rect key="frame" x="20" y="0.0" width="103.5" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="sEi-n5-oSj"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xw5-45-1fp" customClass="RouteButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="135.5" y="0.0" width="104" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yB-CB-nkf" customClass="RouteButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="251.5" y="0.0" width="103.5" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="mW7-Nb-lY5" firstAttribute="height" secondItem="xw5-45-1fp" secondAttribute="height" id="0ru-tR-w1h"/>
+                                    <constraint firstItem="xw5-45-1fp" firstAttribute="leading" secondItem="mW7-Nb-lY5" secondAttribute="trailing" constant="12" id="3DW-Ar-4w2"/>
+                                    <constraint firstItem="mW7-Nb-lY5" firstAttribute="centerY" secondItem="4yB-CB-nkf" secondAttribute="centerY" id="A6e-u3-uPT"/>
+                                    <constraint firstItem="xw5-45-1fp" firstAttribute="centerX" secondItem="8Xf-y0-eZb" secondAttribute="centerX" id="DF0-cN-vB1"/>
+                                    <constraint firstAttribute="trailing" secondItem="4yB-CB-nkf" secondAttribute="trailing" constant="20" id="DPc-7M-1F9"/>
+                                    <constraint firstItem="4yB-CB-nkf" firstAttribute="leading" secondItem="xw5-45-1fp" secondAttribute="trailing" constant="12" id="J6c-1L-hfB"/>
+                                    <constraint firstItem="mW7-Nb-lY5" firstAttribute="width" secondItem="4yB-CB-nkf" secondAttribute="width" id="U3n-7a-SZA"/>
+                                    <constraint firstItem="xw5-45-1fp" firstAttribute="width" secondItem="mW7-Nb-lY5" secondAttribute="width" id="WqZ-eM-cWX"/>
+                                    <constraint firstAttribute="bottom" secondItem="mW7-Nb-lY5" secondAttribute="bottom" constant="20" id="iKo-VW-Rr0"/>
+                                    <constraint firstItem="mW7-Nb-lY5" firstAttribute="top" secondItem="8Xf-y0-eZb" secondAttribute="top" id="mRF-rd-s7X"/>
+                                    <constraint firstItem="4yB-CB-nkf" firstAttribute="height" secondItem="mW7-Nb-lY5" secondAttribute="height" id="mwR-R4-vQn"/>
                                     <constraint firstItem="mW7-Nb-lY5" firstAttribute="leading" secondItem="8Xf-y0-eZb" secondAttribute="leading" constant="20" id="pAI-Ta-KQf"/>
+                                    <constraint firstItem="mW7-Nb-lY5" firstAttribute="centerY" secondItem="xw5-45-1fp" secondAttribute="centerY" id="wUM-ch-13m"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xw5-45-1fp" customClass="RouteButton" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="138" y="316" width="99" height="44.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yB-CB-nkf" customClass="RouteButton" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="256.5" y="316" width="98.5" height="44.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="4yB-CB-nkf" firstAttribute="width" secondItem="xw5-45-1fp" secondAttribute="width" id="2bc-Ak-oOH"/>
+                            <constraint firstItem="S0u-Ov-ITA" firstAttribute="top" secondItem="N1j-mm-DmY" secondAttribute="top" id="0vj-Dy-ERj"/>
+                            <constraint firstItem="S0u-Ov-ITA" firstAttribute="leading" secondItem="jhZ-Bu-8KV" secondAttribute="leading" id="2Hf-V0-G1B"/>
                             <constraint firstItem="8Xf-y0-eZb" firstAttribute="top" secondItem="JQk-CT-8tr" secondAttribute="bottom" id="2cM-eA-XlR"/>
-                            <constraint firstItem="4yB-CB-nkf" firstAttribute="centerY" secondItem="xw5-45-1fp" secondAttribute="centerY" id="6m5-yx-Ck6"/>
                             <constraint firstItem="t8M-lF-stc" firstAttribute="top" secondItem="QSS-QD-8hf" secondAttribute="bottom" id="AEA-fc-3JX"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="QSS-QD-8hf" secondAttribute="trailing" id="APz-ES-R38"/>
-                            <constraint firstItem="xw5-45-1fp" firstAttribute="centerY" secondItem="8Xf-y0-eZb" secondAttribute="centerY" id="B1O-Ge-RuQ"/>
                             <constraint firstItem="GfI-G7-68y" firstAttribute="leading" secondItem="jhZ-Bu-8KV" secondAttribute="leading" id="BLA-HR-oan"/>
-                            <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="4yB-CB-nkf" secondAttribute="trailing" constant="20" id="D7D-Dh-dEH"/>
                             <constraint firstItem="t8M-lF-stc" firstAttribute="leading" secondItem="jhZ-Bu-8KV" secondAttribute="leading" id="Eic-tP-AyV"/>
-                            <constraint firstItem="mW7-Nb-lY5" firstAttribute="width" secondItem="xw5-45-1fp" secondAttribute="width" id="Hpz-fh-SHa"/>
                             <constraint firstItem="JQk-CT-8tr" firstAttribute="top" secondItem="GfI-G7-68y" secondAttribute="bottom" id="L5v-ir-37H"/>
-                            <constraint firstItem="xw5-45-1fp" firstAttribute="width" secondItem="8Xf-y0-eZb" secondAttribute="width" multiplier="1:3.8" id="N3c-6V-mMo"/>
                             <constraint firstItem="QSS-QD-8hf" firstAttribute="top" secondItem="8Xf-y0-eZb" secondAttribute="bottom" id="P2F-Za-y0q"/>
-                            <constraint firstItem="mW7-Nb-lY5" firstAttribute="height" secondItem="xw5-45-1fp" secondAttribute="height" id="SvU-cg-k5L"/>
-                            <constraint firstItem="8Xf-y0-eZb" firstAttribute="height" secondItem="N1j-mm-DmY" secondAttribute="height" multiplier="1:15" id="WYa-pq-5ae"/>
+                            <constraint firstItem="S0u-Ov-ITA" firstAttribute="bottom" secondItem="QSS-QD-8hf" secondAttribute="bottom" id="UiG-hQ-27Q"/>
                             <constraint firstItem="8Xf-y0-eZb" firstAttribute="leading" secondItem="jhZ-Bu-8KV" secondAttribute="leading" id="WnU-FH-yny"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="GfI-G7-68y" secondAttribute="trailing" id="aT5-I2-aQJ"/>
                             <constraint firstItem="QSS-QD-8hf" firstAttribute="leading" secondItem="jhZ-Bu-8KV" secondAttribute="leading" id="g3f-lU-UkR"/>
                             <constraint firstItem="QSS-QD-8hf" firstAttribute="height" secondItem="N1j-mm-DmY" secondAttribute="height" multiplier="1:14" id="gax-Y7-LEf"/>
                             <constraint firstItem="8Xf-y0-eZb" firstAttribute="centerX" secondItem="N1j-mm-DmY" secondAttribute="centerX" id="hG3-ex-fhh"/>
                             <constraint firstItem="JQk-CT-8tr" firstAttribute="centerX" secondItem="N1j-mm-DmY" secondAttribute="centerX" id="hpW-gJ-3TJ"/>
-                            <constraint firstItem="xw5-45-1fp" firstAttribute="height" secondItem="8Xf-y0-eZb" secondAttribute="height" id="iWd-CH-NuK"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="8Xf-y0-eZb" secondAttribute="trailing" id="lXY-6e-2WV"/>
-                            <constraint firstItem="4yB-CB-nkf" firstAttribute="height" secondItem="xw5-45-1fp" secondAttribute="height" id="ljb-Ib-iIj"/>
-                            <constraint firstItem="xw5-45-1fp" firstAttribute="centerX" secondItem="N1j-mm-DmY" secondAttribute="centerX" id="mSt-G9-WSf"/>
+                            <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="S0u-Ov-ITA" secondAttribute="trailing" id="nLh-GW-3GH"/>
                             <constraint firstItem="GfI-G7-68y" firstAttribute="height" secondItem="N1j-mm-DmY" secondAttribute="height" multiplier="1:3.1" id="oQt-RI-YMs"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="t8M-lF-stc" secondAttribute="trailing" id="pVn-nc-c6b"/>
                             <constraint firstItem="GfI-G7-68y" firstAttribute="top" secondItem="jhZ-Bu-8KV" secondAttribute="top" id="sJH-9W-Zx1"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="bottom" secondItem="t8M-lF-stc" secondAttribute="bottom" id="vbY-pZ-Me3"/>
-                            <constraint firstItem="mW7-Nb-lY5" firstAttribute="centerY" secondItem="xw5-45-1fp" secondAttribute="centerY" id="wFd-k8-0Bh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jhZ-Bu-8KV"/>
                     </view>
@@ -138,6 +149,7 @@
                         <outlet property="accountsPageControl" destination="JQk-CT-8tr" id="xf8-GB-RaM"/>
                         <outlet property="changeButton" destination="xw5-45-1fp" id="zBQ-ig-ZXc"/>
                         <outlet property="depositButton" destination="4yB-CB-nkf" id="HzI-C9-QMx"/>
+                        <outlet property="gradientView" destination="S0u-Ov-ITA" id="kR2-Ca-1HL"/>
                         <outlet property="lastTransactionsTableView" destination="t8M-lF-stc" id="OZI-Jd-2DX"/>
                         <outlet property="sendButton" destination="mW7-Nb-lY5" id="O9e-oY-0Lg"/>
                     </connections>

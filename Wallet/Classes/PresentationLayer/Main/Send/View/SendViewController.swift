@@ -73,6 +73,9 @@ class SendViewController: UIViewController {
         output.receiverCurrencyChanged(sender.selectedSegmentIndex)
     }
     
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+        output.nextButtonPressed()
+    }
 }
 
 

@@ -31,22 +31,28 @@ class RouteButton: LoadableFromXib {
     
     func configure(_ type: RouteButtonType) {
         self.type = type
+        
+        let color: UIColor
+        
         switch type {
         case .change:
             image.image = UIImage(named: "ChangeBtnImg")
             title.text = "Change"
+            color = UIColor.white
         case .deposit:
             title.text = "Deposit"
             image.image = UIImage(named: "DepositBtnImg")
+            color = #colorLiteral(red: 0.4549019608, green: 0.9803921569, blue: 0.7019607843, alpha: 1)
         case .send:
             title.text = "Send"
             image.image = UIImage(named: "SendBtnImage")
+            color = #colorLiteral(red: 0.9529411765, green: 0.662745098, blue: 0.6549019608, alpha: 1)
         }
         
-        view.layer.cornerRadius = 22
-        view.layer.masksToBounds = true
-        view.layer.borderWidth = 1.0
-        view.layer.borderColor = Theme.Button.Color.greyBorder.cgColor
+        title.textColor = color
+        image.tintColor = color
+        
+        roundCorners(radius: 8)
     }
 }
 
