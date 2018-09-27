@@ -59,6 +59,12 @@ class SendViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillHide),
                                                name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name:NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name:NSNotification.Name.UIKeyboardDidHide, object: nil)
         
     }
     
@@ -177,9 +183,6 @@ extension SendViewController {
             contentInset.bottom = delta
             scrollView.contentInset = contentInset
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + keyboardAnimationDelay) { [weak self] in
-                self?.isKeyboardAnimating = false
-            }
         }
     }
     
@@ -189,6 +192,9 @@ extension SendViewController {
         let contentInset = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
         
+    }
+    
+    @objc private func keyboardFinishedAnimating(_ notification: Notification) {
         DispatchQueue.main.asyncAfter(deadline: .now() + keyboardAnimationDelay) { [weak self] in
             self?.isKeyboardAnimating = false
         }
