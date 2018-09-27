@@ -36,11 +36,14 @@ struct Account {
     
     var imageForType: UIImage {
         switch type {
-        case .stqBlack:
-            return #imageLiteral(resourceName: "stqBlackCardBackground")
-        default:
-            //TODO: background images
-            return #imageLiteral(resourceName: "ethCardBackground")
+        case .stqBlack, .stq:
+            return UIImage(named: "blackCardSTQ")!
+        case .stqGold:
+            return UIImage(named: "goldCardSTQ")!
+        case .btc:
+            return UIImage(named: "btcCard")!
+        case .eth:
+            return UIImage(named: "ethCard")!
         }
     }
     
