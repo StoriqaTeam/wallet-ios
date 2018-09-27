@@ -19,8 +19,9 @@ class LoginViewController: UIViewController {
     @IBOutlet private var passwordTextField: UnderlinedTextField!
     @IBOutlet private var signInButton: DefaultButton!
     @IBOutlet private var forgotPasswordButton: UIButton!
-    @IBOutlet var socialNetworkAuthView: SocialNetworkAuthView!
-
+    @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
+    @IBOutlet private var topSpaceConstraint: NSLayoutConstraint!
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
@@ -146,6 +147,10 @@ extension LoginViewController {
         signInButton.title = "get_started".localized()
         forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
         forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
+        
+        if Device.isSmallScreen {
+            topSpaceConstraint.constant = 0
+        }
     }
     
     private func setSocialView() {

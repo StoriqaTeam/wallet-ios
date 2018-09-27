@@ -13,4 +13,5 @@ protocol ExchangeViewOutput: class {
     func viewIsReady()
     func accountsCollectionView(_ collectionView: UICollectionView)
     func walletsTableView(_ tableView: UITableView)
+    func configureCollections()
 }

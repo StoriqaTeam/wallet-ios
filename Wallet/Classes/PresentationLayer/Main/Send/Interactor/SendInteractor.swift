@@ -18,8 +18,8 @@ class SendInteractor {
     init(sendProvider: SendTransactionBuilderProtocol, accountsProvider: AccountsProviderProtocol, account: Account? = nil) {
         self.accountsProvider = accountsProvider
         self.sendProvider = sendProvider
-        //TODO: если нет ни одного счёта?
-        self.sendProvider.selectedAccount = account ?? accountsProvider.getAllAccounts().first!
+        
+        setInitialAccount(account: account)
     }
 }
 
@@ -89,5 +89,11 @@ extension SendInteractor {
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index{$0 == account}!
+    }
+    
+    private func setInitialAccount(account: Account?) {
+        //TODO: если нет ни одного счёта?
+        let acc = account ?? accountsProvider.getAllAccounts().first
+        self.sendProvider.selectedAccount = acc
     }
 }

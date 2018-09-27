@@ -27,6 +27,11 @@ class ExchangeViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.configureCollections()
+    }
+    
 }
 
 
