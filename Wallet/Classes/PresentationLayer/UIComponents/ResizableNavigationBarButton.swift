@@ -13,7 +13,7 @@ private struct BarButtonConst {
     static let ButtonHeightForLargeState: CGFloat = 44
     static let ButtonWidthForLargeState: CGFloat = 108
     /// Margin from right anchor of safe area to right anchor of Image
-    static let ButtonRightMargin: CGFloat = Device.isSmallScreen ? 12 : 20
+    static let ButtonRightMargin: CGFloat = Device.model == .iPhoneSE ? 12 : 20
     /// Margin from bottom anchor of NavBar to bottom anchor of Image for Large NavBar state
     static let ButtonBottomMarginForLargeState: CGFloat = 8
     /// Margin from bottom anchor of NavBar to bottom anchor of Image for Small NavBar state

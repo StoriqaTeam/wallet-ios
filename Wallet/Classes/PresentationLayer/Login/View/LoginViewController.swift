@@ -148,7 +148,8 @@ extension LoginViewController {
         forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
         forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
         
-        if Device.isSmallScreen {
+        
+        if Device.model == .iPhoneSE {
             topSpaceConstraint.constant = 0
         }
     }
