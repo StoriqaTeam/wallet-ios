@@ -36,6 +36,11 @@ extension SendInteractor: SendInteractorInput {
         output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
     }
     
+    func scrollCollection() {
+        let index = resolveAccountIndex(account: sendProvider.selectedAccount)
+        accountsDataManager.scrollTo(index: index)
+    }
+    
     func setReceiverCurrency(_ currency: Currency) {
         sendProvider.receiverCurrency = currency
         output.updateAmount(sendProvider.getAmountStr())
@@ -48,6 +53,10 @@ extension SendInteractor: SendInteractorInput {
     
     func getAmountWithoutCurrency() -> String {
         return sendProvider.getAmountWithoutCurrencyStr()
+    }
+    
+    func isFormValid() -> Bool {
+        return !sendProvider.amount.isZero
     }
     
     func isValidAmount(_ amount: String) -> Bool {
@@ -71,4 +80,14 @@ extension SendInteractor: SendInteractorInput {
         accountsDataManager.delegate = delegate
     }
     
+}
+
+
+// MARK: - Private methods
+
+extension SendInteractor {
+    private func resolveAccountIndex(account: Account) -> Int {
+        let allAccounts = accountsProvider.getAllAccounts()
+        return allAccounts.index{$0 == account}!
+    }
 }

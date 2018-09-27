@@ -14,4 +14,5 @@ protocol SendViewInput: class, Presentable {
     func updateAmount(_ amount: String)
     func updateConvertedAmount(_ amount: String)
     func setNewPage(_ index: Int)
+    func setButtonEnabled(_ enabled: Bool)
 }

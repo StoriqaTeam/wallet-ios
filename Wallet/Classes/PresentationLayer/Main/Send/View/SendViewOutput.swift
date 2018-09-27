@@ -17,4 +17,5 @@ protocol SendViewOutput: class {
     func receiverCurrencyChanged(_ index: Int)
     func getAmountWithCurrency() -> String
     func getAmountWithoutCurrency() -> String
+    func configureCollections()
 }

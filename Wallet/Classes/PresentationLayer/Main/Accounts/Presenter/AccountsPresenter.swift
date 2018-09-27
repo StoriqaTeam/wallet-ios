@@ -103,20 +103,21 @@ extension AccountsPresenter {
         let height: CGFloat
         
         if Constants.Sizes.isSmallScreen {
-            spacing = 12
-            width = Constants.Sizes.screenWith - spacing * 2
-            height = width / 1.3//1.7
+            width = 280
+            height = 165
         } else {
-            spacing = 11
             width = 336
             height = 198
         }
+        spacing = (Constants.Sizes.screenWith - width) / 4
         
         let flowLayout = UICollectionViewFlowLayout()
+        
         flowLayout.minimumLineSpacing = spacing
         flowLayout.itemSize = CGSize(width: width, height: height)
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 19, 0, 19)
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, spacing * 2, 0, spacing * 2)
         flowLayout.scrollDirection = .horizontal
+        
         return flowLayout
     }
     

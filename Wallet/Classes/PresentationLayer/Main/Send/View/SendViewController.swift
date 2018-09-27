@@ -42,6 +42,11 @@ class SendViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.configureCollections()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self,
@@ -92,6 +97,10 @@ extension SendViewController: SendViewInput {
         accountsPageControl.currentPage = index
     }
     
+    func setButtonEnabled(_ enabled: Bool) {
+        nextButton.isHidden = !enabled
+    }
+    
 }
 
 
@@ -138,8 +147,16 @@ extension SendViewController {
     private func configInterface() {
         amountTextField.delegate = self
         amountTextField.clearButtonMode = .never
-        
         scrollView.delegate = self
+        
+        receiverCurrencyTitleLabel.font = UIFont.caption
+        amountTitleLabel.font = UIFont.caption
+        receiverCurrencyTitleLabel.textColor = UIColor.captionGrey
+        amountTitleLabel.textColor = UIColor.captionGrey
+        
+        amountTitleLabel.text = "amount".localized()
+        receiverCurrencyTitleLabel.text = "receiver_currency".localized()
+        amountTextField.placeholder = "enter_amount".localized()
     }
     
     @objc private func textDidChange(_ notification: Notification) {
@@ -149,7 +166,7 @@ extension SendViewController {
     @objc private func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardHeight = keyboardFrame.cgRectValue.height
-            let delta = keyboardHeight - (view.frame.height - scrollView.contentSize.height)
+            let delta = keyboardHeight - (view.frame.height - scrollView.contentSize.height) + 16
         
             isKeyboardAnimating = true
             

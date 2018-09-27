@@ -89,8 +89,7 @@ extension MyWalletPresenter {
         
         flowLayout.minimumLineSpacing = spacing
         flowLayout.minimumInteritemSpacing = spacing
-        flowLayout.sectionInset.top = spacing
-        flowLayout.sectionInset.bottom = spacing
+        flowLayout.sectionInset = UIEdgeInsetsMake(spacing, 0, spacing, 0)
         flowLayout.itemSize = CGSize(width: width, height: height)
         
         return flowLayout

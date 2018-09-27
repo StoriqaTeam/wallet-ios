@@ -18,4 +18,6 @@ protocol SendInteractorInput: class {
     func getAmountWithoutCurrency() -> String
     func setReceiverCurrency(_ currency: Currency)
     func setCurrentAccountWith(index: Int)
+    func isFormValid() -> Bool
+    func scrollCollection()
 }

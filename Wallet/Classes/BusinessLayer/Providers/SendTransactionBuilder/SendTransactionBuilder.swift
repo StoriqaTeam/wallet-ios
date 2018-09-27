@@ -75,7 +75,7 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
     }
     
     func getAmountStr() -> String {
-        guard let amount = amount,
+        guard let amount = amount, !amount.isZero,
             let receiverCurrency = receiverCurrency else {
                 return ""
         }
@@ -85,14 +85,14 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
     }
     
     func getAmountWithoutCurrencyStr() -> String {
-        guard let amount = amount else {
+        guard let amount = amount, !amount.isZero else {
                 return ""
         }
         return amount.description
     }
     
     func getAmountInTransactionCurrencyStr() -> String {
-        guard let amount = amount,
+        guard let amount = amount, !amount.isZero,
             let currency = selectedAccount?.currency else {
                 return ""
         }
