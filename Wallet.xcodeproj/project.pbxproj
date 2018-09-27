@@ -190,6 +190,7 @@
 		A56B4C69215B84430017B337 /* WalletsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B4C68215B84430017B337 /* WalletsDataManager.swift */; };
 		A56B4C6C215B879C0017B337 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56B4C6B215B879C0017B337 /* CurrencyCell.xib */; };
 		A56B4C6E215B8A2D0017B337 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B4C6D215B8A2D0017B337 /* WalletTableViewCell.swift */; };
+		A56B4C76215CD8F10017B337 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B4C75215CD8F10017B337 /* Device.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
 		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
@@ -600,6 +601,7 @@
 		A56B4C68215B84430017B337 /* WalletsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsDataManager.swift; sourceTree = "<group>"; };
 		A56B4C6B215B879C0017B337 /* CurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
 		A56B4C6D215B8A2D0017B337 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
+		A56B4C75215CD8F10017B337 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
@@ -1840,6 +1842,14 @@
 			path = Xib;
 			sourceTree = "<group>";
 		};
+		A56B4C74215CD8DF0017B337 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				A56B4C75215CD8F10017B337 /* Device.swift */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
 		A58EE3B0214FFD370096C155 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1906,6 +1916,7 @@
 		A58EE3B5214FFD880096C155 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A56B4C74215CD8DF0017B337 /* Device */,
 				A50BF8AA215409A800FB0DA2 /* Theme */,
 				A58EE3BA2150032E0096C155 /* Protocols */,
 				CE526C72212485F900A2EED2 /* Extensions */,
@@ -3073,6 +3084,7 @@
 				B2EE15BCB20ED6ED71584DC2 /* QuickLaunchRouter.swift in Sources */,
 				A40E2F8BB4E10D0E0A388DCF /* QuickLaunchModuleInput.swift in Sources */,
 				0B71D203EA67FB0928D31D05 /* QuickLaunchModule.swift in Sources */,
+				A56B4C76215CD8F10017B337 /* Device.swift in Sources */,
 				21C9A25E63FE311BA5837841 /* PinQuickLaunchViewInput.swift in Sources */,
 				A50BF8AC215409B500FB0DA2 /* Theme.swift in Sources */,
 				840E0ADCB367221C2EB81EA6 /* PinQuickLaunchViewOutput.swift in Sources */,
