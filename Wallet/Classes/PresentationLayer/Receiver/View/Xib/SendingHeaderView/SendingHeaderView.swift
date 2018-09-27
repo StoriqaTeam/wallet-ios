@@ -31,6 +31,11 @@ class SendingHeaderView: LoadableFromXib {
         configInterface()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        roundCorners([.topRight, .bottomRight], radius: 12)
+    }
+    
     func setup(apperance: SendingHeaderData, editBlock: @escaping (()->())) {
         amountLabel.text = apperance.amount
         convertedAmountLabel.text = apperance.amountInTransactionCurrency
@@ -50,9 +55,7 @@ class SendingHeaderView: LoadableFromXib {
 extension SendingHeaderView {
     
     private func configInterface() {
-        
         backgroundColor = UIColor.captionGrey
-        self.roundCorners([.topRight, .bottomRight], radius: 12)
         sendingTitleLabel.text = "sending".localized()
         currencyImageView.tintColor = .white
     }

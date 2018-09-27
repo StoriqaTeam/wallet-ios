@@ -27,7 +27,7 @@ enum AccountType: String {
     }
 }
 
-struct Account: Equatable {
+struct Account {
     let type: AccountType
     let cryptoAmount: String
     let fiatAmount: String
@@ -60,6 +60,6 @@ struct Account: Equatable {
     }
 }
 
-//extension Account: Equatable {
-//
-//}
+extension Account: Equatable {
+
+}

@@ -22,7 +22,10 @@ class ExchangePresenter {
 // MARK: - ExchangeViewOutput
 
 extension ExchangePresenter: ExchangeViewOutput {
-
+    func configureCollections() {
+        interactor.scrollCollection()
+    }
+    
     func viewIsReady() {
         view.setupInitialState()
         configureNavBar()
@@ -91,25 +94,14 @@ extension ExchangePresenter: WalletsDataManagerDelegate {
 
 extension ExchangePresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let spacing: CGFloat
-        let width: CGFloat
-        let height: CGFloat
-        
-        if Constants.Sizes.isSmallScreen {
-            spacing = 12
-            width = Constants.Sizes.screenWith - spacing * 2
-            height = width / 1.3//1.7
-        } else {
-            spacing = 11
-            width = 336
-            height = 198
-        }
+        let deviceLayout = Device.model.accountsCollectionFlowLayout
         
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = spacing
-        flowLayout.itemSize = CGSize(width: width, height: height)
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 19, 0, 19)
+        flowLayout.minimumLineSpacing = deviceLayout.spacing
+        flowLayout.itemSize = deviceLayout.size
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, deviceLayout.spacing * 2, 0, deviceLayout.spacing * 2)
         flowLayout.scrollDirection = .horizontal
+        
         return flowLayout
     }
     

@@ -37,6 +37,14 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         walletsDataManager = walletsManager
     }
     
+    func scrollCollection() {
+        guard let account = account else {
+            return
+        }
+        let index = resolveAccountIndex(account: account)
+        accountsDataManager.scrollTo(index: index)
+    }
+    
     func setWalletsDataManagerDelegate(_ delegate: WalletsDataManagerDelegate) {
         walletsDataManager.delegate = delegate
     }
@@ -65,5 +73,10 @@ extension ExchangeInteractor {
         }
         
         account = allAccount[0]
+    }
+    
+    private func resolveAccountIndex(account: Account) -> Int {
+        let allAccounts = accountsLinker.getAllAccounts()
+        return allAccounts.index{$0 == account}!
     }
 }

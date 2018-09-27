@@ -13,6 +13,7 @@
 "last_name" = "Last name";
 "password" = "Password";
 "repeat_password" = "Repeat password";
+"enter_amount" = "Enter amount";
 
 //Buttons
 "get_started" = "Get started";
@@ -46,6 +47,8 @@
 "sending" = "SENDING";
 "send_to" = "SEND TO";
 "receiver_input_placeholder" = "Wallet address or phone number";
+"receiver_currency" = "RECEIVER CURRENCY";
+"amount" = "AMOUNT";
 
 
 //Labels
@@ -76,3 +79,4 @@
 "unknown_error" = "Unknown error";
 "user_friendly_error" = "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!";
 "pins_not_match_alert" = "Codes do not match. Try again.";
+

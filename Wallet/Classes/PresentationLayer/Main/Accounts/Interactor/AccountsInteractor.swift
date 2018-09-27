@@ -78,7 +78,7 @@ extension AccountsInteractor: AccountsInteractorInput {
 // MARK: - Private methods
 
 extension AccountsInteractor {
-    func resolveAccountIndex(account: Account) -> Int {
+    private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountLinker.getAllAccounts()
         return allAccounts.index{$0 == account}!
     }

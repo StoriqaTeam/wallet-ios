@@ -8,10 +8,16 @@ import UIKit
 
 class SendModule {
     
-    class func create(account: Account) -> SendModuleInput {
+    class func create(account: Account? = nil) -> SendModuleInput {
         let router = SendRouter()
         let presenter = SendPresenter()
-        let interactor = SendInteractor()
+        
+        //Injections
+        let converterFactory = CurrecncyConverterFactory()
+        let formatter = CurrencyFormatter()
+        let sendProvider = SendTransactionBuilder(converterFactory: converterFactory, currencyFormatter: formatter)
+        let fakeAccountsProvider = FakeAccountProvider()
+        let interactor = SendInteractor(sendProvider: sendProvider, accountsProvider: fakeAccountsProvider, account: account)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
         let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController
@@ -26,25 +32,5 @@ class SendModule {
         
         return presenter
     }
-    
-    
-    static func create() -> SendModuleInput {
-        let router = SendRouter()
-        let presenter = SendPresenter()
-        let interactor = SendInteractor()
-        
-        let sendSb = UIStoryboard(name: "Send", bundle: nil)
-        let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController
-        
-        interactor.output = presenter
-        
-        viewController.output = presenter
-        
-        presenter.view = viewController
-        presenter.router = router
-        presenter.interactor = interactor
-        
-        return presenter
-    }
-    
+
 }

@@ -89,7 +89,7 @@ extension PasswordInputViewController: PasswordInputViewInput {
 extension PasswordInputViewController {
     
     private func configureGreeting() {
-        if Constants.Sizes.isSmallScreen {
+        if Device.model == .iPhoneSE {
             greetingContainerView.isHidden = true
             greetingVerticalSpacingConstraint.constant = 0
             greetingLabel.text = ""

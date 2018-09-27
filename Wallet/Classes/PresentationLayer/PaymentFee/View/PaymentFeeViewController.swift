@@ -105,6 +105,7 @@ extension PaymentFeeViewController: PaymentFeeViewInput {
         receiverLabel.text = apperance.receiverName
         paymentFeeValuesCount = apperance.paymentFeeValuesCount
         
+        paymentFeeSlider.setValue(0, animated: false)
         updateSelectedFee()
     }
     
@@ -125,14 +126,23 @@ extension PaymentFeeViewController {
         addressTitleLabel.font = UIFont.caption
         receiverTitleLabel.font = UIFont.caption
         paymentFeeTitleLabel.font = UIFont.caption
+        medianWaitTitleLabel.font = UIFont.caption
         subtotalTitleLabel.font = UIFont.caption
         
         paymentFeeLowLabel.font = UIFont.smallText
         paymentFeeMediumLabel.font = UIFont.smallText
         paymentFeeHighLabel.font = UIFont.smallText
         
+        addressTitleLabel.textColor = UIColor.bluegrey
+        receiverTitleLabel.textColor = UIColor.bluegrey
+        paymentFeeTitleLabel.textColor = UIColor.bluegrey
+        medianWaitTitleLabel.textColor = UIColor.bluegrey
+        subtotalTitleLabel.textColor = UIColor.bluegrey
         
-        paymentFeeSlider.setValue(0, animated: false)
+        paymentFeeLowLabel.textColor = UIColor.captionGrey
+        paymentFeeMediumLabel.textColor = UIColor.captionGrey
+        paymentFeeHighLabel.textColor = UIColor.captionGrey
+        
     }
     
 }

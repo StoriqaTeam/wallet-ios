@@ -31,6 +31,10 @@ extension String {
     func clearedPhoneNumber() -> String {
         return self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
     }
+    
+    func decimalValue() -> Decimal {
+        return Decimal(string: self) ?? 0
+    }
 }
 
 extension String {
@@ -56,10 +60,19 @@ extension NSAttributedString {
     }
 }
 
+// MARK: Validations
+
 extension String {
     func isValidEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         return self.matchesReqex(emailRegEx)
+    }
+    
+    func isValidDecimal() -> Bool {
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = true
+        formatter.locale = Locale.current
+        return formatter.number(from: self) != nil
     }
 }
 

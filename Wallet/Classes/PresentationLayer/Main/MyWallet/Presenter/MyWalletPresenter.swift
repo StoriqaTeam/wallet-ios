@@ -71,27 +71,13 @@ extension MyWalletPresenter: MyWalletModuleInput {
 
 extension MyWalletPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let spacing: CGFloat
-        let width: CGFloat
-        let height: CGFloat
-        
-        if Constants.Sizes.isSmallScreen {
-            spacing = 12
-            width = Constants.Sizes.screenWith - spacing * 2
-            height = width / 1.7
-        } else {
-            spacing = 17
-            width = 336
-            height = 198
-        }
-        
+        let deviceLayout = Device.model.myWalletCollectionFlowLayout
         let flowLayout = UICollectionViewFlowLayout()
         
-        flowLayout.minimumLineSpacing = spacing
-        flowLayout.minimumInteritemSpacing = spacing
-        flowLayout.sectionInset.top = spacing
-        flowLayout.sectionInset.bottom = spacing
-        flowLayout.itemSize = CGSize(width: width, height: height)
+        flowLayout.minimumLineSpacing = deviceLayout.spacing
+        flowLayout.minimumInteritemSpacing = deviceLayout.spacing
+        flowLayout.sectionInset = UIEdgeInsetsMake(deviceLayout.spacing, 0, deviceLayout.spacing, 0)
+        flowLayout.itemSize = deviceLayout.size
         
         return flowLayout
     }

@@ -22,6 +22,7 @@ protocol SendTransactionBuilderProtocol: class {
     
     func getReceiverName() -> String
     func getAmountStr() -> String
+    func getAmountWithoutCurrencyStr() -> String
     func getAmountInTransactionCurrencyStr() -> String
     func getFeeWaitCount() -> Int
     func getFeeAndWait() -> (fee: String, wait: String)
@@ -74,13 +75,29 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
     }
     
     func getAmountStr() -> String {
+        guard let amount = amount, !amount.isZero,
+            let receiverCurrency = receiverCurrency else {
+                return ""
+        }
+        
         let formatted = currencyFormatter.getStringFrom(amount: amount, currency: receiverCurrency)
         return formatted
     }
     
+    func getAmountWithoutCurrencyStr() -> String {
+        guard let amount = amount, !amount.isZero else {
+                return ""
+        }
+        return amount.description
+    }
+    
     func getAmountInTransactionCurrencyStr() -> String {
-        let converted = currencyConverter.convert(amount: amount, to: selectedAccount.currency)
-        let formatted = currencyFormatter.getStringFrom(amount: converted, currency: selectedAccount.currency)
+        guard let amount = amount, !amount.isZero,
+            let currency = selectedAccount?.currency else {
+                return ""
+        }
+        let converted = currencyConverter.convert(amount: amount, to: currency)
+        let formatted = currencyFormatter.getStringFrom(amount: converted, currency: currency)
         return formatted
     }
     
