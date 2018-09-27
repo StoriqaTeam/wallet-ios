@@ -36,6 +36,11 @@ class AccountsViewController: UIViewController {
         output.configureCollections()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureGradientView()
+    }
+    
     
     // MARK: - Actions
 
@@ -56,8 +61,6 @@ extension AccountsViewController: AccountsViewInput {
     func setupInitialState() {
         configureTableView()
         configureButtons()
-        configureNavBar()
-        configureGradientView()
         accountsPageControl.isUserInteractionEnabled = false
     }
 }
@@ -80,13 +83,7 @@ extension AccountsViewController {
         lastTransactionsTableView.tableFooterView = UIView()
     }
     
-    private func configureNavBar() {
-        navigationController?.navigationBar.isTranslucent = true
-        setWhiteTextNavigationBar()
-    }
-    
     private func configureGradientView() {
-        
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [ UIColor(red: 0.2549019608, green: 0.7176470588, blue: 0.9568627451, alpha: 1).cgColor,
