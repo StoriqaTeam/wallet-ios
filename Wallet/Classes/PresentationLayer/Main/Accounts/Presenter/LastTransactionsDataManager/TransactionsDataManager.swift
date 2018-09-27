@@ -1,5 +1,5 @@
 //
-//  LastTransactionsDataManager.swift
+//  TransactionsDataManager.swift
 //  Wallet
 //
 //  Created by Daniil Miroshnichecko on 24.09.2018.
@@ -9,14 +9,14 @@
 import UIKit
 
 
-protocol LastTransactionsDataManagerDelegate: class {
+protocol TransactionsDataManagerDelegate: class {
     
 }
 
 
-class LastTransactionsDataManager: NSObject {
+class TransactionsDataManager: NSObject {
     
-    weak var delegate: LastTransactionsDataManagerDelegate!
+    weak var delegate: TransactionsDataManagerDelegate!
     private var lastTransactionsTableView: UITableView!
     private var transactions: [Transaction]
     private let kTransactionCellId = "transactionCell"
@@ -33,14 +33,30 @@ class LastTransactionsDataManager: NSObject {
     
     func updateTransactions(_ transactions: [Transaction]) {
         self.transactions = transactions
-        self.lastTransactionsTableView.reloadData()
+        
+        UIView.transition(with: lastTransactionsTableView,
+                          duration: 0.2,
+                          options: .transitionCrossDissolve,
+                          animations: { self.lastTransactionsTableView.reloadData() })
+        
+
+    }
+    
+    func updateEmpty(placeholderImage: UIImage, placeholderText: String) {        
+        let placeholder = EmptyView(frame: lastTransactionsTableView.frame)
+
+        placeholder.setup(image: placeholderImage)
+
+        lastTransactionsTableView.tableFooterView = UIView()
+        lastTransactionsTableView.backgroundView = placeholder
+        lastTransactionsTableView.reloadData()
     }
 }
 
 
 // MARK: UITableViewDataSource
 
-extension LastTransactionsDataManager: UITableViewDataSource {
+extension TransactionsDataManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactions.count
     }
@@ -56,7 +72,7 @@ extension LastTransactionsDataManager: UITableViewDataSource {
 
 // MARK: - Private methods
 
-extension LastTransactionsDataManager {
+extension TransactionsDataManager {
     private func registerXib() {
         let nib = UINib(nibName: "TransactionCell", bundle: nil)
         lastTransactionsTableView.register(nib, forCellReuseIdentifier: kTransactionCellId)

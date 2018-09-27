@@ -13,7 +13,7 @@ class AccountsInteractor {
     weak var output: AccountsInteractorOutput!
     private var account: Account
     private var accountsDataManager: AccountsDataManager!
-    private var transactionDataManager: LastTransactionsDataManager!
+    private var transactionDataManager: TransactionsDataManager!
     private let accountLinker: AccountsLinkerProtocol
     
     init(accountLinker: AccountsLinkerProtocol,
@@ -28,10 +28,16 @@ class AccountsInteractor {
 // MARK: - AccountsInteractorInput
 
 extension AccountsInteractor: AccountsInteractorInput {
+    func getTransactionForCurrentAccount() -> [Transaction] {
+        return transactions(for: self.account)
+    }
+    
     func setCurrentAccountWith(index: Int) {
         let allAccounts = accountLinker.getAllAccounts()
-        self.account = allAccounts[index]
-        output.ISODidChange(self.account.type.ICO)
+        account = allAccounts[index]
+        let txs = transactions(for: account)
+        transactionDataManager.updateTransactions(txs)
+        output.ISODidChange(account.type.ICO)
     }
     
     func scrollCollection() {
@@ -47,7 +53,7 @@ extension AccountsInteractor: AccountsInteractorInput {
         return account.type.ICO
     }
     
-    func setTransactionDataManagerDelegate(_ delegate: LastTransactionsDataManagerDelegate) {
+    func setTransactionDataManagerDelegate(_ delegate: TransactionsDataManagerDelegate) {
         transactionDataManager.delegate = delegate
     }
     
@@ -64,11 +70,8 @@ extension AccountsInteractor: AccountsInteractorInput {
     }
     
     func createTransactionsDataManager(with tableView: UITableView) {
-        guard let transactions = accountLinker.getTransactionsFor(account: account) else {
-            fatalError("Given Account do not exist")
-        }
-        
-        let txDataManager = LastTransactionsDataManager(transactions: transactions)
+        let txs = transactions(for: account)
+        let txDataManager = TransactionsDataManager(transactions: txs)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
     }
@@ -81,5 +84,10 @@ extension AccountsInteractor {
     func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountLinker.getAllAccounts()
         return allAccounts.index{$0 == account}!
+    }
+    
+    private func transactions(for account: Account) -> [Transaction] {
+        guard let txs = accountLinker.getTransactionsFor(account: account) else { fatalError("Given account not found") }
+        return txs
     }
 }

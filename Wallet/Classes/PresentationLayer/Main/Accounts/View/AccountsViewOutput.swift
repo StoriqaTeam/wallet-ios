@@ -15,4 +15,5 @@ protocol AccountsViewOutput: class {
     func viewIsReady()
     func handleCustomButton(type: RouteButtonType)
     func configureCollections()
+    func viewAllPressed()
 }
