@@ -20,4 +20,5 @@ protocol SendInteractorInput: class {
     func setCurrentAccountWith(index: Int)
     func isFormValid() -> Bool
     func scrollCollection()
+    func getTransactionBuilder() -> SendTransactionBuilderProtocol
 }

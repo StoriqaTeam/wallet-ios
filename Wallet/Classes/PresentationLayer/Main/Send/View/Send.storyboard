@@ -160,6 +160,9 @@
                                     <constraint firstAttribute="height" constant="45" id="J1g-wh-cg1"/>
                                 </constraints>
                                 <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="Bkl-J1-fPG" eventType="touchUpInside" id="V3M-sM-0Ra"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

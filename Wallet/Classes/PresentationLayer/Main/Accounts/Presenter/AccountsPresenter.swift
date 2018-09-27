@@ -117,7 +117,8 @@ extension AccountsPresenter {
     private func configureNavBar() {
         view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkTextNavigationBar()
+        view.viewController.navigationController?.navigationBar.isTranslucent = true
+        view.viewController.setWhiteTextNavigationBar()
         let iso = interactor.getInitialCurrencyISO()
         view.viewController.title = "Account \(iso)"
     }

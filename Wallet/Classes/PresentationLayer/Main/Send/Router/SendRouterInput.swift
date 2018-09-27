@@ -10,5 +10,6 @@ import UIKit
 
 
 protocol SendRouterInput: class {
-
+    func showReceiver(sendProvider: SendTransactionBuilderProtocol,
+                        from viewController: UIViewController)
 }
