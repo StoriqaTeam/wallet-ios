@@ -66,7 +66,7 @@ open class PasswordInputView: UIView {
     
     //MARK: Life Cycle
     #if TARGET_INTERFACE_BUILDER
-    override public func willMoveToSuperview(newSuperview: UIView?) {
+    override public func willMove(toSuperview newSuperview: UIView?) {
         configureSubviews()
     }
     #else
