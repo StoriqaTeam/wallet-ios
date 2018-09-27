@@ -9,6 +9,7 @@
 import Foundation
 
 class ErrorView: LoadableFromXib {
+    
     @IBOutlet private var errorImageView: UIImageView!
     @IBOutlet private var messageLabel: UILabel!
     
@@ -19,7 +20,12 @@ class ErrorView: LoadableFromXib {
         messageLabel.text = text
         layoutIfNeeded()
     }
-    
+}
+
+
+// MARK: - Private methods
+
+extension ErrorView {
     private func configInterface() {
         errorImageView.tintColor = UIColor.cloudyBlue
         messageLabel.textColor = UIColor.bluegrey

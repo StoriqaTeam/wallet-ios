@@ -29,9 +29,6 @@ class AccountsViewController: UIViewController {
         output.accountsCollectionView(accountsCollectionView)
         output.transactionTableView(lastTransactionsTableView)
         output.viewIsReady()
-        
-        configureNavBar()
-        configureGradientView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,7 +40,7 @@ class AccountsViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func viewAllPressed(_ sender: UIButton) {
-        showAlert(title:"", message: "Need Transaction list screen design")
+        output.viewAllPressed()
     }
     
 }
@@ -57,8 +54,11 @@ extension AccountsViewController: AccountsViewInput {
     }
 
     func setupInitialState() {
-        lastTransactionsTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        configureTableView()
         configureButtons()
+        configureNavBar()
+        configureGradientView()
+        accountsPageControl.isUserInteractionEnabled = false
     }
 }
 
@@ -73,6 +73,11 @@ extension AccountsViewController {
         sendButton.delegate = self
         depositButton.configure(.deposit)
         depositButton.delegate = self
+    }
+    
+    private func configureTableView() {
+        lastTransactionsTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        lastTransactionsTableView.tableFooterView = UIView()
     }
     
     private func configureNavBar() {

@@ -23,6 +23,11 @@ class AccountsPresenter {
 // MARK: - AccountsViewOutput
 
 extension AccountsPresenter: AccountsViewOutput {
+    func viewAllPressed() {
+        let transactions = interactor.getTransactionForCurrentAccount()
+        router.showTransactions(from: view.viewController, transactions: transactions)
+    }
+    
     func configureCollections() {
         interactor.scrollCollection()
     }
@@ -90,7 +95,7 @@ extension AccountsPresenter: AccountsDataManagerDelegate {
 
 // MARK: - TransactionsDatamanagerDelegate
 
-extension AccountsPresenter: LastTransactionsDataManagerDelegate {
+extension AccountsPresenter: TransactionsDataManagerDelegate {
     
 }
 
@@ -115,5 +120,9 @@ extension AccountsPresenter {
         view.viewController.setDarkTextNavigationBar()
         let iso = interactor.getInitialCurrencyISO()
         view.viewController.title = "Account \(iso)"
+    }
+    
+    private func configureTransactionsTableView() {
+        
     }
 }

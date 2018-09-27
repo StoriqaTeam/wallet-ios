@@ -5,45 +5,6 @@
 
 import UIKit
 
-class FakeTransactionsProvider: TransactionsProviderProtocol {
-    func transactionsFor(account: Account) -> [Transaction] {
-        
-        return [
-            Transaction(currency: .btc,
-                        direction: .send,
-                        fiatAmount: 100,
-                        cryptoAmount: 2,
-                        timestamp: Date(),
-                        status: .confirmed,
-                        opponent: .contact(contact: Contact(givenName: "Satoshi", familyName: "B.", mobile: "123-456-789", imageData: nil))),
-            
-            Transaction(currency: .eth,
-                        direction: .receive,
-                        fiatAmount: 420,
-                        cryptoAmount: 2,
-                        timestamp: Date(),
-                        status: .confirmed,
-                        opponent: .address(address: "0x013...1f1")),
-            
-            Transaction(currency: .stq,
-                        direction: .send,
-                        fiatAmount: 21,
-                        cryptoAmount: 210,
-                        timestamp: Date(),
-                        status: .confirmed,
-                        opponent: .address(address: "Vitaly B.")),
-            
-            Transaction(currency: .btc,
-                        direction: .send,
-                        fiatAmount: 5200,
-                        cryptoAmount: 0.004,
-                        timestamp: Date(),
-                        status: .confirmed,
-                        opponent: .address(address: "mv12ef12...32"))
-        ]
-    }
-}
-
 class FakeAccountLinker: AccountsLinkerProtocol {
     
     private let fakeAccProvider: AccountsProviderProtocol
