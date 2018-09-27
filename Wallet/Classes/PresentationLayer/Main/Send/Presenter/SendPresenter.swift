@@ -52,7 +52,7 @@ extension SendPresenter: SendViewOutput {
     
     func viewIsReady() {
         let currencyImages = currencies.map({ return $0.image })
-        view.viewController.title = "send".localized()
+        configureNavBar()
         view.setButtonEnabled(false)
         view.setupInitialState(currencyImages: currencyImages)
         interactor.setAccountsDataManagerDelegate(self)
@@ -119,12 +119,19 @@ extension SendPresenter: AccountsDataManagerDelegate {
 // MARK: - Private methods
 
 extension SendPresenter {
+    private func configureNavBar() {
+        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
+        view.viewController.navigationItem.largeTitleDisplayMode = .never
+        view.viewController.setDarkTextNavigationBar()
+        view.viewController.navigationController?.navigationBar.topItem?.title = "send".localized()
+    }
+    
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let spacing: CGFloat
         let width: CGFloat
         let height: CGFloat
         
-        if Constants.Sizes.isSmallScreen {
+        if Device.isSmallScreen {
             width = 280
             height = 165
         } else {

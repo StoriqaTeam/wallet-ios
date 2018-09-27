@@ -17,7 +17,7 @@ class PasswordRecoveryBaseViewController: UIViewController {
     @IBOutlet private var headerVerticalSpaceConstraint: NSLayoutConstraint!
     @IBOutlet private var subtitleTopSpaceConstraint: NSLayoutConstraint!
     
-    private let buttonBottomSpace: CGFloat = Constants.Sizes.isSmallScreen ? 24 : 30
+    private let buttonBottomSpace: CGFloat = Device.isSmallScreen ? 24 : 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,7 @@ class PasswordRecoveryBaseViewController: UIViewController {
         subtitleLabel.textColor = UIColor.primaryGrey
         
         resetPasswordButtonBottomConstraint.constant = buttonBottomSpace
-        if Constants.Sizes.isSmallScreen {
+        if Device.isSmallScreen {
             headerVerticalSpaceConstraint.constant = 16
             subtitleTopSpaceConstraint.constant = 16
         }

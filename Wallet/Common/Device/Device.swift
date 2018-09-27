@@ -10,7 +10,7 @@ import Foundation
 
 
 enum Device: CGFloat {
-    case IphoneSE = 568
+    case iphoneSE = 568
     case iPhone8 = 667
     case iPhone7Plus = 736
     case iPhoneX = 812
@@ -26,10 +26,12 @@ enum Device: CGFloat {
         case 667:
             return .iPhone8
         case 568:
-            return .IphoneSE
+            return .iphoneSE
         default:
             return .iPhoneXSMAX
         }
     }
+    
+    static let isSmallScreen: Bool = model == .iphoneSE
 }
 

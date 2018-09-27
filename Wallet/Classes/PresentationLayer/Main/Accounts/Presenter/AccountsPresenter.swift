@@ -102,7 +102,7 @@ extension AccountsPresenter {
         let width: CGFloat
         let height: CGFloat
         
-        if Constants.Sizes.isSmallScreen {
+        if Device.isSmallScreen {
             width = 280
             height = 165
         } else {

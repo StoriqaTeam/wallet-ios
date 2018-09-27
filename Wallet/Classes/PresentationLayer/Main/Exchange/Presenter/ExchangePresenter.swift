@@ -95,7 +95,7 @@ extension ExchangePresenter {
         let width: CGFloat
         let height: CGFloat
         
-        if Constants.Sizes.isSmallScreen {
+        if Device.isSmallScreen {
             spacing = 12
             width = Constants.Sizes.screenWith - spacing * 2
             height = width / 1.3//1.7
