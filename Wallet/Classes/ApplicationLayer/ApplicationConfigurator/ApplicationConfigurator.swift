@@ -20,8 +20,7 @@ class ApplicationConfigurator: Configurable {
     }
     
     func configure() {
-        MainTabBarModule.create().present()
-//        setInitialVC()
+        setInitialVC()
         setGID()
     }    
 }
