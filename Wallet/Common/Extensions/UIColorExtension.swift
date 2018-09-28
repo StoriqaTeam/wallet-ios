@@ -36,4 +36,7 @@ extension UIColor {
     @nonobjc class var lightGray: UIColor {
         return #colorLiteral(red: 0.737254902, green: 0.7333333333, blue: 0.7568627451, alpha: 1) //188 187 193
     }
+    @nonobjc class var errorRed: UIColor {
+        return #colorLiteral(red: 0.9215686275, green: 0.2705882353, blue: 0.3529411765, alpha: 1) //255 45 85
+    }
 }

@@ -264,6 +264,7 @@
 		CE1A47DD212E9C5400418C11 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */; };
 		CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */; };
 		CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */; };
+		CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
 		CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74D2126BEDB0097230A /* UserInfo.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
@@ -693,6 +694,7 @@
 		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
 		CE1A47DA212E9C5400418C11 /* PasswordInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
 		CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
+		CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmVM.swift; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -2123,6 +2125,7 @@
 				DDB498C5FAA9033DE7CD6565 /* PaymentFeeInteractorInput.swift */,
 				5D22F8D28B7C0BF3D94AC682 /* PaymentFeeInteractorOutput.swift */,
 				483EA059D7E6160ECD4BA0E5 /* PaymentFeeInteractor.swift */,
+				CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -3324,6 +3327,7 @@
 				06B75F52B160C8A6E54107D2 /* SettingsInteractorOutput.swift in Sources */,
 				F5AB86357D59D1B81AC1B476 /* SettingsInteractor.swift in Sources */,
 				D1AF069A7077568DB144DE3C /* SettingsRouterInput.swift in Sources */,
+				CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */,
 				A94569B43B0A5C670A352940 /* SettingsRouter.swift in Sources */,
 				028B7BF74591C0783429D6F3 /* SettingsModuleInput.swift in Sources */,
 				B8D4D58E13E50746B516D91C /* SettingsModuleOutput.swift in Sources */,

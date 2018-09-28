@@ -35,6 +35,7 @@
 "scan_QR" = "Scan QR-code";
 "next" = "Next";
 "send" = "Send";
+"confirm_transaction" = "Confirm transaction";
 
 //Other controls
 "accept_agreement" = "I accept the terms of the license agreement and privacy policy";
@@ -73,6 +74,10 @@
 "smth_went_wrong" = "Oops! Something gone wrong!";
 "psw_recovery_result_success_title" = "Password was successfully set up";
 "psw_recovery_result_success_subtitle" = "You have successfully set up new password.";
+"confirm_send" = "Confirm sending money";
+"you_are_going_to_send" = "You are going to send";
+"to" = "to";
+
 
 //Error constants
 "server_response_error" = "Server response error";

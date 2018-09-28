@@ -33,7 +33,11 @@ extension String {
     }
     
     func decimalValue() -> Decimal {
-        return Decimal(string: self) ?? 0
+        var set = CharacterSet.decimalDigits
+        set.insert(charactersIn: Locale.current.decimalSeparator!)
+        let cleared = self.components(separatedBy: set.inverted).joined(separator: "")
+        
+        return Decimal(string: cleared) ?? 0
     }
 }
 

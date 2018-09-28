@@ -37,7 +37,9 @@ class PaymentFeeViewController: UIViewController {
     @IBOutlet private var medianWaitLabel: UILabel!
     @IBOutlet private var subtotalTitleLabel: UILabel!
     @IBOutlet private var subtotalLabel: UILabel!
+    @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var sendButton: DefaultButton!
+    @IBOutlet private var scrollView: UIScrollView!
     
     // MARK: Variables
     
@@ -63,8 +65,8 @@ class PaymentFeeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady()
         configInterface()
+        output.viewIsReady()
     }
     
     // MARK: IBActions
@@ -76,7 +78,7 @@ class PaymentFeeViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        
+        output.sendButtonPressed()
     }
 }
 
@@ -109,11 +111,27 @@ extension PaymentFeeViewController: PaymentFeeViewInput {
         updateSelectedFee()
     }
     
+    func setErrorHidden(_ hidden: Bool) {
+        errorLabel.isHidden = hidden
+        sendButton.isHidden = !hidden
+        
+        if !hidden {
+            scrollToBottom()
+        }
+    }
+    
 }
 
 // MARK: - Private methods
 
 extension PaymentFeeViewController {
+    
+    private func scrollToBottom() {
+        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom)
+        if bottomOffset.y > 0 {
+            scrollView.setContentOffset(bottomOffset, animated: true)
+        }
+    }
     
     private func updateSelectedFee() {
         output.newFeeSelected(currentSliderStep)
@@ -132,6 +150,7 @@ extension PaymentFeeViewController {
         paymentFeeLowLabel.font = UIFont.smallText
         paymentFeeMediumLabel.font = UIFont.smallText
         paymentFeeHighLabel.font = UIFont.smallText
+        errorLabel.font = UIFont.smallText
         
         addressTitleLabel.textColor = UIColor.bluegrey
         receiverTitleLabel.textColor = UIColor.bluegrey
@@ -143,6 +162,10 @@ extension PaymentFeeViewController {
         paymentFeeMediumLabel.textColor = UIColor.captionGrey
         paymentFeeHighLabel.textColor = UIColor.captionGrey
         
+        errorLabel.textColor = UIColor.errorRed
+        
+        errorLabel.isHidden = true
+        sendButton.isHidden = false
     }
     
 }

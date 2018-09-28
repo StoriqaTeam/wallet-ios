@@ -31,10 +31,18 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
         
         let subtotal = interactor.getSubtotal()
         view.setSubtotal(subtotal)
+        
+        let isEnoughFunds = interactor.isEnoughFunds()
+        view.setErrorHidden(isEnoughFunds)
     }
     
     func sendButtonPressed() {
-        //TODO: create transaction
+        let amount = interactor.getAmount()
+        let address = interactor.getAddress()
+        router.showConfirm(amount: amount,
+                           address: address,
+                           popUpDelegate: self,
+                           from: view.viewController)
     }
     
     func editButtonPressed() {
@@ -59,8 +67,24 @@ extension PaymentFeePresenter: PaymentFeeInteractorOutput {
 // MARK: - PaymentFeeModuleInput
 
 extension PaymentFeePresenter: PaymentFeeModuleInput {
-
+    
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
+    
 }
+
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
+    
+    func confirmTransaction() {
+        //TODO: send transaction
+        let transaction = interactor.createTransaction()
+    }
+    
+}
+
+
+

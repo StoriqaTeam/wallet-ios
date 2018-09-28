@@ -26,8 +26,8 @@ class PopUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureInterface()
         output.viewIsReady()
-        configureInterface() 
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,14 +45,6 @@ class PopUpViewController: UIViewController {
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations:{[weak self] in
             self?.view.backgroundColor = .clear
             }, completion: nil)
-    }
-    
-    private func configureInterface() {
-        containerView.roundCorners(radius: 7)
-        titleLabel.font = UIFont.title
-        textLabel.font = UIFont.smallText
-        textLabel.textColor = UIColor.primaryGrey
-        closeButton.setTitleColor(UIColor.mainBlue, for: .normal)
     }
     
     // MARK: - Action
@@ -92,5 +84,20 @@ extension PopUpViewController: PopUpViewInput {
             closeButton.removeFromSuperview()
         }
     }
-
 }
+
+
+// MARK: - Private methods
+
+extension PopUpViewController {
+    
+    private func configureInterface() {
+        containerView.roundCorners(radius: 7)
+        titleLabel.font = UIFont.title
+        textLabel.font = UIFont.smallText
+        textLabel.textColor = UIColor.primaryGrey
+        closeButton.setTitleColor(UIColor.mainBlue, for: .normal)
+    }
+    
+}
+

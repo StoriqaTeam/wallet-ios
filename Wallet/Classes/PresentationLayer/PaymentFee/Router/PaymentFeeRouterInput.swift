@@ -10,5 +10,8 @@ import UIKit
 
 
 protocol PaymentFeeRouterInput: class {
-
+    func showConfirm(amount: String,
+                     address: String,
+                     popUpDelegate: PopUpSendConfirmVMDelegate,
+                     from viewController: UIViewController)
 }
