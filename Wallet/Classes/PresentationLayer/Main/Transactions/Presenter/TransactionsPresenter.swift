@@ -33,6 +33,14 @@ extension TransactionsPresenter: TransactionsViewOutput {
         interactor.setTransactionDataManagerDelegate(self)
     }
 
+    func willMoveToParentVC() {
+        view.viewController.setWhiteTextNavigationBar()
+    }
+    
+    func viewWillAppear() {
+        view.viewController.setDarkTextNavigationBar()
+    }
+    
 }
 
 
@@ -66,7 +74,6 @@ extension TransactionsPresenter {
     private func configureNavBar() {
         view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkTextNavigationBar()
         view.viewController.title = "Transactions"
     }
 }

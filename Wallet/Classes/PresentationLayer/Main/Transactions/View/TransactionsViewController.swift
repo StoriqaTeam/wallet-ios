@@ -22,7 +22,17 @@ class TransactionsViewController: UIViewController {
         output.transactionTableView(transactionsTableView)
         output.viewIsReady()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        output.willMoveToParentVC()
+    }
+    
 }
 
 

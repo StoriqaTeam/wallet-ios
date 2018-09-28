@@ -55,7 +55,15 @@ extension ReceiverPresenter: ReceiverViewOutput {
         view.setNextButtonHidden(true)
         interactor.setContactsDataManagerDelegate(self)
     }
-
+    
+    func willMoveToParentVC() {
+        view.viewController.setWhiteTextNavigationBar()
+    }
+    
+    func viewWillAppear() {
+        view.viewController.setDarkTextNavigationBar()
+    }
+    
 }
 
 

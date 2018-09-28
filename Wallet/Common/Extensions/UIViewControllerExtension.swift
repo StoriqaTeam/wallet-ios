@@ -17,6 +17,7 @@ extension UIViewController {
     
     func setWhiteTextNavigationBar() {
         setNavigationBarTextColor(.white)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     private func setNavigationBarTextColor(_ color: UIColor) {
@@ -44,7 +45,7 @@ extension UIViewController {
         navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigation.navigationBar.shadowImage = UIImage()
         navigation.navigationBar.isTranslucent = true
-        navigation.view.backgroundColor = .clear
+        navigation.navigationBar.backgroundColor = .clear
         navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
         navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
         navigation.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "",

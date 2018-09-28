@@ -127,7 +127,7 @@ extension SendPresenter {
     private func configureNavBar() {
         view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkTextNavigationBar()
+        view.viewController.setWhiteTextNavigationBar()
         view.viewController.navigationController?.navigationBar.topItem?.title = "send".localized()
     }
     

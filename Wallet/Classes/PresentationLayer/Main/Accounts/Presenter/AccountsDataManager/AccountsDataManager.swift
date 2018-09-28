@@ -30,6 +30,7 @@ class AccountsDataManager: NSObject {
         accountsCollectionView = view
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
+        accountsCollectionView.isPagingEnabled = false
         registerXib()
     }
     
@@ -69,16 +70,23 @@ extension AccountsDataManager: UICollectionViewDelegate {
     
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-         indexOfCellBeforeDragging = indexOfMajorCell()
+        indexOfCellBeforeDragging = indexOfMajorCell(factor: 0)
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         targetContentOffset.pointee = scrollView.contentOffset
+
+        var factor: CGFloat = 0.5
         
-        let indexOfMajorCell = self.indexOfMajorCell()
+        if velocity.x < 0 {
+            factor = -factor
+        }
+        
+        let indexOfMajorCell = self.indexOfMajorCell(factor: factor)
         let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
         accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         delegate.currentPageDidChange(indexPath.row)
+        
     }
 }
 
@@ -86,12 +94,12 @@ extension AccountsDataManager: UICollectionViewDelegate {
 // MARK: - Private methods
 
 extension AccountsDataManager {
-    private func indexOfMajorCell() -> Int {
+    private func indexOfMajorCell(factor: CGFloat) -> Int {
         
         let layout = accountsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         let itemWidth = layout.itemSize.width
-        let proportionalOffset = layout.collectionView!.contentOffset.x / itemWidth
+        let proportionalOffset = layout.collectionView!.contentOffset.x / itemWidth + factor
         let index = Int(round(proportionalOffset))
         let numberOfItems = layout.collectionView?.numberOfItems(inSection: 0)
         let safeIndex = max(0, min(numberOfItems! - 1, index))
