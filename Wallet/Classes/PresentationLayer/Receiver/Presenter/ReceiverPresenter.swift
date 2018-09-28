@@ -59,7 +59,11 @@ extension ReceiverPresenter: ReceiverViewOutput {
     func willMoveToParentVC() {
         view.viewController.setWhiteTextNavigationBar()
     }
-
+    
+    func viewWillAppear() {
+        view.viewController.setDarkTextNavigationBar()
+    }
+    
 }
 
 

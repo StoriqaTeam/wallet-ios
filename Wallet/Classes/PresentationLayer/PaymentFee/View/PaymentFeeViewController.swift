@@ -69,6 +69,11 @@ class PaymentFeeViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        output.willMoveToParentVC()
+    }
+    
     // MARK: IBActions
     
     @IBAction func sliderMoved(_ sender: UISlider) {

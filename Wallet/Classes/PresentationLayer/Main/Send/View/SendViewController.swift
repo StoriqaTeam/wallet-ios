@@ -29,7 +29,7 @@ class SendViewController: UIViewController {
     
     // MARK: Variables
     
-    private let keyboardAnimationDelay = 0.5
+    private let keyboardAnimationDelay = 1.0
     private var isKeyboardAnimating = false
     
     
@@ -150,6 +150,14 @@ extension SendViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !isKeyboardAnimating {
             dismissKeyboard()
+        }
+        
+        if let cellY = accountsCollectionView.layoutAttributesForItem(at: IndexPath(row: 0, section: 0))?.frame.origin.y {
+            let scrollOffset = scrollView.contentOffset.y
+            let delta = max(0, scrollOffset - cellY - 12)
+            let alpha = 1 - (max(0, min(0.99999, delta/20)))
+
+            navigationController?.navigationBar.alpha = alpha
         }
     }
 }
