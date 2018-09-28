@@ -207,6 +207,7 @@
 		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
 		A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C32150215B0096C155 /* BiometricAuthProvider.swift */; };
 		A58EE3C62150379E0096C155 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58EE3C52150379E0096C155 /* Login.storyboard */; };
+		A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */; };
 		A5A63DCD4AC3808900D1025C /* PaymentFeeViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC29C149FAE2F05AA0DF98AB /* PaymentFeeViewOutput.swift */; };
 		A5B78205215E214A00EFD1A5 /* AddressValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78204215E214A00EFD1A5 /* AddressValidatorProtocol.swift */; };
 		A5B7820A215E22FD00EFD1A5 /* Base59Encode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78209215E22FD00EFD1A5 /* Base59Encode.swift */; };
@@ -637,6 +638,7 @@
 		A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
 		A58EE3C32150215B0096C155 /* BiometricAuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthProvider.swift; sourceTree = "<group>"; };
 		A58EE3C52150379E0096C155 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashTrackerConfigurator.swift; sourceTree = "<group>"; };
 		A5B78204215E214A00EFD1A5 /* AddressValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressValidatorProtocol.swift; sourceTree = "<group>"; };
 		A5B78209215E22FD00EFD1A5 /* Base59Encode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base59Encode.swift; sourceTree = "<group>"; };
 		A5B7820C215E236F00EFD1A5 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -1987,6 +1989,7 @@
 		A58EE3B3214FFD5D0096C155 /* ApplicationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				A5A20BB5215E77CB00001340 /* CrashAnaliticConfigurator */,
 				A58EE3C2215004710096C155 /* ApplicationConfigurator */,
 				CE526C31212465A800A2EED2 /* AppDelegate.swift */,
 			);
@@ -2068,6 +2071,14 @@
 				A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */,
 			);
 			path = ApplicationConfigurator;
+			sourceTree = "<group>";
+		};
+		A5A20BB5215E77CB00001340 /* CrashAnaliticConfigurator */ = {
+			isa = PBXGroup;
+			children = (
+				A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */,
+			);
+			path = CrashAnaliticConfigurator;
 			sourceTree = "<group>";
 		};
 		A5B78202215E208C00EFD1A5 /* TransactionProvider */ = {
@@ -3008,6 +3019,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
 				"${BUILT_PRODUCTS_DIR}/Slog/Slog.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -3022,6 +3034,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Slog.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3374,6 +3387,7 @@
 				335037D191E86BBE64FC177F /* PaymentFeeViewInput.swift in Sources */,
 				A5A63DCD4AC3808900D1025C /* PaymentFeeViewOutput.swift in Sources */,
 				2F665A1E2688D3229C38F7B2 /* PaymentFeeViewController.swift in Sources */,
+				A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */,
 				F5680734F20F3B633F33DD1B /* PaymentFeePresenter.swift in Sources */,
 				A7CE669CEF8C840A16382864 /* PaymentFeeInteractorInput.swift in Sources */,
 				22192DA41BD15AD968C7ACD2 /* PaymentFeeInteractorOutput.swift in Sources */,

@@ -11,18 +11,12 @@ target 'Wallet' do
   pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
   pod 'Slog'
   
-  #social networks
+  # social networks
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'GoogleSignIn'
 
-  target 'WalletTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'WalletUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  # crash analitics
+  pod 'Sentry'
+  
 end

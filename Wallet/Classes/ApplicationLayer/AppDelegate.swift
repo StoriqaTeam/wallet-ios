@@ -10,6 +10,7 @@ import UIKit
 import AlamofireNetworkActivityIndicator
 import FBSDKLoginKit
 import GoogleSignIn
+import Sentry
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     private var configurators: [Configurable] = {
-        return [ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider())]
+        return [
+                ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider()),
+                CrashTrackerConfigurator()
+               ]
     }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -28,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for configurator in configurators {
             configurator.configure()
         }
+        
+        Client.shared?.crash()
         
         return true
     }

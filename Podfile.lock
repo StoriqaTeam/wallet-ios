@@ -40,6 +40,9 @@ PODS:
   - GTMSessionFetcher/Core (1.2.0)
   - GTMSessionFetcher/Full (1.2.0):
     - GTMSessionFetcher/Core (= 1.2.0)
+  - Sentry (4.1.0):
+    - Sentry/Core (= 4.1.0)
+  - Sentry/Core (4.1.0)
   - Slog (0.4.0):
     - Slog/LogOnly (= 0.4.0)
   - Slog/LogOnly (0.4.0)
@@ -50,6 +53,7 @@ DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - GoogleSignIn
+  - Sentry
   - Slog
 
 SPEC REPOS:
@@ -65,6 +69,7 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GTMOAuth2
     - GTMSessionFetcher
+    - Sentry
     - Slog
 
 SPEC CHECKSUMS:
@@ -79,8 +84,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
   Slog: 4b978d716d8984c67c2703127afc7287b1b26fd2
 
-PODFILE CHECKSUM: f24ca12076d1b1e3efe2bc24544a5b0817750fb0
+PODFILE CHECKSUM: 7892685fb7aa0713f3dfeca61cbc929c7eb92294
 
 COCOAPODS: 1.5.3
