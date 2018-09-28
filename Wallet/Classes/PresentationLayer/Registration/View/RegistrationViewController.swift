@@ -25,8 +25,6 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var signUpButton: DefaultButton!
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
     @IBOutlet private var textFields: [UnderlinedTextField]!
-    @IBOutlet private var stackViewTopSpace: NSLayoutConstraint!
-    @IBOutlet private var signInTopSpace: NSLayoutConstraint!
     @IBOutlet private var scrollView: UIScrollView!
     
     // MARK: - Variables
@@ -46,17 +44,6 @@ class RegistrationViewController: UIViewController {
         setSocialView()
         
         //TODO: new icon for agreementTickImageView
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        if scrollView.contentSize.height > 0 {
-            let delta = view.frame.height - scrollView.contentSize.height - stackViewTopSpace.constant
-            if delta > 0 {
-                signInTopSpace.constant = delta
-            }
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {
