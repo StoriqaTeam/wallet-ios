@@ -24,6 +24,33 @@ class PaymentFeeInteractor {
 // MARK: - PaymentFeeInteractorInput
 
 extension PaymentFeeInteractor: PaymentFeeInteractorInput {
+    func getAmount() -> String {
+        return sendProvider.getAmountStr()
+    }
+    
+    func getAddress() -> String {
+        let address: String
+        
+        switch sendProvider.opponentType! {
+        case .contact:
+            //TODO: будем получать?
+            address = "test address"
+        case .address(let addr):
+            address = addr
+        }
+        
+        return address
+    }
+    
+    func createTransaction() -> Transaction {
+        let transaction = sendProvider.createTransaction()
+        return transaction
+    }
+    
+    func isEnoughFunds() -> Bool {
+        return sendProvider.isEnoughFunds()
+    }
+    
     func setPaymentFee(index: Int) {
         sendProvider.setPaymentFee(index: index)
     }

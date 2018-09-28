@@ -26,8 +26,8 @@ class PopUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureInterface()
         output.viewIsReady()
-        configureInterface() 
     }
     
     override func viewWillAppear(_ animated: Bool) {

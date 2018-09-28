@@ -20,7 +20,7 @@ class BtcConverter: CurrencyConverterProtocol {
 
 class EthConverter: CurrencyConverterProtocol {
     func convert(amount: Decimal, to currency: Currency) -> Decimal {
-        return 22
+        return 890
     }
 }
 

@@ -27,6 +27,8 @@ protocol SendTransactionBuilderProtocol: class {
     func getFeeWaitCount() -> Int
     func getFeeAndWait() -> (fee: String, wait: String)
     func getSubtotal() -> String
+    func isEnoughFunds() -> Bool
+    func createTransaction() -> Transaction
     
     func setScannedAddress(_ address: String)
     func setContact(_ contact: Contact)
@@ -34,7 +36,6 @@ protocol SendTransactionBuilderProtocol: class {
 }
 
 class SendTransactionBuilder: SendTransactionBuilderProtocol {
-    
     weak var scanDelegate: QRScannerDelegate?
     
     var selectedAccount: Account!
@@ -131,6 +132,28 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
         let formatted = currencyFormatter.getStringFrom(amount: sum, currency: selectedAccount.currency)
         
         return formatted
+    }
+    
+    func isEnoughFunds() -> Bool {
+        let converted = currencyConverter.convert(amount: amount, to: selectedAccount.currency)
+        let sum = converted + paymentFee
+        //TODO: amount in decimal
+        let available = selectedAccount.cryptoAmount.decimalValue()
+        return sum.isLessThanOrEqualTo(available)
+    }
+    
+    func createTransaction() -> Transaction {
+        //TODO: timestamp?
+        let timestamp = Date()
+        let fiatAmount = currencyConverter.convert(amount: amount, to: .fiat)
+        let transaction = Transaction(currency: selectedAccount.currency,
+                                      direction: .send,
+                                      fiatAmount: fiatAmount,
+                                      cryptoAmount: amount,
+                                      timestamp: timestamp,
+                                      status: .pending,
+                                      opponent: opponentType)
+        return transaction
     }
     
 }

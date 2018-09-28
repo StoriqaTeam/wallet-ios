@@ -14,5 +14,9 @@ protocol PaymentFeeInteractorInput: class {
     func getSendTransactionBuilder() -> SendTransactionBuilderProtocol
     func setPaymentFee(index: Int)
     func getFeeAndWait() -> (fee: String, wait: String)
+    func getAmount() -> String
+    func getAddress() -> String
     func getSubtotal() -> String
+    func isEnoughFunds() -> Bool
+    func createTransaction() -> Transaction
 }

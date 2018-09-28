@@ -34,6 +34,11 @@ extension UIFont {
         return UIFont.systemFont(ofSize: 13)
     }
     
+    /** 13px regular */
+    @nonobjc class var smallMediumWeightText: UIFont {
+        return UIFont.systemFont(ofSize: 13, weight: .medium)
+    }
+    
     /** 13px regular. Must be uppercase */
     @nonobjc class var caption: UIFont {
         return UIFont.systemFont(ofSize: 13)
