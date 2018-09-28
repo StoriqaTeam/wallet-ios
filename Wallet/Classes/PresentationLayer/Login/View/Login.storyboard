@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,34 +15,33 @@
             <objects>
                 <viewController storyboardIdentifier="LoginVC" id="9ol-tP-dQp" customClass="LoginViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zKv-ji-dEf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0j-ej-gyy" userLabel="header">
-                                <rect key="frame" x="135" y="56" width="105" height="44"/>
+                                <rect key="frame" x="132" y="80" width="150" height="54"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyX-Sd-HpT">
-                                        <rect key="frame" x="0.0" y="0.0" width="105" height="44"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                        <color key="textColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="storiqaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GFF-d8-QHQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="1V0-PO-8Xi"/>
+                                            <constraint firstAttribute="width" constant="150" id="xA6-dZ-33x"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="qyX-Sd-HpT" firstAttribute="top" secondItem="L0j-ej-gyy" secondAttribute="top" id="Ekp-zZ-CPv"/>
-                                    <constraint firstItem="qyX-Sd-HpT" firstAttribute="leading" secondItem="L0j-ej-gyy" secondAttribute="leading" id="ZBW-1v-rsz"/>
-                                    <constraint firstAttribute="bottom" secondItem="qyX-Sd-HpT" secondAttribute="bottom" id="hUo-IP-Gv5"/>
-                                    <constraint firstItem="qyX-Sd-HpT" firstAttribute="centerX" secondItem="L0j-ej-gyy" secondAttribute="centerX" id="kD2-5H-Gzi"/>
-                                    <constraint firstAttribute="height" constant="44" id="ncM-vG-NmG"/>
-                                    <constraint firstItem="qyX-Sd-HpT" firstAttribute="centerY" secondItem="L0j-ej-gyy" secondAttribute="centerY" id="u36-Mz-j2h"/>
+                                    <constraint firstAttribute="bottom" secondItem="GFF-d8-QHQ" secondAttribute="bottom" id="9XT-IO-ILz"/>
+                                    <constraint firstItem="GFF-d8-QHQ" firstAttribute="leading" secondItem="L0j-ej-gyy" secondAttribute="leading" id="GLh-Ef-D8a"/>
+                                    <constraint firstAttribute="trailing" secondItem="GFF-d8-QHQ" secondAttribute="trailing" id="nSd-Ae-0UK"/>
+                                    <constraint firstItem="GFF-d8-QHQ" firstAttribute="top" secondItem="L0j-ej-gyy" secondAttribute="top" id="yRQ-ED-S3a"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjm-wb-IjY" userLabel="fields">
-                                <rect key="frame" x="26" y="130" width="323" height="224"/>
+                                <rect key="frame" x="26" y="164" width="362" height="224"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8mO-PC-egc" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="323" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ylS-9Q-yux"/>
                                         </constraints>
@@ -54,7 +53,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OUb-B4-Dho" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="60" width="323" height="40"/>
+                                        <rect key="frame" x="0.0" y="60" width="362" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="b37-bF-jdD"/>
                                         </constraints>
@@ -66,7 +65,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iek-9N-Svv">
-                                        <rect key="frame" x="298" y="67.5" width="25" height="25"/>
+                                        <rect key="frame" x="337" y="67.666666666666657" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="642-G7-I3u"/>
                                             <constraint firstAttribute="height" constant="25" id="d7C-Lc-33d"/>
@@ -78,7 +77,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxg-LK-ot9" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="129" width="323" height="45"/>
+                                        <rect key="frame" x="0.0" y="129" width="362" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="OFb-OY-k6H"/>
                                         </constraints>
@@ -88,7 +87,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4Z-iV-lO4" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="85.5" y="184" width="152" height="40"/>
+                                        <rect key="frame" x="105" y="184" width="152" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="AUD-OS-Dev"/>
                                         </constraints>
@@ -118,7 +117,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLV-l3-0jE" customClass="SocialNetworkAuthView" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="492" width="335" height="175"/>
+                                <rect key="frame" x="20" y="687" width="374" height="175"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="DFb-xX-1gQ"/>
@@ -128,13 +127,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="L0j-ej-gyy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="OgO-6I-Uyt" secondAttribute="top" id="BR9-kD-JYV"/>
                             <constraint firstItem="vjm-wb-IjY" firstAttribute="centerX" secondItem="zKv-ji-dEf" secondAttribute="centerX" id="Dy2-ev-sTZ"/>
                             <constraint firstItem="vjm-wb-IjY" firstAttribute="leading" secondItem="OgO-6I-Uyt" secondAttribute="leading" constant="26" id="Eof-Lx-lCj"/>
                             <constraint firstItem="oLV-l3-0jE" firstAttribute="centerX" secondItem="zKv-ji-dEf" secondAttribute="centerX" id="I9z-hQ-IeR"/>
                             <constraint firstItem="vjm-wb-IjY" firstAttribute="top" secondItem="L0j-ej-gyy" secondAttribute="bottom" constant="30" id="JNO-aQ-eFY"/>
-                            <constraint firstAttribute="bottom" secondItem="oLV-l3-0jE" secondAttribute="bottom" id="PU3-Lw-0Og"/>
+                            <constraint firstItem="OgO-6I-Uyt" firstAttribute="bottom" secondItem="oLV-l3-0jE" secondAttribute="bottom" id="PU3-Lw-0Og"/>
                             <constraint firstItem="oLV-l3-0jE" firstAttribute="leading" secondItem="OgO-6I-Uyt" secondAttribute="leading" constant="20" id="S4J-zH-wyi"/>
-                            <constraint firstItem="L0j-ej-gyy" firstAttribute="top" secondItem="OgO-6I-Uyt" secondAttribute="top" constant="36" id="TS2-yB-fbT"/>
+                            <constraint firstItem="L0j-ej-gyy" firstAttribute="top" secondItem="OgO-6I-Uyt" secondAttribute="top" priority="250" constant="36" id="TS2-yB-fbT"/>
                             <constraint firstItem="oLV-l3-0jE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vjm-wb-IjY" secondAttribute="bottom" constant="16" id="Z1g-TK-Vyv"/>
                             <constraint firstItem="L0j-ej-gyy" firstAttribute="centerX" secondItem="zKv-ji-dEf" secondAttribute="centerX" id="xNW-ye-n6K"/>
                         </constraints>
@@ -149,7 +149,6 @@
                         <outlet property="passwordTextField" destination="OUb-B4-Dho" id="zgr-dw-jlc"/>
                         <outlet property="signInButton" destination="Pxg-LK-ot9" id="1E0-0n-ezo"/>
                         <outlet property="socialNetworkAuthView" destination="oLV-l3-0jE" id="VLa-XY-LDw"/>
-                        <outlet property="topSpaceConstraint" destination="TS2-yB-fbT" id="U2D-fQ-aRg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eco-Mu-LwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -159,5 +158,6 @@
     </scenes>
     <resources>
         <image name="eyeClosed" width="26" height="10"/>
+        <image name="storiqaLogo" width="113" height="49"/>
     </resources>
 </document>
