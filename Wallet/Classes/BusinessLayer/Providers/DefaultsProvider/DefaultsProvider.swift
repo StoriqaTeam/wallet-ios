@@ -78,11 +78,18 @@ extension DefaultsProvider {
     }
     
     private func getBool(_ key: DefaultsKey) -> Bool? {
+        guard isKeyPresentInUserDefaults(key: key) else {
+            return nil
+        }
         return UserDefaults.standard.bool(forKey: key.rawValue)
     }
     
     private func setBool(_ value: Bool, key: DefaultsKey) {
         UserDefaults.standard.set(value, forKey: key.rawValue)
+    }
+    
+    private func isKeyPresentInUserDefaults(key: DefaultsKey) -> Bool {
+        return UserDefaults.standard.object(forKey: key.rawValue) != nil
     }
 }
 
