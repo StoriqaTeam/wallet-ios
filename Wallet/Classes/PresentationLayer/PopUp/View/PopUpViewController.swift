@@ -47,14 +47,6 @@ class PopUpViewController: UIViewController {
             }, completion: nil)
     }
     
-    private func configureInterface() {
-        containerView.roundCorners(radius: 7)
-        titleLabel.font = UIFont.title
-        textLabel.font = UIFont.smallText
-        textLabel.textColor = UIColor.primaryGrey
-        closeButton.setTitleColor(UIColor.mainBlue, for: .normal)
-    }
-    
     // MARK: - Action
     
     @IBAction func actionButtonTapped(_ sender: UIButton) {
@@ -92,5 +84,20 @@ extension PopUpViewController: PopUpViewInput {
             closeButton.removeFromSuperview()
         }
     }
-
 }
+
+
+// MARK: - Private methods
+
+extension PopUpViewController {
+    
+    private func configureInterface() {
+        containerView.roundCorners(radius: 7)
+        titleLabel.font = UIFont.title
+        textLabel.font = UIFont.smallText
+        textLabel.textColor = UIColor.primaryGrey
+        closeButton.setTitleColor(UIColor.mainBlue, for: .normal)
+    }
+    
+}
+
