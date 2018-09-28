@@ -14,11 +14,12 @@ class QRScannerInteractor {
     weak var output: QRScannerInteractorOutput!
     
     private let sendProvider: SendTransactionBuilderProtocol
-    private let qrCodeValidator: QRCodeValidatorProtocol
+    private let addressResolver: CryptoAddressResolverProtocol
+
     
-    init(sendProvider: SendTransactionBuilderProtocol, qrCodeValidator: QRCodeValidatorProtocol) {
+    init(sendProvider: SendTransactionBuilderProtocol, addressResolver: CryptoAddressResolverProtocol) {
         self.sendProvider = sendProvider
-        self.qrCodeValidator = qrCodeValidator
+        self.addressResolver = addressResolver
     }
     
 }
@@ -29,10 +30,11 @@ class QRScannerInteractor {
 extension QRScannerInteractor: QRScannerInteractorInput {
     
     func isValidAddress(_ address: String) -> Bool {
-        return qrCodeValidator.isBTCWalletAddress(address) || qrCodeValidator.isETHWalletAddress(address)
+        return addressResolver.resove(address: address) != nil 
     }
     
     func setScannedAddress(_ address: String) {
+        
         sendProvider.setScannedAddress(address)
     }
     

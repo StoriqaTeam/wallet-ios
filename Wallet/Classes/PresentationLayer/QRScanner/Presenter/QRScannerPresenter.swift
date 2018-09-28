@@ -29,13 +29,9 @@ extension QRScannerPresenter: QRScannerViewOutput {
     
     func viewIsReady() {
         view.setupInitialState()
-        
         createCaptureSession()
         
-        guard let captureSession = captureSession else {
-            return
-        }
-        
+        guard let captureSession = captureSession else { return }
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         view.setPreviewLayer(previewLayer)
@@ -68,13 +64,15 @@ extension QRScannerPresenter: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],
                         from connection: AVCaptureConnection) {
+        view.changeAimColor(.white)
         if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
             let str = metadataObject.stringValue {
-            
             if interactor.isValidAddress(str) {
                 captureSession!.stopRunning()
                 AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                 found(address: str)
+            } else {
+                view.changeAimColor(.red)
             }
         }
     }
