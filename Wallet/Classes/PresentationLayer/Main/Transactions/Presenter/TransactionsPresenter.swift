@@ -33,6 +33,11 @@ extension TransactionsPresenter: TransactionsViewOutput {
         interactor.setTransactionDataManagerDelegate(self)
     }
 
+    func willMoveToParentVC() {
+        view.viewController.setWhiteTextNavigationBar()
+        view.viewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+    
 }
 
 
@@ -64,6 +69,7 @@ extension TransactionsPresenter: TransactionsDataManagerDelegate {
 
 extension TransactionsPresenter {
     private func configureNavBar() {
+        view.viewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
         view.viewController.setDarkTextNavigationBar()

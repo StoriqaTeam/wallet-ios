@@ -34,6 +34,11 @@ class ReceiverViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        output.willMoveToParentVC()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self,
