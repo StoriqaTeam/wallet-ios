@@ -38,4 +38,12 @@ extension Data {
     public var hex: String {
         return self.map { String(format: "%02hhx", $0) }.joined()
     }
+    
+}
+
+extension Data {
+    public init(hex: String) {
+        self.init(bytes: Array<UInt8>(hex: hex))
+    }
+    
 }
