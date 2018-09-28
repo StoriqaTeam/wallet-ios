@@ -22,33 +22,32 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlj-C7-2lX">
-                                        <rect key="frame" x="26" y="20" width="362" height="798"/>
+                                        <rect key="frame" x="26" y="20" width="362" height="808"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LZ4-nN-fDZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="362" height="607"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="362" height="617"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgG-d9-teh" userLabel="header">
-                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="54"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4u-WQ-dFD">
-                                                                <rect key="frame" x="0.0" y="0.0" width="362" height="44"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                                                <color key="textColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="storiqaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="KUc-qb-Qto">
+                                                                <rect key="frame" x="106" y="0.0" width="150" height="54"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="54" id="gE2-vi-fQO"/>
+                                                                    <constraint firstAttribute="width" constant="150" id="xcp-ZH-TFz"/>
+                                                                </constraints>
+                                                            </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="P4u-WQ-dFD" firstAttribute="leading" secondItem="tgG-d9-teh" secondAttribute="leading" id="AQe-at-LXJ"/>
-                                                            <constraint firstAttribute="bottom" secondItem="P4u-WQ-dFD" secondAttribute="bottom" id="N0M-aS-h8R"/>
-                                                            <constraint firstItem="P4u-WQ-dFD" firstAttribute="centerY" secondItem="tgG-d9-teh" secondAttribute="centerY" id="P1P-uu-e8t"/>
-                                                            <constraint firstItem="P4u-WQ-dFD" firstAttribute="top" secondItem="tgG-d9-teh" secondAttribute="top" id="gTt-of-QTV"/>
-                                                            <constraint firstAttribute="height" constant="44" id="nKM-Pc-K0M"/>
-                                                            <constraint firstItem="P4u-WQ-dFD" firstAttribute="centerX" secondItem="tgG-d9-teh" secondAttribute="centerX" id="pZ2-Nu-MA6"/>
+                                                            <constraint firstItem="KUc-qb-Qto" firstAttribute="top" secondItem="tgG-d9-teh" secondAttribute="top" id="Zgh-1R-UXV"/>
+                                                            <constraint firstItem="KUc-qb-Qto" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tgG-d9-teh" secondAttribute="leading" id="b8f-JY-don"/>
+                                                            <constraint firstItem="KUc-qb-Qto" firstAttribute="centerX" secondItem="tgG-d9-teh" secondAttribute="centerX" id="pF2-gh-VWE"/>
+                                                            <constraint firstAttribute="bottom" secondItem="KUc-qb-Qto" secondAttribute="bottom" id="uui-Mq-epE"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zw-oU-jD3">
-                                                        <rect key="frame" x="0.0" y="54" width="362" height="40"/>
+                                                        <rect key="frame" x="0.0" y="64" width="362" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lw0-HL-BH8" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
@@ -73,7 +72,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDQ-ac-c6f">
-                                                        <rect key="frame" x="0.0" y="104" width="362" height="40"/>
+                                                        <rect key="frame" x="0.0" y="114" width="362" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4O1-dh-iSq" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
@@ -98,7 +97,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDT-Eo-PW6">
-                                                        <rect key="frame" x="0.0" y="154" width="362" height="40"/>
+                                                        <rect key="frame" x="0.0" y="164" width="362" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jhR-J5-2og" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
@@ -123,7 +122,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st2-ay-UMs">
-                                                        <rect key="frame" x="0.0" y="204" width="362" height="40"/>
+                                                        <rect key="frame" x="0.0" y="214" width="362" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUJ-PB-frV" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
@@ -162,7 +161,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9D9-8B-6kz">
-                                                        <rect key="frame" x="0.0" y="254" width="362" height="40"/>
+                                                        <rect key="frame" x="0.0" y="264" width="362" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ztt-A7-VQL" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
@@ -201,7 +200,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T8K-At-rSI">
-                                                        <rect key="frame" x="0.0" y="304" width="362" height="248"/>
+                                                        <rect key="frame" x="0.0" y="314" width="362" height="248"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="OoC-dt-xa9">
                                                                 <rect key="frame" x="0.0" y="14" width="13" height="10"/>
@@ -239,7 +238,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOt-m6-3BK" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="562" width="362" height="45"/>
+                                                        <rect key="frame" x="0.0" y="572" width="362" height="45"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="8yF-J6-P8Q"/>
                                                         </constraints>
@@ -253,7 +252,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Enf-A8-mrG" customClass="SocialNetworkAuthView" customModule="Wallet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="623" width="362" height="175"/>
+                                                <rect key="frame" x="0.0" y="633" width="362" height="175"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="175" id="Pfg-e0-oX1"/>
@@ -318,6 +317,7 @@
     </scenes>
     <resources>
         <image name="eyeClosed" width="26" height="10"/>
+        <image name="storiqaLogo" width="113" height="49"/>
         <image name="tick" width="384" height="384"/>
     </resources>
 </document>
