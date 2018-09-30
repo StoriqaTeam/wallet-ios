@@ -43,6 +43,7 @@ class KeychainProvider: KeychainProviderProtocol {
     }
     
     func deleteAll() {
+        // FIXME: method does not work
         for key in KeychainKeys.allValues {
             delete(for: key.rawValue)
         }

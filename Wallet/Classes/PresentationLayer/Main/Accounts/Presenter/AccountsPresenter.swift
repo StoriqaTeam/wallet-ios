@@ -15,7 +15,7 @@ class AccountsPresenter {
     weak var output: AccountsModuleOutput?
     var interactor: AccountsInteractorInput!
     var router: AccountsRouterInput!
-    var mainTabBar: UITabBarController!
+    weak var mainTabBar: UITabBarController!
     
 }
 

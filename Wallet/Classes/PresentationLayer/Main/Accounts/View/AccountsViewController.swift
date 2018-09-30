@@ -62,6 +62,8 @@ extension AccountsViewController: AccountsViewInput {
         configureTableView()
         configureButtons()
         accountsPageControl.isUserInteractionEnabled = false
+        
+        //FIXME: number of accounts for page control
     }
 }
 

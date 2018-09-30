@@ -98,6 +98,8 @@ extension SendViewController: SendViewInput {
     func setupInitialState(currencyImages: [UIImage]) {
         receiverCurrencySegmentedControl.buttonImages = currencyImages
         output.receiverCurrencyChanged(receiverCurrencySegmentedControl.selectedSegmentIndex)
+        
+        //FIXME: number of accounts for page control
     }
     
     func updateAmount(_ amount: String) {
@@ -180,6 +182,8 @@ extension SendViewController {
         amountTitleLabel.text = "amount".localized()
         receiverCurrencyTitleLabel.text = "receiver_currency".localized()
         amountTextField.placeholder = "enter_amount".localized()
+        
+        //FIXME: number of accounts for page control
     }
     
     private func configureGradientView() {

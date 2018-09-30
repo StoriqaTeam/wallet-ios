@@ -40,6 +40,8 @@ class ExchangeViewController: UIViewController {
 extension ExchangeViewController: ExchangeViewInput {
     func setupInitialState() {
         configureWalletsTableView()
+        
+        //FIXME: number of accounts for page control
     }
     
     func setNewPage(_ index: Int) {
