@@ -13,7 +13,7 @@ class PopUpSocialRegistrationFailedVM: PopUpViewModelProtocol {
     
     init(message: String) {
         //TODO: image, action
-        apperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
+        apperance = PopUpApperance(image: #imageLiteral(resourceName: "generalErrorIcon"),
                                    title: "smth_went_wrong".localized(),
                                    text: message,
                                    attributedText: nil,

@@ -27,17 +27,29 @@ enum Currency: String {
         }
     }
     
-    var image: UIImage {
+    var smallImage: UIImage {
         switch self {
         case .btc:
-            //FIXME: replace btc image
-            return #imageLiteral(resourceName: "currency_btc")
+            return #imageLiteral(resourceName: "currency_btc_small")
         case .eth:
-            return #imageLiteral(resourceName: "currency_eth")
+            return #imageLiteral(resourceName: "currency_eth_small")
         case .stq:
-            return #imageLiteral(resourceName: "currency_stq")
+            return #imageLiteral(resourceName: "currency_stq_small")
         case .fiat:
-            return #imageLiteral(resourceName: "currency_fiat")
+            return #imageLiteral(resourceName: "currency_fiat_small")
+        }
+    }
+    
+    var mediumImage: UIImage {
+        switch self {
+        case .btc:
+            return #imageLiteral(resourceName: "currency_btc_medium")
+        case .eth:
+            return #imageLiteral(resourceName: "currency_eth_medium")
+        case .stq:
+            return #imageLiteral(resourceName: "currency_stq_medium")
+        case .fiat:
+            return #imageLiteral(resourceName: "currency_fiat_medium")
         }
     }
 }

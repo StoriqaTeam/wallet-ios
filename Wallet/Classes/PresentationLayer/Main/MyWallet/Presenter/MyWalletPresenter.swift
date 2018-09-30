@@ -15,7 +15,7 @@ class MyWalletPresenter {
     weak var output: MyWalletModuleOutput?
     var interactor: MyWalletInteractorInput!
     var router: MyWalletRouterInput!
-    var mainTabBar: UITabBarController!
+    weak var mainTabBar: UITabBarController!
 }
 
 

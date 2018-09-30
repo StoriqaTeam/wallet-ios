@@ -56,7 +56,7 @@ extension SendPresenter: SendViewOutput {
     }
     
     func viewIsReady() {
-        let currencyImages = currencies.map({ return $0.image })
+        let currencyImages = currencies.map({ return $0.smallImage })
         configureNavBar()
         view.setButtonEnabled(false)
         view.setupInitialState(currencyImages: currencyImages)
