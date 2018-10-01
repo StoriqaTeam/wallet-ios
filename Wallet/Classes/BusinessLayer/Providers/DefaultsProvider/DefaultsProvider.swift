@@ -16,7 +16,7 @@ protocol DefaultsProviderProtocol: class {
 
 class DefaultsProvider: DefaultsProviderProtocol {
     
-    enum DefaultsKey: String, EnumCollection {
+    enum DefaultsKey: String, CaseIterable {
         case isFirstLaunch
         case isQuickLaunchShown
         case isBiometryAuthEnabled
