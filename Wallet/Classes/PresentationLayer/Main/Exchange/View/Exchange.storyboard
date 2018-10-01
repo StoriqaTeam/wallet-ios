@@ -18,9 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Us0-gA-N2U">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="316"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MEV-oc-Iy2">
                                 <rect key="frame" x="0.0" y="64" width="375" height="215"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vol-J4-u8D">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -40,8 +44,8 @@
                             </collectionView>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="aCM-Qq-TQs">
                                 <rect key="frame" x="0.0" y="279" width="375" height="37"/>
-                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.69803921570000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="pageIndicatorTintColor" white="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </pageControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SGv-c1-K9I">
                                 <rect key="frame" x="0.0" y="316" width="375" height="302"/>
@@ -54,9 +58,13 @@
                             <constraint firstItem="S4I-mK-2y6" firstAttribute="trailing" secondItem="aCM-Qq-TQs" secondAttribute="trailing" id="E64-jh-U9N"/>
                             <constraint firstItem="MEV-oc-Iy2" firstAttribute="leading" secondItem="S4I-mK-2y6" secondAttribute="leading" id="Ij8-vO-9f2"/>
                             <constraint firstItem="SGv-c1-K9I" firstAttribute="top" secondItem="aCM-Qq-TQs" secondAttribute="bottom" id="SCL-Q6-dCU"/>
+                            <constraint firstItem="Us0-gA-N2U" firstAttribute="leading" secondItem="S4I-mK-2y6" secondAttribute="leading" id="TEz-Ux-9Ap"/>
                             <constraint firstItem="aCM-Qq-TQs" firstAttribute="leading" secondItem="S4I-mK-2y6" secondAttribute="leading" id="UQ8-SS-ES7"/>
+                            <constraint firstItem="Us0-gA-N2U" firstAttribute="trailing" secondItem="S4I-mK-2y6" secondAttribute="trailing" id="Y8n-Uf-413"/>
                             <constraint firstItem="S4I-mK-2y6" firstAttribute="bottom" secondItem="SGv-c1-K9I" secondAttribute="bottom" id="ZZl-1R-1bb"/>
+                            <constraint firstItem="Us0-gA-N2U" firstAttribute="bottom" secondItem="aCM-Qq-TQs" secondAttribute="bottom" id="eB4-bc-iuD"/>
                             <constraint firstItem="MEV-oc-Iy2" firstAttribute="height" secondItem="9ZT-ot-2xQ" secondAttribute="height" multiplier="1:3.1" id="jzo-Gx-py6"/>
+                            <constraint firstItem="Us0-gA-N2U" firstAttribute="top" secondItem="9ZT-ot-2xQ" secondAttribute="top" id="lZG-bx-CND"/>
                             <constraint firstItem="S4I-mK-2y6" firstAttribute="trailing" secondItem="MEV-oc-Iy2" secondAttribute="trailing" id="mmh-6w-iC5"/>
                             <constraint firstItem="MEV-oc-Iy2" firstAttribute="top" secondItem="S4I-mK-2y6" secondAttribute="top" id="qwO-lM-oqQ"/>
                             <constraint firstItem="aCM-Qq-TQs" firstAttribute="top" secondItem="MEV-oc-Iy2" secondAttribute="bottom" id="vB9-cy-Wgf"/>
@@ -72,6 +80,7 @@
                     <connections>
                         <outlet property="accountsCollectionView" destination="MEV-oc-Iy2" id="LhN-lI-C61"/>
                         <outlet property="accountsPageControl" destination="aCM-Qq-TQs" id="uXG-IV-bw1"/>
+                        <outlet property="gradientView" destination="Us0-gA-N2U" id="cWm-DY-sOQ"/>
                         <outlet property="walletsTableView" destination="SGv-c1-K9I" id="4jN-g7-hA1"/>
                     </connections>
                 </viewController>
