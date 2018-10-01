@@ -43,6 +43,11 @@ PODS:
   - GTMSessionFetcher/Core (1.2.0)
   - GTMSessionFetcher/Full (1.2.0):
     - GTMSessionFetcher/Core (= 1.2.0)
+  - Realm (3.10.0):
+    - Realm/Headers (= 3.10.0)
+  - Realm/Headers (3.10.0)
+  - RealmSwift (3.10.0):
+    - Realm (= 3.10.0)
   - Slog (0.4.0):
     - Slog/LogOnly (= 0.4.0)
   - Slog/LogOnly (0.4.0)
@@ -55,6 +60,7 @@ DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - GoogleSignIn
+  - RealmSwift
   - Slog
 
 SPEC REPOS:
@@ -72,6 +78,8 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GTMOAuth2
     - GTMSessionFetcher
+    - Realm
+    - RealmSwift
     - Slog
 
 SPEC CHECKSUMS:
@@ -88,8 +96,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  Realm: 85ab9e4f779d66f6e9ffeb118dc25b7f130c96ac
+  RealmSwift: 69121c8b86d0ae005fb779efdb10e606732e1c74
   Slog: 4b978d716d8984c67c2703127afc7287b1b26fd2
 
-PODFILE CHECKSUM: 7b4a28ec16a54c5d5c70121ac40922097e81a729
+PODFILE CHECKSUM: 0a01155cf2b138a311f3fa0562f2d7e3a8e92508
 
 COCOAPODS: 1.5.3
