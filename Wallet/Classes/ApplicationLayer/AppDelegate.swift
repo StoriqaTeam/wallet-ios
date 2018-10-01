@@ -10,7 +10,6 @@ import UIKit
 import AlamofireNetworkActivityIndicator
 import FBSDKLoginKit
 import GoogleSignIn
-import Sentry
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,8 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for configurator in configurators {
             configurator.configure()
         }
-        
-        Client.shared?.crash()
         
         return true
     }

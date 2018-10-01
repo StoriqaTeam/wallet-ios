@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class SendViewController: UIViewController {
     
     var output: SendViewOutput!

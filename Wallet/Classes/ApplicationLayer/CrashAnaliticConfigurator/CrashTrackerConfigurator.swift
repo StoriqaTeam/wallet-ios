@@ -7,17 +7,12 @@
 //
 
 import Foundation
-import Sentry
+import Fabric
+import Crashlytics
 
 
 class CrashTrackerConfigurator: Configurable {
     func configure() {
-        do {
-            Client.shared = try Client(dsn: "https://d36155cf273d4b478340cb0a6cddee28@debug.stq.cloud/23")
-            try Client.shared?.startCrashHandler()
-        } catch let error {
-            print("\(error)")
-        }
-        
+        Fabric.with([Crashlytics.self])
     }
 }

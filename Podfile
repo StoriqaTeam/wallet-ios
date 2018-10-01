@@ -6,7 +6,6 @@ target 'Wallet' do
   use_frameworks!
 
   # Pods for Wallet
-
   pod 'Alamofire', '~> 4.7'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
   pod 'Slog'
@@ -17,6 +16,7 @@ target 'Wallet' do
   pod 'GoogleSignIn'
 
   # crash analitics
-  pod 'Sentry'
+  pod 'Fabric'
+  pod 'Crashlytics'
   
 end
