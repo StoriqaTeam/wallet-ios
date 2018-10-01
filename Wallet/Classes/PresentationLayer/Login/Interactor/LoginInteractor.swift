@@ -70,11 +70,11 @@ extension LoginInteractor: LoginInteractorInput {
     
     // FIXME: - stub
     private func signInStub(authData: AuthData) {
-        if arc4random_uniform(2) == 0 {
+//        if arc4random_uniform(2) == 0 {
             loginSucceed(authData: authData)
-        } else {
-            output.loginFailed(message: Constants.Errors.userFriendly)
-        }
+//        } else {
+//            output.loginFailed(message: Constants.Errors.userFriendly)
+//        }
     }
     // ------------------------------
     

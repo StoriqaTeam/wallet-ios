@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,9 +17,26 @@
                     <view key="view" contentMode="scaleToFill" id="OY5-qq-MT4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MU5-Z8-yMt">
+                                <rect key="frame" x="62.5" y="208.5" width="250" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MU5-Z8-yMt" secondAttribute="height" multiplier="1:1" id="VTk-fx-Eho"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MU5-Z8-yMt" firstAttribute="centerX" secondItem="OY5-qq-MT4" secondAttribute="centerX" id="1a3-2B-iko"/>
+                            <constraint firstItem="MU5-Z8-yMt" firstAttribute="centerY" secondItem="OY5-qq-MT4" secondAttribute="centerY" id="UZ9-4f-duS"/>
+                            <constraint firstItem="MU5-Z8-yMt" firstAttribute="width" secondItem="OY5-qq-MT4" secondAttribute="width" multiplier="1:1.5" id="wyF-1p-hyc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zVv-3G-FEc"/>
                     </view>
+                    <connections>
+                        <outlet property="aimView" destination="MU5-Z8-yMt" id="AkD-0n-n1n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Phn-3O-7mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

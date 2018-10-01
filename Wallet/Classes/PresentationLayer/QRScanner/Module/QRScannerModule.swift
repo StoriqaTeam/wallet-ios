@@ -13,9 +13,13 @@ class QRScannerModule {
         let presenter = QRScannerPresenter()
         
         //Injections
-        let resolver = QRCodeValidator()
+        let btcValidator = BitcoinAddressValidator(network: .btcMainnet)
+        let ethValidator = EthereumAddressValidator()
+        let addressResolver = CryptoAddressResolver(btcAddressValidator: btcValidator,
+                                                    ethAddressValidator: ethValidator)
+        
         let interactor = QRScannerInteractor(sendProvider: sendProvider,
-                                             qrCodeValidator: resolver)
+                                             addressResolver: addressResolver)
         
         let loginSb = UIStoryboard(name: "QRScanner", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "QRScannerVC") as! QRScannerViewController

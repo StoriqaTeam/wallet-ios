@@ -28,7 +28,7 @@ class KeychainProvider: KeychainProviderProtocol {
     private let kSecAttrAccountValue = String(format: kSecAttrAccount as String)
     private let kSecAttrAccessibleValue = String(format: kSecAttrAccessible as String)
     
-    enum KeychainKeys: String, EnumCollection {
+    enum KeychainKeys: String, CaseIterable {
         case pincode
     }
     
@@ -43,8 +43,7 @@ class KeychainProvider: KeychainProviderProtocol {
     }
     
     func deleteAll() {
-        // FIXME: method does not work
-        for key in KeychainKeys.allValues {
+        for key in KeychainKeys.allCases {
             delete(for: key.rawValue)
         }
     }

@@ -15,14 +15,5 @@ target 'Wallet' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'GoogleSignIn'
-
-  target 'WalletTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'WalletUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  
 end

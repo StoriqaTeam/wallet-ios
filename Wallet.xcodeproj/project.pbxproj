@@ -52,7 +52,6 @@
 		2AED92047919143BAC2443D9 /* TransactionsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C064C548F004CDB35356A47 /* TransactionsViewOutput.swift */; };
 		2BF62C8E1BD9FDB1E68E4AA9 /* ExchangeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CA2E638264F4628E48B2E /* ExchangeInteractor.swift */; };
 		2C2605E9EBCF195BDD25DF7F /* PinQuickLaunchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975BD0D3F70E223C9AB39665 /* PinQuickLaunchModule.swift */; };
-		2CB6AFB44248AEC1D7EF7326 /* Pods_WalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A8724397CC4953A7F9E72E /* Pods_WalletTests.framework */; };
 		2F361EA29F03389EB9F35B20 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF729F909A27BAAB3F2603 /* RegistrationInteractor.swift */; };
 		2F665A1E2688D3229C38F7B2 /* PaymentFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6D7544E0F7F80B63B1689C /* PaymentFeeViewController.swift */; };
 		2FEA8584021E0A7A53B742A5 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF653C039652FA72987CA361 /* LoginInteractor.swift */; };
@@ -172,7 +171,6 @@
 		A500860B2150F9E700C47015 /* NetworkLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500860A2150F9E700C47015 /* NetworkLoadable.swift */; };
 		A500860D2150FA1600C47015 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500860C2150FA1600C47015 /* Result.swift */; };
 		A50086102151166100C47015 /* KeychainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500860F2151166100C47015 /* KeychainProvider.swift */; };
-		A50086142151182A00C47015 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086132151182A00C47015 /* EnumCollection.swift */; };
 		A50086162151237B00C47015 /* Data+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086152151237B00C47015 /* Data+Helpers.swift */; };
 		A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086182151242B00C47015 /* DefaultsProvider.swift */; };
 		A50BF8AC215409B500FB0DA2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BF8AB215409B500FB0DA2 /* Theme.swift */; };
@@ -209,11 +207,21 @@
 		A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C32150215B0096C155 /* BiometricAuthProvider.swift */; };
 		A58EE3C62150379E0096C155 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58EE3C52150379E0096C155 /* Login.storyboard */; };
 		A5A63DCD4AC3808900D1025C /* PaymentFeeViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC29C149FAE2F05AA0DF98AB /* PaymentFeeViewOutput.swift */; };
+		A5B78205215E214A00EFD1A5 /* AddressValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78204215E214A00EFD1A5 /* AddressValidatorProtocol.swift */; };
+		A5B7820A215E22FD00EFD1A5 /* Base59Encode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78209215E22FD00EFD1A5 /* Base59Encode.swift */; };
+		A5B7820D215E236F00EFD1A5 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B7820C215E236F00EFD1A5 /* Network.swift */; };
+		A5B7820F215E241800EFD1A5 /* BitcoinAddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B7820E215E241800EFD1A5 /* BitcoinAddressValidator.swift */; };
+		A5B78211215E24B600EFD1A5 /* EthereumAddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78210215E24B600EFD1A5 /* EthereumAddressValidator.swift */; };
+		A5B78213215E25A200EFD1A5 /* Array+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78212215E25A200EFD1A5 /* Array+Helper.swift */; };
+		A5B78233215E2A7400EFD1A5 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78232215E2A7400EFD1A5 /* WalletTests.swift */; };
+		A5B78235215E2F3800EFD1A5 /* AddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */; };
+		A5B78238215E33BA00EFD1A5 /* CryproAddressResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78237215E33BA00EFD1A5 /* CryproAddressResolver.swift */; };
 		A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */; };
 		A5E8D9A62153EB3900AC6A7E /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A52153EB3900AC6A7E /* Send.storyboard */; };
 		A5E8D9A82153EBD600AC6A7E /* Exchange.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A72153EBD600AC6A7E /* Exchange.storyboard */; };
 		A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A92153EC5B00AC6A7E /* Deposit.storyboard */; };
 		A5E8D9AC2153ECE300AC6A7E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9AB2153ECE300AC6A7E /* Settings.storyboard */; };
+		A5F59AA721621968005F1765 /* TestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AA621621968005F1765 /* TestConfigurator.swift */; };
 		A6888E54A2AF18D001988E63 /* MainTabBarRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5940AC3989E9EB903BFDE420 /* MainTabBarRouterInput.swift */; };
 		A69BEB443BFB8D712A5DD1E7 /* DepositPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3717D21DED5D0441A0FD1D /* DepositPresenter.swift */; };
 		A6F5B3DAAEA6C2400283BAE8 /* PinSetupModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D614C3F339D50C93566CA /* PinSetupModuleInput.swift */; };
@@ -272,8 +280,6 @@
 		CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C31212465A800A2EED2 /* AppDelegate.swift */; };
 		CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3A212465A900A2EED2 /* Assets.xcassets */; };
 		CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */; };
-		CE526C49212465A900A2EED2 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C48212465A900A2EED2 /* WalletTests.swift */; };
-		CE526C54212465A900A2EED2 /* WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C53212465A900A2EED2 /* WalletUITests.swift */; };
 		CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */; };
 		CE526C68212471CE00A2EED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C67212471CE00A2EED2 /* Constants.swift */; };
 		CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */; };
@@ -367,7 +373,6 @@
 		E6A7E495FCFF6F3B00BCA629 /* PopUpInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932756D5217E34FDAB97218 /* PopUpInteractorInput.swift */; };
 		E75BA378AB9872B3E84F37B8 /* PasswordInputInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30759375BE660B1458C46BAE /* PasswordInputInteractor.swift */; };
 		E78F4EC67B3E8FDF9D609118 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA6B789B6E12147C774834 /* SendViewController.swift */; };
-		E8AA4A98B0213B85C9324E0C /* Pods_WalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2407DA6D79A3208812DC6CB /* Pods_WalletUITests.framework */; };
 		E91CCB5A6109B41C9C4BD075 /* PasswordEmailRecoveryRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073D57C3CCC26A47302EA263 /* PasswordEmailRecoveryRouterInput.swift */; };
 		EBA3144E74DD09EC8832E45F /* FirstLaunchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82D0537B4CB1FBCDB8A1D56 /* FirstLaunchInteractor.swift */; };
 		EBCA36D03BBA6F52ECC7258D /* MainTabBarViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E523E81B6C7956E0629857F1 /* MainTabBarViewOutput.swift */; };
@@ -394,14 +399,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CE526C45212465A900A2EED2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CE526C26212465A800A2EED2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CE526C2D212465A800A2EED2;
-			remoteInfo = Wallet;
-		};
-		CE526C50212465A900A2EED2 /* PBXContainerItemProxy */ = {
+		A5B7822D215E2A3E00EFD1A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE526C26212465A800A2EED2 /* Project object */;
 			proxyType = 1;
@@ -604,7 +602,6 @@
 		A500860A2150F9E700C47015 /* NetworkLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoadable.swift; sourceTree = "<group>"; };
 		A500860C2150FA1600C47015 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		A500860F2151166100C47015 /* KeychainProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainProvider.swift; sourceTree = "<group>"; };
-		A50086132151182A00C47015 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
 		A50086152151237B00C47015 /* Data+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Helpers.swift"; sourceTree = "<group>"; };
 		A50086182151242B00C47015 /* DefaultsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsProvider.swift; sourceTree = "<group>"; };
 		A50BF8AB215409B500FB0DA2 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -639,11 +636,25 @@
 		A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
 		A58EE3C32150215B0096C155 /* BiometricAuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthProvider.swift; sourceTree = "<group>"; };
 		A58EE3C52150379E0096C155 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		A5B78204215E214A00EFD1A5 /* AddressValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressValidatorProtocol.swift; sourceTree = "<group>"; };
+		A5B78209215E22FD00EFD1A5 /* Base59Encode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base59Encode.swift; sourceTree = "<group>"; };
+		A5B7820C215E236F00EFD1A5 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		A5B7820E215E241800EFD1A5 /* BitcoinAddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinAddressValidator.swift; sourceTree = "<group>"; };
+		A5B78210215E24B600EFD1A5 /* EthereumAddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressValidator.swift; sourceTree = "<group>"; };
+		A5B78212215E25A200EFD1A5 /* Array+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Helper.swift"; sourceTree = "<group>"; };
+		A5B7821C215E2A0400EFD1A5 /* WalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUITests.swift; sourceTree = "<group>"; };
+		A5B7821E215E2A0400EFD1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5B78228215E2A3D00EFD1A5 /* WalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5B7822C215E2A3E00EFD1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5B78232215E2A7400EFD1A5 /* WalletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
+		A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressValidator.swift; sourceTree = "<group>"; };
+		A5B78237215E33BA00EFD1A5 /* CryproAddressResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryproAddressResolver.swift; sourceTree = "<group>"; };
 		A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyWallet.storyboard; sourceTree = "<group>"; };
 		A5E8D9A52153EB3900AC6A7E /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
 		A5E8D9A72153EBD600AC6A7E /* Exchange.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Exchange.storyboard; sourceTree = "<group>"; };
 		A5E8D9A92153EC5B00AC6A7E /* Deposit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Deposit.storyboard; sourceTree = "<group>"; };
 		A5E8D9AB2153ECE300AC6A7E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		A5F59AA621621968005F1765 /* TestConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfigurator.swift; sourceTree = "<group>"; };
 		A8281DDFF92A6E3137D4E511 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		A831E3F2AD4AB52930892954 /* PasswordRecoveryConfirmRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmRouterInput.swift; sourceTree = "<group>"; };
 		A932756D5217E34FDAB97218 /* PopUpInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpInteractorInput.swift; sourceTree = "<group>"; };
@@ -704,12 +715,6 @@
 		CE526C3A212465A900A2EED2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE526C3D212465A900A2EED2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE526C3F212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE526C44212465A900A2EED2 /* WalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE526C48212465A900A2EED2 /* WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
-		CE526C4A212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE526C4F212465A900A2EED2 /* WalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE526C53212465A900A2EED2 /* WalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUITests.swift; sourceTree = "<group>"; };
-		CE526C55212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CE526C67212471CE00A2EED2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinValidationProvider.swift; sourceTree = "<group>"; };
@@ -811,27 +816,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A5B78225215E2A3D00EFD1A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE526C2B212465A800A2EED2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				60AC208DB93701555B9756D2 /* Pods_Wallet.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE526C41212465A900A2EED2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2CB6AFB44248AEC1D7EF7326 /* Pods_WalletTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE526C4C212465A900A2EED2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E8AA4A98B0213B85C9324E0C /* Pods_WalletUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1991,6 +1987,7 @@
 		A58EE3B3214FFD5D0096C155 /* ApplicationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				A5F59AA52162194B005F1765 /* TestConfigurator */,
 				A58EE3C2215004710096C155 /* ApplicationConfigurator */,
 				CE526C31212465A800A2EED2 /* AppDelegate.swift */,
 			);
@@ -2033,6 +2030,9 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A5B78236215E33A000EFD1A5 /* AddressResolver */,
+				A5B78206215E22AE00EFD1A5 /* Crypto */,
+				A5B78202215E208C00EFD1A5 /* TransactionProvider */,
 				A51CB5532158FF4A00CDC80C /* AccountsLinker */,
 				A51CB54C2158FEA700CDC80C /* DataStore */,
 				A55A197021553D3700330EB8 /* AccountsProvider */,
@@ -2047,7 +2047,6 @@
 				CEFC9CAC215A13EF00962356 /* DeviceContactsProvider */,
 				CEFC9CB4215A59B200962356 /* SendTransactionBuilder */,
 				CED822D5215A92E600693B92 /* QRCodeValidator */,
-				A51CB54A2158E80400CDC80C /* TransactionsProvider.swift */,
 				CED822E1215BC31400693B92 /* CurrencyConverter */,
 				CED822E8215BE07B00693B92 /* CurrencyFormatter */,
 			);
@@ -2072,6 +2071,77 @@
 			path = ApplicationConfigurator;
 			sourceTree = "<group>";
 		};
+		A5B78202215E208C00EFD1A5 /* TransactionProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A51CB54A2158E80400CDC80C /* TransactionsProvider.swift */,
+			);
+			path = TransactionProvider;
+			sourceTree = "<group>";
+		};
+		A5B78203215E20ED00EFD1A5 /* AddressValidator */ = {
+			isa = PBXGroup;
+			children = (
+				A5B78204215E214A00EFD1A5 /* AddressValidatorProtocol.swift */,
+				A5B7820E215E241800EFD1A5 /* BitcoinAddressValidator.swift */,
+				A5B78210215E24B600EFD1A5 /* EthereumAddressValidator.swift */,
+			);
+			path = AddressValidator;
+			sourceTree = "<group>";
+		};
+		A5B78206215E22AE00EFD1A5 /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				A5B7820B215E232200EFD1A5 /* BlockchainNetwork */,
+				A5B78207215E22BD00EFD1A5 /* Base58 */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		A5B78207215E22BD00EFD1A5 /* Base58 */ = {
+			isa = PBXGroup;
+			children = (
+				A5B78209215E22FD00EFD1A5 /* Base59Encode.swift */,
+			);
+			path = Base58;
+			sourceTree = "<group>";
+		};
+		A5B7820B215E232200EFD1A5 /* BlockchainNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				A5B7820C215E236F00EFD1A5 /* Network.swift */,
+			);
+			path = BlockchainNetwork;
+			sourceTree = "<group>";
+		};
+		A5B7821B215E2A0400EFD1A5 /* WalletUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A5B7821C215E2A0400EFD1A5 /* WalletUITests.swift */,
+				A5B7821E215E2A0400EFD1A5 /* Info.plist */,
+			);
+			path = WalletUITests;
+			sourceTree = "<group>";
+		};
+		A5B78229215E2A3E00EFD1A5 /* WalletTests */ = {
+			isa = PBXGroup;
+			children = (
+				A5B78232215E2A7400EFD1A5 /* WalletTests.swift */,
+				A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */,
+				A5B7822C215E2A3E00EFD1A5 /* Info.plist */,
+			);
+			path = WalletTests;
+			sourceTree = "<group>";
+		};
+		A5B78236215E33A000EFD1A5 /* AddressResolver */ = {
+			isa = PBXGroup;
+			children = (
+				A5B78237215E33BA00EFD1A5 /* CryproAddressResolver.swift */,
+				A5B78203215E20ED00EFD1A5 /* AddressValidator */,
+			);
+			path = AddressResolver;
+			sourceTree = "<group>";
+		};
 		A5E8D9AD2153ED6400AC6A7E /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -2085,6 +2155,14 @@
 				0F885B3024850DB0F282B24E /* Transactions */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		A5F59AA52162194B005F1765 /* TestConfigurator */ = {
+			isa = PBXGroup;
+			children = (
+				A5F59AA621621968005F1765 /* TestConfigurator.swift */,
+			);
+			path = TestConfigurator;
 			sourceTree = "<group>";
 		};
 		A5FD9DA6E7DA9EAA4977CC25 /* Router */ = {
@@ -2292,7 +2370,6 @@
 				CE526C67212471CE00A2EED2 /* Constants.swift */,
 				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
 				A500860C2150FA1600C47015 /* Result.swift */,
-				A50086132151182A00C47015 /* EnumCollection.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2301,11 +2378,11 @@
 			isa = PBXGroup;
 			children = (
 				CE526C30212465A800A2EED2 /* Wallet */,
+				A5B7821B215E2A0400EFD1A5 /* WalletUITests */,
+				A5B78229215E2A3E00EFD1A5 /* WalletTests */,
 				3AD23EBFB46F9DD62D872C36 /* Frameworks */,
 				0A8E927335E4454C81DE3B38 /* Pods */,
 				CE526C2F212465A800A2EED2 /* Products */,
-				CE526C47212465A900A2EED2 /* WalletTests */,
-				CE526C52212465A900A2EED2 /* WalletUITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2313,8 +2390,7 @@
 			isa = PBXGroup;
 			children = (
 				CE526C2E212465A800A2EED2 /* Wallet.app */,
-				CE526C44212465A900A2EED2 /* WalletTests.xctest */,
-				CE526C4F212465A900A2EED2 /* WalletUITests.xctest */,
+				A5B78228215E2A3D00EFD1A5 /* WalletTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2328,24 +2404,6 @@
 				CE526C3F212465A900A2EED2 /* Info.plist */,
 			);
 			path = Wallet;
-			sourceTree = "<group>";
-		};
-		CE526C47212465A900A2EED2 /* WalletTests */ = {
-			isa = PBXGroup;
-			children = (
-				CE526C48212465A900A2EED2 /* WalletTests.swift */,
-				CE526C4A212465A900A2EED2 /* Info.plist */,
-			);
-			path = WalletTests;
-			sourceTree = "<group>";
-		};
-		CE526C52212465A900A2EED2 /* WalletUITests */ = {
-			isa = PBXGroup;
-			children = (
-				CE526C53212465A900A2EED2 /* WalletUITests.swift */,
-				CE526C55212465A900A2EED2 /* Info.plist */,
-			);
-			path = WalletUITests;
 			sourceTree = "<group>";
 		};
 		CE526C6F21247F8500A2EED2 /* UIComponents */ = {
@@ -2375,6 +2433,7 @@
 				A50086152151237B00C47015 /* Data+Helpers.swift */,
 				A51CB560215945A200CDC80C /* UIView+Helpers.swift */,
 				A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */,
+				A5B78212215E25A200EFD1A5 /* Array+Helper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2772,6 +2831,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A5B78227215E2A3D00EFD1A5 /* WalletTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5B7822F215E2A3E00EFD1A5 /* Build configuration list for PBXNativeTarget "WalletTests" */;
+			buildPhases = (
+				A5B78224215E2A3D00EFD1A5 /* Sources */,
+				A5B78225215E2A3D00EFD1A5 /* Frameworks */,
+				A5B78226215E2A3D00EFD1A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5B7822E215E2A3E00EFD1A5 /* PBXTargetDependency */,
+			);
+			name = WalletTests;
+			productName = WalletTests;
+			productReference = A5B78228215E2A3D00EFD1A5 /* WalletTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CE526C2D212465A800A2EED2 /* Wallet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE526C58212465AA00A2EED2 /* Build configuration list for PBXNativeTarget "Wallet" */;
@@ -2792,67 +2869,25 @@
 			productReference = CE526C2E212465A800A2EED2 /* Wallet.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CE526C43212465A900A2EED2 /* WalletTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CE526C5B212465AA00A2EED2 /* Build configuration list for PBXNativeTarget "WalletTests" */;
-			buildPhases = (
-				734EB0BADC127ECA7E7335B0 /* [CP] Check Pods Manifest.lock */,
-				CE526C40212465A900A2EED2 /* Sources */,
-				CE526C41212465A900A2EED2 /* Frameworks */,
-				CE526C42212465A900A2EED2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CE526C46212465A900A2EED2 /* PBXTargetDependency */,
-			);
-			name = WalletTests;
-			productName = WalletTests;
-			productReference = CE526C44212465A900A2EED2 /* WalletTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CE526C4E212465A900A2EED2 /* WalletUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CE526C5E212465AA00A2EED2 /* Build configuration list for PBXNativeTarget "WalletUITests" */;
-			buildPhases = (
-				EB767D47E1153E8EADF7A334 /* [CP] Check Pods Manifest.lock */,
-				CE526C4B212465A900A2EED2 /* Sources */,
-				CE526C4C212465A900A2EED2 /* Frameworks */,
-				CE526C4D212465A900A2EED2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CE526C51212465A900A2EED2 /* PBXTargetDependency */,
-			);
-			name = WalletUITests;
-			productName = WalletUITests;
-			productReference = CE526C4F212465A900A2EED2 /* WalletUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		CE526C26212465A800A2EED2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Storiqa;
 				TargetAttributes = {
+					A5B78227215E2A3D00EFD1A5 = {
+						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CE526C2D212465A800A2EED2;
+					};
 					CE526C2D212465A800A2EED2 = {
 						CreatedOnToolsVersion = 9.4.1;
 						ProvisioningStyle = Automatic;
-					};
-					CE526C43212465A900A2EED2 = {
-						CreatedOnToolsVersion = 9.4.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = CE526C2D212465A800A2EED2;
-					};
-					CE526C4E212465A900A2EED2 = {
-						CreatedOnToolsVersion = 9.4.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = CE526C2D212465A800A2EED2;
 					};
 				};
 			};
@@ -2870,13 +2905,19 @@
 			projectRoot = "";
 			targets = (
 				CE526C2D212465A800A2EED2 /* Wallet */,
-				CE526C43212465A900A2EED2 /* WalletTests */,
-				CE526C4E212465A900A2EED2 /* WalletUITests */,
+				A5B78227215E2A3D00EFD1A5 /* WalletTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A5B78226215E2A3D00EFD1A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE526C2C212465A800A2EED2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2919,41 +2960,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE526C42212465A900A2EED2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE526C4D212465A900A2EED2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		734EB0BADC127ECA7E7335B0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WalletTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		828773B83939D997C861019B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2984,24 +2993,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Wallet-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EB767D47E1153E8EADF7A334 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WalletUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3049,6 +3040,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A5B78224215E2A3D00EFD1A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5B78233215E2A7400EFD1A5 /* WalletTests.swift in Sources */,
+				A5B78235215E2F3800EFD1A5 /* AddressValidator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE526C2A212465A800A2EED2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3085,7 +3085,6 @@
 				A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */,
 				CE5FAF9F215129A6009E707E /* RegistrationFormValidatonProvider.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
-				A50086142151182A00C47015 /* EnumCollection.swift in Sources */,
 				CEFC9C942158CF1900962356 /* PopUpViewModel.swift in Sources */,
 				CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */,
 				CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */,
@@ -3113,6 +3112,7 @@
 				CF065C7C011BD01324225AAD /* PasswordInputViewController.swift in Sources */,
 				DF86683226807C4513BF70C6 /* PasswordInputPresenter.swift in Sources */,
 				4E5BC89F50726A6F7AA8256E /* PasswordInputInteractorInput.swift in Sources */,
+				A5B78211215E24B600EFD1A5 /* EthereumAddressValidator.swift in Sources */,
 				0087C8EE381913F94BBF1F79 /* PasswordInputInteractorOutput.swift in Sources */,
 				E75BA378AB9872B3E84F37B8 /* PasswordInputInteractor.swift in Sources */,
 				19C992F649EC96AB1D2EB274 /* PasswordInputRouterInput.swift in Sources */,
@@ -3137,9 +3137,11 @@
 				DAD66F6925304312D772B826 /* FirstLaunchModule.swift in Sources */,
 				4B42C53D0968DE8E1FFE0BAE /* RegistrationViewInput.swift in Sources */,
 				A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */,
+				A5B7820D215E236F00EFD1A5 /* Network.swift in Sources */,
 				A51CB5472158E0DB00CDC80C /* TransactionsDataManager.swift in Sources */,
 				F0868C4BC96F8724DDDD2386 /* RegistrationViewOutput.swift in Sources */,
 				7D2290D15CEAF84FA8628C09 /* RegistrationViewController.swift in Sources */,
+				A5B78238215E33BA00EFD1A5 /* CryproAddressResolver.swift in Sources */,
 				CED822DC215B5C1500693B92 /* ErrorView.swift in Sources */,
 				F91599534C9DC69FA45F1EF4 /* RegistrationPresenter.swift in Sources */,
 				A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */,
@@ -3168,6 +3170,7 @@
 				E4760D4F175190FCE277280C /* PasswordRecoveryConfirmViewOutput.swift in Sources */,
 				CE5FAFAB2152420D009E707E /* PasswordRecoveryConfirmFormValidator.swift in Sources */,
 				E25A0E75B3C836260DA96051 /* PasswordRecoveryConfirmViewController.swift in Sources */,
+				A5B7820F215E241800EFD1A5 /* BitcoinAddressValidator.swift in Sources */,
 				39D7E17D89D8B4417C0931DE /* PasswordRecoveryConfirmPresenter.swift in Sources */,
 				CEFC9C9A21590D1B00962356 /* PopUpRegistrationFailedVM.swift in Sources */,
 				2AB82AFB4252B3D2787F924C /* PasswordRecoveryConfirmInteractorInput.swift in Sources */,
@@ -3236,6 +3239,7 @@
 				1D29389B7211768F5C82EF1B /* BiometryQuickLaunchModuleInput.swift in Sources */,
 				A3AC2118172F25D9C46E786B /* BiometryQuickLaunchModuleOutput.swift in Sources */,
 				4FD0957C495AB450B60609F7 /* BiometryQuickLaunchModule.swift in Sources */,
+				A5B78205215E214A00EFD1A5 /* AddressValidatorProtocol.swift in Sources */,
 				9B102E1CDAB4C764C2D1EC8E /* PinSetupViewInput.swift in Sources */,
 				2A19AADF0DD8BF43FC246A74 /* PinSetupViewOutput.swift in Sources */,
 				D7DD0EC3E4E6A4C5308142EB /* PinSetupViewController.swift in Sources */,
@@ -3301,6 +3305,7 @@
 				734C581B32C15CF05D4481B4 /* ExchangeRouterInput.swift in Sources */,
 				B98F7B6D236E5C7D1D3FD552 /* ExchangeRouter.swift in Sources */,
 				505F3C485B956B860664837B /* ExchangeModuleInput.swift in Sources */,
+				A5B78213215E25A200EFD1A5 /* Array+Helper.swift in Sources */,
 				32AE32F42A7235157AE8F11C /* ExchangeModuleOutput.swift in Sources */,
 				490A73840930B45425B9C531 /* ExchangeModule.swift in Sources */,
 				A51CB54F2158FED500CDC80C /* TransactionDataStoreProvider.swift in Sources */,
@@ -3308,6 +3313,7 @@
 				A56B4C69215B84430017B337 /* WalletsDataManager.swift in Sources */,
 				F6FFC06886618EE0C23D164A /* DepositViewOutput.swift in Sources */,
 				48AE3AD16EB72471782C5432 /* DepositViewController.swift in Sources */,
+				A5B7820A215E22FD00EFD1A5 /* Base59Encode.swift in Sources */,
 				A69BEB443BFB8D712A5DD1E7 /* DepositPresenter.swift in Sources */,
 				3000F328272A309F1310DA78 /* DepositInteractorInput.swift in Sources */,
 				70D91778B8FFB807C57A87E1 /* DepositInteractorOutput.swift in Sources */,
@@ -3338,6 +3344,7 @@
 				F4982C167CCC098B2C5C15BF /* AccountsViewOutput.swift in Sources */,
 				A51CB55821590F4700CDC80C /* TransactionTableViewCell.swift in Sources */,
 				A46ED52D7D6FB1332671B806 /* AccountsViewController.swift in Sources */,
+				A5F59AA721621968005F1765 /* TestConfigurator.swift in Sources */,
 				CED822EA215BE09F00693B92 /* CurrencyFormatter.swift in Sources */,
 				976C69F50B9E785FE8122C16 /* AccountsPresenter.swift in Sources */,
 				AE3D99DB0E383E9F099380B0 /* AccountsInteractorInput.swift in Sources */,
@@ -3400,34 +3407,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE526C40212465A900A2EED2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CE526C49212465A900A2EED2 /* WalletTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE526C4B212465A900A2EED2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CE526C54212465A900A2EED2 /* WalletUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CE526C46212465A900A2EED2 /* PBXTargetDependency */ = {
+		A5B7822E215E2A3E00EFD1A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CE526C2D212465A800A2EED2 /* Wallet */;
-			targetProxy = CE526C45212465A900A2EED2 /* PBXContainerItemProxy */;
-		};
-		CE526C51212465A900A2EED2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CE526C2D212465A800A2EED2 /* Wallet */;
-			targetProxy = CE526C50212465A900A2EED2 /* PBXContainerItemProxy */;
+			targetProxy = A5B7822D215E2A3E00EFD1A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3451,6 +3437,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A5B78230215E2A3E00EFD1A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HS8AM3WUSX;
+				INFOPLIST_FILE = WalletTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = DM.WalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wallet.app/Wallet";
+			};
+			name = Debug;
+		};
+		A5B78231215E2A3E00EFD1A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HS8AM3WUSX;
+				INFOPLIST_FILE = WalletTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = DM.WalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wallet.app/Wallet";
+			};
+			name = Release;
+		};
 		CE526C56212465A900A2EED2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3600,79 +3626,18 @@
 			};
 			name = Release;
 		};
-		CE526C5C212465AA00A2EED2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC4DE7AF801525F566BD53C3 /* Pods-WalletTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HS8AM3WUSX;
-				INFOPLIST_FILE = WalletTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Storiqa.WalletTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wallet.app/Wallet";
-			};
-			name = Debug;
-		};
-		CE526C5D212465AA00A2EED2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAE747400FE4DC94F9A757B4 /* Pods-WalletTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HS8AM3WUSX;
-				INFOPLIST_FILE = WalletTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Storiqa.WalletTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wallet.app/Wallet";
-			};
-			name = Release;
-		};
-		CE526C5F212465AA00A2EED2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE8C6EE34B30F37B80B23249 /* Pods-WalletUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TM9C3QQWUR;
-				INFOPLIST_FILE = WalletUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Storiqa.WalletUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wallet;
-			};
-			name = Debug;
-		};
-		CE526C60212465AA00A2EED2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80BC3700A8F4F4895DBC04C6 /* Pods-WalletUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TM9C3QQWUR;
-				INFOPLIST_FILE = WalletUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Storiqa.WalletUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wallet;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A5B7822F215E2A3E00EFD1A5 /* Build configuration list for PBXNativeTarget "WalletTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5B78230215E2A3E00EFD1A5 /* Debug */,
+				A5B78231215E2A3E00EFD1A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CE526C29212465A800A2EED2 /* Build configuration list for PBXProject "Wallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3687,24 +3652,6 @@
 			buildConfigurations = (
 				CE526C59212465AA00A2EED2 /* Debug */,
 				CE526C5A212465AA00A2EED2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CE526C5B212465AA00A2EED2 /* Build configuration list for PBXNativeTarget "WalletTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE526C5C212465AA00A2EED2 /* Debug */,
-				CE526C5D212465AA00A2EED2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CE526C5E212465AA00A2EED2 /* Build configuration list for PBXNativeTarget "WalletUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE526C5F212465AA00A2EED2 /* Debug */,
-				CE526C60212465AA00A2EED2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
