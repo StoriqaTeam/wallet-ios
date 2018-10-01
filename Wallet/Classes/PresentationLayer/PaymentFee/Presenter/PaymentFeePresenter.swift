@@ -52,6 +52,11 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
     func viewIsReady() {
         let apperance = interactor.getPaymentFeeScreenData()
         view.setupInitialState(apperance: apperance)
+        view.viewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
+    func willMoveToParentVC() {
+        view.viewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
 }

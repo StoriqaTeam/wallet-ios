@@ -56,10 +56,11 @@ extension SendPresenter: SendViewOutput {
     }
     
     func viewIsReady() {
-        let currencyImages = currencies.map({ return $0.image })
+        let currencyImages = currencies.map({ return $0.smallImage })
+        let numberOfPages = interactor.getAccountsCount()
         configureNavBar()
         view.setButtonEnabled(false)
-        view.setupInitialState(currencyImages: currencyImages)
+        view.setupInitialState(currencyImages: currencyImages, numberOfPages: numberOfPages)
         interactor.setAccountsDataManagerDelegate(self)
     }
     
@@ -127,7 +128,7 @@ extension SendPresenter {
     private func configureNavBar() {
         view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkTextNavigationBar()
+        view.viewController.setWhiteTextNavigationBar()
         view.viewController.navigationController?.navigationBar.topItem?.title = "send".localized()
     }
     

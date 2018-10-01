@@ -24,13 +24,13 @@ class SendViewController: UIViewController {
     @IBOutlet private var convertedAmountLabel: UILabel!
     @IBOutlet private var nextButton: DefaultButton!
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var gradientView: UIView!
     
     
     // MARK: Variables
     
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
-    
     
     // MARK: Life cycle
     
@@ -45,6 +45,11 @@ class SendViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         output.configureCollections()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureGradientView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,9 +94,11 @@ class SendViewController: UIViewController {
 
 extension SendViewController: SendViewInput {
     
-    func setupInitialState(currencyImages: [UIImage]) {
+    func setupInitialState(currencyImages: [UIImage], numberOfPages: Int) {
         receiverCurrencySegmentedControl.buttonImages = currencyImages
         output.receiverCurrencyChanged(receiverCurrencySegmentedControl.selectedSegmentIndex)
+        accountsPageControl.isUserInteractionEnabled = false
+        accountsPageControl.numberOfPages = numberOfPages
     }
     
     func updateAmount(_ amount: String) {
@@ -142,6 +149,16 @@ extension SendViewController: UITextFieldDelegate {
 
 extension SendViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let cellY = accountsCollectionView.layoutAttributesForItem(at: IndexPath(row: 0, section: 0))?.frame.origin.y {
+            let scrollOffset = scrollView.contentOffset.y
+            let delta = max(0, scrollOffset - cellY - 12)
+            let alpha = 1 - (max(0, min(0.999, delta / 12)))
+
+            navigationController?.navigationBar.alpha = alpha
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if !isKeyboardAnimating {
             dismissKeyboard()
         }
@@ -166,6 +183,21 @@ extension SendViewController {
         amountTitleLabel.text = "amount".localized()
         receiverCurrencyTitleLabel.text = "receiver_currency".localized()
         amountTextField.placeholder = "enter_amount".localized()
+    }
+    
+    private func configureGradientView() {
+        let height = accountsCollectionView.frame.height +
+            accountsPageControl.frame.height +
+            (navigationController?.navigationBar.frame.size.height ?? 44) +
+            UIApplication.shared.statusBarFrame.height
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: gradientView.frame.width, height: height)
+        gradientLayer.colors = [ UIColor(red: 0.2549019608, green: 0.7176470588, blue: 0.9568627451, alpha: 1).cgColor,
+                                 UIColor(red: 0.1764705882, green: 0.3921568627, blue: 0.7607843137, alpha: 1).cgColor ]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradientView.layer.addSublayer(gradientLayer)
     }
     
     @objc private func textDidChange(_ notification: Notification) {

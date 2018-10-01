@@ -16,7 +16,7 @@ class PopUpPasswordEmailRecoverySuccessVM: PopUpViewModelProtocol {
     //TODO: image, title, text, action
     
     weak var delegate: PopUpPasswordEmailRecoverySuccessVMDelegate?
-    var apperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
+    var apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
                                    title: "email_sent".localized(),
                                    text: "TODO: text",
                                    attributedText: nil,

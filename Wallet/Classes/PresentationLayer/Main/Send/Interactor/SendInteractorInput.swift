@@ -10,8 +10,12 @@ import Foundation
 
 
 protocol SendInteractorInput: class {
+    
+    func getAccountsCount() -> Int
+    func scrollCollection()
     func createAccountsDataManager(with collectionView: UICollectionView)
     func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate)
+    
     func isValidAmount(_ amount: String) -> Bool
     func setAmount(_ amount: String)
     func getAmountWithCurrency() -> String
@@ -19,6 +23,6 @@ protocol SendInteractorInput: class {
     func setReceiverCurrency(_ currency: Currency)
     func setCurrentAccountWith(index: Int)
     func isFormValid() -> Bool
-    func scrollCollection()
+    
     func getTransactionBuilder() -> SendTransactionBuilderProtocol
 }

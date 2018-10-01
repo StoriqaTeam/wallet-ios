@@ -28,6 +28,11 @@ class SendInteractor {
 
 extension SendInteractor: SendInteractorInput {
     
+    func getAccountsCount() -> Int {
+        let allAccounts = accountsProvider.getAllAccounts()
+        return allAccounts.count
+    }
+    
     func getTransactionBuilder() -> SendTransactionBuilderProtocol {
         return sendProvider
     }

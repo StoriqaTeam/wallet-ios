@@ -15,7 +15,7 @@ class AccountsPresenter {
     weak var output: AccountsModuleOutput?
     var interactor: AccountsInteractorInput!
     var router: AccountsRouterInput!
-    var mainTabBar: UITabBarController!
+    weak var mainTabBar: UITabBarController!
     
 }
 
@@ -56,7 +56,8 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func viewIsReady() {
-        view.setupInitialState()
+        let numberOfPages = interactor.getAccountsCount()
+        view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
         interactor.setAccountsDataManagerDelegate(self)
         interactor.setTransactionDataManagerDelegate(self)

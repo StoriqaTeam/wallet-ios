@@ -14,4 +14,5 @@ protocol PaymentFeeViewOutput: class {
     func editButtonPressed()
     func sendButtonPressed()
     func newFeeSelected(_ index: Int)
+    func willMoveToParentVC()
 }

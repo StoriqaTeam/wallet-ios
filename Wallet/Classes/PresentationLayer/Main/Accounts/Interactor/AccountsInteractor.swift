@@ -28,6 +28,11 @@ class AccountsInteractor {
 // MARK: - AccountsInteractorInput
 
 extension AccountsInteractor: AccountsInteractorInput {
+    func getAccountsCount() -> Int {
+        let allAccounts = accountLinker.getAllAccounts()
+        return allAccounts.count
+    }
+    
     func getTransactionForCurrentAccount() -> [Transaction] {
         return transactions(for: self.account)
     }

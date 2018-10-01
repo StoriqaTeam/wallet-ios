@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,8 +24,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" alpha="0.22" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="currency_btc" translatesAutoresizingMaskIntoConstraints="NO" id="Tpi-0Z-S4t">
-                    <rect key="frame" x="298" y="35" width="44" height="44"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="currency_btc_medium" translatesAutoresizingMaskIntoConstraints="NO" id="Tpi-0Z-S4t">
+                    <rect key="frame" x="305" y="35" width="44" height="44"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="0RV-wc-orB"/>
@@ -44,7 +45,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTV-iO-A7Q">
-                    <rect key="frame" x="188" y="61.5" width="20" height="20"/>
+                    <rect key="frame" x="188" y="62" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="G3a-AZ-uzc"/>
                         <constraint firstAttribute="width" constant="20" id="L0x-H6-f3O"/>
@@ -71,7 +72,7 @@
                 <constraint firstItem="Tpi-0Z-S4t" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Yea-gm-GC6" secondAttribute="top" id="CE5-el-W1S"/>
                 <constraint firstAttribute="bottom" secondItem="9a0-QF-imG" secondAttribute="bottom" constant="12" id="DhR-wQ-4Ai"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GTV-iO-A7Q" secondAttribute="trailing" id="M8e-sG-gC5"/>
-                <constraint firstAttribute="trailing" secondItem="Tpi-0Z-S4t" secondAttribute="trailing" constant="33" id="SGY-aK-QMI"/>
+                <constraint firstAttribute="trailing" secondItem="Tpi-0Z-S4t" secondAttribute="trailing" constant="26" id="SGY-aK-QMI"/>
                 <constraint firstItem="Tpi-0Z-S4t" firstAttribute="centerY" secondItem="Yea-gm-GC6" secondAttribute="centerY" id="YNT-rQ-dvC"/>
                 <constraint firstItem="oO4-Rn-VH2" firstAttribute="leading" secondItem="eub-BK-IMv" secondAttribute="leading" id="he5-qL-zFf"/>
                 <constraint firstItem="9a0-QF-imG" firstAttribute="leading" secondItem="oO4-Rn-VH2" secondAttribute="leading" id="mTU-kv-aOn"/>
@@ -83,7 +84,7 @@
         </view>
     </objects>
     <resources>
-        <image name="currency_btc" width="18" height="25"/>
+        <image name="currency_btc_medium" width="31" height="43"/>
         <image name="edit" width="13" height="13"/>
     </resources>
 </document>

@@ -69,6 +69,11 @@ class PaymentFeeViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        output.willMoveToParentVC()
+    }
+    
     // MARK: IBActions
     
     @IBAction func sliderMoved(_ sender: UISlider) {
@@ -112,12 +117,29 @@ extension PaymentFeeViewController: PaymentFeeViewInput {
     }
     
     func setErrorHidden(_ hidden: Bool) {
-        errorLabel.isHidden = hidden
-        sendButton.isHidden = !hidden
         
-        if !hidden {
+        if hidden {
+            sendButton.isHidden = false
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.errorLabel.alpha = 0
+                self.sendButton.alpha = 1
+            }) { (finished) in
+                self.errorLabel.isHidden = true
+            }
+        } else {
+            self.errorLabel.isHidden = false
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.errorLabel.alpha = 1
+                self.sendButton.alpha = 0
+            }) { (finished) in
+                self.sendButton.isHidden = true
+            }
+            
             scrollToBottom()
         }
+        
     }
     
 }
@@ -163,6 +185,10 @@ extension PaymentFeeViewController {
         paymentFeeHighLabel.textColor = UIColor.captionGrey
         
         errorLabel.textColor = UIColor.errorRed
+        
+        paymentFeeSlider.thumbTintColor = UIColor.mainBlue
+        paymentFeeSlider.minimumTrackTintColor = UIColor.lightGray
+        paymentFeeSlider.maximumTrackTintColor = UIColor.lightGray
         
         errorLabel.isHidden = true
         sendButton.isHidden = false
