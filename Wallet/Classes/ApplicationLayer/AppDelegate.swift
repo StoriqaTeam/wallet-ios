@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     private var configurators: [Configurable] = {
-        return [ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider())]
+        return [
+                ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider()),
+                TestConfigurator()
+               ]
     }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
