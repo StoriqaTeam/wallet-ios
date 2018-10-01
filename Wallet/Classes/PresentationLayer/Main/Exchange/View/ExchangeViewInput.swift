@@ -10,6 +10,6 @@ import UIKit
 
 
 protocol ExchangeViewInput: class, Presentable {
-    func setupInitialState()
+    func setupInitialState(numberOfPages: Int)
     func setNewPage(_ index: Int)
 }

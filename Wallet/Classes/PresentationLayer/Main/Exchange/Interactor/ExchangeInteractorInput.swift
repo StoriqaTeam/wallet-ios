@@ -15,4 +15,5 @@ protocol ExchangeInteractorInput: class {
     func createWalletsDataManager(with tableView: UITableView)
     func setWalletsDataManagerDelegate(_ delegate: WalletsDataManagerDelegate)
     func scrollCollection()
+    func getAccountsCount() -> Int
 }

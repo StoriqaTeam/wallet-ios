@@ -56,7 +56,8 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func viewIsReady() {
-        view.setupInitialState()
+        let numberOfPages = interactor.getAccountsCount()
+        view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
         interactor.setAccountsDataManagerDelegate(self)
         interactor.setTransactionDataManagerDelegate(self)

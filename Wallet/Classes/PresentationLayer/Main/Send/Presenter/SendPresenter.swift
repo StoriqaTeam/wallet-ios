@@ -57,9 +57,10 @@ extension SendPresenter: SendViewOutput {
     
     func viewIsReady() {
         let currencyImages = currencies.map({ return $0.smallImage })
+        let numberOfPages = interactor.getAccountsCount()
         configureNavBar()
         view.setButtonEnabled(false)
-        view.setupInitialState(currencyImages: currencyImages)
+        view.setupInitialState(currencyImages: currencyImages, numberOfPages: numberOfPages)
         interactor.setAccountsDataManagerDelegate(self)
     }
     
