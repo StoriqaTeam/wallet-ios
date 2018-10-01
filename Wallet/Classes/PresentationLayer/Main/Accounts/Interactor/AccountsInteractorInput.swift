@@ -17,6 +17,7 @@ protocol AccountsInteractorInput: class {
     func setCurrentAccountWith(index: Int)
     func getCurrentAccount() -> Account
     func getTransactionForCurrentAccount() -> [Transaction]
+    func getAccountsCount() -> Int
     
     func createAccountsDataManager(with collectionView: UICollectionView)
     func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate)

@@ -58,10 +58,11 @@ extension AccountsViewController: AccountsViewInput {
         accountsPageControl.currentPage = index
     }
 
-    func setupInitialState() {
+    func setupInitialState(numberOfPages: Int) {
         configureTableView()
         configureButtons()
         accountsPageControl.isUserInteractionEnabled = false
+        accountsPageControl.numberOfPages = numberOfPages
     }
 }
 

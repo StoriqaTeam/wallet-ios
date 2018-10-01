@@ -186,6 +186,10 @@ extension PaymentFeeViewController {
         
         errorLabel.textColor = UIColor.errorRed
         
+        paymentFeeSlider.thumbTintColor = UIColor.mainBlue
+        paymentFeeSlider.minimumTrackTintColor = UIColor.lightGray
+        paymentFeeSlider.maximumTrackTintColor = UIColor.lightGray
+        
         errorLabel.isHidden = true
         sendButton.isHidden = false
     }

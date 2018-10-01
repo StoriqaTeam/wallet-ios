@@ -31,6 +31,11 @@ class ExchangeInteractor {
 // MARK: - ExchangeInteractorInput
 
 extension ExchangeInteractor: ExchangeInteractorInput {
+    func getAccountsCount() -> Int {
+        let allAccounts = accountsLinker.getAllAccounts()
+        return allAccounts.count
+    }
+    
     func createWalletsDataManager(with tableView: UITableView) {
         let walletsManager = WalletsDataManager()
         walletsManager.setTableView(tableView)

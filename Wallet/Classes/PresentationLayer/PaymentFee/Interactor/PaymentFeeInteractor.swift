@@ -67,7 +67,7 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         
         let header = SendingHeaderData(amount: sendProvider.getAmountStr(),
                                        amountInTransactionCurrency: sendProvider.getAmountInTransactionCurrencyStr(),
-                                       currencyImage: sendProvider.receiverCurrency.image)
+                                       currencyImage: sendProvider.receiverCurrency.mediumImage)
         let address: String
         
         switch sendProvider.opponentType! {

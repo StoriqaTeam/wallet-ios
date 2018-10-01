@@ -33,7 +33,7 @@ extension ReceiverInteractor: ReceiverInteractorInput {
         
         let header = SendingHeaderData(amount: sendProvider.getAmountStr(),
                                        amountInTransactionCurrency: sendProvider.getAmountInTransactionCurrencyStr(),
-                                       currencyImage: sendProvider.receiverCurrency.image)
+                                       currencyImage: sendProvider.receiverCurrency.mediumImage)
         
         return header
     }

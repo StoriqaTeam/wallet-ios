@@ -27,7 +27,7 @@ class PopUpSendConfirmVM: PopUpViewModelProtocol {
         attrText.append(NSAttributedString(string: address, attributes: boldTextAttributes))
         
         //TODO: image
-        apperance = PopUpApperance(image: #imageLiteral(resourceName: "faceid"),
+        apperance = PopUpApperance(image: #imageLiteral(resourceName: "barrierIcon"),
                                    title: "confirm_send".localized(),
                                    text: nil,
                                    attributedText: attrText,
