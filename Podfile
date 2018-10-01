@@ -6,15 +6,18 @@ target 'Wallet' do
   use_frameworks!
 
   # Pods for Wallet
-
   pod 'Alamofire', '~> 4.7'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
   pod 'Slog'
   pod 'RealmSwift'
   
-  #social networks
+  # social networks
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'GoogleSignIn'
+
+  # crash analitics
+  pod 'Fabric'
+  pod 'Crashlytics'
   
 end

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class LoginViewController: UIViewController {
 
     var output: LoginViewOutput!
@@ -31,6 +30,7 @@ class LoginViewController: UIViewController {
         setDelegates()
         setSocialView()
         output.viewIsReady()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

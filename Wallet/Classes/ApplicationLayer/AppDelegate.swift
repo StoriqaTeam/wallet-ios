@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var configurators: [Configurable] = {
         return [
                 ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider()),
-                TestConfigurator()
+                CrashTrackerConfigurator()
                ]
     }()
     
