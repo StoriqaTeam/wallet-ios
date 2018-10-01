@@ -222,6 +222,8 @@
 		A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A92153EC5B00AC6A7E /* Deposit.storyboard */; };
 		A5E8D9AC2153ECE300AC6A7E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9AB2153ECE300AC6A7E /* Settings.storyboard */; };
 		A5F59AA721621968005F1765 /* TestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AA621621968005F1765 /* TestConfigurator.swift */; };
+		A5F59AB7216248C5005F1765 /* RealmMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AB6216248C5005F1765 /* RealmMappable.swift */; };
+		A5F59AB921624908005F1765 /* RealmStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AB821624908005F1765 /* RealmStorable.swift */; };
 		A6888E54A2AF18D001988E63 /* MainTabBarRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5940AC3989E9EB903BFDE420 /* MainTabBarRouterInput.swift */; };
 		A69BEB443BFB8D712A5DD1E7 /* DepositPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3717D21DED5D0441A0FD1D /* DepositPresenter.swift */; };
 		A6F5B3DAAEA6C2400283BAE8 /* PinSetupModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D614C3F339D50C93566CA /* PinSetupModuleInput.swift */; };
@@ -655,6 +657,8 @@
 		A5E8D9A92153EC5B00AC6A7E /* Deposit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Deposit.storyboard; sourceTree = "<group>"; };
 		A5E8D9AB2153ECE300AC6A7E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		A5F59AA621621968005F1765 /* TestConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfigurator.swift; sourceTree = "<group>"; };
+		A5F59AB6216248C5005F1765 /* RealmMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMappable.swift; sourceTree = "<group>"; };
+		A5F59AB821624908005F1765 /* RealmStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorable.swift; sourceTree = "<group>"; };
 		A8281DDFF92A6E3137D4E511 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		A831E3F2AD4AB52930892954 /* PasswordRecoveryConfirmRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmRouterInput.swift; sourceTree = "<group>"; };
 		A932756D5217E34FDAB97218 /* PopUpInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpInteractorInput.swift; sourceTree = "<group>"; };
@@ -2059,6 +2063,8 @@
 				A58EE3BB2150037E0096C155 /* Presentable.swift */,
 				A58EE3BE215003CE0096C155 /* Configurable.swift */,
 				A500860A2150F9E700C47015 /* NetworkLoadable.swift */,
+				A5F59AB6216248C5005F1765 /* RealmMappable.swift */,
+				A5F59AB821624908005F1765 /* RealmStorable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -2163,6 +2169,13 @@
 				A5F59AA621621968005F1765 /* TestConfigurator.swift */,
 			);
 			path = TestConfigurator;
+			sourceTree = "<group>";
+		};
+		A5F59AB52162489C005F1765 /* RealmModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RealmModels;
 			sourceTree = "<group>";
 		};
 		A5FD9DA6E7DA9EAA4977CC25 /* Router */ = {
@@ -2518,6 +2531,7 @@
 			isa = PBXGroup;
 			children = (
 				CEFC9C882154E58400962356 /* PlainModels */,
+				A5F59AB52162489C005F1765 /* RealmModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3016,6 +3030,8 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Slog/Slog.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -3030,6 +3046,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Slog.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3118,6 +3136,7 @@
 				19C992F649EC96AB1D2EB274 /* PasswordInputRouterInput.swift in Sources */,
 				3F5CD24DFF4FE1F0033868ED /* PasswordInputRouter.swift in Sources */,
 				8DCE3EEDBEA0BC7E7957D47D /* PasswordInputModuleInput.swift in Sources */,
+				A5F59AB7216248C5005F1765 /* RealmMappable.swift in Sources */,
 				F724C3EE1C872FF0DF3C37D7 /* PasswordInputModuleOutput.swift in Sources */,
 				836A0F971469672F08324F42 /* PasswordInputModule.swift in Sources */,
 				559A9C4888FBB801ECBBE758 /* FirstLaunchViewInput.swift in Sources */,
@@ -3227,6 +3246,7 @@
 				E176B44B7388B0331A49C684 /* BiometryQuickLaunchViewInput.swift in Sources */,
 				860E97FA0D267899D0A69A75 /* BiometryQuickLaunchViewOutput.swift in Sources */,
 				42AAFB7B52547D34DE57DDA6 /* BiometryQuickLaunchViewController.swift in Sources */,
+				A5F59AB921624908005F1765 /* RealmStorable.swift in Sources */,
 				8654A9AF519CBAD05884EF9F /* BiometryQuickLaunchPresenter.swift in Sources */,
 				3295826A5BAFB3D53D223EF6 /* BiometryQuickLaunchInteractorInput.swift in Sources */,
 				93D422C2B6717A2E6C0B2903 /* BiometryQuickLaunchInteractorOutput.swift in Sources */,
