@@ -46,11 +46,19 @@ extension MainTabBarViewController {
         tabBar.isTranslucent = false
         tabBar.barTintColor = Theme.Color.white
         tabBar.tintColor = Theme.Color.blue
+        tabBar.unselectedItemTintColor = Theme.Color.captionGrey.withAlphaComponent(0.4)
+        tabBar.backgroundColor = UIColor(white: 0.82, alpha: 1)
         tabBar.shadowImage = UIImage()
         tabBar.backgroundImage = UIImage()
         tabBar.layer.shadowColor = Theme.Color.greyShadow.cgColor
         tabBar.layer.shadowOffset = CGSize(width: 0, height: -6)
         tabBar.layer.shadowRadius = 6
         tabBar.layer.shadowOpacity = 0.04
+        
+        let lineView = UIView(frame: CGRect(x: 0, y: 0,
+                                            width: Constants.Sizes.screenWith,
+                                            height: Constants.Sizes.lineWidth))
+        lineView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.35)
+        tabBar.addSubview(lineView)
     }
 }

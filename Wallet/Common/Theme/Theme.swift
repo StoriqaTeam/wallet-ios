@@ -15,6 +15,7 @@ struct Theme {
         static let white = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.85)
         static let greyShadow = UIColor(red: 189/255, green: 189/255, blue: 189/255, alpha: 0.30)
         static let blue = UIColor(red: 0/255, green: 178/255, blue: 255/255, alpha: 1)
+        static let captionGrey = UIColor(red: 135/255, green: 157/255, blue: 185/255, alpha: 1.0)
     }
     
     struct Button {
