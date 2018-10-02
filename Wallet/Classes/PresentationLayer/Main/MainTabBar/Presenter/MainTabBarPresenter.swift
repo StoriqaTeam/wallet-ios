@@ -23,8 +23,8 @@ class MainTabBarPresenter {
     }()
 
     private lazy var sendModule: SendModuleInput = SendModule.create(accountWatcher: interactor.getAccountWatcher())
-    private lazy var exchangeModule: ExchangeModuleInput = ExchangeModule.create()
-    private lazy var depositModule: DepositModuleInput = DepositModule.create()
+    private lazy var exchangeModule: ExchangeModuleInput = ExchangeModule.create(accountWatcher: interactor.getAccountWatcher())
+    private lazy var depositModule: DepositModuleInput = DepositModule.create(accountWatcher: interactor.getAccountWatcher())
     private lazy var settingsModule: SettingsModuleInput = SettingsModule.create()
 }
 

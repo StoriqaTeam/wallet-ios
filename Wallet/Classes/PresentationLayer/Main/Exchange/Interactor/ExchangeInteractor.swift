@@ -14,16 +14,12 @@ class ExchangeInteractor {
     private let accountsLinker: AccountsLinkerProtocol
     private var accountsDataManager: AccountsDataManager!
     private var walletsDataManager: WalletsDataManager!
-    private var account: Account?
+    private let accountWatcher: CurrentAccountWatcherProtocol
     
-    init(accountsLinker: AccountsLinkerProtocol, account: Account?) {
+    init(accountsLinker: AccountsLinkerProtocol, accountWatcher: CurrentAccountWatcherProtocol) {
         self.accountsLinker = accountsLinker
-        if let acc = account {
-            self.account = acc
-            return
-        }
-        
-        setInitialAccount()
+        self.accountWatcher = accountWatcher
+
     }
 }
 
@@ -43,10 +39,8 @@ extension ExchangeInteractor: ExchangeInteractorInput {
     }
     
     func scrollCollection() {
-        guard let account = account else {
-            return
-        }
-        let index = resolveAccountIndex(account: account)
+        let currentAccount = accountWatcher.getAccount()
+        let index = resolveAccountIndex(account: currentAccount)
         accountsDataManager.scrollTo(index: index)
     }
     
@@ -70,15 +64,6 @@ extension ExchangeInteractor: ExchangeInteractorInput {
 // MARK: - Private methods
 
 extension ExchangeInteractor {
-    private func setInitialAccount() {
-        let allAccount = accountsLinker.getAllAccounts()
-        if allAccount.count == 0 {
-            account = nil
-            return
-        }
-        
-        account = allAccount[0]
-    }
     
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsLinker.getAllAccounts()
