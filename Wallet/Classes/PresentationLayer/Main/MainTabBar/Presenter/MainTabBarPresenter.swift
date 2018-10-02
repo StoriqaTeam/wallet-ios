@@ -17,12 +17,12 @@ class MainTabBarPresenter {
     var router: MainTabBarRouterInput!
     
     private lazy var myWalletModule: MyWalletModuleInput = {
-        let module = MyWalletModule.create(tabBar: view.mainTabBar!)
+        let module = MyWalletModule.create(tabBar: view.mainTabBar!, accountWatcher: interactor.getAccountWatcher())
         module.output = self
         return module
     }()
 
-    private lazy var sendModule: SendModuleInput = SendModule.create()
+    private lazy var sendModule: SendModuleInput = SendModule.create(accountWatcher: interactor.getAccountWatcher())
     private lazy var exchangeModule: ExchangeModuleInput = ExchangeModule.create()
     private lazy var depositModule: DepositModuleInput = DepositModule.create()
     private lazy var settingsModule: SettingsModuleInput = SettingsModule.create()

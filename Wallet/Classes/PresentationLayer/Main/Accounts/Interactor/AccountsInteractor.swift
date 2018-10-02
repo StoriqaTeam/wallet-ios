@@ -11,16 +11,16 @@ import Foundation
 class AccountsInteractor {
     
     weak var output: AccountsInteractorOutput!
-    private var account: Account
+    private var accountWatcher: CurrentAccountWatcherProtocol
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: TransactionsDataManager!
     private let accountLinker: AccountsLinkerProtocol
     
     init(accountLinker: AccountsLinkerProtocol,
-         account: Account) {
+         accountWatcher: CurrentAccountWatcherProtocol) {
         
         self.accountLinker = accountLinker
-        self.account = account
+        self.accountWatcher = accountWatcher
     }
 }
 
@@ -34,28 +34,32 @@ extension AccountsInteractor: AccountsInteractorInput {
     }
     
     func getTransactionForCurrentAccount() -> [Transaction] {
-        return transactions(for: self.account)
+        let currentAccount = accountWatcher.getAccount()
+        return transactions(for: currentAccount)
     }
     
     func setCurrentAccountWith(index: Int) {
         let allAccounts = accountLinker.getAllAccounts()
-        account = allAccounts[index]
-        let txs = transactions(for: account)
+        accountWatcher.setAccount(allAccounts[index])
+        let currentAccount = accountWatcher.getAccount()
+        let txs = transactions(for: currentAccount)
         transactionDataManager.updateTransactions(txs)
-        output.ISODidChange(account.type.ICO)
+        output.ISODidChange(currentAccount.type.ICO)
     }
     
     func scrollCollection() {
-        let index = resolveAccountIndex(account: account)
+        let currentAccount = accountWatcher.getAccount()
+        let index = resolveAccountIndex(account: currentAccount)
         accountsDataManager.scrollTo(index: index)
     }
     
     func getCurrentAccount() -> Account {
-        return account
+        return accountWatcher.getAccount()
     }
         
     func getInitialCurrencyISO() -> String {
-        return account.type.ICO
+        let currentAccount = accountWatcher.getAccount()
+        return currentAccount.type.ICO
     }
     
     func setTransactionDataManagerDelegate(_ delegate: TransactionsDataManagerDelegate) {
@@ -75,7 +79,8 @@ extension AccountsInteractor: AccountsInteractorInput {
     }
     
     func createTransactionsDataManager(with tableView: UITableView) {
-        let txs = transactions(for: account)
+        let currentAccount = accountWatcher.getAccount()
+        let txs = transactions(for: currentAccount)
         let txDataManager = TransactionsDataManager(transactions: txs)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager

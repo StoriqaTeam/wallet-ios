@@ -11,7 +11,11 @@ class MainTabBarModule {
     class func create() -> MainTabBarModuleInput {
         let router = MainTabBarRouter()
         let presenter = MainTabBarPresenter()
-        let interactor = MainTabBarInteractor()
+        
+        let accountsProvider = FakeAccountProvider()
+        let accountWatcher = CurrentAccountWatcher(accountProvider: accountsProvider)
+        
+        let interactor = MainTabBarInteractor(accountWatcher: accountWatcher)
         
         let sb = UIStoryboard(name: "MainTabBar", bundle: nil)
         let viewController = sb.instantiateViewController(withIdentifier: "mainTabBarVC") as! MainTabBarViewController

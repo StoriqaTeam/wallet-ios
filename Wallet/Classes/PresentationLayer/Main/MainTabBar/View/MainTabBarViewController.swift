@@ -21,7 +21,6 @@ class MainTabBarViewController: UITabBarController {
         configureTabBar()
         output.viewIsReady()
     }
-
 }
 
 
@@ -62,3 +61,4 @@ extension MainTabBarViewController {
         tabBar.addSubview(lineView)
     }
 }
+

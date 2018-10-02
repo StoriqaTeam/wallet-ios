@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol MyWalletRouterInput: class {
-    func showAccountsWith(selectedAccount: Account,
+    func showAccountsWith(accountWatcher: CurrentAccountWatcherProtocol,
                           from fromViewController: UIViewController,
                           tabBar: UITabBarController)
 }

@@ -31,6 +31,6 @@ extension AccountsRouter: AccountsRouterInput {
     }
     
     func showSend(with account: Account) {
-        SendModule.create(account: account).present()
+//        SendModule.create(account: account).present()
     }
 }

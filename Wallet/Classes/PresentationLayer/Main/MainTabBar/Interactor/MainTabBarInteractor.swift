@@ -11,11 +11,19 @@ import Foundation
 
 class MainTabBarInteractor {
     weak var output: MainTabBarInteractorOutput!
+    
+    private let accountWatcher: CurrentAccountWatcherProtocol
+    
+    init(accountWatcher: CurrentAccountWatcherProtocol) {
+        self.accountWatcher = accountWatcher
+    }
 }
 
 
 // MARK: - MainTabBarInteractorInput
 
 extension MainTabBarInteractor: MainTabBarInteractorInput {
-
+    func getAccountWatcher() -> CurrentAccountWatcherProtocol {
+        return accountWatcher
+    }
 }

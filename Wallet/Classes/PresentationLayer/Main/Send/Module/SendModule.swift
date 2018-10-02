@@ -8,7 +8,7 @@ import UIKit
 
 class SendModule {
     
-    class func create(account: Account? = nil) -> SendModuleInput {
+    class func create(accountWatcher: CurrentAccountWatcherProtocol) -> SendModuleInput {
         let router = SendRouter()
         let presenter = SendPresenter()
         
@@ -17,7 +17,9 @@ class SendModule {
         let formatter = CurrencyFormatter()
         let sendProvider = SendTransactionBuilder(converterFactory: converterFactory, currencyFormatter: formatter)
         let fakeAccountsProvider = FakeAccountProvider()
-        let interactor = SendInteractor(sendProvider: sendProvider, accountsProvider: fakeAccountsProvider, account: account)
+        let interactor = SendInteractor(sendProvider: sendProvider,
+                                        accountsProvider: fakeAccountsProvider,
+                                        accountWatcher: accountWatcher)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
         let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController

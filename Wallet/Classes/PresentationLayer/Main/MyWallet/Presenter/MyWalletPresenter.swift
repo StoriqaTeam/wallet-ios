@@ -24,7 +24,9 @@ class MyWalletPresenter {
 extension MyWalletPresenter: MyWalletViewOutput {
     func selectItemAt(index: Int) {
         let selectedAccount = interactor.accountModel(for: index)
-        router.showAccountsWith(selectedAccount: selectedAccount,
+        let accountWatcher = interactor.getAccountWatcher()
+        accountWatcher.setAccount(selectedAccount)
+        router.showAccountsWith(accountWatcher: accountWatcher,
                                 from: view.viewController,
                                 tabBar: mainTabBar)
     }

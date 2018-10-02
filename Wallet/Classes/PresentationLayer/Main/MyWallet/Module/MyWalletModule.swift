@@ -16,34 +16,13 @@ class FakeAccountProvider: AccountsProviderProtocol {
 
 class MyWalletModule {
     
-    class func create() -> MyWalletModuleInput {
-        let router = MyWalletRouter()
-        let presenter = MyWalletPresenter()
-        
-        let fakeAccountsProvider = FakeAccountProvider()
-        let interactor = MyWalletInteractor(accountsProvider: fakeAccountsProvider)
-        
-        let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)
-        let viewController = myWalletSb.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController
-
-        interactor.output = presenter
-
-        viewController.output = presenter
-
-        presenter.view = viewController
-        presenter.router = router
-        presenter.interactor = interactor
-        
-        return presenter
-    }
-    
-    class func create(tabBar: UITabBarController) -> MyWalletModuleInput {
+    class func create(tabBar: UITabBarController, accountWatcher: CurrentAccountWatcherProtocol) -> MyWalletModuleInput {
         let router = MyWalletRouter()
         let presenter = MyWalletPresenter()
         presenter.mainTabBar = tabBar
         
         let fakeAccountsProvider = FakeAccountProvider()
-        let interactor = MyWalletInteractor(accountsProvider: fakeAccountsProvider)
+        let interactor = MyWalletInteractor(accountsProvider: fakeAccountsProvider, accountWatcher: accountWatcher)
         
         let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)
         let viewController = myWalletSb.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController

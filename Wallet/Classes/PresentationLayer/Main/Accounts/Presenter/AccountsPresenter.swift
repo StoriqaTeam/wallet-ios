@@ -100,6 +100,7 @@ extension AccountsPresenter: TransactionsDataManagerDelegate {
     
 }
 
+
 // MARK: - Private methods
 
 extension AccountsPresenter {

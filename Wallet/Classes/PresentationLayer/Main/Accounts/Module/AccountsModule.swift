@@ -27,7 +27,7 @@ class FakeAccountLinker: AccountsLinkerProtocol {
 
 class AccountsModule {
     
-    class func create(account: Account, tabBar: UITabBarController) -> AccountsModuleInput {
+    class func create(accountWatcher: CurrentAccountWatcherProtocol, tabBar: UITabBarController) -> AccountsModuleInput {
         let router = AccountsRouter()
         let presenter = AccountsPresenter()
         presenter.mainTabBar = tabBar
@@ -35,7 +35,7 @@ class AccountsModule {
         let fakeAccountsProvider = FakeAccountProvider()
         let fakeTransactionsProvider = FakeTransactionsProvider()
         let accountLinker = FakeAccountLinker(fakeAccProvider: fakeAccountsProvider, fakeTxProvider: fakeTransactionsProvider)
-        let interactor = AccountsInteractor(accountLinker: accountLinker, account: account)
+        let interactor = AccountsInteractor(accountLinker: accountLinker, accountWatcher: accountWatcher)
     
         let accountsVC = UIStoryboard(name: "Accounts", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "accountsVC") as! AccountsViewController
