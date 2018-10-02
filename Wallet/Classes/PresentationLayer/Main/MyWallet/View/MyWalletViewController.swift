@@ -131,7 +131,8 @@ extension MyWalletViewController: UICollectionViewDataSource {
     
         let account = output.accountModel(for: indexPath)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: accountCellIdentifier, for: indexPath) as! AccountViewCell
-        cell.configWithAccountModel(account)
+        cell.configureWith(account: account)
+        cell.setBackgroundImage(account.imageForType)
         return cell
     }
     

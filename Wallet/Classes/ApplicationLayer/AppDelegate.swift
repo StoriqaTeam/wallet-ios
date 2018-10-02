@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     return true
                 }
                 
-                PasswordRecoveryConfirmModule.create(token: token).present(from: currentController)
+                PasswordRecoveryConfirmModule.create(token: token).present()
             }
         }
         

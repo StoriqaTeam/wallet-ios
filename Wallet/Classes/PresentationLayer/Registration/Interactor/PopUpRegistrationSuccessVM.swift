@@ -17,7 +17,6 @@ class PopUpRegistrationSuccessVM: PopUpViewModelProtocol {
     weak var delegate: PopUpRegistrationSuccessVMDelegate?
     
     init(email: String) {
-        //TODO: image, action
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
                                    title: "email_sent".localized(),
                                    text: "check_email".localized() + email,

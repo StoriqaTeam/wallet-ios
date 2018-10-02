@@ -33,8 +33,10 @@ struct Account {
     let fiatAmount: String
     let holderName: String
     let currency: Currency
+    let cryptoAddress: String
     
     var imageForType: UIImage {
+        //FIXME: заменить подложки
         switch type {
         case .stqBlack, .stq:
             return UIImage(named: "blackCardSTQ")!
@@ -44,6 +46,16 @@ struct Account {
             return UIImage(named: "btcCard")!
         case .eth:
             return UIImage(named: "ethCard")!
+        }
+    }
+    
+    var smallImageForType: UIImage {
+        //FIXME: заменить подложки
+        switch type {
+        case .stqBlack, .stq:
+            return #imageLiteral(resourceName: "smallStqBlackCard")
+        case .stqGold, .btc, .eth:
+            return #imageLiteral(resourceName: "smallEthCard")
         }
     }
     

@@ -12,4 +12,5 @@ import UIKit
 protocol PasswordRecoveryConfirmModuleInput: class {
     var output: PasswordRecoveryConfirmModuleOutput? { get set }
     func present(from viewController: UIViewController)
+    func present()
 }

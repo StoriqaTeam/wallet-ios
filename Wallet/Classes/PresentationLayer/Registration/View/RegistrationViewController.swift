@@ -42,8 +42,6 @@ class RegistrationViewController: UIViewController {
         addHideKeyboardGuesture()
         updateContinueButton()
         setSocialView()
-        
-        //TODO: new icon for agreementTickImageView
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -197,7 +195,7 @@ extension RegistrationViewController {
     
     
     private func setAgreementTintColor() {
-        agreementTickImageView.tintColor = isAcceptedAgreement ? acceptedAgreementColor : nonAcceptedAgreementColor
+        agreementTickImageView.image = isAcceptedAgreement ? #imageLiteral(resourceName: "checkOn") : #imageLiteral(resourceName: "checkOff")
     }
     
     private func restoreSecureFields() {

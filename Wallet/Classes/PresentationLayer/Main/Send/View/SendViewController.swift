@@ -148,13 +148,7 @@ extension SendViewController: UITextFieldDelegate {
 
 extension SendViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let cellY = accountsCollectionView.layoutAttributesForItem(at: IndexPath(row: 0, section: 0))?.frame.origin.y {
-            let scrollOffset = scrollView.contentOffset.y
-            let delta = max(0, scrollOffset - cellY - 12)
-            let alpha = 1 - (max(0, min(0.999, delta / 12)))
-
-            navigationController?.navigationBar.alpha = alpha
-        }
+        setNavBarTransparency()
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -197,6 +191,16 @@ extension SendViewController {
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         gradientView.layer.addSublayer(gradientLayer)
+    }
+    
+    private func setNavBarTransparency() {
+        if let cellY = accountsCollectionView.layoutAttributesForItem(at: IndexPath(row: 0, section: 0))?.frame.origin.y {
+            let scrollOffset = scrollView.contentOffset.y
+            let delta = max(0, scrollOffset - cellY - 12)
+            let alpha = 1 - (max(0, min(0.999, delta / 12)))
+            
+            setNavigationBarAlpha(alpha)
+        }
     }
     
     @objc private func textDidChange(_ notification: Notification) {
