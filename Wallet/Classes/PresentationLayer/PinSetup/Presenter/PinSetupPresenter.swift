@@ -33,8 +33,7 @@ extension PinSetupPresenter: PinSetupViewOutput {
     }
     
     func setPasswordView(in stackView: UIStackView) -> PasswordContainerView  {
-        //TODO: remove hardcode
-        let passView = PasswordContainerView.create(in: stackView, digit: kPasswordDigits, defaultHeight: 450)
+        let passView = PasswordContainerView.create(in: stackView, digit: kPasswordDigits)
         passView.delegate = self
         passView.touchAuthenticationEnabled = false
         passView.tintColor = UIColor.mainBlue
@@ -80,6 +79,7 @@ extension PinSetupPresenter: PinSetupModuleInput {
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
+    
 }
 
 

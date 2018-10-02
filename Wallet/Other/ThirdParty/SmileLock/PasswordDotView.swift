@@ -81,8 +81,8 @@ open class PasswordDotView: UIView {
     fileprivate var direction = false
     open func shakeAnimationWithCompletion(_ completion: @escaping () -> ()) {
         let maxShakeCount = 5
-        let centerX = bounds.midX
-        let centerY = bounds.midY
+        let centerX = frame.midX
+        let centerY = frame.midY
         var duration = 0.10
         var moveX: CGFloat = 5
         
