@@ -50,7 +50,8 @@ class DefaultButton: BaseButton {
         super.layoutSubviews()
         
         if needsShadow {
-            dropShadow(color: enabledBackgroundColor, opacity: 0.6, radius: 10)
+            let offset = CGSize(width: 0, height: 12)
+            dropShadow(color: enabledBackgroundColor, opacity: 0.3, offSet: offset, radius: 10)
         } else {
             //hides shadow
             layer.shadowOpacity = 0

@@ -99,7 +99,7 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
         }
         let converted = currencyConverter.convert(amount: amount, to: currency)
         let formatted = currencyFormatter.getStringFrom(amount: converted, currency: currency)
-        return formatted
+        return "=" + formatted
     }
     
     func getFeeWaitCount() -> Int {
