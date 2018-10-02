@@ -20,6 +20,18 @@ extension UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
+    func setNavigationBarAlpha(_ alpha: CGFloat) {
+        guard let navigationBar = navigationController?.navigationBar else {
+            log.warn("navigationBar is nil")
+            return
+        }
+        let customColor = navigationBar.titleTextAttributes?[NSAttributedStringKey.foregroundColor] as? UIColor
+        let color = customColor ?? UIColor.black
+        let alphaColor = color.withAlphaComponent(alpha)
+        
+        setNavigationBarTextColor(alphaColor)
+    }
+    
     private func setNavigationBarTextColor(_ color: UIColor) {
         guard let navigationBar = navigationController?.navigationBar else {
             log.warn("navigationBar is nil")

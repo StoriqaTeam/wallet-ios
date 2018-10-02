@@ -26,28 +26,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="336" height="198"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOl-f2-zCv">
-                                <rect key="frame" x="16" y="16" width="304" height="166"/>
+                                <rect key="frame" x="16" y="12" width="304" height="174"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000,000,000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrD-1J-cJF">
-                                        <rect key="frame" x="0.0" y="66" width="123.5" height="21"/>
+                                        <rect key="frame" x="0.0" y="74" width="123.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000,000.00 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vR8-mx-wew">
-                                        <rect key="frame" x="0.0" y="90" width="81.5" height="16"/>
+                                        <rect key="frame" x="0.0" y="98" width="81.5" height="16"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOLDER NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wni-z1-Vi4">
-                                        <rect key="frame" x="0.0" y="126" width="93.5" height="16"/>
+                                        <rect key="frame" x="0.0" y="134" width="93.5" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mr Cardholder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0me-vv-UvR">
-                                        <rect key="frame" x="0.0" y="145" width="109.5" height="21"/>
+                                        <rect key="frame" x="0.0" y="153" width="109.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                             <constraint firstAttribute="trailing" secondItem="meN-tH-Zba" secondAttribute="trailing" id="Gfu-8R-kvQ"/>
                             <constraint firstItem="meN-tH-Zba" firstAttribute="top" secondItem="3qc-nx-Ad2" secondAttribute="top" id="QAF-g5-iRL"/>
                             <constraint firstItem="DOl-f2-zCv" firstAttribute="leading" secondItem="3qc-nx-Ad2" secondAttribute="leading" constant="16" id="T4O-lw-WK0"/>
-                            <constraint firstItem="DOl-f2-zCv" firstAttribute="top" secondItem="3qc-nx-Ad2" secondAttribute="top" constant="16" id="gyI-e0-8CD"/>
+                            <constraint firstItem="DOl-f2-zCv" firstAttribute="top" secondItem="3qc-nx-Ad2" secondAttribute="top" constant="12" id="gyI-e0-8CD"/>
                             <constraint firstAttribute="bottom" secondItem="meN-tH-Zba" secondAttribute="bottom" id="ll7-tt-CSy"/>
                             <constraint firstItem="DOl-f2-zCv" firstAttribute="centerY" secondItem="3qc-nx-Ad2" secondAttribute="centerY" id="vmF-A1-peo"/>
                         </constraints>

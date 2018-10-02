@@ -48,7 +48,6 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
-        collectionView.isPagingEnabled = true
         collectionView.collectionViewLayout = collectionFlowLayout
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = true
@@ -61,6 +60,10 @@ extension AccountsPresenter: AccountsViewOutput {
         configureNavBar()
         interactor.setAccountsDataManagerDelegate(self)
         interactor.setTransactionDataManagerDelegate(self)
+    }
+    
+    func willMoveToParentVC() {
+        view.viewController.setDarkTextNavigationBar()
     }
 }
 

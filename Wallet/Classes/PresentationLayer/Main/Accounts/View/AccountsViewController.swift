@@ -41,6 +41,12 @@ class AccountsViewController: UIViewController {
         configureGradientView()
     }
     
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        output.willMoveToParentVC()
+        accountsCollectionView?.clipsToBounds = true
+    }
+    
     
     // MARK: - Actions
 

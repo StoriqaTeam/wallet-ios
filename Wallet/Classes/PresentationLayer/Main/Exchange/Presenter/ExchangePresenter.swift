@@ -35,7 +35,6 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
-        collectionView.isPagingEnabled = true
         collectionView.collectionViewLayout = collectionFlowLayout
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = true

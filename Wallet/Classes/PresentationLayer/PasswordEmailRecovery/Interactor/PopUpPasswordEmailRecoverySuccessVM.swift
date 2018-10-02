@@ -13,12 +13,10 @@ protocol PopUpPasswordEmailRecoverySuccessVMDelegate: class {
 }
 
 class PopUpPasswordEmailRecoverySuccessVM: PopUpViewModelProtocol {
-    //TODO: image, title, text, action
-    
     weak var delegate: PopUpPasswordEmailRecoverySuccessVMDelegate?
     var apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
                                    title: "email_sent".localized(),
-                                   text: "TODO: text",
+                                   text: "check_mail_password_recovery".localized(),
                                    attributedText: nil,
                                    actionButtonTitle: "ok".localized(),
                                    hasCloseButton: false)

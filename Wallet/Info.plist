@@ -16,6 +16,8 @@
             </dict>
         </array>
     </dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Photo library is used to save QR-codes</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
