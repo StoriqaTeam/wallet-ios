@@ -25,8 +25,7 @@ extension DepositPresenter: DepositViewOutput {
     func copyButtonPressed() {
         let address = interactor.getAddress()
         UIPasteboard.general.string = address
-        
-        //TODO: show user that address was copied?
+        view.viewController.showAlert(message: "Address copied to clipboard")
     }
     
     func shareButtonPressed() {

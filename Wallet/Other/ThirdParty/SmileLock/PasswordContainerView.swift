@@ -68,25 +68,6 @@ open class PasswordContainerView: UIView {
     
     open var touchAuthenticationReason = "Authentication is needed to access your account"
     
-    //MARK: AutoLayout
-    open var width: CGFloat = 0 {
-        didSet {
-            self.widthConstraint.constant = width
-        }
-    }
-    
-    // FIXME: - resolve hardcode
-    fileprivate var kDefaultWidth: CGFloat = 261
-    fileprivate var kDefaultHeight: CGFloat = 390
-    fileprivate var widthConstraint: NSLayoutConstraint!
-    
-    fileprivate func configureConstraints() {
-        let ratioConstraint = widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: kDefaultWidth / kDefaultHeight)
-        self.widthConstraint = widthAnchor.constraint(equalToConstant: kDefaultWidth)
-        self.widthConstraint.priority = UILayoutPriority(rawValue: 999)
-        NSLayoutConstraint.activate([ratioConstraint, widthConstraint])
-    }
-    
     //MARK: Init
     open class func create(withDigit digit: Int) -> PasswordContainerView {
         let bundle = Bundle(for: self)
@@ -96,10 +77,8 @@ open class PasswordContainerView: UIView {
         return view
     }
     
-    open class func create(in stackView: UIStackView, digit: Int, defaultWidth: CGFloat = 261, defaultHeight: CGFloat = 390) -> PasswordContainerView {
+    open class func create(in stackView: UIStackView, digit: Int) -> PasswordContainerView {
         let passwordContainerView = create(withDigit: digit)
-        passwordContainerView.kDefaultWidth = defaultWidth
-        passwordContainerView.kDefaultHeight = defaultHeight
         stackView.addArrangedSubview(passwordContainerView)
         return passwordContainerView
     }
@@ -107,7 +86,6 @@ open class PasswordContainerView: UIView {
     //MARK: Life Cycle
     open override func awakeFromNib() {
         super.awakeFromNib()
-        configureConstraints()
         checkInputEmpty()
         
         backgroundColor = .clear

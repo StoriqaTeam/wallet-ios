@@ -19,8 +19,8 @@ open class PasswordInputView: UIView {
     
     let circleView = UIView()
     let button = UIButton()
-    open let label = UILabel()
-    open var labelFont: UIFont?
+    let label = UILabel()
+    var labelFont: UIFont?
     fileprivate var touchUpFlag = true
     fileprivate(set) open var isAnimating = false
     
