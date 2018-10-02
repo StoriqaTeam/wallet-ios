@@ -12,13 +12,17 @@ protocol AccountsDataManagerDelegate: class {
     func currentPageDidChange(_ newIndex: Int)
 }
 
-
 class AccountsDataManager: NSObject {
+    enum CellType {
+        case small
+        case regular
+    }
     
     weak var delegate: AccountsDataManagerDelegate!
     
     private var accountsCollectionView: UICollectionView!
-    private var kAccountCellIdentifier = ""
+    private var cellType: CellType = .regular
+    private let kAccountCellIdentifier = "AccountCell"
     private var indexOfCellBeforeDragging = 0
     private var accounts: [Account]
     
@@ -26,15 +30,22 @@ class AccountsDataManager: NSObject {
         self.accounts = accounts
     }
     
-    func setCollectionView(_ view: UICollectionView, cellIdentifier: String = "AccountViewCell") {
-        kAccountCellIdentifier = cellIdentifier
-        
+    func setCollectionView(_ view: UICollectionView, cellType: CellType = .regular) {
+        self.cellType = cellType
         accountsCollectionView = view
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
         accountsCollectionView.isPagingEnabled = false
         accountsCollectionView.clipsToBounds = false
-        registerXib()
+        
+        let cellIdentifier: String
+        switch cellType {
+        case .small:
+            cellIdentifier = "SmallAccountCell"
+        case .regular:
+            cellIdentifier = "AccountViewCell"
+        }
+        registerXib(identifier: cellIdentifier)
     }
     
     func updateAccounts(_ accounts: [Account]) {
@@ -60,12 +71,19 @@ extension AccountsDataManager: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let account = accounts[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kAccountCellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kAccountCellIdentifier, for: indexPath) as! AccountViewCell
         
-        if let cell = cell as? AccountCellProtocol {
-            cell.configWithAccountModel(account)
-            cell.dropShadow()
+        let backgroundImage: UIImage
+        switch cellType {
+        case .small:
+            backgroundImage = account.smallImageForType
+        case .regular:
+            backgroundImage = account.imageForType
         }
+        
+        cell.configureWith(account: account)
+        cell.setBackgroundImage(backgroundImage)
+        cell.dropShadow()
         
         return cell
     }
@@ -131,8 +149,8 @@ extension AccountsDataManager {
         return safeIndex
     }
     
-    private func registerXib() {
-        let nib = UINib(nibName: kAccountCellIdentifier, bundle: nil)
+    private func registerXib(identifier: String) {
+        let nib = UINib(nibName: identifier, bundle: nil)
         accountsCollectionView.register(nib, forCellWithReuseIdentifier: kAccountCellIdentifier)
     }
 }

@@ -32,7 +32,7 @@ class DepositInteractor {
 // MARK: - DepositInteractorInput
 
 extension DepositInteractor: DepositInteractorInput {
-    func getaAddress() -> String {
+    func getAddress() -> String {
         guard let account = account else {
             return ""
         }
@@ -57,7 +57,7 @@ extension DepositInteractor: DepositInteractorInput {
     func createAccountsDataManager(with collectionView: UICollectionView) {
         let allAccounts = accountsProvider.getAllAccounts()
         let accountsManager = AccountsDataManager(accounts: allAccounts)
-        accountsManager.setCollectionView(collectionView, cellIdentifier: "SmallAccountCell")
+        accountsManager.setCollectionView(collectionView, cellType: .small)
         accountsDataManager = accountsManager
     }
     

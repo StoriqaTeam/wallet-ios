@@ -23,7 +23,7 @@ class DepositPresenter {
 
 extension DepositPresenter: DepositViewOutput {
     func copyButtonPressed() {
-        let address = interactor.getaAddress()
+        let address = interactor.getAddress()
         UIPasteboard.general.string = address
         
         //TODO: show user that address was copied?
@@ -53,7 +53,7 @@ extension DepositPresenter: DepositViewOutput {
         let numberOfPages = interactor.getAccountsCount()
         view.setupInitialState(numberOfPages: numberOfPages)
         
-        let address = interactor.getaAddress()
+        let address = interactor.getAddress()
         view.setAddress(address)
         
         let qrCode = interactor.getQrCodeImage()
@@ -94,7 +94,7 @@ extension DepositPresenter: AccountsDataManagerDelegate {
         interactor.setCurrentAccountWith(index: newIndex)
         view.setNewPage(newIndex)
         
-        let address = interactor.getaAddress()
+        let address = interactor.getAddress()
         view.setAddress(address)
         
         let qrCode = interactor.getQrCodeImage()

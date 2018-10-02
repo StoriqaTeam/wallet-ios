@@ -15,6 +15,6 @@ protocol DepositInteractorInput: class {
     func scrollCollection()
     func getAccountsCount() -> Int
     func setCurrentAccountWith(index: Int)
-    func getaAddress() -> String
+    func getAddress() -> String
     func getQrCodeImage() -> UIImage
 }
