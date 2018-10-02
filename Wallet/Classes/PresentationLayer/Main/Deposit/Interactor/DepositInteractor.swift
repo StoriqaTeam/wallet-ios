@@ -14,17 +14,15 @@ class DepositInteractor {
     private let qrProvider: QRCodeProviderProtocol
     private let accountsProvider: AccountsProviderProtocol
     private var accountsDataManager: AccountsDataManager!
-    private var account: Account?
+    private let accountWatcher: CurrentAccountWatcherProtocol
     
-    init(qrProvider: QRCodeProviderProtocol, accountsProvider: AccountsProviderProtocol, account: Account?) {
+    init(qrProvider: QRCodeProviderProtocol,
+         accountsProvider: AccountsProviderProtocol,
+         accountWatcher: CurrentAccountWatcherProtocol) {
+        
         self.qrProvider = qrProvider
         self.accountsProvider = accountsProvider
-        if let acc = account {
-            self.account = acc
-            return
-        }
-        
-        setInitialAccount()
+        self.accountWatcher = accountWatcher
     }
 }
 
@@ -33,16 +31,15 @@ class DepositInteractor {
 
 extension DepositInteractor: DepositInteractorInput {
     func getAddress() -> String {
-        guard let account = account else {
-            return ""
-        }
-        
-        return account.cryptoAddress
+        let currentAccount = accountWatcher.getAccount()
+        return currentAccount.cryptoAddress
     }
     
     func getQrCodeImage() -> UIImage {
-        guard let addr = account?.cryptoAddress,
-            let qrCode = qrProvider.createQRFromString(addr, size: CGSize(width: 300, height: 300)) else {
+        let currentAddress = accountWatcher.getAccount().cryptoAddress
+        let qrCodeSize = CGSize(width: 300, height: 300)
+        
+        guard let qrCode = qrProvider.createQRFromString(currentAddress, size: qrCodeSize) else {
             return UIImage()
         }
         
@@ -51,7 +48,7 @@ extension DepositInteractor: DepositInteractorInput {
     
     func setCurrentAccountWith(index: Int) {
         let allAccounts = accountsProvider.getAllAccounts()
-        account = allAccounts[index]
+        accountWatcher.setAccount(allAccounts[index])
     }
     
     func createAccountsDataManager(with collectionView: UICollectionView) {
@@ -66,10 +63,8 @@ extension DepositInteractor: DepositInteractorInput {
     }
     
     func scrollCollection() {
-        guard let account = account else {
-            return
-        }
-        let index = resolveAccountIndex(account: account)
+        let currentAccount = accountWatcher.getAccount()
+        let index = resolveAccountIndex(account: currentAccount)
         accountsDataManager.scrollTo(index: index)
     }
     
@@ -83,15 +78,6 @@ extension DepositInteractor: DepositInteractorInput {
 // MARK: - Private methods
 
 extension DepositInteractor {
-    private func setInitialAccount() {
-        let allAccount = accountsProvider.getAllAccounts()
-        if allAccount.count == 0 {
-            account = nil
-            return
-        }
-        
-        account = allAccount[0]
-    }
     
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()

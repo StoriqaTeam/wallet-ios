@@ -10,8 +10,5 @@ import UIKit
 
 
 protocol AccountsRouterInput: class {
-    func showDeposit(with account: Account)
-    func showChange(with account: Account)
-    func showSend(with account: Account)
     func showTransactions(from viewControoler: UIViewController, transactions: [Transaction])
 }

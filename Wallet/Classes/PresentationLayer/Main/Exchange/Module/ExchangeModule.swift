@@ -8,38 +8,14 @@ import UIKit
 
 class ExchangeModule {
     
-    class func create(account: Account) -> ExchangeModuleInput {
+    class func create(accountWatcher: CurrentAccountWatcherProtocol) -> ExchangeModuleInput {
         let router = ExchangeRouter()
         let presenter = ExchangePresenter()
         
         let accountsProvider = FakeAccountProvider()
         let transactionsProvider = FakeTransactionsProvider()
         let accountLinker = FakeAccountLinker(fakeAccProvider: accountsProvider, fakeTxProvider: transactionsProvider)
-        
-        let interactor = ExchangeInteractor(accountsLinker: accountLinker, account: account)
-        
-        let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
-        let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController
-
-        interactor.output = presenter
-
-        viewController.output = presenter
-
-        presenter.view = viewController
-        presenter.router = router
-        presenter.interactor = interactor
-        
-        return presenter
-    }
-    
-    class func create() -> ExchangeModuleInput {
-        let router = ExchangeRouter()
-        let presenter = ExchangePresenter()
-        
-        let accountsProvider = FakeAccountProvider()
-        let transactionsProvider = FakeTransactionsProvider()
-        let accountLinker = FakeAccountLinker(fakeAccProvider: accountsProvider, fakeTxProvider: transactionsProvider)
-        let interactor = ExchangeInteractor(accountsLinker: accountLinker, account: nil)
+        let interactor = ExchangeInteractor(accountsLinker: accountLinker, accountWatcher: accountWatcher)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController

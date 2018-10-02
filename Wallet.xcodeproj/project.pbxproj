@@ -189,6 +189,7 @@
 		A51CB55F2159431200CDC80C /* RoutrButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB55E2159431200CDC80C /* RoutrButton.swift */; };
 		A51CB561215945A200CDC80C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB560215945A200CDC80C /* UIView+Helpers.swift */; };
 		A51CB56321594E4A00CDC80C /* LoadableFromXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */; };
+		A521D4702163716900E5D51C /* CurrentAccountWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */; };
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
@@ -624,6 +625,7 @@
 		A51CB55E2159431200CDC80C /* RoutrButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutrButton.swift; sourceTree = "<group>"; };
 		A51CB560215945A200CDC80C /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableFromXib.swift; sourceTree = "<group>"; };
+		A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAccountWatcher.swift; sourceTree = "<group>"; };
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
@@ -1892,6 +1894,14 @@
 			path = Xibs;
 			sourceTree = "<group>";
 		};
+		A521D46E21636FF900E5D51C /* CurrentAccountWatcher */ = {
+			isa = PBXGroup;
+			children = (
+				A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */,
+			);
+			path = CurrentAccountWatcher;
+			sourceTree = "<group>";
+		};
 		A534883D230884E6416A5516 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -2040,6 +2050,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A521D46E21636FF900E5D51C /* CurrentAccountWatcher */,
 				A5B78236215E33A000EFD1A5 /* AddressResolver */,
 				A5B78206215E22AE00EFD1A5 /* Crypto */,
 				A5B78202215E208C00EFD1A5 /* TransactionProvider */,
@@ -3378,6 +3389,7 @@
 				505F3C485B956B860664837B /* ExchangeModuleInput.swift in Sources */,
 				A5B78213215E25A200EFD1A5 /* Array+Helper.swift in Sources */,
 				32AE32F42A7235157AE8F11C /* ExchangeModuleOutput.swift in Sources */,
+				A521D4702163716900E5D51C /* CurrentAccountWatcher.swift in Sources */,
 				490A73840930B45425B9C531 /* ExchangeModule.swift in Sources */,
 				A51CB54F2158FED500CDC80C /* TransactionDataStoreProvider.swift in Sources */,
 				D5483A7FE6757D0655D72ADE /* DepositViewInput.swift in Sources */,

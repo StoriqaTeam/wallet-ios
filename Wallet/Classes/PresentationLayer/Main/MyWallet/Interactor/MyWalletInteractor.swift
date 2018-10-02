@@ -12,9 +12,12 @@ class MyWalletInteractor {
     weak var output: MyWalletInteractorOutput!
     
     private let accountsProvider: AccountsProviderProtocol
+    private let accountWatcher: CurrentAccountWatcherProtocol
     
-    init(accountsProvider: AccountsProviderProtocol) {
+    
+    init(accountsProvider: AccountsProviderProtocol, accountWatcher: CurrentAccountWatcherProtocol) {
         self.accountsProvider = accountsProvider
+        self.accountWatcher = accountWatcher
     }
 }
 
@@ -22,6 +25,10 @@ class MyWalletInteractor {
 // MARK: - MyWalletInteractorInput
 
 extension MyWalletInteractor: MyWalletInteractorInput {
+    func getAccountWatcher() -> CurrentAccountWatcherProtocol {
+        return accountWatcher
+    }
+    
     
     func accountsCount() -> Int {
         let accounts = accountsProvider.getAllAccounts()

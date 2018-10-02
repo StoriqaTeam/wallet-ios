@@ -14,11 +14,16 @@ class SendInteractor {
     private var accountsDataManager: AccountsDataManager!
     private let accountsProvider: AccountsProviderProtocol
     private let sendProvider: SendTransactionBuilderProtocol
+    private let accountWatcher: CurrentAccountWatcherProtocol
     
-    init(sendProvider: SendTransactionBuilderProtocol, accountsProvider: AccountsProviderProtocol, account: Account? = nil) {
+    init(sendProvider: SendTransactionBuilderProtocol,
+         accountsProvider: AccountsProviderProtocol,
+         accountWatcher: CurrentAccountWatcherProtocol) {
         self.accountsProvider = accountsProvider
         self.sendProvider = sendProvider
+        self.accountWatcher = accountWatcher
         
+        let account = accountWatcher.getAccount()
         setInitialAccount(account: account)
     }
 }
@@ -39,6 +44,7 @@ extension SendInteractor: SendInteractorInput {
     
     func setCurrentAccountWith(index: Int) {
         let allAccounts = accountsProvider.getAllAccounts()
+        accountWatcher.setAccount(allAccounts[index])
         sendProvider.selectedAccount = allAccounts[index]
         
         output.updateAmount(sendProvider.getAmountStr())
@@ -46,7 +52,8 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func scrollCollection() {
-        let index = resolveAccountIndex(account: sendProvider.selectedAccount)
+        let currentAccount = accountWatcher.getAccount()
+        let index = resolveAccountIndex(account: currentAccount)
         accountsDataManager.scrollTo(index: index)
     }
     
@@ -100,9 +107,7 @@ extension SendInteractor {
         return allAccounts.index{$0 == account}!
     }
     
-    private func setInitialAccount(account: Account?) {
-        //TODO: если нет ни одного счёта?
-        let acc = account ?? accountsProvider.getAllAccounts().first
-        self.sendProvider.selectedAccount = acc
+    private func setInitialAccount(account: Account) {
+        self.sendProvider.selectedAccount = account
     }
 }
