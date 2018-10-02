@@ -36,12 +36,13 @@ struct Account {
     let cryptoAddress: String
     
     var imageForType: UIImage {
-        //FIXME: заменить подложки
         switch type {
-        case .stqBlack, .stq:
-            return UIImage(named: "blackCardSTQ")!
+        case .stq:
+            return UIImage(named: "stqCard")!
+        case .stqBlack:
+            return UIImage(named: "stqBlackCard")!
         case .stqGold:
-            return UIImage(named: "goldCardSTQ")!
+            return UIImage(named: "stqGoldCard")!
         case .btc:
             return UIImage(named: "btcCard")!
         case .eth:
@@ -52,20 +53,26 @@ struct Account {
     var smallImageForType: UIImage {
         //FIXME: заменить подложки
         switch type {
-        case .stqBlack, .stq:
-            return #imageLiteral(resourceName: "smallStqBlackCard")
-        case .stqGold, .btc, .eth:
-            return #imageLiteral(resourceName: "smallEthCard")
+        case .stq:
+            return UIImage(named: "smallStqCard")!
+        case .stqBlack:
+            return UIImage(named: "smallStqBlackCard")!
+        case .stqGold:
+            return UIImage(named: "smallStqGoldCard")!
+        case .btc:
+            return UIImage(named: "smallBtcCard")!
+        case .eth:
+            return UIImage(named: "smallEthCard")!
         }
     }
     
     var textColorForType: UIColor {
         switch type {
-        case .stq,
-             .stqBlack,
+        case .stqBlack,
              .stqGold:
             return .white
-        case .eth,
+        case .stq,
+             .eth,
              .btc:
             return .black
         }
