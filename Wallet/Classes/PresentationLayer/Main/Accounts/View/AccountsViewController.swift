@@ -44,6 +44,7 @@ class AccountsViewController: UIViewController {
     override func willMove(toParentViewController parent: UIViewController?) {
         super.willMove(toParentViewController: parent)
         output.willMoveToParentVC()
+        accountsCollectionView?.clipsToBounds = true
     }
     
     
@@ -68,6 +69,7 @@ extension AccountsViewController: AccountsViewInput {
         configureButtons()
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
+        accountsPageControl.clipsToBounds = true
     }
 }
 
