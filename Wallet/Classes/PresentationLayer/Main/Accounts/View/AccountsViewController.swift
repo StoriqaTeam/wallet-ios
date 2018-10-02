@@ -69,7 +69,6 @@ extension AccountsViewController: AccountsViewInput {
         configureButtons()
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
-        accountsPageControl.clipsToBounds = true
     }
 }
 
