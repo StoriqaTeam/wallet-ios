@@ -17,7 +17,6 @@ class PopUpRegistrationFailedVM: PopUpViewModelProtocol {
     weak var delegate: PopUpRegistrationFailedVMDelegate?
     
     init(message: String) {
-        //TODO: image, action
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "generalErrorIcon"),
                                    title: "smth_went_wrong".localized(),
                                    text: message,

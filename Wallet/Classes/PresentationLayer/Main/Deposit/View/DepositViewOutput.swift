@@ -10,5 +10,9 @@ import UIKit
 
 
 protocol DepositViewOutput: class {
-    func viewIsReady()  
+    func viewIsReady()
+    func accountsCollectionView(_ collectionView: UICollectionView)
+    func configureCollections()
+    func copyButtonPressed()
+    func shareButtonPressed()
 }

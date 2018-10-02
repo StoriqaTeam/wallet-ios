@@ -1,32 +1,18 @@
 //
-//  AccountViewCell.swift
+//  SmallAccountCell.swift
 //  Wallet
 //
-//  Created by user on 21.09.2018.
+//  Created by user on 01.10.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-protocol AccountCellProtocol {
-    func configWithAccountModel(_ model: Account)
-    func dropShadow()
-}
-
-extension AccountCellProtocol where Self: UICollectionViewCell {
+class SmallAccountCell: UICollectionViewCell, AccountCellProtocol {
     
-    func dropShadow() {
-        dropShadow(color: .black, opacity: 0.2, offSet: CGSize(width: 10, height: 15), radius: 12, scale: true)
-    }
-    
-}
-
-class AccountViewCell: UICollectionViewCell, AccountCellProtocol {
-
     @IBOutlet private var backgroundImage: UIImageView!
     @IBOutlet private var cryptoAmountLabel: UILabel!
     @IBOutlet private var fiatAmountLabel: UILabel!
-    @IBOutlet private var holderName: UILabel!
     
     @IBOutlet private var labels: [UILabel]!
     
@@ -36,10 +22,9 @@ class AccountViewCell: UICollectionViewCell, AccountCellProtocol {
     }
     
     func configWithAccountModel(_ model: Account) {
-        backgroundImage.image = model.imageForType
+        backgroundImage.image = model.smallImageForType
         cryptoAmountLabel.text = model.cryptoAmount
         fiatAmountLabel.text = model.fiatAmount
-        holderName.text = model.holderName
         
         let color = model.textColorForType
         labels.forEach({ $0.textColor = color })

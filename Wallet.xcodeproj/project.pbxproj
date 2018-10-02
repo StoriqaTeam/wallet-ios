@@ -300,9 +300,11 @@
 		CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBE2153949B009E707E /* PinSetup.storyboard */; };
 		CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
+		CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE976482216252B9000E9336 /* SmallAccountCell.xib */; };
+		CE97648521625AA1000E9336 /* SmallAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97648421625AA1000E9336 /* SmallAccountCell.swift */; };
+		CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976487216263C0000E9336 /* QRCodeProvider.swift */; };
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CED822D4215A796500693B92 /* QRScanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED822D3215A796500693B92 /* QRScanner.storyboard */; };
-		CED822D7215A92F500693B92 /* QRCodeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822D6215A92F500693B92 /* QRCodeValidator.swift */; };
 		CED822DA215B5C0A00693B92 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED822D9215B5C0A00693B92 /* ErrorView.xib */; };
 		CED822DC215B5C1500693B92 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822DB215B5C1500693B92 /* ErrorView.swift */; };
 		CED822DE215B685500693B92 /* PaymentFee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED822DD215B685500693B92 /* PaymentFee.storyboard */; };
@@ -737,9 +739,11 @@
 		CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CE6782F3DF8CA9544D645F0A /* MainTabBarRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarRouter.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
+		CE976482216252B9000E9336 /* SmallAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallAccountCell.xib; sourceTree = "<group>"; };
+		CE97648421625AA1000E9336 /* SmallAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallAccountCell.swift; sourceTree = "<group>"; };
+		CE976487216263C0000E9336 /* QRCodeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeProvider.swift; sourceTree = "<group>"; };
 		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CED822D3215A796500693B92 /* QRScanner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRScanner.storyboard; sourceTree = "<group>"; };
-		CED822D6215A92F500693B92 /* QRCodeValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeValidator.swift; sourceTree = "<group>"; };
 		CED822D9215B5C0A00693B92 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		CED822DB215B5C1500693B92 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CED822DD215B685500693B92 /* PaymentFee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentFee.storyboard; sourceTree = "<group>"; };
@@ -1439,6 +1443,7 @@
 		64FBC30B9ECF5E18F1CAD177 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE97647E21625285000E9336 /* Xib */,
 				C732EBE19CE3E7EE51024672 /* DepositViewInput.swift */,
 				645AA16961B16438A2B53C92 /* DepositViewOutput.swift */,
 				DA382BF2247B3893EBBA5A86 /* DepositViewController.swift */,
@@ -2050,9 +2055,9 @@
 				CE5FAFB0215286B1009E707E /* QuickLaunch */,
 				CEFC9CAC215A13EF00962356 /* DeviceContactsProvider */,
 				CEFC9CB4215A59B200962356 /* SendTransactionBuilder */,
-				CED822D5215A92E600693B92 /* QRCodeValidator */,
 				CED822E1215BC31400693B92 /* CurrencyConverter */,
 				CED822E8215BE07B00693B92 /* CurrencyFormatter */,
+				CE976486216263AA000E9336 /* QRCodeProvider */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -2483,12 +2488,29 @@
 			path = QuickLaunch;
 			sourceTree = "<group>";
 		};
-		CED822D5215A92E600693B92 /* QRCodeValidator */ = {
+		CE97647E21625285000E9336 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				CED822D6215A92F500693B92 /* QRCodeValidator.swift */,
+				CE97647F21625291000E9336 /* SmallAccountCell */,
 			);
-			path = QRCodeValidator;
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		CE97647F21625291000E9336 /* SmallAccountCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE976482216252B9000E9336 /* SmallAccountCell.xib */,
+				CE97648421625AA1000E9336 /* SmallAccountCell.swift */,
+			);
+			path = SmallAccountCell;
+			sourceTree = "<group>";
+		};
+		CE976486216263AA000E9336 /* QRCodeProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE976487216263C0000E9336 /* QRCodeProvider.swift */,
+			);
+			path = QRCodeProvider;
 			sourceTree = "<group>";
 		};
 		CED822D8215B5BEF00693B92 /* ErrorView */ = {
@@ -2951,6 +2973,7 @@
 				CEFC9CB0215A141600962356 /* Receiver.storyboard in Resources */,
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
 				A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */,
+				CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */,
 				A56B4C6C215B879C0017B337 /* CurrencyCell.xib in Resources */,
 				A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */,
 				CEFC9CC1215A5DB600962356 /* SendingHeaderView.xib in Resources */,
@@ -3149,7 +3172,6 @@
 				CEFC9C902154EB7A00962356 /* Account.swift in Sources */,
 				EBA3144E74DD09EC8832E45F /* FirstLaunchInteractor.swift in Sources */,
 				ED225EB78E206616574BF490 /* FirstLaunchRouterInput.swift in Sources */,
-				CED822D7215A92F500693B92 /* QRCodeValidator.swift in Sources */,
 				B5D0A50EC37F23DE647B941B /* FirstLaunchRouter.swift in Sources */,
 				7802FA10023A55BCB10D8538 /* FirstLaunchModuleInput.swift in Sources */,
 				DF3822DC4DAE4101FC197A94 /* FirstLaunchModuleOutput.swift in Sources */,
@@ -3243,6 +3265,7 @@
 				2C2605E9EBCF195BDD25DF7F /* PinQuickLaunchModule.swift in Sources */,
 				CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */,
 				A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */,
+				CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */,
 				E176B44B7388B0331A49C684 /* BiometryQuickLaunchViewInput.swift in Sources */,
 				860E97FA0D267899D0A69A75 /* BiometryQuickLaunchViewOutput.swift in Sources */,
 				42AAFB7B52547D34DE57DDA6 /* BiometryQuickLaunchViewController.swift in Sources */,
@@ -3400,6 +3423,7 @@
 				39E70A41D154A358E0FB7B0D /* QRScannerModuleOutput.swift in Sources */,
 				C8D9A40E5B96755FB71A7946 /* QRScannerModule.swift in Sources */,
 				335037D191E86BBE64FC177F /* PaymentFeeViewInput.swift in Sources */,
+				CE97648521625AA1000E9336 /* SmallAccountCell.swift in Sources */,
 				A5A63DCD4AC3808900D1025C /* PaymentFeeViewOutput.swift in Sources */,
 				2F665A1E2688D3229C38F7B2 /* PaymentFeeViewController.swift in Sources */,
 				F5680734F20F3B633F33DD1B /* PaymentFeePresenter.swift in Sources */,

@@ -61,9 +61,14 @@ extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmInteractorOut
 
 extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmModuleInput {
     
+    func present() {
+        view.present()
+    }
+    
     func present(from viewController: UIViewController) {
         view.presentModal(from: viewController)
     }
+    
 }
 
 

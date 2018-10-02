@@ -46,6 +46,20 @@ enum Device: CGFloat {
         return (size, spacing)
     }
     
+    var accountsCollectionSmallFlowLayout: (size: CGSize, spacing: CGFloat)  {
+        let size: CGSize
+        
+        switch self {
+        case .iPhoneSE:
+            size = CGSize(width: 280, height: 85)
+        default:
+            size = CGSize(width: 336, height: 102)
+        }
+        
+        let spacing = (Constants.Sizes.screenWith - size.width) / 4
+        return (size, spacing)
+    }
+    
     var myWalletCollectionFlowLayout: (size: CGSize, spacing: CGFloat) {
         switch self {
         case .iPhoneSE:

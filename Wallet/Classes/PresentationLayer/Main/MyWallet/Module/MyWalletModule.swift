@@ -7,9 +7,9 @@ import UIKit
 
 class FakeAccountProvider: AccountsProviderProtocol {
     func getAllAccounts() -> [Account] {
-        return [Account(type: .stqBlack, cryptoAmount: "145,678,445.71", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .stq),
-                Account(type: .eth, cryptoAmount: "892.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .eth),
-                Account(type: .btc, cryptoAmount: "123.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .btc)]
+        return [Account(type: .stqBlack, cryptoAmount: "145,678,445.71", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .stq, cryptoAddress: "873ff4678hHGHGghg5csyuiyy5fsndfcc"),
+                Account(type: .eth, cryptoAmount: "892.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .eth, cryptoAddress: "HGghg5csyuiyy5fsndfcc873ff4678hHG"),
+                Account(type: .btc, cryptoAmount: "123.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .btc, cryptoAddress: "yy5fsndfcc873ff4678hHGHGghg5csyui")]
     }
 }
 

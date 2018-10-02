@@ -77,6 +77,7 @@
 "confirm_send" = "Confirm sending money";
 "you_are_going_to_send" = "You are going to send";
 "to" = "to";
+"check_mail_password_recovery" = "Check your mailbox and follow the link to recover your password";
 
 
 //Error constants

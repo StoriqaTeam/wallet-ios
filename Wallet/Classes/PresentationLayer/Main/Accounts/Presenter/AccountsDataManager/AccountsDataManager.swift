@@ -18,7 +18,7 @@ class AccountsDataManager: NSObject {
     weak var delegate: AccountsDataManagerDelegate!
     
     private var accountsCollectionView: UICollectionView!
-    private let kAccountCellIdentifier = "AccountViewCell"
+    private var kAccountCellIdentifier = ""
     private var indexOfCellBeforeDragging = 0
     private var accounts: [Account]
     
@@ -26,11 +26,14 @@ class AccountsDataManager: NSObject {
         self.accounts = accounts
     }
     
-    func setCollectionView(_ view: UICollectionView) {
+    func setCollectionView(_ view: UICollectionView, cellIdentifier: String = "AccountViewCell") {
+        kAccountCellIdentifier = cellIdentifier
+        
         accountsCollectionView = view
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
         accountsCollectionView.isPagingEnabled = false
+        accountsCollectionView.clipsToBounds = false
         registerXib()
     }
     
@@ -57,8 +60,13 @@ extension AccountsDataManager: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let account = accounts[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kAccountCellIdentifier, for: indexPath) as! AccountViewCell
-        cell.configWithAccountModel(account)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kAccountCellIdentifier, for: indexPath)
+        
+        if let cell = cell as? AccountCellProtocol {
+            cell.configWithAccountModel(account)
+            cell.dropShadow()
+        }
+        
         return cell
     }
 }
