@@ -43,7 +43,7 @@ extension ReceiverPresenter: ReceiverViewOutput {
     }
     
     func editButtonPressed() {
-        //TODO: action for edit button?
+        view.popToRoot()
     }
     
     func inputDidChange(_ input: String) {

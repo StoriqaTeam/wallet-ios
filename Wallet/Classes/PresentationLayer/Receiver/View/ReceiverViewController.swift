@@ -99,7 +99,6 @@ extension ReceiverViewController: ReceiverViewInput {
     func setupInitialState(apperance: SendingHeaderData) {
         senderView.setup(apperance: apperance, editBlock: { [weak self] in
             self?.output.editButtonPressed()
-            self?.popToRoot()
         })
     }
 }

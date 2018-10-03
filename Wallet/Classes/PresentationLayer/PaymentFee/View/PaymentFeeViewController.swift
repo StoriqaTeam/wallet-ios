@@ -107,7 +107,6 @@ extension PaymentFeeViewController: PaymentFeeViewInput {
     func setupInitialState(apperance: PaymentFeeScreenData) {
         senderView.setup(apperance: apperance.header) { [weak self] in
             self?.output.editButtonPressed()
-            self?.popToRoot()
         }
         
         addressLabel.text = apperance.address
