@@ -13,15 +13,18 @@ class SendInteractor {
     weak var output: SendInteractorOutput!
     private var accountsDataManager: AccountsDataManager!
     private let accountsProvider: AccountsProviderProtocol
-    private let sendProvider: SendTransactionBuilderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
+    private let sendTransactionBuilder: SendProviderBuilderProtocol
+    private let sendProvider: SendTransactionProvider
     
-    init(sendProvider: SendTransactionBuilderProtocol,
+    init(sendTransactionBuilder: SendProviderBuilderProtocol,
          accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol) {
+        
         self.accountsProvider = accountsProvider
-        self.sendProvider = sendProvider
+        self.sendTransactionBuilder = sendTransactionBuilder
         self.accountWatcher = accountWatcher
+        self.sendProvider = sendTransactionBuilder.build()
         
         let account = accountWatcher.getAccount()
         setInitialAccount(account: account)
@@ -38,15 +41,15 @@ extension SendInteractor: SendInteractorInput {
         return allAccounts.count
     }
     
-    func getTransactionBuilder() -> SendTransactionBuilderProtocol {
-        return sendProvider
+    func getTransactionBuilder() -> SendProviderBuilderProtocol {
+        return sendTransactionBuilder
     }
     
     func setCurrentAccountWith(index: Int) {
         let allAccounts = accountsProvider.getAllAccounts()
         accountWatcher.setAccount(allAccounts[index])
-        sendProvider.selectedAccount = allAccounts[index]
-        
+        let account = allAccounts[index]
+        sendTransactionBuilder.set(account: account)
         output.updateAmount(sendProvider.getAmountStr())
         output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
     }
@@ -58,7 +61,7 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func setReceiverCurrency(_ currency: Currency) {
-        sendProvider.receiverCurrency = currency
+        sendTransactionBuilder.setReceiverCurrency(currency)
         output.updateAmount(sendProvider.getAmountStr())
         output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
     }
