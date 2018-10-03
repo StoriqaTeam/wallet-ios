@@ -16,10 +16,16 @@ class SendPresenter {
     var interactor: SendInteractorInput!
     var router: SendRouterInput!
     
-    private let currencies = [ Currency.stq,
+    private let currencyFormatter: CurrencyFormatterProtocol
+    private let currencies = [
+                               Currency.stq,
                                Currency.btc,
                                Currency.eth,
                                Currency.fiat ]
+    
+    init(currencyFormatter: CurrencyFormatterProtocol) {
+        self.currencyFormatter = currencyFormatter
+    }
 }
 
 
@@ -48,11 +54,15 @@ extension SendPresenter: SendViewOutput {
     }
     
     func getAmountWithCurrency() -> String {
-        return interactor.getAmountWithCurrency()
+        let amount = interactor.getAmount()
+        let currency = interactor.getReceiverCurrency()
+        return getStringfrom(amount: amount, currency: currency)
     }
     
     func getAmountWithoutCurrency() -> String {
-        return interactor.getAmountWithoutCurrency()
+        let amount = interactor.getAmount()
+        let currency = interactor.getReceiverCurrency()
+        return getStringAmountWithoutCurrency(amount: amount, currency: currency)
     }
     
     func viewIsReady() {
@@ -70,6 +80,14 @@ extension SendPresenter: SendViewOutput {
 // MARK: - SendInteractorOutput
 
 extension SendPresenter: SendInteractorOutput {
+    
+    func updateAmount() {
+        let amount = interactor.getAmount()
+        let currency = interactor.getReceiverCurrency()
+        let amountString = getStringfrom(amount: amount, currency: currency)
+        view.updateAmount(amountString)
+    }
+    
     
     func updateAmount(_ amount: String) {
         view.updateAmount(amount)
@@ -142,4 +160,22 @@ extension SendPresenter {
         
         return flowLayout
     }
+    
+    private func getStringfrom(amount: Decimal?, currency: Currency) -> String {
+        guard let amount = amount, !amount.isZero else {
+            return ""
+        }
+        
+        let formatted = currencyFormatter.getStringFrom(amount: amount, currency: currency)
+        return formatted
+    }
+    
+    private func getStringAmountWithoutCurrency(amount: Decimal?, currency: Currency) -> String {
+        guard let amount = amount, !amount.isZero else {
+            return ""
+        }
+        
+        return amount.description
+    }
+    
 }
