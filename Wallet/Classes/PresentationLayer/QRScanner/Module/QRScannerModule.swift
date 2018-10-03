@@ -8,7 +8,7 @@ import UIKit
 
 class QRScannerModule {
     
-    class func create(sendProvider: SendTransactionBuilderProtocol) -> QRScannerModuleInput {
+    class func create(sendTransactionBuilder: SendProviderBuilderProtocol) -> QRScannerModuleInput {
         let router = QRScannerRouter()
         let presenter = QRScannerPresenter()
         
@@ -18,7 +18,7 @@ class QRScannerModule {
         let addressResolver = CryptoAddressResolver(btcAddressValidator: btcValidator,
                                                     ethAddressValidator: ethValidator)
         
-        let interactor = QRScannerInteractor(sendProvider: sendProvider,
+        let interactor = QRScannerInteractor(sendTransactionBuilder: sendTransactionBuilder,
                                              addressResolver: addressResolver)
         
         let loginSb = UIStoryboard(name: "QRScanner", bundle: nil)

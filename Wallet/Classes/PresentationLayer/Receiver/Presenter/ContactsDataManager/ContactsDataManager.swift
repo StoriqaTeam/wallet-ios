@@ -30,7 +30,6 @@ class ContactsDataManager: NSObject {
     
     func updateContacts(_ contacts: [ContactsSection]) {
         self.contacts = contacts
-        
         self.tableView.backgroundView = nil
         self.tableView.reloadData()
     }

@@ -12,13 +12,12 @@ protocol QRScannerDelegate: class {
     func didScanAddress(_ address: String)
 }
 
-protocol SendTransactionBuilderProtocol: class {
-    var scanDelegate: QRScannerDelegate? { set get }
-    var selectedAccount: Account! { set get }
-    var receiverCurrency: Currency! { set get }
-    var amount: Decimal! { set get }
-    var paymentFee: Decimal! { get }
-    var opponentType: OpponentType! { get }
+protocol SendTransactionProviderProtocol: class {
+    
+    var amount: Decimal! { get }
+    var paymentFee: Decimal { get }
+    var opponentType: OpponentType { get }
+    var receiverCurrency: Currency { get }
     
     func getReceiverName() -> String
     func getAmountStr() -> String
@@ -29,28 +28,28 @@ protocol SendTransactionBuilderProtocol: class {
     func getSubtotal() -> String
     func isEnoughFunds() -> Bool
     func createTransaction() -> Transaction
-    
-    func setScannedAddress(_ address: String)
-    func setContact(_ contact: Contact)
-    func setPaymentFee(index: Int)
 }
 
-class SendTransactionBuilder: SendTransactionBuilderProtocol {
+class SendTransactionProvider: SendTransactionProviderProtocol {
+    
     weak var scanDelegate: QRScannerDelegate?
     
-    var selectedAccount: Account!
-    var receiverCurrency: Currency! {
+    var selectedAccount: Account
+    
+    var receiverCurrency: Currency {
         didSet {
             updateConverter()
         }
     }
+    
     var amount: Decimal!
-    var paymentFee: Decimal!
-    var opponentType: OpponentType!
+    var paymentFee: Decimal
+    var opponentType: OpponentType
     
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
     private var currencyConverter: CurrencyConverterProtocol!
+    private let accountProvider: AccountsProviderProtocol
     
     //FIXME: stub
     private var feeWait: [Decimal: String] = [1: "10",
@@ -60,14 +59,24 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
                                               5: "6",
                                               6: "5"]
     
-    init(converterFactory: CurrecncyConverterFactoryProtocol, currencyFormatter: CurrencyFormatterProtocol) {
+    init(converterFactory: CurrecncyConverterFactoryProtocol,
+         currencyFormatter: CurrencyFormatterProtocol,
+         accountProvider: AccountsProviderProtocol) {
+        
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
+        
+        // default build
+        self.paymentFee = 0
+        self.opponentType = .address(address: "default")
+        self.accountProvider = accountProvider
+        self.selectedAccount = accountProvider.getAllAccounts().first!
+        self.receiverCurrency = .btc
     }
     
     func getReceiverName() -> String {
         //FIXME: stub
-        switch opponentType! {
+        switch opponentType {
         case .contact(let contact):
             return contact.name
         default:
@@ -76,8 +85,7 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
     }
     
     func getAmountStr() -> String {
-        guard let amount = amount, !amount.isZero,
-            let receiverCurrency = receiverCurrency else {
+        guard let amount = amount, !amount.isZero else {
                 return ""
         }
         
@@ -93,10 +101,11 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
     }
     
     func getAmountInTransactionCurrencyStr() -> String {
-        guard let amount = amount, !amount.isZero,
-            let currency = selectedAccount?.currency else {
+        guard let amount = amount, !amount.isZero else {
                 return ""
         }
+        
+        let currency = selectedAccount.currency
         let converted = currencyConverter.convert(amount: amount, to: currency)
         let formatted = currencyFormatter.getStringFrom(amount: converted, currency: currency)
         return "=" + formatted
@@ -104,20 +113,6 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
     
     func getFeeWaitCount() -> Int {
         return feeWait.count
-    }
-    
-    func setScannedAddress(_ address: String) {
-        opponentType = OpponentType.address(address: address)
-        scanDelegate?.didScanAddress(address)
-    }
-    
-    func setContact(_ contact: Contact) {
-        opponentType = OpponentType.contact(contact: contact)
-    }
-    
-    func setPaymentFee(index: Int) {
-        let paymentFeeValues: [Decimal] = Array(feeWait.keys).sorted()
-        paymentFee = paymentFeeValues[index]
     }
     
     func getFeeAndWait() -> (fee: String, wait: String) {
@@ -158,7 +153,10 @@ class SendTransactionBuilder: SendTransactionBuilderProtocol {
     
 }
 
-extension SendTransactionBuilder {
+
+// MARK: - Private methods
+
+extension SendTransactionProvider {
     private func updateConverter() {
         currencyConverter = converterFactory.createConverter(from: receiverCurrency)
     }

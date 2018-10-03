@@ -46,7 +46,7 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
     }
     
     func editButtonPressed() {
-        //TODO: edit button action
+        view.popToRoot()
     }
 
     func viewIsReady() {

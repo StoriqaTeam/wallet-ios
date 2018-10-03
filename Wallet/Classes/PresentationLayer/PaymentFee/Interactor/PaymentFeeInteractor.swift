@@ -12,10 +12,12 @@ import Foundation
 class PaymentFeeInteractor {
     weak var output: PaymentFeeInteractorOutput!
     
-    private let sendProvider: SendTransactionBuilderProtocol
+    private let sendTransactionBuilder: SendProviderBuilderProtocol
+    private let sendProvider: SendTransactionProviderProtocol
     
-    init(sendProvider: SendTransactionBuilderProtocol) {
-        self.sendProvider = sendProvider
+    init(sendTransactionBuilder: SendProviderBuilderProtocol) {
+        self.sendTransactionBuilder = sendTransactionBuilder
+        self.sendProvider = sendTransactionBuilder.build()
     }
     
 }
@@ -31,7 +33,7 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
     func getAddress() -> String {
         let address: String
         
-        switch sendProvider.opponentType! {
+        switch sendProvider.opponentType {
         case .contact:
             //TODO: будем получать?
             address = "test address"
@@ -52,15 +54,15 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
     }
     
     func setPaymentFee(index: Int) {
-        sendProvider.setPaymentFee(index: index)
+        sendTransactionBuilder.setPaymentFee(index: index)
     }
     
     func getFeeAndWait() -> (fee: String, wait: String) {
         return sendProvider.getFeeAndWait()
     }
     
-    func getSendTransactionBuilder() -> SendTransactionBuilderProtocol {
-        return sendProvider
+    func getSendTransactionBuilder() -> SendProviderBuilderProtocol {
+        return sendTransactionBuilder
     }
     
     func getPaymentFeeScreenData() -> PaymentFeeScreenData {
@@ -70,7 +72,7 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
                                        currencyImage: sendProvider.receiverCurrency.mediumImage)
         let address: String
         
-        switch sendProvider.opponentType! {
+        switch sendProvider.opponentType {
         case .contact:
             //TODO: будем получать?
             address = "test address"

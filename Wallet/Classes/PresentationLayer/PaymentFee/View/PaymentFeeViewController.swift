@@ -96,6 +96,7 @@ extension PaymentFeeViewController: PaymentFeeViewInput {
         senderView.setup(apperance: apperance.header) { [weak self] in
             self?.output.editButtonPressed()
         }
+        
         addressLabel.text = apperance.address
         receiverLabel.text = apperance.receiverName
         paymentFeeSlider.paymentFeeValuesCount = apperance.paymentFeeValuesCount

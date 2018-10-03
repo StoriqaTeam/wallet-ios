@@ -14,9 +14,10 @@ protocol ReceiverInteractorInput: class {
     func createContactsDataManager(with tableView: UITableView)
     func setContactsDataManagerDelegate(_ delegate: ContactsDataManagerDelegate)
     func searchContact(text: String)
-    func getSendTransactionBuilder() -> SendTransactionBuilderProtocol
+    func getSendTransactionBuilder() -> SendProviderBuilderProtocol 
     func setScannedDelegate(_ delegate: QRScannerDelegate)
     func setContact(_ contact: Contact)
     func getHeaderApperance() -> SendingHeaderData
+    func getContact() -> [Contact]
     
 }

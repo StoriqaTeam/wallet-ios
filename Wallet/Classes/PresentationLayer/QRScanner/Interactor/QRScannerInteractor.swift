@@ -13,12 +13,12 @@ import AVFoundation
 class QRScannerInteractor {
     weak var output: QRScannerInteractorOutput!
     
-    private let sendProvider: SendTransactionBuilderProtocol
+    private let sendTransactionBuilder: SendProviderBuilderProtocol
     private let addressResolver: CryptoAddressResolverProtocol
 
     
-    init(sendProvider: SendTransactionBuilderProtocol, addressResolver: CryptoAddressResolverProtocol) {
-        self.sendProvider = sendProvider
+    init(sendTransactionBuilder: SendProviderBuilderProtocol, addressResolver: CryptoAddressResolverProtocol) {
+        self.sendTransactionBuilder = sendTransactionBuilder
         self.addressResolver = addressResolver
     }
     
@@ -34,8 +34,7 @@ extension QRScannerInteractor: QRScannerInteractorInput {
     }
     
     func setScannedAddress(_ address: String) {
-        
-        sendProvider.setScannedAddress(address)
+        sendTransactionBuilder.setScannedAddress(address)
     }
     
 }

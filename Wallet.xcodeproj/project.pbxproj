@@ -190,6 +190,8 @@
 		A51CB561215945A200CDC80C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB560215945A200CDC80C /* UIView+Helpers.swift */; };
 		A51CB56321594E4A00CDC80C /* LoadableFromXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */; };
 		A521D4702163716900E5D51C /* CurrentAccountWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */; };
+		A52C66A12163C90B0073071E /* SendProviderBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66A02163C90B0073071E /* SendProviderBuilderProtocol.swift */; };
+		A52C66A72164C1450073071E /* SendTransactionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66A62164C1450073071E /* SendTransactionBuilder.swift */; };
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
@@ -332,7 +334,7 @@
 		CEFC9CAE215A140800962356 /* DeviceContactsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CAD215A140800962356 /* DeviceContactsProvider.swift */; };
 		CEFC9CB0215A141600962356 /* Receiver.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9CAF215A141600962356 /* Receiver.storyboard */; };
 		CEFC9CB3215A182E00962356 /* ContactsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CB2215A182E00962356 /* ContactsDataManager.swift */; };
-		CEFC9CB6215A59E700962356 /* SendTransactionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CB5215A59E700962356 /* SendTransactionBuilder.swift */; };
+		CEFC9CB6215A59E700962356 /* SendTransactionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CB5215A59E700962356 /* SendTransactionProvider.swift */; };
 		CEFC9CBA215A5BE400962356 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CB8215A5BE400962356 /* ContactCell.swift */; };
 		CEFC9CBB215A5BE400962356 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9CB9215A5BE400962356 /* ContactCell.xib */; };
 		CEFC9CBF215A5DA600962356 /* SendingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CBE215A5DA600962356 /* SendingHeaderView.swift */; };
@@ -627,6 +629,8 @@
 		A51CB560215945A200CDC80C /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableFromXib.swift; sourceTree = "<group>"; };
 		A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAccountWatcher.swift; sourceTree = "<group>"; };
+		A52C66A02163C90B0073071E /* SendProviderBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendProviderBuilderProtocol.swift; sourceTree = "<group>"; };
+		A52C66A62164C1450073071E /* SendTransactionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionBuilder.swift; sourceTree = "<group>"; };
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
@@ -774,7 +778,7 @@
 		CEFC9CAD215A140800962356 /* DeviceContactsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceContactsProvider.swift; sourceTree = "<group>"; };
 		CEFC9CAF215A141600962356 /* Receiver.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Receiver.storyboard; sourceTree = "<group>"; };
 		CEFC9CB2215A182E00962356 /* ContactsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDataManager.swift; sourceTree = "<group>"; };
-		CEFC9CB5215A59E700962356 /* SendTransactionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionBuilder.swift; sourceTree = "<group>"; };
+		CEFC9CB5215A59E700962356 /* SendTransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionProvider.swift; sourceTree = "<group>"; };
 		CEFC9CB8215A5BE400962356 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		CEFC9CB9215A5BE400962356 /* ContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
 		CEFC9CBE215A5DA600962356 /* SendingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingHeaderView.swift; sourceTree = "<group>"; };
@@ -1905,6 +1909,15 @@
 			path = CurrentAccountWatcher;
 			sourceTree = "<group>";
 		};
+		A52C66A82164C16C0073071E /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				A52C66A02163C90B0073071E /* SendProviderBuilderProtocol.swift */,
+				A52C66A62164C1450073071E /* SendTransactionBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		A534883D230884E6416A5516 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -2069,7 +2082,7 @@
 				CE5FAF9C21512965009E707E /* RegistrationFormValidaton */,
 				CE5FAFB0215286B1009E707E /* QuickLaunch */,
 				CEFC9CAC215A13EF00962356 /* DeviceContactsProvider */,
-				CEFC9CB4215A59B200962356 /* SendTransactionBuilder */,
+				CEFC9CB4215A59B200962356 /* SendTransactionProvider */,
 				CED822E1215BC31400693B92 /* CurrencyConverter */,
 				CED822E8215BE07B00693B92 /* CurrencyFormatter */,
 				CE976486216263AA000E9336 /* QRCodeProvider */,
@@ -2631,12 +2644,13 @@
 			path = ContactsDataManager;
 			sourceTree = "<group>";
 		};
-		CEFC9CB4215A59B200962356 /* SendTransactionBuilder */ = {
+		CEFC9CB4215A59B200962356 /* SendTransactionProvider */ = {
 			isa = PBXGroup;
 			children = (
-				CEFC9CB5215A59E700962356 /* SendTransactionBuilder.swift */,
+				A52C66A82164C16C0073071E /* Builder */,
+				CEFC9CB5215A59E700962356 /* SendTransactionProvider.swift */,
 			);
-			path = SendTransactionBuilder;
+			path = SendTransactionProvider;
 			sourceTree = "<group>";
 		};
 		CEFC9CB7215A5BA700962356 /* Xib */ = {
@@ -3404,6 +3418,7 @@
 				A521D4702163716900E5D51C /* CurrentAccountWatcher.swift in Sources */,
 				490A73840930B45425B9C531 /* ExchangeModule.swift in Sources */,
 				A51CB54F2158FED500CDC80C /* TransactionDataStoreProvider.swift in Sources */,
+				A52C66A12163C90B0073071E /* SendProviderBuilderProtocol.swift in Sources */,
 				D5483A7FE6757D0655D72ADE /* DepositViewInput.swift in Sources */,
 				A56B4C69215B84430017B337 /* WalletsDataManager.swift in Sources */,
 				F6FFC06886618EE0C23D164A /* DepositViewOutput.swift in Sources */,
@@ -3431,8 +3446,9 @@
 				CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */,
 				A94569B43B0A5C670A352940 /* SettingsRouter.swift in Sources */,
 				028B7BF74591C0783429D6F3 /* SettingsModuleInput.swift in Sources */,
+				A52C66A72164C1450073071E /* SendTransactionBuilder.swift in Sources */,
 				B8D4D58E13E50746B516D91C /* SettingsModuleOutput.swift in Sources */,
-				CEFC9CB6215A59E700962356 /* SendTransactionBuilder.swift in Sources */,
+				CEFC9CB6215A59E700962356 /* SendTransactionProvider.swift in Sources */,
 				A51CB5552158FF6300CDC80C /* AccountsLinker.swift in Sources */,
 				FD150ED3C6B8A12165E57D93 /* SettingsModule.swift in Sources */,
 				6C058C8AD6F82CA0A27040AC /* AccountsViewInput.swift in Sources */,

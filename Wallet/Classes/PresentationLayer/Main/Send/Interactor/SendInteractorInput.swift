@@ -24,5 +24,5 @@ protocol SendInteractorInput: class {
     func setCurrentAccountWith(index: Int)
     func isFormValid() -> Bool
     
-    func getTransactionBuilder() -> SendTransactionBuilderProtocol
+    func getTransactionBuilder() -> SendProviderBuilderProtocol
 }
