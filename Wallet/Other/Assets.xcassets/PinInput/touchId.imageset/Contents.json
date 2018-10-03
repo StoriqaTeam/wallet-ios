@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "bitmap.png",
       "scale" : "1x"
     },
     {

@@ -12,8 +12,19 @@ import Foundation
 protocol ExchangeInteractorInput: class {
     func createAccountsDataManager(with collectionView: UICollectionView)
     func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate)
-    func createWalletsDataManager(with tableView: UITableView)
-    func setWalletsDataManagerDelegate(_ delegate: WalletsDataManagerDelegate)
     func scrollCollection()
+    
     func getAccountsCount() -> Int
+    func getPaymentFeeValuesCountCount() -> Int
+    
+    func getAmount() -> Decimal
+    func getAccountCurrency() -> Currency
+    func getRecepientCurrency() -> Currency
+    func getRecepientAccounts() -> [Account]
+    
+    func setCurrentAccount(index: Int)
+    func setRecepientAccount(index: Int)
+    func setAmount(_ amount: Decimal)
+    func setPaymentFee(index: Int)
+    
 }

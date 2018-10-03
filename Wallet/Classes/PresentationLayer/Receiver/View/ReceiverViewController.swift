@@ -44,18 +44,6 @@ class ReceiverViewController: UIViewController {
         output.willMoveToParentVC()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(textDidChange(_:)),
-                                               name: Notification.Name.UITextFieldTextDidChange,
-                                               object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     private func configInterface() {
         title = "receiver".localized()
         
@@ -67,6 +55,10 @@ class ReceiverViewController: UIViewController {
     }
     
     // MARK: Actions
+    
+    @IBAction private func textDidChange(_ sender: UITextField) {
+        output.inputDidChange(sender.text ?? "")
+    }
     
     @IBAction private func scanButtonPressed() {
         output.scanButtonPressed()
@@ -106,10 +98,6 @@ extension ReceiverViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.largeTitleDisplayMode = .never
         setDarkTextNavigationBar()
-    }
-    
-    @objc private func textDidChange(_ notification: Notification) {
-        output.inputDidChange(inputTextField.text ?? "")
     }
     
 }

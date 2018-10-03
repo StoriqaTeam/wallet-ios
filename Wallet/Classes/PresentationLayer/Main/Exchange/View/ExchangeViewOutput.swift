@@ -12,6 +12,15 @@ import UIKit
 protocol ExchangeViewOutput: class {
     func viewIsReady()
     func accountsCollectionView(_ collectionView: UICollectionView)
-    func walletsTableView(_ tableView: UITableView)
     func configureCollections()
+    
+    func isValidAmount(_ amount: String) -> Bool
+    func amountChanged(_ amount: String)
+    func amountDidBeginEditing()
+    func amountDidEndEditing()
+    
+    func newFeeSelected(_ index: Int)
+    
+    func recepientAccountPressed()
+    func exchangeButtonPressed()
 }

@@ -16,22 +16,35 @@ class ExchangePresenter {
     var interactor: ExchangeInteractorInput!
     var router: ExchangeRouterInput!
     
+    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let currencyFormatter: CurrencyFormatterProtocol
+    private var currencyConverter: CurrencyConverterProtocol!
+    
+    init(converterFactory: CurrecncyConverterFactoryProtocol,
+         currencyFormatter: CurrencyFormatterProtocol) {
+        self.converterFactory = converterFactory
+        self.currencyFormatter = currencyFormatter
+    }
 }
 
 
 // MARK: - ExchangeViewOutput
 
 extension ExchangePresenter: ExchangeViewOutput {
-    func configureCollections() {
-        interactor.scrollCollection()
-    }
     
     func viewIsReady() {
         let numberOfPages = interactor.getAccountsCount()
-        view.setupInitialState(numberOfPages: numberOfPages)
+        let paymentFeeValuesCount = interactor.getPaymentFeeValuesCountCount()
+        view.setupInitialState(numberOfPages: numberOfPages, paymentFeeValuesCount: paymentFeeValuesCount)
         configureNavBar()
+        
         interactor.setAccountsDataManagerDelegate(self)
-        interactor.setWalletsDataManagerDelegate(self)
+        
+        // Default values
+        interactor.setCurrentAccount(index: 0)
+        interactor.setRecepientAccount(index: 0)
+        interactor.setPaymentFee(index: 0)
+        interactor.setAmount(0)
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -41,17 +54,128 @@ extension ExchangePresenter: ExchangeViewOutput {
         interactor.createAccountsDataManager(with: collectionView)
     }
     
-    func walletsTableView(_ tableView: UITableView) {
-        interactor.createWalletsDataManager(with: tableView)
+    func configureCollections() {
+        interactor.scrollCollection()
     }
-
+    
+    func isValidAmount(_ amount: String) -> Bool {
+        return amount.isEmpty || amount == Locale.current.decimalSeparator || amount.isValidDecimal()
+    }
+    
+    func amountChanged(_ amount: String) {
+        interactor.setAmount(amount.decimalValue())
+    }
+    
+    func amountDidBeginEditing() {
+        let amount = interactor.getAmount()
+        
+        if amount.isZero {
+            view.setAmount("")
+        } else {
+            view.setAmount(amount.description)
+        }
+    }
+    
+    func amountDidEndEditing() {
+        let amount = interactor.getAmount()
+        let currency = interactor.getRecepientCurrency()
+        updateAmount(amount, currency: currency)
+    }
+    
+    func newFeeSelected(_ index: Int) {
+        interactor.setPaymentFee(index: index)
+    }
+    
+    func recepientAccountPressed() {
+        //FIXME: - stub
+        let accounts = interactor.getRecepientAccounts()
+        
+        let alertController = UIAlertController()
+        
+        for (index, acc) in accounts.enumerated() {
+            let image = acc.currency.smallImage
+            let action = UIAlertAction(title: acc.accountName, style: .default) {[weak self] (action) in
+                self?.interactor.setRecepientAccount(index: index)
+            }
+            action.setValue(image, forKey: "image")
+            alertController.addAction(action)
+        }
+        
+        alertController.view.tintColor = UIColor.mainBlue
+        view.viewController.present(alertController, animated: true, completion: nil)
+    }
+    
+    func exchangeButtonPressed() {
+        //TODO: exchangeButtonPressed
+    }
+    
 }
 
 
 // MARK: - ExchangeInteractorOutput
 
 extension ExchangePresenter: ExchangeInteractorOutput {
-
+    
+    func updateRecepientAccount(_ account: Account) {
+        currencyConverter = converterFactory.createConverter(from: account.currency)
+        view.setRecepientAccount(account.accountName)
+    }
+    
+    func updateAmount(_ amount: Decimal, currency: Currency) {
+        guard !amount.isZero else {
+            view.setAmount("")
+            return
+        }
+        
+        let formatted = currencyFormatter.getStringFrom(amount: amount, currency: currency)
+        view.setAmount(formatted)
+    }
+    
+    func convertAmount(_ amount: Decimal, to currency: Currency) {
+        guard !amount.isZero else {
+            view.setConvertedAmount("")
+            return
+        }
+        
+        let converted = currencyConverter.convert(amount: amount, to: currency)
+        let formatted = currencyFormatter.getStringFrom(amount: converted, currency: currency)
+        view.setConvertedAmount("=" + formatted)
+    }
+    
+    func updatePaymentFee(_ fee: Decimal) {
+        let currency = interactor.getAccountCurrency()
+        let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency)
+        view.setPaymentFee(formatted)
+    }
+    
+    func updatePaymentFees(count: Int, selected: Int) {
+        view.setPaymentFee(count: count, value: selected)
+    }
+    
+    func updateMedianWait(_ wait: Decimal) {
+        let waitStr = wait.description + "s"
+        view.setMedianWait(waitStr)
+    }
+    
+    func updateTotal(_ total: Decimal, accountCurrency: Currency) {
+        guard !total.isZero else {
+            view.setSubtotal("")
+            return
+        }
+        
+        let formatted = currencyFormatter.getStringFrom(amount: total, currency: accountCurrency)
+        view.setSubtotal(formatted)
+    }
+    
+    func updateIsEnoughFunds(_ enough: Bool) {
+        view.setErrorHidden(enough)
+    }
+    
+    func updateFormIsValid(_ valid: Bool) {
+        view.setButtonEnabled(valid)
+    }
+    
+    
 }
 
 
@@ -76,16 +200,8 @@ extension ExchangePresenter: ExchangeModuleInput {
 
 extension ExchangePresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
+        interactor.setCurrentAccount(index: newIndex)
         view.setNewPage(newIndex)
-    }
-}
-
-
-// MARK: - WalletsDataManagerDelegate
-
-extension ExchangePresenter: WalletsDataManagerDelegate {
-    func chooseWallet() {
-        view.viewController.showAlert(title: "", message: "User choose wallet")
     }
 }
 
@@ -94,7 +210,7 @@ extension ExchangePresenter: WalletsDataManagerDelegate {
 
 extension ExchangePresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.accountsCollectionFlowLayout
+        let deviceLayout = Device.model.accountsCollectionSmallFlowLayout
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing
@@ -111,5 +227,5 @@ extension ExchangePresenter {
         view.viewController.setWhiteTextNavigationBar()
         view.viewController.navigationController?.navigationBar.topItem?.title = "Exchange"
     }
-
+    
 }

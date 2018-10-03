@@ -91,13 +91,7 @@ extension AccountsViewController {
     }
     
     private func configureGradientView() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [ UIColor(red: 0.2549019608, green: 0.7176470588, blue: 0.9568627451, alpha: 1).cgColor,
-                                 UIColor(red: 0.1764705882, green: 0.3921568627, blue: 0.7607843137, alpha: 1).cgColor ]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientView.layer.addSublayer(gradientLayer)
+        gradientView.accountsHeaderGradientView()
     }
 }
 

@@ -29,7 +29,7 @@ class PaymentFeeViewController: UIViewController {
     @IBOutlet private var receiverLabel: UILabel!
     @IBOutlet private var paymentFeeTitleLabel: UILabel!
     @IBOutlet private var paymentFeeLabel: UILabel!
-    @IBOutlet private var paymentFeeSlider: UISlider!
+    @IBOutlet private var paymentFeeSlider: StepSlider!
     @IBOutlet private var paymentFeeLowLabel: UILabel!
     @IBOutlet private var paymentFeeMediumLabel: UILabel!
     @IBOutlet private var paymentFeeHighLabel: UILabel!
@@ -43,16 +43,6 @@ class PaymentFeeViewController: UIViewController {
     
     // MARK: Variables
     
-    private var paymentFeeValuesCount: Int! {
-        didSet {
-            if paymentFeeValuesCount > 1 {
-                stepLength = 1.0 / Float(paymentFeeValuesCount - 1)
-            } else {
-                stepLength = 1
-            }
-        }
-    }
-    private var stepLength: Float = 1
     private var currentSliderStep = 0 {
         didSet {
             if oldValue != currentSliderStep {
@@ -76,10 +66,8 @@ class PaymentFeeViewController: UIViewController {
     
     // MARK: IBActions
     
-    @IBAction func sliderMoved(_ sender: UISlider) {
-        let step = Int(round(sender.value / stepLength))
-        sender.setValue(Float(step) * stepLength, animated: false)
-        currentSliderStep = step
+    @IBAction func sliderMoved(_ sender: StepSlider) {
+        currentSliderStep = sender.currentSliderStep
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
@@ -110,7 +98,7 @@ extension PaymentFeeViewController: PaymentFeeViewInput {
         }
         addressLabel.text = apperance.address
         receiverLabel.text = apperance.receiverName
-        paymentFeeValuesCount = apperance.paymentFeeValuesCount
+        paymentFeeSlider.paymentFeeValuesCount = apperance.paymentFeeValuesCount
         
         paymentFeeSlider.setValue(0, animated: false)
         updateSelectedFee()
@@ -185,13 +173,8 @@ extension PaymentFeeViewController {
         paymentFeeHighLabel.textColor = UIColor.captionGrey
         
         errorLabel.textColor = UIColor.errorRed
-        
-        paymentFeeSlider.thumbTintColor = UIColor.mainBlue
-        paymentFeeSlider.minimumTrackTintColor = UIColor.lightGray
-        paymentFeeSlider.maximumTrackTintColor = UIColor.lightGray
-        
+  
         errorLabel.isHidden = true
         sendButton.isHidden = false
     }
-    
 }

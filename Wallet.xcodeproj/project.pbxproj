@@ -286,6 +286,7 @@
 		CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */; };
 		CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */; };
 		CE526C68212471CE00A2EED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C67212471CE00A2EED2 /* Constants.swift */; };
+		CE57C6902164A57400696FF7 /* StepSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57C68F2164A57400696FF7 /* StepSlider.swift */; };
 		CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */; };
 		CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAF97215104B4009E707E /* Registration.storyboard */; };
 		CE5FAF9F215129A6009E707E /* RegistrationFormValidatonProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF9E215129A6009E707E /* RegistrationFormValidatonProvider.swift */; };
@@ -726,6 +727,7 @@
 		CE526C3F212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CE526C67212471CE00A2EED2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CE57C68F2164A57400696FF7 /* StepSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepSlider.swift; sourceTree = "<group>"; };
 		CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinValidationProvider.swift; sourceTree = "<group>"; };
 		CE5FAF97215104B4009E707E /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		CE5FAF9E215129A6009E707E /* RegistrationFormValidatonProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormValidatonProvider.swift; sourceTree = "<group>"; };
@@ -1228,6 +1230,7 @@
 		39E7D1976CE2CAF8FDCA3984 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE57C68E2164A51100696FF7 /* StepSlider */,
 				0C58F08F01657A19B1F094F2 /* PaymentFeeViewInput.swift */,
 				FC29C149FAE2F05AA0DF98AB /* PaymentFeeViewOutput.swift */,
 				0F6D7544E0F7F80B63B1689C /* PaymentFeeViewController.swift */,
@@ -2476,6 +2479,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CE57C68E2164A51100696FF7 /* StepSlider */ = {
+			isa = PBXGroup;
+			children = (
+				CE57C68F2164A57400696FF7 /* StepSlider.swift */,
+			);
+			path = StepSlider;
+			sourceTree = "<group>";
+		};
 		CE5FAF932150ED48009E707E /* PinValidation */ = {
 			isa = PBXGroup;
 			children = (
@@ -3389,6 +3400,7 @@
 				505F3C485B956B860664837B /* ExchangeModuleInput.swift in Sources */,
 				A5B78213215E25A200EFD1A5 /* Array+Helper.swift in Sources */,
 				32AE32F42A7235157AE8F11C /* ExchangeModuleOutput.swift in Sources */,
+				CE57C6902164A57400696FF7 /* StepSlider.swift in Sources */,
 				A521D4702163716900E5D51C /* CurrentAccountWatcher.swift in Sources */,
 				490A73840930B45425B9C531 /* ExchangeModule.swift in Sources */,
 				A51CB54F2158FED500CDC80C /* TransactionDataStoreProvider.swift in Sources */,
