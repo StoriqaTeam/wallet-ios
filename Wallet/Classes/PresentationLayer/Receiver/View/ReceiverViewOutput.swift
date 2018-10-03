@@ -18,4 +18,5 @@ protocol ReceiverViewOutput: class {
     func nextButtonPressed()
     func willMoveToParentVC()
     func viewWillAppear()
+    func configureInput()
 }

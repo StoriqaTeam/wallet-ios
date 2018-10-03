@@ -8,10 +8,10 @@ import UIKit
 
 class PaymentFeeModule {
     
-    class func create(sendProvider: SendTransactionBuilderProtocol) -> PaymentFeeModuleInput {
+    class func create(sendTransactionBuilder: SendProviderBuilderProtocol) -> PaymentFeeModuleInput {
         let router = PaymentFeeRouter()
         let presenter = PaymentFeePresenter()
-        let interactor = PaymentFeeInteractor(sendProvider: sendProvider)
+        let interactor = PaymentFeeInteractor(sendTransactionBuilder: sendTransactionBuilder)
         
         let accountsVC = UIStoryboard(name: "PaymentFee", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "PaymentFeeVC") as! PaymentFeeViewController

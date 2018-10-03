@@ -17,8 +17,9 @@ class SendRouter {
 // MARK: - SendRouterInput
 
 extension SendRouter: SendRouterInput {
-    func showReceiver(sendProvider: SendTransactionBuilderProtocol,
+    func showReceiver(sendTransactionBuilder: SendProviderBuilderProtocol,
                       from viewController: UIViewController) {
-        ReceiverModule.create(sendProvider: sendProvider).present(from: viewController)
+        
+        ReceiverModule.create(sendTransactionBuilder: sendTransactionBuilder).present(from: viewController)
     }
 }

@@ -22,16 +22,24 @@ class ReceiverPresenter {
 // MARK: - ReceiverViewOutput
 
 extension ReceiverPresenter: ReceiverViewOutput {
+    func configureInput() {
+        let contacts = interactor.getContact()
+        
+        guard !contacts.isEmpty else { return }
+        inputDidChange(contacts[0].familyName)
+        view.setInput(contacts[0].mobile)
+    }
+    
     
     func nextButtonPressed() {
-        let sendProvider = interactor.getSendTransactionBuilder()
-        router.showPaymentFee(sendProvider: sendProvider, from: view.viewController)
+        let builder = interactor.getSendTransactionBuilder()
+        router.showPaymentFee(sendTransactionBuilder: builder, from: view.viewController)
     }
     
     func scanButtonPressed() {
-        let sendProvider = interactor.getSendTransactionBuilder()
+        let builder = interactor.getSendTransactionBuilder()
         interactor.setScannedDelegate(self)
-        router.showScanner(sendProvider: sendProvider, from: view.viewController)
+        router.showScanner(sendTransactionBuilder: builder, from: view.viewController)
     }
     
     func editButtonPressed() {
@@ -39,6 +47,7 @@ extension ReceiverPresenter: ReceiverViewOutput {
     }
     
     func inputDidChange(_ input: String) {
+        
         //TODO: нужны проверки, валидный ли номер, чтобы активировать кнопку. Пока кнопка активируется только по клику на контакт и скану
         view.setNextButtonHidden(true)
         interactor.searchContact(text: input)
@@ -62,6 +71,7 @@ extension ReceiverPresenter: ReceiverViewOutput {
     
     func viewWillAppear() {
         view.viewController.setDarkTextNavigationBar()
+        
     }
     
 }

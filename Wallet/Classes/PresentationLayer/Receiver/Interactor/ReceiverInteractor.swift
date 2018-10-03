@@ -14,12 +14,15 @@ class ReceiverInteractor {
     
     private var contactsDataManager: ContactsDataManager!
     private let deviceContactsProvider: DeviceContactsProviderProtocol
-    private let sendProvider: SendTransactionBuilderProtocol
+    private let sendTransactionBuilder: SendProviderBuilderProtocol
+    private let sendProvider: SendTransactionProviderProtocol
     
     init(deviceContactsProvider: DeviceContactsProviderProtocol,
-         sendProvider: SendTransactionBuilderProtocol) {
+         sendTransactionBuilder: SendProviderBuilderProtocol) {
+        
         self.deviceContactsProvider = deviceContactsProvider
-        self.sendProvider = sendProvider
+        self.sendTransactionBuilder = sendTransactionBuilder
+        self.sendProvider = sendTransactionBuilder.build()
     }
     
 }
@@ -28,6 +31,13 @@ class ReceiverInteractor {
 // MARK: - ReceiverInteractorInput
 
 extension ReceiverInteractor: ReceiverInteractorInput {
+    func getContact() -> [Contact] {
+        let receiverName = sendProvider.getReceiverName()
+        let filteredContacts = deviceContactsProvider.searchContact(text: receiverName)
+        guard !filteredContacts.isEmpty else { return [] }
+        
+        return filteredContacts[0].contacts
+    }
     
     func getHeaderApperance() -> SendingHeaderData {
         
@@ -39,15 +49,15 @@ extension ReceiverInteractor: ReceiverInteractorInput {
     }
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
-        sendProvider.scanDelegate = delegate
+        sendTransactionBuilder.setScannedDelegate(delegate)
     }
     
     func setContact(_ contact: Contact) {
-        sendProvider.setContact(contact)
+        sendTransactionBuilder.setContact(contact)
     }
     
-    func getSendTransactionBuilder() -> SendTransactionBuilderProtocol {
-        return sendProvider
+    func getSendTransactionBuilder() -> SendProviderBuilderProtocol {
+        return sendTransactionBuilder
     }
     
     func createContactsDataManager(with tableView: UITableView) {

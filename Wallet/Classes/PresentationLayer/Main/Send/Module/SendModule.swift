@@ -15,9 +15,14 @@ class SendModule {
         //Injections
         let converterFactory = CurrecncyConverterFactory()
         let formatter = CurrencyFormatter()
-        let sendProvider = SendTransactionBuilder(converterFactory: converterFactory, currencyFormatter: formatter)
+        let accountProvider = FakeAccountProvider()
+        let sendProvider = SendTransactionProvider(converterFactory: converterFactory,
+                                                   currencyFormatter: formatter,
+                                                   accountProvider: accountProvider)
+        let sendTxBuilder = SendTransactionBuilder(defaultSendTxProvider: sendProvider)
+        
         let fakeAccountsProvider = FakeAccountProvider()
-        let interactor = SendInteractor(sendProvider: sendProvider,
+        let interactor = SendInteractor(sendTransactionBuilder: sendTxBuilder,
                                         accountsProvider: fakeAccountsProvider,
                                         accountWatcher: accountWatcher)
         

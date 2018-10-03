@@ -34,6 +34,12 @@ class ReceiverViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.configureInput()
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.viewWillAppear()
@@ -93,6 +99,7 @@ extension ReceiverViewController: ReceiverViewInput {
     func setupInitialState(apperance: SendingHeaderData) {
         senderView.setup(apperance: apperance, editBlock: { [weak self] in
             self?.output.editButtonPressed()
+            self?.popToRoot()
         })
     }
 }
