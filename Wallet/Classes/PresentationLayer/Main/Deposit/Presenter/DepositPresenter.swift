@@ -111,7 +111,10 @@ extension DepositPresenter {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing
         flowLayout.itemSize = deviceLayout.size
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, deviceLayout.spacing * 2, 0, deviceLayout.spacing * 2)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0,
+                                               left: deviceLayout.spacing * 2,
+                                               bottom: 0,
+                                               right: deviceLayout.spacing * 2)
         flowLayout.scrollDirection = .horizontal
         
         return flowLayout

@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(textDidChange(_:)),
-                                               name: Notification.Name.UITextFieldTextDidChange,
+                                               name: UITextField.textDidChangeNotification,
                                                object: nil)
     }
     

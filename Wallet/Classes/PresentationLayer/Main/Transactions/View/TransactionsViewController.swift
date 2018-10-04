@@ -28,8 +28,8 @@ class TransactionsViewController: UIViewController {
         output.viewWillAppear()
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         output.willMoveToParentVC()
     }
     
@@ -51,7 +51,7 @@ extension TransactionsViewController: TransactionsViewInput {
 
 extension TransactionsViewController {
     private func configureTableView() {
-        transactionsTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        transactionsTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
         transactionsTableView.tableFooterView = UIView()
     }
 }

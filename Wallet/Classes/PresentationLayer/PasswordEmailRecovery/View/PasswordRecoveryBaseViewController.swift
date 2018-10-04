@@ -29,9 +29,18 @@ class PasswordRecoveryBaseViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
     deinit {
@@ -59,14 +68,14 @@ class PasswordRecoveryBaseViewController: UIViewController {
 
 private extension PasswordRecoveryBaseViewController {
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             
             let keyboardHeight = keyboardFrame.cgRectValue.height
-            let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
+            let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
             
-            var animationOptions = UIViewAnimationOptions()
-            if let curve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
-                animationOptions.insert(UIViewAnimationOptions(rawValue: curve))
+            var animationOptions = UIView.AnimationOptions()
+            if let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
+                animationOptions.insert(UIView.AnimationOptions(rawValue: curve))
             }
             
             resetPasswordButtonBottomConstraint.constant = keyboardHeight + buttonBottomSpace
@@ -78,11 +87,11 @@ private extension PasswordRecoveryBaseViewController {
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
+        let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
         
-        var animationOptions = UIViewAnimationOptions()
-        if let curve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
-            animationOptions.insert(UIViewAnimationOptions(rawValue: curve))
+        var animationOptions = UIView.AnimationOptions()
+        if let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
+            animationOptions.insert(UIView.AnimationOptions(rawValue: curve))
         }
         
         resetPasswordButtonBottomConstraint.constant = buttonBottomSpace

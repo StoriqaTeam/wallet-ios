@@ -2979,6 +2979,7 @@
 					};
 					CE526C2D212465A800A2EED2 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -3727,7 +3728,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.storiqa.mobilewallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./Wallet/Other/Wallet-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3745,7 +3746,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.storiqa.mobilewallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./Wallet/Other/Wallet-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

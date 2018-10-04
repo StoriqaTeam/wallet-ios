@@ -25,7 +25,7 @@ extension UIViewController {
             log.warn("navigationBar is nil")
             return
         }
-        let customColor = navigationBar.titleTextAttributes?[NSAttributedStringKey.foregroundColor] as? UIColor
+        let customColor = navigationBar.titleTextAttributes?[NSAttributedString.Key.foregroundColor] as? UIColor
         let color = customColor ?? UIColor.black
         let alphaColor = color.withAlphaComponent(alpha)
         
@@ -41,8 +41,8 @@ extension UIViewController {
         navigationBar.barTintColor = color
         navigationBar.tintColor = color
         
-        var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedStringKey : Any]()
-        titleTextAttributes[NSAttributedStringKey.foregroundColor] = color
+        var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key : Any]()
+        titleTextAttributes[NSAttributedString.Key.foregroundColor] = color
         navigationBar.titleTextAttributes = titleTextAttributes
     }
     
@@ -83,7 +83,7 @@ extension UIViewController {
 //Alerts
 extension UIViewController {
     func showAlert(title: String = "", message: String = "") {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

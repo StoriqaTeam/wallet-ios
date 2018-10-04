@@ -17,8 +17,8 @@ class PopUpSendConfirmVM: PopUpViewModelProtocol {
     weak var delegate: PopUpSendConfirmVMDelegate?
     
     init(amount: String, address: String) {
-        let boldTextAttributes = [NSAttributedStringKey.font: UIFont.smallMediumWeightText,
-                                  NSAttributedStringKey.foregroundColor: UIColor.black]
+        let boldTextAttributes = [NSAttributedString.Key.font: UIFont.smallMediumWeightText,
+                                  NSAttributedString.Key.foregroundColor: UIColor.black]
         
         let attrText = NSMutableAttributedString()
         attrText.append(NSAttributedString(string: "you_are_going_to_send".localized() + " \n"))

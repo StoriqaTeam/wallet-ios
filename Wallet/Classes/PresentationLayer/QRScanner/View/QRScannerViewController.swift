@@ -44,7 +44,7 @@ extension QRScannerViewController: QRScannerViewInput {
     func setPreviewLayer(_ previewLayer: CALayer) {
         previewLayer.frame = view.layer.bounds
         view.layer.addSublayer(previewLayer)
-        view.bringSubview(toFront: aimView)
+        view.bringSubviewToFront(aimView)
         
     }
     

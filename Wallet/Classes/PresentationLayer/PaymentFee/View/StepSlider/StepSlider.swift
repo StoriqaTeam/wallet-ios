@@ -67,7 +67,7 @@ extension StepSlider {
         maximumTrackTintColor = UIColor.mainBlue
         
         let thumbImage = #imageLiteral(resourceName: "thumbImage")
-        for state: UIControlState in  [.normal, .selected, .application, .reserved, .highlighted] {
+        for state: UIControl.State in  [.normal, .selected, .application, .reserved, .highlighted] {
             setThumbImage(thumbImage, for: state)
         }
     }

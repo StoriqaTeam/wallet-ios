@@ -32,7 +32,7 @@ class AccountsTableDataManager: NSObject {
         tableView = view
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.contentInset = UIEdgeInsetsMake(4, 0, 4, 0)
+        tableView.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
         tableView.separatorStyle = .none
         tableView.rowHeight = cellHeight
         registerXib()

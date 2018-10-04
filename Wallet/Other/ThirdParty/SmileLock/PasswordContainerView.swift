@@ -35,7 +35,7 @@ open class PasswordContainerView: UIView {
     
     open override var tintColor: UIColor! {
         didSet {
-            deleteButton.setTitleColor(tintColor, for: UIControlState())
+            deleteButton.setTitleColor(tintColor, for: UIControl.State())
             passwordDotView.strokeColor = tintColor
             touchAuthenticationButton.tintColor = tintColor
             passwordInputViews.forEach {
@@ -174,7 +174,7 @@ private extension PasswordContainerView {
             image = nil
         }
         
-        touchAuthenticationButton.setImage(image, for: UIControlState())
+        touchAuthenticationButton.setImage(image, for: UIControl.State())
         touchAuthenticationButton.tintColor = tintColor
     }
 }
