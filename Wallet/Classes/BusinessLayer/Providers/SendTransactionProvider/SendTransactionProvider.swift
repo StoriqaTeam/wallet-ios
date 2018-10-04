@@ -18,11 +18,8 @@ protocol SendTransactionProviderProtocol: class {
     var paymentFee: Decimal { get }
     var opponentType: OpponentType { get }
     var receiverCurrency: Currency { get }
-    
-    func getReceiverName() -> String
-    func getAmountStr() -> String
-    func getAmountWithoutCurrencyStr() -> String
-    func getAmountInTransactionCurrencyStr() -> String
+    var selectedAccount: Account { get }
+
     func getFeeWaitCount() -> Int
     func getFeeAndWait() -> (fee: String, wait: String)
     func getSubtotal() -> String
@@ -72,32 +69,6 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         self.accountProvider = accountProvider
         self.selectedAccount = accountProvider.getAllAccounts().first!
         self.receiverCurrency = .btc
-    }
-    
-    func getReceiverName() -> String {
-        //FIXME: stub
-        switch opponentType {
-        case .contact(let contact):
-            return contact.name
-        default:
-            return "Receiver Name"
-        }
-    }
-    
-    func getAmountStr() -> String {
-        guard let amount = amount, !amount.isZero else {
-                return ""
-        }
-        
-        let formatted = currencyFormatter.getStringFrom(amount: amount, currency: receiverCurrency)
-        return formatted
-    }
-    
-    func getAmountWithoutCurrencyStr() -> String {
-        guard let amount = amount, !amount.isZero else {
-                return ""
-        }
-        return amount.description
     }
     
     func getAmountInTransactionCurrencyStr() -> String {

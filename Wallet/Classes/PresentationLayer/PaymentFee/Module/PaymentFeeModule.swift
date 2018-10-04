@@ -10,7 +10,10 @@ class PaymentFeeModule {
     
     class func create(sendTransactionBuilder: SendProviderBuilderProtocol) -> PaymentFeeModuleInput {
         let router = PaymentFeeRouter()
-        let presenter = PaymentFeePresenter()
+        let formatter = CurrencyFormatter()
+        let converterFactory = CurrecncyConverterFactory()
+        
+        let presenter = PaymentFeePresenter(currencyFormatter: formatter, converterFactory: converterFactory)
         let interactor = PaymentFeeInteractor(sendTransactionBuilder: sendTransactionBuilder)
         
         let accountsVC = UIStoryboard(name: "PaymentFee", bundle: nil)
