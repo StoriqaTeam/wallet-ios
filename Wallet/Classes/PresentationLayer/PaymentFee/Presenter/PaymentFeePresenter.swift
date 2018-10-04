@@ -47,7 +47,7 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
     func sendButtonPressed() {
         let amount = interactor.getAmount()
         let currency = interactor.getReceiverCurrency()
-        let amountString = getStringfrom(amount: amount, currency: currency)
+        let amountString = getStringFrom(amount: amount, currency: currency)
         let address = interactor.getAddress()
         
         router.showConfirm(amount: amountString,
@@ -64,7 +64,7 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
         let amount = interactor.getAmount()
         let currency = interactor.getReceiverCurrency()
         let accountCurrency = interactor.getSelectedAccount().currency
-        let amountString = getStringfrom(amount: amount, currency: currency)
+        let amountString = getStringFrom(amount: amount, currency: currency)
         let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
         let opponentType = interactor.getOpponent()
         
@@ -118,7 +118,7 @@ extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
 // MARK: - Private methods
 
 extension PaymentFeePresenter {
-    private func getStringfrom(amount: Decimal?, currency: Currency) -> String {
+    private func getStringFrom(amount: Decimal?, currency: Currency) -> String {
         guard let amount = amount, !amount.isZero else {
             return ""
         }

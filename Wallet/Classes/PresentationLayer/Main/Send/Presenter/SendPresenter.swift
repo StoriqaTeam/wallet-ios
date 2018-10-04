@@ -56,13 +56,12 @@ extension SendPresenter: SendViewOutput {
     func getAmountWithCurrency() -> String {
         let amount = interactor.getAmount()
         let currency = interactor.getReceiverCurrency()
-        return getStringfrom(amount: amount, currency: currency)
+        return getStringFrom(amount: amount, currency: currency)
     }
     
     func getAmountWithoutCurrency() -> String {
         let amount = interactor.getAmount()
-        let currency = interactor.getReceiverCurrency()
-        return getStringAmountWithoutCurrency(amount: amount, currency: currency)
+        return getStringAmountWithoutCurrency(amount: amount)
     }
     
     func viewIsReady() {
@@ -84,13 +83,8 @@ extension SendPresenter: SendInteractorOutput {
     func updateAmount() {
         let amount = interactor.getAmount()
         let currency = interactor.getReceiverCurrency()
-        let amountString = getStringfrom(amount: amount, currency: currency)
+        let amountString = getStringFrom(amount: amount, currency: currency)
         view.updateAmount(amountString)
-    }
-    
-    
-    func updateAmount(_ amount: String) {
-        view.updateAmount(amount)
     }
     
     func updateConvertedAmount(_ amount: String) {
@@ -161,7 +155,7 @@ extension SendPresenter {
         return flowLayout
     }
     
-    private func getStringfrom(amount: Decimal?, currency: Currency) -> String {
+    private func getStringFrom(amount: Decimal?, currency: Currency) -> String {
         guard let amount = amount, !amount.isZero else {
             return ""
         }
@@ -170,7 +164,7 @@ extension SendPresenter {
         return formatted
     }
     
-    private func getStringAmountWithoutCurrency(amount: Decimal?, currency: Currency) -> String {
+    private func getStringAmountWithoutCurrency(amount: Decimal?) -> String {
         guard let amount = amount, !amount.isZero else {
             return ""
         }
