@@ -39,6 +39,7 @@ extension ExchangePresenter: ExchangeViewOutput {
         configureNavBar()
         
         interactor.setAccountsDataManagerDelegate(self)
+        interactor.setAccountsTableDataManagerDelegate(self)
         
         // Default values
         interactor.setCurrentAccount(index: 0)
@@ -52,6 +53,10 @@ extension ExchangePresenter: ExchangeViewOutput {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = true
         interactor.createAccountsDataManager(with: collectionView)
+    }
+    
+    func accountsActionSheet(_ tableView: UITableView) {
+        interactor.createAccountsTableDataManager(with: tableView)
     }
     
     func configureCollections() {
@@ -87,22 +92,10 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func recepientAccountPressed() {
-        //FIXME: - stub
-        let accounts = interactor.getRecepientAccounts()
+        interactor.prepareAccountsTable()
         
-        let alertController = UIAlertController()
-        
-        for (index, acc) in accounts.enumerated() {
-            let image = acc.currency.smallImage
-            let action = UIAlertAction(title: acc.accountName, style: .default) {[weak self] (action) in
-                self?.interactor.setRecepientAccount(index: index)
-            }
-            action.setValue(image, forKey: "image")
-            alertController.addAction(action)
-        }
-        
-        alertController.view.tintColor = UIColor.mainBlue
-        view.viewController.present(alertController, animated: true, completion: nil)
+        let height = interactor.getAccountsTableHeight()
+        view.showAccountsActionSheet(height: height)
     }
     
     func exchangeButtonPressed() {
@@ -202,6 +195,16 @@ extension ExchangePresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccount(index: newIndex)
         view.setNewPage(newIndex)
+    }
+}
+
+
+// MARK: - AccountsTableDataManagerDelegate
+
+extension ExchangePresenter: AccountsTableDataManagerDelegate {
+    func chooseAccount(_ index: Int) {
+        interactor.setRecepientAccount(index: index)
+        view.hideAccountsActionSheet()
     }
 }
 

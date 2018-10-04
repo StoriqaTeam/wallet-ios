@@ -22,4 +22,6 @@ protocol ExchangeViewInput: class, Presentable {
     func setSubtotal(_ subtotal: String)
     func setErrorHidden(_ hidden: Bool)
     func setButtonEnabled(_ enabled: Bool)
+    func showAccountsActionSheet(height: CGFloat)
+    func hideAccountsActionSheet()
 }

@@ -17,6 +17,7 @@ class ExchangeInteractor {
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private var currencyConverter: CurrencyConverterProtocol!
     private var accountsDataManager: AccountsDataManager!
+    private var accountsTableDataManager: AccountsTableDataManager!
     private var recepientAccount: Account! {
         didSet { updateConverter() }
     }
@@ -65,10 +66,29 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         accountsDataManager.delegate = delegate
     }
     
+    func createAccountsTableDataManager(with tableView: UITableView) {
+        let currencyFormatter = CurrencyFormatter()
+        let accountsManager = AccountsTableDataManager(currencyFormatter: currencyFormatter)
+        accountsManager.setTableView(tableView)
+        accountsTableDataManager = accountsManager
+    }
+    
+    func setAccountsTableDataManagerDelegate(_ delegate: AccountsTableDataManagerDelegate) {
+        accountsTableDataManager.delegate = delegate
+    }
+    
     func scrollCollection() {
         let currentAccount = accountWatcher.getAccount()
         let index = resolveAccountIndex(account: currentAccount)
         accountsDataManager.scrollTo(index: index)
+    }
+    
+    func prepareAccountsTable() {
+        accountsTableDataManager.accounts = recepientAccounts
+    }
+    
+    func getAccountsTableHeight() -> CGFloat {
+        return accountsTableDataManager.calculateHeight()
     }
     
     func getAccountsCount() -> Int {
@@ -89,10 +109,6 @@ extension ExchangeInteractor: ExchangeInteractorInput {
     
     func getRecepientCurrency() -> Currency {
         return recepientAccount.currency
-    }
-    
-    func getRecepientAccounts() -> [Account] {
-        return recepientAccounts
     }
     
     func setCurrentAccount(index: Int) {

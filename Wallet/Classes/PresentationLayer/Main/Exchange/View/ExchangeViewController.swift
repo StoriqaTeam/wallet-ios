@@ -38,7 +38,10 @@ class ExchangeViewController: UIViewController {
     @IBOutlet private var exchangeButton: DefaultButton!
     
     // MARK: Variables
-    
+
+    private let dimmingBackground = UIButton()
+    private let accountsActionSheet = UITableView()
+    private let animationDuration = 0.3
     private var currentSliderStep = 0 {
         didSet {
             if oldValue != currentSliderStep {
@@ -51,9 +54,11 @@ class ExchangeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configInterface()
+        setupInitialActionSheet()
         addHideKeyboardGuesture()
+        configInterface()
         output.accountsCollectionView(accountsCollectionView)
+        output.accountsActionSheet(accountsActionSheet)
         output.viewIsReady()
     }
     
@@ -80,6 +85,11 @@ class ExchangeViewController: UIViewController {
     @IBAction private func recepientAccountPressed(_ sender: UIButton) {
         output.recepientAccountPressed()
     }
+    
+    @IBAction private func dimmingBackgroundTapped(_ sender: UIButton) {
+        hideAccountsActionSheet()
+    }
+    
 }
 
 
@@ -94,6 +104,8 @@ extension ExchangeViewController: ExchangeViewInput {
         paymentFeeSlider.paymentFeeValuesCount = paymentFeeValuesCount
         paymentFeeSlider.setValue(0, animated: false)
         updateSelectedFee()
+        
+        dimmingBackground.alpha = 0
     }
     
     func setSubtotal(_ subtotal: String) {
@@ -160,6 +172,29 @@ extension ExchangeViewController: ExchangeViewInput {
     func setButtonEnabled(_ enabled: Bool) {
         exchangeButton.isHidden = !enabled
     }
+    
+    func showAccountsActionSheet(height: CGFloat) {
+        let yPosition = Constants.Sizes.screenHeight - height - 10
+        self.setAccountsActionSheet(height: height)
+        
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
+            self.setAccountsActionSheet(yPosition: yPosition)
+            self.dimmingBackground.alpha = 1
+        })
+    }
+    
+    func hideAccountsActionSheet() {
+        let yPosition = Constants.Sizes.screenHeight + 100
+        
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
+            self.setAccountsActionSheet(yPosition: yPosition)
+        })
+        
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseIn], animations: {
+            self.dimmingBackground.alpha = 0
+        })
+    }
+    
 }
 
 
@@ -230,6 +265,34 @@ extension ExchangeViewController {
         }
     }
     
+    private func setupInitialActionSheet() {
+        let screenWidth = Constants.Sizes.screenWith
+        let screenHeight = Constants.Sizes.screenHeight
+        
+        accountsActionSheet.frame = CGRect(x: 8, y: screenHeight + 100, width: screenWidth - 16, height: 0)
+        accountsActionSheet.roundCorners(radius: 12)
+        
+        dimmingBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        dimmingBackground.backgroundColor = UIColor(red: 4/255, green: 4/255, blue: 15/255, alpha: 0.4)
+        dimmingBackground.setTitleColor(.clear, for: .normal)
+        dimmingBackground.addTarget(self, action: #selector(dimmingBackgroundTapped(_:)), for: .touchUpInside)
+        
+        UIApplication.shared.keyWindow!.addSubview(dimmingBackground)
+        UIApplication.shared.keyWindow!.addSubview(accountsActionSheet)
+    }
+    
+    private func setAccountsActionSheet(yPosition: CGFloat) {
+        var frame = accountsActionSheet.frame
+        frame.origin.y = yPosition
+        accountsActionSheet.frame = frame
+    }
+    
+    private func setAccountsActionSheet(height: CGFloat) {
+        var frame = accountsActionSheet.frame
+        frame.size.height = height
+        accountsActionSheet.frame = frame
+    }
+    
     private func configInterface() {
         scrollView.delegate = self
         amountTextField.delegate = self
@@ -258,7 +321,6 @@ extension ExchangeViewController {
         paymentFeeLowLabel.textColor = UIColor.captionGrey
         paymentFeeMediumLabel.textColor = UIColor.captionGrey
         paymentFeeHighLabel.textColor = UIColor.captionGrey
-        
         
         errorLabel.textColor = UIColor.errorRed
         
