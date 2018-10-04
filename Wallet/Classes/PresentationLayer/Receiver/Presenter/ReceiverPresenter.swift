@@ -16,6 +16,13 @@ class ReceiverPresenter {
     var interactor: ReceiverInteractorInput!
     var router: ReceiverRouterInput!
     
+    private let currencyFormatter: CurrencyFormatterProtocol
+    private let converterFactory: CurrecncyConverterFactoryProtocol
+    
+    init(currencyFormatter: CurrencyFormatterProtocol, converterFactory: CurrecncyConverterFactoryProtocol) {
+        self.currencyFormatter = currencyFormatter
+        self.converterFactory = converterFactory
+    }
 }
 
 
@@ -59,8 +66,18 @@ extension ReceiverPresenter: ReceiverViewOutput {
     }
     
     func viewIsReady() {
-        let apperance = interactor.getHeaderApperance()
-        view.setupInitialState(apperance: apperance)
+        
+        let amount = interactor.getAmount()
+        let currency = interactor.getReceiverCurrency()
+        let accountCurrency = interactor.getSelectedAccount().currency
+        let amountString = getStringFrom(amount: amount, currency: currency)
+        let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
+        
+        let appearence = SendingHeaderData(amount: amountString,
+                                           amountInTransactionCurrency: amountStringInTxCurrency,
+                                           currencyImage: currency.mediumImage)
+        
+        view.setupInitialState(apperance: appearence)
         view.setNextButtonHidden(true)
         interactor.setContactsDataManagerDelegate(self)
     }
@@ -116,6 +133,32 @@ extension ReceiverPresenter: QRScannerDelegate {
         view.setNextButtonHidden(false)
     }
     
+}
+
+
+// MARK: - Private methods
+
+extension ReceiverPresenter {
+    private func getStringFrom(amount: Decimal?, currency: Currency) -> String {
+        guard let amount = amount, !amount.isZero else {
+            return ""
+        }
+        
+        let formatted = currencyFormatter.getStringFrom(amount: amount, currency: currency)
+        return formatted
+    }
+    
+    private func getStringInTransactionCurrency(amount: Decimal?, accountCurrency: Currency) -> String {
+        guard let amount = amount, !amount.isZero else {
+            return ""
+        }
+        
+        let receiverCurrency = interactor.getReceiverCurrency()
+        let currencyConverter = converterFactory.createConverter(from: receiverCurrency)
+        let converted = currencyConverter.convert(amount: amount, to: accountCurrency)
+        let formatted = currencyFormatter.getStringFrom(amount: converted, currency: accountCurrency)
+        return "=" + formatted
+    }
 }
 
 

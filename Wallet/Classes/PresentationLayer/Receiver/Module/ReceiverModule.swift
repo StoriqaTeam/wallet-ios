@@ -10,19 +10,19 @@ class ReceiverModule {
     
     class func create(sendTransactionBuilder: SendProviderBuilderProtocol) -> ReceiverModuleInput {
         let router = ReceiverRouter()
-        let presenter = ReceiverPresenter()
         
         //Injections
         let deviceContactsProvider = DeviceContactsProvider()
-        let interactor = ReceiverInteractor(deviceContactsProvider: deviceContactsProvider,
-                                            sendTransactionBuilder: sendTransactionBuilder)
+        let formatter = CurrencyFormatter()
+        let converterFactory = CurrecncyConverterFactory()
         
+        let interactor = ReceiverInteractor(deviceContactsProvider: deviceContactsProvider, sendTransactionBuilder: sendTransactionBuilder)
+        let presenter = ReceiverPresenter(currencyFormatter: formatter, converterFactory: converterFactory)
         
         let accountsVC = UIStoryboard(name: "Receiver", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "ReceiverVC") as! ReceiverViewController
 
         interactor.output = presenter
-
         viewController.output = presenter
 
         presenter.view = viewController

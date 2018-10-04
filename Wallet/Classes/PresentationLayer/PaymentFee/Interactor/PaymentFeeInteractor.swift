@@ -26,9 +26,6 @@ class PaymentFeeInteractor {
 // MARK: - PaymentFeeInteractorInput
 
 extension PaymentFeeInteractor: PaymentFeeInteractorInput {
-    func getAmount() -> String {
-        return sendProvider.getAmountStr()
-    }
     
     func getAddress() -> String {
         let address: String
@@ -65,32 +62,27 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         return sendTransactionBuilder
     }
     
-    func getPaymentFeeScreenData() -> PaymentFeeScreenData {
-        
-        let header = SendingHeaderData(amount: sendProvider.getAmountStr(),
-                                       amountInTransactionCurrency: sendProvider.getAmountInTransactionCurrencyStr(),
-                                       currencyImage: sendProvider.receiverCurrency.mediumImage)
-        let address: String
-        
-        switch sendProvider.opponentType {
-        case .contact:
-            //TODO: будем получать?
-            address = "test address"
-        case .address(let addr):
-            address = addr
-        }
-        
-        let data = PaymentFeeScreenData(header: header,
-                                        address: address,
-                                        receiverName: sendProvider.getReceiverName(),
-                                        paymentFeeValuesCount: sendProvider.getFeeWaitCount())
-        
-        return data
-        
-    }
-    
     func getSubtotal() -> String {
         return sendProvider.getSubtotal()
     }
     
+    func getAmount() -> Decimal? {
+        return sendProvider.amount
+    }
+    
+    func getReceiverCurrency() -> Currency {
+        return sendProvider.receiverCurrency
+    }
+    
+    func getSelectedAccount() -> Account {
+        return sendProvider.selectedAccount
+    }
+    
+    func getOpponent() -> OpponentType {
+        return sendProvider.opponentType
+    }
+    
+    func getFeeWaitCount() -> Int {
+        return sendProvider.getFeeWaitCount()
+    }
 }
