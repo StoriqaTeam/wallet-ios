@@ -44,7 +44,7 @@ extension MainTabBarViewController {
     private func configureTabBar() {
         tabBar.isTranslucent = false
         tabBar.barTintColor = Theme.Color.white
-        tabBar.tintColor = Theme.Color.blue
+        tabBar.tintColor = Theme.Color.brightSkyBlue
         tabBar.unselectedItemTintColor = Theme.Color.captionGrey.withAlphaComponent(0.4)
         tabBar.backgroundColor = UIColor(white: 0.82, alpha: 1)
         tabBar.shadowImage = UIImage()

@@ -116,7 +116,7 @@ extension SocialNetworkAuthView: GIDSignInUIDelegate {
     // pressed the Sign In button
     
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
-        log.debug("signInWillDispatch(signIn: GIDSignIn!, error: \(error)")
+        log.debug("signInWillDispatch(signIn: GIDSignIn!, error: \(String(describing: error))")
         //TODO: signInWillDispatch(signIn: GIDSignIn!, error: NSError!)
     }
     
