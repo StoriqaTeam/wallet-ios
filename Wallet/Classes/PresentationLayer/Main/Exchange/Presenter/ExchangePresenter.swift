@@ -34,7 +34,7 @@ extension ExchangePresenter: ExchangeViewOutput {
     
     func viewIsReady() {
         let numberOfPages = interactor.getAccountsCount()
-        let paymentFeeValuesCount = interactor.getPaymentFeeValuesCountCount()
+        let paymentFeeValuesCount = interactor.getPaymentFeeValuesCount()
         view.setupInitialState(numberOfPages: numberOfPages, paymentFeeValuesCount: paymentFeeValuesCount)
         configureNavBar()
         

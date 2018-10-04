@@ -18,11 +18,8 @@ protocol SendTransactionProviderProtocol: class {
     var paymentFee: Decimal { get }
     var opponentType: OpponentType { get }
     var receiverCurrency: Currency { get }
-    
-    func getReceiverName() -> String
-    func getAmountStr() -> String
-    func getAmountWithoutCurrencyStr() -> String
-    func getAmountInTransactionCurrencyStr() -> String
+    var selectedAccount: Account { get }
+
     func getFeeWaitCount() -> Int
     func getFeeAndWait() -> (fee: String, wait: String)
     func getSubtotal() -> String
@@ -48,23 +45,18 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
-    private var currencyConverter: CurrencyConverterProtocol!
     private let accountProvider: AccountsProviderProtocol
-    
-    //FIXME: stub
-    private var feeWait: [Decimal: String] = [1: "10",
-                                              2: "9",
-                                              3: "8",
-                                              4: "7",
-                                              5: "6",
-                                              6: "5"]
+    private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private var currencyConverter: CurrencyConverterProtocol!
     
     init(converterFactory: CurrecncyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
-         accountProvider: AccountsProviderProtocol) {
+         accountProvider: AccountsProviderProtocol,
+         feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
         
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
+        self.feeWaitProvider = feeWaitProvider
         
         // default build
         self.paymentFee = 0
@@ -72,32 +64,12 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         self.accountProvider = accountProvider
         self.selectedAccount = accountProvider.getAllAccounts().first!
         self.receiverCurrency = .btc
-    }
-    
-    func getReceiverName() -> String {
-        //FIXME: stub
-        switch opponentType {
-        case .contact(let contact):
-            return contact.name
-        default:
-            return "Receiver Name"
-        }
-    }
-    
-    func getAmountStr() -> String {
-        guard let amount = amount, !amount.isZero else {
-                return ""
-        }
         
-        let formatted = currencyFormatter.getStringFrom(amount: amount, currency: receiverCurrency)
-        return formatted
+        loadPaymentFees()
     }
     
-    func getAmountWithoutCurrencyStr() -> String {
-        guard let amount = amount, !amount.isZero else {
-                return ""
-        }
-        return amount.description
+    func setPaymentFee(index: Int) {
+        paymentFee = feeWaitProvider.getFee(index: index)
     }
     
     func getAmountInTransactionCurrencyStr() -> String {
@@ -112,13 +84,14 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     }
     
     func getFeeWaitCount() -> Int {
-        return feeWait.count
+        return feeWaitProvider.getValuesCount()
     }
     
     func getFeeAndWait() -> (fee: String, wait: String) {
-        let wait = feeWait[paymentFee]! + "s"
-        let feeStr = paymentFee.description + " " + selectedAccount.currency.ISO
-        return (feeStr, wait)
+        let wait = feeWaitProvider.getWait(fee: paymentFee)
+        let waitStr = wait.description + "s"
+        let feeStr = currencyFormatter.getStringFrom(amount: paymentFee, currency: selectedAccount.currency)
+        return (feeStr, waitStr)
     }
     
     func getSubtotal() -> String {
@@ -157,7 +130,14 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
 // MARK: - Private methods
 
 extension SendTransactionProvider {
+    
     private func updateConverter() {
         currencyConverter = converterFactory.createConverter(from: receiverCurrency)
     }
+    
+    private func loadPaymentFees() {
+        feeWaitProvider.updateSelectedForCurrency(selectedAccount.currency)
+        paymentFee = feeWaitProvider.getFee(index: 0)
+    }
+    
 }

@@ -10,27 +10,27 @@ class SendModule {
     
     class func create(accountWatcher: CurrentAccountWatcherProtocol) -> SendModuleInput {
         let router = SendRouter()
-        let presenter = SendPresenter()
         
         //Injections
         let converterFactory = CurrecncyConverterFactory()
         let formatter = CurrencyFormatter()
         let accountProvider = FakeAccountProvider()
+        let feeWaitProvider = FakePaymentFeeAndWaitProvider()
         let sendProvider = SendTransactionProvider(converterFactory: converterFactory,
                                                    currencyFormatter: formatter,
-                                                   accountProvider: accountProvider)
+                                                   accountProvider: accountProvider,
+                                                   feeWaitProvider: feeWaitProvider)
         let sendTxBuilder = SendTransactionBuilder(defaultSendTxProvider: sendProvider)
         
-        let fakeAccountsProvider = FakeAccountProvider()
+        let presenter = SendPresenter(currencyFormatter: formatter)
         let interactor = SendInteractor(sendTransactionBuilder: sendTxBuilder,
-                                        accountsProvider: fakeAccountsProvider,
+                                        accountsProvider: accountProvider,
                                         accountWatcher: accountWatcher)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
         let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController
 
         interactor.output = presenter
-
         viewController.output = presenter
 
         presenter.view = viewController

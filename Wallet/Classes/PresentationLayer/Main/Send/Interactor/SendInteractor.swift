@@ -35,7 +35,7 @@ class SendInteractor {
 // MARK: - SendInteractorInput
 
 extension SendInteractor: SendInteractorInput {
-    
+
     func getAccountsCount() -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.count
@@ -50,7 +50,7 @@ extension SendInteractor: SendInteractorInput {
         accountWatcher.setAccount(allAccounts[index])
         let account = allAccounts[index]
         sendTransactionBuilder.set(account: account)
-        output.updateAmount(sendProvider.getAmountStr())
+        output.updateAmount()
         output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
     }
     
@@ -62,16 +62,8 @@ extension SendInteractor: SendInteractorInput {
     
     func setReceiverCurrency(_ currency: Currency) {
         sendTransactionBuilder.setReceiverCurrency(currency)
-        output.updateAmount(sendProvider.getAmountStr())
+        output.updateAmount()
         output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
-    }
-    
-    func getAmountWithCurrency() -> String {
-        return sendProvider.getAmountStr()
-    }
-    
-    func getAmountWithoutCurrency() -> String {
-        return sendProvider.getAmountWithoutCurrencyStr()
     }
     
     func isFormValid() -> Bool {
@@ -97,6 +89,14 @@ extension SendInteractor: SendInteractorInput {
     
     func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate) {
         accountsDataManager.delegate = delegate
+    }
+
+    func getAmount() -> Decimal? {
+        return sendProvider.amount
+    }
+    
+    func getReceiverCurrency() -> Currency {
+        return sendProvider.receiverCurrency
     }
     
 }

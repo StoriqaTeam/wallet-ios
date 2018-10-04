@@ -11,16 +11,17 @@ class ExchangeModule {
     class func create(accountWatcher: CurrentAccountWatcherProtocol) -> ExchangeModuleInput {
         let router = ExchangeRouter()
         
-        // Presenter injections
+        // Injections
         let converterFactory = CurrecncyConverterFactory()
         let currencyFormatter = CurrencyFormatter()
-        let presenter = ExchangePresenter(converterFactory: converterFactory, currencyFormatter: currencyFormatter)
-        
-        // Interactor injections
+        let feeWaitProvider = FakePaymentFeeAndWaitProvider()
         let accountsProvider = FakeAccountProvider()
+        
+        let presenter = ExchangePresenter(converterFactory: converterFactory, currencyFormatter: currencyFormatter)
         let interactor = ExchangeInteractor(accountWatcher: accountWatcher,
                                             accountsProvider: accountsProvider,
-                                            converterFactory: converterFactory)
+                                            converterFactory: converterFactory,
+                                            feeWaitProvider: feeWaitProvider)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController

@@ -31,21 +31,13 @@ class ReceiverInteractor {
 // MARK: - ReceiverInteractorInput
 
 extension ReceiverInteractor: ReceiverInteractorInput {
+    
     func getContact() -> [Contact] {
-        let receiverName = sendProvider.getReceiverName()
+        let receiverName = getReceiverName(from: sendProvider.opponentType)
         let filteredContacts = deviceContactsProvider.searchContact(text: receiverName)
         guard !filteredContacts.isEmpty else { return [] }
         
         return filteredContacts[0].contacts
-    }
-    
-    func getHeaderApperance() -> SendingHeaderData {
-        
-        let header = SendingHeaderData(amount: sendProvider.getAmountStr(),
-                                       amountInTransactionCurrency: sendProvider.getAmountInTransactionCurrencyStr(),
-                                       currencyImage: sendProvider.receiverCurrency.mediumImage)
-        
-        return header
     }
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
@@ -96,5 +88,31 @@ extension ReceiverInteractor: ReceiverInteractorInput {
             contactsDataManager.updateContacts(filteredContacts)
         }
     }
-
+    
+    
+    func getAmount() -> Decimal? {
+        return sendProvider.amount
+    }
+    
+    func getReceiverCurrency() -> Currency {
+        return sendProvider.receiverCurrency
+    }
+    
+    func getSelectedAccount() -> Account {
+        return sendProvider.selectedAccount
+    }
 }
+
+
+// MARK: - Private methods
+extension ReceiverInteractor {
+    private func getReceiverName(from opponent: OpponentType) -> String {
+        switch opponent {
+        case .contact(let contact):
+            return contact.name
+        default:
+            return "Receiver Name"
+        }
+    }
+ }
+

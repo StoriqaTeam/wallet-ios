@@ -16,6 +16,14 @@ class PaymentFeePresenter {
     var interactor: PaymentFeeInteractorInput!
     var router: PaymentFeeRouterInput!
     
+    private let currencyFormatter: CurrencyFormatterProtocol
+    private let converterFactory: CurrecncyConverterFactoryProtocol
+    
+    init(currencyFormatter: CurrencyFormatterProtocol, converterFactory: CurrecncyConverterFactoryProtocol) {
+        self.currencyFormatter = currencyFormatter
+        self.converterFactory = converterFactory
+    }
+    
 }
 
 
@@ -38,8 +46,11 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
     
     func sendButtonPressed() {
         let amount = interactor.getAmount()
+        let currency = interactor.getReceiverCurrency()
+        let amountString = getStringFrom(amount: amount, currency: currency)
         let address = interactor.getAddress()
-        router.showConfirm(amount: amount,
+        
+        router.showConfirm(amount: amountString,
                            address: address,
                            popUpDelegate: self,
                            from: view.viewController)
@@ -50,7 +61,19 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
     }
 
     func viewIsReady() {
-        let apperance = interactor.getPaymentFeeScreenData()
+        let amount = interactor.getAmount()
+        let currency = interactor.getReceiverCurrency()
+        let accountCurrency = interactor.getSelectedAccount().currency
+        let amountString = getStringFrom(amount: amount, currency: currency)
+        let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
+        let opponentType = interactor.getOpponent()
+        
+        let header = SendingHeaderData(amount: amountString,
+                                       amountInTransactionCurrency: amountStringInTxCurrency,
+                                       currencyImage: currency.mediumImage)
+        
+        
+        let apperance = paymentFeeScreen(header: header, opponentType: opponentType)
         view.setupInitialState(apperance: apperance)
         view.viewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
@@ -86,9 +109,54 @@ extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
     
     func confirmTransaction() {
         //TODO: send transaction
-        let transaction = interactor.createTransaction()
+        let _ = interactor.createTransaction()
     }
     
+}
+
+
+// MARK: - Private methods
+
+extension PaymentFeePresenter {
+    private func getStringFrom(amount: Decimal?, currency: Currency) -> String {
+        guard let amount = amount, !amount.isZero else {
+            return ""
+        }
+        
+        let formatted = currencyFormatter.getStringFrom(amount: amount, currency: currency)
+        return formatted
+    }
+    
+    private func getStringInTransactionCurrency(amount: Decimal?, accountCurrency: Currency) -> String {
+        guard let amount = amount, !amount.isZero else {
+            return ""
+        }
+        
+        let receiverCurrency = interactor.getReceiverCurrency()
+        let currencyConverter = converterFactory.createConverter(from: receiverCurrency)
+        let converted = currencyConverter.convert(amount: amount, to: accountCurrency)
+        let formatted = currencyFormatter.getStringFrom(amount: converted, currency: accountCurrency)
+        return "=" + formatted
+    }
+    
+    private func paymentFeeScreen(header: SendingHeaderData, opponentType: OpponentType) ->  PaymentFeeScreenData{
+        let address: String
+        let receiverName: String
+        switch opponentType {
+        case .contact(let contact):
+            //TODO: будем получать?
+            address = "test address"
+            receiverName = contact.name
+        case .address(let addr):
+            address = addr
+            receiverName = "Receiver Name"
+        }
+        
+        return PaymentFeeScreenData(header: header,
+                                    address: address,
+                                    receiverName: receiverName,
+                                    paymentFeeValuesCount: interactor.getFeeWaitCount())
+    }
 }
 
 

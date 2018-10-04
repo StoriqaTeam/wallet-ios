@@ -264,6 +264,7 @@
 		CAAB484F397C75347D8B8009 /* MyWalletViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFA42EBBF393DD574C4D /* MyWalletViewInput.swift */; };
 		CD2529EF44F08CF6C8BDE01E /* QuickLaunchViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB061958AA4F9CCD8A95A48C /* QuickLaunchViewInput.swift */; };
 		CD8499CCEA4C0FBAC71AEDBD /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945E6AA0A90F853FE1A56D27 /* MainTabBarViewController.swift */; };
+		CE0C3C2C216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C3C2B216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift */; };
 		CE0E5A65212D5681003E2C5E /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A64212D5681003E2C5E /* BaseButton.swift */; };
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
 		CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */; };
@@ -705,6 +706,7 @@
 		C732EBE19CE3E7EE51024672 /* DepositViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositViewInput.swift; sourceTree = "<group>"; };
 		C82D0537B4CB1FBCDB8A1D56 /* FirstLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchInteractor.swift; sourceTree = "<group>"; };
 		CB51D2181F34D414B0DD95C7 /* SettingsModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsModule.swift; sourceTree = "<group>"; };
+		CE0C3C2B216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFeeAndWaitProvider.swift; sourceTree = "<group>"; };
 		CE0E5A64212D5681003E2C5E /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		CE0E5A66212D569A003E2C5E /* LightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightButton.swift; sourceTree = "<group>"; };
 		CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
@@ -2069,6 +2071,7 @@
 				CED822E1215BC31400693B92 /* CurrencyConverter */,
 				CED822E8215BE07B00693B92 /* CurrencyFormatter */,
 				CE976486216263AA000E9336 /* QRCodeProvider */,
+				CE0C3C2A216617A5002D1CBD /* PaymentFeeAndWaitProvider */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -2379,6 +2382,14 @@
 				B76D0D4B8FA14BD3B34B245C /* Module */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		CE0C3C2A216617A5002D1CBD /* PaymentFeeAndWaitProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE0C3C2B216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift */,
+			);
+			path = PaymentFeeAndWaitProvider;
 			sourceTree = "<group>";
 		};
 		CE1A47D1212E9C0200418C11 /* SmileLock */ = {
@@ -3413,6 +3424,7 @@
 				505F3C485B956B860664837B /* ExchangeModuleInput.swift in Sources */,
 				A5B78213215E25A200EFD1A5 /* Array+Helper.swift in Sources */,
 				32AE32F42A7235157AE8F11C /* ExchangeModuleOutput.swift in Sources */,
+				CE0C3C2C216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift in Sources */,
 				CE57C6902164A57400696FF7 /* StepSlider.swift in Sources */,
 				A521D4702163716900E5D51C /* CurrentAccountWatcher.swift in Sources */,
 				490A73840930B45425B9C531 /* ExchangeModule.swift in Sources */,
