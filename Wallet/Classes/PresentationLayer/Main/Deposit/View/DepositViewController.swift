@@ -115,9 +115,9 @@ extension DepositViewController {
         qrCodeTitleLabel.textColor = Theme.Color.captionGrey
         
         copyButton.titleLabel?.font = UIFont.smallText
-        copyButton.setTitleColor(Theme.Color.blue, for: .normal)
+        copyButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
         shareButton.titleLabel?.font = UIFont.smallText
-        shareButton.setTitleColor(Theme.Color.blue, for: .normal)
+        shareButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }
     
     private func configureGradientView() {

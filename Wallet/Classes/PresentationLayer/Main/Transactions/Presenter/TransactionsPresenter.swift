@@ -22,11 +22,11 @@ class TransactionsPresenter: NSObject {
 // MARK: - TransactionsViewOutput
 
 extension TransactionsPresenter: TransactionsViewOutput {
+
     func transactionTableView(_ tableView: UITableView) {
         interactor.createTransactionsDataManager(with: tableView)
     }
     
-
     func viewIsReady() {
         view.setupInitialState()
         configureNavBar()
@@ -39,6 +39,10 @@ extension TransactionsPresenter: TransactionsViewOutput {
     
     func viewWillAppear() {
         view.viewController.setDarkTextNavigationBar()
+    }
+    
+    func didChooseSegment(at index: Int) {
+        interactor.filterTransacitons(index: index)
     }
     
 }

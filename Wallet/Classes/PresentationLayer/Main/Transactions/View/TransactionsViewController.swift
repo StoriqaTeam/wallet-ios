@@ -14,6 +14,7 @@ class TransactionsViewController: UIViewController {
     var output: TransactionsViewOutput!
 
     @IBOutlet weak var transactionsTableView: UITableView!
+    @IBOutlet weak var filterSegmentControl: UISegmentedControl!
     
     // MARK: Life cycle
 
@@ -33,6 +34,12 @@ class TransactionsViewController: UIViewController {
         output.willMoveToParentVC()
     }
     
+    
+    // MARK: - Actions
+    
+    @IBAction func filterTapped(_ sender: UISegmentedControl) {
+        output.didChooseSegment(at: sender.selectedSegmentIndex)
+    }
 }
 
 
@@ -42,6 +49,7 @@ extension TransactionsViewController: TransactionsViewInput {
     
     func setupInitialState() {
         configureTableView()
+        configiureSegmentControl()
     }
 
 }
@@ -54,4 +62,31 @@ extension TransactionsViewController {
         transactionsTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
         transactionsTableView.tableFooterView = UIView()
     }
+    
+    private func configiureSegmentControl() {
+        let normalTextAttributes = [NSAttributedStringKey.font: Theme.Font.segmentTextFont,
+                                    NSAttributedStringKey.foregroundColor: Theme.Color.greyText]
+        let selectedtextAttributes = [NSAttributedStringKey.font: Theme.Font.segmentTextFont,
+                                      NSAttributedStringKey.foregroundColor: Theme.Color.brightSkyBlue]
+        
+        let backgroundImageSize = filterSegmentControl.bounds.size
+        let backgroundImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: backgroundImageSize)
+        let dividerImageSize  = CGSize(width: 1.0, height: filterSegmentControl.bounds.size.height)
+        let deviderImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: dividerImageSize)
+        
+        filterSegmentControl.setBackgroundImage(backgroundImage, for: .normal, barMetrics: .default)
+        filterSegmentControl.setBackgroundImage(backgroundImage, for: .selected, barMetrics: .default)
+        filterSegmentControl.setBackgroundImage(backgroundImage, for: .highlighted, barMetrics: .default)
+        filterSegmentControl.setDividerImage(deviderImage,
+                                             forLeftSegmentState: .selected,
+                                             rightSegmentState: .normal,
+                                             barMetrics: .default)
+        
+        filterSegmentControl.setTitleTextAttributes(normalTextAttributes, for: .normal)
+        filterSegmentControl.setTitleTextAttributes(selectedtextAttributes, for: .selected)
+        filterSegmentControl.setWidth(60, forSegmentAt: 0)
+        filterSegmentControl.setWidth(90, forSegmentAt: 1)
+        filterSegmentControl.setWidth(90, forSegmentAt: 2)
+    }
+    
 }
