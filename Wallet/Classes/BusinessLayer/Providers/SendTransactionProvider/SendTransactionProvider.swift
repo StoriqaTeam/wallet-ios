@@ -68,6 +68,10 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         loadPaymentFees()
     }
     
+    func setPaymentFee(index: Int) {
+        paymentFee = feeWaitProvider.getFee(index: index)
+    }
+    
     func getAmountInTransactionCurrencyStr() -> String {
         guard let amount = amount, !amount.isZero else {
                 return ""

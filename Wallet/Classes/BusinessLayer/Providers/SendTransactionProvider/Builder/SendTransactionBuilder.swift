@@ -12,14 +12,6 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     
     private let defaultSendTxProvider: SendTransactionProvider
     
-    //FIXME: stub
-    private var feeWait: [Decimal: String] = [1: "10",
-                                              2: "9",
-                                              3: "8",
-                                              4: "7",
-                                              5: "6",
-                                              6: "5"]
-    
     init(defaultSendTxProvider: SendTransactionProvider) {
         self.defaultSendTxProvider = defaultSendTxProvider
     }
@@ -42,8 +34,7 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     }
     
     func setPaymentFee(index: Int) {
-        let paymentFeeValues: [Decimal] = Array(feeWait.keys).sorted()
-        defaultSendTxProvider.paymentFee = paymentFeeValues[index]
+        defaultSendTxProvider.setPaymentFee(index: index)
     }
     
     func setReceiverCurrency(_ currency: Currency) {
