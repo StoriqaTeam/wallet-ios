@@ -36,7 +36,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     opponent: .contact(contact: Contact(givenName: "Daniil", familyName: "M.", mobile: "123-123-123", imageData: nil))),
         
         Transaction(currency: .eth,
-                    direction: .receive,
+                    direction: .send,
                     fiatAmount: 840,
                     cryptoAmount: 4,
                     timestamp: Date(),
@@ -52,7 +52,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     opponent: .contact(contact: Contact(givenName: "Iron", familyName: "M.", mobile: "123-123-123", imageData: nil))),
         
         Transaction(currency: .eth,
-                    direction: .receive,
+                    direction: .send,
                     fiatAmount: 420,
                     cryptoAmount: 2,
                     timestamp: Date(),
@@ -68,7 +68,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     opponent: .address(address: "Vitaly B.")),
 
         Transaction(currency: .stq,
-                    direction: .send,
+                    direction: .receive,
                     fiatAmount: 100,
                     cryptoAmount: 1000,
                     timestamp: Date(),
@@ -85,7 +85,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
 
         
         Transaction(currency: .btc,
-                    direction: .send,
+                    direction: .receive,
                     fiatAmount: 5200,
                     cryptoAmount: 0.004,
                     timestamp: Date(),

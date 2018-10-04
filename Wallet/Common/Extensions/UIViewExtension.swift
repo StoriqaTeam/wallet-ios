@@ -26,6 +26,7 @@ extension UIView {
     
     func dropShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offSet: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 6, scale: Bool = true) {
         layer.masksToBounds = false
+        
         layer.shadowColor = color.cgColor
         layer.shadowOpacity = opacity
         layer.shadowOffset = offSet
@@ -84,5 +85,19 @@ extension UIView {
                      frame: layerFrame,
                      startPoint: CGPoint(x: 0.0, y: 0.0),
                      endPoint: CGPoint(x: 1.0, y: 1.0))
+    }
+}
+
+
+extension UIImage {
+    class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let graphicsContext = UIGraphicsGetCurrentContext()
+        graphicsContext?.setFillColor(color)
+        let rectangle = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+        graphicsContext?.fill(rectangle)
+        let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return rectangleImage!
     }
 }

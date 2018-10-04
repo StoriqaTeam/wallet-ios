@@ -13,5 +13,6 @@ protocol TransactionsInteractorInput: class {
     func getTransactions() -> [Transaction]
     func setTransactionDataManagerDelegate(_ delegate: TransactionsDataManagerDelegate)
     func createTransactionsDataManager(with tableView: UITableView)
+    func filterTransacitons(index: Int)
     
 }
