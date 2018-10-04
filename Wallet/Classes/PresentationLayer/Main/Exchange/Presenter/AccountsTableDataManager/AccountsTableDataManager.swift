@@ -35,6 +35,7 @@ class AccountsTableDataManager: NSObject {
         tableView.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
         tableView.separatorStyle = .none
         tableView.rowHeight = cellHeight
+        tableView.alwaysBounceVertical = false
         registerXib()
     }
     
