@@ -64,10 +64,10 @@ extension TransactionsViewController {
     }
     
     private func configiureSegmentControl() {
-        let normalTextAttributes = [NSAttributedStringKey.font: Theme.Font.segmentTextFont,
-                                    NSAttributedStringKey.foregroundColor: Theme.Color.greyText]
-        let selectedtextAttributes = [NSAttributedStringKey.font: Theme.Font.segmentTextFont,
-                                      NSAttributedStringKey.foregroundColor: Theme.Color.brightSkyBlue]
+        let normalTextAttributes = [NSAttributedString.Key.font: Theme.Font.segmentTextFont,
+                                    NSAttributedString.Key.foregroundColor: Theme.Color.greyText]
+        let selectedtextAttributes = [NSAttributedString.Key.font: Theme.Font.segmentTextFont,
+                                      NSAttributedString.Key.foregroundColor: Theme.Color.brightSkyBlue]
         
         let backgroundImageSize = filterSegmentControl.bounds.size
         let backgroundImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: backgroundImageSize)
