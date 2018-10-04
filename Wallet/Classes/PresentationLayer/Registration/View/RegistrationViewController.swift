@@ -76,7 +76,7 @@ class RegistrationViewController: UIViewController {
     }
     
     @IBAction private func toggleAgreement() {
-        isAcceptedAgreement = !isAcceptedAgreement
+        isAcceptedAgreement.toggle()
         setAgreementTintColor()
         updateContinueButton()
     }

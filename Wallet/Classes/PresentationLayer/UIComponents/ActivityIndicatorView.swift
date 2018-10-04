@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ActivityIndicatorView: UIView {
-    private weak var circleLayer: WCGraintCircleLayer?
+    private var circleLayer: WCGraintCircleLayer?
     
     func showActivityIndicator() {
         if circleLayer == nil {

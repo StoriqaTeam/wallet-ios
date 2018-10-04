@@ -109,7 +109,7 @@ open class PasswordDotView: UIView {
                 }
             } else {
                 self.shakeCount += 1
-                self.direction = !self.direction
+                self.direction.toggle()
                 self.shakeAnimationWithCompletion(completion)
             }
         }
