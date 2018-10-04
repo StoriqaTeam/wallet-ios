@@ -54,10 +54,6 @@ class SendViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(textDidChange(_:)),
-                                               name: Notification.Name.UITextFieldTextDidChange,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
                                                name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self,
@@ -79,11 +75,15 @@ class SendViewController: UIViewController {
     
     // MARK: Actions
     
+    @IBAction private func textDidChange(_ sender: UITextField) {
+        output.amountChanged(sender.text ?? "")
+    }
+    
     @IBAction private func receiverCurrencyChanged(_ sender: CustomSegmentedControl) {
         output.receiverCurrencyChanged(sender.selectedSegmentIndex)
     }
     
-    @IBAction func nextButtonPressed(_ sender: UIButton) {
+    @IBAction private func nextButtonPressed(_ sender: UIButton) {
         output.nextButtonPressed()
     }
 }
@@ -110,6 +110,7 @@ extension SendViewController: SendViewInput {
     
     func setNewPage(_ index: Int) {
         accountsPageControl.currentPage = index
+        dismissKeyboard()
     }
     
     func setButtonEnabled(_ enabled: Bool) {
@@ -184,13 +185,7 @@ extension SendViewController {
             (navigationController?.navigationBar.frame.size.height ?? 44) +
             UIApplication.shared.statusBarFrame.height
         
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: gradientView.frame.width, height: height)
-        gradientLayer.colors = [ UIColor(red: 0.2549019608, green: 0.7176470588, blue: 0.9568627451, alpha: 1).cgColor,
-                                 UIColor(red: 0.1764705882, green: 0.3921568627, blue: 0.7607843137, alpha: 1).cgColor ]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientView.layer.addSublayer(gradientLayer)
+        gradientView.accountsHeaderGradientView(height: height)
     }
     
     private func setNavBarTransparency() {
@@ -201,10 +196,6 @@ extension SendViewController {
             
             setNavigationBarAlpha(alpha)
         }
-    }
-    
-    @objc private func textDidChange(_ notification: Notification) {
-        output.amountChanged(amountTextField.text ?? "")
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {

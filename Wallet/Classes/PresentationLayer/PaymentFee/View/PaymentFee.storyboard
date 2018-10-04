@@ -116,11 +116,14 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Iht-J5-u1F">
+                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Iht-J5-u1F" customClass="StepSlider" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="-2" y="34" width="286" height="28"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="27" id="i2v-KF-xKq"/>
                                                                 </constraints>
+                                                                <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="maximumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="thumbTintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <connections>
                                                                     <action selector="sliderMoved:" destination="W6J-0A-aU8" eventType="valueChanged" id="z0b-eg-wgg"/>
                                                                 </connections>
@@ -283,7 +286,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iYA-6s-eyv" firstAttribute="trailing" secondItem="1gC-5D-BTF" secondAttribute="trailing" id="5HP-0e-6sa"/>
-                            <constraint firstItem="8eP-s4-UAl" firstAttribute="leading" secondItem="iYA-6s-eyv" secondAttribute="leading" constant="20" id="92r-6f-OB6"/>
+                            <constraint firstItem="8eP-s4-UAl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iYA-6s-eyv" secondAttribute="leading" constant="20" id="92r-6f-OB6"/>
                             <constraint firstItem="1gC-5D-BTF" firstAttribute="top" secondItem="iYA-6s-eyv" secondAttribute="top" id="AAM-Pq-q10"/>
                             <constraint firstItem="8eP-s4-UAl" firstAttribute="centerX" secondItem="54T-BT-9uc" secondAttribute="centerX" id="Anw-5k-B5e"/>
                             <constraint firstItem="iYA-6s-eyv" firstAttribute="bottom" secondItem="1gC-5D-BTF" secondAttribute="bottom" id="KOO-Zp-SQA"/>

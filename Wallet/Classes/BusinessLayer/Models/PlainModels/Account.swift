@@ -51,7 +51,6 @@ struct Account {
     }
     
     var smallImageForType: UIImage {
-        //FIXME: заменить подложки
         switch type {
         case .stq:
             return UIImage(named: "smallStqCard")!
@@ -75,6 +74,22 @@ struct Account {
              .eth,
              .btc:
             return .black
+        }
+    }
+    
+    var accountName: String {
+        //FIXME: accountName
+        switch type {
+        case .stq:
+            return "STQ account"
+        case .stqBlack:
+            return "STQ Black account"
+        case .stqGold:
+            return "STQ Gold account"
+        case .btc:
+            return "BTC account"
+        case .eth:
+            return "ETH account"
         }
     }
 }

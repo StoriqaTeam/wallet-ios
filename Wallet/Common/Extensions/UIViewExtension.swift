@@ -50,4 +50,31 @@ extension UIView {
         
         return lineView
     }
+    
+    func gradientView(colors: [CGColor], frame: CGRect, startPoint: CGPoint, endPoint: CGPoint) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = colors
+        gradientLayer.frame = frame
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        layer.addSublayer(gradientLayer)
+    }
+    
+    func accountsHeaderGradientView(height: CGFloat? = nil) {
+        let layerFrame: CGRect
+        
+        if let height = height {
+            layerFrame = CGRect(x: 0, y: 0, width: frame.width, height: height)
+        } else {
+            layerFrame = bounds
+        }
+        
+        let colors = [ UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
+                       UIColor(red: 45/255, green: 100/255, blue: 194/255, alpha: 1).cgColor ]
+        
+        gradientView(colors: colors,
+                     frame: layerFrame,
+                     startPoint: CGPoint(x: 0.0, y: 0.0),
+                     endPoint: CGPoint(x: 1.0, y: 1.0))
+    }
 }

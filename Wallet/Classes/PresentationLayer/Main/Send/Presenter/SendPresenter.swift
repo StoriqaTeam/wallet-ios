@@ -73,6 +73,17 @@ extension SendPresenter: SendViewOutput {
         interactor.setAccountsDataManagerDelegate(self)
     }
     
+    func accountsCollectionView(_ collectionView: UICollectionView) {
+        collectionView.collectionViewLayout = collectionFlowLayout
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = true
+        interactor.createAccountsDataManager(with: collectionView)
+    }
+    
+    func configureCollections() {
+        interactor.scrollCollection()
+    }
+    
 }
 
 
@@ -89,17 +100,6 @@ extension SendPresenter: SendInteractorOutput {
     
     func updateConvertedAmount(_ amount: String) {
         view.updateConvertedAmount(amount)
-    }
-    
-    func accountsCollectionView(_ collectionView: UICollectionView) {
-        collectionView.collectionViewLayout = collectionFlowLayout
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = true
-        interactor.createAccountsDataManager(with: collectionView)
-    }
-    
-    func configureCollections() {
-        interactor.scrollCollection()
     }
     
 }

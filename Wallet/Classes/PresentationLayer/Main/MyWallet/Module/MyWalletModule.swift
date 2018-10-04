@@ -11,7 +11,7 @@ class FakeAccountProvider: AccountsProviderProtocol {
                 Account(type: .eth, cryptoAmount: "892.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .eth, cryptoAddress: "0x9Cc539183De54759261Ef0ee9B3Fe91AEB85407F"),
                 Account(type: .btc, cryptoAmount: "123.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .btc, cryptoAddress: "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD"),
                 Account(type: .stqGold, cryptoAmount: "123.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .stq, cryptoAddress: "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD"),
-                Account(type: .stqBlack, cryptoAmount: "123.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .stq, cryptoAddress: "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD")]
+                Account(type: .stq, cryptoAmount: "123.45", fiatAmount: "257,204.00 $", holderName: "Mushchinskii Dmitrii", currency: .stq, cryptoAddress: "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD")]
     }
 }
 
