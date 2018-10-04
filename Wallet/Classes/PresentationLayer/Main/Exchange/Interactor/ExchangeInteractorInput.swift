@@ -15,7 +15,7 @@ protocol ExchangeInteractorInput: class {
     func scrollCollection()
     
     func getAccountsCount() -> Int
-    func getPaymentFeeValuesCountCount() -> Int
+    func getPaymentFeeValuesCount() -> Int
     
     func getAmount() -> Decimal
     func getAccountCurrency() -> Currency

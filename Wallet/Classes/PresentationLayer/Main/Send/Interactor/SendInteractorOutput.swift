@@ -11,6 +11,5 @@ import Foundation
 
 protocol SendInteractorOutput: class {
     func updateConvertedAmount(_ amount: String)
-    func accountsCollectionView(_ collectionView: UICollectionView)
     func updateAmount()
 }
