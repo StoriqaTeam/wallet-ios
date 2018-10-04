@@ -10,9 +10,15 @@ import Foundation
 
 
 protocol ExchangeInteractorInput: class {
+    
     func createAccountsDataManager(with collectionView: UICollectionView)
     func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate)
     func scrollCollection()
+    
+    func createAccountsTableDataManager(with tableView: UITableView)
+    func setAccountsTableDataManagerDelegate(_ delegate: AccountsTableDataManagerDelegate)
+    func prepareAccountsTable()
+    func getAccountsTableHeight() -> CGFloat
     
     func getAccountsCount() -> Int
     func getPaymentFeeValuesCount() -> Int
@@ -20,7 +26,6 @@ protocol ExchangeInteractorInput: class {
     func getAmount() -> Decimal
     func getAccountCurrency() -> Currency
     func getRecepientCurrency() -> Currency
-    func getRecepientAccounts() -> [Account]
     
     func setCurrentAccount(index: Int)
     func setRecepientAccount(index: Int)

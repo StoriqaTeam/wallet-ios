@@ -12,6 +12,7 @@ import UIKit
 protocol ExchangeViewOutput: class {
     func viewIsReady()
     func accountsCollectionView(_ collectionView: UICollectionView)
+    func accountsActionSheet(_ tableView: UITableView)
     func configureCollections()
     
     func isValidAmount(_ amount: String) -> Bool
