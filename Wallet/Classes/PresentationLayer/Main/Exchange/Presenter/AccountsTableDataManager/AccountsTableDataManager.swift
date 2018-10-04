@@ -56,7 +56,7 @@ extension AccountsTableDataManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let account = accounts[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdentifier, for: indexPath) as! AccountTableCell
-        confiCell(cell: cell, account: account)
+        configureCell(cell: cell, account: account)
         return cell
     }
     
@@ -84,7 +84,7 @@ extension AccountsTableDataManager {
         tableView.register(nib, forCellReuseIdentifier: kCellIdentifier)
     }
     
-    private func confiCell(cell: AccountTableCell, account: Account) {
+    private func configureCell(cell: AccountTableCell, account: Account) {
         let image = account.currency.smallImage
         let accountName = account.accountName
         
