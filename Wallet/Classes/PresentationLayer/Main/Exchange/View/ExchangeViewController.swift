@@ -54,9 +54,6 @@ class ExchangeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupInitialActionSheet()
-        addHideKeyboardGuesture()
-        configInterface()
         output.accountsCollectionView(accountsCollectionView)
         output.accountsActionSheet(accountsActionSheet)
         output.viewIsReady()
@@ -106,6 +103,10 @@ extension ExchangeViewController: ExchangeViewInput {
         updateSelectedFee()
         
         dimmingBackground.alpha = 0
+        
+        setupInitialActionSheet()
+        addHideKeyboardGuesture()
+        configInterface()
     }
     
     func setSubtotal(_ subtotal: String) {
