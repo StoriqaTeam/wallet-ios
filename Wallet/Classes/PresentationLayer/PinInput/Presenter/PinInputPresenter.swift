@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputPresenter.swift
+//  PinInputPasswordInputPresenter.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -10,21 +10,21 @@ import UIKit
 import AudioToolbox
 
 
-class PasswordInputPresenter {
+class PinInputPresenter {
     
-    weak var view: PasswordInputViewInput!
-    weak var output: PasswordInputModuleOutput?
-    var interactor: PasswordInputInteractorInput!
-    var router: PasswordInputRouterInput!
+    weak var view: PinInputViewInput!
+    weak var output: PinInputModuleOutput?
+    var interactor: PinInputInteractorInput!
+    var router: PinInputRouterInput!
     
     private let kPasswordDigits = 4
     
 }
 
 
-// MARK: - PasswordInputViewOutput
+// MARK: - PinInputViewOutput
 
-extension PasswordInputPresenter: PasswordInputViewOutput {
+extension PinInputPresenter: PinInputViewOutput {
     
     func setPasswordView(in stackView: UIStackView) -> PasswordContainerView  {
         let passView = PasswordContainerView.create(in: stackView, digit: kPasswordDigits)
@@ -68,9 +68,9 @@ extension PasswordInputPresenter: PasswordInputViewOutput {
 }
 
 
-// MARK: - PasswordInputInteractorOutput
+// MARK: - PinInputInteractorOutput
 
-extension PasswordInputPresenter: PasswordInputInteractorOutput {
+extension PinInputPresenter: PinInputInteractorOutput {
     
     func passwordIsCorrect() {
         view.inputSucceed()
@@ -88,9 +88,9 @@ extension PasswordInputPresenter: PasswordInputInteractorOutput {
 }
 
 
-// MARK: - PasswordInputModuleInput
+// MARK: - PinInputModuleInput
 
-extension PasswordInputPresenter: PasswordInputModuleInput {
+extension PinInputPresenter: PinInputModuleInput {
     func present() {
         view.present()
     }
@@ -101,9 +101,9 @@ extension PasswordInputPresenter: PasswordInputModuleInput {
 }
 
 
-// MARK: - PasswordInputCompleteProtocol
-extension PasswordInputPresenter: PasswordInputCompleteProtocol {
-    func passwordInputComplete(input: String) {
+// MARK: - PinInputCompleteProtocol
+extension PinInputPresenter: PinInputCompleteProtocol {
+    func pinInputComplete(input: String) {
         interactor.validatePassword(input)
     }
     

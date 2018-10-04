@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputModuleOutput.swift
+//  PinInputPasswordInputModuleOutput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,6 +9,6 @@
 import Foundation
 
 
-protocol PasswordInputModuleOutput: class {
+protocol PinInputModuleOutput: class {
 
 }

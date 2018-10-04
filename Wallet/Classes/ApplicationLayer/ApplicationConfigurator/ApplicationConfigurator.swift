@@ -34,7 +34,7 @@ extension ApplicationConfigurator {
             defaults.isFirstLaunch = false
             FirstLaunchModule.create().present()
         } else if isPinSet() {
-            PasswordInputModule.create().present()
+            PinInputModule.create().present()
         } else {
             LoginModule.create().present()
         }

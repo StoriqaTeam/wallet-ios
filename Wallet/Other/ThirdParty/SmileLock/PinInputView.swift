@@ -1,5 +1,5 @@
 //
-//  PasswordInputView.swift
+//  PinInputView.swift
 //
 //  Created by rain on 4/21/16.
 //  Copyright © 2016 Recruit Lifestyle Co., Ltd. All rights reserved.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-public protocol PasswordInputViewTappedProtocol: class {
-    func passwordInputView(_ passwordInputView: PasswordInputView, tappedString: String)
+public protocol PinInputViewTappedProtocol: class {
+    func pinInputView(_ pinInputView: PinInputView, tappedString: String)
 }
 
 @IBDesignable
-open class PasswordInputView: UIView {
+open class PinInputView: UIView {
     
     //MARK: Property
-    open weak var delegate: PasswordInputViewTappedProtocol?
+    open weak var delegate: PinInputViewTappedProtocol?
     
     let circleView = UIView()
     let button = UIButton()
@@ -80,7 +80,7 @@ open class PasswordInputView: UIView {
     @objc func touchDown() {
         //delegate callback
         if let delegate = delegate {
-            delegate.passwordInputView(self, tappedString: numberString)
+            delegate.pinInputView(self, tappedString: numberString)
         } else {
             log.warn("delegate is nil")
         }
@@ -149,7 +149,7 @@ open class PasswordInputView: UIView {
     }
 }
 
-private extension PasswordInputView {
+private extension PinInputView {
     //MARK: Awake
     func configureSubviews() {
         //update color
@@ -163,8 +163,8 @@ private extension PasswordInputView {
         //configure button
         NSLayoutConstraint.addEqualConstraintsFromSubView(button, toSuperView: self)
         button.isExclusiveTouch = true
-        button.addTarget(self, action: #selector(PasswordInputView.touchDown), for: [.touchDown])
-        button.addTarget(self, action: #selector(PasswordInputView.touchUp), for: [.touchUpInside, .touchDragOutside, .touchCancel, .touchDragExit])
+        button.addTarget(self, action: #selector(PinInputView.touchDown), for: [.touchDown])
+        button.addTarget(self, action: #selector(PinInputView.touchUp), for: [.touchUpInside, .touchDragOutside, .touchCancel, .touchDragExit])
     }
     
     //MARK: Animation

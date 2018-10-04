@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputModuleInput.swift
+//  PinInputPasswordInputModuleInput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,8 +9,8 @@
 import UIKit
 
 
-protocol PasswordInputModuleInput: class {
-    var output: PasswordInputModuleOutput? { get set }
+protocol PinInputModuleInput: class {
+    var output: PinInputModuleOutput? { get set }
     func present(from viewController: UIViewController)
     func present()
 }

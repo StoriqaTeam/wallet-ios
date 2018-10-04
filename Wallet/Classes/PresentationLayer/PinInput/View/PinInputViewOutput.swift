@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputViewOutput.swift
+//  PinInputPasswordInputViewOutput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol PasswordInputViewOutput: class {
+protocol PinInputViewOutput: class {
     func viewIsReady()
     func setPasswordView(in stackView: UIStackView) -> PasswordContainerView
     func inputComplete(_ password: String)

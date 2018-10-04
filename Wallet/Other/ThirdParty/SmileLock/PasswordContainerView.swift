@@ -7,21 +7,21 @@
 
 import UIKit
 
-public protocol PasswordInputCompleteProtocol: class {
-    func passwordInputComplete(input: String)
+public protocol PinInputCompleteProtocol: class {
+    func pinInputComplete(input: String)
     func touchAuthenticationComplete(success: Bool, error: String?)
 }
 
 open class PasswordContainerView: UIView {
     
     //MARK: IBOutlet
-    @IBOutlet open var passwordInputViews: [PasswordInputView]!
+    @IBOutlet open var pinInputViews: [PinInputView]!
     @IBOutlet open weak var passwordDotView: PasswordDotView!
     @IBOutlet open weak var deleteButton: UIButton!
     @IBOutlet open weak var touchAuthenticationButton: UIButton!
     
     //MARK: Property
-    open weak var delegate: PasswordInputCompleteProtocol?
+    open weak var delegate: PinInputCompleteProtocol?
     
     private let biometryAuthProvider: BiometricAuthProviderProtocol = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
     
@@ -38,7 +38,7 @@ open class PasswordContainerView: UIView {
             deleteButton.setTitleColor(tintColor, for: UIControl.State())
             passwordDotView.strokeColor = tintColor
             touchAuthenticationButton.tintColor = tintColor
-            passwordInputViews.forEach {
+            pinInputViews.forEach {
                 $0.textColor = tintColor
                 $0.borderColor = tintColor
             }
@@ -48,7 +48,7 @@ open class PasswordContainerView: UIView {
     open var highlightedColor: UIColor! {
         didSet {
             passwordDotView.fillColor = highlightedColor
-            passwordInputViews.forEach {
+            pinInputViews.forEach {
                 $0.highlightBackgroundColor = highlightedColor
             }
         }
@@ -89,7 +89,7 @@ open class PasswordContainerView: UIView {
         checkInputEmpty()
         
         backgroundColor = .clear
-        passwordInputViews.forEach {
+        pinInputViews.forEach {
             $0.delegate = self
         }
         deleteButton.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -146,7 +146,7 @@ private extension PasswordContainerView {
         if inputString.count == passwordDotView.totalDotCount {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 if let inputString = self?.inputString {
-                    self?.delegate?.passwordInputComplete(input: inputString)
+                    self?.delegate?.pinInputComplete(input: inputString)
                 }
             }
         }
@@ -179,8 +179,8 @@ private extension PasswordContainerView {
     }
 }
 
-extension PasswordContainerView: PasswordInputViewTappedProtocol {
-    public func passwordInputView(_ passwordInputView: PasswordInputView, tappedString: String) {
+extension PasswordContainerView: PinInputViewTappedProtocol {
+    public func pinInputView(_ pinInputView: PinInputView, tappedString: String) {
         guard inputString.count < passwordDotView.totalDotCount else {
             return
         }
