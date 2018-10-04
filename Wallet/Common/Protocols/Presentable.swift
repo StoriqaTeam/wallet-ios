@@ -89,9 +89,9 @@ extension Presentable where Self: UIViewController {
     }
     
     func present(in container: UIView, parent: UIViewController) {
-        parent.addChildViewController(self)
+        parent.addChild(self)
         container.addSubview(view)
-        didMove(toParentViewController: parent)
+        didMove(toParent: parent)
     }
 }
 

@@ -29,8 +29,8 @@ class TransactionsViewController: UIViewController {
         output.viewWillAppear()
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         output.willMoveToParentVC()
     }
     
@@ -59,15 +59,15 @@ extension TransactionsViewController: TransactionsViewInput {
 
 extension TransactionsViewController {
     private func configureTableView() {
-        transactionsTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        transactionsTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
         transactionsTableView.tableFooterView = UIView()
     }
     
     private func configiureSegmentControl() {
-        let normalTextAttributes = [NSAttributedStringKey.font: Theme.Font.segmentTextFont,
-                                    NSAttributedStringKey.foregroundColor: Theme.Color.greyText]
-        let selectedtextAttributes = [NSAttributedStringKey.font: Theme.Font.segmentTextFont,
-                                      NSAttributedStringKey.foregroundColor: Theme.Color.brightSkyBlue]
+        let normalTextAttributes = [NSAttributedString.Key.font: Theme.Font.segmentTextFont,
+                                    NSAttributedString.Key.foregroundColor: Theme.Color.greyText]
+        let selectedtextAttributes = [NSAttributedString.Key.font: Theme.Font.segmentTextFont,
+                                      NSAttributedString.Key.foregroundColor: Theme.Color.brightSkyBlue]
         
         let backgroundImageSize = filterSegmentControl.bounds.size
         let backgroundImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: backgroundImageSize)

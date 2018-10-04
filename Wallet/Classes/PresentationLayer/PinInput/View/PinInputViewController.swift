@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputViewController.swift
+//  PinInputPasswordInputViewController.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,9 +9,9 @@
 import UIKit
 
 
-class PasswordInputViewController: UIViewController {
+class PinInputViewController: UIViewController {
 
-    var output: PasswordInputViewOutput!
+    var output: PinInputViewOutput!
     
     @IBOutlet private var passwordStackView: UIStackView!
     @IBOutlet private var greetingContainerView: UIView!
@@ -53,9 +53,9 @@ class PasswordInputViewController: UIViewController {
 }
 
 
-// MARK: - PasswordInputViewInput
+// MARK: - PinInputViewInput
 
-extension PasswordInputViewController: PasswordInputViewInput {
+extension PinInputViewController: PinInputViewInput {
     
     func setupInitialState() { }
     
@@ -82,7 +82,7 @@ extension PasswordInputViewController: PasswordInputViewInput {
 
 // MARK: - Private methods
 
-extension PasswordInputViewController {
+extension PinInputViewController {
     
     private func configureGreeting() {
         if Device.model == .iPhoneSE {

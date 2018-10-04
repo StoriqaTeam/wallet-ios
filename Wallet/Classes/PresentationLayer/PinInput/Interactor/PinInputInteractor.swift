@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputInteractor.swift
+//  PinInputPasswordInputInteractor.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,8 +9,8 @@
 import Foundation
 
 
-class PasswordInputInteractor {
-    weak var output: PasswordInputInteractorOutput!
+class PinInputInteractor {
+    weak var output: PinInputInteractorOutput!
     
     private let defaultsProvider: DefaultsProviderProtocol
     private let pinValidator: PinValidationProviderProtocol
@@ -24,9 +24,9 @@ class PasswordInputInteractor {
 }
 
 
-// MARK: - PasswordInputInteractorInput
+// MARK: - PinInputInteractorInput
 
-extension PasswordInputInteractor: PasswordInputInteractorInput {
+extension PinInputInteractor: PinInputInteractorInput {
     
     func validatePassword(_ password: String) {
         if pinValidator.pinIsValid(password) {

@@ -46,8 +46,16 @@ extension UIView {
         let metrics = ["width": NSNumber(value: Double(Constants.Sizes.lineWidth))]
         let views = ["lineView": lineView]
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[lineView]|", options:NSLayoutFormatOptions(rawValue: 0), metrics:metrics, views:views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lineView(width)]|", options:NSLayoutFormatOptions(rawValue: 0), metrics:metrics, views:views))
+        let horizontalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|[lineView]|",
+                                                                  options: NSLayoutConstraint.FormatOptions(rawValue: 0),
+                                                                  metrics: metrics,
+                                                                  views: views)
+        let vericalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[lineView(width)]|",
+                                                               options: NSLayoutConstraint.FormatOptions(rawValue: 0),
+                                                               metrics: metrics,
+                                                               views: views)
+        self.addConstraints(horizontalConstraint)
+        self.addConstraints(vericalConstraint)
         
         return lineView
     }

@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputInteractorInput.swift
+//  PinInputPasswordInputInteractorInput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol PasswordInputInteractorInput: class {
+protocol PinInputInteractorInput: class {
     func validatePassword(_ password: String)
     func isBiometryAuthEnabled() -> Bool
     func resetPin()

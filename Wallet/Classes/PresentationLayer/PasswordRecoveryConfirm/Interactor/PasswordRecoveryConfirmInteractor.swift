@@ -43,7 +43,7 @@ extension PasswordRecoveryConfirmInteractor: PasswordRecoveryConfirmInteractorIn
         log.warn("implement resetPassword provider")
         
         // FIXME: - stub
-        if arc4random_uniform(2) == 0 {
+        if Bool.random() {
             output.passwordRecoverySucceed()
         } else {
             output.passwordRecoveryFailed(message: Constants.Errors.userFriendly)

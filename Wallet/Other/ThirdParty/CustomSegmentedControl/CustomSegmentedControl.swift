@@ -75,7 +75,7 @@ extension CustomSegmentedControl {
         }
         
         for image in buttonImages {
-            let button = UIButton.init(type: .custom)
+            let button = UIButton(type: .custom)
             button.setImage(image, for: .normal)
             button.tintColor = imageColor
             button.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
@@ -95,7 +95,7 @@ extension CustomSegmentedControl {
         
         // Create a StackView
         
-        let stackView = UIStackView.init(arrangedSubviews: buttons)
+        let stackView = UIStackView(arrangedSubviews: buttons)
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .fillEqually

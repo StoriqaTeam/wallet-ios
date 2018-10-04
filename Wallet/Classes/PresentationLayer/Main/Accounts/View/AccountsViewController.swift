@@ -41,8 +41,8 @@ class AccountsViewController: UIViewController {
         configureGradientView()
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         output.willMoveToParentVC()
         accountsCollectionView?.clipsToBounds = true
     }
@@ -86,7 +86,7 @@ extension AccountsViewController {
     }
     
     private func configureTableView() {
-        lastTransactionsTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        lastTransactionsTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         lastTransactionsTableView.tableFooterView = UIView()
     }
     

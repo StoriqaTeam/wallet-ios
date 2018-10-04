@@ -26,7 +26,7 @@ extension PasswordEmailRecoveryInteractor: PasswordEmailRecoveryInteractorInput 
         log.warn("implement resetPassword provider")
         
         // FIXME: - stub
-        if arc4random_uniform(2) == 0 {
+        if Bool.random() {
             output.emailSentSuccessfully()
         } else {
             output.emailSendingFailed(message: Constants.Errors.userFriendly)

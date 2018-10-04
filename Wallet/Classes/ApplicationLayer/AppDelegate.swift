@@ -13,17 +13,17 @@ import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     
     private var configurators: [Configurable] = {
         return [
-                ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider()),
-                CrashTrackerConfigurator()
-               ]
+            ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider()),
+            CrashTrackerConfigurator()
+        ]
     }()
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         let appSchemeName = "storiqaWallet://"
         
@@ -44,8 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
         } else if urlStr.contains(Constants.NetworkAuth.kGoogleClientId) {
             return GIDSignIn.sharedInstance().handle(url as URL?,
-                                                     sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                     annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+                                                     sourceApplication: options[.sourceApplication] as? String,
+                                                     annotation: options[.annotation])
             
         } else if urlStr.hasPrefix(appSchemeName) {
             log.debug(urlStr)

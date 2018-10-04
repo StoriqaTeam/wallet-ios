@@ -40,7 +40,7 @@ extension LoginInteractor: LoginInteractorInput {
         log.warn("implement login provider")
         
         // FIXME: - stub
-        signInStub(authData: .email(email: email, password: password))
+        loginSucceed(authData: .email(email: email, password: password))
         // ------------------------------
         
     }
@@ -50,7 +50,7 @@ extension LoginInteractor: LoginInteractorInput {
         log.warn("implement login provider")
         
         // FIXME: - stub
-        signInStub(authData: .socialProvider(provider: tokenProvider, token: socialNetworkToken))
+        loginSucceed(authData: .socialProvider(provider: tokenProvider, token: socialNetworkToken))
         // ------------------------------
     }
     
@@ -67,15 +67,5 @@ extension LoginInteractor: LoginInteractorInput {
             output.loginSucceed()
         }
     }
-    
-    // FIXME: - stub
-    private func signInStub(authData: AuthData) {
-//        if arc4random_uniform(2) == 0 {
-            loginSucceed(authData: authData)
-//        } else {
-//            output.loginFailed(message: Constants.Errors.userFriendly)
-//        }
-    }
-    // ------------------------------
     
 }

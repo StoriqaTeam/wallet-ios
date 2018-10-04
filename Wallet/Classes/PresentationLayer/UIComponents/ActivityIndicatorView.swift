@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ActivityIndicatorView: UIView {
-    private weak var circleLayer: WCGraintCircleLayer?
+    private var circleLayer: WCGraintCircleLayer?
     
     func showActivityIndicator() {
         if circleLayer == nil {
@@ -66,7 +66,7 @@ private class WCGraintCircleLayer: CALayer {
             shapelayer.fillColor = UIColor.clear.cgColor
             shapelayer.path = UIBezierPath(roundedRect: rect, cornerRadius: rect.width/2).cgPath
             shapelayer.lineWidth = linewidth
-            shapelayer.lineCap = kCALineCapRound
+            shapelayer.lineCap = CAShapeLayerLineCap.round
             shapelayer.strokeStart = 0.010
             let finalValue = (toValue*0.99)
             shapelayer.strokeEnd = finalValue//0.99;
@@ -92,7 +92,7 @@ private class WCGraintCircleLayer: CALayer {
         
         // Do an easeout. Don't know how to do a spring instead
         //animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         
         // Set the circleLayer's strokeEnd property to 0.99 now so that it's the
         // right value when the animation ends.

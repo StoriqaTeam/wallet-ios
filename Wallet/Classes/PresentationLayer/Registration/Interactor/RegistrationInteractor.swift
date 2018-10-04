@@ -53,7 +53,7 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         log.warn("implement registration provider")
         
         // FIXME: - stub
-        if arc4random_uniform(2) == 0 {
+        if Bool.random() {
             output.registrationSucceed(email: registrationData.email)
         } else {
             output.registrationFailed(message: Constants.Errors.userFriendly)

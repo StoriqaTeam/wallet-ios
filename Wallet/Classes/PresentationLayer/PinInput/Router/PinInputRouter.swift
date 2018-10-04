@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputRouter.swift
+//  PinInputPasswordInputRouter.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,14 +9,14 @@
 import Foundation
 
 
-class PasswordInputRouter {
+class PinInputRouter {
 
 }
 
 
-// MARK: - PasswordInputRouterInput
+// MARK: - PinInputRouterInput
 
-extension PasswordInputRouter: PasswordInputRouterInput {
+extension PinInputRouter: PinInputRouterInput {
     func showLogin() {
         LoginModule.create().present()
     }

@@ -83,9 +83,9 @@ extension PinSetupPresenter: PinSetupModuleInput {
 }
 
 
-// MARK: - PasswordInputCompleteProtocol
-extension PinSetupPresenter: PasswordInputCompleteProtocol {
-    func passwordInputComplete(input: String) {
+// MARK: - PinInputCompleteProtocol
+extension PinSetupPresenter: PinInputCompleteProtocol {
+    func pinInputComplete(input: String) {
         interactor.pinInputCompleted(input)
     }
     

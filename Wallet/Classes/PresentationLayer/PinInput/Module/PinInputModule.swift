@@ -6,21 +6,21 @@
 import UIKit
 
 
-class PasswordInputModule {
+class PinInputModule {
     
-    class func create() -> PasswordInputModuleInput {
-        let router = PasswordInputRouter()
-        let presenter = PasswordInputPresenter()
+    class func create() -> PinInputModuleInput {
+        let router = PinInputRouter()
+        let presenter = PinInputPresenter()
         
         // Injection
         let keychainProvider = KeychainProvider()
         let defaultsProvider = DefaultsProvider()
         let biometricAuthProvider = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
         let pinValidator = PinValidationProvider(keychainProvider: keychainProvider)
-        let interactor = PasswordInputInteractor(defaultsProvider: defaultsProvider, pinValidator: pinValidator, biometricAuthProvider: biometricAuthProvider)
+        let interactor = PinInputInteractor(defaultsProvider: defaultsProvider, pinValidator: pinValidator, biometricAuthProvider: biometricAuthProvider)
         
-        let passwordInputSb = UIStoryboard(name: "PasswordInput", bundle: nil)
-        let viewController = passwordInputSb.instantiateViewController(withIdentifier: "PinLoginVC") as! PasswordInputViewController
+        let pinInputSb = UIStoryboard(name: "PinInput", bundle: nil)
+        let viewController = pinInputSb.instantiateViewController(withIdentifier: "PinLoginVC") as! PinInputViewController
 
         interactor.output = presenter
 

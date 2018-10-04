@@ -46,7 +46,10 @@ class RegistrationViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: nil)
     }
     
     deinit {
@@ -73,7 +76,7 @@ class RegistrationViewController: UIViewController {
     }
     
     @IBAction private func toggleAgreement() {
-        isAcceptedAgreement = !isAcceptedAgreement
+        isAcceptedAgreement.toggle()
         setAgreementTintColor()
         updateContinueButton()
     }

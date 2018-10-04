@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputViewInput.swift
+//  PinInputPasswordInputViewInput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol PasswordInputViewInput: class, Presentable {
+protocol PinInputViewInput: class, Presentable {
     func setupInitialState()
     func inputSucceed()
     func inputFailed()

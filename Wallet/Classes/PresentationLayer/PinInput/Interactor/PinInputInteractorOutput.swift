@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputInteractorOutput.swift
+//  PinInputPasswordInputInteractorOutput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol PasswordInputInteractorOutput: class {
+protocol PinInputInteractorOutput: class {
     func passwordIsCorrect()
     func passwordIsWrong()
     func pinWasReset()

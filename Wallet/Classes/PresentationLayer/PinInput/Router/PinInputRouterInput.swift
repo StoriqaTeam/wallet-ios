@@ -1,5 +1,5 @@
 //
-//  PasswordInputPasswordInputRouterInput.swift
+//  PinInputPasswordInputRouterInput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 18/09/2018.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol PasswordInputRouterInput: class {
+protocol PinInputRouterInput: class {
     func showMainTabBar()
     func showLogin()
 }
