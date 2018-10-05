@@ -11,5 +11,5 @@ import UIKit
 
 protocol PinSetupViewOutput: class {
     func viewIsReady()
-    func setPasswordView(in stackView: UIStackView) -> PasswordContainerView
+    func pinContainer(_ pinContainer: PinContainerView)
 }

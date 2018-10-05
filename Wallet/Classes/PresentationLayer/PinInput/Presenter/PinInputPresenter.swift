@@ -26,13 +26,13 @@ class PinInputPresenter {
 
 extension PinInputPresenter: PinInputViewOutput {
     
-    func setPasswordView(in stackView: UIStackView) -> PasswordContainerView  {
-        let passView = PasswordContainerView.create(in: stackView, digit: kPasswordDigits)
-        passView.delegate = self
-        passView.tintColor = UIColor.mainBlue
-        passView.highlightedColor = UIColor.mainBlue
-        passView.touchAuthenticationEnabled = interactor.isBiometryAuthEnabled()
-        return passView
+    func pinContainer(_ pinContainer: PinContainerView) {
+        pinContainer.delegate = self
+        pinContainer.totalDotCount = kPasswordDigits
+        pinContainer.tintColor = UIColor.mainBlue
+        pinContainer.highlightedColor = UIColor.mainBlue
+        pinContainer.touchAuthenticationEnabled = interactor.isBiometryAuthEnabled()
+        pinContainer.authButtonImage = interactor.biometricAuthImage()
     }
 
     func viewIsReady() {
@@ -42,10 +42,6 @@ extension PinInputPresenter: PinInputViewOutput {
     func inputComplete(_ password: String) {
         interactor.validatePassword(password)
     }
-    
-    func showAuthorizationZone() {
-        router.showMainTabBar()
-    }
 
     func iForgotPinPressed() {
         //TODO: message, localization
@@ -54,6 +50,7 @@ extension PinInputPresenter: PinInputViewOutput {
         
         let resetPin = UIAlertAction(title: "Reset pin", style: .default, handler: { [weak self] (alert: UIAlertAction) -> Void in
             self?.interactor.resetPin()
+            self?.router.showLogin()
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -61,8 +58,7 @@ extension PinInputPresenter: PinInputViewOutput {
         alertController.addAction(resetPin)
         alertController.addAction(cancelAction)
         
-        view.presentAlertController(alertController)
-        
+        view.viewController.present(alertController, animated: true, completion: nil)
     }
     
 }
@@ -74,6 +70,7 @@ extension PinInputPresenter: PinInputInteractorOutput {
     
     func passwordIsCorrect() {
         view.inputSucceed()
+        router.showMainTabBar()
     }
     
     func passwordIsWrong() {
@@ -81,8 +78,20 @@ extension PinInputPresenter: PinInputInteractorOutput {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
     
-    func pinWasReset() {
-        router.showLogin()
+    func touchAuthenticationSucceed() {
+        view.inputSucceed()
+        router.showMainTabBar()
+    }
+    
+    func touchAuthenticationFailed(error: String?) {
+        view.clearInput()
+        
+        if let error = error {
+            log.warn(error)
+            
+            //TODO: debug
+            view.showAlert(title: "Touch ID failed", message: error)
+        }
     }
     
 }
@@ -103,23 +112,15 @@ extension PinInputPresenter: PinInputModuleInput {
 
 // MARK: - PinInputCompleteProtocol
 extension PinInputPresenter: PinInputCompleteProtocol {
+    
     func pinInputComplete(input: String) {
         interactor.validatePassword(input)
     }
     
-    func touchAuthenticationComplete(success: Bool, error: String?) {
-        if success {
-            view.inputSucceed()
-        } else {
-            view.clearInput()
-            if let error = error {
-                log.warn(error)
-                
-                //TODO: debug
-                view.showAlert(title: "Touch ID failed", message: error)
-            }
-        }
+    func authWithBiometryTapped() {
+        interactor.authWithBiometry()
     }
+    
 }
 
 

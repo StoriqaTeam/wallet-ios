@@ -12,9 +12,7 @@ import UIKit
 class PinSetupViewController: UIViewController {
     var output: PinSetupViewOutput!
 
-    @IBOutlet private var passwordStackView: UIStackView!
-
-    private var passwordContainerView: PasswordContainerView!
+    @IBOutlet private var pinContainerView: PinContainerView!
 
     // MARK: Life cycle
 
@@ -22,7 +20,7 @@ class PinSetupViewController: UIViewController {
         super.viewDidLoad()
         output.viewIsReady()
         disableBackNavigation()
-        passwordContainerView = output.setPasswordView(in: passwordStackView)
+        output.pinContainer(pinContainerView)
     }
     
     private func disableBackNavigation() {
@@ -45,11 +43,11 @@ extension PinSetupViewController: PinSetupViewInput {
     }
     
     func clearInput() {
-        passwordContainerView.clearInput()
+        pinContainerView.clearInput()
     }
     
     func wrongInput() {
-        passwordContainerView.wrongPassword()
+        pinContainerView.wrongPassword()
     }
     
 }

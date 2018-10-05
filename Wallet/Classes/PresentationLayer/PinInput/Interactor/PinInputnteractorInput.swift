@@ -12,5 +12,7 @@ import Foundation
 protocol PinInputInteractorInput: class {
     func validatePassword(_ password: String)
     func isBiometryAuthEnabled() -> Bool
+    func biometricAuthImage() -> UIImage?
+    func authWithBiometry()
     func resetPin()
 }

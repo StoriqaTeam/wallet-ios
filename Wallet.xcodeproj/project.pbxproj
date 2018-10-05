@@ -271,10 +271,10 @@
 		CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18547D214A637E009D1360 /* UIFontExtension.swift */; };
 		CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */; };
 		CE185494214BE558009D1360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE185496214BE558009D1360 /* Localizable.strings */; };
-		CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */; };
-		CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */; };
+		CE1A47DB212E9C5400418C11 /* PinContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PinContainerView.swift */; };
+		CE1A47DC212E9C5400418C11 /* PinDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PinDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PinInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PinInputView.swift */; };
-		CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */; };
+		CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */; };
 		CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */; };
 		CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
@@ -713,9 +713,9 @@
 		CE18547D214A637E009D1360 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
 		CE185495214BE558009D1360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
-		CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
-		CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
+		CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinContainerView.xib; sourceTree = "<group>"; };
+		CE1A47D8212E9C5400418C11 /* PinContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinContainerView.swift; sourceTree = "<group>"; };
+		CE1A47D9212E9C5400418C11 /* PinDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDotView.swift; sourceTree = "<group>"; };
 		CE1A47DA212E9C5400418C11 /* PinInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinInputView.swift; sourceTree = "<group>"; };
 		CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmVM.swift; sourceTree = "<group>"; };
@@ -2395,10 +2395,10 @@
 		CE1A47D1212E9C0200418C11 /* SmileLock */ = {
 			isa = PBXGroup;
 			children = (
-				CE1A47D8212E9C5400418C11 /* PasswordContainerView.swift */,
-				CE1A47D9212E9C5400418C11 /* PasswordDotView.swift */,
+				CE1A47D8212E9C5400418C11 /* PinContainerView.swift */,
+				CE1A47D9212E9C5400418C11 /* PinDotView.swift */,
 				CE1A47DA212E9C5400418C11 /* PinInputView.swift */,
-				CE1A47D0212E9BDA00418C11 /* PasswordContainerView.xib */,
+				CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */,
 			);
 			path = SmileLock;
 			sourceTree = "<group>";
@@ -3042,7 +3042,7 @@
 				CED822DA215B5C0A00693B92 /* ErrorView.xib in Resources */,
 				A56B4C7C215CFE080017B337 /* EmptyView.xib in Resources */,
 				CEFC9CBB215A5BE400962356 /* ContactCell.xib in Resources */,
-				CE1A47DE212E9E6900418C11 /* PasswordContainerView.xib in Resources */,
+				CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */,
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
 				A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */,
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
@@ -3173,7 +3173,7 @@
 				CE0E5A65212D5681003E2C5E /* BaseButton.swift in Sources */,
 				CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */,
 				CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */,
-				CE1A47DB212E9C5400418C11 /* PasswordContainerView.swift in Sources */,
+				CE1A47DB212E9C5400418C11 /* PinContainerView.swift in Sources */,
 				CE5FAFB521529738009E707E /* QuickLaunchModuleOutput.swift in Sources */,
 				CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */,
 				A500860B2150F9E700C47015 /* NetworkLoadable.swift in Sources */,
@@ -3182,7 +3182,7 @@
 				CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */,
 				CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */,
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
-				CE1A47DC212E9C5400418C11 /* PasswordDotView.swift in Sources */,
+				CE1A47DC212E9C5400418C11 /* PinDotView.swift in Sources */,
 				CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */,
 				CE18547E214A637E009D1360 /* UIFontExtension.swift in Sources */,
 				CEFC9CA421590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift in Sources */,

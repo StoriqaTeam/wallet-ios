@@ -43,7 +43,22 @@ extension PinInputInteractor: PinInputInteractorInput {
     func resetPin() {
         defaultsProvider.isQuickLaunchShown = false
         pinValidator.resetPin()
-        output.pinWasReset()
+    }
+    
+    func biometricAuthImage() -> UIImage? {
+        return biometricAuthProvider.biometricAuthImage
+    }
+    
+    func authWithBiometry() {
+        biometricAuthProvider.authWithBiometry { [weak self] (success, errorMessage) in
+            DispatchQueue.main.async {
+                if success {
+                    self?.output.touchAuthenticationSucceed()
+                } else {
+                    self?.output.touchAuthenticationFailed(error: errorMessage)
+                }
+            }
+        }
     }
     
 }
