@@ -19,7 +19,7 @@ protocol BiometricAuthProviderProtocol {
     var canAuthWithBiometry: Bool { get }
     var biometricAuthType: BiometricAuthType { get }
     
-    func authWithBiometry(completion: @escaping ((Bool, String?)->()))
+    func authWithBiometry(completion: @escaping ((Bool, String?) -> Void))
 }
 
 class BiometricAuthProvider: BiometricAuthProviderProtocol {
@@ -57,7 +57,7 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
         }
     }
     
-    func authWithBiometry(completion: @escaping ((Bool, String?)->())) {
+    func authWithBiometry(completion: @escaping ((Bool, String?) -> Void)) {
         // Hide "Enter Password" button
         context.localizedFallbackTitle = ""
         

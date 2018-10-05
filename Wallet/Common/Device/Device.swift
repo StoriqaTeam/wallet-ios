@@ -73,4 +73,3 @@ enum Device: CGFloat {
         }
     }
 }
-

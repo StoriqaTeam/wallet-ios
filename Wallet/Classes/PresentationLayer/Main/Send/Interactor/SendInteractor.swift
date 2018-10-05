@@ -107,7 +107,7 @@ extension SendInteractor: SendInteractorInput {
 extension SendInteractor {
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
-        return allAccounts.index{$0 == account}!
+        return allAccounts.index { $0 == account }!
     }
     
     private func setInitialAccount(account: Account) {

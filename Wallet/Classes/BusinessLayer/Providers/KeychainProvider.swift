@@ -5,12 +5,15 @@
 //  Created by Daniil Miroshnichecko on 18.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable all
 
 import Foundation
 import Security
 
+
+
 protocol KeychainProviderProtocol: class {
-    var pincode: String? { set get }
+    var pincode: String? { get set }
     func deleteAll()
 }
 
@@ -28,9 +31,11 @@ class KeychainProvider: KeychainProviderProtocol {
     private let kSecAttrAccountValue = String(format: kSecAttrAccount as String)
     private let kSecAttrAccessibleValue = String(format: kSecAttrAccessible as String)
     
+    // swiftlint:disable trailing_whitespace
     enum KeychainKeys: String, CaseIterable {
         case pincode
     }
+
     
     
     var pincode: String? {
@@ -49,7 +54,7 @@ class KeychainProvider: KeychainProviderProtocol {
     }
     
 }
-
+// swiftlint:enable trailing_whitespace
 // MARK: Fileprivate extension
 fileprivate extension KeychainProvider {
     func set(_ data: Data?, for key: String) {
@@ -165,7 +170,7 @@ extension KeychainProvider {
         set(data, for: key.rawValue)
     }
     
-    //MARK: - Array
+    // MARK: - Array
     private func getObject<T: Codable>(key: KeychainKeys) -> T? {
         guard let data = get(for: key.rawValue) else {
             return nil

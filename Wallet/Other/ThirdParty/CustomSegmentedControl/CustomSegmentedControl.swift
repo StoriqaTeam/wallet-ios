@@ -58,7 +58,7 @@ class CustomSegmentedControl: UIControl {
 }
 
 
-//MARK: - Private methods
+// MARK: - Private methods
 
 extension CustomSegmentedControl {
     private func updateButtonColors() {

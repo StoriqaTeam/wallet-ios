@@ -109,7 +109,6 @@ extension RegistrationPresenter: PopUpRegistrationSuccessVMDelegate {
 }
 
 
-
 // MARK: - PopUpRegistrationFailedVMDelegate
 
 extension RegistrationPresenter: PopUpRegistrationFailedVMDelegate {
@@ -119,6 +118,3 @@ extension RegistrationPresenter: PopUpRegistrationFailedVMDelegate {
     }
     
 }
-
-
-

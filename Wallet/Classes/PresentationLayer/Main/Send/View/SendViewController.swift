@@ -227,5 +227,3 @@ extension SendViewController {
     }
     
 }
-
-

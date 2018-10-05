@@ -5,6 +5,7 @@
 //  Created by Daniil Miroshnichecko on 01/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable force_try
 
 import Foundation
 import RealmSwift
@@ -22,26 +23,26 @@ class RealmStorable<PlainType: RealmMappable> {
         let realm = try! Realm()
         let objects = realm.objects(PlainType.RealmType.self)
         notificationToken?.invalidate()
-        notificationToken = objects.observe { changes in
-            updateHandler(objects.map { PlainType($0) } )
+        notificationToken = objects.observe { _ in
+            updateHandler(objects.map { PlainType($0) })
         }
     }
     
     func find() -> [PlainType] {
         let realm = try! Realm()
-        return realm.objects(PlainType.RealmType.self).compactMap() { PlainType($0) }
+        return realm.objects(PlainType.RealmType.self).compactMap { PlainType($0) }
     }
     
     func find(_ predicateString: String) -> [PlainType] {
         let realm = try! Realm()
         return realm.objects(PlainType.RealmType.self)
             .filter(predicateString)
-            .compactMap() { PlainType($0) }
+            .compactMap { PlainType($0) }
     }
     
     func findOne(_ predicateString: String) -> PlainType? {
         let realm = try! Realm()
-        return realm.objects(PlainType.RealmType.self).filter(predicateString).compactMap() { PlainType($0) }.first
+        return realm.objects(PlainType.RealmType.self).filter(predicateString).compactMap { PlainType($0) }.first
     }
     
     func save(_ model: PlainType) {

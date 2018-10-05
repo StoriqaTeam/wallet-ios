@@ -113,18 +113,18 @@ extension PaymentFeeViewController: PaymentFeeViewInput {
             UIView.animate(withDuration: 0.25, animations: {
                 self.errorLabel.alpha = 0
                 self.sendButton.alpha = 1
-            }) { (finished) in
+            }, completion: { _ in
                 self.errorLabel.isHidden = true
-            }
+            })
         } else {
             self.errorLabel.isHidden = false
             
             UIView.animate(withDuration: 0.25, animations: {
                 self.errorLabel.alpha = 1
                 self.sendButton.alpha = 0
-            }) { (finished) in
+            }, completion: { _ in
                 self.sendButton.isHidden = true
-            }
+            })
             
             scrollToBottom()
         }
@@ -138,7 +138,8 @@ extension PaymentFeeViewController: PaymentFeeViewInput {
 extension PaymentFeeViewController {
     
     private func scrollToBottom() {
-        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom)
+        let bottomOffset = CGPoint(x: 0,
+                                   y: scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom)
         if bottomOffset.y > 0 {
             scrollView.setContentOffset(bottomOffset, animated: true)
         }

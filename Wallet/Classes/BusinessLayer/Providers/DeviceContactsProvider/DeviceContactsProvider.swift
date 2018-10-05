@@ -15,7 +15,7 @@ struct ContactsSection {
 }
 
 protocol DeviceContactsProviderProtocol {
-    func fetchContacts(completion: @escaping (Result<[ContactsSection]>)->())
+    func fetchContacts(completion: @escaping (Result<[ContactsSection]>) -> Void)
     func searchContact(text: String) -> [ContactsSection]
 }
 
@@ -26,7 +26,7 @@ class DeviceContactsProvider: DeviceContactsProviderProtocol {
     private var contacts: [Contact]?
     private var sortSelector: Selector?
     
-    func fetchContacts(completion: @escaping (Result<[ContactsSection]>)->()) {
+    func fetchContacts(completion: @escaping (Result<[ContactsSection]>) -> Void) {
         let store = CNContactStore()
         
         store.requestAccess(for: (.contacts)) { [weak self] (granted, err) in
@@ -51,9 +51,9 @@ class DeviceContactsProvider: DeviceContactsProviderProtocol {
                 var contacts = [Contact]()
                 
                 do {
-                    try store.enumerateContacts(with: fetchRequest, usingBlock: { ( contact, error) -> Void in
+                    try store.enumerateContacts(with: fetchRequest, usingBlock: { ( contact, _) in
                         
-                        guard let phoneNumber = contact.phoneNumbers.first?.value.stringValue else {return}
+                        guard let phoneNumber = contact.phoneNumbers.first?.value.stringValue else { return }
                         contacts.append(Contact(givenName: contact.givenName,
                                                 familyName: contact.familyName,
                                                 mobile: phoneNumber, imageData:
@@ -77,18 +77,22 @@ class DeviceContactsProvider: DeviceContactsProviderProtocol {
                                                                    sortOrderSelector: sortSelector)
                     let result = Result.success(sortedContacts)
                     completion(result)
-                }
-                catch let error as NSError {
+                } catch let error as NSError {
                     completion(Result.failure(error))
                     log.warn(error.localizedDescription)
                 }
                 
             } else {
                 //TODO: show smth on case of declined access
+                
+                let userInfo = [
+                    "NSLocalizedDescription": "Access Denied",
+                    "NSLocalizedFailureReason": "This application has not been granted permission to access Contacts."
+                ]
+                
                 let error = NSError(domain: "CNErrorDomain",
                                     code: 100,
-                                    userInfo: ["NSLocalizedDescription": "Access Denied",
-                                               "NSLocalizedFailureReason": "This application has not been granted permission to access Contacts."])
+                                    userInfo: userInfo)
                 completion(Result.failure(error))
                 log.warn("Access denied")
             }
@@ -118,7 +122,7 @@ class DeviceContactsProvider: DeviceContactsProviderProtocol {
 }
 
 
-//MARK: - Private methods
+// MARK: - Private methods
 
 extension DeviceContactsProvider {
     
@@ -143,7 +147,7 @@ private extension UILocalizedIndexedCollation {
         
         //2. Put each objects into a section
         for item in array {
-            let index: Int = self.section(for: item, collationStringSelector:collationStringSelector)
+            let index = self.section(for: item, collationStringSelector:collationStringSelector)
             unsortedSections[index].append(item)
         }
         

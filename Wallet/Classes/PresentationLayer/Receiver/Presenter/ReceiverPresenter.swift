@@ -160,6 +160,3 @@ extension ReceiverPresenter {
         return "=" + formatted
     }
 }
-
-
-

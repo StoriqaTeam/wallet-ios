@@ -158,6 +158,3 @@ extension PaymentFeePresenter {
                                     paymentFeeValuesCount: interactor.getFeeWaitCount())
     }
 }
-
-
-

@@ -41,6 +41,3 @@ struct SizeConstants {
     /** For separators. Depends on screen scale */
     static let lineWidth = 1.0 / UIScreen.main.scale
 }
-
-
-

@@ -87,4 +87,3 @@ class ResizableNavigationBarButton: UIButton {
     }
     
 }
-

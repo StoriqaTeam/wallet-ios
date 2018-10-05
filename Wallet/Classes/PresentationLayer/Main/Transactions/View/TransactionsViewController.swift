@@ -59,7 +59,7 @@ extension TransactionsViewController: TransactionsViewInput {
 
 extension TransactionsViewController {
     private func configureTableView() {
-        transactionsTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
+        transactionsTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         transactionsTableView.tableFooterView = UIView()
     }
     

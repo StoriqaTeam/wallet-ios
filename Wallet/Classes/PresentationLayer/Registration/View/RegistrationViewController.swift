@@ -56,7 +56,7 @@ class RegistrationViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
 
     @IBAction private func signUp() {
         dismissKeyboard()
@@ -107,7 +107,7 @@ extension RegistrationViewController: RegistrationViewInput {
 }
 
 
-//MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension RegistrationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -134,7 +134,7 @@ extension RegistrationViewController: UITextFieldDelegate {
     }
 }
 
-//MARK: - SocialNetworkAuthViewDelegate
+// MARK: - SocialNetworkAuthViewDelegate
 
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
     func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String) {
@@ -151,7 +151,7 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
 }
 
 
-//MARK: - Helpers
+// MARK: - Helpers
 
 extension RegistrationViewController {
     private func configFields() {
@@ -215,4 +215,3 @@ extension RegistrationViewController {
         socialNetworkAuthView.setUp(from: self, delegate: self, type: .register)
     }
 }
-

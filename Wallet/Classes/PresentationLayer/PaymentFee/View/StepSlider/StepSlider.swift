@@ -43,7 +43,7 @@ class StepSlider: UISlider {
         
 }
 
-//MARK: - Tracking methods
+// MARK: - Tracking methods
 
 extension StepSlider {
     
@@ -58,7 +58,7 @@ extension StepSlider {
     
 }
 
-//MARK: - Private methods
+// MARK: - Private methods
 
 extension StepSlider {
     

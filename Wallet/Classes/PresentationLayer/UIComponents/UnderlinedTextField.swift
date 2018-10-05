@@ -119,11 +119,11 @@ class UnderlinedTextField: UITextField {
         if errorLabel != nil {
             UIView.animate(withDuration: 0.2, animations: { () -> Void in
                 self.errorLabel?.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            }) { (completed) -> Void in
+            }, completion: { _ -> Void in
                 UIView.animate(withDuration: 0.2, animations: { () -> Void in
                     self.errorLabel?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 })
-            }
+            })
         }
     }
 }

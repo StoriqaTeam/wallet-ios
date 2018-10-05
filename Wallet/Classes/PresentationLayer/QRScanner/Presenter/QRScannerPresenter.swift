@@ -138,7 +138,7 @@ extension QRScannerPresenter {
         let ac = UIAlertController(title: "Scanning not supported",
                                    message: "Your device does not support scanning a code from an item.",
                                    preferredStyle: .alert)
-        let action = UIAlertAction(title: "ok".localized(), style: .default) { [weak self] (action) in
+        let action = UIAlertAction(title: "ok".localized(), style: .default) { [weak self] _ in
             self?.view.dismiss()
         }
         ac.addAction(action)

@@ -5,6 +5,7 @@
 //  Created by Storiqa on 15.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import UIKit
 import AlamofireNetworkActivityIndicator
@@ -35,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         
         let appSchemeName = "storiqaWallet://"
         

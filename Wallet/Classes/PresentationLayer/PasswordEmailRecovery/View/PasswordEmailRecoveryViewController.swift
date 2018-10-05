@@ -34,7 +34,7 @@ class PasswordEmailRecoveryViewController: PasswordRecoveryBaseViewController {
         }
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @IBAction private func resetPassword(_ sender: UIButton) {
         dismissKeyboard()
@@ -73,7 +73,7 @@ extension PasswordEmailRecoveryViewController: PasswordEmailRecoveryViewInput {
 }
 
 
-//MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension PasswordEmailRecoveryViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

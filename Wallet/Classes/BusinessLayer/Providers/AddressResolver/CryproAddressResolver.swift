@@ -9,7 +9,6 @@
 import Foundation
 
 
-
 protocol CryptoAddressResolverProtocol {
     func resove(address: String) -> Currency?
 }
@@ -38,5 +37,3 @@ class CryptoAddressResolver: CryptoAddressResolverProtocol {
         return nil
     }
 }
-
-
