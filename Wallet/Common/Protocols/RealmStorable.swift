@@ -62,6 +62,9 @@ class RealmStorable<PlainType: RealmMappable> {
     
     func deleteAll() {
         let realm = try! Realm()
-        realm.deleteAll()
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
     }
 }

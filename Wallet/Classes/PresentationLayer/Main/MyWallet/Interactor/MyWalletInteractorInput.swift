@@ -11,6 +11,6 @@ import Foundation
 
 protocol MyWalletInteractorInput: class {
     func accountsCount() -> Int 
-    func accountModel(for index: Int) -> Account
+    func accountModel(for index: Int) -> AccountDisplayable
     func getAccountWatcher() -> CurrentAccountWatcherProtocol
 }

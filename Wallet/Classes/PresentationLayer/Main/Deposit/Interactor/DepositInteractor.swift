@@ -79,7 +79,7 @@ extension DepositInteractor: DepositInteractorInput {
 
 extension DepositInteractor {
     
-    private func resolveAccountIndex(account: Account) -> Int {
+    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index{$0 == account}!
     }

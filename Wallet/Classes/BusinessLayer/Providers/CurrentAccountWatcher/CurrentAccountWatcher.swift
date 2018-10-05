@@ -10,24 +10,24 @@ import Foundation
 
 
 protocol CurrentAccountWatcherProtocol {
-    func setAccount(_ account: Account)
-    func getAccount() -> Account
+    func setAccount(_ account: AccountDisplayable)
+    func getAccount() -> AccountDisplayable
 }
 
 
 class CurrentAccountWatcher: CurrentAccountWatcherProtocol {
     
-    private var currentAccount: Account
+    private var currentAccount: AccountDisplayable
     
     init(accountProvider: AccountsProviderProtocol) {
         self.currentAccount = accountProvider.getAllAccounts().first!
     }
     
-    func setAccount(_ account: Account) {
+    func setAccount(_ account: AccountDisplayable) {
         currentAccount = account
     }
     
-    func getAccount() -> Account {
+    func getAccount() -> AccountDisplayable {
         return currentAccount
     }
     
