@@ -9,7 +9,6 @@
 import Foundation
 
 
-
 protocol UserDataStoreServiceProtocol {
     func save(_ user: User)
     func getUserWith(id: String) -> User?
