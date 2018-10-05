@@ -53,7 +53,7 @@ extension AccountsInteractor: AccountsInteractorInput {
         accountsDataManager.scrollTo(index: index)
     }
     
-    func getCurrentAccount() -> Account {
+    func getCurrentAccount() -> AccountDisplayable {
         return accountWatcher.getAccount()
     }
         
@@ -91,12 +91,12 @@ extension AccountsInteractor: AccountsInteractorInput {
 // MARK: - Private methods
 
 extension AccountsInteractor {
-    private func resolveAccountIndex(account: Account) -> Int {
+    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
         let allAccounts = accountLinker.getAllAccounts()
         return allAccounts.index { $0 == account }!
     }
     
-    private func transactions(for account: Account) -> [Transaction] {
+    private func transactions(for account: AccountDisplayable) -> [Transaction] {
         guard let txs = accountLinker.getTransactionsFor(account: account) else { fatalError("Given account not found") }
         return txs
     }

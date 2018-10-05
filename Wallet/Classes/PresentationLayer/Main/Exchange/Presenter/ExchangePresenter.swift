@@ -109,7 +109,7 @@ extension ExchangePresenter: ExchangeViewOutput {
 
 extension ExchangePresenter: ExchangeInteractorOutput {
     
-    func updateRecepientAccount(_ account: Account) {
+    func updateRecepientAccount(_ account: AccountDisplayable) {
         currencyConverter = converterFactory.createConverter(from: account.currency)
         view.setRecepientAccount(account.accountName)
     }

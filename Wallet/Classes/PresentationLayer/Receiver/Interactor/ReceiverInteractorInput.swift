@@ -21,6 +21,6 @@ protocol ReceiverInteractorInput: class {
 
     func getAmount() -> Decimal?
     func getReceiverCurrency() -> Currency
-    func getSelectedAccount() -> Account
+    func getSelectedAccount() -> AccountDisplayable
     
 }

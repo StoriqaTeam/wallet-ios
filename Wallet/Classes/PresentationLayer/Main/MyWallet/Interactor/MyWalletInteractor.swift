@@ -35,7 +35,7 @@ extension MyWalletInteractor: MyWalletInteractorInput {
         return accounts.count
     }
     
-    func accountModel(for index: Int) -> Account {
+    func accountModel(for index: Int) -> AccountDisplayable {
         let accounts = accountsProvider.getAllAccounts()
         guard accounts.count > index else { fatalError("Not found account at given index: \(index)") }
         return accounts[index]

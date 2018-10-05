@@ -1,99 +1,69 @@
 //
-//  AccountModel.swift
+//  Account.swift
 //  Wallet
 //
-//  Created by user on 21.09.2018.
+//  Created by Daniil Miroshnichecko on 05/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import Foundation
 
-enum AccountType: String {
-    case stq
-    case stqBlack
-    case stqGold
-    case eth
-    case btc
-    
-    var ICO: String {
-        switch self {
-        case .btc:
-            return "BTC"
-        case .eth:
-            return "ETH"
-        default:
-            return "STQ"
-        }
-    }
-}
 
 struct Account {
-    let type: AccountType
-    let cryptoAmount: String
-    let fiatAmount: String
-    let holderName: String
-    let currency: Currency
-    let cryptoAddress: String
-    
-    var imageForType: UIImage {
-        switch type {
-        case .stq:
-            return UIImage(named: "stqCard")!
-        case .stqBlack:
-            return UIImage(named: "stqBlackCard")!
-        case .stqGold:
-            return UIImage(named: "stqGoldCard")!
-        case .btc:
-            return UIImage(named: "btcCard")!
-        case .eth:
-            return UIImage(named: "ethCard")!
-        }
+    let id: String
+    let balance: Decimal
+    var currency: Currency
+    let userId: String
+    let accountAddress: String
+    let name: String
+}
+
+
+// MARK: - RealmMappable
+
+extension Account: RealmMappable {
+    init(_ object: RealmAccount) {
+        self.id = object.id
+        self.balance = Decimal(object.balance)
+        self.currency = Currency.btc
+        self.userId = object.userId
+        self.name = object.name
+        self.accountAddress = object.accountAddress
+        self.currency = map(realmCurrency: object.currency)
     }
     
-    var smallImageForType: UIImage {
-        switch type {
-        case .stq:
-            return UIImage(named: "smallStqCard")!
-        case .stqBlack:
-            return UIImage(named: "smallStqBlackCard")!
-        case .stqGold:
-            return UIImage(named: "smallStqGoldCard")!
-        case .btc:
-            return UIImage(named: "smallBtcCard")!
-        case .eth:
-            return UIImage(named: "smallEthCard")!
-        }
-    }
-    
-    var textColorForType: UIColor {
-        switch type {
-        case .stqBlack,
-             .stqGold:
-            return .white
-        case .stq,
-             .eth,
-             .btc:
-            return .black
-        }
-    }
-    
-    var accountName: String {
-        //FIXME: accountName
-        switch type {
-        case .stq:
-            return "STQ account"
-        case .stqBlack:
-            return "STQ Black account"
-        case .stqGold:
-            return "STQ Gold account"
-        case .btc:
-            return "BTC account"
-        case .eth:
-            return "ETH account"
-        }
+    func mapToRealmObject() -> RealmAccount {
+        let object = RealmAccount()
+        
+        object.id = self.id
+        object.balance = self.balance.string
+        object.userId = self.userId
+        object.accountAddress = self.accountAddress
+        object.name = self.name
+        object.currency = self.currency.ISO
+        
+        return object
     }
 }
 
-extension Account: Equatable {
 
+// MARK: - Private methods
+
+extension Account {
+    private func map(realmCurrency: String) -> Currency {
+        if realmCurrency == "ETH" {
+            return Currency.eth
+        }
+        
+        if realmCurrency == "STQ" {
+            return Currency.stq
+        }
+        
+        if realmCurrency == "BTC" {
+            return Currency.btc
+        }
+        
+        return Currency.fiat
+    }
 }
+

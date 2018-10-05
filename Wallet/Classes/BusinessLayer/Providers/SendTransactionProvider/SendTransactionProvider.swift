@@ -18,7 +18,7 @@ protocol SendTransactionProviderProtocol: class {
     var paymentFee: Decimal { get }
     var opponentType: OpponentType { get }
     var receiverCurrency: Currency { get }
-    var selectedAccount: Account { get }
+    var selectedAccount: AccountDisplayable { get }
 
     func getFeeWaitCount() -> Int
     func getFeeAndWait() -> (fee: String, wait: String)
@@ -31,7 +31,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     
     weak var scanDelegate: QRScannerDelegate?
     
-    var selectedAccount: Account
+    var selectedAccount: AccountDisplayable
     
     var receiverCurrency: Currency {
         didSet {

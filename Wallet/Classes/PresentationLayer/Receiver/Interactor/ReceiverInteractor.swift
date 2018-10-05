@@ -98,7 +98,7 @@ extension ReceiverInteractor: ReceiverInteractorInput {
         return sendProvider.receiverCurrency
     }
     
-    func getSelectedAccount() -> Account {
+    func getSelectedAccount() -> AccountDisplayable {
         return sendProvider.selectedAccount
     }
 }

@@ -105,12 +105,12 @@ extension SendInteractor: SendInteractorInput {
 // MARK: - Private methods
 
 extension SendInteractor {
-    private func resolveAccountIndex(account: Account) -> Int {
+    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index { $0 == account }!
     }
     
-    private func setInitialAccount(account: Account) {
+    private func setInitialAccount(account: AccountDisplayable) {
         self.sendProvider.selectedAccount = account
     }
 }

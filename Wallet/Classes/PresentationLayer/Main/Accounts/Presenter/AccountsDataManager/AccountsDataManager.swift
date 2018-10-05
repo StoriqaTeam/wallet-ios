@@ -24,9 +24,9 @@ class AccountsDataManager: NSObject {
     private var cellType: CellType = .regular
     private let kAccountCellIdentifier = "AccountCell"
     private var indexOfCellBeforeDragging = 0
-    private var accounts: [Account]
+    private var accounts: [AccountDisplayable]
     
-    init(accounts: [Account]) {
+    init(accounts: [AccountDisplayable]) {
         self.accounts = accounts
     }
     
@@ -48,7 +48,7 @@ class AccountsDataManager: NSObject {
         registerXib(identifier: cellIdentifier)
     }
     
-    func updateAccounts(_ accounts: [Account]) {
+    func updateAccounts(_ accounts: [AccountDisplayable]) {
         self.accounts = accounts
         accountsCollectionView.reloadData()
     }

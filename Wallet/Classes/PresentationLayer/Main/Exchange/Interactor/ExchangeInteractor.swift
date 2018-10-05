@@ -19,12 +19,12 @@ class ExchangeInteractor {
     private var currencyConverter: CurrencyConverterProtocol!
     private var accountsDataManager: AccountsDataManager!
     private var accountsTableDataManager: AccountsTableDataManager!
-    private var recepientAccount: Account! {
+    private var recepientAccount: AccountDisplayable! {
         didSet { updateConverter() }
     }
     private var amount: Decimal
     private var paymentFee: Decimal
-    private var recepientAccounts: [Account]!
+    private var recepientAccounts: [AccountDisplayable]!
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
          accountsProvider: AccountsProviderProtocol,
@@ -150,12 +150,12 @@ extension ExchangeInteractor: ExchangeInteractorInput {
 
 extension ExchangeInteractor {
     
-    private func resolveAccountIndex(account: Account) -> Int {
+    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index { $0 == account }!
     }
     
-    private func updateRecepientAccounts() -> [Account] {
+    private func updateRecepientAccounts() -> [AccountDisplayable] {
         let allAccounts = accountsProvider.getAllAccounts()
         let filtered = allAccounts.filter({
             $0.type != accountWatcher.getAccount().type

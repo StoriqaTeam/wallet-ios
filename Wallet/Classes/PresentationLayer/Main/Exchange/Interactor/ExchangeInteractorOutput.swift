@@ -11,7 +11,7 @@ import Foundation
 
 protocol ExchangeInteractorOutput: class {
     
-    func updateRecepientAccount(_ account: Account)
+    func updateRecepientAccount(_ account: AccountDisplayable)
     func updateAmount(_ amount: Decimal, currency: Currency)
     func convertAmount(_ amount: Decimal, to currency: Currency)
     func updatePaymentFee(_ fee: Decimal)
