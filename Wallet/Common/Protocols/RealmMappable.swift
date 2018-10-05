@@ -15,5 +15,3 @@ protocol RealmMappable {
     init(_ object: RealmType)
     func mapToRealmObject() -> RealmType
 }
-
-

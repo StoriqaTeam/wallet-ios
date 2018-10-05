@@ -48,10 +48,6 @@ extension QRScannerViewController: QRScannerViewInput {
         
     }
     
-    func presentAlertController(_ alertVC: UIAlertController) {
-        present(alertVC, animated: true)
-    }
-    
     func setupInitialState() {
         configInterface()
         configureAimView()

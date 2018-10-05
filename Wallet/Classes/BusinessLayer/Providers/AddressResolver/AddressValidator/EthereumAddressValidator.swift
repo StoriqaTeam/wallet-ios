@@ -12,6 +12,6 @@ import Foundation
 class EthereumAddressValidator: AddressValidatorProtocol {
     func isValid(address: String) -> Bool {
         return address.count == 42 && address.prefix(2) == "0x"
-                                   && Data(hex: address).count > 0
+                                   && !Data(hex: address).isEmpty
     }
 }

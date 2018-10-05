@@ -98,7 +98,9 @@ extension AccountsDataManager: UICollectionViewDelegate {
         indexOfCellBeforeDragging = indexOfMajorCell()
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         targetContentOffset.pointee = scrollView.contentOffset
         
         let layout = accountsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout

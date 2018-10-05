@@ -48,7 +48,7 @@ extension PinInputPresenter: PinInputViewOutput {
         
         let alertController = UIAlertController(title: nil, message: "Do you want to reset your pin?", preferredStyle: .actionSheet)
         
-        let resetPin = UIAlertAction(title: "Reset pin", style: .default, handler: { [weak self] (alert: UIAlertAction) -> Void in
+        let resetPin = UIAlertAction(title: "Reset pin", style: .default, handler: { [weak self] _ -> Void in
             self?.interactor.resetPin()
             self?.router.showLogin()
         })
@@ -75,7 +75,7 @@ extension PinInputPresenter: PinInputInteractorOutput {
     
     func passwordIsWrong() {
         view.inputFailed()
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
     
     func touchAuthenticationSucceed() {
@@ -122,6 +122,3 @@ extension PinInputPresenter: PinInputCompleteProtocol {
     }
     
 }
-
-
-

@@ -37,27 +37,29 @@ class SocialNetworkAuthViewModel: NSObject {
         gidSignIn.signIn()
     }
     
-    func signInWithFacebook(from vc: UIViewController) {
-        let vc = UIViewController()
-        facebookLoginManager.logIn(readPermissions: [.userGender, .publicProfile, .email], viewController: vc) { [weak self] logResult in
-
-            switch logResult {
-            case .failed(let error):
-                log.debug(error)
-                let err = SocialNetworkViewModelError.failToSign(error: error)
-                let result: Result<Token> = .failure(err)
-                self?.delegate.signInWithResult(result)
-            case .cancelled:
-                log.debug("User cancelled login.")
-            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                log.debug("Logged in!")
-                log.debug("grantedPermissions: \(grantedPermissions)")
-                log.debug("declinedPermissions: \(declinedPermissions)")
-                log.debug("accessToken: \(accessToken)")
-                let result: Result<Token> = .success((SocialNetworkTokenProvider.facebook, accessToken.authenticationToken))
-                self?.delegate.signInWithResult(result)
-            }
-        }
+    func signInWithFacebook(from viewController: UIViewController) {
+        let viewController = UIViewController()
+        facebookLoginManager.logIn(
+            readPermissions: [.userGender, .publicProfile, .email],
+            viewController: viewController,
+            completion: { [weak self] logResult in
+                switch logResult {
+                case .failed(let error):
+                    log.debug(error)
+                    let err = SocialNetworkViewModelError.failToSign(error: error)
+                    let result: Result<Token> = .failure(err)
+                    self?.delegate.signInWithResult(result)
+                case .cancelled:
+                    log.debug("User cancelled login.")
+                case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                    log.debug("Logged in!")
+                    log.debug("grantedPermissions: \(grantedPermissions)")
+                    log.debug("declinedPermissions: \(declinedPermissions)")
+                    log.debug("accessToken: \(accessToken)")
+                    let result: Result<Token> = .success((SocialNetworkTokenProvider.facebook, accessToken.authenticationToken))
+                    self?.delegate.signInWithResult(result)
+                }
+            })
     }
 }
 
@@ -99,4 +101,3 @@ enum SocialNetworkViewModelError: LocalizedError {
         }
     }
 }
-

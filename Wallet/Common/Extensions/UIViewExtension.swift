@@ -18,13 +18,19 @@ extension UIView {
     }
     
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let path = UIBezierPath(roundedRect: self.bounds,
+                                byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         layer.mask = mask
     }
     
-    func dropShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offSet: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 6, scale: Bool = true) {
+    func dropShadow(color: UIColor = UIColor.black,
+                    opacity: Float = 0.5,
+                    offSet: CGSize = CGSize(width: -1, height: 1),
+                    radius: CGFloat = 6,
+                    scale: Bool = true) {
         layer.masksToBounds = false
         
         layer.shadowColor = color.cgColor
@@ -90,7 +96,7 @@ extension UIView {
 
 
 extension UIImage {
-    class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage{
+    class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         let graphicsContext = UIGraphicsGetCurrentContext()
         graphicsContext?.setFillColor(color)

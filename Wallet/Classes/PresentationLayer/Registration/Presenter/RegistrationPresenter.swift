@@ -24,13 +24,13 @@ extension RegistrationPresenter: RegistrationViewOutput {
 
     func viewIsReady() {
         view.setupInitialState()
-        let vm = interactor.getSocialVM()
-        view.setSocialView(viewModel: vm)
+        let viewModel = interactor.getSocialVM()
+        view.setSocialView(viewModel: viewModel)
     }
 
     func register(firstName: String, lastName: String, email: String, password: String) {
         let registrationData = RegistrationData(firstName: firstName, lastName: lastName, email: email, password: password)
-        interactor.register(registrationData: registrationData)
+        interactor.register(with: registrationData)
     }
     
     func validateFields(firstName: String?,
@@ -109,7 +109,6 @@ extension RegistrationPresenter: PopUpRegistrationSuccessVMDelegate {
 }
 
 
-
 // MARK: - PopUpRegistrationFailedVMDelegate
 
 extension RegistrationPresenter: PopUpRegistrationFailedVMDelegate {
@@ -119,6 +118,3 @@ extension RegistrationPresenter: PopUpRegistrationFailedVMDelegate {
     }
     
 }
-
-
-

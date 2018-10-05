@@ -5,6 +5,7 @@
 //  Created by Daniil Miroshnichecko on 28.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 
@@ -107,4 +108,3 @@ public struct Base58 {
         return Data(repeating: 0, count: zerosCount) + Data(base58)
     }
 }
-

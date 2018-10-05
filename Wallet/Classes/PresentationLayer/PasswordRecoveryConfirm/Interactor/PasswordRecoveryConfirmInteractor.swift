@@ -53,7 +53,9 @@ extension PasswordRecoveryConfirmInteractor: PasswordRecoveryConfirmInteractorIn
     }
 
     func retry() {
-        guard let password = password else { fatalError() }
+        guard let password = password else {
+            fatalError("trying to retry password confirmation without password")
+        }
         confirmReset(newPassword: password)
     }
     

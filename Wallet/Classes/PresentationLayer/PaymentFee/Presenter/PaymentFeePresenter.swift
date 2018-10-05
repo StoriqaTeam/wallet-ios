@@ -109,7 +109,7 @@ extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
     
     func confirmTransaction() {
         //TODO: send transaction
-        let _ = interactor.createTransaction()
+        _ = interactor.createTransaction()
     }
     
 }
@@ -139,7 +139,7 @@ extension PaymentFeePresenter {
         return "=" + formatted
     }
     
-    private func paymentFeeScreen(header: SendingHeaderData, opponentType: OpponentType) ->  PaymentFeeScreenData{
+    private func paymentFeeScreen(header: SendingHeaderData, opponentType: OpponentType) -> PaymentFeeScreenData {
         let address: String
         let receiverName: String
         switch opponentType {
@@ -158,6 +158,3 @@ extension PaymentFeePresenter {
                                     paymentFeeValuesCount: interactor.getFeeWaitCount())
     }
 }
-
-
-

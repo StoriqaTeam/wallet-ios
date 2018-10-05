@@ -14,7 +14,7 @@ protocol PinInputViewTappedDelegate: class {
 @IBDesignable
 class PinInputView: UIView {
     
-    //MARK: Property
+    // MARK: Property
     weak var delegate: PinInputViewTappedDelegate?
     
     private let circleView = UIView()
@@ -45,16 +45,15 @@ class PinInputView: UIView {
     }
     
     @IBInspectable
-    var labelFont: UIFont = UIFont.systemFont(ofSize: 36, weight: .light) {
-        didSet {
-            label.font = labelFont
-        }
-    }
-    
-    @IBInspectable
     var textColor: UIColor = UIColor.darkGray {
         didSet {
             label.textColor = textColor
+        }
+    }
+    
+    var labelFont: UIFont = UIFont.systemFont(ofSize: 36, weight: .light) {
+        didSet {
+            label.font = labelFont
         }
     }
     
@@ -70,7 +69,7 @@ class PinInputView: UIView {
     @IBInspectable
     var borderWidth: CGFloat = 1
     
-    //MARK: Life Cycle
+    // MARK: Life Cycle
     override  func awakeFromNib() {
         super.awakeFromNib()
         configureSubviews()
@@ -132,7 +131,7 @@ class PinInputView: UIView {
 // MARK: - Private methods
 
 extension PinInputView {
-    //MARK: Awake
+    // MARK: Awake
     private func configureSubviews() {
         //update color
         backgroundColor = .clear
@@ -148,11 +147,15 @@ extension PinInputView {
         //configure button
         addEqualConstraintsFromSubView(button, toSuperView: self)
         button.isExclusiveTouch = true
-        button.addTarget(self, action: #selector(PinInputView.touchDown), for: [.touchDown])
-        button.addTarget(self, action: #selector(PinInputView.touchUp), for: [.touchUpInside, .touchDragOutside, .touchCancel, .touchDragExit])
+        button.addTarget(self,
+                         action: #selector(PinInputView.touchDown),
+                         for: [.touchDown])
+        button.addTarget(self,
+                         action: #selector(PinInputView.touchUp),
+                         for: [.touchUpInside, .touchDragOutside, .touchCancel, .touchDragExit])
     }
     
-    //MARK: Animation
+    // MARK: Animation
     private func touchDownAction() {
         label.textColor = highlightTextColor
         circleView.backgroundColor = highlightBackgroundColor
@@ -167,28 +170,30 @@ extension PinInputView {
         isAnimating = true
         tappedAnimation(animations: { 
             self.touchDownAction()
-        }) {
+        }, completion: {
             if self.touchUpFlag {
                 self.touchUpAnimation()
             } else {
                 self.isAnimating = false
             }
-        }
+        })
     }
     
     private func touchUpAnimation() {
         isAnimating = true
         tappedAnimation(animations: { 
             self.touchUpAction()
-        }) {
+        }, completion: {
             self.isAnimating = false
-        }
+        })
     }
     
-    private func tappedAnimation(animations: @escaping () -> (), completion: (() -> ())?) {
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction, .beginFromCurrentState], animations: animations) { _ in
-            completion?()
-        }
+    private func tappedAnimation(animations: @escaping () -> Void, completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
+                       options: [.allowUserInteraction, .beginFromCurrentState],
+                       animations: animations,
+                       completion: { _ in completion?() })
     }
 }
 

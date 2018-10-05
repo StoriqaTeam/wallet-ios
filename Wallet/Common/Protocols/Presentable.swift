@@ -21,7 +21,7 @@ protocol Presentable {
     func show(from viewController: UIViewController)
     func dismiss()
     func dismissModal()
-    func dismissModal(completion: @escaping ()->())
+    func dismissModal(completion: @escaping () -> Void)
     func popToRoot()
     func present(in container: UIView, parent: UIViewController)
 }
@@ -71,10 +71,10 @@ extension Presentable where Self: UIViewController {
     }
     
     func dismiss() {
-        let _ = navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
-    func dismissModal(completion: @escaping ()->()) {
+    func dismissModal(completion: @escaping () -> Void) {
         dismiss(animated: true) {
             completion()
         }
@@ -94,4 +94,3 @@ extension Presentable where Self: UIViewController {
         didMove(toParent: parent)
     }
 }
-

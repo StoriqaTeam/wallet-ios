@@ -152,7 +152,7 @@ extension ExchangeInteractor {
     
     private func resolveAccountIndex(account: AccountDisplayable) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
-        return allAccounts.index{$0 == account}!
+        return allAccounts.index { $0 == account }!
     }
     
     private func updateRecepientAccounts() -> [AccountDisplayable] {

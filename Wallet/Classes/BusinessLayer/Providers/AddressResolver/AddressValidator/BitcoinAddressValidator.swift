@@ -17,7 +17,7 @@ class BitcoinAddressValidator: AddressValidatorProtocol {
         self.network = network
     }
     
-   func isValid(address: String)  -> Bool {
+   func isValid(address: String) -> Bool {
         let data = Base58.decode(address)
         if data.count != 25 { return false }
         let versionByte = data[0]

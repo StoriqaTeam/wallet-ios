@@ -47,7 +47,7 @@ class ContactsDataManager: NSObject {
 }
 
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ContactsDataManager: UITableViewDataSource {
     
@@ -85,7 +85,7 @@ extension ContactsDataManager: UITableViewDataSource {
 }
 
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension ContactsDataManager: UITableViewDelegate {
     
@@ -105,7 +105,7 @@ extension ContactsDataManager: UITableViewDelegate {
 }
 
 
-//MARK: - Private methods
+// MARK: - Private methods
 
 extension ContactsDataManager {
     private func configTableView() {

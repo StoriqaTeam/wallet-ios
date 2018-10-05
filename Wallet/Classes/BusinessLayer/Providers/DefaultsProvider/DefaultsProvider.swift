@@ -9,9 +9,9 @@
 import Foundation
 
 protocol DefaultsProviderProtocol: class {
-    var isFirstLaunch: Bool { set get }
-    var isQuickLaunchShown: Bool { set get }
-    var isBiometryAuthEnabled: Bool { set get }
+    var isFirstLaunch: Bool { get set }
+    var isQuickLaunchShown: Bool { get set }
+    var isBiometryAuthEnabled: Bool { get set }
 }
 
 class DefaultsProvider: DefaultsProviderProtocol {
@@ -56,7 +56,7 @@ class DefaultsProvider: DefaultsProviderProtocol {
 }
 
 
-// MARK: -  Private methods
+// MARK: - Private methods
 
 extension DefaultsProvider {
     private func getString(_ key: DefaultsKey) -> String? {
@@ -92,4 +92,3 @@ extension DefaultsProvider {
         return UserDefaults.standard.object(forKey: key.rawValue) != nil
     }
 }
-

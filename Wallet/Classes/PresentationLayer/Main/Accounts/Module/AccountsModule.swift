@@ -16,7 +16,7 @@ class FakeAccountLinker: AccountsLinkerProtocol {
     }
     
     func getTransactionsFor(account: AccountDisplayable) -> [Transaction]? {
-        return fakeTxProvider.transactionsFor(account:account)
+        return fakeTxProvider.transactionsFor(account: account)
     }
     
     func getAllAccounts() -> [AccountDisplayable] {
@@ -50,7 +50,5 @@ class AccountsModule {
         
         return presenter
     }
-    
-    
     
 }

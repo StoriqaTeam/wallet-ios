@@ -9,7 +9,7 @@ import UIKit
 
 class PinDotView: UIView {
     
-    //MARK: Property
+    // MARK: Property
     var inputDotCount = 0 {
         didSet { setNeedsDisplay() }
     }
@@ -32,7 +32,7 @@ class PinDotView: UIView {
     
     private(set)  var isFull = false
     
-    //MARK: Draw
+    // MARK: Draw
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         isFull = (inputDotCount == totalDotCount)
@@ -54,7 +54,7 @@ class PinDotView: UIView {
         }
     }
     
-    //MARK: LifeCycle
+    // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.clear
@@ -65,11 +65,11 @@ class PinDotView: UIView {
         setNeedsDisplay()
     }
     
-    //MARK: Animation
+    // MARK: Animation
     private var shakeCount = 0
     private var direction = false
     
-    func shakeAnimationWithCompletion(_ completion: @escaping () -> ()) {
+    func shakeAnimationWithCompletion(_ completion: @escaping () -> Void) {
         let maxShakeCount = 5
         let centerX = frame.midX
         let centerY = frame.midY
@@ -88,36 +88,40 @@ class PinDotView: UIView {
             } else {
                 self.center = CGPoint(x: centerX - moveX, y: centerY)
             }
-        }) {
+        }, completion: {
             if self.shakeCount >= maxShakeCount {
                 self.shakeAnimation(withDuration: duration, animations: {
                     let realCenterX = self.superview!.bounds.midX
                     self.center = CGPoint(x: realCenterX, y: centerY)
-                }) {
+                }, completion: {
                     self.direction = false
                     self.shakeCount = 0
                     completion()
-                }
+                })
             } else {
                 self.shakeCount += 1
                 self.direction.toggle()
                 self.shakeAnimationWithCompletion(completion)
             }
-        }
+        })
     }
 }
 
 private extension PinDotView {
-    //MARK: Animation
-    func shakeAnimation(withDuration duration: TimeInterval, animations: @escaping () -> (), completion: @escaping () -> ()) {
-        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.01, initialSpringVelocity: 0.35, options: UIView.AnimationOptions(), animations: {
-            animations()
-        }) { _ in
-            completion()
-        }
+    // MARK: Animation
+    func shakeAnimation(withDuration duration: TimeInterval,
+                        animations: @escaping () -> Void,
+                        completion: @escaping () -> Void) {
+        UIView.animate(withDuration: duration,
+                       delay: 0,
+                       usingSpringWithDamping: 0.01,
+                       initialSpringVelocity: 0.35,
+                       options: UIView.AnimationOptions(),
+                       animations: { animations() },
+                       completion: { _ in completion() })
     }
     
-    //MARK: Update Radius
+    // MARK: Update Radius
     func updateRadius() {
         let width = bounds.width
         let height = bounds.height
@@ -128,12 +132,12 @@ private extension PinDotView {
         if (count * radius * 2 + spaceCount * spacing > width) {
             radius = floor((width / (count + spaceCount)) / 2)
         } else {
-            radius = floor(height / 2);
+            radius = floor(height / 2)
         }
-        radius = radius - radius * borderWidthRatio
+        radius -= radius * borderWidthRatio
     }
     
-    //MARK: Dots Layout
+    // MARK: Dots Layout
     func getDotPositions(_ isOdd: Bool) -> [CGPoint] {
         let centerX = bounds.midX
         let centerY = bounds.midY
@@ -141,8 +145,7 @@ private extension PinDotView {
         let middleIndex = isOdd ? (totalDotCount + 1) / 2 : (totalDotCount) / 2
         let offSet = isOdd ? 0 : -(radius + spacing / 2)
         let positions: [CGPoint] = (1...totalDotCount).map { index in
-            let i = CGFloat(middleIndex - index)
-            let positionX = centerX - (radius * 2 + spacing) * i + offSet
+            let positionX = centerX - (radius * 2 + spacing) * CGFloat(middleIndex - index) + offSet
             return CGPoint(x: positionX, y: centerY)
         }
         return positions

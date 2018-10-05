@@ -58,7 +58,10 @@ class UnderlinedTextField: UITextField {
         let width = self.frame.width - errorLabelHorizontalMargin * 2
         
         if errorLabel == nil {
-            errorLabel = UILabel(frame: CGRect(x: errorLabelHorizontalMargin, y: self.frame.height + errorLabelVerticalMargin, width: width, height: 20))
+            errorLabel = UILabel(frame: CGRect(x: errorLabelHorizontalMargin,
+                                               y: self.frame.height + errorLabelVerticalMargin,
+                                               width: width,
+                                               height: 20))
             errorLabel!.font = UIFont.systemFont(ofSize: 12)
             errorLabel?.numberOfLines = 0
         }
@@ -119,11 +122,11 @@ class UnderlinedTextField: UITextField {
         if errorLabel != nil {
             UIView.animate(withDuration: 0.2, animations: { () -> Void in
                 self.errorLabel?.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            }) { (completed) -> Void in
+            }, completion: { _ -> Void in
                 UIView.animate(withDuration: 0.2, animations: { () -> Void in
                     self.errorLabel?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 })
-            }
+            })
         }
     }
 }

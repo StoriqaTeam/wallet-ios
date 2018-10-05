@@ -135,18 +135,18 @@ extension ExchangeViewController: ExchangeViewInput {
             UIView.animate(withDuration: 0.25, animations: {
                 self.errorLabel.alpha = 0
                 self.exchangeButton.alpha = 1
-            }) { (finished) in
+            }, completion: { _ in
                 self.errorLabel.isHidden = true
-            }
+            })
         } else {
             self.errorLabel.isHidden = false
             
             UIView.animate(withDuration: 0.25, animations: {
                 self.errorLabel.alpha = 1
                 self.exchangeButton.alpha = 0
-            }) { (finished) in
+            }, completion: { _ in
                 self.exchangeButton.isHidden = true
-            }
+            })
             
             scrollToBottom()
         }
@@ -246,7 +246,8 @@ extension ExchangeViewController {
     }
     
     private func scrollToBottom() {
-        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom)
+        let bottomOffset = CGPoint(x: 0,
+                                   y: scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom)
         if bottomOffset.y > 0 {
             scrollView.setContentOffset(bottomOffset, animated: true)
         }

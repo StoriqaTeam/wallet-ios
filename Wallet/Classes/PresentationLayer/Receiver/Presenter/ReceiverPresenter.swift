@@ -29,14 +29,15 @@ class ReceiverPresenter {
 // MARK: - ReceiverViewOutput
 
 extension ReceiverPresenter: ReceiverViewOutput {
+    
     func configureInput() {
         let contacts = interactor.getContact()
         
         guard !contacts.isEmpty else { return }
-        inputDidChange(contacts[0].familyName)
+        interactor.searchContact(text: contacts[0].familyName)
+        view.setNextButtonHidden(false)
         view.setInput(contacts[0].mobile)
     }
-    
     
     func nextButtonPressed() {
         let builder = interactor.getSendTransactionBuilder()
@@ -55,7 +56,8 @@ extension ReceiverPresenter: ReceiverViewOutput {
     
     func inputDidChange(_ input: String) {
         
-        //TODO: нужны проверки, валидный ли номер, чтобы активировать кнопку. Пока кнопка активируется только по клику на контакт и скану
+        //TODO: нужны проверки, валидный ли номер, чтобы активировать кнопку.
+        //Пока кнопка активируется только по клику на контакт и скану
         view.setNextButtonHidden(true)
         interactor.searchContact(text: input)
     }
@@ -160,6 +162,3 @@ extension ReceiverPresenter {
         return "=" + formatted
     }
 }
-
-
-

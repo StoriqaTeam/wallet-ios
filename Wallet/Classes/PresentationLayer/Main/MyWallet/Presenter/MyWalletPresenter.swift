@@ -40,7 +40,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
         return interactor.accountsCount()
     }
 
-    func accountModel(for indexPath: IndexPath)  -> AccountDisplayable {
+    func accountModel(for indexPath: IndexPath) -> AccountDisplayable {
         let account = interactor.accountModel(for: indexPath.row)
         return account
     }

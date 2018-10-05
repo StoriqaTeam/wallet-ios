@@ -16,7 +16,8 @@ class ReceiverModule {
         let formatter = CurrencyFormatter()
         let converterFactory = CurrecncyConverterFactory()
         
-        let interactor = ReceiverInteractor(deviceContactsProvider: deviceContactsProvider, sendTransactionBuilder: sendTransactionBuilder)
+        let interactor = ReceiverInteractor(deviceContactsProvider: deviceContactsProvider,
+                                            sendTransactionBuilder: sendTransactionBuilder)
         let presenter = ReceiverPresenter(currencyFormatter: formatter, converterFactory: converterFactory)
         
         let accountsVC = UIStoryboard(name: "Receiver", bundle: nil)

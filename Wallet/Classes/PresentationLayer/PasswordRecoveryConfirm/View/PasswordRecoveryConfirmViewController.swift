@@ -41,7 +41,7 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
         repeatPasswordTextField.layoutBlock = layoutBlock
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @IBAction private func confirmReset(_ sender: UIButton) {
         dismissKeyboard()
@@ -80,7 +80,7 @@ extension PasswordRecoveryConfirmViewController: PasswordRecoveryConfirmViewInpu
 }
 
 
-//MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension PasswordRecoveryConfirmViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

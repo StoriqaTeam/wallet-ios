@@ -25,7 +25,7 @@ class SendingHeaderView: LoadableFromXib {
     @IBOutlet private var gradientView: UIView!
     
     // Properties
-    private var editBlock: (()->())?
+    private var editBlock: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,7 +38,7 @@ class SendingHeaderView: LoadableFromXib {
         setGradient()
     }
     
-    func setup(apperance: SendingHeaderData, editBlock: @escaping (()->())) {
+    func setup(apperance: SendingHeaderData, editBlock: @escaping (() -> Void)) {
         amountLabel.text = apperance.amount
         convertedAmountLabel.text = apperance.amountInTransactionCurrency
         currencyImageView.image = apperance.currencyImage

@@ -65,7 +65,7 @@ extension PinSetupPresenter: PinSetupInteractorOutput {
         
         view.setTitle(title: firstInputTitle)
         view.wrongInput()
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
     
 }

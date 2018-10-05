@@ -14,14 +14,14 @@ public protocol PinInputCompleteProtocol: class {
 
 class PinContainerView: LoadableFromXib {
     
-    //MARK: IBOutlet
+    // MARK: IBOutlet
     
     @IBOutlet private var pinInputViews: [PinInputView]!
     @IBOutlet private var pinDotView: PinDotView!
     @IBOutlet private var deleteButton: UIButton!
     @IBOutlet private var touchAuthenticationButton: UIButton!
     
-    //MARK: Property
+    // MARK: Property
     
     weak var delegate: PinInputCompleteProtocol?
     
@@ -72,7 +72,7 @@ class PinContainerView: LoadableFromXib {
         }
     }
     
-    //MARK: Life Cycle
+    // MARK: Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -83,7 +83,7 @@ class PinContainerView: LoadableFromXib {
         checkInputEmpty()
     }
     
-    //MARK: Input Wrong
+    // MARK: Input Wrong
     func wrongPassword() {
         pinDotView.shakeAnimationWithCompletion {
             self.clearInput()
@@ -98,9 +98,9 @@ class PinContainerView: LoadableFromXib {
         pinDotView.inputDotCount = pinDotView.totalDotCount
     }
     
-    //MARK: IBAction
+    // MARK: IBAction
     @IBAction func deleteInputString(_ sender: AnyObject) {
-        guard inputString.count > 0 && !pinDotView.isFull else {
+        guard !inputString.isEmpty && !pinDotView.isFull else {
             return
         }
         inputString = String(inputString.dropLast())
@@ -112,7 +112,7 @@ class PinContainerView: LoadableFromXib {
 }
 
 
-//MARK: - Private methods
+// MARK: - Private methods
 
 extension PinContainerView {
     private func checkInputComplete() {
@@ -137,7 +137,7 @@ extension PinContainerView {
 }
 
 
-//MARK: - PinInputViewTappedProtocol
+// MARK: - PinInputViewTappedProtocol
 
 extension PinContainerView: PinInputViewTappedDelegate {
     public func pinInputView(_ pinInputView: PinInputView, tappedString: String) {

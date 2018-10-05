@@ -3166,7 +3166,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 0c9a1ca7295228dba1732eb6cbd6352e9e5e4e10 73cb73246fab4159a1680a337c454017f636bcf3d4165e0c0cd38f8f5fd5925b\n";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 0c9a1ca7295228dba1732eb6cbd6352e9e5e4e10 73cb73246fab4159a1680a337c454017f636bcf3d4165e0c0cd38f8f5fd5925b\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		F7A86E839A909184787126A8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

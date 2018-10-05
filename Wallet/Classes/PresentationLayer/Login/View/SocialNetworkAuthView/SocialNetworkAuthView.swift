@@ -65,19 +65,19 @@ class SocialNetworkAuthView: UIView {
         viewModel.signInWithFacebook(from: fromViewController)
     }
     
-    func bindViewModel(_ vm: SocialNetworkAuthViewModel) {
-        viewModel = vm
-        viewModel.delegate = self
-        viewModel.setUIGoogleDelegate(view: self)
+    func bindViewModel(_ viewModel: SocialNetworkAuthViewModel) {
+        self.viewModel = viewModel
+        self.viewModel.delegate = self
+        self.viewModel.setUIGoogleDelegate(view: self)
     }
     
     @IBAction func googleButtonTapHandler(_ sender: UIButton) {
         viewModel.signWithGoogle()
     }
     
-    func setUp(from vc: UIViewController, delegate: SocialNetworkAuthViewDelegate, type: SocialNetworkAuthViewType) {
+    func setUp(from viewController: UIViewController, delegate: SocialNetworkAuthViewDelegate, type: SocialNetworkAuthViewType) {
         self.delegate = delegate
-        self.fromViewController = vc
+        self.fromViewController = viewController
         self.formType = type
 
         switch type {

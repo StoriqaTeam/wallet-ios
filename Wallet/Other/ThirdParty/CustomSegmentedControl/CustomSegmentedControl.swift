@@ -33,7 +33,7 @@ class CustomSegmentedControl: UIControl {
     }
     
     @objc func buttonTapped(button: UIButton) {
-        for (buttonIndex,btn) in buttons.enumerated() {
+        for (buttonIndex, btn) in buttons.enumerated() {
             if btn == button {
                 selectedSegmentIndex = buttonIndex
                 
@@ -58,11 +58,11 @@ class CustomSegmentedControl: UIControl {
 }
 
 
-//MARK: - Private methods
+// MARK: - Private methods
 
 extension CustomSegmentedControl {
     private func updateButtonColors() {
-        for (buttonIndex,btn) in buttons.enumerated() {
+        for (buttonIndex, btn) in buttons.enumerated() {
             btn.tintColor = buttonIndex == selectedSegmentIndex ? selectedImageColor : imageColor
         }
     }
@@ -86,9 +86,9 @@ extension CustomSegmentedControl {
         
         let selectorHeight: CGFloat = 2.0
         let selectorWidth = frame.width / CGFloat(buttonImages.count)
-        let y = (self.frame.maxY - self.frame.minY) - selectorHeight
+        let yPosition = (self.frame.maxY - self.frame.minY) - selectorHeight
         
-        selector = UIView(frame: CGRect(x: 0, y: y, width: selectorWidth, height: selectorHeight))
+        selector = UIView(frame: CGRect(x: 0, y: yPosition, width: selectorWidth, height: selectorHeight))
         selector.backgroundColor = selectorColor
         
         addSubview(selector)

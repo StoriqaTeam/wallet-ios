@@ -24,7 +24,7 @@ class PasswordRecoveryConfirmFormValidator: PasswordRecoveryConfirmFormValidator
     
         if feildsNonEmpty && newPassword != passwordConfirm {
             //TODO: сообщение
-            return (false,  "passwords_nonequeal".localized())
+            return (false, "passwords_nonequeal".localized())
         } else {
             return (feildsNonEmpty, nil)
         }

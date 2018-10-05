@@ -46,7 +46,7 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         output.setFormIsValid(valid, passwordsEqualityMessage: passwordsEqualMessage)
     }
     
-    func register(registrationData: RegistrationData) {
+    func register(with registrationData: RegistrationData) {
         self.registrationData = registrationData
         
         // TODO: - implement new provider
@@ -62,8 +62,10 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     }
     
     func retryRegistration() {
-        guard let registrationData = registrationData else { fatalError() }
-        register(registrationData: registrationData)
+        guard let registrationData = registrationData else {
+            fatalError("trying to retry registration without registrationData")
+        }
+        register(with: registrationData)
     }
     
 }

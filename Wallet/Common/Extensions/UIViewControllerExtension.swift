@@ -41,7 +41,7 @@ extension UIViewController {
         navigationBar.barTintColor = color
         navigationBar.tintColor = color
         
-        var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key : Any]()
+        var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
         titleTextAttributes[NSAttributedString.Key.foregroundColor] = color
         navigationBar.titleTextAttributes = titleTextAttributes
     }

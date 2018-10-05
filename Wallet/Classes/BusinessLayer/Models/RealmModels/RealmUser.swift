@@ -5,6 +5,7 @@
 //  Created by Daniil Miroshnichecko on 04/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 import RealmSwift
@@ -21,4 +22,3 @@ class RealmUser: Object {
         return "id"
     }
 }
-

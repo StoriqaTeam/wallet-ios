@@ -55,5 +55,3 @@ class RouteButton: LoadableFromXib {
         roundCorners(radius: 8)
     }
 }
-
-

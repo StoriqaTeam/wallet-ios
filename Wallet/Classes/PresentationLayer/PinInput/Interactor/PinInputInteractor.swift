@@ -16,7 +16,9 @@ class PinInputInteractor {
     private let pinValidator: PinValidationProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
     
-    init(defaultsProvider: DefaultsProviderProtocol, pinValidator: PinValidationProviderProtocol, biometricAuthProvider: BiometricAuthProviderProtocol) {
+    init(defaultsProvider: DefaultsProviderProtocol,
+         pinValidator: PinValidationProviderProtocol,
+         biometricAuthProvider: BiometricAuthProviderProtocol) {
         self.defaultsProvider = defaultsProvider
         self.pinValidator = pinValidator
         self.biometricAuthProvider = biometricAuthProvider

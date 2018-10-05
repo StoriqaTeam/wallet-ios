@@ -30,7 +30,7 @@ class AccountsLinker: AccountsLinkerProtocol {
         let allAccounts = accountsProvider.getAllAccounts()
         
         for acc in allAccounts where acc == account {
-            return transactionsProvider.transactionsFor(account:acc)
+            return transactionsProvider.transactionsFor(account: acc)
         }
         
         return nil

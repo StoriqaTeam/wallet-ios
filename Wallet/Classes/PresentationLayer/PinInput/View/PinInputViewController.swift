@@ -40,7 +40,7 @@ class PinInputViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
     }
     
@@ -94,7 +94,7 @@ extension PinInputViewController {
     private func configureUserPhoto() {
         userPhotoImageView.image = UserInfo.shared.photo
         userPhotoImageView.roundCorners(radius: userPhotoImageView.frame.height / 2)
-        userPhotoImageView.backgroundColor = UIColor.init(white: 0.95, alpha: 1)
+        userPhotoImageView.backgroundColor = UIColor(white: 0.95, alpha: 1)
     }
     
     private func showActivityIndicator() {

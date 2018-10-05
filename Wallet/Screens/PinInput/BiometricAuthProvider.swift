@@ -19,7 +19,7 @@ protocol BiometricAuthProviderProtocol {
     var canAuthWithBiometry: Bool { get }
     var biometricAuthType: BiometricAuthType { get }
     
-    func authWithBiometry(completion: @escaping ((Bool, String?)->()))
+    func authWithBiometry(completion: @escaping ((Bool, String?) -> Void))
 }
 
 class BiometricAuthProvider: BiometricAuthProviderProtocol {
@@ -57,13 +57,16 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
         }
     }
     
-    func authWithBiometry(completion: @escaping ((Bool, String?)->())) {
+    func authWithBiometry(completion: @escaping ((Bool, String?) -> Void)) {
         // Hide "Enter Password" button
         context.localizedFallbackTitle = ""
         
         // show the authentication UI
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: touchAuthenticationReason) {[weak self] (success, error) in
-            completion(success, self?.errorParser.errorMessageForLAErrorCode(error: error))
-        }
+        context.evaluatePolicy(
+            .deviceOwnerAuthenticationWithBiometrics,
+            localizedReason: touchAuthenticationReason,
+            completion: { [weak self] (success, error) in
+                completion(success, self?.errorParser.errorMessageForLAErrorCode(error: error))
+            })
     }
 }
