@@ -51,6 +51,7 @@ PODS:
   - Slog (0.4.0):
     - Slog/LogOnly (= 0.4.0)
   - Slog/LogOnly (0.4.0)
+  - SwiftLint (0.27.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - RealmSwift
   - Slog
+  - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -81,6 +83,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - Slog
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -99,7 +102,8 @@ SPEC CHECKSUMS:
   Realm: 85ab9e4f779d66f6e9ffeb118dc25b7f130c96ac
   RealmSwift: 69121c8b86d0ae005fb779efdb10e606732e1c74
   Slog: 4b978d716d8984c67c2703127afc7287b1b26fd2
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 04198b4621c0ba7f20ee1164a02cdf55bd4be9ef
+PODFILE CHECKSUM: d5f882946297a4ec68129f9911169356f8c90329
 
 COCOAPODS: 1.5.3

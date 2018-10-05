@@ -10,6 +10,7 @@ target 'Wallet' do
   pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
   pod 'Slog'
   pod 'RealmSwift'
+  pod 'SwiftLint'
   
   # social networks
   pod 'FacebookCore'
