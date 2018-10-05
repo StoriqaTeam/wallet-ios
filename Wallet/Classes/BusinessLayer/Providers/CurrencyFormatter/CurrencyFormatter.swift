@@ -19,9 +19,9 @@ class CurrencyFormatter: CurrencyFormatterProtocol {
     func getStringFrom(amount: Decimal, currency: Currency) -> String {
         switch currency {
         case .fiat:
-            return currency.ISO + amount.description
+            return currency.symbol + amount.description
         default:
-            return amount.description + " " + currency.ISO
+            return amount.description + " " + currency.symbol
         }
     }
     

@@ -21,23 +21,25 @@ class SendModule {
                                                    accountProvider: accountProvider,
                                                    feeWaitProvider: feeWaitProvider)
         let sendTxBuilder = SendTransactionBuilder(defaultSendTxProvider: sendProvider)
+        let currencyImageProvider = CurrencyImageProvider()
         
-        let presenter = SendPresenter(currencyFormatter: formatter)
+        let presenter = SendPresenter(currencyFormatter: formatter,
+                                      currencyImageProvider: currencyImageProvider)
         let interactor = SendInteractor(sendTransactionBuilder: sendTxBuilder,
                                         accountsProvider: accountProvider,
                                         accountWatcher: accountWatcher)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
         let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController
-
+        
         interactor.output = presenter
         viewController.output = presenter
-
+        
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor
         
         return presenter
     }
-
+    
 }

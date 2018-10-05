@@ -44,7 +44,7 @@ extension AccountsInteractor: AccountsInteractorInput {
         let currentAccount = accountWatcher.getAccount()
         let txs = transactions(for: currentAccount)
         transactionDataManager.updateTransactions(txs)
-        output.ISODidChange(currentAccount.type.ICO)
+        output.ISODidChange(currentAccount.currency.ISO)
     }
     
     func scrollCollection() {
@@ -59,7 +59,7 @@ extension AccountsInteractor: AccountsInteractorInput {
         
     func getInitialCurrencyISO() -> String {
         let currentAccount = accountWatcher.getAccount()
-        return currentAccount.type.ICO
+        return currentAccount.currency.ISO
     }
     
     func setTransactionDataManagerDelegate(_ delegate: TransactionsDataManagerDelegate) {

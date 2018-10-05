@@ -64,7 +64,9 @@ extension ExchangeInteractor: ExchangeInteractorInput {
     
     func createAccountsTableDataManager(with tableView: UITableView) {
         let currencyFormatter = CurrencyFormatter()
-        let accountsManager = AccountsTableDataManager(currencyFormatter: currencyFormatter)
+        let currencyImageProvider = CurrencyImageProvider()
+        let accountsManager = AccountsTableDataManager(currencyFormatter: currencyFormatter,
+                                                       currencyImageProvider: currencyImageProvider)
         accountsManager.setTableView(tableView)
         accountsTableDataManager = accountsManager
     }

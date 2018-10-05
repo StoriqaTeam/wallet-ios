@@ -313,6 +313,8 @@
 		CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBA21538653009E707E /* BiometryQuickLaunch.storyboard */; };
 		CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBE2153949B009E707E /* PinSetup.storyboard */; };
 		CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */; };
+		CE8CC9922167A90D00EA9EED /* AccountDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */; };
+		CE8CC9952167A92B00EA9EED /* CurrencyImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE976482216252B9000E9336 /* SmallAccountCell.xib */; };
 		CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976487216263C0000E9336 /* QRCodeProvider.swift */; };
@@ -765,6 +767,8 @@
 		CE5FAFBE2153949B009E707E /* PinSetup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PinSetup.storyboard; sourceTree = "<group>"; };
 		CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CE6782F3DF8CA9544D645F0A /* MainTabBarRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarRouter.swift; sourceTree = "<group>"; };
+		CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayer.swift; sourceTree = "<group>"; };
+		CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyImageProvider.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CE976482216252B9000E9336 /* SmallAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallAccountCell.xib; sourceTree = "<group>"; };
 		CE976487216263C0000E9336 /* QRCodeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeProvider.swift; sourceTree = "<group>"; };
@@ -2123,6 +2127,8 @@
 				CED822E8215BE07B00693B92 /* CurrencyFormatter */,
 				CE976486216263AA000E9336 /* QRCodeProvider */,
 				CE0C3C2A216617A5002D1CBD /* PaymentFeeAndWaitProvider */,
+				CE8CC9932167A91500EA9EED /* CurrencyImageProvider */,
+				CE8CC9902167A8F200EA9EED /* AccountDisplayer */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -2595,6 +2601,22 @@
 				CE5FAFB2215286D8009E707E /* QuickLaunchProvider.swift */,
 			);
 			path = QuickLaunch;
+			sourceTree = "<group>";
+		};
+		CE8CC9902167A8F200EA9EED /* AccountDisplayer */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */,
+			);
+			path = AccountDisplayer;
+			sourceTree = "<group>";
+		};
+		CE8CC9932167A91500EA9EED /* CurrencyImageProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */,
+			);
+			path = CurrencyImageProvider;
 			sourceTree = "<group>";
 		};
 		CE97647E21625285000E9336 /* Xib */ = {
@@ -3397,6 +3419,7 @@
 				5CB377C30BE6A3E3A6A71B8D /* PinQuickLaunchModuleInput.swift in Sources */,
 				25F219D759BBDCBB79AC76A8 /* PinQuickLaunchModuleOutput.swift in Sources */,
 				2C2605E9EBCF195BDD25DF7F /* PinQuickLaunchModule.swift in Sources */,
+				CE8CC9922167A90D00EA9EED /* AccountDisplayer.swift in Sources */,
 				CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */,
 				A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */,
 				CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */,
@@ -3568,6 +3591,7 @@
 				C8D9A40E5B96755FB71A7946 /* QRScannerModule.swift in Sources */,
 				335037D191E86BBE64FC177F /* PaymentFeeViewInput.swift in Sources */,
 				A5A63DCD4AC3808900D1025C /* PaymentFeeViewOutput.swift in Sources */,
+				CE8CC9952167A92B00EA9EED /* CurrencyImageProvider.swift in Sources */,
 				2F665A1E2688D3229C38F7B2 /* PaymentFeeViewController.swift in Sources */,
 				A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */,
 				A52C66BD216786930073071E /* Mappable.swift in Sources */,

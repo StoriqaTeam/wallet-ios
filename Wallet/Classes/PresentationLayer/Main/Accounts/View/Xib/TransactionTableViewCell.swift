@@ -30,7 +30,7 @@ class TransactionTableViewCell: UITableViewCell {
 extension TransactionTableViewCell {
     private func configureAppearence(transaction: Transaction) {
         let direction = transaction.direction
-        currencyLabel.text = transaction.currency.ISO
+        currencyLabel.text = transaction.currency.symbol
         
         switch transaction.opponent {
         case .address(address: let address):
@@ -43,14 +43,14 @@ extension TransactionTableViewCell {
         case .send:
             directionLabel.text = "Send"
             directionOpponentLabel.text = "to"
-            cryptoAmountLabel.text = "- \(transaction.cryptoAmount) \(transaction.currency.ISO)"
+            cryptoAmountLabel.text = "- \(transaction.cryptoAmount) \(transaction.currency.symbol)"
             fiatAmountlabel.text = "-$\(transaction.fiatAmount)"
             directionImageView.image = UIImage(named: "SendStatusImg")
             cryptoAmountLabel.textColor = Theme.Text.Color.red
         case .receive:
             directionLabel.text = "Receive"
             directionOpponentLabel.text = "from"
-            cryptoAmountLabel.text = "+ \(transaction.cryptoAmount) \(transaction.currency.ISO)"
+            cryptoAmountLabel.text = "+ \(transaction.cryptoAmount) \(transaction.currency.symbol)"
             fiatAmountlabel.text = "+$\(transaction.fiatAmount)"
             directionImageView.image = UIImage(named: "ReceiveStatusImg")
             cryptoAmountLabel.textColor = Theme.Text.Color.green

@@ -23,35 +23,39 @@ enum Currency: String {
         case .stq:
             return "STQ"
         case .fiat:
+            //TODO: - брать из UserDefaults
+            return "USD"
+        }
+    }
+    
+    var symbol: String {
+        switch self {
+        case .btc:
+            return "BTC"
+        case .eth:
+            return "ETH"
+        case .stq:
+            return "STQ"
+        case .fiat:
+            //TODO: - брать из UserDefaults
             return "$"
         }
     }
     
-    var smallImage: UIImage {
-        switch self {
-        case .btc:
-            return #imageLiteral(resourceName: "currency_btc_small")
-        case .eth:
-            return #imageLiteral(resourceName: "currency_eth_small")
-        case .stq:
-            return #imageLiteral(resourceName: "currency_stq_small")
-        case .fiat:
-            return #imageLiteral(resourceName: "currency_fiat_small")
+    init(string: String) {
+        switch string {
+        case "ETH":
+            self = .eth
+        case "STQ":
+            self = .stq
+        case "BTC":
+            self = .btc
+        default:
+            self = .fiat
         }
     }
     
-    var mediumImage: UIImage {
-        switch self {
-        case .btc:
-            return #imageLiteral(resourceName: "currency_btc_medium")
-        case .eth:
-            return #imageLiteral(resourceName: "currency_eth_medium")
-        case .stq:
-            return #imageLiteral(resourceName: "currency_stq_medium")
-        case .fiat:
-            return #imageLiteral(resourceName: "currency_fiat_medium")
-        }
-    }
+    //TODO: - конструктор из String
 }
 
 enum Direction {

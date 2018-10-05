@@ -18,10 +18,14 @@ class ReceiverPresenter {
     
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let currencyImageProvider: CurrencyImageProviderProtocol
     
-    init(currencyFormatter: CurrencyFormatterProtocol, converterFactory: CurrecncyConverterFactoryProtocol) {
+    init(currencyFormatter: CurrencyFormatterProtocol,
+         converterFactory: CurrecncyConverterFactoryProtocol,
+         currencyImageProvider: CurrencyImageProviderProtocol) {
         self.currencyFormatter = currencyFormatter
         self.converterFactory = converterFactory
+        self.currencyImageProvider = currencyImageProvider
     }
 }
 
@@ -74,10 +78,11 @@ extension ReceiverPresenter: ReceiverViewOutput {
         let accountCurrency = interactor.getSelectedAccount().currency
         let amountString = getStringFrom(amount: amount, currency: currency)
         let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
+        let currencyImage = currencyImageProvider.mediumImage(for: currency)
         
         let appearence = SendingHeaderData(amount: amountString,
                                            amountInTransactionCurrency: amountStringInTxCurrency,
-                                           currencyImage: currency.mediumImage)
+                                           currencyImage: currencyImage)
         
         view.setupInitialState(apperance: appearence)
         view.setNextButtonHidden(true)

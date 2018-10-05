@@ -17,14 +17,17 @@ class SendPresenter {
     var router: SendRouterInput!
     
     private let currencyFormatter: CurrencyFormatterProtocol
+    private let currencyImageProvider: CurrencyImageProviderProtocol
     private let currencies = [
                                Currency.stq,
                                Currency.btc,
                                Currency.eth,
                                Currency.fiat ]
     
-    init(currencyFormatter: CurrencyFormatterProtocol) {
+    init(currencyFormatter: CurrencyFormatterProtocol,
+         currencyImageProvider: CurrencyImageProviderProtocol) {
         self.currencyFormatter = currencyFormatter
+        self.currencyImageProvider = currencyImageProvider
     }
 }
 
@@ -65,7 +68,9 @@ extension SendPresenter: SendViewOutput {
     }
     
     func viewIsReady() {
-        let currencyImages = currencies.map({ return $0.smallImage })
+        let currencyImages = currencies.map({
+            return currencyImageProvider.smallImage(for: $0)
+        })
         let numberOfPages = interactor.getAccountsCount()
         configureNavBar()
         view.setButtonEnabled(false)

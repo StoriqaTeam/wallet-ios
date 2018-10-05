@@ -14,17 +14,6 @@ enum AccountType: String {
     case stqGold
     case eth
     case btc
-    
-    var ICO: String {
-        switch self {
-        case .btc:
-            return "BTC"
-        case .eth:
-            return "ETH"
-        default:
-            return "STQ"
-        }
-    }
 }
 
 struct AccountDisplayable {

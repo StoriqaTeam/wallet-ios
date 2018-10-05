@@ -22,10 +22,14 @@ class AccountsTableDataManager: NSObject {
     private var tableView: UITableView!
     private let kCellIdentifier = "AccountTableCell"
     private let cellHeight: CGFloat = 60
-    private let currencyFormatter: CurrencyFormatterProtocol
     
-    init(currencyFormatter: CurrencyFormatterProtocol) {
+    private let currencyFormatter: CurrencyFormatterProtocol
+    private let currencyImageProvider: CurrencyImageProviderProtocol
+    
+    init(currencyFormatter: CurrencyFormatterProtocol,
+         currencyImageProvider: CurrencyImageProviderProtocol) {
         self.currencyFormatter = currencyFormatter
+        self.currencyImageProvider = currencyImageProvider
     }
     
     func setTableView(_ view: UITableView) {
@@ -86,7 +90,7 @@ extension AccountsTableDataManager {
     }
     
     private func configureCell(cell: AccountTableCell, account: AccountDisplayable) {
-        let image = account.currency.smallImage
+        let image = currencyImageProvider.smallImage(for: account.currency)
         let accountName = account.accountName
         
         //TODO: decimal amount
