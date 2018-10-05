@@ -22,7 +22,7 @@ class AccountViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configureWith(account: Account) {
+    func configureWith(account: AccountDisplayable) {
         cryptoAmountLabel.text = account.cryptoAmount
         fiatAmountLabel.text = account.fiatAmount
         holderName?.text = account.holderName

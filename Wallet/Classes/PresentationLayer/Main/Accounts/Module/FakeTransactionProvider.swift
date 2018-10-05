@@ -93,7 +93,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     opponent: .address(address: "mv12ef12...32"))
     ]
     
-    func transactionsFor(account: Account) -> [Transaction] {
+    func transactionsFor(account: AccountDisplayable) -> [Transaction] {
         return fetchTransactions(accountType: account.type)
     }
     

@@ -9,12 +9,12 @@
 import Foundation
 
 protocol AccountsProviderProtocol: class {
-    func getAllAccounts() -> [Account]
+    func getAllAccounts() -> [AccountDisplayable]
 }
 
 
 class AccountsProvider: AccountsProviderProtocol {
-    func getAllAccounts() -> [Account] {
+    func getAllAccounts() -> [AccountDisplayable] {
         fatalError("Need to implement")
     }
 }

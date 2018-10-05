@@ -15,11 +15,11 @@ class FakeAccountLinker: AccountsLinkerProtocol {
         self.fakeTxProvider = fakeTxProvider
     }
     
-    func getTransactionsFor(account: Account) -> [Transaction]? {
+    func getTransactionsFor(account: AccountDisplayable) -> [Transaction]? {
         return fakeTxProvider.transactionsFor(account:account)
     }
     
-    func getAllAccounts() -> [Account] {
+    func getAllAccounts() -> [AccountDisplayable] {
         return fakeAccProvider.getAllAccounts()
     }
 }

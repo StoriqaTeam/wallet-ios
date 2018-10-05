@@ -15,7 +15,7 @@ protocol AccountsTableDataManagerDelegate: class {
 class AccountsTableDataManager: NSObject {
     
     weak var delegate: AccountsTableDataManagerDelegate!
-    var accounts: [Account] = [] {
+    var accounts: [AccountDisplayable] = [] {
         didSet { tableView.reloadData() }
     }
     
@@ -85,7 +85,7 @@ extension AccountsTableDataManager {
         tableView.register(nib, forCellReuseIdentifier: kCellIdentifier)
     }
     
-    private func configureCell(cell: AccountTableCell, account: Account) {
+    private func configureCell(cell: AccountTableCell, account: AccountDisplayable) {
         let image = account.currency.smallImage
         let accountName = account.accountName
         

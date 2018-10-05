@@ -12,6 +12,6 @@ import UIKit
 protocol MyWalletViewOutput: class {
     func viewIsReady()
     func accountsCount() -> Int
-    func accountModel(for indexPath: IndexPath) -> Account
+    func accountModel(for indexPath: IndexPath) -> AccountDisplayable
     func selectItemAt(index: Int)
 }

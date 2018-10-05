@@ -16,7 +16,7 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
         self.defaultSendTxProvider = defaultSendTxProvider
     }
     
-    func set(account: Account) {
+    func set(account: AccountDisplayable) {
         defaultSendTxProvider.selectedAccount = account
     }
     
