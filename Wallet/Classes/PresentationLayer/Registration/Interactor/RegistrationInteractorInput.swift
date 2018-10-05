@@ -12,6 +12,6 @@ import Foundation
 protocol RegistrationInteractorInput: class {
     func getSocialVM() -> SocialNetworkAuthViewModel
     func validateForm(_ form: RegistrationForm)
-    func register(registrationData: RegistrationData)
+    func register(with registrationData: RegistrationData) 
     func retryRegistration()
 }

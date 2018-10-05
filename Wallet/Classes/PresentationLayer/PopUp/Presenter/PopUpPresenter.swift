@@ -24,8 +24,8 @@ class PopUpPresenter {
 extension PopUpPresenter: PopUpViewOutput {
 
     func viewIsReady() {
-        let vm = interactor.getViewModel()
-        view.setupInitialState(vm: vm)
+        let viewModel = interactor.getViewModel()
+        view.setupInitialState(viewModel: viewModel)
     }
 
 }

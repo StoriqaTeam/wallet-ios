@@ -10,5 +10,5 @@ import UIKit
 
 
 protocol PopUpViewInput: class, Presentable {
-    func setupInitialState(vm: PopUpViewModelProtocol)
+    func setupInitialState(viewModel: PopUpViewModelProtocol)
 }

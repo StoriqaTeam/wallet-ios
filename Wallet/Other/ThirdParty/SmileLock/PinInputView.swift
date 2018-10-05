@@ -45,16 +45,15 @@ class PinInputView: UIView {
     }
     
     @IBInspectable
-    var labelFont: UIFont = UIFont.systemFont(ofSize: 36, weight: .light) {
-        didSet {
-            label.font = labelFont
-        }
-    }
-    
-    @IBInspectable
     var textColor: UIColor = UIColor.darkGray {
         didSet {
             label.textColor = textColor
+        }
+    }
+    
+    var labelFont: UIFont = UIFont.systemFont(ofSize: 36, weight: .light) {
+        didSet {
+            label.font = labelFont
         }
     }
     
@@ -148,8 +147,12 @@ extension PinInputView {
         //configure button
         addEqualConstraintsFromSubView(button, toSuperView: self)
         button.isExclusiveTouch = true
-        button.addTarget(self, action: #selector(PinInputView.touchDown), for: [.touchDown])
-        button.addTarget(self, action: #selector(PinInputView.touchUp), for: [.touchUpInside, .touchDragOutside, .touchCancel, .touchDragExit])
+        button.addTarget(self,
+                         action: #selector(PinInputView.touchDown),
+                         for: [.touchDown])
+        button.addTarget(self,
+                         action: #selector(PinInputView.touchUp),
+                         for: [.touchUpInside, .touchDragOutside, .touchCancel, .touchDragExit])
     }
     
     // MARK: Animation

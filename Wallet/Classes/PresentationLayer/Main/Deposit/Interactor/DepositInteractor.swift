@@ -81,6 +81,6 @@ extension DepositInteractor {
     
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
-        return allAccounts.index{$0 == account}!
+        return allAccounts.index { $0 == account }!
     }
 }

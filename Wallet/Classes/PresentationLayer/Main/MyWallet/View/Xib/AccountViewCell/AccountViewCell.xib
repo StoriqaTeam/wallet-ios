@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qc-nx-Ad2">
                         <rect key="frame" x="0.0" y="0.0" width="336" height="198"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackCardSTQ" translatesAutoresizingMaskIntoConstraints="NO" id="meN-tH-Zba">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stqBlackCard" translatesAutoresizingMaskIntoConstraints="NO" id="meN-tH-Zba">
                                 <rect key="frame" x="0.0" y="0.0" width="336" height="198"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOl-f2-zCv">
@@ -103,6 +103,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="blackCardSTQ" width="336" height="198"/>
+        <image name="stqBlackCard" width="336" height="198"/>
     </resources>
 </document>

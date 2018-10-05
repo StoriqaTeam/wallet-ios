@@ -12,6 +12,5 @@ import UIKit
 protocol QRScannerViewInput: class, Presentable {
     func setupInitialState()
     func setPreviewLayer(_ previewLayer: CALayer)
-    func presentAlertController(_ alertVC: UIAlertController)
     func changeAimColor(_ color: UIColor)
 }

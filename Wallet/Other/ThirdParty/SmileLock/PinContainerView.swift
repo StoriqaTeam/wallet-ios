@@ -100,7 +100,7 @@ class PinContainerView: LoadableFromXib {
     
     // MARK: IBAction
     @IBAction func deleteInputString(_ sender: AnyObject) {
-        guard inputString.count > 0 && !pinDotView.isFull else {
+        guard !inputString.isEmpty && !pinDotView.isFull else {
             return
         }
         inputString = String(inputString.dropLast())

@@ -5,6 +5,7 @@
 //  Created by Storiqa on 24.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable function_body_length
 
 import Foundation
 import Contacts
@@ -127,7 +128,7 @@ class DeviceContactsProvider: DeviceContactsProviderProtocol {
 extension DeviceContactsProvider {
     
     private func setUpCollation(contacts: [Contact], sortOrderSelector: Selector) -> [ContactsSection] {
-        // create a locale collation object, by which we can get section index titles of current locale. (locale = local contry/language)
+        // create a locale collation object, by which we can get section index titles of current locale
         let collation = UILocalizedIndexedCollation.current()
         let sections = collation.partitionContacts(array: contacts, collationStringSelector: sortOrderSelector)
         return sections
@@ -147,19 +148,19 @@ private extension UILocalizedIndexedCollation {
         
         //2. Put each objects into a section
         for item in array {
-            let index = self.section(for: item, collationStringSelector:collationStringSelector)
+            let index = self.section(for: item, collationStringSelector: collationStringSelector)
             unsortedSections[index].append(item)
         }
         
         //3. sorting the array of each sections
         var sections = [ContactsSection]()
-        for index in 0 ..< unsortedSections.count {
-            if unsortedSections[index].count > 0 {
-                let section = ContactsSection(title: self.sectionTitles[index],
-                                              contacts: self.sortedArray(from: unsortedSections[index], collationStringSelector: collationStringSelector) as! [Contact])
-                
-                sections.append(section)
-            }
+
+        for index in 0 ..< unsortedSections.count where !unsortedSections[index].isEmpty {
+            let sorted = self.sortedArray(from: unsortedSections[index], collationStringSelector: collationStringSelector) as! [Contact]
+            let section = ContactsSection(title: self.sectionTitles[index],
+                                          contacts: sorted)
+            
+            sections.append(section)
         }
         
         return sections

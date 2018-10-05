@@ -17,8 +17,8 @@ class MainTabBarModule {
         
         let interactor = MainTabBarInteractor(accountWatcher: accountWatcher)
         
-        let sb = UIStoryboard(name: "MainTabBar", bundle: nil)
-        let viewController = sb.instantiateViewController(withIdentifier: "mainTabBarVC") as! MainTabBarViewController
+        let storyboard = UIStoryboard(name: "MainTabBar", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "mainTabBarVC") as! MainTabBarViewController
 
         interactor.output = presenter
 

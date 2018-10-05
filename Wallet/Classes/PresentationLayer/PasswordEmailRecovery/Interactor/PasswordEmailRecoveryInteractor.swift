@@ -35,7 +35,9 @@ extension PasswordEmailRecoveryInteractor: PasswordEmailRecoveryInteractorInput 
     }
     
     func retry() {
-        guard let email = email else { fatalError() }
+        guard let email = email else {
+            fatalError("trying to retry password reset without email")
+        }
         resetPassword(email: email)
     }
 }

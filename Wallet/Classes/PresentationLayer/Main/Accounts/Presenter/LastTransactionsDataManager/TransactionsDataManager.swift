@@ -19,7 +19,7 @@ class TransactionsDataManager: NSObject {
     weak var delegate: TransactionsDataManagerDelegate!
     private var lastTransactionsTableView: UITableView!
     private var transactions: [Transaction]
-    private let kTransactionCellId = "transactionCell"
+    private let kCellId = "transactionCell"
     
     init(transactions: [Transaction]) {
         self.transactions = transactions
@@ -63,7 +63,7 @@ extension TransactionsDataManager: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let transaction = transactions[indexPath.row]
-       let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kTransactionCellId, for: indexPath) as! TransactionTableViewCell
+       let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
         cell.configureWith(transaction: transaction)
         return cell
     }
@@ -75,6 +75,6 @@ extension TransactionsDataManager: UITableViewDataSource {
 extension TransactionsDataManager {
     private func registerXib() {
         let nib = UINib(nibName: "TransactionCell", bundle: nil)
-        lastTransactionsTableView.register(nib, forCellReuseIdentifier: kTransactionCellId)
+        lastTransactionsTableView.register(nib, forCellReuseIdentifier: kCellId)
     }
 }

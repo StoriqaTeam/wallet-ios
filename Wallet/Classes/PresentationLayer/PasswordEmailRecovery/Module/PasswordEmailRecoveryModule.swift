@@ -14,12 +14,13 @@ class PasswordEmailRecoveryModule {
         let interactor = PasswordEmailRecoveryInteractor()
         
         let storyboard = UIStoryboard(name: "PasswordEmailRecovery", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "PasswordRecoveryVC") as! PasswordEmailRecoveryViewController
-
+        let controllerId = "PasswordRecoveryVC"
+        let viewController = storyboard.instantiateViewController(withIdentifier: controllerId) as! PasswordEmailRecoveryViewController
+        
         interactor.output = presenter
-
+        
         viewController.output = presenter
-
+        
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor

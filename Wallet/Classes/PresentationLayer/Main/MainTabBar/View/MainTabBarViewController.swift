@@ -28,9 +28,7 @@ class MainTabBarViewController: UITabBarController {
 
 extension MainTabBarViewController: MainTabBarViewInput {
     var mainTabBar: UITabBarController? {
-        get {
-            return self
-        }
+        return self
     }
     
     func setupInitialState() { }

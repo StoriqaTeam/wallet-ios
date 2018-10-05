@@ -55,16 +55,16 @@ class SendViewController: UIViewController {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
-                                               name:UIResponder.keyboardWillShowNotification, object: nil)
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillHide),
-                                               name:UIResponder.keyboardWillHideNotification, object: nil)
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardFinishedAnimating),
-                                               name:UIResponder.keyboardDidShowNotification, object: nil)
+                                               name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardFinishedAnimating),
-                                               name:UIResponder.keyboardDidHideNotification, object: nil)
+                                               name: UIResponder.keyboardDidHideNotification, object: nil)
         
     }
     

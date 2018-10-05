@@ -32,7 +32,7 @@ enum Device: CGFloat {
         }
     }
     
-    var accountsCollectionFlowLayout: (size: CGSize, spacing: CGFloat)  {
+    var accountsCollectionFlowLayout: (size: CGSize, spacing: CGFloat) {
         let size: CGSize
         
         switch self {
@@ -46,7 +46,7 @@ enum Device: CGFloat {
         return (size, spacing)
     }
     
-    var accountsCollectionSmallFlowLayout: (size: CGSize, spacing: CGFloat)  {
+    var accountsCollectionSmallFlowLayout: (size: CGSize, spacing: CGFloat) {
         let size: CGSize
         
         switch self {

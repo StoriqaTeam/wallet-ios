@@ -71,7 +71,7 @@ extension Presentable where Self: UIViewController {
     }
     
     func dismiss() {
-        let _ = navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     func dismissModal(completion: @escaping () -> Void) {

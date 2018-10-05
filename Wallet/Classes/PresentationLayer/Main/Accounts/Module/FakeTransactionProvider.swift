@@ -17,7 +17,11 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     cryptoAmount: 2,
                     timestamp: Date(),
                     status: .confirmed,
-                    opponent: .contact(contact: Contact(givenName: "Satoshi", familyName: "B.", mobile: "123-456-789", imageData: nil))),
+                    opponent: .contact(contact:
+                        Contact(givenName: "Satoshi",
+                                familyName: "B.",
+                                mobile: "123-456-789",
+                                imageData: nil))),
         
         Transaction(currency: .btc,
                     direction: .send,
@@ -33,7 +37,11 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     cryptoAmount: 0.5,
                     timestamp: Date(),
                     status: .confirmed,
-                    opponent: .contact(contact: Contact(givenName: "Daniil", familyName: "M.", mobile: "123-123-123", imageData: nil))),
+                    opponent: .contact(contact:
+                        Contact(givenName: "Daniil",
+                                familyName: "M.",
+                                mobile: "123-123-123",
+                                imageData: nil))),
         
         Transaction(currency: .eth,
                     direction: .send,
@@ -49,7 +57,11 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     cryptoAmount: 1.04,
                     timestamp: Date(),
                     status: .confirmed,
-                    opponent: .contact(contact: Contact(givenName: "Iron", familyName: "M.", mobile: "123-123-123", imageData: nil))),
+                    opponent: .contact(contact:
+                        Contact(givenName: "Iron",
+                                familyName: "M.",
+                                mobile: "123-123-123",
+                                imageData: nil))),
         
         Transaction(currency: .eth,
                     direction: .send,

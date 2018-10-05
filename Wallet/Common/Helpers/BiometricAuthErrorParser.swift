@@ -10,7 +10,6 @@ import Foundation
 import LocalAuthentication
 
 
-//FIXME: rename file after fixing project tree
 protocol BiometricAuthErrorParserProtocol {
     func errorMessageForLAErrorCode(error: Error?) -> String?
 }
@@ -31,7 +30,7 @@ class BiometricAuthErrorParser: BiometricAuthErrorParserProtocol {
         switch errorCode {
             
         case LAError.appCancel:
-            message = "Authentication was cancelled by application"
+            message = "Authentication was cancelled"
             
         case LAError.authenticationFailed:
             message = "The user failed to provide valid credentials"
@@ -42,27 +41,18 @@ class BiometricAuthErrorParser: BiometricAuthErrorParserProtocol {
         case LAError.systemCancel:
             message = "Authentication was cancelled by the system"
             
-        case LAError.touchIDLockout:
-            message = "Too many failed attempts."
+        case LAError.biometryLockout:
+            message = "Biometry is not available on the device"
             
-        case LAError.touchIDNotAvailable:
+        case LAError.biometryNotAvailable:
             message = "TouchID is not available on the device"
             
         case LAError.invalidContext:
             log.error("The context is invalid: LAContext passed to this call has been previously invalidated.")
             return nil
             
-        case LAError.userFallback,
-             LAError.userCancel:
-            return nil
-            
         default:
-            if #available(iOS 11.0, *),
-                errorCode == LAError.biometryNotAvailable {
-                message = "Biometry is not available on the device"
-            } else {
-                return nil
-            }
+            return nil
         }
         
         return message

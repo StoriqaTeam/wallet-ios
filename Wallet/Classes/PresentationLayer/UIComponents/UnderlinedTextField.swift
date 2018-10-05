@@ -58,7 +58,10 @@ class UnderlinedTextField: UITextField {
         let width = self.frame.width - errorLabelHorizontalMargin * 2
         
         if errorLabel == nil {
-            errorLabel = UILabel(frame: CGRect(x: errorLabelHorizontalMargin, y: self.frame.height + errorLabelVerticalMargin, width: width, height: 20))
+            errorLabel = UILabel(frame: CGRect(x: errorLabelHorizontalMargin,
+                                               y: self.frame.height + errorLabelVerticalMargin,
+                                               width: width,
+                                               height: 20))
             errorLabel!.font = UIFont.systemFont(ofSize: 12)
             errorLabel?.numberOfLines = 0
         }

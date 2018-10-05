@@ -12,7 +12,12 @@ import UIKit
 protocol RegistrationViewOutput: class {
     func viewIsReady()
     func register(firstName: String, lastName: String, email: String, password: String)
-    func validateFields(firstName: String?, lastName: String?, email: String?, password: String?, repeatPassword: String?, agreement: Bool)
+    func validateFields(firstName: String?,
+                        lastName: String?,
+                        email: String?,
+                        password: String?,
+                        repeatPassword: String?,
+                        agreement: Bool)
     func showLogin()
     func socialNetworkRegisterSucceed()
     func socialNetworkRegisterFailed()

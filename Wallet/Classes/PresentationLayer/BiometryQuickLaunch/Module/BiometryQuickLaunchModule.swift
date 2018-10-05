@@ -2,6 +2,7 @@
 //  Created by Storiqa on 20/09/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable trailing_whitespace
 
 import UIKit
 
@@ -14,7 +15,8 @@ class BiometryQuickLaunchModule {
         let interactor = BiometryQuickLaunchInteractor(qiuckLaunchProvider: qiuckLaunchProvider)
         
         let storyboard = UIStoryboard(name: "BiometryQuickLaunch", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "BiometryQuickLaunchVC") as! BiometryQuickLaunchViewController
+        let controllerId = "BiometryQuickLaunchVC"
+        let viewController = storyboard.instantiateViewController(withIdentifier: controllerId) as! BiometryQuickLaunchViewController
 
         interactor.output = presenter
 

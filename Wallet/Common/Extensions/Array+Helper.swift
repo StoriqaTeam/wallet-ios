@@ -5,13 +5,14 @@
 //  Created by Daniil Miroshnichecko on 28.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 
 
 extension Array {
     public init(reserveCapacity: Int) {
-        self = Array<Element>()
+        self = [Element]()
         self.reserveCapacity(reserveCapacity)
     }
     

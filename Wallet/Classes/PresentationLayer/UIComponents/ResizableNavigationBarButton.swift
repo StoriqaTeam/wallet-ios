@@ -22,7 +22,8 @@ private struct BarButtonConst {
     static let ButtonHeightForSmallState: CGFloat = 32
     /// Height of NavBar for Small state. Usually it's just 44
     static let NavBarHeightSmallState: CGFloat = 44
-    /// Height of NavBar for Large state. Usually it's just 96.5 but if you have a custom font for the title, please make sure to edit this value since it changes the height for Large state of NavBar
+    /// Height of NavBar for Large state. Usually it's just 96.5 but if you have a custom font for the title,
+    /// please make sure to edit this value since it changes the height for Large state of NavBar
     static let NavBarHeightLargeState: CGFloat = 96.5
 }
 
@@ -49,8 +50,10 @@ class ResizableNavigationBarButton: UIButton {
         
         navigationBar.addSubview(self)
         NSLayoutConstraint.activate([
-            self.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -BarButtonConst.ButtonRightMargin),
-            self.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -BarButtonConst.ButtonBottomMarginForLargeState),
+            self.rightAnchor.constraint(equalTo: navigationBar.rightAnchor,
+                                        constant: -BarButtonConst.ButtonRightMargin),
+            self.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor,
+                                         constant: -BarButtonConst.ButtonBottomMarginForLargeState),
             self.heightAnchor.constraint(equalToConstant: BarButtonConst.ButtonHeightForLargeState),
             self.widthAnchor.constraint(equalToConstant: BarButtonConst.ButtonWidthForLargeState)
             ])
@@ -74,8 +77,10 @@ class ResizableNavigationBarButton: UIButton {
         // Value of difference between icons for large and small states
         let sizeDiff = BarButtonConst.ButtonHeightForLargeState * (1.0 - factor) // 8.0
         let yTranslation: CGFloat = {
-            /// This value = 14. It equals to difference of 12 and 6 (bottom margin for large and small states). Also it adds 8.0 (size difference when the image gets smaller size)
-            let maxYTranslation = BarButtonConst.ButtonBottomMarginForLargeState - BarButtonConst.ButtonBottomMarginForSmallState + sizeDiff
+            /// This value = 14. It equals to difference of 12 and 6 (bottom margin for large and small states).
+            /// Also it adds 8.0 (size difference when the image gets smaller size)
+            let maxYTranslation =
+                BarButtonConst.ButtonBottomMarginForLargeState - BarButtonConst.ButtonBottomMarginForSmallState + sizeDiff
             return max(0, min(maxYTranslation, (maxYTranslation - coeff * (BarButtonConst.ButtonBottomMarginForSmallState + sizeDiff))))
         }()
         

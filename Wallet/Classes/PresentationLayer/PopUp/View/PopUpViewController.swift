@@ -42,7 +42,7 @@ class PopUpViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations:{[weak self] in
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {[weak self] in
             self?.view.backgroundColor = .clear
             }, completion: nil)
     }
@@ -66,21 +66,21 @@ class PopUpViewController: UIViewController {
 
 extension PopUpViewController: PopUpViewInput {
     
-    func setupInitialState(vm: PopUpViewModelProtocol) {
-        self.viewModel = vm
+    func setupInitialState(viewModel: PopUpViewModelProtocol) {
+        self.viewModel = viewModel
         
-        imageView.image = vm.apperance.image
-        titleLabel.text = vm.apperance.title
-        if let attributedText = vm.apperance.attributedText {
+        imageView.image = viewModel.apperance.image
+        titleLabel.text = viewModel.apperance.title
+        if let attributedText = viewModel.apperance.attributedText {
             textLabel.attributedText = attributedText
-        } else if let text = vm.apperance.text {
+        } else if let text = viewModel.apperance.text {
             textLabel.text = text
         } else {
             textLabel.text = ""
         }
-        actionButton.setTitle(vm.apperance.actionButtonTitle, for: .normal)
+        actionButton.setTitle(viewModel.apperance.actionButtonTitle, for: .normal)
         
-        if !vm.apperance.hasCloseButton {
+        if !viewModel.apperance.hasCloseButton {
             closeButton.removeFromSuperview()
         }
     }

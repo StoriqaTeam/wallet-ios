@@ -15,6 +15,6 @@ protocol TransactionsProviderProtocol: class {
 class TransactionsProvider: TransactionsProviderProtocol {
     
     func transactionsFor(account: Account) -> [Transaction] {
-        fatalError()
+        fatalError("'transactionsFor(account: Account)' not implemented in TransactionsProvider")
     }
 }

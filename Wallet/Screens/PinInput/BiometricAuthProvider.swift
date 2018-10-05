@@ -62,8 +62,11 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
         context.localizedFallbackTitle = ""
         
         // show the authentication UI
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: touchAuthenticationReason) {[weak self] (success, error) in
-            completion(success, self?.errorParser.errorMessageForLAErrorCode(error: error))
-        }
+        context.evaluatePolicy(
+            .deviceOwnerAuthenticationWithBiometrics,
+            localizedReason: touchAuthenticationReason,
+            completion: { [weak self] (success, error) in
+                completion(success, self?.errorParser.errorMessageForLAErrorCode(error: error))
+            })
     }
 }

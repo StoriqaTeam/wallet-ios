@@ -56,7 +56,7 @@ class DefaultsProvider: DefaultsProviderProtocol {
 }
 
 
-// MARK: -  Private methods
+// MARK: - Private methods
 
 extension DefaultsProvider {
     private func getString(_ key: DefaultsKey) -> String? {

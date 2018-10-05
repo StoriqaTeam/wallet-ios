@@ -50,7 +50,7 @@ extension BiometryQuickLaunchViewController: BiometryQuickLaunchViewInput {
             title = "faceId_quick_launch_title".localized()
             buttonTitle = "use_faceId".localized()
         default:
-            fatalError()
+            fatalError("BiometryQuickLaunch view must not be shown in case of no biometryType")
         }
         
         titleLabel.text = title

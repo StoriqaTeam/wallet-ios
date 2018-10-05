@@ -134,7 +134,7 @@ private extension PinDotView {
         } else {
             radius = floor(height / 2)
         }
-        radius = radius - radius * borderWidthRatio
+        radius -= radius * borderWidthRatio
     }
     
     // MARK: Dots Layout
@@ -145,8 +145,7 @@ private extension PinDotView {
         let middleIndex = isOdd ? (totalDotCount + 1) / 2 : (totalDotCount) / 2
         let offSet = isOdd ? 0 : -(radius + spacing / 2)
         let positions: [CGPoint] = (1...totalDotCount).map { index in
-            let i = CGFloat(middleIndex - index)
-            let positionX = centerX - (radius * 2 + spacing) * i + offSet
+            let positionX = centerX - (radius * 2 + spacing) * CGFloat(middleIndex - index) + offSet
             return CGPoint(x: positionX, y: centerY)
         }
         return positions
