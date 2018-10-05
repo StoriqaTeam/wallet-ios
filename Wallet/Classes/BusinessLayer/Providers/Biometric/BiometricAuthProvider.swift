@@ -17,6 +17,7 @@ enum BiometricAuthType {
 protocol BiometricAuthProviderProtocol {
     var canAuthWithBiometry: Bool { get }
     var biometricAuthType: BiometricAuthType { get }
+    var biometricAuthImage: UIImage? { get }
     func authWithBiometry(completion: @escaping ((Bool, String?)->()))
 }
 
@@ -52,6 +53,17 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
             } else {
                 return .none
             }
+        }
+    }
+    
+    var biometricAuthImage: UIImage? {
+        switch biometricAuthType {
+        case .faceId:
+            return #imageLiteral(resourceName: "faceid")
+        case .touchId:
+            return #imageLiteral(resourceName: "touchId")
+        default:
+            return nil
         }
     }
     

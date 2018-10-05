@@ -1,5 +1,5 @@
 //
-//  PasswordDotView.swift
+//  PinDotView.swift
 //
 //  Created by rain on 4/21/16.
 //  Copyright © 2016 Recruit Lifestyle Co., Ltd. All rights reserved.
@@ -7,53 +7,42 @@
 
 import UIKit
 
-@IBDesignable
-open class PasswordDotView: UIView {
+class PinDotView: UIView {
     
     //MARK: Property
-    @IBInspectable
-    open var inputDotCount = 0 {
-        didSet {
-            setNeedsDisplay()
-        }
+    var inputDotCount = 0 {
+        didSet { setNeedsDisplay() }
     }
     
-    @IBInspectable
-    open var totalDotCount = 4 {
-        didSet {
-            setNeedsDisplay()
-        }
+    var totalDotCount = 4 {
+        didSet { setNeedsDisplay() }
     }
     
-    @IBInspectable
-    open var strokeColor = UIColor.darkGray {
-        didSet {
-            setNeedsDisplay()
-        }
+    var strokeColor = UIColor.darkGray {
+        didSet { setNeedsDisplay() }
     }
     
-    @IBInspectable
-    open var fillColor = UIColor.red {
-        didSet {
-            setNeedsDisplay()
-        }
+    var fillColor = UIColor.red {
+        didSet { setNeedsDisplay() }
     }
-
-    fileprivate var radius: CGFloat = 6
-    fileprivate let spacingRatio: CGFloat = 2.4
-    fileprivate let borderWidthRatio: CGFloat = 1 / 6
     
-    fileprivate(set) open var isFull = false
+    private var radius: CGFloat = 6
+    private let spacingRatio: CGFloat = 2.4
+    private let borderWidthRatio: CGFloat = 1 / 6
+    
+    private(set)  var isFull = false
     
     //MARK: Draw
-    open override func draw(_ rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         super.draw(rect)
         isFull = (inputDotCount == totalDotCount)
         strokeColor.setStroke()
         fillColor.setFill()
+        
         let isOdd = (totalDotCount % 2) != 0
         let positions = getDotPositions(isOdd)
         let borderWidth = radius * borderWidthRatio
+        
         for (index, position) in positions.enumerated() {
             if index < inputDotCount {
                 let pathToFill = UIBezierPath(circleWithCenter: position, radius: (radius + borderWidth / 2), lineWidth: borderWidth)
@@ -66,20 +55,21 @@ open class PasswordDotView: UIView {
     }
     
     //MARK: LifeCycle
-    open override func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.clear
     }
-    open override func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         updateRadius()
         setNeedsDisplay()
     }
     
     //MARK: Animation
-    fileprivate var shakeCount = 0
-    fileprivate var direction = false
-    open func shakeAnimationWithCompletion(_ completion: @escaping () -> ()) {
+    private var shakeCount = 0
+    private var direction = false
+    
+    func shakeAnimationWithCompletion(_ completion: @escaping () -> ()) {
         let maxShakeCount = 5
         let centerX = frame.midX
         let centerY = frame.midY
@@ -91,6 +81,7 @@ open class PasswordDotView: UIView {
         } else {
             moveX *= 2
         }
+        
         shakeAnimation(withDuration: duration, animations: {
             if !self.direction {
                 self.center = CGPoint(x: centerX + moveX, y: centerY)
@@ -116,7 +107,7 @@ open class PasswordDotView: UIView {
     }
 }
 
-private extension PasswordDotView {
+private extension PinDotView {
     //MARK: Animation
     func shakeAnimation(withDuration duration: TimeInterval, animations: @escaping () -> (), completion: @escaping () -> ()) {
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.01, initialSpringVelocity: 0.35, options: UIView.AnimationOptions(), animations: {
@@ -141,7 +132,7 @@ private extension PasswordDotView {
         }
         radius = radius - radius * borderWidthRatio
     }
-
+    
     //MARK: Dots Layout
     func getDotPositions(_ isOdd: Bool) -> [CGPoint] {
         let centerX = bounds.midX

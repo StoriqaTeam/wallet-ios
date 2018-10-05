@@ -11,8 +11,7 @@ import UIKit
 
 protocol PinInputViewOutput: class {
     func viewIsReady()
-    func setPasswordView(in stackView: UIStackView) -> PasswordContainerView
+    func pinContainer(_ pinContainer: PinContainerView)
     func inputComplete(_ password: String)
-    func showAuthorizationZone()
     func iForgotPinPressed()
 }

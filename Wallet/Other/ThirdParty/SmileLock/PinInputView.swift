@@ -7,76 +7,75 @@
 
 import UIKit
 
-public protocol PinInputViewTappedProtocol: class {
+protocol PinInputViewTappedDelegate: class {
     func pinInputView(_ pinInputView: PinInputView, tappedString: String)
 }
 
 @IBDesignable
-open class PinInputView: UIView {
+class PinInputView: UIView {
     
     //MARK: Property
-    open weak var delegate: PinInputViewTappedProtocol?
+    weak var delegate: PinInputViewTappedDelegate?
     
-    let circleView = UIView()
-    let button = UIButton()
-    let label = UILabel()
-    var labelFont: UIFont?
-    fileprivate var touchUpFlag = true
-    fileprivate(set) open var isAnimating = false
+    private let circleView = UIView()
+    private let button = UIButton()
+    private let label = UILabel()
+    private var touchUpFlag = true
+    private(set) var isAnimating = false
     
     @IBInspectable
-    open var numberString = "?" {
+    var numberString: String = "?" {
         didSet {
             label.text = numberString
         }
     }
     
     @IBInspectable
-    open var borderColor = UIColor.gray {
+    var borderColor: UIColor = UIColor.gray {
         didSet {
             circleView.layer.borderColor = borderColor.cgColor
         }
     }
     
     @IBInspectable
-    open var circleBackgroundColor = UIColor.clear {
+    var circleBackgroundColor: UIColor = UIColor.clear {
         didSet {
             circleView.backgroundColor = circleBackgroundColor
         }
     }
     
     @IBInspectable
-    open var textColor = UIColor.darkGray {
+    var labelFont: UIFont = UIFont.systemFont(ofSize: 36, weight: .light) {
+        didSet {
+            label.font = labelFont
+        }
+    }
+    
+    @IBInspectable
+    var textColor: UIColor = UIColor.darkGray {
         didSet {
             label.textColor = textColor
         }
     }
     
     @IBInspectable
-    open var highlightBackgroundColor = UIColor.red
+    var highlightBackgroundColor: UIColor = UIColor.red
     
     @IBInspectable
-    open var highlightTextColor = UIColor.white
+    var highlightTextColor: UIColor = UIColor.white
     
     @IBInspectable
-    open var borderOpacity: CGFloat = 0.2
+    var borderOpacity: CGFloat = 0.2
     
     @IBInspectable
-    open var borderWidth: CGFloat = 1 // Constants.Sizes.lineWidth
+    var borderWidth: CGFloat = 1
     
     //MARK: Life Cycle
-    #if TARGET_INTERFACE_BUILDER
-    override open func willMove(toSuperview newSuperview: UIView?) {
-        configureSubviews()
-    }
-    #else
-    override open func awakeFromNib() {
+    override  func awakeFromNib() {
         super.awakeFromNib()
-        
         configureSubviews()
     }
-    #endif
-
+    
     @objc func touchDown() {
         //delegate callback
         if let delegate = delegate {
@@ -100,37 +99,18 @@ open class PinInputView: UIView {
         }
     }
     
-    open override func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         updateUI()
     }
     
-    fileprivate func getLabelFont() -> UIFont {
-        if labelFont != nil {
-            return labelFont!
-        }
-        
-        let width = bounds.width
-        let height = bounds.height
-        let radius = min(width, height) / 2
-        return UIFont.systemFont(ofSize: radius,
-                                 weight: touchUpFlag ? UIFont.Weight.light : UIFont.Weight.regular)
-    }
-    
-    fileprivate func updateUI() {
+    private func updateUI() {
         //prepare calculate
         let width = bounds.width
         let height = bounds.height
         let center = CGPoint(x: width/2, y: height/2)
         let radius = min(width, height) / 2
         let circleRadius = radius - borderWidth
-        
-        //update label
-        label.text = numberString
-        
-        label.font = getLabelFont()
-        
-        label.textColor = textColor
         
         //update circle view
         circleView.frame = CGRect(x: 0, y: 0, width: 2 * circleRadius, height: 2 * circleRadius)
@@ -149,38 +129,41 @@ open class PinInputView: UIView {
     }
 }
 
-private extension PinInputView {
+// MARK: - Private methods
+
+extension PinInputView {
     //MARK: Awake
-    func configureSubviews() {
+    private func configureSubviews() {
         //update color
         backgroundColor = .clear
         addSubview(circleView)
-
+        
         //configure label
-        NSLayoutConstraint.addEqualConstraintsFromSubView(label, toSuperView: self)
+        addEqualConstraintsFromSubView(label, toSuperView: self)
         label.textAlignment = .center
+        label.text = numberString
+        label.font = labelFont
+        label.textColor = textColor
         
         //configure button
-        NSLayoutConstraint.addEqualConstraintsFromSubView(button, toSuperView: self)
+        addEqualConstraintsFromSubView(button, toSuperView: self)
         button.isExclusiveTouch = true
         button.addTarget(self, action: #selector(PinInputView.touchDown), for: [.touchDown])
         button.addTarget(self, action: #selector(PinInputView.touchUp), for: [.touchUpInside, .touchDragOutside, .touchCancel, .touchDragExit])
     }
     
     //MARK: Animation
-    func touchDownAction() {
-        label.font = getLabelFont()
+    private func touchDownAction() {
         label.textColor = highlightTextColor
         circleView.backgroundColor = highlightBackgroundColor
     }
     
-    func touchUpAction() {
-        label.font = getLabelFont()
+    private func touchUpAction() {
         label.textColor = textColor
         circleView.backgroundColor = circleBackgroundColor
     }
     
-    func touchDownAnimation() {
+    private func touchDownAnimation() {
         isAnimating = true
         tappedAnimation(animations: { 
             self.touchDownAction()
@@ -193,7 +176,7 @@ private extension PinInputView {
         }
     }
     
-    func touchUpAnimation() {
+    private func touchUpAnimation() {
         isAnimating = true
         tappedAnimation(animations: { 
             self.touchUpAction()
@@ -202,15 +185,18 @@ private extension PinInputView {
         }
     }
     
-    func tappedAnimation(animations: @escaping () -> (), completion: (() -> ())?) {
+    private func tappedAnimation(animations: @escaping () -> (), completion: (() -> ())?) {
         UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction, .beginFromCurrentState], animations: animations) { _ in
             completion?()
         }
     }
 }
 
-internal extension NSLayoutConstraint {
-    class func addConstraints(fromView view: UIView, toView baseView: UIView, constraintInsets insets: UIEdgeInsets) {
+// MARK: - NSLayoutConstraint
+extension PinInputView {
+    private func addConstraints(fromView view: UIView,
+                                toView baseView: UIView,
+                                constraintInsets insets: UIEdgeInsets) {
         baseView.topAnchor.constraint(equalTo: view.topAnchor, constant: -insets.top)
         let topConstraint = baseView.topAnchor.constraint(equalTo: view.topAnchor, constant: -insets.top)
         let bottomConstraint = baseView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: insets.bottom)
@@ -219,15 +205,18 @@ internal extension NSLayoutConstraint {
         NSLayoutConstraint.activate([topConstraint, bottomConstraint, leftConstraint, rightConstraint])
     }
     
-    class func addEqualConstraintsFromSubView(_ subView: UIView, toSuperView superView: UIView) {
+    private func addEqualConstraintsFromSubView(_ subView: UIView,
+                                                toSuperView superView: UIView) {
         superView.addSubview(subView)
         subView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.addConstraints(fromView: subView, toView: superView, constraintInsets: UIEdgeInsets.zero)
+        addConstraints(fromView: subView, toView: superView, constraintInsets: UIEdgeInsets.zero)
     }
     
-    class func addConstraints(fromSubview subview: UIView, toSuperView superView: UIView, constraintInsets insets: UIEdgeInsets) {
+    private func addConstraints(fromSubview subview: UIView,
+                                toSuperView superView: UIView,
+                                constraintInsets insets: UIEdgeInsets) {
         superView.addSubview(subview)
         subview.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.addConstraints(fromView: subview, toView: superView, constraintInsets: insets)
+        addConstraints(fromView: subview, toView: superView, constraintInsets: insets)
     }
 }

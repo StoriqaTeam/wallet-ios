@@ -12,5 +12,6 @@ import Foundation
 protocol PinInputInteractorOutput: class {
     func passwordIsCorrect()
     func passwordIsWrong()
-    func pinWasReset()
+    func touchAuthenticationSucceed()
+    func touchAuthenticationFailed(error: String?)
 }

@@ -13,14 +13,14 @@ class PinInputViewController: UIViewController {
 
     var output: PinInputViewOutput!
     
-    @IBOutlet private var passwordStackView: UIStackView!
+    // MARK: IBOutlet
+    
     @IBOutlet private var greetingContainerView: UIView!
     @IBOutlet private var greetingVerticalSpacingConstraint: NSLayoutConstraint!
     @IBOutlet private var greetingLabel: UILabel!
     @IBOutlet private var userPhotoImageView: UIImageView!
     @IBOutlet private var userPhotoContainerView: ActivityIndicatorView!
-    
-    private var passwordContainerView: PasswordContainerView!
+    @IBOutlet private var pinContainerView: PinContainerView!
     
 
     // MARK: Life cycle
@@ -29,7 +29,8 @@ class PinInputViewController: UIViewController {
         super.viewDidLoad()
         configureUserPhoto()
         configureGreeting()
-        passwordContainerView = output.setPasswordView(in: passwordStackView)
+        
+        output.pinContainer(pinContainerView)
         output.viewIsReady()
     }
     
@@ -61,21 +62,17 @@ extension PinInputViewController: PinInputViewInput {
     
     func inputSucceed() {
         showActivityIndicator()
-        output.showAuthorizationZone()
+        pinContainerView.completeInput()
     }
     
     func inputFailed() {
         log.debug("*️⃣ failure!")
-        passwordContainerView.wrongPassword()
+        pinContainerView.wrongPassword()
         showAlert(message: "Wrong password")
     }
     
     func clearInput() {
-        passwordContainerView.clearInput()
-    }
-    
-    func presentAlertController(_ alertVC: UIAlertController) {
-        self.present(alertVC, animated: true, completion: nil)
+        pinContainerView.clearInput()
     }
 
 }

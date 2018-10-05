@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PinContainerView" customModule="Wallet" customModuleProvider="target">
+            <connections>
+                <outlet property="deleteButton" destination="abs-RL-KN4" id="GAm-NW-oZb"/>
+                <outlet property="pinDotView" destination="aNd-Zg-ePe" id="7SV-6n-dI5"/>
+                <outlet property="touchAuthenticationButton" destination="Tqj-3l-W1f" id="SeW-lK-oJF"/>
+                <outletCollection property="pinInputViews" destination="mNO-I8-8HR" collectionClass="NSMutableArray" id="aiF-Vw-nns"/>
+                <outletCollection property="pinInputViews" destination="R7E-OV-zzd" collectionClass="NSMutableArray" id="tA9-7E-nbu"/>
+                <outletCollection property="pinInputViews" destination="EWl-Jj-Mvi" collectionClass="NSMutableArray" id="wmo-xP-bYq"/>
+                <outletCollection property="pinInputViews" destination="t6f-Qj-936" collectionClass="NSMutableArray" id="jBD-Tj-WcK"/>
+                <outletCollection property="pinInputViews" destination="LoJ-Bd-MiK" collectionClass="NSMutableArray" id="noH-zv-OTu"/>
+                <outletCollection property="pinInputViews" destination="5R9-ep-8IT" collectionClass="NSMutableArray" id="YN7-Gv-q4e"/>
+                <outletCollection property="pinInputViews" destination="eRG-m3-KYK" collectionClass="NSMutableArray" id="huu-f5-e4r"/>
+                <outletCollection property="pinInputViews" destination="nUG-Ev-7sV" collectionClass="NSMutableArray" id="RSA-Zp-Tnr"/>
+                <outletCollection property="pinInputViews" destination="4fx-v7-wSg" collectionClass="NSMutableArray" id="EYd-e0-w5w"/>
+                <outletCollection property="pinInputViews" destination="ruX-2t-uDv" collectionClass="NSMutableArray" id="eS3-vd-Fxl"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PasswordContainerView" customModule="Wallet" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="366" height="620"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -21,7 +41,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="366" height="59"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNd-Zg-ePe" customClass="PasswordDotView" customModule="Wallet" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNd-Zg-ePe" customClass="PinDotView" customModule="Wallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="59" width="366" height="17"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -162,7 +182,7 @@
                                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                     <state key="normal" image="touchId"/>
                                     <connections>
-                                        <action selector="touchAuthenticationAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="42y-3P-Hc2"/>
+                                        <action selector="touchAuthenticationAction:" destination="-1" eventType="touchUpInside" id="iI1-PW-pVW"/>
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ruX-2t-uDv" customClass="PinInputView" customModule="Wallet" customModuleProvider="target">
@@ -178,7 +198,7 @@
                                         <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
-                                        <action selector="deleteInputString:" destination="iN0-l3-epB" eventType="touchUpInside" id="XDj-11-9x2"/>
+                                        <action selector="deleteInputString:" destination="-1" eventType="touchUpInside" id="sdN-Pi-peG"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -213,21 +233,6 @@
                 <constraint firstItem="jjW-ce-0kS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uPp-aS-3B5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="deleteButton" destination="abs-RL-KN4" id="XwC-Qw-oDt"/>
-                <outlet property="passwordDotView" destination="aNd-Zg-ePe" id="c3U-MU-hvN"/>
-                <outlet property="touchAuthenticationButton" destination="Tqj-3l-W1f" id="Swd-nh-KdF"/>
-                <outletCollection property="pinInputViews" destination="ruX-2t-uDv" collectionClass="NSMutableArray" id="6SR-U3-JMn"/>
-                <outletCollection property="pinInputViews" destination="4fx-v7-wSg" collectionClass="NSMutableArray" id="tuq-os-z0g"/>
-                <outletCollection property="pinInputViews" destination="5R9-ep-8IT" collectionClass="NSMutableArray" id="2F4-VD-hXm"/>
-                <outletCollection property="pinInputViews" destination="R7E-OV-zzd" collectionClass="NSMutableArray" id="6Z6-qn-y4Z"/>
-                <outletCollection property="pinInputViews" destination="t6f-Qj-936" collectionClass="NSMutableArray" id="eUM-BT-hbX"/>
-                <outletCollection property="pinInputViews" destination="mNO-I8-8HR" collectionClass="NSMutableArray" id="Y8Q-Qg-eUf"/>
-                <outletCollection property="pinInputViews" destination="nUG-Ev-7sV" collectionClass="NSMutableArray" id="HQ0-Sv-vwv"/>
-                <outletCollection property="pinInputViews" destination="eRG-m3-KYK" collectionClass="NSMutableArray" id="8JQ-LR-tJc"/>
-                <outletCollection property="pinInputViews" destination="EWl-Jj-Mvi" collectionClass="NSMutableArray" id="ww7-Ex-Ui4"/>
-                <outletCollection property="pinInputViews" destination="LoJ-Bd-MiK" collectionClass="NSMutableArray" id="2QE-Dk-Mm5"/>
-            </connections>
             <point key="canvasLocation" x="356.80000000000001" y="418.29085457271367"/>
         </view>
     </objects>

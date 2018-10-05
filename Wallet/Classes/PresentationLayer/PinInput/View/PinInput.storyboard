@@ -65,12 +65,13 @@
                                     <constraint firstItem="Kca-x7-kZw" firstAttribute="centerX" secondItem="gWh-H4-gYQ" secondAttribute="centerX" id="y6N-yF-T8i"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="jld-sB-C80">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwG-hO-0ot" customClass="PinContainerView" customModule="Wallet" customModuleProvider="target">
                                 <rect key="frame" x="169.5" y="199.5" width="261" height="346.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="261" id="1eq-EJ-sm4"/>
+                                    <constraint firstAttribute="width" constant="261" id="OpC-k3-NJa"/>
                                 </constraints>
-                            </stackView>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7R-O3-ykX">
                                 <rect key="frame" x="240" y="540" width="120" height="40"/>
                                 <constraints>
@@ -86,14 +87,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jld-sB-C80" firstAttribute="centerX" secondItem="ew0-Ud-KWl" secondAttribute="centerX" id="7CG-99-Lnt"/>
                             <constraint firstItem="gWh-H4-gYQ" firstAttribute="centerX" secondItem="ew0-Ud-KWl" secondAttribute="centerX" id="8dz-RQ-3RX"/>
-                            <constraint firstItem="jld-sB-C80" firstAttribute="top" secondItem="gWh-H4-gYQ" secondAttribute="bottom" constant="15" id="SPc-HN-dvd"/>
-                            <constraint firstItem="a7R-O3-ykX" firstAttribute="top" secondItem="jld-sB-C80" secondAttribute="bottom" constant="-6" id="SS9-Cs-Edh"/>
+                            <constraint firstItem="RwG-hO-0ot" firstAttribute="centerX" secondItem="ew0-Ud-KWl" secondAttribute="centerX" id="SQd-x4-9S8"/>
+                            <constraint firstItem="RwG-hO-0ot" firstAttribute="top" secondItem="gWh-H4-gYQ" secondAttribute="bottom" constant="15" id="ToN-Ed-Zm1"/>
                             <constraint firstItem="gWh-H4-gYQ" firstAttribute="leading" secondItem="Ei9-F3-PGF" secondAttribute="leading" constant="40" id="e5q-lS-toG"/>
                             <constraint firstItem="Ei9-F3-PGF" firstAttribute="bottom" secondItem="a7R-O3-ykX" secondAttribute="bottom" constant="20" id="hNb-y8-okJ"/>
                             <constraint firstItem="gWh-H4-gYQ" firstAttribute="top" secondItem="Ei9-F3-PGF" secondAttribute="top" constant="20" id="l6N-Pc-o5n"/>
                             <constraint firstItem="a7R-O3-ykX" firstAttribute="centerX" secondItem="ew0-Ud-KWl" secondAttribute="centerX" id="wBY-sc-VzX"/>
+                            <constraint firstItem="a7R-O3-ykX" firstAttribute="top" secondItem="RwG-hO-0ot" secondAttribute="bottom" constant="-6" id="zTn-cb-Qef"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ei9-F3-PGF"/>
                     </view>
@@ -102,7 +103,7 @@
                         <outlet property="greetingContainerView" destination="Wwl-0y-csb" id="NNs-T6-A6l"/>
                         <outlet property="greetingLabel" destination="Ekg-2p-R0S" id="PZw-Md-gv5"/>
                         <outlet property="greetingVerticalSpacingConstraint" destination="fYd-W2-wbn" id="WhI-Bb-Gth"/>
-                        <outlet property="passwordStackView" destination="jld-sB-C80" id="rNs-wt-dGf"/>
+                        <outlet property="pinContainerView" destination="RwG-hO-0ot" id="69n-AH-YUu"/>
                         <outlet property="userPhotoContainerView" destination="Kca-x7-kZw" id="Acn-qH-ZCC"/>
                         <outlet property="userPhotoImageView" destination="be4-VN-69w" id="cTy-sI-o3u"/>
                     </connections>

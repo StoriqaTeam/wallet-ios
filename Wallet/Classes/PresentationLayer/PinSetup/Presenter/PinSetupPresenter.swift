@@ -32,13 +32,12 @@ extension PinSetupPresenter: PinSetupViewOutput {
         view.setTitle(title: firstInputTitle)
     }
     
-    func setPasswordView(in stackView: UIStackView) -> PasswordContainerView  {
-        let passView = PasswordContainerView.create(in: stackView, digit: kPasswordDigits)
-        passView.delegate = self
-        passView.touchAuthenticationEnabled = false
-        passView.tintColor = UIColor.mainBlue
-        passView.highlightedColor = UIColor.mainBlue
-        return passView
+    func pinContainer(_ pinContainer: PinContainerView) {
+        pinContainer.delegate = self
+        pinContainer.totalDotCount = kPasswordDigits
+        pinContainer.touchAuthenticationEnabled = false
+        pinContainer.tintColor = UIColor.mainBlue
+        pinContainer.highlightedColor = UIColor.mainBlue
     }
 
 }
@@ -85,9 +84,11 @@ extension PinSetupPresenter: PinSetupModuleInput {
 
 // MARK: - PinInputCompleteProtocol
 extension PinSetupPresenter: PinInputCompleteProtocol {
+    func authWithBiometryTapped() {
+        // No biometry auth in setup
+    }
+    
     func pinInputComplete(input: String) {
         interactor.pinInputCompleted(input)
     }
-    
-    func touchAuthenticationComplete(success: Bool, error: String?) { }
 }
