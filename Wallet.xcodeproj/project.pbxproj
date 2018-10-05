@@ -196,6 +196,10 @@
 		A52C66AC21666F610073071E /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66AB21666F610073071E /* RealmUser.swift */; };
 		A52C66B1216753CA0073071E /* UserDataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66B0216753CA0073071E /* UserDataStoreService.swift */; };
 		A52C66B32167634E0073071E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66B22167634E0073071E /* Account.swift */; };
+		A52C66B6216767EA0073071E /* RealmAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66B5216767EA0073071E /* RealmAccount.swift */; };
+		A52C66B821676AB70073071E /* Decimal+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66B721676AB70073071E /* Decimal+Helpers.swift */; };
+		A52C66BB216786180073071E /* AccountDisplayableMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66BA216786180073071E /* AccountDisplayableMapper.swift */; };
+		A52C66BD216786930073071E /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66BC216786930073071E /* Mappable.swift */; };
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
@@ -640,6 +644,10 @@
 		A52C66AB21666F610073071E /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
 		A52C66B0216753CA0073071E /* UserDataStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStoreService.swift; sourceTree = "<group>"; };
 		A52C66B22167634E0073071E /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		A52C66B5216767EA0073071E /* RealmAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAccount.swift; sourceTree = "<group>"; };
+		A52C66B721676AB70073071E /* Decimal+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Helpers.swift"; sourceTree = "<group>"; };
+		A52C66BA216786180073071E /* AccountDisplayableMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayableMapper.swift; sourceTree = "<group>"; };
+		A52C66BC216786930073071E /* Mappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
@@ -1944,6 +1952,24 @@
 			path = UserDataStoreService;
 			sourceTree = "<group>";
 		};
+		A52C66B4216767020073071E /* Displayable */ = {
+			isa = PBXGroup;
+			children = (
+				A52C66B9216780200073071E /* Mappers */,
+				CEFC9C8F2154EB7A00962356 /* AccountDisplayable.swift */,
+			);
+			name = Displayable;
+			sourceTree = "<group>";
+		};
+		A52C66B9216780200073071E /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				A52C66BA216786180073071E /* AccountDisplayableMapper.swift */,
+				A52C66BC216786930073071E /* Mappable.swift */,
+			);
+			name = Mappers;
+			sourceTree = "<group>";
+		};
 		A534883D230884E6416A5516 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -2227,6 +2253,7 @@
 			isa = PBXGroup;
 			children = (
 				A52C66AB21666F610073071E /* RealmUser.swift */,
+				A52C66B5216767EA0073071E /* RealmAccount.swift */,
 			);
 			path = RealmModels;
 			sourceTree = "<group>";
@@ -2508,6 +2535,7 @@
 				A51CB560215945A200CDC80C /* UIView+Helpers.swift */,
 				A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */,
 				A5B78212215E25A200EFD1A5 /* Array+Helper.swift */,
+				A52C66B721676AB70073071E /* Decimal+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2632,6 +2660,7 @@
 		CEFC9C872154E57B00962356 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A52C66B4216767020073071E /* Displayable */,
 				CEFC9C882154E58400962356 /* PlainModels */,
 				A5F59AB52162489C005F1765 /* RealmModels */,
 			);
@@ -2641,7 +2670,6 @@
 		CEFC9C882154E58400962356 /* PlainModels */ = {
 			isa = PBXGroup;
 			children = (
-				CEFC9C8F2154EB7A00962356 /* AccountDisplayable.swift */,
 				CED822DF215BB8CE00693B92 /* Contact.swift */,
 				A51CB5482158E60500CDC80C /* Transaction.swift */,
 				A52C66A921666ECC0073071E /* User.swift */,
@@ -3385,6 +3413,7 @@
 				F84105BB46F917B0AB9317C9 /* BiometryQuickLaunchRouterInput.swift in Sources */,
 				5A19DCEBA97EFA317880745E /* BiometryQuickLaunchRouter.swift in Sources */,
 				A51CB5492158E60500CDC80C /* Transaction.swift in Sources */,
+				A52C66B6216767EA0073071E /* RealmAccount.swift in Sources */,
 				1D29389B7211768F5C82EF1B /* BiometryQuickLaunchModuleInput.swift in Sources */,
 				A3AC2118172F25D9C46E786B /* BiometryQuickLaunchModuleOutput.swift in Sources */,
 				4FD0957C495AB450B60609F7 /* BiometryQuickLaunchModule.swift in Sources */,
@@ -3394,6 +3423,7 @@
 				D7DD0EC3E4E6A4C5308142EB /* PinSetupViewController.swift in Sources */,
 				D8725E388DDC6EC37245C900 /* PinSetupPresenter.swift in Sources */,
 				DB0167269CDCA1A26EFD340D /* PinSetupInteractorInput.swift in Sources */,
+				A52C66B821676AB70073071E /* Decimal+Helpers.swift in Sources */,
 				DBDC98669AC4320EAFC55E3F /* PinSetupInteractorOutput.swift in Sources */,
 				7B69B52D9D87B8566F124536 /* PinSetupInteractor.swift in Sources */,
 				A51CB55F2159431200CDC80C /* RoutrButton.swift in Sources */,
@@ -3489,6 +3519,7 @@
 				CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */,
 				A94569B43B0A5C670A352940 /* SettingsRouter.swift in Sources */,
 				028B7BF74591C0783429D6F3 /* SettingsModuleInput.swift in Sources */,
+				A52C66BB216786180073071E /* AccountDisplayableMapper.swift in Sources */,
 				A52C66A72164C1450073071E /* SendTransactionBuilder.swift in Sources */,
 				B8D4D58E13E50746B516D91C /* SettingsModuleOutput.swift in Sources */,
 				CEFC9CB6215A59E700962356 /* SendTransactionProvider.swift in Sources */,
@@ -3539,6 +3570,7 @@
 				A5A63DCD4AC3808900D1025C /* PaymentFeeViewOutput.swift in Sources */,
 				2F665A1E2688D3229C38F7B2 /* PaymentFeeViewController.swift in Sources */,
 				A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */,
+				A52C66BD216786930073071E /* Mappable.swift in Sources */,
 				F5680734F20F3B633F33DD1B /* PaymentFeePresenter.swift in Sources */,
 				A7CE669CEF8C840A16382864 /* PaymentFeeInteractorInput.swift in Sources */,
 				22192DA41BD15AD968C7ACD2 /* PaymentFeeInteractorOutput.swift in Sources */,
