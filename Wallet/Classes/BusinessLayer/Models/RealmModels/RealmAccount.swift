@@ -5,6 +5,7 @@
 //  Created by Daniil Miroshnichecko on 05/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 import RealmSwift
@@ -19,4 +20,3 @@ class RealmAccount: Object {
     dynamic var accountAddress: String = ""
     dynamic var name: String = ""
 }
-

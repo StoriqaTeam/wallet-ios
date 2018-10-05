@@ -199,6 +199,10 @@ extension SendViewController {
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
+        guard let scrollView = scrollView else {
+            return
+        }
+        
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardHeight = keyboardFrame.cgRectValue.height
             let delta = keyboardHeight - (view.frame.height - scrollView.contentSize.height) + 16
@@ -213,6 +217,10 @@ extension SendViewController {
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
+        guard let scrollView = scrollView else {
+            return
+        }
+        
         isKeyboardAnimating = true
         
         let contentInset = UIEdgeInsets.zero

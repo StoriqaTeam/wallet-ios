@@ -55,19 +55,19 @@ extension Decimal {
     }
     
     var double: Double {
-        return NSDecimalNumber(decimal:self).doubleValue
+        return NSDecimalNumber(decimal: self).doubleValue
     }
     
     var float: Float {
-        return NSDecimalNumber(decimal:self).floatValue
+        return NSDecimalNumber(decimal: self).floatValue
     }
     
     var int64: Int64 {
-        return NSDecimalNumber(decimal:self).int64Value
+        return NSDecimalNumber(decimal: self).int64Value
     }
     
     var int: Int {
-        return NSDecimalNumber(decimal:self).intValue
+        return NSDecimalNumber(decimal: self).intValue
     }
     
     var uint64: UInt64 {
