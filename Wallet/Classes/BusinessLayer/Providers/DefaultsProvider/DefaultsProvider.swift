@@ -12,6 +12,7 @@ protocol DefaultsProviderProtocol: class {
     var isFirstLaunch: Bool { get set }
     var isQuickLaunchShown: Bool { get set }
     var isBiometryAuthEnabled: Bool { get set }
+    var fiatISO: String { get set }
 }
 
 class DefaultsProvider: DefaultsProviderProtocol {
@@ -20,6 +21,7 @@ class DefaultsProvider: DefaultsProviderProtocol {
         case isFirstLaunch
         case isQuickLaunchShown
         case isBiometryAuthEnabled
+        case fiatISO
     }
     
     
@@ -50,6 +52,21 @@ class DefaultsProvider: DefaultsProviderProtocol {
         }
         set {
             setBool(newValue, key: .isBiometryAuthEnabled)
+        }
+    }
+    
+    var fiatISO: String {
+        get {
+            if let fiat = getString(.fiatISO) {
+                return fiat
+            }
+            
+            let defaultFiat = "USD"
+            setString(defaultFiat, key: .fiatISO)
+            return defaultFiat
+        }
+        set {
+            setString(newValue, key: .fiatISO)
         }
     }
     

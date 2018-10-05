@@ -212,6 +212,7 @@ extension ExchangePresenter: AccountsTableDataManagerDelegate {
 // MARK: - Private methods
 
 extension ExchangePresenter {
+    
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.accountsCollectionSmallFlowLayout
         
