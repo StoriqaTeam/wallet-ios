@@ -9,10 +9,9 @@
 import UIKit
 
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UITableViewController {
 
     var output: SettingsViewOutput!
-
 
     // MARK: Life cycle
 
@@ -20,9 +19,24 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         output.viewIsReady()
     }
-
-    @IBAction func resetPressed(_ sender: UIButton) {
-        output.resetApplication()
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SettingsHeaderView")
+        let headerView = cell as! SettingsHeaderView
+        headerView.configure(with: headerDataSource[section])
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        if section == 0 { return 52 }
+        return 44
+    
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 74
     }
 }
 
@@ -32,7 +46,17 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: SettingsViewInput {
     
     func setupInitialState() {
-
+        loadNib()
     }
 
+}
+
+
+// MARK: - Private methods
+
+extension SettingsViewController {
+    private func loadNib() {
+        let headerNib = UINib(nibName: "SettingsHeaderView", bundle: Bundle.main)
+        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "SettingsHeaderView")
+    }
 }
