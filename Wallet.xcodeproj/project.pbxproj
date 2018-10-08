@@ -3194,13 +3194,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/Info.plist",
 				"",
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
