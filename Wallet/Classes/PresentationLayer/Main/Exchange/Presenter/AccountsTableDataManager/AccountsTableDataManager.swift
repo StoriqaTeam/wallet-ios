@@ -13,7 +13,7 @@ protocol AccountsTableDataManagerDelegate: class {
 }
 
 class AccountsTableDataManager: NSObject {
-    
+
     weak var delegate: AccountsTableDataManagerDelegate!
     var accounts: [Account] = [] {
         didSet { tableView.reloadData() }

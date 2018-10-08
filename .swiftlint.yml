@@ -4,6 +4,7 @@ disabled_rules:
  - control_statement
  - trailing_whitespace
  - file_length
+ - todo
  - unused_optional_binding
  - notification_center_detachment
  - force_cast

@@ -242,5 +242,4 @@ extension ExchangePresenter {
         view.viewController.setWhiteTextNavigationBar()
         view.viewController.navigationController?.navigationBar.topItem?.title = "Exchange"
     }
-    
 }
