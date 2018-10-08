@@ -12,7 +12,6 @@ import Foundation
 class ReceiverInteractor {
     weak var output: ReceiverInteractorOutput!
     
-    private var contactsDataManager: ContactsDataManager!
     private let deviceContactsProvider: DeviceContactsProviderProtocol
     private let sendTransactionBuilder: SendProviderBuilderProtocol
     private let sendProvider: SendTransactionProviderProtocol
@@ -31,6 +30,24 @@ class ReceiverInteractor {
 // MARK: - ReceiverInteractorInput
 
 extension ReceiverInteractor: ReceiverInteractorInput {
+    
+    func fetchContacts() {
+        deviceContactsProvider.fetchContacts { [weak self] (result) in
+            switch result {
+            case .success(let sections):
+                DispatchQueue.main.async {
+                    self?.output.updateContacts(sections)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    //TODO: text and image in case of no access to contacts
+                    self?.output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                                             placeholderText: error.localizedDescription)
+                }
+                log.warn(error.localizedDescription)
+            }
+        }
+    }
     
     func getContact() -> [Contact] {
         let receiverName = getReceiverName(from: sendProvider.opponentType)
@@ -52,40 +69,14 @@ extension ReceiverInteractor: ReceiverInteractorInput {
         return sendTransactionBuilder
     }
     
-    func createContactsDataManager(with tableView: UITableView) {
-        contactsDataManager = ContactsDataManager()
-        contactsDataManager.setTableView(tableView)
-        
-        deviceContactsProvider.fetchContacts { [weak self] (result) in
-            switch result {
-            case .success(let sections):
-                DispatchQueue.main.async {
-                    self?.contactsDataManager.updateContacts(sections)
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    //TODO: text and image in case of no access to contacts
-                    self?.contactsDataManager.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
-                                                          placeholderText: error.localizedDescription)
-                }
-                log.warn(error.localizedDescription)
-            }
-        }
-        
-    }
-    
-    func setContactsDataManagerDelegate(_ delegate: ContactsDataManagerDelegate) {
-        contactsDataManager.delegate = delegate
-    }
-    
     func searchContact(text: String) {
         let filteredContacts = deviceContactsProvider.searchContact(text: text)
         
         if filteredContacts.isEmpty {
-            contactsDataManager.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
-                                            placeholderText: "There is no such number in system.\nUse another way to send funds.")
+            output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                               placeholderText: "There is no such number in system.\nUse another way to send funds.")
         } else {
-            contactsDataManager.updateContacts(filteredContacts)
+            output.updateContacts(filteredContacts)
         }
     }
     
@@ -98,7 +89,7 @@ extension ReceiverInteractor: ReceiverInteractorInput {
         return sendProvider.receiverCurrency
     }
     
-    func getSelectedAccount() -> AccountDisplayable {
+    func getSelectedAccount() -> Account {
         return sendProvider.selectedAccount
     }
 }
@@ -114,4 +105,4 @@ extension ReceiverInteractor {
             return "Receiver Name"
         }
     }
- }
+}

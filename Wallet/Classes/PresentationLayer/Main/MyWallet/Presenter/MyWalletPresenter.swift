@@ -16,33 +16,36 @@ class MyWalletPresenter {
     var interactor: MyWalletInteractorInput!
     var router: MyWalletRouterInput!
     weak var mainTabBar: UITabBarController!
+    
+    private let user: User
+    private let accountDisplayer: AccountDisplayerProtocol
+    private var dataManager: MyWalletDataManager!
+    
+    init(user: User,
+         accountDisplayer: AccountDisplayerProtocol) {
+        self.user = user
+        self.accountDisplayer = accountDisplayer
+    }
 }
 
 
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletViewOutput {
-    func selectItemAt(index: Int) {
-        let selectedAccount = interactor.accountModel(for: index)
-        let accountWatcher = interactor.getAccountWatcher()
-        accountWatcher.setAccount(selectedAccount)
-        router.showAccountsWith(accountWatcher: accountWatcher,
-                                from: view.viewController,
-                                tabBar: mainTabBar)
-    }
-    
     
     func viewIsReady() {
-        view.setupInitialState(flowLayout: collectionFlowLayout)
+        view.setupInitialState()
     }
     
-    func accountsCount() -> Int {
-        return interactor.accountsCount()
-    }
-
-    func accountModel(for indexPath: IndexPath) -> AccountDisplayable {
-        let account = interactor.accountModel(for: indexPath.row)
-        return account
+    func accountsCollectionView(_ collectionView: UICollectionView) {
+        collectionView.collectionViewLayout = collectionFlowLayout
+        
+        let allAccounts = interactor.getAccounts()
+        let accountsManager = MyWalletDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
+        accountsManager.setCollectionView(collectionView)
+        dataManager = accountsManager
+        dataManager.delegate = self
     }
     
 }
@@ -66,6 +69,22 @@ extension MyWalletPresenter: MyWalletModuleInput {
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
+}
+
+
+// MARK: - MyWalletViewOutput
+
+extension MyWalletPresenter: MyWalletDataManagerDelegate {
+    
+    func selectAccount(_ account: Account) {
+        let accountWatcher = interactor.getAccountWatcher()
+        accountWatcher.setAccount(account)
+        router.showAccountsWith(accountWatcher: accountWatcher,
+                                from: view.viewController,
+                                tabBar: mainTabBar,
+                                user: user)
+    }
+    
 }
 
 

@@ -198,7 +198,6 @@
 		A52C66B32167634E0073071E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66B22167634E0073071E /* Account.swift */; };
 		A52C66B6216767EA0073071E /* RealmAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66B5216767EA0073071E /* RealmAccount.swift */; };
 		A52C66B821676AB70073071E /* Decimal+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66B721676AB70073071E /* Decimal+Helpers.swift */; };
-		A52C66BB216786180073071E /* AccountDisplayableMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66BA216786180073071E /* AccountDisplayableMapper.swift */; };
 		A52C66BD216786930073071E /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66BC216786930073071E /* Mappable.swift */; };
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
@@ -315,6 +314,11 @@
 		CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBA21538653009E707E /* BiometryQuickLaunch.storyboard */; };
 		CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBE2153949B009E707E /* PinSetup.storyboard */; };
 		CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */; };
+		CE8CC9922167A90D00EA9EED /* AccountDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */; };
+		CE8CC9952167A92B00EA9EED /* CurrencyImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */; };
+		CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9962167B7A500EA9EED /* Currency.swift */; };
+		CE8CC99A2167D9C300EA9EED /* MyWalletDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9992167D9C300EA9EED /* MyWalletDataManager.swift */; };
+		CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC99C216B7EE700EA9EED /* AccountTypeResolver.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE976482216252B9000E9336 /* SmallAccountCell.xib */; };
 		CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976487216263C0000E9336 /* QRCodeProvider.swift */; };
@@ -332,7 +336,6 @@
 		CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDF012134354400490781 /* UIColorExtension.swift */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
-		CEFC9C902154EB7A00962356 /* AccountDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8F2154EB7A00962356 /* AccountDisplayable.swift */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
 		CEFC9C942158CF1900962356 /* PopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C932158CF1900962356 /* PopUpViewModel.swift */; };
 		CEFC9C9821590D1200962356 /* PopUpRegistrationSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C9721590D1200962356 /* PopUpRegistrationSuccessVM.swift */; };
@@ -648,7 +651,6 @@
 		A52C66B22167634E0073071E /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		A52C66B5216767EA0073071E /* RealmAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAccount.swift; sourceTree = "<group>"; };
 		A52C66B721676AB70073071E /* Decimal+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Helpers.swift"; sourceTree = "<group>"; };
-		A52C66BA216786180073071E /* AccountDisplayableMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayableMapper.swift; sourceTree = "<group>"; };
 		A52C66BC216786930073071E /* Mappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
@@ -769,6 +771,11 @@
 		CE5FAFBE2153949B009E707E /* PinSetup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PinSetup.storyboard; sourceTree = "<group>"; };
 		CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CE6782F3DF8CA9544D645F0A /* MainTabBarRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarRouter.swift; sourceTree = "<group>"; };
+		CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayer.swift; sourceTree = "<group>"; };
+		CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyImageProvider.swift; sourceTree = "<group>"; };
+		CE8CC9962167B7A500EA9EED /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		CE8CC9992167D9C300EA9EED /* MyWalletDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletDataManager.swift; sourceTree = "<group>"; };
+		CE8CC99C216B7EE700EA9EED /* AccountTypeResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeResolver.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CE976482216252B9000E9336 /* SmallAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallAccountCell.xib; sourceTree = "<group>"; };
 		CE976487216263C0000E9336 /* QRCodeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeProvider.swift; sourceTree = "<group>"; };
@@ -787,7 +794,6 @@
 		CEDDDF012134354400490781 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
-		CEFC9C8F2154EB7A00962356 /* AccountDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayable.swift; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
 		CEFC9C932158CF1900962356 /* PopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewModel.swift; sourceTree = "<group>"; };
 		CEFC9C9721590D1200962356 /* PopUpRegistrationSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpRegistrationSuccessVM.swift; sourceTree = "<group>"; };
@@ -1957,24 +1963,6 @@
 			path = UserDataStoreService;
 			sourceTree = "<group>";
 		};
-		A52C66B4216767020073071E /* Displayable */ = {
-			isa = PBXGroup;
-			children = (
-				A52C66B9216780200073071E /* Mappers */,
-				CEFC9C8F2154EB7A00962356 /* AccountDisplayable.swift */,
-			);
-			name = Displayable;
-			sourceTree = "<group>";
-		};
-		A52C66B9216780200073071E /* Mappers */ = {
-			isa = PBXGroup;
-			children = (
-				A52C66BA216786180073071E /* AccountDisplayableMapper.swift */,
-				A52C66BC216786930073071E /* Mappable.swift */,
-			);
-			name = Mappers;
-			sourceTree = "<group>";
-		};
 		A534883D230884E6416A5516 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -2137,6 +2125,9 @@
 				CED822E8215BE07B00693B92 /* CurrencyFormatter */,
 				CE976486216263AA000E9336 /* QRCodeProvider */,
 				CE0C3C2A216617A5002D1CBD /* PaymentFeeAndWaitProvider */,
+				CE8CC9932167A91500EA9EED /* CurrencyImageProvider */,
+				CE8CC9902167A8F200EA9EED /* AccountDisplayer */,
+				CE8CC99B216B7ED200EA9EED /* AccountTypeResolver */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -2149,6 +2140,7 @@
 				A500860A2150F9E700C47015 /* NetworkLoadable.swift */,
 				A5F59AB6216248C5005F1765 /* RealmMappable.swift */,
 				A5F59AB821624908005F1765 /* RealmStorable.swift */,
+				A52C66BC216786930073071E /* Mappable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -2611,6 +2603,38 @@
 			path = QuickLaunch;
 			sourceTree = "<group>";
 		};
+		CE8CC9902167A8F200EA9EED /* AccountDisplayer */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */,
+			);
+			path = AccountDisplayer;
+			sourceTree = "<group>";
+		};
+		CE8CC9932167A91500EA9EED /* CurrencyImageProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */,
+			);
+			path = CurrencyImageProvider;
+			sourceTree = "<group>";
+		};
+		CE8CC9982167D9A700EA9EED /* MyWalletDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CC9992167D9C300EA9EED /* MyWalletDataManager.swift */,
+			);
+			path = MyWalletDataManager;
+			sourceTree = "<group>";
+		};
+		CE8CC99B216B7ED200EA9EED /* AccountTypeResolver */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CC99C216B7EE700EA9EED /* AccountTypeResolver.swift */,
+			);
+			path = AccountTypeResolver;
+			sourceTree = "<group>";
+		};
 		CE97647E21625285000E9336 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -2674,7 +2698,6 @@
 		CEFC9C872154E57B00962356 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A52C66B4216767020073071E /* Displayable */,
 				CEFC9C882154E58400962356 /* PlainModels */,
 				A5F59AB52162489C005F1765 /* RealmModels */,
 			);
@@ -2688,6 +2711,7 @@
 				A51CB5482158E60500CDC80C /* Transaction.swift */,
 				A52C66A921666ECC0073071E /* User.swift */,
 				A52C66B22167634E0073071E /* Account.swift */,
+				CE8CC9962167B7A500EA9EED /* Currency.swift */,
 			);
 			path = PlainModels;
 			sourceTree = "<group>";
@@ -2944,6 +2968,7 @@
 		F087D7C00C1F36868EFC0074 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				CE8CC9982167D9A700EA9EED /* MyWalletDataManager */,
 				30AD6C72FB789A35EDBD9F0F /* MyWalletPresenter.swift */,
 			);
 			path = Presenter;
@@ -3251,6 +3276,7 @@
 				CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */,
 				CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */,
 				CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */,
+				CE8CC99A2167D9C300EA9EED /* MyWalletDataManager.swift in Sources */,
 				CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */,
 				CE0E5A6E212DAE70003E2C5E /* UITextFieldExtension.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PinDotView.swift in Sources */,
@@ -3317,7 +3343,6 @@
 				299D987919399E29BA78858E /* FirstLaunchPresenter.swift in Sources */,
 				D38A8FA13AAF73DEB072ECF1 /* FirstLaunchInteractorInput.swift in Sources */,
 				7A80EBB895B1151398C2D79F /* FirstLaunchInteractorOutput.swift in Sources */,
-				CEFC9C902154EB7A00962356 /* AccountDisplayable.swift in Sources */,
 				EBA3144E74DD09EC8832E45F /* FirstLaunchInteractor.swift in Sources */,
 				ED225EB78E206616574BF490 /* FirstLaunchRouterInput.swift in Sources */,
 				B5D0A50EC37F23DE647B941B /* FirstLaunchRouter.swift in Sources */,
@@ -3338,6 +3363,7 @@
 				D673BB210C0EE94821BDEFFA /* RegistrationInteractorInput.swift in Sources */,
 				165DB5F5FAA826D2789B39B1 /* RegistrationInteractorOutput.swift in Sources */,
 				2F361EA29F03389EB9F35B20 /* RegistrationInteractor.swift in Sources */,
+				CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */,
 				1E743E76CB9A3AE2D7072FA9 /* RegistrationRouterInput.swift in Sources */,
 				42580D4883A4C123BC97C148 /* RegistrationRouter.swift in Sources */,
 				499A139819810CE495D7F452 /* RegistrationModuleInput.swift in Sources */,
@@ -3413,6 +3439,7 @@
 				5CB377C30BE6A3E3A6A71B8D /* PinQuickLaunchModuleInput.swift in Sources */,
 				25F219D759BBDCBB79AC76A8 /* PinQuickLaunchModuleOutput.swift in Sources */,
 				2C2605E9EBCF195BDD25DF7F /* PinQuickLaunchModule.swift in Sources */,
+				CE8CC9922167A90D00EA9EED /* AccountDisplayer.swift in Sources */,
 				CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */,
 				A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */,
 				CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */,
@@ -3471,6 +3498,7 @@
 				F65CB8AA94F7350D95BCC3B4 /* MyWalletInteractorOutput.swift in Sources */,
 				CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */,
 				CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */,
+				CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */,
 				4A8416E8E79E93524467F707 /* MyWalletInteractor.swift in Sources */,
 				BF550A4D541C2E921C542231 /* MyWalletRouterInput.swift in Sources */,
 				7CA5701D87FA184CFCC87D46 /* MyWalletRouter.swift in Sources */,
@@ -3535,7 +3563,6 @@
 				CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */,
 				A94569B43B0A5C670A352940 /* SettingsRouter.swift in Sources */,
 				028B7BF74591C0783429D6F3 /* SettingsModuleInput.swift in Sources */,
-				A52C66BB216786180073071E /* AccountDisplayableMapper.swift in Sources */,
 				A52C66A72164C1450073071E /* SendTransactionBuilder.swift in Sources */,
 				B8D4D58E13E50746B516D91C /* SettingsModuleOutput.swift in Sources */,
 				CEFC9CB6215A59E700962356 /* SendTransactionProvider.swift in Sources */,
@@ -3584,6 +3611,7 @@
 				C8D9A40E5B96755FB71A7946 /* QRScannerModule.swift in Sources */,
 				335037D191E86BBE64FC177F /* PaymentFeeViewInput.swift in Sources */,
 				A5A63DCD4AC3808900D1025C /* PaymentFeeViewOutput.swift in Sources */,
+				CE8CC9952167A92B00EA9EED /* CurrencyImageProvider.swift in Sources */,
 				2F665A1E2688D3229C38F7B2 /* PaymentFeeViewController.swift in Sources */,
 				A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */,
 				A52C66BD216786930073071E /* Mappable.swift in Sources */,

@@ -19,11 +19,16 @@ class ExchangePresenter {
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
     private var currencyConverter: CurrencyConverterProtocol!
+    private let accountDisplayer: AccountDisplayerProtocol
+    private var accountsTableDataManager: AccountsTableDataManager!
+    private var accountsDataManager: AccountsDataManager!
     
     init(converterFactory: CurrecncyConverterFactoryProtocol,
-         currencyFormatter: CurrencyFormatterProtocol) {
+         currencyFormatter: CurrencyFormatterProtocol,
+         accountDisplayer: AccountDisplayerProtocol) {
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
+        self.accountDisplayer = accountDisplayer
     }
 }
 
@@ -34,33 +39,35 @@ extension ExchangePresenter: ExchangeViewOutput {
     
     func viewIsReady() {
         let numberOfPages = interactor.getAccountsCount()
-        let paymentFeeValuesCount = interactor.getPaymentFeeValuesCount()
-        view.setupInitialState(numberOfPages: numberOfPages, paymentFeeValuesCount: paymentFeeValuesCount)
+        view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
         
-        interactor.setAccountsDataManagerDelegate(self)
-        interactor.setAccountsTableDataManagerDelegate(self)
-        
-        // Default values
-        interactor.setCurrentAccount(index: 0)
-        interactor.setRecepientAccount(index: 0)
-        interactor.setPaymentFee(index: 0)
-        interactor.setAmount(0)
+        interactor.updateInitialState()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
         collectionView.collectionViewLayout = collectionFlowLayout
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = true
-        interactor.createAccountsDataManager(with: collectionView)
+        
+        let allAccounts = interactor.getAccounts()
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
+        accountsManager.setCollectionView(collectionView, cellType: .small)
+        accountsDataManager = accountsManager
+        accountsDataManager.delegate = self
     }
     
     func accountsActionSheet(_ tableView: UITableView) {
-        interactor.createAccountsTableDataManager(with: tableView)
+        let currencyImageProvider = CurrencyImageProvider()
+        let accountsManager = AccountsTableDataManager(currencyFormatter: currencyFormatter,
+                                                       currencyImageProvider: currencyImageProvider)
+        accountsManager.setTableView(tableView)
+        accountsTableDataManager = accountsManager
+        accountsTableDataManager.delegate = self
     }
     
     func configureCollections() {
-        interactor.scrollCollection()
+        let index = interactor.getAccountIndex()
+        accountsDataManager.scrollTo(index: index)
     }
     
     func isValidAmount(_ amount: String) -> Bool {
@@ -92,9 +99,10 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func recepientAccountPressed() {
-        interactor.prepareAccountsTable()
+        let accounts = interactor.getRecepientAccounts()
+        accountsTableDataManager.accounts = accounts
         
-        let height = interactor.getAccountsTableHeight()
+        let height = accountsTableDataManager.calculateHeight()
         view.showAccountsActionSheet(height: height)
     }
     
@@ -109,9 +117,9 @@ extension ExchangePresenter: ExchangeViewOutput {
 
 extension ExchangePresenter: ExchangeInteractorOutput {
     
-    func updateRecepientAccount(_ account: AccountDisplayable) {
+    func updateRecepientAccount(_ account: Account) {
         currencyConverter = converterFactory.createConverter(from: account.currency)
-        view.setRecepientAccount(account.accountName)
+        view.setRecepientAccount(account.name)
     }
     
     func updateAmount(_ amount: Decimal, currency: Currency) {
@@ -212,6 +220,7 @@ extension ExchangePresenter: AccountsTableDataManagerDelegate {
 // MARK: - Private methods
 
 extension ExchangePresenter {
+    
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.accountsCollectionSmallFlowLayout
         

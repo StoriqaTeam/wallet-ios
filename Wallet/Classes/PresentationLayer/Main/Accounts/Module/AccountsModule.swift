@@ -15,11 +15,11 @@ class FakeAccountLinker: AccountsLinkerProtocol {
         self.fakeTxProvider = fakeTxProvider
     }
     
-    func getTransactionsFor(account: AccountDisplayable) -> [Transaction]? {
+    func getTransactionsFor(account: Account) -> [Transaction]? {
         return fakeTxProvider.transactionsFor(account: account)
     }
     
-    func getAllAccounts() -> [AccountDisplayable] {
+    func getAllAccounts() -> [Account] {
         return fakeAccProvider.getAllAccounts()
     }
 }
@@ -27,15 +27,27 @@ class FakeAccountLinker: AccountsLinkerProtocol {
 
 class AccountsModule {
     
-    class func create(accountWatcher: CurrentAccountWatcherProtocol, tabBar: UITabBarController) -> AccountsModuleInput {
+    class func create(accountWatcher: CurrentAccountWatcherProtocol,
+                      tabBar: UITabBarController,
+                      user: User) -> AccountsModuleInput {
         let router = AccountsRouter()
-        let presenter = AccountsPresenter()
-        presenter.mainTabBar = tabBar
         
+        // Injections
         let fakeAccountsProvider = FakeAccountProvider()
         let fakeTransactionsProvider = FakeTransactionsProvider()
         let accountLinker = FakeAccountLinker(fakeAccProvider: fakeAccountsProvider, fakeTxProvider: fakeTransactionsProvider)
-        let interactor = AccountsInteractor(accountLinker: accountLinker, accountWatcher: accountWatcher)
+        let converterFactory = CurrecncyConverterFactory()
+        let currencyFormatter = CurrencyFormatter()
+        let accountTypeResolver = AccountTypeResolver()
+        let accountDisplayer = AccountDisplayer(user: user,
+                                                currencyFormatter: currencyFormatter,
+                                                converterFactory: converterFactory,
+                                                accountTypeResolver: accountTypeResolver)
+        
+        let presenter = AccountsPresenter(accountDisplayer: accountDisplayer)
+        presenter.mainTabBar = tabBar
+        let interactor = AccountsInteractor(accountLinker: accountLinker,
+                                            accountWatcher: accountWatcher)
     
         let accountsVC = UIStoryboard(name: "Accounts", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "accountsVC") as! AccountsViewController

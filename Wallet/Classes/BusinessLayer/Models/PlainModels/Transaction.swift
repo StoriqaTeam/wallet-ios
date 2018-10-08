@@ -8,51 +8,6 @@
 
 import Foundation
 
-enum Currency: String {
-    case btc
-    case eth
-    case stq
-    case fiat
-    
-    var ISO: String {
-        switch self {
-        case .btc:
-            return "BTC"
-        case .eth:
-            return "ETH"
-        case .stq:
-            return "STQ"
-        case .fiat:
-            return "$"
-        }
-    }
-    
-    var smallImage: UIImage {
-        switch self {
-        case .btc:
-            return #imageLiteral(resourceName: "currency_btc_small")
-        case .eth:
-            return #imageLiteral(resourceName: "currency_eth_small")
-        case .stq:
-            return #imageLiteral(resourceName: "currency_stq_small")
-        case .fiat:
-            return #imageLiteral(resourceName: "currency_fiat_small")
-        }
-    }
-    
-    var mediumImage: UIImage {
-        switch self {
-        case .btc:
-            return #imageLiteral(resourceName: "currency_btc_medium")
-        case .eth:
-            return #imageLiteral(resourceName: "currency_eth_medium")
-        case .stq:
-            return #imageLiteral(resourceName: "currency_stq_medium")
-        case .fiat:
-            return #imageLiteral(resourceName: "currency_fiat_medium")
-        }
-    }
-}
 
 enum Direction {
     case receive

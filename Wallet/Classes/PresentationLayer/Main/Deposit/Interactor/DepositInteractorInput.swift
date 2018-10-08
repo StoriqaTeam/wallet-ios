@@ -10,9 +10,8 @@ import Foundation
 
 
 protocol DepositInteractorInput: class {
-    func createAccountsDataManager(with collectionView: UICollectionView)
-    func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate)
-    func scrollCollection()
+    func getAccounts() -> [Account]
+    func getAccountIndex() -> Int
     func getAccountsCount() -> Int
     func setCurrentAccountWith(index: Int)
     func getAddress() -> String

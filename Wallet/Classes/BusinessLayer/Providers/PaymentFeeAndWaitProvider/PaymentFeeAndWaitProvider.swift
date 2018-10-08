@@ -11,6 +11,7 @@ import Foundation
 protocol PaymentFeeAndWaitProviderProtocol {
     func updateSelectedForCurrency(_ currency: Currency)
     func getValuesCount() -> Int
+    func getIndex(fee: Decimal) -> Int
     func getFee(index: Int) -> Decimal
     func getWait(fee: Decimal) -> Decimal
 }
@@ -39,6 +40,12 @@ class FakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol {
     
     func getValuesCount() -> Int {
         return selected.count
+    }
+    
+    func getIndex(fee: Decimal) -> Int {
+        let paymentFeeValues = Array(selected.keys).sorted()
+        let index = paymentFeeValues.firstIndex(of: fee)!
+        return index
     }
     
     func getFee(index: Int) -> Decimal {

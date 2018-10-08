@@ -17,14 +17,21 @@ class SendPresenter {
     var router: SendRouterInput!
     
     private let currencyFormatter: CurrencyFormatterProtocol
+    private let currencyImageProvider: CurrencyImageProviderProtocol
+    private let accountDisplayer: AccountDisplayerProtocol
+    private var accountsDataManager: AccountsDataManager!
     private let currencies = [
-                               Currency.stq,
-                               Currency.btc,
-                               Currency.eth,
-                               Currency.fiat ]
+        Currency.stq,
+        Currency.btc,
+        Currency.eth,
+        Currency.fiat ]
     
-    init(currencyFormatter: CurrencyFormatterProtocol) {
+    init(currencyFormatter: CurrencyFormatterProtocol,
+         currencyImageProvider: CurrencyImageProviderProtocol,
+         accountDisplayer: AccountDisplayerProtocol) {
         self.currencyFormatter = currencyFormatter
+        self.currencyImageProvider = currencyImageProvider
+        self.accountDisplayer = accountDisplayer
     }
 }
 
@@ -53,35 +60,43 @@ extension SendPresenter: SendViewOutput {
         view.setButtonEnabled(formIsValid)
     }
     
-    func getAmountWithCurrency() -> String {
+    func amountDidBeginEditing() {
         let amount = interactor.getAmount()
-        let currency = interactor.getReceiverCurrency()
-        return getStringFrom(amount: amount, currency: currency)
+        let formatted = getStringAmountWithoutCurrency(amount: amount)
+        view.setAmount(formatted)
     }
     
-    func getAmountWithoutCurrency() -> String {
+    func amountDidEndEditing() {
         let amount = interactor.getAmount()
-        return getStringAmountWithoutCurrency(amount: amount)
+        let currency = interactor.getReceiverCurrency()
+        let formatted = getStringFrom(amount: amount, currency: currency)
+        view.setAmount(formatted)
     }
     
     func viewIsReady() {
-        let currencyImages = currencies.map({ return $0.smallImage })
+        let currencyImages = currencies.map({
+            return currencyImageProvider.smallImage(for: $0)
+        })
         let numberOfPages = interactor.getAccountsCount()
         configureNavBar()
         view.setButtonEnabled(false)
         view.setupInitialState(currencyImages: currencyImages, numberOfPages: numberOfPages)
-        interactor.setAccountsDataManagerDelegate(self)
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
         collectionView.collectionViewLayout = collectionFlowLayout
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = true
-        interactor.createAccountsDataManager(with: collectionView)
+        
+        let allAccounts = interactor.getAccounts()
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
+        accountsManager.setCollectionView(collectionView)
+        accountsDataManager = accountsManager
+        accountsDataManager.delegate = self
     }
     
     func configureCollections() {
-        interactor.scrollCollection()
+        let index = interactor.getAccountIndex()
+        accountsDataManager.scrollTo(index: index)
     }
     
 }
@@ -95,11 +110,11 @@ extension SendPresenter: SendInteractorOutput {
         let amount = interactor.getAmount()
         let currency = interactor.getReceiverCurrency()
         let amountString = getStringFrom(amount: amount, currency: currency)
-        view.updateAmount(amountString)
+        view.setAmount(amountString)
     }
     
     func updateConvertedAmount(_ amount: String) {
-        view.updateConvertedAmount(amount)
+        view.setConvertedAmount(amount)
     }
     
 }
@@ -108,7 +123,7 @@ extension SendPresenter: SendInteractorOutput {
 // MARK: - SendModuleInput
 
 extension SendPresenter: SendModuleInput {
-
+    
     var viewController: UIViewController {
         return view.viewController
     }
@@ -117,7 +132,7 @@ extension SendPresenter: SendModuleInput {
         view.present()
     }
     
-
+    
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
@@ -172,7 +187,7 @@ extension SendPresenter {
             return ""
         }
         
-        return amount.description
+        return amount.string
     }
     
 }

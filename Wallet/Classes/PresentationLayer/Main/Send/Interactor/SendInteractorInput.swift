@@ -11,10 +11,9 @@ import Foundation
 
 protocol SendInteractorInput: class {
     
+    func getAccounts() -> [Account]
     func getAccountsCount() -> Int
-    func scrollCollection()
-    func createAccountsDataManager(with collectionView: UICollectionView)
-    func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate)
+    func getAccountIndex() -> Int
     
     func isValidAmount(_ amount: String) -> Bool
     func setAmount(_ amount: String)

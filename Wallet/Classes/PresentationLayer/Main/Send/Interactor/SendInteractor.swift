@@ -11,7 +11,6 @@ import Foundation
 
 class SendInteractor {
     weak var output: SendInteractorOutput!
-    private var accountsDataManager: AccountsDataManager!
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let sendTransactionBuilder: SendProviderBuilderProtocol
@@ -35,7 +34,16 @@ class SendInteractor {
 // MARK: - SendInteractorInput
 
 extension SendInteractor: SendInteractorInput {
-
+    func getAccounts() -> [Account] {
+        return accountsProvider.getAllAccounts()
+    }
+    
+    func getAccountIndex() -> Int {
+        let account = accountWatcher.getAccount()
+        let index = resolveAccountIndex(account: account)
+        return index
+    }
+    
     func getAccountsCount() -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.count
@@ -52,12 +60,6 @@ extension SendInteractor: SendInteractorInput {
         sendTransactionBuilder.set(account: account)
         output.updateAmount()
         output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
-    }
-    
-    func scrollCollection() {
-        let currentAccount = accountWatcher.getAccount()
-        let index = resolveAccountIndex(account: currentAccount)
-        accountsDataManager.scrollTo(index: index)
     }
     
     func setReceiverCurrency(_ currency: Currency) {
@@ -80,17 +82,6 @@ extension SendInteractor: SendInteractorInput {
         output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
     }
     
-    func createAccountsDataManager(with collectionView: UICollectionView) {
-        let allAccounts = accountsProvider.getAllAccounts()
-        let accountsManager = AccountsDataManager(accounts: allAccounts)
-        accountsManager.setCollectionView(collectionView)
-        accountsDataManager = accountsManager
-    }
-    
-    func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate) {
-        accountsDataManager.delegate = delegate
-    }
-
     func getAmount() -> Decimal? {
         return sendProvider.amount
     }
@@ -105,12 +96,12 @@ extension SendInteractor: SendInteractorInput {
 // MARK: - Private methods
 
 extension SendInteractor {
-    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
+    private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index { $0 == account }!
     }
     
-    private func setInitialAccount(account: AccountDisplayable) {
+    private func setInitialAccount(account: Account) {
         self.sendProvider.selectedAccount = account
     }
 }

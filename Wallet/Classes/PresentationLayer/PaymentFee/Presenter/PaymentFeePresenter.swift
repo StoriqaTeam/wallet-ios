@@ -18,10 +18,14 @@ class PaymentFeePresenter {
     
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let currencyImageProvider: CurrencyImageProviderProtocol
     
-    init(currencyFormatter: CurrencyFormatterProtocol, converterFactory: CurrecncyConverterFactoryProtocol) {
+    init(currencyFormatter: CurrencyFormatterProtocol,
+         converterFactory: CurrecncyConverterFactoryProtocol,
+         currencyImageProvider: CurrencyImageProviderProtocol) {
         self.currencyFormatter = currencyFormatter
         self.converterFactory = converterFactory
+        self.currencyImageProvider = currencyImageProvider
     }
     
 }
@@ -67,10 +71,11 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
         let amountString = getStringFrom(amount: amount, currency: currency)
         let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
         let opponentType = interactor.getOpponent()
+        let currencyImage = currencyImageProvider.mediumImage(for: currency)
         
         let header = SendingHeaderData(amount: amountString,
                                        amountInTransactionCurrency: amountStringInTxCurrency,
-                                       currencyImage: currency.mediumImage)
+                                       currencyImage: currencyImage)
         
         
         let apperance = paymentFeeScreen(header: header, opponentType: opponentType)

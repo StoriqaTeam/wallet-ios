@@ -9,12 +9,12 @@
 import Foundation
 
 protocol TransactionsProviderProtocol: class {
-    func transactionsFor(account: AccountDisplayable) -> [Transaction]
+    func transactionsFor(account: Account) -> [Transaction]
 }
 
 class TransactionsProvider: TransactionsProviderProtocol {
     
-    func transactionsFor(account: AccountDisplayable) -> [Transaction] {
+    func transactionsFor(account: Account) -> [Transaction] {
         fatalError("'transactionsFor(account: Account)' not implemented in TransactionsProvider")
     }
 }

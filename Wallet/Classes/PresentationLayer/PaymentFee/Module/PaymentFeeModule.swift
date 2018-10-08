@@ -12,8 +12,11 @@ class PaymentFeeModule {
         let router = PaymentFeeRouter()
         let formatter = CurrencyFormatter()
         let converterFactory = CurrecncyConverterFactory()
+        let currencyImageProvider = CurrencyImageProvider()
         
-        let presenter = PaymentFeePresenter(currencyFormatter: formatter, converterFactory: converterFactory)
+        let presenter = PaymentFeePresenter(currencyFormatter: formatter,
+                                            converterFactory: converterFactory,
+                                            currencyImageProvider: currencyImageProvider)
         let interactor = PaymentFeeInteractor(sendTransactionBuilder: sendTransactionBuilder)
         
         let accountsVC = UIStoryboard(name: "PaymentFee", bundle: nil)

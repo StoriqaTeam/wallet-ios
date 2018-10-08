@@ -11,8 +11,7 @@ import Foundation
 
 protocol ReceiverInteractorInput: class {
     
-    func createContactsDataManager(with tableView: UITableView)
-    func setContactsDataManagerDelegate(_ delegate: ContactsDataManagerDelegate)
+    func fetchContacts()
     func searchContact(text: String)
     func getSendTransactionBuilder() -> SendProviderBuilderProtocol 
     func setScannedDelegate(_ delegate: QRScannerDelegate)
@@ -21,6 +20,6 @@ protocol ReceiverInteractorInput: class {
 
     func getAmount() -> Decimal?
     func getReceiverCurrency() -> Currency
-    func getSelectedAccount() -> AccountDisplayable
+    func getSelectedAccount() -> Account
     
 }

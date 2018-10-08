@@ -18,10 +18,15 @@ class ReceiverPresenter {
     
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let currencyImageProvider: CurrencyImageProviderProtocol
+    private var contactsDataManager: ContactsDataManager!
     
-    init(currencyFormatter: CurrencyFormatterProtocol, converterFactory: CurrecncyConverterFactoryProtocol) {
+    init(currencyFormatter: CurrencyFormatterProtocol,
+         converterFactory: CurrecncyConverterFactoryProtocol,
+         currencyImageProvider: CurrencyImageProviderProtocol) {
         self.currencyFormatter = currencyFormatter
         self.converterFactory = converterFactory
+        self.currencyImageProvider = currencyImageProvider
     }
 }
 
@@ -64,7 +69,10 @@ extension ReceiverPresenter: ReceiverViewOutput {
     
     
     func contactsTableView(_ tableView: UITableView) {
-        interactor.createContactsDataManager(with: tableView)
+        contactsDataManager = ContactsDataManager()
+        contactsDataManager.setTableView(tableView)
+        contactsDataManager.delegate = self
+        interactor.fetchContacts()
     }
     
     func viewIsReady() {
@@ -74,14 +82,14 @@ extension ReceiverPresenter: ReceiverViewOutput {
         let accountCurrency = interactor.getSelectedAccount().currency
         let amountString = getStringFrom(amount: amount, currency: currency)
         let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
+        let currencyImage = currencyImageProvider.mediumImage(for: currency)
         
         let appearence = SendingHeaderData(amount: amountString,
                                            amountInTransactionCurrency: amountStringInTxCurrency,
-                                           currencyImage: currency.mediumImage)
+                                           currencyImage: currencyImage)
         
         view.setupInitialState(apperance: appearence)
         view.setNextButtonHidden(true)
-        interactor.setContactsDataManagerDelegate(self)
     }
     
     func willMoveToParentVC() {
@@ -99,6 +107,16 @@ extension ReceiverPresenter: ReceiverViewOutput {
 // MARK: - ReceiverInteractorOutput
 
 extension ReceiverPresenter: ReceiverInteractorOutput {
+    
+    func updateContacts(_ contacts: [ContactsSection]) {
+        contactsDataManager.updateContacts(contacts)
+    }
+    
+    func updateEmpty(placeholderImage: UIImage, placeholderText: String) {
+        contactsDataManager.updateEmpty(placeholderImage: placeholderImage,
+                                        placeholderText: placeholderText)
+    }
+    
 
 }
 

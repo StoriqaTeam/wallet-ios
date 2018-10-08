@@ -8,7 +8,7 @@ import UIKit
 
 class ExchangeModule {
     
-    class func create(accountWatcher: CurrentAccountWatcherProtocol) -> ExchangeModuleInput {
+    class func create(accountWatcher: CurrentAccountWatcherProtocol, user: User) -> ExchangeModuleInput {
         let router = ExchangeRouter()
         
         // Injections
@@ -16,8 +16,15 @@ class ExchangeModule {
         let currencyFormatter = CurrencyFormatter()
         let feeWaitProvider = FakePaymentFeeAndWaitProvider()
         let accountsProvider = FakeAccountProvider()
+        let accountTypeResolver = AccountTypeResolver()
+        let accountDisplayer = AccountDisplayer(user: user,
+                                                currencyFormatter: currencyFormatter,
+                                                converterFactory: converterFactory,
+                                                accountTypeResolver: accountTypeResolver)
         
-        let presenter = ExchangePresenter(converterFactory: converterFactory, currencyFormatter: currencyFormatter)
+        let presenter = ExchangePresenter(converterFactory: converterFactory,
+                                          currencyFormatter: currencyFormatter,
+                                          accountDisplayer: accountDisplayer)
         let interactor = ExchangeInteractor(accountWatcher: accountWatcher,
                                             accountsProvider: accountsProvider,
                                             converterFactory: converterFactory,

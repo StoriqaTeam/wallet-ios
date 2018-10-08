@@ -31,7 +31,15 @@ class AccountsViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.configureCollections()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
+        
+        // FIXME: - collection scroll bug, must be only in will appear
+        
         super.viewDidAppear(animated)
         output.configureCollections()
     }

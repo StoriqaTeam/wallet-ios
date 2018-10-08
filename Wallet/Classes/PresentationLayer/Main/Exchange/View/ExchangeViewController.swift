@@ -59,8 +59,8 @@ class ExchangeViewController: UIViewController {
         output.viewIsReady()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         output.configureCollections()
     }
     
@@ -94,15 +94,9 @@ class ExchangeViewController: UIViewController {
 
 extension ExchangeViewController: ExchangeViewInput {
     
-    func setupInitialState(numberOfPages: Int, paymentFeeValuesCount: Int) {
+    func setupInitialState(numberOfPages: Int) {
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
-        
-        paymentFeeSlider.paymentFeeValuesCount = paymentFeeValuesCount
-        paymentFeeSlider.setValue(0, animated: false)
-        updateSelectedFee()
-        
-        dimmingBackground.alpha = 0
         
         setupInitialActionSheet()
         addHideKeyboardGuesture()
@@ -278,6 +272,7 @@ extension ExchangeViewController {
         dimmingBackground.backgroundColor = UIColor(red: 4/255, green: 4/255, blue: 15/255, alpha: 0.4)
         dimmingBackground.setTitleColor(.clear, for: .normal)
         dimmingBackground.addTarget(self, action: #selector(dimmingBackgroundTapped(_:)), for: .touchUpInside)
+        dimmingBackground.alpha = 0
         
         UIApplication.shared.keyWindow!.addSubview(dimmingBackground)
         UIApplication.shared.keyWindow!.addSubview(accountsActionSheet)

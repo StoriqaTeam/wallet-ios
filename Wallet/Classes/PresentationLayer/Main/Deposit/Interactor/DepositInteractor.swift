@@ -13,7 +13,6 @@ class DepositInteractor {
     weak var output: DepositInteractorOutput!
     private let qrProvider: QRCodeProviderProtocol
     private let accountsProvider: AccountsProviderProtocol
-    private var accountsDataManager: AccountsDataManager!
     private let accountWatcher: CurrentAccountWatcherProtocol
     
     init(qrProvider: QRCodeProviderProtocol,
@@ -30,13 +29,23 @@ class DepositInteractor {
 // MARK: - DepositInteractorInput
 
 extension DepositInteractor: DepositInteractorInput {
+    func getAccounts() -> [Account] {
+        return accountsProvider.getAllAccounts()
+    }
+    
+    func getAccountIndex() -> Int {
+        let account = accountWatcher.getAccount()
+        let index = resolveAccountIndex(account: account)
+        return index
+    }
+    
     func getAddress() -> String {
         let currentAccount = accountWatcher.getAccount()
-        return currentAccount.cryptoAddress
+        return currentAccount.accountAddress
     }
     
     func getQrCodeImage() -> UIImage {
-        let currentAddress = accountWatcher.getAccount().cryptoAddress
+        let currentAddress = accountWatcher.getAccount().accountAddress
         let qrCodeSize = CGSize(width: 300, height: 300)
         
         guard let qrCode = qrProvider.createQRFromString(currentAddress, size: qrCodeSize) else {
@@ -51,23 +60,6 @@ extension DepositInteractor: DepositInteractorInput {
         accountWatcher.setAccount(allAccounts[index])
     }
     
-    func createAccountsDataManager(with collectionView: UICollectionView) {
-        let allAccounts = accountsProvider.getAllAccounts()
-        let accountsManager = AccountsDataManager(accounts: allAccounts)
-        accountsManager.setCollectionView(collectionView, cellType: .small)
-        accountsDataManager = accountsManager
-    }
-    
-    func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate) {
-        accountsDataManager.delegate = delegate
-    }
-    
-    func scrollCollection() {
-        let currentAccount = accountWatcher.getAccount()
-        let index = resolveAccountIndex(account: currentAccount)
-        accountsDataManager.scrollTo(index: index)
-    }
-    
     func getAccountsCount() -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.count
@@ -79,7 +71,7 @@ extension DepositInteractor: DepositInteractorInput {
 
 extension DepositInteractor {
     
-    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
+    private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index { $0 == account }!
     }

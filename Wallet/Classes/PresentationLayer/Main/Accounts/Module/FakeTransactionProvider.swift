@@ -105,8 +105,8 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     opponent: .address(address: "mv12ef12...32"))
     ]
     
-    func transactionsFor(account: AccountDisplayable) -> [Transaction] {
-        return fetchTransactions(accountType: account.type)
+    func transactionsFor(account: Account) -> [Transaction] {
+        return fetchTransactions(currency: account.currency)
     }
     
 }
@@ -115,8 +115,8 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
 // MARK: - Private methods
 
 extension FakeTransactionsProvider {
-    private func fetchTransactions(accountType: AccountType) -> [Transaction] {
-        switch accountType {
+    private func fetchTransactions(currency: Currency) -> [Transaction] {
+        switch currency {
         case .btc:
             return txStorage.filter { $0.currency == .btc }
         case .eth:

@@ -30,7 +30,7 @@ extension Account: RealmMappable {
         self.userId = object.userId
         self.name = object.name
         self.accountAddress = object.accountAddress
-        self.currency = map(realmCurrency: object.currency)
+        self.currency = Currency(string: object.currency)
     }
     
     func mapToRealmObject() -> RealmAccount {
@@ -48,22 +48,6 @@ extension Account: RealmMappable {
 }
 
 
-// MARK: - Private methods
-
-extension Account {
-    private func map(realmCurrency: String) -> Currency {
-        if realmCurrency == "ETH" {
-            return Currency.eth
-        }
-        
-        if realmCurrency == "STQ" {
-            return Currency.stq
-        }
-        
-        if realmCurrency == "BTC" {
-            return Currency.btc
-        }
-        
-        return Currency.fiat
-    }
+extension Account: Equatable {
+    
 }

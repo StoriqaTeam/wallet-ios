@@ -9,7 +9,7 @@
 import Foundation
 
 protocol SendProviderBuilderProtocol: class {
-    func set(account: AccountDisplayable)
+    func set(account: Account)
     func set(cryptoAmount: Decimal)
     func setScannedAddress(_ address: String)
     func setContact(_ contact: Contact)

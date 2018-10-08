@@ -41,8 +41,8 @@ class SendViewController: UIViewController {
         output.viewIsReady()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         output.configureCollections()
     }
     
@@ -100,11 +100,11 @@ extension SendViewController: SendViewInput {
         accountsPageControl.numberOfPages = numberOfPages
     }
     
-    func updateAmount(_ amount: String) {
+    func setAmount(_ amount: String) {
         amountTextField.text = amount
     }
     
-    func updateConvertedAmount(_ amount: String) {
+    func setConvertedAmount(_ amount: String) {
         convertedAmountLabel.text = amount
     }
     
@@ -125,11 +125,11 @@ extension SendViewController: SendViewInput {
 extension SendViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = output.getAmountWithoutCurrency()
+        output.amountDidBeginEditing()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.text = output.getAmountWithCurrency()
+        output.amountDidEndEditing()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

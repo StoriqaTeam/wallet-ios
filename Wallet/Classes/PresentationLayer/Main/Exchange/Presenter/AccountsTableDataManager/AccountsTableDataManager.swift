@@ -15,17 +15,21 @@ protocol AccountsTableDataManagerDelegate: class {
 class AccountsTableDataManager: NSObject {
 
     weak var delegate: AccountsTableDataManagerDelegate!
-    var accounts: [AccountDisplayable] = [] {
+    var accounts: [Account] = [] {
         didSet { tableView.reloadData() }
     }
     
     private var tableView: UITableView!
     private let kCellIdentifier = "AccountTableCell"
     private let cellHeight: CGFloat = 60
-    private let currencyFormatter: CurrencyFormatterProtocol
     
-    init(currencyFormatter: CurrencyFormatterProtocol) {
+    private let currencyFormatter: CurrencyFormatterProtocol
+    private let currencyImageProvider: CurrencyImageProviderProtocol
+    
+    init(currencyFormatter: CurrencyFormatterProtocol,
+         currencyImageProvider: CurrencyImageProviderProtocol) {
         self.currencyFormatter = currencyFormatter
+        self.currencyImageProvider = currencyImageProvider
     }
     
     func setTableView(_ view: UITableView) {
@@ -85,12 +89,10 @@ extension AccountsTableDataManager {
         tableView.register(nib, forCellReuseIdentifier: kCellIdentifier)
     }
     
-    private func configureCell(cell: AccountTableCell, account: AccountDisplayable) {
-        let image = account.currency.smallImage
-        let accountName = account.accountName
-        
-        //TODO: decimal amount
-        let amount = account.cryptoAmount.decimalValue()
+    private func configureCell(cell: AccountTableCell, account: Account) {
+        let image = currencyImageProvider.smallImage(for: account.currency)
+        let accountName = account.name
+        let amount = account.balance
         let formatted = currencyFormatter.getStringFrom(amount: amount, currency: account.currency)
         
         cell.configure(image: image, accountName: accountName, amount: formatted)

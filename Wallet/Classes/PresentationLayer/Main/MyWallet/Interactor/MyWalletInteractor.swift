@@ -14,8 +14,8 @@ class MyWalletInteractor {
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
     
-    
-    init(accountsProvider: AccountsProviderProtocol, accountWatcher: CurrentAccountWatcherProtocol) {
+    init(accountsProvider: AccountsProviderProtocol,
+         accountWatcher: CurrentAccountWatcherProtocol) {
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
     }
@@ -25,20 +25,13 @@ class MyWalletInteractor {
 // MARK: - MyWalletInteractorInput
 
 extension MyWalletInteractor: MyWalletInteractorInput {
+    
+    func getAccounts() -> [Account] {
+        return accountsProvider.getAllAccounts()
+    }
+    
     func getAccountWatcher() -> CurrentAccountWatcherProtocol {
         return accountWatcher
-    }
-    
-    
-    func accountsCount() -> Int {
-        let accounts = accountsProvider.getAllAccounts()
-        return accounts.count
-    }
-    
-    func accountModel(for index: Int) -> AccountDisplayable {
-        let accounts = accountsProvider.getAllAccounts()
-        guard accounts.count > index else { fatalError("Not found account at given index: \(index)") }
-        return accounts[index]
     }
     
 }

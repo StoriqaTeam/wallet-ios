@@ -15,17 +15,20 @@ class ReceiverModule {
         let deviceContactsProvider = DeviceContactsProvider()
         let formatter = CurrencyFormatter()
         let converterFactory = CurrecncyConverterFactory()
+        let currencyImageProvider = CurrencyImageProvider()
         
         let interactor = ReceiverInteractor(deviceContactsProvider: deviceContactsProvider,
                                             sendTransactionBuilder: sendTransactionBuilder)
-        let presenter = ReceiverPresenter(currencyFormatter: formatter, converterFactory: converterFactory)
+        let presenter = ReceiverPresenter(currencyFormatter: formatter,
+                                          converterFactory: converterFactory,
+                                          currencyImageProvider: currencyImageProvider)
         
         let accountsVC = UIStoryboard(name: "Receiver", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "ReceiverVC") as! ReceiverViewController
-
+        
         interactor.output = presenter
         viewController.output = presenter
-
+        
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor

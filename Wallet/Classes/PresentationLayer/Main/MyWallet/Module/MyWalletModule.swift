@@ -6,50 +6,64 @@
 import UIKit
 
 class FakeAccountProvider: AccountsProviderProtocol {
-    func getAllAccounts() -> [AccountDisplayable] {
-        return [AccountDisplayable(type: .stqBlack,
-                        cryptoAmount: "145,678,445.71",
-                        fiatAmount: "257,204.00 $",
-                        holderName: "Mushchinskii Dmitrii",
+    func getAllAccounts() -> [Account] {
+        return [Account(id: "1",
+                        balance: 1456784.71,
                         currency: .stq,
-                        cryptoAddress: "0x7E0AfbeAb5ac7E13d4646bC10c5547e69b4AdD4E"),
-                AccountDisplayable(type: .eth,
-                        cryptoAmount: "892.45",
-                        fiatAmount: "257,204.00 $",
-                        holderName: "Mushchinskii Dmitrii",
+                        userId: "0",
+                        accountAddress: "0x7E0AfbeAb5ac7E13d4646bC10c5547e69b4AdD4E",
+                        name: "STQ Gold account"),
+                Account(id: "2",
+                        balance: 892.45,
                         currency: .eth,
-                        cryptoAddress: "0x9Cc539183De54759261Ef0ee9B3Fe91AEB85407F"),
-                AccountDisplayable(type: .btc,
-                        cryptoAmount: "123.45",
-                        fiatAmount: "257,204.00 $",
-                        holderName: "Mushchinskii Dmitrii",
+                        userId: "0",
+                        accountAddress: "0x9Cc539183De54759261Ef0ee9B3Fe91AEB85407F",
+                        name: "ETH account"),
+                Account(id: "3",
+                        balance: 123.45,
                         currency: .btc,
-                        cryptoAddress: "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD"),
-                AccountDisplayable(type: .stqGold,
-                        cryptoAmount: "123.45",
-                        fiatAmount: "257,204.00 $",
-                        holderName: "Mushchinskii Dmitrii",
+                        userId: "0",
+                        accountAddress: "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD",
+                        name: "BTC account"),
+                Account(id: "4",
+                        balance: 4123.45,
                         currency: .stq,
-                        cryptoAddress: "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD"),
-                AccountDisplayable(type: .stq,
-                        cryptoAmount: "123.45",
-                        fiatAmount: "257,204.00 $",
-                        holderName: "Mushchinskii Dmitrii",
+                        userId: "0",
+                        accountAddress: "0x7E0AfbeAb5ac7E13d4646bC10c5547e69b4AdD4E",
+                        name: "STQ Black account"),
+                Account(id: "5",
+                        balance: 123.45,
                         currency: .stq,
-                        cryptoAddress: "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD")]
+                        userId: "0",
+                        accountAddress: "0x7E0AfbeAb5ac7E13d4646bC10c5547e69b4AdD4E",
+                        name: "STQ account")
+        ]
     }
 }
 
 
 class MyWalletModule {
     
-    class func create(tabBar: UITabBarController, accountWatcher: CurrentAccountWatcherProtocol) -> MyWalletModuleInput {
+    class func create(tabBar: UITabBarController,
+                      accountWatcher: CurrentAccountWatcherProtocol,
+                      user: User) -> MyWalletModuleInput {
         let router = MyWalletRouter()
-        let presenter = MyWalletPresenter()
-        presenter.mainTabBar = tabBar
         
+        // Injections
+        let converterFactory = CurrecncyConverterFactory()
+        let currencyFormatter = CurrencyFormatter()
         let fakeAccountsProvider = FakeAccountProvider()
-        let interactor = MyWalletInteractor(accountsProvider: fakeAccountsProvider, accountWatcher: accountWatcher)
+        let accountTypeResolver = AccountTypeResolver()
+        let accountDisplayer = AccountDisplayer(user: user,
+                                                currencyFormatter: currencyFormatter,
+                                                converterFactory: converterFactory,
+                                                accountTypeResolver: accountTypeResolver)
+        
+        let presenter = MyWalletPresenter(user: user,
+                                          accountDisplayer: accountDisplayer)
+        presenter.mainTabBar = tabBar
+        let interactor = MyWalletInteractor(accountsProvider: fakeAccountsProvider,
+                                            accountWatcher: accountWatcher)
         
         let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)
         let viewController = myWalletSb.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController
