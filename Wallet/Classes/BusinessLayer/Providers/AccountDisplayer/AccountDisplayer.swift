@@ -11,7 +11,7 @@ import Foundation
 protocol AccountDisplayerProtocol {
     func cryptoAmount(for account: Account) -> String
     func fiatAmount(for account: Account) -> String
-    func holderName(for account: Account) -> String
+    func holderName() -> String
     func smallImage(for account: Account) -> UIImage
     func image(for account: Account) -> UIImage
     func textColor(for account: Account) -> UIColor
@@ -19,16 +19,19 @@ protocol AccountDisplayerProtocol {
 
 class AccountDisplayer: AccountDisplayerProtocol {
     
+    private let user: User
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
-    private let userDataStoreService: UserDataStoreServiceProtocol
+    private let accountTypeResolver: AccountTypeResolverProtocol
     
-    init(currencyFormatter: CurrencyFormatterProtocol,
+    init(user: User,
+         currencyFormatter: CurrencyFormatterProtocol,
          converterFactory: CurrecncyConverterFactoryProtocol,
-         userDataStoreService: UserDataStoreServiceProtocol) {
+         accountTypeResolver: AccountTypeResolverProtocol) {
+        self.user = user
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
-        self.userDataStoreService = userDataStoreService
+        self.accountTypeResolver = accountTypeResolver
     }
     
     func cryptoAmount(for account: Account) -> String {
@@ -47,77 +50,55 @@ class AccountDisplayer: AccountDisplayerProtocol {
         return formatted
     }
     
-    func holderName(for account: Account) -> String {
-        let accountOwner = userDataStoreService.getUserWith(id: account.userId)!
-        let holderName = "\(accountOwner.firstName) \(accountOwner.lastName)"
+    func holderName() -> String {
+//        let accountOwner = userDataStoreService.getUserWith(id: account.userId)!
+        let holderName = "\(user.firstName) \(user.lastName)"
         return holderName
     }
     
     func smallImage(for account: Account) -> UIImage {
-        switch account.currency {
+        let accountType = accountTypeResolver.getType(for: account)
+        
+        switch accountType {
         case .btc:
             return UIImage(named: "smallBtcCard")!
         case .eth:
             return UIImage(named: "smallEthCard")!
         case .stq:
-            let balance = account.balance
-            
-            if isStqGold(with: balance) {
-                return UIImage(named: "smallStqGoldCard")!
-            } else if isStqBlack(with: balance) {
-                return UIImage(named: "smallStqBlackCard")!
-            } else {
-                return UIImage(named: "smallStqCard")!
-            }
-        default:
-            return UIImage()
+            return UIImage(named: "smallStqCard")!
+        case .stqBlack:
+            return UIImage(named: "smallStqBlackCard")!
+        case .stqGold:
+            return UIImage(named: "smallStqGoldCard")!
         }
     }
     
     func image(for account: Account) -> UIImage {
-        switch account.currency {
+        let accountType = accountTypeResolver.getType(for: account)
+        
+        switch accountType {
         case .btc:
             return UIImage(named: "btcCard")!
         case .eth:
             return UIImage(named: "ethCard")!
         case .stq:
-            let balance = account.balance
-            
-            if isStqGold(with: balance) {
-                return UIImage(named: "stqGoldCard")!
-            } else if isStqBlack(with: balance) {
-                return UIImage(named: "stqBlackCard")!
-            } else {
-                return UIImage(named: "stqCard")!
-            }
-        default:
-            return UIImage()
+            return UIImage(named: "stqCard")!
+        case .stqGold:
+            return UIImage(named: "stqGoldCard")!
+        case .stqBlack:
+            return UIImage(named: "stqBlackCard")!
         }
     }
     
     func textColor(for account: Account) -> UIColor {
-        let balance = account.balance
+        let accountType = accountTypeResolver.getType(for: account)
         
-        if account.currency == .stq &&
-            (isStqBlack(with: balance) || isStqGold(with: balance)) {
+        switch accountType {
+        case .stqGold, .stqBlack:
             return UIColor.white
-        } else {
+        default:
             return UIColor.black
         }
-    }
-    
-}
-
-// MARK: - Private methods
-
-extension AccountDisplayer {
-    
-    private func isStqGold(with balance: Decimal) -> Bool {
-        return balance > 5000
-    }
-    
-    private func isStqBlack(with balance: Decimal) -> Bool {
-        return balance > 1000 && balance <= 5000
     }
     
 }

@@ -18,16 +18,20 @@ class SendPresenter {
     
     private let currencyFormatter: CurrencyFormatterProtocol
     private let currencyImageProvider: CurrencyImageProviderProtocol
+    private let accountDisplayer: AccountDisplayerProtocol
+    private var accountsDataManager: AccountsDataManager!
     private let currencies = [
-                               Currency.stq,
-                               Currency.btc,
-                               Currency.eth,
-                               Currency.fiat ]
+        Currency.stq,
+        Currency.btc,
+        Currency.eth,
+        Currency.fiat ]
     
     init(currencyFormatter: CurrencyFormatterProtocol,
-         currencyImageProvider: CurrencyImageProviderProtocol) {
+         currencyImageProvider: CurrencyImageProviderProtocol,
+         accountDisplayer: AccountDisplayerProtocol) {
         self.currencyFormatter = currencyFormatter
         self.currencyImageProvider = currencyImageProvider
+        self.accountDisplayer = accountDisplayer
     }
 }
 
@@ -77,18 +81,22 @@ extension SendPresenter: SendViewOutput {
         configureNavBar()
         view.setButtonEnabled(false)
         view.setupInitialState(currencyImages: currencyImages, numberOfPages: numberOfPages)
-        interactor.setAccountsDataManagerDelegate(self)
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
         collectionView.collectionViewLayout = collectionFlowLayout
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = true
-        interactor.createAccountsDataManager(with: collectionView)
+        
+        let allAccounts = interactor.getAccounts()
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
+        accountsManager.setCollectionView(collectionView)
+        accountsDataManager = accountsManager
+        accountsDataManager.delegate = self
     }
     
     func configureCollections() {
-        interactor.scrollCollection()
+        let index = interactor.getAccountIndex()
+        accountsDataManager.scrollTo(index: index)
     }
     
 }
@@ -115,7 +123,7 @@ extension SendPresenter: SendInteractorOutput {
 // MARK: - SendModuleInput
 
 extension SendPresenter: SendModuleInput {
-
+    
     var viewController: UIViewController {
         return view.viewController
     }
@@ -124,7 +132,7 @@ extension SendPresenter: SendModuleInput {
         view.present()
     }
     
-
+    
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }

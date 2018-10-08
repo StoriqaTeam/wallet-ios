@@ -17,15 +17,33 @@ class MainTabBarPresenter {
     var router: MainTabBarRouterInput!
     
     private lazy var myWalletModule: MyWalletModuleInput = {
-        let module = MyWalletModule.create(tabBar: view.mainTabBar!, accountWatcher: interactor.getAccountWatcher())
+        let watcher = interactor.getAccountWatcher()
+        let user = interactor.getCurrentUser()
+        let module = MyWalletModule.create(tabBar: view.mainTabBar!, accountWatcher: watcher, user: user)
         module.output = self
         return module
     }()
 
-    private lazy var sendModule: SendModuleInput = SendModule.create(accountWatcher: interactor.getAccountWatcher())
-    private lazy var exchangeModule: ExchangeModuleInput = ExchangeModule.create(accountWatcher: interactor.getAccountWatcher())
-    private lazy var depositModule: DepositModuleInput = DepositModule.create(accountWatcher: interactor.getAccountWatcher())
+    private lazy var sendModule: SendModuleInput = {
+        let watcher = interactor.getAccountWatcher()
+        let user = interactor.getCurrentUser()
+        return SendModule.create(accountWatcher: watcher, user: user)
+    }()
+    
+    private lazy var exchangeModule: ExchangeModuleInput = {
+        let watcher = interactor.getAccountWatcher()
+        let user = interactor.getCurrentUser()
+        return ExchangeModule.create(accountWatcher: watcher, user: user)
+    }()
+    
+    private lazy var depositModule: DepositModuleInput = {
+        let watcher = interactor.getAccountWatcher()
+        let user = interactor.getCurrentUser()
+        return DepositModule.create(accountWatcher: watcher, user: user)
+    }()
+    
     private lazy var settingsModule: SettingsModuleInput = SettingsModule.create()
+    
 }
 
 

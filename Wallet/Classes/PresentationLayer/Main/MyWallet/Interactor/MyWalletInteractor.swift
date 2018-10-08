@@ -13,15 +13,11 @@ class MyWalletInteractor {
     
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
-    private let accountDisplayer: AccountDisplayerProtocol
-    private var dataManager: MyWalletDataManager!
     
     init(accountsProvider: AccountsProviderProtocol,
-         accountWatcher: CurrentAccountWatcherProtocol,
-         accountDisplayer: AccountDisplayerProtocol) {
+         accountWatcher: CurrentAccountWatcherProtocol) {
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
-        self.accountDisplayer = accountDisplayer
     }
 }
 
@@ -30,20 +26,12 @@ class MyWalletInteractor {
 
 extension MyWalletInteractor: MyWalletInteractorInput {
     
+    func getAccounts() -> [Account] {
+        return accountsProvider.getAllAccounts()
+    }
+    
     func getAccountWatcher() -> CurrentAccountWatcherProtocol {
         return accountWatcher
-    }
-    
-    func createDataManager(with collectionView: UICollectionView) {
-        let allAccounts = accountsProvider.getAllAccounts()
-        let accountsManager = MyWalletDataManager(accounts: allAccounts,
-                                                  accountDisplayer: accountDisplayer)
-        accountsManager.setCollectionView(collectionView)
-        dataManager = accountsManager
-    }
-    
-    func setDataManagerDelegate(_ delegate: MyWalletDataManagerDelegate) {
-        dataManager.delegate = delegate
     }
     
 }

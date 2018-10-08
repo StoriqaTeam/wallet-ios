@@ -27,23 +27,27 @@ class FakeAccountLinker: AccountsLinkerProtocol {
 
 class AccountsModule {
     
-    class func create(accountWatcher: CurrentAccountWatcherProtocol, tabBar: UITabBarController) -> AccountsModuleInput {
+    class func create(accountWatcher: CurrentAccountWatcherProtocol,
+                      tabBar: UITabBarController,
+                      user: User) -> AccountsModuleInput {
         let router = AccountsRouter()
-        let presenter = AccountsPresenter()
-        presenter.mainTabBar = tabBar
         
+        // Injections
         let fakeAccountsProvider = FakeAccountProvider()
         let fakeTransactionsProvider = FakeTransactionsProvider()
         let accountLinker = FakeAccountLinker(fakeAccProvider: fakeAccountsProvider, fakeTxProvider: fakeTransactionsProvider)
         let converterFactory = CurrecncyConverterFactory()
-        let formatter = CurrencyFormatter()
-        let userDataStoreService = FakeUserDataStoreService()
-        let accountDisplayer = AccountDisplayer(currencyFormatter: formatter,
+        let currencyFormatter = CurrencyFormatter()
+        let accountTypeResolver = AccountTypeResolver()
+        let accountDisplayer = AccountDisplayer(user: user,
+                                                currencyFormatter: currencyFormatter,
                                                 converterFactory: converterFactory,
-                                                userDataStoreService: userDataStoreService)
+                                                accountTypeResolver: accountTypeResolver)
+        
+        let presenter = AccountsPresenter(accountDisplayer: accountDisplayer)
+        presenter.mainTabBar = tabBar
         let interactor = AccountsInteractor(accountLinker: accountLinker,
-                                            accountWatcher: accountWatcher,
-                                            accountDisplayer: accountDisplayer)
+                                            accountWatcher: accountWatcher)
     
         let accountsVC = UIStoryboard(name: "Accounts", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "accountsVC") as! AccountsViewController

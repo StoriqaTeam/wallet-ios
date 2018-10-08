@@ -39,6 +39,8 @@ class AccountsDataManager: NSObject {
         accountsCollectionView.delegate = self
         accountsCollectionView.isPagingEnabled = false
         accountsCollectionView.clipsToBounds = false
+        accountsCollectionView.showsHorizontalScrollIndicator = false
+        accountsCollectionView.showsVerticalScrollIndicator = true
         
         let cellIdentifier: String
         switch cellType {
@@ -77,7 +79,7 @@ extension AccountsDataManager: UICollectionViewDataSource {
         
         let cryptoAmount = accountDisplayer.cryptoAmount(for: account)
         let fiatAmount = accountDisplayer.fiatAmount(for: account)
-        let holderName = accountDisplayer.holderName(for: account)
+        let holderName = accountDisplayer.holderName()
         let textColor = accountDisplayer.textColor(for: account)
         let backgroundImage: UIImage
         

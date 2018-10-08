@@ -10,6 +10,6 @@ import UIKit
 
 
 protocol MyWalletViewInput: class, Presentable {
-    func setupInitialState(flowLayout: UICollectionViewFlowLayout)
+    func setupInitialState()
     func reloadWithAccounts()
 }

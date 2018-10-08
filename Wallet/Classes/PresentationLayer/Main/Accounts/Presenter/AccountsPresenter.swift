@@ -17,6 +17,13 @@ class AccountsPresenter {
     var router: AccountsRouterInput!
     weak var mainTabBar: UITabBarController!
     
+    private let accountDisplayer: AccountDisplayerProtocol
+    private var accountsDataManager: AccountsDataManager!
+    private var transactionDataManager: TransactionsDataManager!
+    
+    init(accountDisplayer: AccountDisplayerProtocol) {
+        self.accountDisplayer = accountDisplayer
+    }
 }
 
 
@@ -29,7 +36,8 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func configureCollections() {
-        interactor.scrollCollection()
+        let index = interactor.getAccountIndex()
+        accountsDataManager.scrollTo(index: index)
     }
     
     func handleCustomButton(type: RouteButtonType) {
@@ -44,22 +52,28 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func transactionTableView(_ tableView: UITableView) {
-        interactor.createTransactionsDataManager(with: tableView)
+        let transations = interactor.getTransactionForCurrentAccount()
+        let txDataManager = TransactionsDataManager(transactions: transations)
+        txDataManager.setTableView(tableView)
+        transactionDataManager = txDataManager
+        transactionDataManager.delegate = self
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
         collectionView.collectionViewLayout = collectionFlowLayout
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = true
-        interactor.createAccountsDataManager(with: collectionView)
+        
+        let allAccounts = interactor.getAccounts()
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
+        accountsManager.setCollectionView(collectionView)
+        accountsDataManager = accountsManager
+        accountsDataManager.delegate = self
     }
     
     func viewIsReady() {
         let numberOfPages = interactor.getAccountsCount()
         view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
-        interactor.setAccountsDataManagerDelegate(self)
-        interactor.setTransactionDataManagerDelegate(self)
     }
     
     func willMoveToParentVC() {
@@ -71,9 +85,15 @@ extension AccountsPresenter: AccountsViewOutput {
 // MARK: - AccountsInteractorOutput
 
 extension AccountsPresenter: AccountsInteractorOutput {
+    
     func ISODidChange(_ iso: String) {
          view.viewController.title = "Account \(iso)"
     }
+    
+    func transactionsDidChange(_ txs: [Transaction]) {
+        transactionDataManager.updateTransactions(txs)
+    }
+    
 }
 
 

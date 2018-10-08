@@ -16,6 +16,7 @@ class TransactionsPresenter: NSObject {
     var interactor: TransactionsInteractorInput!
     var router: TransactionsRouterInput!
     
+    private var transactionDataManager: TransactionsDataManager!
 }
 
 
@@ -24,13 +25,22 @@ class TransactionsPresenter: NSObject {
 extension TransactionsPresenter: TransactionsViewOutput {
 
     func transactionTableView(_ tableView: UITableView) {
-        interactor.createTransactionsDataManager(with: tableView)
+        let transactions = interactor.getTransactions()
+        let txDataManager = TransactionsDataManager(transactions: transactions)
+        txDataManager.setTableView(tableView)
+        transactionDataManager = txDataManager
+        transactionDataManager.delegate = self
+        
+        if transactions.isEmpty {
+            transactionDataManager.updateEmpty(placeholderImage: UIImage(named: "noTxs")!,
+                                               placeholderText: "")
+        }
+        
     }
     
     func viewIsReady() {
         view.setupInitialState()
         configureNavBar()
-        interactor.setTransactionDataManagerDelegate(self)
     }
 
     func willMoveToParentVC() {
@@ -42,7 +52,8 @@ extension TransactionsPresenter: TransactionsViewOutput {
     }
     
     func didChooseSegment(at index: Int) {
-        interactor.filterTransacitons(index: index)
+        let filtered = interactor.getFilteredTransacitons(index: index)
+        transactionDataManager.updateTransactions(filtered)
     }
     
 }

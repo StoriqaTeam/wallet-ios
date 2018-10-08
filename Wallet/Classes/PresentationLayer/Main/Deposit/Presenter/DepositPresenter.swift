@@ -16,6 +16,12 @@ class DepositPresenter {
     var interactor: DepositInteractorInput!
     var router: DepositRouterInput!
     
+    private let accountDisplayer: AccountDisplayerProtocol
+    private var accountsDataManager: AccountsDataManager!
+    
+    init(accountDisplayer: AccountDisplayerProtocol) {
+        self.accountDisplayer = accountDisplayer
+    }
 }
 
 
@@ -36,18 +42,22 @@ extension DepositPresenter: DepositViewOutput {
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
         collectionView.collectionViewLayout = collectionFlowLayout
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = true
-        interactor.createAccountsDataManager(with: collectionView)
+        
+        let allAccounts = interactor.getAccounts()
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
+        accountsManager.setCollectionView(collectionView, cellType: .small)
+        accountsDataManager = accountsManager
+        accountsDataManager.delegate = self
     }
     
     func configureCollections() {
-        interactor.scrollCollection()
+        let index = interactor.getAccountIndex()
+        accountsDataManager.scrollTo(index: index)
     }
 
     func viewIsReady() {
         configureNavBar()
-        interactor.setAccountsDataManagerDelegate(self)
         
         let numberOfPages = interactor.getAccountsCount()
         view.setupInitialState(numberOfPages: numberOfPages)

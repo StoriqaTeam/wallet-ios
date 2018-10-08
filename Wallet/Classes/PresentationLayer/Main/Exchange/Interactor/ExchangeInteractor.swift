@@ -16,10 +16,7 @@ class ExchangeInteractor {
     private let accountsProvider: AccountsProviderProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
-    private let accountDisplayer: AccountDisplayerProtocol
     private var currencyConverter: CurrencyConverterProtocol!
-    private var accountsDataManager: AccountsDataManager!
-    private var accountsTableDataManager: AccountsTableDataManager!
     private var recepientAccount: Account! {
         didSet { updateConverter() }
     }
@@ -30,13 +27,11 @@ class ExchangeInteractor {
     init(accountWatcher: CurrentAccountWatcherProtocol,
          accountsProvider: AccountsProviderProtocol,
          converterFactory: CurrecncyConverterFactoryProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
-         accountDisplayer: AccountDisplayerProtocol) {
+         feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
         self.accountWatcher = accountWatcher
         self.accountsProvider = accountsProvider
         self.converterFactory = converterFactory
         self.feeWaitProvider = feeWaitProvider
-        self.accountDisplayer = accountDisplayer
         
         // Default values
         amount = 0
@@ -54,47 +49,22 @@ class ExchangeInteractor {
 
 extension ExchangeInteractor: ExchangeInteractorInput {
     
-    func createAccountsDataManager(with collectionView: UICollectionView) {
-        let allAccounts = accountsProvider.getAllAccounts()
-        let accountsManager = AccountsDataManager(accounts: allAccounts,
-                                                  accountDisplayer: accountDisplayer)
-        accountsManager.setCollectionView(collectionView, cellType: .small)
-        accountsDataManager = accountsManager
-    }
-    
-    func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate) {
-        accountsDataManager.delegate = delegate
-    }
-    
-    func createAccountsTableDataManager(with tableView: UITableView) {
-        let currencyFormatter = CurrencyFormatter()
-        let currencyImageProvider = CurrencyImageProvider()
-        let accountsManager = AccountsTableDataManager(currencyFormatter: currencyFormatter,
-                                                       currencyImageProvider: currencyImageProvider)
-        accountsManager.setTableView(tableView)
-        accountsTableDataManager = accountsManager
-    }
-    
-    func setAccountsTableDataManagerDelegate(_ delegate: AccountsTableDataManagerDelegate) {
-        accountsTableDataManager.delegate = delegate
-    }
-    
-    func scrollCollection() {
-        let currentAccount = accountWatcher.getAccount()
-        let index = resolveAccountIndex(account: currentAccount)
-        accountsDataManager.scrollTo(index: index)
-    }
-    
-    func prepareAccountsTable() {
-        accountsTableDataManager.accounts = recepientAccounts
-    }
-    
-    func getAccountsTableHeight() -> CGFloat {
-        return accountsTableDataManager.calculateHeight()
-    }
-    
     func getAccountsCount() -> Int {
         return accountsProvider.getAllAccounts().count
+    }
+    
+    func getAccounts() -> [Account] {
+        return accountsProvider.getAllAccounts()
+    }
+    
+    func getAccountIndex() -> Int {
+        let account = accountWatcher.getAccount()
+        let index = resolveAccountIndex(account: account)
+        return index
+    }
+    
+    func getRecepientAccounts() -> [Account] {
+        return recepientAccounts
     }
     
     func getAmount() -> Decimal {

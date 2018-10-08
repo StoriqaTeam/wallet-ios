@@ -11,6 +11,5 @@ import Foundation
 
 protocol MyWalletInteractorInput: class {
     func getAccountWatcher() -> CurrentAccountWatcherProtocol
-    func createDataManager(with collectionView: UICollectionView)
-    func setDataManagerDelegate(_ delegate: MyWalletDataManagerDelegate) 
+    func getAccounts() -> [Account]
 }

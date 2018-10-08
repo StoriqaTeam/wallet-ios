@@ -8,7 +8,7 @@ import UIKit
 
 class SendModule {
     
-    class func create(accountWatcher: CurrentAccountWatcherProtocol) -> SendModuleInput {
+    class func create(accountWatcher: CurrentAccountWatcherProtocol, user: User) -> SendModuleInput {
         let router = SendRouter()
         
         //Injections
@@ -22,17 +22,18 @@ class SendModule {
                                                    feeWaitProvider: feeWaitProvider)
         let sendTxBuilder = SendTransactionBuilder(defaultSendTxProvider: sendProvider)
         let currencyImageProvider = CurrencyImageProvider()
-        let userDataStoreService = FakeUserDataStoreService()
-        let accountDisplayer = AccountDisplayer(currencyFormatter: formatter,
+        let accountTypeResolver = AccountTypeResolver()
+        let accountDisplayer = AccountDisplayer(user: user,
+                                                currencyFormatter: formatter,
                                                 converterFactory: converterFactory,
-                                                userDataStoreService: userDataStoreService)
+                                                accountTypeResolver: accountTypeResolver)
         
         let presenter = SendPresenter(currencyFormatter: formatter,
-                                      currencyImageProvider: currencyImageProvider)
+                                      currencyImageProvider: currencyImageProvider,
+                                      accountDisplayer: accountDisplayer)
         let interactor = SendInteractor(sendTransactionBuilder: sendTxBuilder,
                                         accountsProvider: accountProvider,
-                                        accountWatcher: accountWatcher,
-                                        accountDisplayer: accountDisplayer)
+                                        accountWatcher: accountWatcher)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
         let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController

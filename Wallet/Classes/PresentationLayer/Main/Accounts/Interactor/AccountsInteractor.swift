@@ -12,18 +12,13 @@ class AccountsInteractor {
     
     weak var output: AccountsInteractorOutput!
     private var accountWatcher: CurrentAccountWatcherProtocol
-    private var accountsDataManager: AccountsDataManager!
-    private var transactionDataManager: TransactionsDataManager!
     private let accountLinker: AccountsLinkerProtocol
-    private let accountDisplayer: AccountDisplayerProtocol
     
     init(accountLinker: AccountsLinkerProtocol,
-         accountWatcher: CurrentAccountWatcherProtocol,
-         accountDisplayer: AccountDisplayerProtocol) {
+         accountWatcher: CurrentAccountWatcherProtocol) {
         
         self.accountLinker = accountLinker
         self.accountWatcher = accountWatcher
-        self.accountDisplayer = accountDisplayer
     }
 }
 
@@ -31,6 +26,16 @@ class AccountsInteractor {
 // MARK: - AccountsInteractorInput
 
 extension AccountsInteractor: AccountsInteractorInput {
+    func getAccounts() -> [Account] {
+        return accountLinker.getAllAccounts()
+    }
+    
+    func getAccountIndex() -> Int {
+        let account = accountWatcher.getAccount()
+        let index = resolveAccountIndex(account: account)
+        return index
+    }
+    
     func getAccountsCount() -> Int {
         let allAccounts = accountLinker.getAllAccounts()
         return allAccounts.count
@@ -46,18 +51,8 @@ extension AccountsInteractor: AccountsInteractorInput {
         accountWatcher.setAccount(allAccounts[index])
         let currentAccount = accountWatcher.getAccount()
         let txs = transactions(for: currentAccount)
-        transactionDataManager.updateTransactions(txs)
+        output.transactionsDidChange(txs)
         output.ISODidChange(currentAccount.currency.ISO)
-    }
-    
-    func scrollCollection() {
-        let currentAccount = accountWatcher.getAccount()
-        let index = resolveAccountIndex(account: currentAccount)
-        accountsDataManager.scrollTo(index: index)
-    }
-    
-    func getCurrentAccount() -> Account {
-        return accountWatcher.getAccount()
     }
         
     func getInitialCurrencyISO() -> String {
@@ -65,30 +60,6 @@ extension AccountsInteractor: AccountsInteractorInput {
         return currentAccount.currency.ISO
     }
     
-    func setTransactionDataManagerDelegate(_ delegate: TransactionsDataManagerDelegate) {
-        transactionDataManager.delegate = delegate
-    }
-    
-    
-    func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate) {
-        accountsDataManager.delegate = delegate
-    }
-    
-    func createAccountsDataManager(with collectionView: UICollectionView) {
-        let allAccounts = accountLinker.getAllAccounts()
-        let accountsManager = AccountsDataManager(accounts: allAccounts,
-                                                  accountDisplayer: accountDisplayer)
-        accountsManager.setCollectionView(collectionView)
-        accountsDataManager = accountsManager
-    }
-    
-    func createTransactionsDataManager(with tableView: UITableView) {
-        let currentAccount = accountWatcher.getAccount()
-        let txs = transactions(for: currentAccount)
-        let txDataManager = TransactionsDataManager(transactions: txs)
-        txDataManager.setTableView(tableView)
-        transactionDataManager = txDataManager
-    }
 }
 
 

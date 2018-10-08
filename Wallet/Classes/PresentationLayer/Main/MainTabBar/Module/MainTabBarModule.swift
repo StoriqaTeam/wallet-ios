@@ -14,8 +14,10 @@ class MainTabBarModule {
         
         let accountsProvider = FakeAccountProvider()
         let accountWatcher = CurrentAccountWatcher(accountProvider: accountsProvider)
+        let userDataStoreService = FakeUserDataStoreService()
         
-        let interactor = MainTabBarInteractor(accountWatcher: accountWatcher)
+        let interactor = MainTabBarInteractor(accountWatcher: accountWatcher,
+                                              userDataStoreService: userDataStoreService)
         
         let storyboard = UIStoryboard(name: "MainTabBar", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "mainTabBarVC") as! MainTabBarViewController

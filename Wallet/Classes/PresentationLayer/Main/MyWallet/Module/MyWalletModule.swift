@@ -44,22 +44,26 @@ class FakeAccountProvider: AccountsProviderProtocol {
 
 class MyWalletModule {
     
-    class func create(tabBar: UITabBarController, accountWatcher: CurrentAccountWatcherProtocol) -> MyWalletModuleInput {
+    class func create(tabBar: UITabBarController,
+                      accountWatcher: CurrentAccountWatcherProtocol,
+                      user: User) -> MyWalletModuleInput {
         let router = MyWalletRouter()
-        let presenter = MyWalletPresenter()
-        presenter.mainTabBar = tabBar
         
         // Injections
         let converterFactory = CurrecncyConverterFactory()
-        let userDataStoreService = FakeUserDataStoreService()
-        let formatter = CurrencyFormatter()
+        let currencyFormatter = CurrencyFormatter()
         let fakeAccountsProvider = FakeAccountProvider()
-        let accountDisplayer = AccountDisplayer(currencyFormatter: formatter,
+        let accountTypeResolver = AccountTypeResolver()
+        let accountDisplayer = AccountDisplayer(user: user,
+                                                currencyFormatter: currencyFormatter,
                                                 converterFactory: converterFactory,
-                                                userDataStoreService: userDataStoreService)
+                                                accountTypeResolver: accountTypeResolver)
+        
+        let presenter = MyWalletPresenter(user: user,
+                                          accountDisplayer: accountDisplayer)
+        presenter.mainTabBar = tabBar
         let interactor = MyWalletInteractor(accountsProvider: fakeAccountsProvider,
-                                            accountWatcher: accountWatcher,
-                                            accountDisplayer: accountDisplayer)
+                                            accountWatcher: accountWatcher)
         
         let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)
         let viewController = myWalletSb.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController

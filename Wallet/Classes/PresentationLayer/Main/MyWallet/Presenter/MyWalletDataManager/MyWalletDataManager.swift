@@ -53,7 +53,7 @@ extension MyWalletDataManager: UICollectionViewDataSource {
         
         let cryptoAmount = accountDisplayer.cryptoAmount(for: account)
         let fiatAmount = accountDisplayer.fiatAmount(for: account)
-        let holderName = accountDisplayer.holderName(for: account)
+        let holderName = accountDisplayer.holderName()
         let textColor = accountDisplayer.textColor(for: account)
         let backgroundImage = accountDisplayer.image(for: account)
         

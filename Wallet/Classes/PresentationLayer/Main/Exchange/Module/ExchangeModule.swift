@@ -8,7 +8,7 @@ import UIKit
 
 class ExchangeModule {
     
-    class func create(accountWatcher: CurrentAccountWatcherProtocol) -> ExchangeModuleInput {
+    class func create(accountWatcher: CurrentAccountWatcherProtocol, user: User) -> ExchangeModuleInput {
         let router = ExchangeRouter()
         
         // Injections
@@ -16,17 +16,19 @@ class ExchangeModule {
         let currencyFormatter = CurrencyFormatter()
         let feeWaitProvider = FakePaymentFeeAndWaitProvider()
         let accountsProvider = FakeAccountProvider()
-        let userDataStoreService = FakeUserDataStoreService()
-        let accountDisplayer = AccountDisplayer(currencyFormatter: currencyFormatter,
+        let accountTypeResolver = AccountTypeResolver()
+        let accountDisplayer = AccountDisplayer(user: user,
+                                                currencyFormatter: currencyFormatter,
                                                 converterFactory: converterFactory,
-                                                userDataStoreService: userDataStoreService)
+                                                accountTypeResolver: accountTypeResolver)
         
-        let presenter = ExchangePresenter(converterFactory: converterFactory, currencyFormatter: currencyFormatter)
+        let presenter = ExchangePresenter(converterFactory: converterFactory,
+                                          currencyFormatter: currencyFormatter,
+                                          accountDisplayer: accountDisplayer)
         let interactor = ExchangeInteractor(accountWatcher: accountWatcher,
                                             accountsProvider: accountsProvider,
                                             converterFactory: converterFactory,
-                                            feeWaitProvider: feeWaitProvider,
-                                            accountDisplayer: accountDisplayer)
+                                            feeWaitProvider: feeWaitProvider)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController

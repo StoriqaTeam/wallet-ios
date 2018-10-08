@@ -16,6 +16,16 @@ class MyWalletPresenter {
     var interactor: MyWalletInteractorInput!
     var router: MyWalletRouterInput!
     weak var mainTabBar: UITabBarController!
+    
+    private let user: User
+    private let accountDisplayer: AccountDisplayerProtocol
+    private var dataManager: MyWalletDataManager!
+    
+    init(user: User,
+         accountDisplayer: AccountDisplayerProtocol) {
+        self.user = user
+        self.accountDisplayer = accountDisplayer
+    }
 }
 
 
@@ -24,15 +34,18 @@ class MyWalletPresenter {
 extension MyWalletPresenter: MyWalletViewOutput {
     
     func viewIsReady() {
-        view.setupInitialState(flowLayout: collectionFlowLayout)
-        interactor.setDataManagerDelegate(self)
+        view.setupInitialState()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
         collectionView.collectionViewLayout = collectionFlowLayout
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = true
-        interactor.createDataManager(with: collectionView)
+        
+        let allAccounts = interactor.getAccounts()
+        let accountsManager = MyWalletDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
+        accountsManager.setCollectionView(collectionView)
+        dataManager = accountsManager
+        dataManager.delegate = self
     }
     
 }
@@ -68,7 +81,8 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
         accountWatcher.setAccount(account)
         router.showAccountsWith(accountWatcher: accountWatcher,
                                 from: view.viewController,
-                                tabBar: mainTabBar)
+                                tabBar: mainTabBar,
+                                user: user)
     }
     
 }

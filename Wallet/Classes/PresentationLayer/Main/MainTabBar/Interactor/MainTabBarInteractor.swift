@@ -13,9 +13,12 @@ class MainTabBarInteractor {
     weak var output: MainTabBarInteractorOutput!
     
     private let accountWatcher: CurrentAccountWatcherProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
     
-    init(accountWatcher: CurrentAccountWatcherProtocol) {
+    init(accountWatcher: CurrentAccountWatcherProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol) {
         self.accountWatcher = accountWatcher
+        self.userDataStoreService = userDataStoreService
     }
 }
 
@@ -23,6 +26,10 @@ class MainTabBarInteractor {
 // MARK: - MainTabBarInteractorInput
 
 extension MainTabBarInteractor: MainTabBarInteractorInput {
+    func getCurrentUser() -> User {
+        return userDataStoreService.getCurrentUser()
+    }
+    
     func getAccountWatcher() -> CurrentAccountWatcherProtocol {
         return accountWatcher
     }

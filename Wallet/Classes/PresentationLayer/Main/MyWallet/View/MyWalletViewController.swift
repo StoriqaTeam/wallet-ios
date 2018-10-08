@@ -40,7 +40,7 @@ class MyWalletViewController: UIViewController {
         showBarButton(false)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    override func viewDidLayoutSubviews() {
         guard let height = navigationController?.navigationBar.frame.height else { return }
         addNewButton.moveAndResizeImage(for: height)
     }
@@ -59,8 +59,8 @@ class MyWalletViewController: UIViewController {
 
 extension MyWalletViewController: MyWalletViewInput {
     
-    func setupInitialState(flowLayout: UICollectionViewFlowLayout) {
-        collectionView.collectionViewLayout = flowLayout
+    func setupInitialState() {
+        
     }
 
     func reloadWithAccounts() {

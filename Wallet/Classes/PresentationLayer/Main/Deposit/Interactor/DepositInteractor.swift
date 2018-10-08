@@ -13,19 +13,15 @@ class DepositInteractor {
     weak var output: DepositInteractorOutput!
     private let qrProvider: QRCodeProviderProtocol
     private let accountsProvider: AccountsProviderProtocol
-    private var accountsDataManager: AccountsDataManager!
     private let accountWatcher: CurrentAccountWatcherProtocol
-    private let accountDisplayer: AccountDisplayerProtocol
     
     init(qrProvider: QRCodeProviderProtocol,
          accountsProvider: AccountsProviderProtocol,
-         accountWatcher: CurrentAccountWatcherProtocol,
-         accountDisplayer: AccountDisplayerProtocol) {
+         accountWatcher: CurrentAccountWatcherProtocol) {
         
         self.qrProvider = qrProvider
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
-        self.accountDisplayer = accountDisplayer
     }
 }
 
@@ -33,6 +29,16 @@ class DepositInteractor {
 // MARK: - DepositInteractorInput
 
 extension DepositInteractor: DepositInteractorInput {
+    func getAccounts() -> [Account] {
+        return accountsProvider.getAllAccounts()
+    }
+    
+    func getAccountIndex() -> Int {
+        let account = accountWatcher.getAccount()
+        let index = resolveAccountIndex(account: account)
+        return index
+    }
+    
     func getAddress() -> String {
         let currentAccount = accountWatcher.getAccount()
         return currentAccount.accountAddress
@@ -52,24 +58,6 @@ extension DepositInteractor: DepositInteractorInput {
     func setCurrentAccountWith(index: Int) {
         let allAccounts = accountsProvider.getAllAccounts()
         accountWatcher.setAccount(allAccounts[index])
-    }
-    
-    func createAccountsDataManager(with collectionView: UICollectionView) {
-        let allAccounts = accountsProvider.getAllAccounts()
-        let accountsManager = AccountsDataManager(accounts: allAccounts,
-                                                  accountDisplayer: accountDisplayer)
-        accountsManager.setCollectionView(collectionView, cellType: .small)
-        accountsDataManager = accountsManager
-    }
-    
-    func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate) {
-        accountsDataManager.delegate = delegate
-    }
-    
-    func scrollCollection() {
-        let currentAccount = accountWatcher.getAccount()
-        let index = resolveAccountIndex(account: currentAccount)
-        accountsDataManager.scrollTo(index: index)
     }
     
     func getAccountsCount() -> Int {

@@ -11,4 +11,5 @@ import Foundation
 
 protocol MainTabBarInteractorInput: class {
     func getAccountWatcher() -> CurrentAccountWatcherProtocol
+    func getCurrentUser() -> User
 }

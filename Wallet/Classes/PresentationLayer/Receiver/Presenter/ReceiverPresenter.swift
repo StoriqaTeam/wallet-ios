@@ -19,6 +19,7 @@ class ReceiverPresenter {
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private let currencyImageProvider: CurrencyImageProviderProtocol
+    private var contactsDataManager: ContactsDataManager!
     
     init(currencyFormatter: CurrencyFormatterProtocol,
          converterFactory: CurrecncyConverterFactoryProtocol,
@@ -68,7 +69,10 @@ extension ReceiverPresenter: ReceiverViewOutput {
     
     
     func contactsTableView(_ tableView: UITableView) {
-        interactor.createContactsDataManager(with: tableView)
+        contactsDataManager = ContactsDataManager()
+        contactsDataManager.setTableView(tableView)
+        contactsDataManager.delegate = self
+        interactor.fetchContacts()
     }
     
     func viewIsReady() {
@@ -86,7 +90,6 @@ extension ReceiverPresenter: ReceiverViewOutput {
         
         view.setupInitialState(apperance: appearence)
         view.setNextButtonHidden(true)
-        interactor.setContactsDataManagerDelegate(self)
     }
     
     func willMoveToParentVC() {
@@ -104,6 +107,16 @@ extension ReceiverPresenter: ReceiverViewOutput {
 // MARK: - ReceiverInteractorOutput
 
 extension ReceiverPresenter: ReceiverInteractorOutput {
+    
+    func updateContacts(_ contacts: [ContactsSection]) {
+        contactsDataManager.updateContacts(contacts)
+    }
+    
+    func updateEmpty(placeholderImage: UIImage, placeholderText: String) {
+        contactsDataManager.updateEmpty(placeholderImage: placeholderImage,
+                                        placeholderText: placeholderText)
+    }
+    
 
 }
 

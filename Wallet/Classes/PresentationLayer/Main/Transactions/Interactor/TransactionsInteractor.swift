@@ -15,7 +15,6 @@ enum TransactionFilter: Int {
 
 class TransactionsInteractor {
     weak var output: TransactionsInteractorOutput!
-    private var transactionDataManager: TransactionsDataManager!
     private let transactions: [Transaction]
     
     init(transactions: [Transaction]) {
@@ -28,32 +27,16 @@ class TransactionsInteractor {
 
 extension TransactionsInteractor: TransactionsInteractorInput {
     
-    func filterTransacitons(index: Int) {
-        guard let filter = TransactionFilter(rawValue: index) else { return }
+    func getFilteredTransacitons(index: Int) -> [Transaction] {
+        guard let filter = TransactionFilter(rawValue: index) else { return [] }
         let filteredTransactions = filterTransactions(filter)
-        if filteredTransactions.isEmpty { return }
-        transactionDataManager.updateTransactions(filteredTransactions)
+        return filteredTransactions
     }
     
     func getTransactions() -> [Transaction] {
         return transactions
     }
     
-    func setTransactionDataManagerDelegate(_ delegate: TransactionsDataManagerDelegate) {
-        transactionDataManager.delegate = delegate
-    }
-    
-    func createTransactionsDataManager(with tableView: UITableView) {
-        
-        let txDataManager = TransactionsDataManager(transactions: transactions)
-        txDataManager.setTableView(tableView)
-        transactionDataManager = txDataManager
-        
-        if transactions.isEmpty {
-            transactionDataManager.updateEmpty(placeholderImage: UIImage(named: "noTxs")!,
-                                               placeholderText: "")
-        }
-    }
 }
 
 

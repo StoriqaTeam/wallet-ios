@@ -11,17 +11,11 @@ import Foundation
 
 protocol AccountsInteractorInput: class {
     
-    func scrollCollection()
+    func getAccounts() -> [Account]
+    func getAccountIndex() -> Int
     func getInitialCurrencyISO() -> String
-    
-    func setCurrentAccountWith(index: Int)
-    func getCurrentAccount() -> Account
     func getTransactionForCurrentAccount() -> [Transaction]
     func getAccountsCount() -> Int
-    
-    func createAccountsDataManager(with collectionView: UICollectionView)
-    func setAccountsDataManagerDelegate(_ delegate: AccountsDataManagerDelegate)
-    func createTransactionsDataManager(with tableView: UITableView)
-    func setTransactionDataManagerDelegate(_ delegate: TransactionsDataManagerDelegate)
+    func setCurrentAccountWith(index: Int)
     
 }
