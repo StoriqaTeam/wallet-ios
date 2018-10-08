@@ -34,18 +34,12 @@ extension ExchangePresenter: ExchangeViewOutput {
     
     func viewIsReady() {
         let numberOfPages = interactor.getAccountsCount()
-        let paymentFeeValuesCount = interactor.getPaymentFeeValuesCount()
-        view.setupInitialState(numberOfPages: numberOfPages, paymentFeeValuesCount: paymentFeeValuesCount)
+        view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
         
         interactor.setAccountsDataManagerDelegate(self)
         interactor.setAccountsTableDataManagerDelegate(self)
-        
-        // Default values
-        interactor.setCurrentAccount(index: 0)
-        interactor.setRecepientAccount(index: 0)
-        interactor.setPaymentFee(index: 0)
-        interactor.setAmount(0)
+        interactor.updateInitialState()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -109,9 +103,9 @@ extension ExchangePresenter: ExchangeViewOutput {
 
 extension ExchangePresenter: ExchangeInteractorOutput {
     
-    func updateRecepientAccount(_ account: AccountDisplayable) {
+    func updateRecepientAccount(_ account: Account) {
         currencyConverter = converterFactory.createConverter(from: account.currency)
-        view.setRecepientAccount(account.accountName)
+        view.setRecepientAccount(account.name)
     }
     
     func updateAmount(_ amount: Decimal, currency: Currency) {

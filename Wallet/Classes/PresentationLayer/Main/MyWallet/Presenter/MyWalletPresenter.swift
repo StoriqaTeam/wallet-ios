@@ -22,27 +22,17 @@ class MyWalletPresenter {
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletViewOutput {
-    func selectItemAt(index: Int) {
-        let selectedAccount = interactor.accountModel(for: index)
-        let accountWatcher = interactor.getAccountWatcher()
-        accountWatcher.setAccount(selectedAccount)
-        router.showAccountsWith(accountWatcher: accountWatcher,
-                                from: view.viewController,
-                                tabBar: mainTabBar)
-    }
-    
     
     func viewIsReady() {
         view.setupInitialState(flowLayout: collectionFlowLayout)
+        interactor.setDataManagerDelegate(self)
     }
     
-    func accountsCount() -> Int {
-        return interactor.accountsCount()
-    }
-
-    func accountModel(for indexPath: IndexPath) -> AccountDisplayable {
-        let account = interactor.accountModel(for: indexPath.row)
-        return account
+    func accountsCollectionView(_ collectionView: UICollectionView) {
+        collectionView.collectionViewLayout = collectionFlowLayout
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = true
+        interactor.createDataManager(with: collectionView)
     }
     
 }
@@ -66,6 +56,21 @@ extension MyWalletPresenter: MyWalletModuleInput {
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
+}
+
+
+// MARK: - MyWalletViewOutput
+
+extension MyWalletPresenter: MyWalletDataManagerDelegate {
+    
+    func selectAccount(_ account: Account) {
+        let accountWatcher = interactor.getAccountWatcher()
+        accountWatcher.setAccount(account)
+        router.showAccountsWith(accountWatcher: accountWatcher,
+                                from: view.viewController,
+                                tabBar: mainTabBar)
+    }
+    
 }
 
 

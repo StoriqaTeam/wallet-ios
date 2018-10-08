@@ -46,3 +46,8 @@ extension Account: RealmMappable {
         return object
     }
 }
+
+
+extension Account: Equatable {
+    
+}

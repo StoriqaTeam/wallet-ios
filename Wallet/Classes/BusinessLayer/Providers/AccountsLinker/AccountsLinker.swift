@@ -10,8 +10,8 @@ import Foundation
 
 
 protocol AccountsLinkerProtocol: class {
-    func getTransactionsFor(account: AccountDisplayable) -> [Transaction]?
-    func getAllAccounts() -> [AccountDisplayable]
+    func getTransactionsFor(account: Account) -> [Transaction]?
+    func getAllAccounts() -> [Account]
 }
 
 
@@ -26,7 +26,7 @@ class AccountsLinker: AccountsLinkerProtocol {
     }
    
     // @dev returns nil if given account not found
-    func getTransactionsFor(account: AccountDisplayable) -> [Transaction]? {
+    func getTransactionsFor(account: Account) -> [Transaction]? {
         let allAccounts = accountsProvider.getAllAccounts()
         
         for acc in allAccounts where acc == account {
@@ -36,7 +36,7 @@ class AccountsLinker: AccountsLinkerProtocol {
         return nil
     }
     
-    func getAllAccounts() -> [AccountDisplayable] {
+    func getAllAccounts() -> [Account] {
         return accountsProvider.getAllAccounts()
     }
 }

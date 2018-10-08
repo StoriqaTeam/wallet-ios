@@ -18,7 +18,7 @@ protocol SendTransactionProviderProtocol: class {
     var paymentFee: Decimal { get }
     var opponentType: OpponentType { get }
     var receiverCurrency: Currency { get }
-    var selectedAccount: AccountDisplayable { get }
+    var selectedAccount: Account { get }
 
     func getFeeWaitCount() -> Int
     func getFeeAndWait() -> (fee: String, wait: String)
@@ -31,7 +31,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     
     weak var scanDelegate: QRScannerDelegate?
     
-    var selectedAccount: AccountDisplayable
+    var selectedAccount: Account
     
     var receiverCurrency: Currency {
         didSet {
@@ -105,8 +105,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     func isEnoughFunds() -> Bool {
         let converted = currencyConverter.convert(amount: amount, to: selectedAccount.currency)
         let sum = converted + paymentFee
-        //TODO: amount in decimal
-        let available = selectedAccount.cryptoAmount.decimalValue()
+        let available = selectedAccount.balance
         return sum.isLessThanOrEqualTo(available)
     }
     

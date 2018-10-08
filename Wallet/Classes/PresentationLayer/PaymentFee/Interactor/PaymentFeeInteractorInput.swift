@@ -20,7 +20,7 @@ protocol PaymentFeeInteractorInput: class {
 
     func getAmount() -> Decimal?
     func getReceiverCurrency() -> Currency
-    func getSelectedAccount() -> AccountDisplayable
+    func getSelectedAccount() -> Account
     func getOpponent() -> OpponentType
     func getFeeWaitCount() -> Int
 }

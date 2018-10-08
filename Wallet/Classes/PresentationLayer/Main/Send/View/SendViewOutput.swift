@@ -12,11 +12,14 @@ import UIKit
 protocol SendViewOutput: class {
     func viewIsReady()
     func accountsCollectionView(_ collectionView: UICollectionView)
+    func configureCollections()
+    
     func isValidAmount(_ amount: String) -> Bool
     func amountChanged(_ amount: String)
+    func amountDidBeginEditing()
+    func amountDidEndEditing()
+    
     func receiverCurrencyChanged(_ index: Int)
-    func getAmountWithCurrency() -> String
-    func getAmountWithoutCurrency() -> String
-    func configureCollections()
+    
     func nextButtonPressed()
 }

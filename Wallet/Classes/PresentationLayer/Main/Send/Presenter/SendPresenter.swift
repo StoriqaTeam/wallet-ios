@@ -56,15 +56,17 @@ extension SendPresenter: SendViewOutput {
         view.setButtonEnabled(formIsValid)
     }
     
-    func getAmountWithCurrency() -> String {
+    func amountDidBeginEditing() {
         let amount = interactor.getAmount()
-        let currency = interactor.getReceiverCurrency()
-        return getStringFrom(amount: amount, currency: currency)
+        let formatted = getStringAmountWithoutCurrency(amount: amount)
+        view.setAmount(formatted)
     }
     
-    func getAmountWithoutCurrency() -> String {
+    func amountDidEndEditing() {
         let amount = interactor.getAmount()
-        return getStringAmountWithoutCurrency(amount: amount)
+        let currency = interactor.getReceiverCurrency()
+        let formatted = getStringFrom(amount: amount, currency: currency)
+        view.setAmount(formatted)
     }
     
     func viewIsReady() {
@@ -100,11 +102,11 @@ extension SendPresenter: SendInteractorOutput {
         let amount = interactor.getAmount()
         let currency = interactor.getReceiverCurrency()
         let amountString = getStringFrom(amount: amount, currency: currency)
-        view.updateAmount(amountString)
+        view.setAmount(amountString)
     }
     
     func updateConvertedAmount(_ amount: String) {
-        view.updateConvertedAmount(amount)
+        view.setConvertedAmount(amount)
     }
     
 }
@@ -177,7 +179,7 @@ extension SendPresenter {
             return ""
         }
         
-        return amount.description
+        return amount.string
     }
     
 }

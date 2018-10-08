@@ -16,24 +16,27 @@ class ExchangeInteractor {
     private let accountsProvider: AccountsProviderProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let accountDisplayer: AccountDisplayerProtocol
     private var currencyConverter: CurrencyConverterProtocol!
     private var accountsDataManager: AccountsDataManager!
     private var accountsTableDataManager: AccountsTableDataManager!
-    private var recepientAccount: AccountDisplayable! {
+    private var recepientAccount: Account! {
         didSet { updateConverter() }
     }
     private var amount: Decimal
     private var paymentFee: Decimal
-    private var recepientAccounts: [AccountDisplayable]!
+    private var recepientAccounts: [Account]!
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
          accountsProvider: AccountsProviderProtocol,
          converterFactory: CurrecncyConverterFactoryProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
+         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
+         accountDisplayer: AccountDisplayerProtocol) {
         self.accountWatcher = accountWatcher
         self.accountsProvider = accountsProvider
         self.converterFactory = converterFactory
         self.feeWaitProvider = feeWaitProvider
+        self.accountDisplayer = accountDisplayer
         
         // Default values
         amount = 0
@@ -53,7 +56,8 @@ extension ExchangeInteractor: ExchangeInteractorInput {
     
     func createAccountsDataManager(with collectionView: UICollectionView) {
         let allAccounts = accountsProvider.getAllAccounts()
-        let accountsManager = AccountsDataManager(accounts: allAccounts)
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
         accountsManager.setCollectionView(collectionView, cellType: .small)
         accountsDataManager = accountsManager
     }
@@ -93,10 +97,6 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         return accountsProvider.getAllAccounts().count
     }
     
-    func getPaymentFeeValuesCount() -> Int {
-        return feeWaitProvider.getValuesCount()
-    }
-    
     func getAmount() -> Decimal {
         return amount
     }
@@ -114,7 +114,6 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         accountWatcher.setAccount(allAccounts[index])
         recepientAccounts = updateRecepientAccounts()
         loadPaymentFees()
-        
         updateFeeCount()
         updateRecepientAccount()
         updateConvertedAmount()
@@ -145,6 +144,15 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         updateTotal()
     }
     
+    func updateInitialState() {
+        updateRecepientAccount()
+        updateAmount()
+        updateConvertedAmount()
+        updateFeeCount()
+        updateFeeAndWait()
+        updateTotal()
+    }
+    
 }
 
 
@@ -152,15 +160,15 @@ extension ExchangeInteractor: ExchangeInteractorInput {
 
 extension ExchangeInteractor {
     
-    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
+    private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index { $0 == account }!
     }
     
-    private func updateRecepientAccounts() -> [AccountDisplayable] {
+    private func updateRecepientAccounts() -> [Account] {
         let allAccounts = accountsProvider.getAllAccounts()
         let filtered = allAccounts.filter({
-            $0.type != accountWatcher.getAccount().type
+            $0 != accountWatcher.getAccount()
         })
         return filtered
     }
@@ -168,9 +176,11 @@ extension ExchangeInteractor {
     private func loadPaymentFees() {
         let currency = accountWatcher.getAccount().currency
         feeWaitProvider.updateSelectedForCurrency(currency)
-        paymentFee = feeWaitProvider.getFee(index: 0)
+        
+        let count = feeWaitProvider.getValuesCount()
+        let medium = count / 2
+        paymentFee = feeWaitProvider.getFee(index: medium)
     }
-    
     
     private func calculateTotalAmount() -> Decimal {
         let accountCurrency = accountWatcher.getAccount().currency
@@ -187,9 +197,7 @@ extension ExchangeInteractor {
     }
     
     private func isEnoughFunds(total: Decimal) -> Bool {
-        //TODO: balancer
-        //TODO: amount in decimal
-        let available = accountWatcher.getAccount().cryptoAmount.decimalValue()
+        let available = accountWatcher.getAccount().balance
         let isEnoughFunds = total.isLessThanOrEqualTo(available)
         return isEnoughFunds
     }
@@ -205,9 +213,9 @@ extension ExchangeInteractor {
 // MARK: - Updaters
 
 extension ExchangeInteractor {
-
+    
     private func updateRecepientAccount() {
-        if !recepientAccounts.contains(where: { $0.type == recepientAccount.type }) {
+        if !recepientAccounts.contains(where: { $0 == recepientAccount }) {
             recepientAccount = recepientAccounts.first!
         }
         
@@ -233,7 +241,8 @@ extension ExchangeInteractor {
     
     private func updateFeeCount() {
         let count = feeWaitProvider.getValuesCount()
-        output.updatePaymentFees(count: count, selected: 0)
+        let index = feeWaitProvider.getIndex(fee: paymentFee)
+        output.updatePaymentFees(count: count, selected: index)
     }
     
     private func updateTotal() {

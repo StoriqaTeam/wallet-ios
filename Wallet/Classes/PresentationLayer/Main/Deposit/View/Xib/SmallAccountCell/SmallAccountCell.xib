@@ -74,7 +74,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="MPa-kU-O3P"/>
             <connections>
-                <outlet property="backgroundImage" destination="cHd-ps-VNU" id="0Ym-v1-Y5h"/>
+                <outlet property="backgroundImageView" destination="cHd-ps-VNU" id="jOK-RV-Fio"/>
                 <outlet property="cryptoAmountLabel" destination="dgE-KD-ZF6" id="w7B-V3-Luv"/>
                 <outlet property="fiatAmountLabel" destination="h1D-Gu-nWm" id="IJ6-uB-AK3"/>
                 <outletCollection property="labels" destination="dgE-KD-ZF6" collectionClass="NSMutableArray" id="LO3-77-TbB"/>

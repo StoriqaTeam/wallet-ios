@@ -15,11 +15,11 @@ class FakeAccountLinker: AccountsLinkerProtocol {
         self.fakeTxProvider = fakeTxProvider
     }
     
-    func getTransactionsFor(account: AccountDisplayable) -> [Transaction]? {
+    func getTransactionsFor(account: Account) -> [Transaction]? {
         return fakeTxProvider.transactionsFor(account: account)
     }
     
-    func getAllAccounts() -> [AccountDisplayable] {
+    func getAllAccounts() -> [Account] {
         return fakeAccProvider.getAllAccounts()
     }
 }
@@ -35,7 +35,15 @@ class AccountsModule {
         let fakeAccountsProvider = FakeAccountProvider()
         let fakeTransactionsProvider = FakeTransactionsProvider()
         let accountLinker = FakeAccountLinker(fakeAccProvider: fakeAccountsProvider, fakeTxProvider: fakeTransactionsProvider)
-        let interactor = AccountsInteractor(accountLinker: accountLinker, accountWatcher: accountWatcher)
+        let converterFactory = CurrecncyConverterFactory()
+        let formatter = CurrencyFormatter()
+        let userDataStoreService = FakeUserDataStoreService()
+        let accountDisplayer = AccountDisplayer(currencyFormatter: formatter,
+                                                converterFactory: converterFactory,
+                                                userDataStoreService: userDataStoreService)
+        let interactor = AccountsInteractor(accountLinker: accountLinker,
+                                            accountWatcher: accountWatcher,
+                                            accountDisplayer: accountDisplayer)
     
         let accountsVC = UIStoryboard(name: "Accounts", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "accountsVC") as! AccountsViewController

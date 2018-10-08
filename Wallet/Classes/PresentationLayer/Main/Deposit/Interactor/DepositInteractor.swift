@@ -15,14 +15,17 @@ class DepositInteractor {
     private let accountsProvider: AccountsProviderProtocol
     private var accountsDataManager: AccountsDataManager!
     private let accountWatcher: CurrentAccountWatcherProtocol
+    private let accountDisplayer: AccountDisplayerProtocol
     
     init(qrProvider: QRCodeProviderProtocol,
          accountsProvider: AccountsProviderProtocol,
-         accountWatcher: CurrentAccountWatcherProtocol) {
+         accountWatcher: CurrentAccountWatcherProtocol,
+         accountDisplayer: AccountDisplayerProtocol) {
         
         self.qrProvider = qrProvider
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
+        self.accountDisplayer = accountDisplayer
     }
 }
 
@@ -32,11 +35,11 @@ class DepositInteractor {
 extension DepositInteractor: DepositInteractorInput {
     func getAddress() -> String {
         let currentAccount = accountWatcher.getAccount()
-        return currentAccount.cryptoAddress
+        return currentAccount.accountAddress
     }
     
     func getQrCodeImage() -> UIImage {
-        let currentAddress = accountWatcher.getAccount().cryptoAddress
+        let currentAddress = accountWatcher.getAccount().accountAddress
         let qrCodeSize = CGSize(width: 300, height: 300)
         
         guard let qrCode = qrProvider.createQRFromString(currentAddress, size: qrCodeSize) else {
@@ -53,7 +56,8 @@ extension DepositInteractor: DepositInteractorInput {
     
     func createAccountsDataManager(with collectionView: UICollectionView) {
         let allAccounts = accountsProvider.getAllAccounts()
-        let accountsManager = AccountsDataManager(accounts: allAccounts)
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
         accountsManager.setCollectionView(collectionView, cellType: .small)
         accountsDataManager = accountsManager
     }
@@ -79,7 +83,7 @@ extension DepositInteractor: DepositInteractorInput {
 
 extension DepositInteractor {
     
-    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
+    private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index { $0 == account }!
     }

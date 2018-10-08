@@ -16,7 +16,7 @@ protocol TransactionsDataManagerDelegate: class {
 
 class TransactionsDataManager: NSObject {
     
-    weak var delegate: TransactionsDataManagerDelegate!
+    weak var delegate: TransactionsDataManagerDelegate?
     private var lastTransactionsTableView: UITableView!
     private var transactions: [Transaction]
     private let kCellId = "transactionCell"

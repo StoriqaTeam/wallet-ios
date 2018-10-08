@@ -18,16 +18,18 @@ class AccountsDataManager: NSObject {
         case regular
     }
     
-    weak var delegate: AccountsDataManagerDelegate!
+    weak var delegate: AccountsDataManagerDelegate?
     
     private var accountsCollectionView: UICollectionView!
     private var cellType: CellType = .regular
     private let kAccountCellIdentifier = "AccountCell"
     private var indexOfCellBeforeDragging = 0
-    private var accounts: [AccountDisplayable]
+    private var accounts: [Account]
+    private let accountDisplayer: AccountDisplayerProtocol
     
-    init(accounts: [AccountDisplayable]) {
+    init(accounts: [Account], accountDisplayer: AccountDisplayerProtocol) {
         self.accounts = accounts
+        self.accountDisplayer = accountDisplayer
     }
     
     func setCollectionView(_ view: UICollectionView, cellType: CellType = .regular) {
@@ -48,7 +50,7 @@ class AccountsDataManager: NSObject {
         registerXib(identifier: cellIdentifier)
     }
     
-    func updateAccounts(_ accounts: [AccountDisplayable]) {
+    func updateAccounts(_ accounts: [Account]) {
         self.accounts = accounts
         accountsCollectionView.reloadData()
     }
@@ -56,7 +58,7 @@ class AccountsDataManager: NSObject {
     func scrollTo(index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
         accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        delegate.currentPageDidChange(indexPath.row)
+        delegate?.currentPageDidChange(indexPath.row)
     }
     
 }
@@ -73,16 +75,24 @@ extension AccountsDataManager: UICollectionViewDataSource {
         let account = accounts[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kAccountCellIdentifier, for: indexPath) as! AccountViewCell
         
+        let cryptoAmount = accountDisplayer.cryptoAmount(for: account)
+        let fiatAmount = accountDisplayer.fiatAmount(for: account)
+        let holderName = accountDisplayer.holderName(for: account)
+        let textColor = accountDisplayer.textColor(for: account)
         let backgroundImage: UIImage
+        
         switch cellType {
         case .small:
-            backgroundImage = account.smallImageForType
+            backgroundImage = accountDisplayer.smallImage(for: account)
         case .regular:
-            backgroundImage = account.imageForType
+            backgroundImage = accountDisplayer.image(for: account)
         }
         
-        cell.configureWith(account: account)
-        cell.setBackgroundImage(backgroundImage)
+        cell.configureWith(cryptoAmount: cryptoAmount,
+                           fiatAmount: fiatAmount,
+                           holderName: holderName,
+                           textColor: textColor,
+                           backgroundImage: backgroundImage)
         cell.dropShadow()
         
         return cell
@@ -125,14 +135,14 @@ extension AccountsDataManager: UICollectionViewDelegate {
                             scrollView.layoutIfNeeded()
             }, completion: nil)
             
-            delegate.currentPageDidChange(snapToIndex)
+            delegate?.currentPageDidChange(snapToIndex)
             
         } else {
             // This is a much better way to scroll to a cell:
             let indexOfMajorCell = self.indexOfMajorCell()
             let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
             accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            delegate.currentPageDidChange(indexPath.row)
+            delegate?.currentPageDidChange(indexPath.row)
         }
     }
 }

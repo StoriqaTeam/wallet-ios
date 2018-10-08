@@ -15,12 +15,15 @@ class AccountsInteractor {
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: TransactionsDataManager!
     private let accountLinker: AccountsLinkerProtocol
+    private let accountDisplayer: AccountDisplayerProtocol
     
     init(accountLinker: AccountsLinkerProtocol,
-         accountWatcher: CurrentAccountWatcherProtocol) {
+         accountWatcher: CurrentAccountWatcherProtocol,
+         accountDisplayer: AccountDisplayerProtocol) {
         
         self.accountLinker = accountLinker
         self.accountWatcher = accountWatcher
+        self.accountDisplayer = accountDisplayer
     }
 }
 
@@ -53,7 +56,7 @@ extension AccountsInteractor: AccountsInteractorInput {
         accountsDataManager.scrollTo(index: index)
     }
     
-    func getCurrentAccount() -> AccountDisplayable {
+    func getCurrentAccount() -> Account {
         return accountWatcher.getAccount()
     }
         
@@ -73,7 +76,8 @@ extension AccountsInteractor: AccountsInteractorInput {
     
     func createAccountsDataManager(with collectionView: UICollectionView) {
         let allAccounts = accountLinker.getAllAccounts()
-        let accountsManager = AccountsDataManager(accounts: allAccounts)
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
         accountsManager.setCollectionView(collectionView)
         accountsDataManager = accountsManager
     }
@@ -91,12 +95,12 @@ extension AccountsInteractor: AccountsInteractorInput {
 // MARK: - Private methods
 
 extension AccountsInteractor {
-    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
+    private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountLinker.getAllAccounts()
         return allAccounts.index { $0 == account }!
     }
     
-    private func transactions(for account: AccountDisplayable) -> [Transaction] {
+    private func transactions(for account: Account) -> [Transaction] {
         guard let txs = accountLinker.getTransactionsFor(account: account) else { fatalError("Given account not found") }
         return txs
     }

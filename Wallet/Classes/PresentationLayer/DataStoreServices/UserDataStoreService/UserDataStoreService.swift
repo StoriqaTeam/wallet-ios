@@ -15,6 +15,20 @@ protocol UserDataStoreServiceProtocol {
     func getUserWith(id: String) -> User?
 }
 
+class FakeUserDataStoreService: UserDataStoreServiceProtocol {
+    
+    func save(_ user: User) { }
+    
+    func getUserWith(id: String) -> User? {
+        let user = User(id: "0",
+                        email: "email@email.com",
+                        phone: "111-222-33-44",
+                        firstName: "Dmitrii",
+                        lastName: "Mushchinskii")
+        return user
+    }
+    
+}
 
 class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
     

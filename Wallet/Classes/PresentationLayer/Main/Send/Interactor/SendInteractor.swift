@@ -16,15 +16,18 @@ class SendInteractor {
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let sendTransactionBuilder: SendProviderBuilderProtocol
     private let sendProvider: SendTransactionProvider
+    private let accountDisplayer: AccountDisplayerProtocol
     
     init(sendTransactionBuilder: SendProviderBuilderProtocol,
          accountsProvider: AccountsProviderProtocol,
-         accountWatcher: CurrentAccountWatcherProtocol) {
+         accountWatcher: CurrentAccountWatcherProtocol,
+         accountDisplayer: AccountDisplayerProtocol) {
         
         self.accountsProvider = accountsProvider
         self.sendTransactionBuilder = sendTransactionBuilder
         self.accountWatcher = accountWatcher
         self.sendProvider = sendTransactionBuilder.build()
+        self.accountDisplayer = accountDisplayer
         
         let account = accountWatcher.getAccount()
         setInitialAccount(account: account)
@@ -82,7 +85,8 @@ extension SendInteractor: SendInteractorInput {
     
     func createAccountsDataManager(with collectionView: UICollectionView) {
         let allAccounts = accountsProvider.getAllAccounts()
-        let accountsManager = AccountsDataManager(accounts: allAccounts)
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
         accountsManager.setCollectionView(collectionView)
         accountsDataManager = accountsManager
     }
@@ -105,12 +109,12 @@ extension SendInteractor: SendInteractorInput {
 // MARK: - Private methods
 
 extension SendInteractor {
-    private func resolveAccountIndex(account: AccountDisplayable) -> Int {
+    private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index { $0 == account }!
     }
     
-    private func setInitialAccount(account: AccountDisplayable) {
+    private func setInitialAccount(account: Account) {
         self.sendProvider.selectedAccount = account
     }
 }

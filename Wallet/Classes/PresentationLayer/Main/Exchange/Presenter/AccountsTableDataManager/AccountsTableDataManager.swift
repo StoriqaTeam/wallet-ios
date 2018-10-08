@@ -15,7 +15,7 @@ protocol AccountsTableDataManagerDelegate: class {
 class AccountsTableDataManager: NSObject {
     
     weak var delegate: AccountsTableDataManagerDelegate!
-    var accounts: [AccountDisplayable] = [] {
+    var accounts: [Account] = [] {
         didSet { tableView.reloadData() }
     }
     
@@ -89,12 +89,10 @@ extension AccountsTableDataManager {
         tableView.register(nib, forCellReuseIdentifier: kCellIdentifier)
     }
     
-    private func configureCell(cell: AccountTableCell, account: AccountDisplayable) {
+    private func configureCell(cell: AccountTableCell, account: Account) {
         let image = currencyImageProvider.smallImage(for: account.currency)
-        let accountName = account.accountName
-        
-        //TODO: decimal amount
-        let amount = account.cryptoAmount.decimalValue()
+        let accountName = account.name
+        let amount = account.balance
         let formatted = currencyFormatter.getStringFrom(amount: amount, currency: account.currency)
         
         cell.configure(image: image, accountName: accountName, amount: formatted)

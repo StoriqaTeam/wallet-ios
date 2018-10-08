@@ -15,7 +15,7 @@ protocol AccountsInteractorInput: class {
     func getInitialCurrencyISO() -> String
     
     func setCurrentAccountWith(index: Int)
-    func getCurrentAccount() -> AccountDisplayable
+    func getCurrentAccount() -> Account
     func getTransactionForCurrentAccount() -> [Transaction]
     func getAccountsCount() -> Int
     

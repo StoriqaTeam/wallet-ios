@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol ExchangeViewInput: class, Presentable {
-    func setupInitialState(numberOfPages: Int, paymentFeeValuesCount: Int)
+    func setupInitialState(numberOfPages: Int)
     
     func setRecepientAccount(_ recepient: String)
     func setAmount(_ amount: String)

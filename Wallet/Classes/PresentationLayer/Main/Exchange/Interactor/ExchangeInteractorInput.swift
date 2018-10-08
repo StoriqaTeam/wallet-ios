@@ -21,7 +21,6 @@ protocol ExchangeInteractorInput: class {
     func getAccountsTableHeight() -> CGFloat
     
     func getAccountsCount() -> Int
-    func getPaymentFeeValuesCount() -> Int
     
     func getAmount() -> Decimal
     func getAccountCurrency() -> Currency
@@ -31,5 +30,7 @@ protocol ExchangeInteractorInput: class {
     func setRecepientAccount(index: Int)
     func setAmount(_ amount: Decimal)
     func setPaymentFee(index: Int)
+    
+    func updateInitialState()
     
 }

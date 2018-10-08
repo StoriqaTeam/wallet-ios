@@ -10,10 +10,10 @@ import UIKit
 
 class AccountViewCell: UICollectionViewCell {
 
-    @IBOutlet private var backgroundImage: UIImageView!
+    @IBOutlet private var backgroundImageView: UIImageView!
     @IBOutlet private var cryptoAmountLabel: UILabel!
     @IBOutlet private var fiatAmountLabel: UILabel!
-    @IBOutlet private var holderName: UILabel?
+    @IBOutlet private var holderNameLabel: UILabel?
     
     @IBOutlet private var labels: [UILabel]!
     
@@ -22,20 +22,21 @@ class AccountViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configureWith(account: AccountDisplayable) {
-        cryptoAmountLabel.text = account.cryptoAmount
-        fiatAmountLabel.text = account.fiatAmount
-        holderName?.text = account.holderName
+    func configureWith(cryptoAmount: String,
+                       fiatAmount: String,
+                       holderName: String,
+                       textColor: UIColor,
+                       backgroundImage: UIImage) {
+        cryptoAmountLabel.text = cryptoAmount
+        fiatAmountLabel.text = fiatAmount
+        holderNameLabel?.text = holderName
+        backgroundImageView.image = backgroundImage
         
-        let color = account.textColorForType
-        labels.forEach({ $0.textColor = color })
+        labels.forEach({ $0.textColor = textColor })
     }
     
     func dropShadow() {
         dropShadow(color: .black, opacity: 0.2, offSet: CGSize(width: 10, height: 15), radius: 12, scale: true)
     }
     
-    func setBackgroundImage(_ image: UIImage) {
-        backgroundImage.image = image
-    }
 }

@@ -16,12 +16,17 @@ class ExchangeModule {
         let currencyFormatter = CurrencyFormatter()
         let feeWaitProvider = FakePaymentFeeAndWaitProvider()
         let accountsProvider = FakeAccountProvider()
+        let userDataStoreService = FakeUserDataStoreService()
+        let accountDisplayer = AccountDisplayer(currencyFormatter: currencyFormatter,
+                                                converterFactory: converterFactory,
+                                                userDataStoreService: userDataStoreService)
         
         let presenter = ExchangePresenter(converterFactory: converterFactory, currencyFormatter: currencyFormatter)
         let interactor = ExchangeInteractor(accountWatcher: accountWatcher,
                                             accountsProvider: accountsProvider,
                                             converterFactory: converterFactory,
-                                            feeWaitProvider: feeWaitProvider)
+                                            feeWaitProvider: feeWaitProvider,
+                                            accountDisplayer: accountDisplayer)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController
