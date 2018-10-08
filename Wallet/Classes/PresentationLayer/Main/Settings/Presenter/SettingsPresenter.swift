@@ -22,13 +22,9 @@ class SettingsPresenter {
 // MARK: - SettingsViewOutput
 
 extension SettingsPresenter: SettingsViewOutput {
-    func resetApplication() {
-        interactor.deleteAppData()
-        router.showLogin()
-    }
-    
     func viewIsReady() {
         view.setupInitialState()
+        configureNavigationBar()
     }
 
 }
@@ -50,5 +46,18 @@ extension SettingsPresenter: SettingsModuleInput {
     
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
+    }
+}
+
+
+// MARK: - Private methods
+
+extension SettingsPresenter {
+    func configureNavigationBar() {
+        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
+        view.viewController.navigationItem.largeTitleDisplayMode = .never
+        view.viewController.navigationController?.navigationBar.isTranslucent = false
+        view.viewController.navigationController?.navigationBar.tintColor = .white
+        view.viewController.navigationController?.navigationBar.topItem?.title = "Settings"
     }
 }

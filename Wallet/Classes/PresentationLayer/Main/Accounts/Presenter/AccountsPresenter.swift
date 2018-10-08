@@ -130,8 +130,4 @@ extension AccountsPresenter {
         let iso = interactor.getInitialCurrencyISO()
         view.viewController.title = "Account \(iso)"
     }
-    
-    private func configureTransactionsTableView() {
-        
-    }
 }

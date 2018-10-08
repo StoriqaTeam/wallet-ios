@@ -203,6 +203,8 @@
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
+		A560C741216B57A3009F0E95 /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A560C740216B57A3009F0E95 /* SettingsHeaderView.swift */; };
+		A560C743216B57F9009F0E95 /* SettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A560C742216B57F9009F0E95 /* SettingsHeaderView.xib */; };
 		A5669D37C5A3E197CE60ACEB /* PasswordEmailRecoveryModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C23610EB031515F3F3FD6 /* PasswordEmailRecoveryModuleInput.swift */; };
 		A56B4C76215CD8F10017B337 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B4C75215CD8F10017B337 /* Device.swift */; };
 		A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B4C77215CE1B80017B337 /* Transactions.storyboard */; };
@@ -651,6 +653,8 @@
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
+		A560C740216B57A3009F0E95 /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
+		A560C742216B57F9009F0E95 /* SettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsHeaderView.xib; sourceTree = "<group>"; };
 		A56B4C75215CD8F10017B337 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A56B4C77215CE1B80017B337 /* Transactions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
 		A56B4C7B215CFE080017B337 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
@@ -1482,6 +1486,7 @@
 		664E31E78AF5D6A61BF39B8F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A560C73F216B578C009F0E95 /* Xib */,
 				75598376B17B1C58C110BF6F /* SettingsViewInput.swift */,
 				BC9D1601A483ADBA7DD0D526 /* SettingsViewOutput.swift */,
 				FBB5916346292541051F9F17 /* SettingsViewController.swift */,
@@ -1993,6 +1998,15 @@
 				A55A197521554BF600330EB8 /* AccountsDataManager.swift */,
 			);
 			path = AccountsDataManager;
+			sourceTree = "<group>";
+		};
+		A560C73F216B578C009F0E95 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				A560C740216B57A3009F0E95 /* SettingsHeaderView.swift */,
+				A560C742216B57F9009F0E95 /* SettingsHeaderView.xib */,
+			);
+			path = Xib;
 			sourceTree = "<group>";
 		};
 		A56B4C74215CD8DF0017B337 /* Device */ = {
@@ -3106,6 +3120,7 @@
 				A51CB55D215942F400CDC80C /* RouteButton.xib in Resources */,
 				CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */,
 				A58EE3C62150379E0096C155 /* Login.storyboard in Resources */,
+				A560C743216B57F9009F0E95 /* SettingsHeaderView.xib in Resources */,
 				CE5FAFB92153801F009E707E /* PinQuickLaunch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3295,6 +3310,7 @@
 				836A0F971469672F08324F42 /* PinInputModule.swift in Sources */,
 				559A9C4888FBB801ECBBE758 /* FirstLaunchViewInput.swift in Sources */,
 				A52C66AA21666ECC0073071E /* User.swift in Sources */,
+				A560C741216B57A3009F0E95 /* SettingsHeaderView.swift in Sources */,
 				3560EFC2F72358E0759F3690 /* FirstLaunchViewOutput.swift in Sources */,
 				48D375B575D57A4CF0D1F591 /* FirstLaunchViewController.swift in Sources */,
 				A500860D2150FA1600C47015 /* Result.swift in Sources */,
