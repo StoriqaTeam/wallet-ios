@@ -17,5 +17,7 @@ class TransactionsRouter {
 // MARK: - TransactionsRouterInput
 
 extension TransactionsRouter: TransactionsRouterInput {
-    
+    func showTransactionDetails(with transaction: Transaction, from viewController: UIViewController) {
+        TransactionDetailsModule.create(transaction: transaction).present(from: viewController)
+    }
 }

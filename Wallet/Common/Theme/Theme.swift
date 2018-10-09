@@ -30,10 +30,25 @@ struct Theme {
         struct Color {
             static let red = UIColor(red: 245/255, green: 0/255, blue: 57/255, alpha: 1)
             static let green = UIColor(red: 0/255, green: 188/255, blue: 144/255, alpha: 1)
+            static let detailsGreen = UIColor(red: 11/255, green: 231/255, blue: 160/255, alpha: 1)
+            static let detailsRed = UIColor(red: 238/255, green: 113/255, blue: 113/255, alpha: 1)
+        }
+    }
+    
+    struct Gradient {
+        struct Details {
+            static let detailsRedGradient = [UIColor(displayP3Red: 240/255, green: 243/255, blue: 246/255, alpha: 0.70).cgColor,
+                                             UIColor(displayP3Red: 255/255, green: 233/255, blue: 233/255, alpha: 0.70).cgColor]
+            
+            static let detailsGreenGradient = [UIColor(displayP3Red: 240/255, green: 243/255, blue: 246/255, alpha: 0.70).cgColor,
+                                               UIColor(displayP3Red: 233/255, green: 255/255, blue: 248/255, alpha: 0.70).cgColor]
+            
+            
         }
     }
 
     struct Font {
+        
         static let segmentTextFont = UIFont.systemFont(ofSize: 17, weight: .bold)
     }
     

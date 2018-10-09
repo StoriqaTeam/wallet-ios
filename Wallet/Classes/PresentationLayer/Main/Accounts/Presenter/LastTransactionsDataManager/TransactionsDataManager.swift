@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol TransactionsDataManagerDelegate: class {
-    
+    func didChooseTransaction(_ transaction: Transaction)
 }
 
 
@@ -28,6 +28,7 @@ class TransactionsDataManager: NSObject {
     func setTableView(_ view: UITableView) {
         lastTransactionsTableView = view
         lastTransactionsTableView.dataSource = self
+        lastTransactionsTableView.delegate = self
         registerXib()
     }
     
@@ -66,6 +67,17 @@ extension TransactionsDataManager: UITableViewDataSource {
        let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
         cell.configureWith(transaction: transaction)
         return cell
+    }
+    
+}
+
+
+// MARK: - UITableViewDelegate
+
+extension TransactionsDataManager: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedTransaction = transactions[indexPath.row]
+        delegate?.didChooseTransaction(selectedTransaction)
     }
 }
 

@@ -120,7 +120,7 @@ extension AccountsPresenter: AccountsDataManagerDelegate {
 // MARK: - TransactionsDatamanagerDelegate
 
 extension AccountsPresenter: TransactionsDataManagerDelegate {
-    
+    func didChooseTransaction(_ transaction: Transaction) { }
 }
 
 
