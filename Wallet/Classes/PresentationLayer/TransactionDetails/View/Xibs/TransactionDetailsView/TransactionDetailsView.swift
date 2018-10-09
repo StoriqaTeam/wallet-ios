@@ -47,16 +47,18 @@ extension TransactionDetailView {
             colors = Theme.Gradient.Details.detailsRedGradient
             cryptoLabelColor = Theme.Text.Color.detailsRed
             directionImage = UIImage(named: "sendTransactionIcon")
-            cryptoAmountString = "- \(transaction.cryptoAmount.string)"
+            cryptoAmountString = "- \(cryptoAmount)"
         }
         
         cryptoAmountLabel.textColor = cryptoLabelColor
         cryptoAmountLabel.text = cryptoAmountString
         directionImageView.image = directionImage
-        pendingLabel.isHidden = status != .pending
+        fiatAmountLabel.text = fiatAmount
+        timestampLabel.text = timestamp
         backgroundView.gradientView(colors: colors,
                                     frame: self.bounds,
                                     startPoint: CGPoint(x: 1.0, y: 0.5),
                                     endPoint: CGPoint(x: 0.0, y: 0.5))
     }
+
 }

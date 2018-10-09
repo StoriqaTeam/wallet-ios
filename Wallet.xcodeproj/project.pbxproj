@@ -232,6 +232,9 @@
 		A56ED38E216CD7E2009FA58B /* TransactionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED38D216CD7E2009FA58B /* TransactionDetailsPresenter.swift */; };
 		A56ED392216CD825009FA58B /* TransactionDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED390216CD825009FA58B /* TransactionDetailsRouter.swift */; };
 		A56ED393216CD825009FA58B /* TransactionDetailsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED391216CD825009FA58B /* TransactionDetailsRouterInput.swift */; };
+		A56ED397216CEF12009FA58B /* TransactionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED396216CEF12009FA58B /* TransactionMapper.swift */; };
+		A56ED39A216CEF36009FA58B /* TransactionDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED399216CEF36009FA58B /* TransactionDisplayable.swift */; };
+		A56ED39C216CF060009FA58B /* RealmTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED39B216CF060009FA58B /* RealmTransaction.swift */; };
 		A58D54E8215D0ED1003D9D0C /* FakeTransactionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
@@ -717,6 +720,9 @@
 		A56ED38D216CD7E2009FA58B /* TransactionDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailsPresenter.swift; path = Wallet/Classes/PresentationLayer/TransactionDetails/Presenter/TransactionDetailsPresenter.swift; sourceTree = SOURCE_ROOT; };
 		A56ED390216CD825009FA58B /* TransactionDetailsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailsRouter.swift; path = Wallet/Classes/PresentationLayer/TransactionDetails/Router/TransactionDetailsRouter.swift; sourceTree = SOURCE_ROOT; };
 		A56ED391216CD825009FA58B /* TransactionDetailsRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailsRouterInput.swift; path = Wallet/Classes/PresentationLayer/TransactionDetails/Router/TransactionDetailsRouterInput.swift; sourceTree = SOURCE_ROOT; };
+		A56ED396216CEF12009FA58B /* TransactionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMapper.swift; sourceTree = "<group>"; };
+		A56ED399216CEF36009FA58B /* TransactionDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDisplayable.swift; sourceTree = "<group>"; };
+		A56ED39B216CF060009FA58B /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
 		A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTransactionProvider.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
@@ -2197,6 +2203,30 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		A56ED394216CEEAE009FA58B /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				A56ED395216CEEF6009FA58B /* TransactionMapper */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		A56ED395216CEEF6009FA58B /* TransactionMapper */ = {
+			isa = PBXGroup;
+			children = (
+				A56ED396216CEF12009FA58B /* TransactionMapper.swift */,
+			);
+			path = TransactionMapper;
+			sourceTree = "<group>";
+		};
+		A56ED398216CEF1A009FA58B /* Displayable */ = {
+			isa = PBXGroup;
+			children = (
+				A56ED399216CEF36009FA58B /* TransactionDisplayable.swift */,
+			);
+			path = Displayable;
+			sourceTree = "<group>";
+		};
 		A58EE3B0214FFD370096C155 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2235,6 +2265,7 @@
 		A58EE3B2214FFD510096C155 /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
+				A56ED394216CEEAE009FA58B /* Mappers */,
 				CEFC9C872154E57B00962356 /* Models */,
 				A58EE3B7214FFE130096C155 /* Providers */,
 			);
@@ -2455,6 +2486,7 @@
 			children = (
 				A52C66AB21666F610073071E /* RealmUser.swift */,
 				A52C66B5216767EA0073071E /* RealmAccount.swift */,
+				A56ED39B216CF060009FA58B /* RealmTransaction.swift */,
 			);
 			path = RealmModels;
 			sourceTree = "<group>";
@@ -2921,6 +2953,7 @@
 		CEFC9C872154E57B00962356 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A56ED398216CEF1A009FA58B /* Displayable */,
 				CEFC9C882154E58400962356 /* PlainModels */,
 				A5F59AB52162489C005F1765 /* RealmModels */,
 			);
@@ -3520,6 +3553,7 @@
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
 				A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */,
 				A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */,
+				A56ED397216CEF12009FA58B /* TransactionMapper.swift in Sources */,
 				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEDDDF022134354400490781 /* UIColorExtension.swift in Sources */,
 				CEFC9C9821590D1200962356 /* PopUpRegistrationSuccessVM.swift in Sources */,
@@ -3763,6 +3797,7 @@
 				CEFC9C9E21590D8400962356 /* PopUpPasswordEmailRecoverySuccessVM.swift in Sources */,
 				09A1CEBCE8C1B2CD243902EC /* SendModuleInput.swift in Sources */,
 				342AB1F25E5B5D468E2F7687 /* SendModuleOutput.swift in Sources */,
+				A56ED39A216CEF36009FA58B /* TransactionDisplayable.swift in Sources */,
 				A56ED382216CD709009FA58B /* TransactionDetailsInteractorInput.swift in Sources */,
 				225C1777C92B40C17A58275B /* SendModule.swift in Sources */,
 				D029C2BDAA326AE7EB885D7C /* ExchangeViewInput.swift in Sources */,
@@ -3868,6 +3903,7 @@
 				A7CE669CEF8C840A16382864 /* PaymentFeeInteractorInput.swift in Sources */,
 				22192DA41BD15AD968C7ACD2 /* PaymentFeeInteractorOutput.swift in Sources */,
 				82FD617641F645A9CF453898 /* PaymentFeeInteractor.swift in Sources */,
+				A56ED39C216CF060009FA58B /* RealmTransaction.swift in Sources */,
 				BF61230B999DE085DBBEC7AC /* PaymentFeeRouterInput.swift in Sources */,
 				406B19D4D7E374DB797F1A6E /* PaymentFeeRouter.swift in Sources */,
 				ADB11F188C9F0760BBEFF576 /* PaymentFeeModuleInput.swift in Sources */,

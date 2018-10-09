@@ -2,7 +2,7 @@
 //  Transaction.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 24.09.2018.
+//  Created by Daniil Miroshnichecko on 24.09.2018.r
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -14,22 +14,44 @@ enum Direction {
     case send
 }
 
-enum Status {
-    case pending
-    case confirmed
-}
-
 enum OpponentType {
     case contact(contact: Contact)
     case address(address: String)
 }
 
 struct Transaction {
+    let id: String
     let currency: Currency
-    let direction: Direction
-    let fiatAmount: Decimal
+    let fromAddress: String
+    let toAddress: String
     let cryptoAmount: Decimal
+    let fee: Decimal
     let timestamp: Date
-    let status: Status
-    let opponent: OpponentType
+}
+
+
+// - MARK: - RealmMappable
+
+extension Transaction: RealmMappable {
+    
+    typealias RealmType = RealmTransaction
+    
+    init(_ object: RealmTransaction) {
+        self.id = object.id
+        self.fromAddress = object.fromAddress
+        self.toAddress = object.toAddress
+        self.currency = Currency(string: object.currency)
+        self.cryptoAmount = Decimal(object.cryptoAmount)
+        self.fee = Decimal(object.fee)
+        
+        
+    }
+    
+    func mapToRealmObject() -> RealmTransaction {
+        fatalError()
+    }
+    
+    
+    
+    
 }

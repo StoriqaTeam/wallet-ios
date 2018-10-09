@@ -13,14 +13,15 @@ class TransactionDetailsModule {
         let presenter = TransactionDetailsPresenter()
         let interactor = TransactionDetailsInteractor(transaction: transaction)
         
-        let transactionsDetailsSB = UIStoryboard.init(name: "TransactionDetails", bundle: nil)
-        let viewController = transactionsDetailsSB.instantiateViewController(withIdentifier: "transactionDetailsVC") as! TransactionDetailsViewController
+        let transactionsDetailsSB = UIStoryboard(name: "TransactionDetails", bundle: nil)
+        let viewController = transactionsDetailsSB.instantiateViewController(withIdentifier: "transactionDetailsVC")
+        let txDetailsViewController = viewController as! TransactionDetailsViewController
 
         interactor.output = presenter
 
-        viewController.output = presenter
+        txDetailsViewController.output = presenter
 
-        presenter.view = viewController
+        presenter.view = txDetailsViewController
         presenter.router = router
         presenter.interactor = interactor
         
