@@ -42,7 +42,7 @@ class MainTabBarPresenter {
         return DepositModule.create(accountWatcher: watcher, user: user)
     }()
     
-    private lazy var settingsModule: SettingsModuleInput = SettingsModule.create()
+    private lazy var profileModule: ProfileModuleInput = ProfileModule.create()
     
 }
 
@@ -95,7 +95,7 @@ extension MainTabBarPresenter {
             sendModule.viewController.wrapToNavigationController(),
             exchangeModule.viewController.wrapToNavigationController(),
             depositModule.viewController.wrapToNavigationController(),
-            settingsModule.viewController.wrapToNavigationController()
+            profileModule.viewController.wrapToNavigationController()
         ]
     }
 }

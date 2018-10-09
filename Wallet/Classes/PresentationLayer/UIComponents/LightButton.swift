@@ -11,21 +11,41 @@ import UIKit
 
 class LightButton: BaseButton {
     private var borderColor: UIColor = UIColor.mainBlue
+    private var borderAlpha: CGFloat = 0.18
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setup(color: UIColor.mainBlue)
+        titleLabel?.font = UIFont.systemFont(ofSize: 15)
     }
     
     override var frame: CGRect {
         didSet {
-            roundCorners(radius: frame.height/2, borderWidth: Constants.Sizes.lineWidth, borderColor: borderColor)
+            roundView()
         }
     }
     
-    func setup(color: UIColor) {
+    func setup(color: UIColor, borderAlpha: CGFloat? = nil) {
+        if let borderAlpha = borderAlpha {
+            self.borderAlpha = borderAlpha
+        }
+        
         borderColor = color
         backgroundColor = .clear
         setTitleColor(color, for: .normal)
+        roundView()
     }
+}
+
+
+// MARK: - Private methods
+
+extension LightButton {
+    
+    private func roundView() {
+        roundCorners(radius: frame.height/2,
+                     borderWidth: 1,
+                     borderColor: borderColor.withAlphaComponent(borderAlpha))
+    }
+    
 }

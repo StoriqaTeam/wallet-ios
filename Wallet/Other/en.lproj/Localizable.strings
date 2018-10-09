@@ -36,6 +36,10 @@
 "next" = "Next";
 "send" = "Send";
 "confirm_transaction" = "Confirm transaction";
+"make_photo" = "Make a photo";
+"from_gallery" = "Take from gallery";
+"cancel" = "Cancel";
+"sign_out" = "Sign out";
 
 //Other controls
 "accept_agreement" = "I accept the terms of the license agreement and privacy policy";
@@ -78,6 +82,8 @@
 "you_are_going_to_send" = "You are going to send";
 "to" = "to";
 "check_mail_password_recovery" = "Check your mailbox and follow the link to recover your password";
+"change_photo" = "Change profile photo";
+"confirm_sign_out" = "Do you really want to sign out?";
 
 
 //Error constants

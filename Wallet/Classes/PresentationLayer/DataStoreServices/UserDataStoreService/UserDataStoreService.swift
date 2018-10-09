@@ -23,8 +23,36 @@ class FakeUserDataStoreService: UserDataStoreServiceProtocol {
                         email: "email@email.com",
                         phone: "111-222-33-44",
                         firstName: "Dmitrii",
-                        lastName: "Mushchinskii")
+                        lastName: "Mushchinskii",
+                        photo: nil)
         return user
+    }
+    
+}
+
+class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
+    
+    override func save(_ user: User) {
+        DispatchQueue.main.async {
+            super.save(user)
+        }
+    }
+    
+    func getCurrentUser() -> User {
+        // FIXME: Save user when logged in
+        
+        if let saved = find().first {
+            return saved
+        } else {
+            let user = User(id: "0",
+                            email: "email@email.com",
+                            phone: "111-222-33-44",
+                            firstName: "Dmitrii",
+                            lastName: "Mushchinskii",
+                            photo: nil)
+            save(user)
+            return user
+        }
     }
     
 }
