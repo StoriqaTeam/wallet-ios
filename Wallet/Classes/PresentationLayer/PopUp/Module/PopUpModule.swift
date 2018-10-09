@@ -12,6 +12,23 @@ struct PopUpApperance {
     let attributedText: NSAttributedString?
     let actionButtonTitle: String
     let hasCloseButton: Bool
+    let closeButtonTitle: String?
+    
+    init(image: UIImage,
+         title: String,
+         text: String? = nil,
+         attributedText: NSAttributedString? = nil,
+         actionButtonTitle: String,
+         hasCloseButton: Bool,
+         closeButtonTitle: String? = nil) {
+        self.image = image
+        self.title = title
+        self.text = text
+        self.attributedText = attributedText
+        self.actionButtonTitle = actionButtonTitle
+        self.hasCloseButton = hasCloseButton
+        self.closeButtonTitle = closeButtonTitle ?? "cancel".localized()
+    }
 }
 
 class PopUpModule {

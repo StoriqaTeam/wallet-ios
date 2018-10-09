@@ -79,6 +79,7 @@ extension PopUpViewController: PopUpViewInput {
             textLabel.text = ""
         }
         actionButton.setTitle(viewModel.apperance.actionButtonTitle, for: .normal)
+        closeButton.setTitle(viewModel.apperance.closeButtonTitle, for: .normal)
         
         if !viewModel.apperance.hasCloseButton {
             closeButton.removeFromSuperview()

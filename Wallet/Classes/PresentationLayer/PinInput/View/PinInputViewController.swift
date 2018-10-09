@@ -58,7 +58,9 @@ class PinInputViewController: UIViewController {
 
 extension PinInputViewController: PinInputViewInput {
     
-    func setupInitialState() { }
+    func setupInitialState(userPhoto: UIImage) {
+        userPhotoImageView.image = userPhoto
+    }
     
     func inputSucceed() {
         showActivityIndicator()

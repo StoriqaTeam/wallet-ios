@@ -46,18 +46,7 @@ extension ProfilePresenter: ProfileViewOutput {
     }
     
     func signOutButtonTapped() {
-        let alert = UIAlertController(title: "confirm_sign_out".localized(),
-                                      message: nil,
-                                      preferredStyle: .actionSheet)
-        let confirmAction = UIAlertAction(title: "sign_out".localized(), style: .destructive) { _ in
-            self.router.signOut()
-        }
-        let cancelAction = UIAlertAction(title: "cancel".localized(), style: .cancel)
-        
-        alert.addAction(confirmAction)
-        alert.addAction(cancelAction)
-        
-        showAlertVC(alert)
+        router.signOutConfirmPopUp(popUpDelegate: self, from: view.viewController)
     }
     
     func changePhoneButtonTapped() {
@@ -104,6 +93,17 @@ extension ProfilePresenter: ProfileModuleInput {
 
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
+    }
+    
+}
+
+
+// MARK: - PopUpSignOutVMDelegate
+
+extension ProfilePresenter: PopUpSignOutVMDelegate {
+    
+    func signOut() {
+        router.signOut()
     }
     
 }
