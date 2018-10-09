@@ -20,6 +20,11 @@ class SettingsViewController: UITableViewController {
         output.viewIsReady()
     }
     
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        output.willMoveToParentVC()
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SettingsHeaderView")
         let headerView = cell as! SettingsHeaderView
@@ -33,7 +38,6 @@ class SettingsViewController: UITableViewController {
         return 44
     
     }
-    
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 74
