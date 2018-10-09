@@ -32,7 +32,7 @@
                                         <size key="contentOffset" width="0.0" height="1"/>
                                     </segment>
                                 </segments>
-                                <color key="tintColor" red="0.52941176469999995" green="0.61568627450000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="filterTapped:" destination="pbG-0L-5ie" eventType="valueChanged" id="7JR-0K-QpT"/>
                                 </connections>

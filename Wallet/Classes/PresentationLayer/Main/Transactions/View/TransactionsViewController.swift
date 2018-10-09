@@ -74,8 +74,6 @@ extension TransactionsViewController {
         let dividerImageSize  = CGSize(width: 1.0, height: filterSegmentControl.bounds.size.height)
         let deviderImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: dividerImageSize)
         
-        filterSegmentControl.setBackgroundImage(backgroundImage, for: .normal, barMetrics: .default)
-        filterSegmentControl.setBackgroundImage(backgroundImage, for: .selected, barMetrics: .default)
         filterSegmentControl.setBackgroundImage(backgroundImage, for: .highlighted, barMetrics: .default)
         filterSegmentControl.setDividerImage(deviderImage,
                                              forLeftSegmentState: .selected,
@@ -84,7 +82,7 @@ extension TransactionsViewController {
         
         filterSegmentControl.setTitleTextAttributes(normalTextAttributes, for: .normal)
         filterSegmentControl.setTitleTextAttributes(selectedtextAttributes, for: .selected)
-        filterSegmentControl.setWidth(60, forSegmentAt: 0)
+        filterSegmentControl.setWidth(40, forSegmentAt: 0)
         filterSegmentControl.setWidth(90, forSegmentAt: 1)
         filterSegmentControl.setWidth(90, forSegmentAt: 2)
     }
