@@ -51,7 +51,6 @@ class AccountDisplayer: AccountDisplayerProtocol {
     }
     
     func holderName() -> String {
-//        let accountOwner = userDataStoreService.getUserWith(id: account.userId)!
         let holderName = "\(user.firstName) \(user.lastName)"
         return holderName
     }

@@ -17,6 +17,7 @@ class RealmUser: Object {
     dynamic var phone: String = ""
     dynamic var firstName: String = ""
     dynamic var lastName: String = ""
+    dynamic var photo: Data?
     
     override class func primaryKey() -> String? {
         return "id"

@@ -22,11 +22,16 @@ class SettingsPresenter {
 // MARK: - SettingsViewOutput
 
 extension SettingsPresenter: SettingsViewOutput {
+    
     func viewIsReady() {
         view.setupInitialState()
         configureNavigationBar()
     }
-
+    
+    func willMoveToParentVC() {
+        view.viewController.setWhiteTextNavigationBar()
+    }
+    
 }
 
 
@@ -40,9 +45,6 @@ extension SettingsPresenter: SettingsInteractorOutput {
 // MARK: - SettingsModuleInput
 
 extension SettingsPresenter: SettingsModuleInput {
-    var viewController: UIViewController {
-        return view.viewController
-    }
     
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
@@ -54,10 +56,9 @@ extension SettingsPresenter: SettingsModuleInput {
 
 extension SettingsPresenter {
     func configureNavigationBar() {
+        view.viewController.title = "Settings"
+        view.viewController.setDarkTextNavigationBar()
         view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.navigationController?.navigationBar.isTranslucent = false
-        view.viewController.navigationController?.navigationBar.tintColor = .white
-        view.viewController.navigationController?.navigationBar.topItem?.title = "Settings"
     }
 }
