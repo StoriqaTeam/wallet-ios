@@ -11,5 +11,7 @@ import UIKit
 
 protocol ProfileRouterInput: class {
     func showSettings(from viewController: UIViewController)
+    func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate,
+                             from viewController: UIViewController)
     func signOut()
 }

@@ -20,7 +20,6 @@ class PopUpRegistrationSuccessVM: PopUpViewModelProtocol {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
                                    title: "email_sent".localized(),
                                    text: "check_email".localized() + email,
-                                   attributedText: nil,
                                    actionButtonTitle: "sign_in".localized(),
                                    hasCloseButton: false)
     }

@@ -18,6 +18,12 @@ class ProfileRouter {
 
 extension ProfileRouter: ProfileRouterInput {
     
+    func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate, from viewController: UIViewController) {
+        let viewModel = PopUpSignOutVM()
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
     func signOut() {
         LoginModule.create().present()
     }

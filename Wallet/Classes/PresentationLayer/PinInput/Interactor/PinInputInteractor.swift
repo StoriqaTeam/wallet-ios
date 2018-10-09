@@ -15,13 +15,16 @@ class PinInputInteractor {
     private let defaultsProvider: DefaultsProviderProtocol
     private let pinValidator: PinValidationProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
+    private let userStoreService: UserDataStoreServiceProtocol
     
     init(defaultsProvider: DefaultsProviderProtocol,
          pinValidator: PinValidationProviderProtocol,
-         biometricAuthProvider: BiometricAuthProviderProtocol) {
+         biometricAuthProvider: BiometricAuthProviderProtocol,
+         userStoreService: UserDataStoreServiceProtocol) {
         self.defaultsProvider = defaultsProvider
         self.pinValidator = pinValidator
         self.biometricAuthProvider = biometricAuthProvider
+        self.userStoreService = userStoreService
     }
 }
 
@@ -29,6 +32,10 @@ class PinInputInteractor {
 // MARK: - PinInputInteractorInput
 
 extension PinInputInteractor: PinInputInteractorInput {
+    
+    func getCurrentUser() -> User {
+        return userStoreService.getCurrentUser()
+    }
     
     func validatePassword(_ password: String) {
         if pinValidator.pinIsValid(password) {

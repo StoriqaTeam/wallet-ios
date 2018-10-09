@@ -17,7 +17,6 @@ class PopUpPasswordEmailRecoverySuccessVM: PopUpViewModelProtocol {
     var apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
                                    title: "email_sent".localized(),
                                    text: "check_mail_password_recovery".localized(),
-                                   attributedText: nil,
                                    actionButtonTitle: "ok".localized(),
                                    hasCloseButton: false)
     

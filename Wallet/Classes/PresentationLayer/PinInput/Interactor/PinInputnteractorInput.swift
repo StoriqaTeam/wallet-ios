@@ -15,4 +15,5 @@ protocol PinInputInteractorInput: class {
     func biometricAuthImage() -> UIImage?
     func authWithBiometry()
     func resetPin()
+    func getCurrentUser() -> User
 }

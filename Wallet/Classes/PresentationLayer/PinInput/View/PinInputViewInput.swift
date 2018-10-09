@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol PinInputViewInput: class, Presentable {
-    func setupInitialState()
+    func setupInitialState(userPhoto: UIImage)
     func inputSucceed()
     func inputFailed()
     func clearInput()

@@ -17,7 +17,6 @@ class PopUpPasswordRecoveryConfirmSuccessVM: PopUpViewModelProtocol {
     var apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
                                    title: "psw_recovery_result_success_title".localized(),
                                    text: "psw_recovery_result_success_subtitle".localized(),
-                                   attributedText: nil,
                                    actionButtonTitle: "sign_in".localized(),
                                    hasCloseButton: false)
     

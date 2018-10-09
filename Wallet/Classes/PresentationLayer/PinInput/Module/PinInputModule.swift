@@ -17,9 +17,11 @@ class PinInputModule {
         let defaultsProvider = DefaultsProvider()
         let biometricAuthProvider = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
         let pinValidator = PinValidationProvider(keychainProvider: keychainProvider)
+        let userStoreService = UserDataStoreService()
         let interactor = PinInputInteractor(defaultsProvider: defaultsProvider,
                                             pinValidator: pinValidator,
-                                            biometricAuthProvider: biometricAuthProvider)
+                                            biometricAuthProvider: biometricAuthProvider,
+                                            userStoreService: userStoreService)
         
         let pinInputSb = UIStoryboard(name: "PinInput", bundle: nil)
         let viewController = pinInputSb.instantiateViewController(withIdentifier: "PinLoginVC") as! PinInputViewController

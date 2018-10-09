@@ -325,6 +325,7 @@
 		CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAFBE2153949B009E707E /* PinSetup.storyboard */; };
 		CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */; };
 		CE6A096F216B9537004A96A8 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6A096E216B9537004A96A8 /* Profile.storyboard */; };
+		CE6A0972216CD1B3004A96A8 /* PopUpSignOutVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A0971216CD1B3004A96A8 /* PopUpSignOutVM.swift */; };
 		CE8CC9922167A90D00EA9EED /* AccountDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */; };
 		CE8CC9952167A92B00EA9EED /* CurrencyImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */; };
 		CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9962167B7A500EA9EED /* Currency.swift */; };
@@ -795,6 +796,7 @@
 		CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CE6782F3DF8CA9544D645F0A /* MainTabBarRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarRouter.swift; sourceTree = "<group>"; };
 		CE6A096E216B9537004A96A8 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		CE6A0971216CD1B3004A96A8 /* PopUpSignOutVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSignOutVM.swift; sourceTree = "<group>"; };
 		CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayer.swift; sourceTree = "<group>"; };
 		CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyImageProvider.swift; sourceTree = "<group>"; };
 		CE8CC9962167B7A500EA9EED /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -982,6 +984,7 @@
 		0841286249C47AFA3D2EABCC /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				CE6A0971216CD1B3004A96A8 /* PopUpSignOutVM.swift */,
 				6A00BBC1208ED512B27D9CE1 /* ProfileInteractorInput.swift */,
 				009DBD3597521C1702F47D2E /* ProfileInteractorOutput.swift */,
 				00FCF81ED79D91591ACBF181 /* ProfileInteractor.swift */,
@@ -3429,6 +3432,7 @@
 				7A80EBB895B1151398C2D79F /* FirstLaunchInteractorOutput.swift in Sources */,
 				EBA3144E74DD09EC8832E45F /* FirstLaunchInteractor.swift in Sources */,
 				ED225EB78E206616574BF490 /* FirstLaunchRouterInput.swift in Sources */,
+				CE6A0972216CD1B3004A96A8 /* PopUpSignOutVM.swift in Sources */,
 				B5D0A50EC37F23DE647B941B /* FirstLaunchRouter.swift in Sources */,
 				7802FA10023A55BCB10D8538 /* FirstLaunchModuleInput.swift in Sources */,
 				DF3822DC4DAE4101FC197A94 /* FirstLaunchModuleOutput.swift in Sources */,

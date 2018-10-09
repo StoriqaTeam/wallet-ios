@@ -29,7 +29,6 @@ class PopUpSendConfirmVM: PopUpViewModelProtocol {
         //TODO: image
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "barrierIcon"),
                                    title: "confirm_send".localized(),
-                                   text: nil,
                                    attributedText: attrText,
                                    actionButtonTitle: "confirm_transaction".localized(),
                                    hasCloseButton: true)

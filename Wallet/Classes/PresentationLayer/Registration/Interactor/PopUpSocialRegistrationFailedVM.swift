@@ -15,7 +15,6 @@ class PopUpSocialRegistrationFailedVM: PopUpViewModelProtocol {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "generalErrorIcon"),
                                    title: "smth_went_wrong".localized(),
                                    text: message,
-                                   attributedText: nil,
                                    actionButtonTitle: "ok".localized(),
                                    hasCloseButton: false)
     }

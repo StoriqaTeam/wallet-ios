@@ -39,7 +39,8 @@
 "make_photo" = "Make a photo";
 "from_gallery" = "Take from gallery";
 "cancel" = "Cancel";
-"sign_out" = "Sign out";
+"sure" = "Yepp sure!";
+"not_now" = "No, not now";
 
 //Other controls
 "accept_agreement" = "I accept the terms of the license agreement and privacy policy";
@@ -83,7 +84,8 @@
 "to" = "to";
 "check_mail_password_recovery" = "Check your mailbox and follow the link to recover your password";
 "change_photo" = "Change profile photo";
-"confirm_sign_out" = "Do you really want to sign out?";
+"sign_out_title" = "Sure to sign out?";
+"sign_out_text" = "After signing out you won’t be able to receive notifications from Wallet app";
 
 
 //Error constants
