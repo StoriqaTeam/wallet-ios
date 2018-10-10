@@ -150,7 +150,7 @@ extension PaymentFeePresenter {
         switch opponentType {
         case .contact(let contact):
             //TODO: будем получать?
-            address = "test address"
+            address = "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD"
             receiverName = contact.name
         case .address(let addr):
             address = addr

@@ -25,6 +25,11 @@ class SettingsViewController: UITableViewController {
         output.willMoveToParentVC()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.viewDidAppear()
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SettingsHeaderView")
         let headerView = cell as! SettingsHeaderView
@@ -51,6 +56,8 @@ extension SettingsViewController: SettingsViewInput {
     
     func setupInitialState() {
         loadNib()
+        view.backgroundColor = .white
+        tableView.alwaysBounceVertical = false
     }
 
 }

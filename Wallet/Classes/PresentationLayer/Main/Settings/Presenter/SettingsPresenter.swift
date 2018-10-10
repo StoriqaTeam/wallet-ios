@@ -30,6 +30,24 @@ extension SettingsPresenter: SettingsViewOutput {
     
     func willMoveToParentVC() {
         view.viewController.setWhiteTextNavigationBar()
+        
+        guard let navigationBar = view.viewController.navigationController?.navigationBar else {
+            return
+        }
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.backgroundColor = .clear
+    }
+    
+    func viewDidAppear() {
+        guard let navigationBar = view.viewController.navigationController?.navigationBar else {
+            return
+        }
+        
+        let rect = CGRect(x: 0, y: -80, width: Constants.Sizes.screenWith, height: 124)
+        let image = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor,
+                                                    andRect: rect)
+        navigationBar.setBackgroundImage(image, for: .default)
+        navigationBar.backgroundColor = .white
     }
     
 }

@@ -10,6 +10,11 @@ import UIKit
 
 class HeaderGradientView: UIView {
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setGradient()
+    }
+    
     override var bounds: CGRect {
         didSet { setGradient() }
     }

@@ -66,13 +66,22 @@ extension UIView {
         return lineView
     }
     
-    func gradientView(colors: [CGColor], frame: CGRect, startPoint: CGPoint, endPoint: CGPoint) {
+    func gradientView(colors: [CGColor],
+                      frame: CGRect,
+                      startPoint: CGPoint,
+                      endPoint: CGPoint,
+                      insertFirst: Bool = false) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = colors
         gradientLayer.frame = frame
         gradientLayer.startPoint = startPoint
         gradientLayer.endPoint = endPoint
-        layer.addSublayer(gradientLayer)
+        
+        if insertFirst {
+            layer.insertSublayer(gradientLayer, at: 0)
+        } else {
+            layer.addSublayer(gradientLayer)
+        }
     }
     
 }
@@ -80,13 +89,19 @@ extension UIView {
 
 extension UIImage {
     class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let rectangle = CGRect(origin: CGPoint.zero, size: size)
+        return getColoredRectImageWith(color: color, andRect: rectangle)
+    }
+    
+    class func getColoredRectImageWith(color: CGColor, andRect rect: CGRect) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
         let graphicsContext = UIGraphicsGetCurrentContext()
         graphicsContext?.setFillColor(color)
-        let rectangle = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+        let rectangle = rect
         graphicsContext?.fill(rectangle)
         let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return rectangleImage!
     }
+    
 }

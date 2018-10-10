@@ -29,7 +29,7 @@ private struct BarButtonConst {
 
 class ResizableNavigationBarButton: UIButton {
     
-    init(title: String, tintColor: UIColor = .mainBlue) {
+    init(title: String, tintColor: UIColor = .white) {
         super.init(frame: .zero)
         
         setTitle(title, for: .normal)
@@ -37,7 +37,7 @@ class ResizableNavigationBarButton: UIButton {
         titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         roundCorners(radius: BarButtonConst.ButtonHeightForLargeState / 2,
                          borderWidth: Constants.Sizes.lineWidth,
-                         borderColor: UIColor.mainBlue)
+                         borderColor: tintColor)
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
     }
