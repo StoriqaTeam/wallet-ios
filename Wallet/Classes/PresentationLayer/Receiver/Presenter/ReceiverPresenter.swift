@@ -15,6 +15,7 @@ class ReceiverPresenter {
     weak var output: ReceiverModuleOutput?
     var interactor: ReceiverInteractorInput!
     var router: ReceiverRouterInput!
+    weak var mainTabBar: UITabBarController!
     
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
@@ -46,7 +47,9 @@ extension ReceiverPresenter: ReceiverViewOutput {
     
     func nextButtonPressed() {
         let builder = interactor.getSendTransactionBuilder()
-        router.showPaymentFee(sendTransactionBuilder: builder, from: view.viewController)
+        router.showPaymentFee(sendTransactionBuilder: builder,
+                              from: view.viewController,
+                              tabBar: mainTabBar)
     }
     
     func scanButtonPressed() {

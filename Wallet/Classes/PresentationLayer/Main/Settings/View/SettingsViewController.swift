@@ -38,8 +38,6 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let section = indexPath.section
-        if section == 0 { return 52 }
         return 44
     
     }

@@ -15,6 +15,7 @@ class SendPresenter {
     weak var output: SendModuleOutput?
     var interactor: SendInteractorInput!
     var router: SendRouterInput!
+    weak var mainTabBar: UITabBarController!
     
     private let currencyFormatter: CurrencyFormatterProtocol
     private let currencyImageProvider: CurrencyImageProviderProtocol
@@ -42,7 +43,9 @@ extension SendPresenter: SendViewOutput {
     
     func nextButtonPressed() {
         let builder = interactor.getTransactionBuilder()
-        router.showReceiver(sendTransactionBuilder: builder, from: view.viewController)
+        router.showReceiver(sendTransactionBuilder: builder,
+                            from: view.viewController,
+                            mainTabBar: mainTabBar)
     }
     
     func receiverCurrencyChanged(_ index: Int) {

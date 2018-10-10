@@ -85,4 +85,9 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
     func getFeeWaitCount() -> Int {
         return sendProvider.getFeeWaitCount()
     }
+    
+    func clearBuilder() {
+        sendTransactionBuilder.clear()
+    }
+    
 }

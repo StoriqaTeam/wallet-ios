@@ -8,7 +8,8 @@ import UIKit
 
 class PaymentFeeModule {
     
-    class func create(sendTransactionBuilder: SendProviderBuilderProtocol) -> PaymentFeeModuleInput {
+    class func create(sendTransactionBuilder: SendProviderBuilderProtocol,
+                      tabBar: UITabBarController) -> PaymentFeeModuleInput {
         let router = PaymentFeeRouter()
         let formatter = CurrencyFormatter()
         let converterFactory = CurrecncyConverterFactory()
@@ -17,6 +18,7 @@ class PaymentFeeModule {
         let presenter = PaymentFeePresenter(currencyFormatter: formatter,
                                             converterFactory: converterFactory,
                                             currencyImageProvider: currencyImageProvider)
+        presenter.mainTabBar = tabBar
         let interactor = PaymentFeeInteractor(sendTransactionBuilder: sendTransactionBuilder)
         
         let accountsVC = UIStoryboard(name: "PaymentFee", bundle: nil)

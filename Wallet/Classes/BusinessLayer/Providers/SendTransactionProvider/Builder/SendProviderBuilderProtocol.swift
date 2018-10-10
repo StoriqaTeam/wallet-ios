@@ -17,4 +17,5 @@ protocol SendProviderBuilderProtocol: class {
     func setReceiverCurrency(_ currency: Currency)
     func setScannedDelegate(_ delegate: QRScannerDelegate)
     func build() -> SendTransactionProvider
+    func clear()
 }
