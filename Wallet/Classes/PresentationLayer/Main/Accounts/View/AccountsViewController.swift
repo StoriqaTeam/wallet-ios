@@ -45,7 +45,6 @@ class AccountsViewController: UIViewController {
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-        output.willMoveToParentVC()
         accountsCollectionView?.clipsToBounds = true
     }
     

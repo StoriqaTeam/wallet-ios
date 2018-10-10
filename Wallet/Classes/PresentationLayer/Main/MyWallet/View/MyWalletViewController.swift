@@ -14,7 +14,7 @@ class MyWalletViewController: UIViewController {
 
     // MARK: IBOutlets
     
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet private var collectionView: UICollectionView!
     
     // MARK: variables
     
@@ -41,6 +41,12 @@ class MyWalletViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.gradientView(colors: Theme.Gradient.headerGradient,
+                          frame: view.bounds,
+                          startPoint: CGPoint(x: 0.0, y: 0.0),
+                          endPoint: CGPoint(x: 1.0, y: 1.0),
+                          insertFirst: true)
         guard let height = navigationController?.navigationBar.frame.height else { return }
         addNewButton.moveAndResizeImage(for: height)
     }
@@ -48,9 +54,7 @@ class MyWalletViewController: UIViewController {
     // MARK: Actions
     
     @IBAction private func addNew() {
-        //TODO: remove this
-        
-        showAlert(message: "Add new button tapped")
+        output.addNewTapped()
     }
 }
 

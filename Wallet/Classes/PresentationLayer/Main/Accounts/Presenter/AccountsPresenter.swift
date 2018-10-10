@@ -75,10 +75,6 @@ extension AccountsPresenter: AccountsViewOutput {
         view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
     }
-    
-    func willMoveToParentVC() {
-        view.viewController.setDarkTextNavigationBar()
-    }
 }
 
 

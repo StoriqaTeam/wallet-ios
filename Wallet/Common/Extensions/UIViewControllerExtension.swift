@@ -44,6 +44,7 @@ extension UIViewController {
         var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
         titleTextAttributes[NSAttributedString.Key.foregroundColor] = color
         navigationBar.titleTextAttributes = titleTextAttributes
+        navigationBar.largeTitleTextAttributes = titleTextAttributes
     }
     
     func addHideKeyboardGuesture() {
