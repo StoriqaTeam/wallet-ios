@@ -15,7 +15,6 @@ class ProfileViewController: UIViewController {
 
     // MARK: IBOutlets
     
-    @IBOutlet private var gradientView: UIView!
     @IBOutlet private var photoContainer: UIView!
     @IBOutlet private var photoImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
@@ -38,9 +37,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        gradientView.accountsHeaderGradientView()
         stackViewContainer.roundCorners([.topLeft, .topRight], radius: 24)
         roundPhotoContainerViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
     }
     
     // MARK: IBActions
@@ -79,7 +82,17 @@ extension ProfileViewController: ProfileViewInput {
         photoImageView.image = photo
         nameLabel.text = name
         emailLabel.text = email
+        setPhone(hasPhone: hasPhone, phone: phone)
         
+        configureInterface()
+        
+    }
+    
+    func setPhoto(_ photo: UIImage) {
+        photoImageView.image = photo
+    }
+    
+    func setPhone(hasPhone: Bool, phone: String?) {
         if hasPhone {
             phoneLabel.text = phone
             phoneLabel.isHidden = false
@@ -91,13 +104,6 @@ extension ProfileViewController: ProfileViewInput {
             changePhoneButton.isHidden = true
             connectPhoneButton.isHidden = false
         }
-        
-        configureInterface()
-        
-    }
-    
-    func setPhoto(_ photo: UIImage) {
-        photoImageView.image = photo
     }
     
 }

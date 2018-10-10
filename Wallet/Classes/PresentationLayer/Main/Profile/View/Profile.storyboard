@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ue3-pq-ORR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="389.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2g-cC-v7Q">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2g-cC-v7Q" customClass="HeaderGradientView" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="389.5"/>
                                         <color key="backgroundColor" red="0.23529411759999999" green="0.42352941179999998" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
@@ -283,7 +283,6 @@
                         <outlet property="connectPhoneButton" destination="lUh-Hy-5uQ" id="riR-UP-ZWu"/>
                         <outlet property="emailLabel" destination="mQP-Ey-Ne4" id="6bs-kh-695"/>
                         <outlet property="emailTitleLabel" destination="vkU-dC-0iL" id="fhh-jl-UyC"/>
-                        <outlet property="gradientView" destination="n2g-cC-v7Q" id="I3t-UZ-Nfr"/>
                         <outlet property="nameLabel" destination="LYP-rh-Kbz" id="OIN-pD-Rp7"/>
                         <outlet property="phoneLabel" destination="BNk-IX-QkH" id="Jkg-iZ-Wfd"/>
                         <outlet property="phoneTitleLabel" destination="uqa-tz-dAz" id="PPl-yX-W0Z"/>

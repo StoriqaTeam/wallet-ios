@@ -37,20 +37,26 @@ extension ProfilePresenter: ProfileViewOutput {
         configureNavigationBar()
     }
 
+    func viewWillAppear() {
+        let user = interactor.getCurrentUser()
+        let hasPhone = !user.phone.isEmpty
+        view.setPhone(hasPhone: hasPhone, phone: user.phone)
+    }
+    
     func settingsButtonTapped() {
         router.showSettings(from: view.viewController)
     }
     
     func connectPhoneButtonTapped() {
-        // TODO: connectPhoneButtonTapped
+        router.showConnectPhone(from: view.viewController)
+    }
+    
+    func changePhoneButtonTapped() {
+        router.showConnectPhone(from: view.viewController)
     }
     
     func signOutButtonTapped() {
         router.signOutConfirmPopUp(popUpDelegate: self, from: view.viewController)
-    }
-    
-    func changePhoneButtonTapped() {
-        // TODO: changePhoneButtonTapped
     }
     
     func photoTapped() {
