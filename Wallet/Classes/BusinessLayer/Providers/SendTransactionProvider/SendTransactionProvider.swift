@@ -14,7 +14,7 @@ protocol QRScannerDelegate: class {
 
 protocol SendTransactionProviderProtocol: class {
     
-    var amount: Decimal! { get }
+    var amount: Decimal { get }
     var paymentFee: Decimal { get }
     var opponentType: OpponentType { get }
     var receiverCurrency: Currency { get }
@@ -22,7 +22,8 @@ protocol SendTransactionProviderProtocol: class {
 
     func getFeeWaitCount() -> Int
     func getFeeAndWait() -> (fee: String, wait: String)
-    func getSubtotal() -> String
+    func getConvertedAmount() -> Decimal
+    func getSubtotal() -> Decimal
     func isEnoughFunds() -> Bool
     func createTransaction() -> Transaction
 }
@@ -32,16 +33,12 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     weak var scanDelegate: QRScannerDelegate?
     
     var selectedAccount: Account
-    
-    var receiverCurrency: Currency {
-        didSet {
-            updateConverter()
-        }
-    }
-    
-    var amount: Decimal!
+    var amount: Decimal
     var paymentFee: Decimal
     var opponentType: OpponentType
+    var receiverCurrency: Currency {
+        didSet { updateConverter() }
+    }
     
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
@@ -60,37 +57,18 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         self.feeWaitProvider = feeWaitProvider
         
         // default build
-        self.paymentFee = 0
-        self.opponentType = .address(address: "default")
-        self.selectedAccount = accountProvider.getAllAccounts().first!
-        self.receiverCurrency = .stq
-        
-        setDefaults()
-        loadPaymentFees()
-    }
-    
-    func setDefaults() {
-        self.scanDelegate = nil
         self.amount = 0
         self.paymentFee = 0
         self.opponentType = .address(address: "default")
         self.selectedAccount = accountProvider.getAllAccounts().first!
         self.receiverCurrency = .stq
+        
+        loadPaymentFees()
+        updateConverter()
     }
     
     func setPaymentFee(index: Int) {
         paymentFee = feeWaitProvider.getFee(index: index)
-    }
-    
-    func getAmountInTransactionCurrencyStr() -> String {
-        guard let amount = amount, !amount.isZero else {
-                return ""
-        }
-        
-        let currency = selectedAccount.currency
-        let converted = currencyConverter.convert(amount: amount, to: currency)
-        let formatted = currencyFormatter.getStringFrom(amount: converted, currency: currency)
-        return "=" + formatted
     }
     
     func getFeeWaitCount() -> Int {
@@ -104,12 +82,17 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         return (feeStr, waitStr)
     }
     
-    func getSubtotal() -> String {
-        let converted = currencyConverter.convert(amount: amount, to: selectedAccount.currency)
+    func getConvertedAmount() -> Decimal {
+        guard !amount.isZero else { return 0 }
+        let currency = selectedAccount.currency
+        let converted = currencyConverter.convert(amount: amount, to: currency)
+        return converted
+    }
+    
+    func getSubtotal() -> Decimal {
+        let converted = getConvertedAmount()
         let sum = converted + paymentFee
-        let formatted = currencyFormatter.getStringFrom(amount: sum, currency: selectedAccount.currency)
-        
-        return formatted
+        return sum
     }
     
     func isEnoughFunds() -> Bool {

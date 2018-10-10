@@ -11,10 +11,11 @@ import Foundation
 
 class SendInteractor {
     weak var output: SendInteractorOutput!
+    
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let sendTransactionBuilder: SendProviderBuilderProtocol
-    private let sendProvider: SendTransactionProvider
+    private var sendProvider: SendTransactionProviderProtocol
     
     init(sendTransactionBuilder: SendProviderBuilderProtocol,
          accountsProvider: AccountsProviderProtocol,
@@ -34,8 +35,13 @@ class SendInteractor {
 // MARK: - SendInteractorInput
 
 extension SendInteractor: SendInteractorInput {
+    
     func getAccounts() -> [Account] {
         return accountsProvider.getAllAccounts()
+    }
+    
+    func getSelectedAccountCurrency() -> Currency {
+        return sendProvider.selectedAccount.currency
     }
     
     func getAccountIndex() -> Int {
@@ -59,13 +65,13 @@ extension SendInteractor: SendInteractorInput {
         let account = allAccounts[index]
         sendTransactionBuilder.set(account: account)
         output.updateAmount()
-        output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
+        output.updateConvertedAmount()
     }
     
     func setReceiverCurrency(_ currency: Currency) {
         sendTransactionBuilder.setReceiverCurrency(currency)
         output.updateAmount()
-        output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
+        output.updateConvertedAmount()
     }
     
     func isFormValid() -> Bool {
@@ -78,8 +84,8 @@ extension SendInteractor: SendInteractorInput {
     
     func setAmount(_ amount: String) {
         let decimal = amount.decimalValue()
-        sendProvider.amount = decimal
-        output.updateConvertedAmount(sendProvider.getAmountInTransactionCurrencyStr())
+        sendTransactionBuilder.set(cryptoAmount: decimal)
+        output.updateConvertedAmount()
     }
     
     func getAmount() -> Decimal? {
@@ -88,6 +94,14 @@ extension SendInteractor: SendInteractorInput {
     
     func getReceiverCurrency() -> Currency {
         return sendProvider.receiverCurrency
+    }
+    
+    func getConvertedAmount() -> Decimal {
+        return sendProvider.getConvertedAmount()
+    }
+    
+    func updateTransactionProvider() {
+        sendProvider = sendTransactionBuilder.build()
     }
     
 }
@@ -102,6 +116,6 @@ extension SendInteractor {
     }
     
     private func setInitialAccount(account: Account) {
-        self.sendProvider.selectedAccount = account
+        sendTransactionBuilder.set(account: account)
     }
 }

@@ -44,6 +44,7 @@ class SendViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.configureCollections()
+        output.viewWillAppear()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,7 +101,6 @@ class SendViewController: UIViewController {
 // MARK: - SendViewInput
 
 extension SendViewController: SendViewInput {
-    
     func setupInitialState(currencyImages: [UIImage], numberOfPages: Int) {
         receiverCurrencySegmentedControl.buttonImages = currencyImages
         output.receiverCurrencyChanged(receiverCurrencySegmentedControl.selectedSegmentIndex)
@@ -123,6 +123,10 @@ extension SendViewController: SendViewInput {
     
     func setButtonEnabled(_ enabled: Bool) {
         nextButton.isHidden = !enabled
+    }
+    
+    func setReceiverCurrencyIndex(_ index: Int) {
+        receiverCurrencySegmentedControl.setSelectedSegmentIndex(index)
     }
     
 }

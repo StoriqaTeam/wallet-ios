@@ -12,7 +12,7 @@ class CustomSegmentedControl: UIControl {
     
     private var buttons = [UIButton]()
     private var selector: UIView!
-    var selectedSegmentIndex = 0
+    private(set) var selectedSegmentIndex = 0
     
     var buttonImages = [UIImage]() {
         didSet { updateView() }
@@ -32,7 +32,34 @@ class CustomSegmentedControl: UIControl {
         didSet { updateButtonColors() }
     }
     
-    @objc func buttonTapped(button: UIButton) {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        selector?.frame.size.width = frame.width / CGFloat(buttonImages.count)
+    }
+    
+    func setSelectedSegmentIndex(_ index: Int) {
+        selectedSegmentIndex = index
+        
+        buttons.forEach { $0.tintColor = imageColor }
+        buttons[index].tintColor = selectedImageColor
+        let selectorStartPosition = frame.width / CGFloat(buttons.count) * CGFloat(index)
+        selector.frame.origin.x = selectorStartPosition
+    }
+    
+}
+
+
+// MARK: - Private methods
+
+extension CustomSegmentedControl {
+    
+    private func updateButtonColors() {
+        for (buttonIndex, btn) in buttons.enumerated() {
+            btn.tintColor = buttonIndex == selectedSegmentIndex ? selectedImageColor : imageColor
+        }
+    }
+    
+    @objc private func buttonTapped(button: UIButton) {
         for (buttonIndex, btn) in buttons.enumerated() {
             if btn == button {
                 selectedSegmentIndex = buttonIndex
@@ -48,23 +75,6 @@ class CustomSegmentedControl: UIControl {
         }
         
         sendActions(for: .valueChanged)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        selector?.frame.size.width = frame.width / CGFloat(buttonImages.count)
-    }
-    
-}
-
-
-// MARK: - Private methods
-
-extension CustomSegmentedControl {
-    private func updateButtonColors() {
-        for (buttonIndex, btn) in buttons.enumerated() {
-            btn.tintColor = buttonIndex == selectedSegmentIndex ? selectedImageColor : imageColor
-        }
     }
     
     private func updateView() {
@@ -110,4 +120,5 @@ extension CustomSegmentedControl {
         stackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         
     }
+    
 }

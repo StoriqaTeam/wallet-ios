@@ -10,6 +10,6 @@ import Foundation
 
 
 protocol SendInteractorOutput: class {
-    func updateConvertedAmount(_ amount: String)
+    func updateConvertedAmount()
     func updateAmount()
 }
