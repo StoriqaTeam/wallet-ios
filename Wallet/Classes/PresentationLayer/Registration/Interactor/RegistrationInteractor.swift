@@ -54,6 +54,13 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         
         // FIXME: - stub
         if Bool.random() {
+            let user = User(id: "0",
+                            email: registrationData.email,
+                            phone: "",
+                            firstName: registrationData.firstName,
+                            lastName: registrationData.lastName,
+                            photo: nil)
+            UserDataStoreService().save(user)
             output.registrationSucceed(email: registrationData.email)
         } else {
             output.registrationFailed(message: Constants.Errors.userFriendly)

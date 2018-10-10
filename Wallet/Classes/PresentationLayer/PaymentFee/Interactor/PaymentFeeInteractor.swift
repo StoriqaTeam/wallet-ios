@@ -33,7 +33,7 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         switch sendProvider.opponentType {
         case .contact:
             //TODO: будем получать?
-            address = "test address"
+            address = "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD"
         case .address(let addr):
             address = addr
         }
@@ -85,4 +85,9 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
     func getFeeWaitCount() -> Int {
         return sendProvider.getFeeWaitCount()
     }
+    
+    func clearBuilder() {
+        sendTransactionBuilder.clear()
+    }
+    
 }

@@ -8,7 +8,9 @@ import UIKit
 
 class SendModule {
     
-    class func create(accountWatcher: CurrentAccountWatcherProtocol, user: User) -> SendModuleInput {
+    class func create(accountWatcher: CurrentAccountWatcherProtocol,
+                      user: User,
+                      tabBar: UITabBarController) -> SendModuleInput {
         let router = SendRouter()
         
         //Injections
@@ -31,6 +33,7 @@ class SendModule {
         let presenter = SendPresenter(currencyFormatter: formatter,
                                       currencyImageProvider: currencyImageProvider,
                                       accountDisplayer: accountDisplayer)
+        presenter.mainTabBar = tabBar
         let interactor = SendInteractor(sendTransactionBuilder: sendTxBuilder,
                                         accountsProvider: accountProvider,
                                         accountWatcher: accountWatcher)

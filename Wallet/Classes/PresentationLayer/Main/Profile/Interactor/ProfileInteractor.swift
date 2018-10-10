@@ -13,11 +13,9 @@ class ProfileInteractor {
     weak var output: ProfileInteractorOutput!
     
     private let userStoreService: UserDataStoreServiceProtocol
-    private var user: User
     
     init(userStoreService: UserDataStoreServiceProtocol) {
         self.userStoreService = userStoreService
-        self.user = userStoreService.getCurrentUser()
     }
 }
 
@@ -27,12 +25,16 @@ class ProfileInteractor {
 extension ProfileInteractor: ProfileInteractorInput {
     
     func getCurrentUser() -> User {
-        return user
+        return userStoreService.getCurrentUser()
     }
 
     func setNewPhoto(_ photo: UIImage) {
+        var user = getCurrentUser()
         user.photo = photo
-        userStoreService.save(user)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.userStoreService.save(user)
+        }
     }
     
 }

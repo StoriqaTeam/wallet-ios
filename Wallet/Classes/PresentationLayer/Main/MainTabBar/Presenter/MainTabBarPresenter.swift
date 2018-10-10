@@ -27,7 +27,7 @@ class MainTabBarPresenter {
     private lazy var sendModule: SendModuleInput = {
         let watcher = interactor.getAccountWatcher()
         let user = interactor.getCurrentUser()
-        return SendModule.create(accountWatcher: watcher, user: user)
+        return SendModule.create(accountWatcher: watcher, user: user, tabBar: view.mainTabBar!)
     }()
     
     private lazy var exchangeModule: ExchangeModuleInput = {

@@ -17,8 +17,10 @@ class ReceiverRouter {
 // MARK: - ReceiverRouterInput
 
 extension ReceiverRouter: ReceiverRouterInput {
-    func showPaymentFee(sendTransactionBuilder: SendProviderBuilderProtocol, from viewController: UIViewController) {
-        PaymentFeeModule.create(sendTransactionBuilder: sendTransactionBuilder).present(from: viewController)
+    func showPaymentFee(sendTransactionBuilder: SendProviderBuilderProtocol,
+                        from viewController: UIViewController,
+                        tabBar: UITabBarController) {
+        PaymentFeeModule.create(sendTransactionBuilder: sendTransactionBuilder, tabBar: tabBar).present(from: viewController)
     }
     
     func showScanner(sendTransactionBuilder: SendProviderBuilderProtocol, from viewController: UIViewController) {

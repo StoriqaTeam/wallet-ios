@@ -19,7 +19,6 @@ class AccountsViewController: UIViewController {
     @IBOutlet private var changeButton: RouteButton!
     @IBOutlet private var depositButton: RouteButton!
     @IBOutlet private var sendButton: RouteButton!
-    @IBOutlet private var gradientView: UIView!
     
 
     // MARK: Life cycle
@@ -44,14 +43,8 @@ class AccountsViewController: UIViewController {
         output.configureCollections()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        configureGradientView()
-    }
-    
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-        output.willMoveToParentVC()
         accountsCollectionView?.clipsToBounds = true
     }
     
@@ -96,10 +89,6 @@ extension AccountsViewController {
     private func configureTableView() {
         lastTransactionsTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         lastTransactionsTableView.tableFooterView = UIView()
-    }
-    
-    private func configureGradientView() {
-        gradientView.accountsHeaderGradientView()
     }
 }
 

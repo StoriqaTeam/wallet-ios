@@ -23,7 +23,7 @@ class SendViewController: UIViewController {
     @IBOutlet private var convertedAmountLabel: UILabel!
     @IBOutlet private var nextButton: DefaultButton!
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var gradientView: UIView!
+    @IBOutlet private var gradientView: HeaderGradientView!
     
     
     // MARK: Variables
@@ -193,7 +193,7 @@ extension SendViewController {
             (navigationController?.navigationBar.frame.size.height ?? 44) +
             UIApplication.shared.statusBarFrame.height
         
-        gradientView.accountsHeaderGradientView(height: height)
+        gradientView.setHeight(height: height)
     }
     
     private func setNavBarTransparency() {

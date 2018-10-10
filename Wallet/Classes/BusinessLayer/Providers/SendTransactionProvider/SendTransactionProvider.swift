@@ -56,16 +56,26 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
+        self.accountProvider = accountProvider
         self.feeWaitProvider = feeWaitProvider
         
         // default build
         self.paymentFee = 0
         self.opponentType = .address(address: "default")
-        self.accountProvider = accountProvider
         self.selectedAccount = accountProvider.getAllAccounts().first!
-        self.receiverCurrency = .btc
+        self.receiverCurrency = .stq
         
+        setDefaults()
         loadPaymentFees()
+    }
+    
+    func setDefaults() {
+        self.scanDelegate = nil
+        self.amount = 0
+        self.paymentFee = 0
+        self.opponentType = .address(address: "default")
+        self.selectedAccount = accountProvider.getAllAccounts().first!
+        self.receiverCurrency = .stq
     }
     
     func setPaymentFee(index: Int) {

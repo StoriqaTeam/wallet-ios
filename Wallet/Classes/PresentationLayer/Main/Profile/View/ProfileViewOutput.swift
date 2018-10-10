@@ -11,6 +11,7 @@ import UIKit
 
 protocol ProfileViewOutput: class {
     func viewIsReady()
+    func viewWillAppear()
     func settingsButtonTapped()
     func connectPhoneButtonTapped()
     func signOutButtonTapped()

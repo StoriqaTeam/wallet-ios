@@ -21,20 +21,21 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eD-m0-B3U">
-                    <rect key="frame" x="20" y="61" width="339" height="2"/>
+                    <rect key="frame" x="20" y="62" width="339" height="1"/>
                     <color key="backgroundColor" red="0.52941176469999995" green="0.61568627450000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="2" id="AZK-zL-adU"/>
+                        <constraint firstAttribute="height" constant="1" id="AZK-zL-adU"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IeV-oU-Xpc">
-                    <rect key="frame" x="20" y="24.5" width="24.5" height="25"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IeV-oU-Xpc">
+                    <rect key="frame" x="20" y="19" width="36" height="36"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="36" id="5z8-wg-hra"/>
                         <constraint firstAttribute="width" secondItem="IeV-oU-Xpc" secondAttribute="height" multiplier="1:1" id="QMm-fr-mCe"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OqD-vn-99H">
-                    <rect key="frame" x="62" y="29" width="65" height="16"/>
+                    <rect key="frame" x="63" y="29" width="65" height="16"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                     <color key="textColor" red="0.52941176469999995" green="0.61568627450000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -48,9 +49,8 @@
                 <constraint firstItem="IeV-oU-Xpc" firstAttribute="centerY" secondItem="8J6-3I-cDm" secondAttribute="centerY" id="HXa-ui-WGL"/>
                 <constraint firstItem="8J6-3I-cDm" firstAttribute="bottom" secondItem="xj9-Dd-C2T" secondAttribute="bottom" id="JQo-Ft-pZY"/>
                 <constraint firstItem="xj9-Dd-C2T" firstAttribute="leading" secondItem="8J6-3I-cDm" secondAttribute="leading" id="LoD-KX-roU"/>
-                <constraint firstItem="OqD-vn-99H" firstAttribute="leading" secondItem="IeV-oU-Xpc" secondAttribute="trailing" constant="17.5" id="Rvs-DW-iDw"/>
+                <constraint firstItem="OqD-vn-99H" firstAttribute="leading" secondItem="IeV-oU-Xpc" secondAttribute="trailing" constant="7" id="Rvs-DW-iDw"/>
                 <constraint firstItem="8J6-3I-cDm" firstAttribute="bottom" secondItem="8eD-m0-B3U" secondAttribute="bottom" constant="11" id="XUO-ly-9J7"/>
-                <constraint firstItem="IeV-oU-Xpc" firstAttribute="height" secondItem="VbG-Pa-C3I" secondAttribute="height" multiplier="1:3" id="nFW-Cy-IIL"/>
                 <constraint firstItem="OqD-vn-99H" firstAttribute="centerY" secondItem="IeV-oU-Xpc" secondAttribute="centerY" id="srf-V6-7mm"/>
                 <constraint firstItem="8J6-3I-cDm" firstAttribute="trailing" secondItem="xj9-Dd-C2T" secondAttribute="trailing" id="zd4-np-jOd"/>
                 <constraint firstAttribute="trailing" secondItem="8eD-m0-B3U" secondAttribute="trailing" constant="16" id="zlY-9e-cH2"/>

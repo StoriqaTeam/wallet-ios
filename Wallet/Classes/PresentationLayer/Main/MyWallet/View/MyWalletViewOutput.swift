@@ -12,4 +12,5 @@ import UIKit
 protocol MyWalletViewOutput: class {
     func viewIsReady()
     func accountsCollectionView(_ collectionView: UICollectionView)
+    func addNewTapped()
 }

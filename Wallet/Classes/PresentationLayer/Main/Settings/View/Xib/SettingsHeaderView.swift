@@ -10,14 +10,13 @@ import UIKit
 
 class SettingsHeaderView: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var headerTitle: UILabel!
-    @IBOutlet weak var headerImageView: UIImageView!
+    @IBOutlet private var headerTitle: UILabel!
+    @IBOutlet private var headerImageView: UIImageView!
     
     func configure(with header: SettingsHeader) {
         headerTitle.text = header.headerTitle
         headerImageView.image = header.headerImage
     }
-    
     
 }
 
@@ -29,6 +28,6 @@ struct SettingsHeader {
 
 let headerDataSource = [
     SettingsHeader(headerTitle: "ACCOUNT", headerImage: UIImage(named: "accountProfileIcon")),
-    SettingsHeader(headerTitle: "NOTOFICATIONS", headerImage: UIImage(named: "notifProfileIcon")),
+    SettingsHeader(headerTitle: "NOTIFICATIONS", headerImage: UIImage(named: "notifProfileIcon")),
     SettingsHeader(headerTitle: "MORE", headerImage: UIImage(named: "moreProfileIcon"))
 ]

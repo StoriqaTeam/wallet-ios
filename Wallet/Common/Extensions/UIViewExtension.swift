@@ -66,44 +66,42 @@ extension UIView {
         return lineView
     }
     
-    func gradientView(colors: [CGColor], frame: CGRect, startPoint: CGPoint, endPoint: CGPoint) {
+    func gradientView(colors: [CGColor],
+                      frame: CGRect,
+                      startPoint: CGPoint,
+                      endPoint: CGPoint,
+                      insertFirst: Bool = false) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = colors
         gradientLayer.frame = frame
         gradientLayer.startPoint = startPoint
         gradientLayer.endPoint = endPoint
-        layer.addSublayer(gradientLayer)
+        
+        if insertFirst {
+            layer.insertSublayer(gradientLayer, at: 0)
+        } else {
+            layer.addSublayer(gradientLayer)
+        }
     }
     
-    func accountsHeaderGradientView(height: CGFloat? = nil) {
-        let layerFrame: CGRect
-        
-        if let height = height {
-            layerFrame = CGRect(x: 0, y: 0, width: frame.width, height: height)
-        } else {
-            layerFrame = bounds
-        }
-        
-        let colors = [ UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
-                       UIColor(red: 45/255, green: 100/255, blue: 194/255, alpha: 1).cgColor ]
-        
-        gradientView(colors: colors,
-                     frame: layerFrame,
-                     startPoint: CGPoint(x: 0.0, y: 0.0),
-                     endPoint: CGPoint(x: 1.0, y: 1.0))
-    }
 }
 
 
 extension UIImage {
     class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let rectangle = CGRect(origin: CGPoint.zero, size: size)
+        return getColoredRectImageWith(color: color, andRect: rectangle)
+    }
+    
+    class func getColoredRectImageWith(color: CGColor, andRect rect: CGRect) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
         let graphicsContext = UIGraphicsGetCurrentContext()
         graphicsContext?.setFillColor(color)
-        let rectangle = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+        let rectangle = rect
         graphicsContext?.fill(rectangle)
         let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return rectangleImage!
     }
+    
 }

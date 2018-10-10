@@ -32,4 +32,8 @@ extension ProfileRouter: ProfileRouterInput {
         SettingsModule.create().present(from: viewController)
     }
     
+    func showConnectPhone(from viewController: UIViewController) {
+        ConnectPhoneModule.create().present(from: viewController)
+    }
+    
 }

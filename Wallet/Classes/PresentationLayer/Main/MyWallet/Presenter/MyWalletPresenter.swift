@@ -35,6 +35,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
     
     func viewIsReady() {
         view.setupInitialState()
+        configureNavigationBar()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -46,6 +47,10 @@ extension MyWalletPresenter: MyWalletViewOutput {
         accountsManager.setCollectionView(collectionView)
         dataManager = accountsManager
         dataManager.delegate = self
+    }
+    
+    func addNewTapped() {
+        // TODO: addNewTapped
     }
     
 }
@@ -104,5 +109,14 @@ extension MyWalletPresenter {
         flowLayout.itemSize = deviceLayout.size
         
         return flowLayout
+    }
+    
+    private func configureNavigationBar() {
+        guard let navBar = view.viewController.navigationController else { return }
+
+        view.viewController.setWhiteTextNavigationBar()
+        navBar.navigationBar.prefersLargeTitles = true
+        navBar.navigationBar.isTranslucent = true
+        navBar.navigationBar.topItem?.title = "my_wallet".localized()
     }
 }

@@ -62,8 +62,7 @@ extension SendingHeaderView {
     }
     
     private func setGradient() {
-        gradientView.gradientView(colors: [ UIColor(red: 55/255, green: 145/255, blue: 221/255, alpha: 1).cgColor,
-                               UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor ],
+        gradientView.gradientView(colors: Theme.Gradient.sendingHeaderGradient,
                      frame: gradientView.bounds,
                      startPoint: CGPoint(x: 0.0, y: 1.0),
                      endPoint: CGPoint(x: 1.0, y: 1.0))

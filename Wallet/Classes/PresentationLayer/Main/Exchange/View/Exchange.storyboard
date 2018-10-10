@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1K-Yw-3AZ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1K-Yw-3AZ" customClass="HeaderGradientView" customModule="Wallet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -375,7 +375,6 @@
                         <outlet property="convertedAmountLabel" destination="7vg-us-9d3" id="XD8-Ry-TlA"/>
                         <outlet property="errorLabel" destination="alY-JG-Stm" id="hk8-de-D62"/>
                         <outlet property="exchangeButton" destination="8Kj-Hq-QMd" id="KJc-JJ-5eV"/>
-                        <outlet property="gradientView" destination="b1K-Yw-3AZ" id="wuC-Cv-8jc"/>
                         <outlet property="medianWaitLabel" destination="eG3-rd-yU7" id="WxM-YJ-1rc"/>
                         <outlet property="medianWaitTitleLabel" destination="SS3-qm-xk1" id="n6g-mf-cfk"/>
                         <outlet property="paymentFeeHighLabel" destination="kVf-Xm-3pl" id="wdL-8K-gW1"/>

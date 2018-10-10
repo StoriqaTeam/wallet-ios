@@ -32,12 +32,6 @@ class FakeUserDataStoreService: UserDataStoreServiceProtocol {
 
 class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
     
-    override func save(_ user: User) {
-        DispatchQueue.main.async {
-            super.save(user)
-        }
-    }
-    
     func getCurrentUser() -> User {
         // FIXME: Save user when logged in
         
@@ -46,7 +40,7 @@ class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
         } else {
             let user = User(id: "0",
                             email: "email@email.com",
-                            phone: "111-222-33-44",
+                            phone: "",
                             firstName: "Dmitrii",
                             lastName: "Mushchinskii",
                             photo: nil)

@@ -23,4 +23,6 @@ protocol PaymentFeeInteractorInput: class {
     func getSelectedAccount() -> Account
     func getOpponent() -> OpponentType
     func getFeeWaitCount() -> Int
+    
+    func clearBuilder()
 }

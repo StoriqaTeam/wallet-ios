@@ -25,6 +25,11 @@ class SettingsViewController: UITableViewController {
         output.willMoveToParentVC()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.viewDidAppear()
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SettingsHeaderView")
         let headerView = cell as! SettingsHeaderView
@@ -33,8 +38,6 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let section = indexPath.section
-        if section == 0 { return 52 }
         return 44
     
     }
@@ -51,6 +54,8 @@ extension SettingsViewController: SettingsViewInput {
     
     func setupInitialState() {
         loadNib()
+        view.backgroundColor = .white
+        tableView.alwaysBounceVertical = false
     }
 
 }
