@@ -11,5 +11,6 @@ import UIKit
 
 protocol SendRouterInput: class {
     func showReceiver(sendTransactionBuilder: SendProviderBuilderProtocol,
-                      from viewController: UIViewController) 
+                      from viewController: UIViewController,
+                      mainTabBar: UITabBarController) 
 }

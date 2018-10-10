@@ -48,4 +48,8 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     func build() -> SendTransactionProvider {
         return defaultSendTxProvider
     }
+    
+    func clear() {
+        defaultSendTxProvider.setDefaults()
+    }
 }

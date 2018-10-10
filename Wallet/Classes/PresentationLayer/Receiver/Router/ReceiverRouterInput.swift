@@ -14,5 +14,6 @@ protocol ReceiverRouterInput: class {
                      from viewController: UIViewController)
     
     func showPaymentFee(sendTransactionBuilder: SendProviderBuilderProtocol,
-                        from viewController: UIViewController)
+                        from viewController: UIViewController,
+                        tabBar: UITabBarController)
 }

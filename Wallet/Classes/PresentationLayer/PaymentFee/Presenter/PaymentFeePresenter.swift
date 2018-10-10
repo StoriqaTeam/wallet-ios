@@ -15,6 +15,7 @@ class PaymentFeePresenter {
     weak var output: PaymentFeeModuleOutput?
     var interactor: PaymentFeeInteractorInput!
     var router: PaymentFeeRouterInput!
+    weak var mainTabBar: UITabBarController!
     
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
@@ -115,6 +116,8 @@ extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
     func confirmTransaction() {
         //TODO: send transaction
         _ = interactor.createTransaction()
+        view.popToRoot()
+        mainTabBar.selectedIndex = 0
     }
     
 }
@@ -154,7 +157,7 @@ extension PaymentFeePresenter {
             receiverName = contact.name
         case .address(let addr):
             address = addr
-            receiverName = "Receiver Name"
+            receiverName = "-"
         }
         
         return PaymentFeeScreenData(header: header,

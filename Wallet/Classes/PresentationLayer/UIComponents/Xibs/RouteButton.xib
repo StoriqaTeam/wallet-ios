@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="122" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeBtnImg" translatesAutoresizingMaskIntoConstraints="NO" id="2jZ-mg-eGG">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeBtnImg" translatesAutoresizingMaskIntoConstraints="NO" id="2jZ-mg-eGG">
                     <rect key="frame" x="13" y="15.5" width="16" height="13"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE6-6B-7hJ">

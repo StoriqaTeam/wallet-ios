@@ -18,8 +18,11 @@ class SendRouter {
 
 extension SendRouter: SendRouterInput {
     func showReceiver(sendTransactionBuilder: SendProviderBuilderProtocol,
-                      from viewController: UIViewController) {
+                      from viewController: UIViewController,
+                      mainTabBar: UITabBarController) {
         
-        ReceiverModule.create(sendTransactionBuilder: sendTransactionBuilder).present(from: viewController)
+        ReceiverModule
+            .create(sendTransactionBuilder: sendTransactionBuilder, tabBar: mainTabBar)
+            .present(from: viewController)
     }
 }

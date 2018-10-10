@@ -8,7 +8,8 @@ import UIKit
 
 class ReceiverModule {
     
-    class func create(sendTransactionBuilder: SendProviderBuilderProtocol) -> ReceiverModuleInput {
+    class func create(sendTransactionBuilder: SendProviderBuilderProtocol,
+                      tabBar: UITabBarController) -> ReceiverModuleInput {
         let router = ReceiverRouter()
         
         //Injections
@@ -22,6 +23,7 @@ class ReceiverModule {
         let presenter = ReceiverPresenter(currencyFormatter: formatter,
                                           converterFactory: converterFactory,
                                           currencyImageProvider: currencyImageProvider)
+        presenter.mainTabBar = tabBar
         
         let accountsVC = UIStoryboard(name: "Receiver", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "ReceiverVC") as! ReceiverViewController
