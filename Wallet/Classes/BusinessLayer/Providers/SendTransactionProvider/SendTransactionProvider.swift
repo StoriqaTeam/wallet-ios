@@ -24,7 +24,7 @@ protocol SendTransactionProviderProtocol: class {
     func getFeeAndWait() -> (fee: String, wait: String)
     func getSubtotal() -> String
     func isEnoughFunds() -> Bool
-    func createTransaction() -> Transaction
+    func createTransaction() -> Transaction?
 }
 
 class SendTransactionProvider: SendTransactionProviderProtocol {
@@ -109,18 +109,18 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         return sum.isLessThanOrEqualTo(available)
     }
     
-    func createTransaction() -> Transaction {
+    func createTransaction() -> Transaction? {
         //TODO: timestamp?
-        let timestamp = Date()
-        let fiatAmount = currencyConverter.convert(amount: amount, to: .fiat)
-        let transaction = Transaction(currency: selectedAccount.currency,
-                                      direction: .send,
-                                      fiatAmount: fiatAmount,
-                                      cryptoAmount: amount,
-                                      timestamp: timestamp,
-                                      status: .pending,
-                                      opponent: opponentType)
-        return transaction
+//        let timestamp = Date()
+//        let fiatAmount = currencyConverter.convert(amount: amount, to: .fiat)
+//        let transaction = Transaction(currency: selectedAccount.currency,
+//                                      direction: .send,
+//                                      fiatAmount: fiatAmount,
+//                                      cryptoAmount: amount,
+//                                      timestamp: timestamp,
+//                                      status: .pending,
+//                                      opponent: opponentType)
+        return nil
     }
     
 }

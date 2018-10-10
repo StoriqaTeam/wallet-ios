@@ -9,9 +9,7 @@
 import Foundation
 
 protocol CurrencyFormatterProtocol {
-    
     func getStringFrom(amount: Decimal, currency: Currency) -> String
-    
 }
 
 class CurrencyFormatter: CurrencyFormatterProtocol {

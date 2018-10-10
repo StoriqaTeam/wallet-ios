@@ -90,7 +90,7 @@ extension AccountsPresenter: AccountsInteractorOutput {
          view.viewController.title = "Account \(iso)"
     }
     
-    func transactionsDidChange(_ txs: [Transaction]) {
+    func transactionsDidChange(_ txs: [TransactionDisplayable]) {
         transactionDataManager.updateTransactions(txs)
     }
     
@@ -120,7 +120,7 @@ extension AccountsPresenter: AccountsDataManagerDelegate {
 // MARK: - TransactionsDatamanagerDelegate
 
 extension AccountsPresenter: TransactionsDataManagerDelegate {
-    func didChooseTransaction(_ transaction: Transaction) { }
+    func didChooseTransaction(_ transaction: TransactionDisplayable) { }
 }
 
 

@@ -52,7 +52,7 @@ extension TransactionDetailsPresenter: TransactionDetailsModuleInput {
 // MARK: - Private methods
 
 extension TransactionDetailsPresenter {
-    private func configureNavigationBar(transaction: Transaction) {
+    private func configureNavigationBar(transaction: TransactionDisplayable) {
         let title = transaction.direction == .receive ? "Deposit transaction" : "Send Transaction"
         view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never

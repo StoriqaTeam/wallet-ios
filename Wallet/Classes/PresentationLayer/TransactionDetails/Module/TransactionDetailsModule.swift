@@ -8,7 +8,7 @@ import UIKit
 
 class TransactionDetailsModule {
     
-    class func create(transaction: Transaction) -> TransactionDetailsModuleInput {
+    class func create(transaction: TransactionDisplayable) -> TransactionDetailsModuleInput {
         let router = TransactionDetailsRouter()
         let presenter = TransactionDetailsPresenter()
         let interactor = TransactionDetailsInteractor(transaction: transaction)

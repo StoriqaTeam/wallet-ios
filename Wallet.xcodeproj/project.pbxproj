@@ -219,7 +219,6 @@
 		A56ED377216CA429009FA58B /* TransactionDescriptionVeiw.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED376216CA429009FA58B /* TransactionDescriptionVeiw.swift */; };
 		A56ED379216CAE27009FA58B /* TransactionDescriptionContactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56ED378216CAE27009FA58B /* TransactionDescriptionContactView.xib */; };
 		A56ED37B216CAE37009FA58B /* TransactionDescriptionContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED37A216CAE37009FA58B /* TransactionDescriptionContactView.swift */; };
-		A56ED37E216CBAC9009FA58B /* TransactionDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED37D216CBAC9009FA58B /* TransactionDisplayer.swift */; };
 		A56ED37F216CD6F1009FA58B /* TransactionDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD116B1BF602F3FE5ABD0E /* TransactionDetailsModule.swift */; };
 		A56ED380216CD6F4009FA58B /* TransactionDetailsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA51F76BDB2864BF60E66AB9 /* TransactionDetailsModuleOutput.swift */; };
 		A56ED381216CD6F6009FA58B /* TransactionDetailsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B384185E28E51E830A7B3A42 /* TransactionDetailsModuleInput.swift */; };
@@ -235,6 +234,9 @@
 		A56ED397216CEF12009FA58B /* TransactionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED396216CEF12009FA58B /* TransactionMapper.swift */; };
 		A56ED39A216CEF36009FA58B /* TransactionDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED399216CEF36009FA58B /* TransactionDisplayable.swift */; };
 		A56ED39C216CF060009FA58B /* RealmTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED39B216CF060009FA58B /* RealmTransaction.swift */; };
+		A56ED39F216E01BC009FA58B /* TransactionDirectionResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED39E216E01BC009FA58B /* TransactionDirectionResolver.swift */; };
+		A56ED3A6216E2D36009FA58B /* TransactionOpponentResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED3A5216E2D36009FA58B /* TransactionOpponentResolver.swift */; };
+		A56ED3A9216E3214009FA58B /* ContactsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED3A8216E3214009FA58B /* ContactsProvider.swift */; };
 		A58D54E8215D0ED1003D9D0C /* FakeTransactionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
@@ -716,13 +718,15 @@
 		A56ED376216CA429009FA58B /* TransactionDescriptionVeiw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDescriptionVeiw.swift; sourceTree = "<group>"; };
 		A56ED378216CAE27009FA58B /* TransactionDescriptionContactView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDescriptionContactView.xib; sourceTree = "<group>"; };
 		A56ED37A216CAE37009FA58B /* TransactionDescriptionContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDescriptionContactView.swift; sourceTree = "<group>"; };
-		A56ED37D216CBAC9009FA58B /* TransactionDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDisplayer.swift; sourceTree = "<group>"; };
 		A56ED38D216CD7E2009FA58B /* TransactionDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailsPresenter.swift; path = Wallet/Classes/PresentationLayer/TransactionDetails/Presenter/TransactionDetailsPresenter.swift; sourceTree = SOURCE_ROOT; };
 		A56ED390216CD825009FA58B /* TransactionDetailsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailsRouter.swift; path = Wallet/Classes/PresentationLayer/TransactionDetails/Router/TransactionDetailsRouter.swift; sourceTree = SOURCE_ROOT; };
 		A56ED391216CD825009FA58B /* TransactionDetailsRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailsRouterInput.swift; path = Wallet/Classes/PresentationLayer/TransactionDetails/Router/TransactionDetailsRouterInput.swift; sourceTree = SOURCE_ROOT; };
 		A56ED396216CEF12009FA58B /* TransactionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMapper.swift; sourceTree = "<group>"; };
 		A56ED399216CEF36009FA58B /* TransactionDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDisplayable.swift; sourceTree = "<group>"; };
 		A56ED39B216CF060009FA58B /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
+		A56ED39E216E01BC009FA58B /* TransactionDirectionResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDirectionResolver.swift; sourceTree = "<group>"; };
+		A56ED3A5216E2D36009FA58B /* TransactionOpponentResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionOpponentResolver.swift; sourceTree = "<group>"; };
+		A56ED3A8216E3214009FA58B /* ContactsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsProvider.swift; sourceTree = "<group>"; };
 		A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTransactionProvider.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
@@ -2176,14 +2180,6 @@
 			path = TransactionDescriptionView;
 			sourceTree = "<group>";
 		};
-		A56ED37C216CBAA5009FA58B /* TransactionDisplayer */ = {
-			isa = PBXGroup;
-			children = (
-				A56ED37D216CBAC9009FA58B /* TransactionDisplayer.swift */,
-			);
-			path = TransactionDisplayer;
-			sourceTree = "<group>";
-		};
 		A56ED38C216CD797009FA58B /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2225,6 +2221,39 @@
 				A56ED399216CEF36009FA58B /* TransactionDisplayable.swift */,
 			);
 			path = Displayable;
+			sourceTree = "<group>";
+		};
+		A56ED39D216E01A1009FA58B /* TransactionDirectionResolver */ = {
+			isa = PBXGroup;
+			children = (
+				A56ED39E216E01BC009FA58B /* TransactionDirectionResolver.swift */,
+			);
+			path = TransactionDirectionResolver;
+			sourceTree = "<group>";
+		};
+		A56ED3A3216E2D08009FA58B /* TransactionOpponentResolver */ = {
+			isa = PBXGroup;
+			children = (
+				A56ED3A5216E2D36009FA58B /* TransactionOpponentResolver.swift */,
+			);
+			path = TransactionOpponentResolver;
+			sourceTree = "<group>";
+		};
+		A56ED3A4216E2D1A009FA58B /* TransactionResolvers */ = {
+			isa = PBXGroup;
+			children = (
+				A56ED39D216E01A1009FA58B /* TransactionDirectionResolver */,
+				A56ED3A3216E2D08009FA58B /* TransactionOpponentResolver */,
+			);
+			path = TransactionResolvers;
+			sourceTree = "<group>";
+		};
+		A56ED3A7216E3204009FA58B /* ContactsProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A56ED3A8216E3214009FA58B /* ContactsProvider.swift */,
+			);
+			path = ContactsProvider;
 			sourceTree = "<group>";
 		};
 		A58EE3B0214FFD370096C155 /* Classes */ = {
@@ -2319,6 +2348,8 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A56ED3A7216E3204009FA58B /* ContactsProvider */,
+				A56ED3A4216E2D1A009FA58B /* TransactionResolvers */,
 				A521D46E21636FF900E5D51C /* CurrentAccountWatcher */,
 				A5B78236215E33A000EFD1A5 /* AddressResolver */,
 				A5B78206215E22AE00EFD1A5 /* Crypto */,
@@ -2341,7 +2372,6 @@
 				CE976486216263AA000E9336 /* QRCodeProvider */,
 				CE0C3C2A216617A5002D1CBD /* PaymentFeeAndWaitProvider */,
 				CE8CC9932167A91500EA9EED /* CurrencyImageProvider */,
-				A56ED37C216CBAA5009FA58B /* TransactionDisplayer */,
 				CE8CC9902167A8F200EA9EED /* AccountDisplayer */,
 				CE8CC99B216B7ED200EA9EED /* AccountTypeResolver */,
 			);
@@ -3593,6 +3623,7 @@
 				E454D06D1C3D8744B3F666F2 /* PinInputViewInput.swift in Sources */,
 				1C7D0973BE0C18FFA5224647 /* PinInputViewOutput.swift in Sources */,
 				CF065C7C011BD01324225AAD /* PinInputViewController.swift in Sources */,
+				A56ED3A9216E3214009FA58B /* ContactsProvider.swift in Sources */,
 				DF86683226807C4513BF70C6 /* PinInputPresenter.swift in Sources */,
 				4E5BC89F50726A6F7AA8256E /* PinInputnteractorInput.swift in Sources */,
 				A5B78211215E24B600EFD1A5 /* EthereumAddressValidator.swift in Sources */,
@@ -3728,6 +3759,7 @@
 				93D422C2B6717A2E6C0B2903 /* BiometryQuickLaunchInteractorOutput.swift in Sources */,
 				CEFC9CBA215A5BE400962356 /* ContactCell.swift in Sources */,
 				5190C80AF91A79F1263D9412 /* BiometryQuickLaunchInteractor.swift in Sources */,
+				A56ED39F216E01BC009FA58B /* TransactionDirectionResolver.swift in Sources */,
 				A51CB5522158FF1800CDC80C /* AccountsDataStoreProvider.swift in Sources */,
 				F84105BB46F917B0AB9317C9 /* BiometryQuickLaunchRouterInput.swift in Sources */,
 				5A19DCEBA97EFA317880745E /* BiometryQuickLaunchRouter.swift in Sources */,
@@ -3758,7 +3790,6 @@
 				CEFC9CAE215A140800962356 /* DeviceContactsProvider.swift in Sources */,
 				75BC72D950AA357E03897FF1 /* MainTabBarPresenter.swift in Sources */,
 				33BDB5A5300B26E466BE8AA9 /* MainTabBarInteractorInput.swift in Sources */,
-				A56ED37E216CBAC9009FA58B /* TransactionDisplayer.swift in Sources */,
 				971B60433C7D77610425C1EA /* MainTabBarInteractorOutput.swift in Sources */,
 				D69842DA885486CC31EC62BD /* MainTabBarInteractor.swift in Sources */,
 				A6888E54A2AF18D001988E63 /* MainTabBarRouterInput.swift in Sources */,
@@ -3837,6 +3868,7 @@
 				D412B0E68A6387EFF7083DD5 /* SettingsViewController.swift in Sources */,
 				79A2AC994D7556E90171E7E5 /* SettingsPresenter.swift in Sources */,
 				BFD84DFE006F12E4358D8FB4 /* SettingsInteractorInput.swift in Sources */,
+				A56ED3A6216E2D36009FA58B /* TransactionOpponentResolver.swift in Sources */,
 				A51CB54B2158E80400CDC80C /* TransactionsProvider.swift in Sources */,
 				06B75F52B160C8A6E54107D2 /* SettingsInteractorOutput.swift in Sources */,
 				F5AB86357D59D1B81AC1B476 /* SettingsInteractor.swift in Sources */,

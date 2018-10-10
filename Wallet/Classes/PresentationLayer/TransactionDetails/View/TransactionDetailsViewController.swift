@@ -30,7 +30,7 @@ class TransactionDetailsViewController: UIViewController {
 
 extension TransactionDetailsViewController: TransactionDetailsViewInput {
     
-    func setupInitialState(transaction: Transaction) {
+    func setupInitialState(transaction: TransactionDisplayable) {
         detailView.configure(transaction: transaction)
         addDescriptionView(for: transaction)
     }
@@ -45,7 +45,7 @@ extension TransactionDetailsViewController {
         
     }
     
-    private func addDescriptionView(for transaction: Transaction) {
+    private func addDescriptionView(for transaction: TransactionDisplayable) {
         
         switch transaction.opponent {
         case .address(address: let address):

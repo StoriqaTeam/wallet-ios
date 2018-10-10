@@ -11,4 +11,27 @@ import Foundation
 
 class TransactionDisplayable {
     
+    let transaction: Transaction
+    let currency: Currency
+    let fiatAmountString: String
+    let cryptoAmountString: String
+    let direction: Direction
+    let opponent: OpponentType
+    let timestamp: String
+    
+    init(transaction: Transaction,
+         cryptoAmountString: String,
+         fiatAmountString: String,
+         direction: Direction,
+         opponent: OpponentType) {
+        
+        self.transaction = transaction
+        self.currency = transaction.currency
+        self.cryptoAmountString = cryptoAmountString
+        self.fiatAmountString = fiatAmountString
+        self.direction = direction
+        self.opponent = opponent
+        self.timestamp = "\(transaction.timestamp.timeIntervalSince1970)"
+    }
+    
 }

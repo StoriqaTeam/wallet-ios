@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="122" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeBtnImg" translatesAutoresizingMaskIntoConstraints="NO" id="2jZ-mg-eGG">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChangeBtnImg" translatesAutoresizingMaskIntoConstraints="NO" id="2jZ-mg-eGG">
                     <rect key="frame" x="13" y="15.5" width="16" height="13"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE6-6B-7hJ">
@@ -45,7 +45,7 @@
             <connections>
                 <outletCollection property="gestureRecognizers" destination="EQV-sP-fk9" appends="YES" id="JCN-3l-072"/>
             </connections>
-            <point key="canvasLocation" x="-627.20000000000005" y="-13.493253373313344"/>
+            <point key="canvasLocation" x="-346" y="-31"/>
         </view>
         <tapGestureRecognizer id="EQV-sP-fk9">
             <connections>

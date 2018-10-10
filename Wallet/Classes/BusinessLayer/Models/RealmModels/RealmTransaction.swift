@@ -18,7 +18,7 @@ class RealmTransaction: Object {
     dynamic var cryptoAmount: String = ""
     dynamic var currency: String = ""
     dynamic var fee: String = ""
-    
+    dynamic var timestamp: Double = 0
 }
 
 

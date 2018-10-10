@@ -16,7 +16,7 @@ protocol PaymentFeeInteractorInput: class {
     func getAddress() -> String
     func getSubtotal() -> String
     func isEnoughFunds() -> Bool
-    func createTransaction() -> Transaction
+    func createTransaction() -> Transaction?
 
     func getAmount() -> Decimal?
     func getReceiverCurrency() -> Currency

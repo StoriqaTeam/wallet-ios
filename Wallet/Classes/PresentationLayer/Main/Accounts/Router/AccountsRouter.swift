@@ -17,7 +17,7 @@ class AccountsRouter {
 // MARK: - AccountsRouterInput
 
 extension AccountsRouter: AccountsRouterInput {
-    func showTransactions(from viewControoler: UIViewController, transactions: [Transaction]) {
+    func showTransactions(from viewControoler: UIViewController, transactions: [TransactionDisplayable]) {
         let moduleInput = TransactionsModule.create(transactions: transactions)
         moduleInput.present(from: viewControoler)
     }

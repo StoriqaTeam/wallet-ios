@@ -15,7 +15,7 @@ class FakeAccountLinker: AccountsLinkerProtocol {
         self.fakeTxProvider = fakeTxProvider
     }
     
-    func getTransactionsFor(account: Account) -> [Transaction]? {
+    func getTransactionsFor(account: Account) -> [TransactionDisplayable]? {
         return fakeTxProvider.transactionsFor(account: account)
     }
     
@@ -33,12 +33,17 @@ class AccountsModule {
         let router = AccountsRouter()
         
         // Injections
-        let fakeAccountsProvider = FakeAccountProvider()
-        let fakeTransactionsProvider = FakeTransactionsProvider()
-        let accountLinker = FakeAccountLinker(fakeAccProvider: fakeAccountsProvider, fakeTxProvider: fakeTransactionsProvider)
+        let accountsProvider = FakeAccountProvider()
         let converterFactory = CurrecncyConverterFactory()
         let currencyFormatter = CurrencyFormatter()
         let accountTypeResolver = AccountTypeResolver()
+        let transactionDirectionResolver = TransactionDirectionResolver(accountsProvider: accountsProvider)
+        let transactionMapper = TransactionMapper(currencyFormatter: currencyFormatter,
+                                                  converterFactory: converterFactory,
+                                                  transactionDirectionResolver: transactionDirectionResolver)
+        
+        let fakeTransactionsProvider = FakeTransactionsProvider(transactionMapper: transactionMapper)
+        let accountLinker = FakeAccountLinker(fakeAccProvider: accountsProvider, fakeTxProvider: fakeTransactionsProvider)
         let accountDisplayer = AccountDisplayer(user: user,
                                                 currencyFormatter: currencyFormatter,
                                                 converterFactory: converterFactory,

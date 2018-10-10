@@ -17,9 +17,9 @@ class TransactionDetailView: LoadableFromXib {
     @IBOutlet weak var directionImageView: UIImageView!
     @IBOutlet weak var backgroundView: UIView!
     
-    func configure(transaction: Transaction) {
-        cryptoAmountLabel.text = transaction.cryptoAmount.string
-        fiatAmountLabel.text = transaction.fiatAmount.string
+    func configure(transaction: TransactionDisplayable) {
+        cryptoAmountLabel.text = transaction.cryptoAmountString
+        fiatAmountLabel.text = transaction.fiatAmountString
         timestampLabel.text = "\(transaction.timestamp)"
         configureAppearence(for: transaction)
     }
@@ -30,8 +30,7 @@ class TransactionDetailView: LoadableFromXib {
 // MARK: - Private methods
 
 extension TransactionDetailView {
-    private func configureAppearence(for transaction: Transaction) {
-        let status = transaction.status
+    private func configureAppearence(for transaction: TransactionDisplayable) {
         let direction = transaction.direction
         let colors: [CGColor]
         let cryptoLabelColor: UIColor
@@ -42,19 +41,19 @@ extension TransactionDetailView {
             directionImage = UIImage(named: "receiveTransactionIcon")
             colors = Theme.Gradient.Details.detailsGreenGradient
             cryptoLabelColor = Theme.Text.Color.detailsGreen
-            cryptoAmountString = "+ \(transaction.cryptoAmount.string)"
+            cryptoAmountString = "+ \(transaction.cryptoAmountString)"
         } else {
             colors = Theme.Gradient.Details.detailsRedGradient
             cryptoLabelColor = Theme.Text.Color.detailsRed
             directionImage = UIImage(named: "sendTransactionIcon")
-            cryptoAmountString = "- \(cryptoAmount)"
+            cryptoAmountString = "- \(transaction.cryptoAmountString)"
         }
         
         cryptoAmountLabel.textColor = cryptoLabelColor
         cryptoAmountLabel.text = cryptoAmountString
         directionImageView.image = directionImage
-        fiatAmountLabel.text = fiatAmount
-        timestampLabel.text = timestamp
+//        fiatAmountLabel.text = fiatAmount
+//        timestampLabel.text = timestamp
         backgroundView.gradientView(colors: colors,
                                     frame: self.bounds,
                                     startPoint: CGPoint(x: 1.0, y: 0.5),

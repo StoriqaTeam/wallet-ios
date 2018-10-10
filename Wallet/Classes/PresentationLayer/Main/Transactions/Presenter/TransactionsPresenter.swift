@@ -79,7 +79,7 @@ extension TransactionsPresenter: TransactionsModuleInput {
 // MARK: TransactionsDataManagerdelegate
 
 extension TransactionsPresenter: TransactionsDataManagerDelegate {
-    func didChooseTransaction(_ transaction: Transaction) {
+    func didChooseTransaction(_ transaction: TransactionDisplayable) {
         router.showTransactionDetails(with: transaction, from: view.viewController)
     }
 }

@@ -15,9 +15,9 @@ enum TransactionFilter: Int {
 
 class TransactionsInteractor {
     weak var output: TransactionsInteractorOutput!
-    private let transactions: [Transaction]
+    private let transactions: [TransactionDisplayable]
     
-    init(transactions: [Transaction]) {
+    init(transactions: [TransactionDisplayable]) {
         self.transactions = transactions
     }
 }
@@ -27,13 +27,13 @@ class TransactionsInteractor {
 
 extension TransactionsInteractor: TransactionsInteractorInput {
     
-    func getFilteredTransacitons(index: Int) -> [Transaction] {
+    func getFilteredTransacitons(index: Int) -> [TransactionDisplayable] {
         guard let filter = TransactionFilter(rawValue: index) else { return [] }
         let filteredTransactions = filterTransactions(filter)
         return filteredTransactions
     }
     
-    func getTransactions() -> [Transaction] {
+    func getTransactions() -> [TransactionDisplayable] {
         return transactions
     }
     
@@ -43,7 +43,7 @@ extension TransactionsInteractor: TransactionsInteractorInput {
 // MARK: - Private methods
 
 extension TransactionsInteractor {
-    private func filterTransactions(_ filter: TransactionFilter) -> [Transaction] {
+    private func filterTransactions(_ filter: TransactionFilter) -> [TransactionDisplayable] {
         switch filter {
         case .all:
             return transactions

@@ -30,7 +30,7 @@ struct Transaction {
 }
 
 
-// - MARK: - RealmMappable
+// - MARK: - RealmMappablee
 
 extension Transaction: RealmMappable {
     
@@ -43,15 +43,21 @@ extension Transaction: RealmMappable {
         self.currency = Currency(string: object.currency)
         self.cryptoAmount = Decimal(object.cryptoAmount)
         self.fee = Decimal(object.fee)
-        
-        
+        self.timestamp = Date(timeIntervalSince1970: object.timestamp)
     }
     
     func mapToRealmObject() -> RealmTransaction {
-        fatalError()
+        let object = RealmTransaction()
+        
+        object.id = self.id
+        object.fromAddress = self.fromAddress
+        object.toAddress = self.toAddress
+        object.currency = self.currency.ISO
+        object.cryptoAmount = self.cryptoAmount.string
+        object.fee = self.fee.string
+        let ts = self.timestamp.timeIntervalSince1970
+        object.timestamp = Double(ts)
+        
+        return object
     }
-    
-    
-    
-    
 }

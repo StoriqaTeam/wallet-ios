@@ -10,6 +10,6 @@ import Foundation
 
 
 protocol TransactionsInteractorInput: class {
-    func getTransactions() -> [Transaction]
-    func getFilteredTransacitons(index: Int) -> [Transaction]
+    func getTransactions() -> [TransactionDisplayable]
+    func getFilteredTransacitons(index: Int) -> [TransactionDisplayable]
 }
