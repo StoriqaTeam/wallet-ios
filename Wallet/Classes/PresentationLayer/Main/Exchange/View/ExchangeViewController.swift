@@ -17,7 +17,6 @@ class ExchangeViewController: UIViewController {
     
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
-    @IBOutlet private var gradientView: UIView!
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var recepientAccountTitleLabel: UILabel!
     @IBOutlet private var recepientAccountLabel: UILabel!
@@ -62,11 +61,6 @@ class ExchangeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.configureCollections()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        configureGradientView()
     }
     
     // MARK: IBActions
@@ -234,10 +228,6 @@ extension ExchangeViewController: UIScrollViewDelegate {
 // MARK: - Private methods
 
 extension ExchangeViewController {
-    
-    private func configureGradientView() {
-        gradientView.accountsHeaderGradientView()
-    }
     
     private func scrollToBottom() {
         let bottomOffset = CGPoint(x: 0,

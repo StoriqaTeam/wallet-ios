@@ -27,9 +27,6 @@ class PinInputViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUserPhoto()
-        configureGreeting()
-        
         output.pinContainer(pinContainerView)
         output.viewIsReady()
     }
@@ -58,8 +55,9 @@ class PinInputViewController: UIViewController {
 
 extension PinInputViewController: PinInputViewInput {
     
-    func setupInitialState(userPhoto: UIImage) {
-        userPhotoImageView.image = userPhoto
+    func setupInitialState(userPhoto: UIImage, userName: String) {
+        configureUserPhoto(photo: userPhoto)
+        configureGreeting(name: userName)
     }
     
     func inputSucceed() {
@@ -83,18 +81,18 @@ extension PinInputViewController: PinInputViewInput {
 
 extension PinInputViewController {
     
-    private func configureGreeting() {
+    private func configureGreeting(name: String) {
         if Device.model == .iPhoneSE {
             greetingContainerView.isHidden = true
             greetingVerticalSpacingConstraint.constant = 0
             greetingLabel.text = ""
         } else {
-            greetingLabel.text = UserInfo.shared.name + "greeting".localized()
+            greetingLabel.text = name + "greeting".localized()
         }
     }
     
-    private func configureUserPhoto() {
-        userPhotoImageView.image = UserInfo.shared.photo
+    private func configureUserPhoto(photo: UIImage) {
+        userPhotoImageView.image = photo
         userPhotoImageView.roundCorners(radius: userPhotoImageView.frame.height / 2)
         userPhotoImageView.backgroundColor = UIColor(white: 0.95, alpha: 1)
     }

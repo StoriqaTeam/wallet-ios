@@ -14,4 +14,5 @@ protocol ProfileRouterInput: class {
     func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate,
                              from viewController: UIViewController)
     func signOut()
+    func showConnectPhone(from viewController: UIViewController)
 }

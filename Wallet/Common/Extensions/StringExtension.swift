@@ -84,6 +84,29 @@ extension String {
         formatter.locale = Locale.current
         return formatter.number(from: self) != nil
     }
+    
+    func isValidPhoneNumber(unfinished: Bool = false) -> Bool {
+        let trimmed = self.trim()
+        
+        if trimmed.isEmpty {
+            return unfinished
+        }
+        
+        let phoneRegEx = "^[\\+]{1}[0-9\\- ()]{0,20}$"
+        let isAlowedSymbols = trimmed.matchesReqex(phoneRegEx)
+        
+        if unfinished {
+            return isAlowedSymbols
+        } else {
+            if !isAlowedSymbols {
+                return false
+            }
+            
+            let cleared = self.clearedPhoneNumber()
+            return cleared.count >= 11
+        }
+        
+    }
 }
 
 private extension String {

@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0u-Ov-ITA">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0u-Ov-ITA" customClass="HeaderGradientView" customModule="Wallet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="428"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -140,7 +140,6 @@
                         <outlet property="accountsPageControl" destination="JQk-CT-8tr" id="xf8-GB-RaM"/>
                         <outlet property="changeButton" destination="xw5-45-1fp" id="zBQ-ig-ZXc"/>
                         <outlet property="depositButton" destination="4yB-CB-nkf" id="HzI-C9-QMx"/>
-                        <outlet property="gradientView" destination="S0u-Ov-ITA" id="kR2-Ca-1HL"/>
                         <outlet property="lastTransactionsTableView" destination="t8M-lF-stc" id="OZI-Jd-2DX"/>
                         <outlet property="sendButton" destination="mW7-Nb-lY5" id="O9e-oY-0Lg"/>
                     </connections>

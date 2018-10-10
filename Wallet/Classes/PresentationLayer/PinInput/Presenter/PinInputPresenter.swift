@@ -38,7 +38,7 @@ extension PinInputPresenter: PinInputViewOutput {
     func viewIsReady() {
         let user = interactor.getCurrentUser()
         let userPhoto = user.photo ?? #imageLiteral(resourceName: "profilePhotoPlaceholder")
-        view.setupInitialState(userPhoto: userPhoto)
+        view.setupInitialState(userPhoto: userPhoto, userName: user.firstName)
     }
     
     func inputComplete(_ password: String) {

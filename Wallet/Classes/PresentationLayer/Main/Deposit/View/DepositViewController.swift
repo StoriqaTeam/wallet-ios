@@ -17,7 +17,7 @@ class DepositViewController: UIViewController {
     
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
-    @IBOutlet private var gradientView: UIView!
+    @IBOutlet private var gradientView: HeaderGradientView!
     @IBOutlet private var addressTitleLabel: UILabel!
     @IBOutlet private var qrCodeTitleLabel: UILabel!
     @IBOutlet private var addressLabel: UILabel!
@@ -126,7 +126,7 @@ extension DepositViewController {
             (navigationController?.navigationBar.frame.size.height ?? 44) +
             UIApplication.shared.statusBarFrame.height
         
-        gradientView.accountsHeaderGradientView(height: height)
+        gradientView.setHeight(height: height)
     }
     
     private func setNavBarTransparency() {
