@@ -21,4 +21,8 @@ extension AccountsRouter: AccountsRouterInput {
         let moduleInput = TransactionsModule.create(transactions: transactions)
         moduleInput.present(from: viewControoler)
     }
+    
+    func showTransactionDetails(with transaction: TransactionDisplayable, from viewController: UIViewController) {
+        TransactionDetailsModule.create(transaction: transaction).present(from: viewController)
+    }
 }

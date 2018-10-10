@@ -52,8 +52,6 @@ extension TransactionDetailView {
         cryptoAmountLabel.textColor = cryptoLabelColor
         cryptoAmountLabel.text = cryptoAmountString
         directionImageView.image = directionImage
-//        fiatAmountLabel.text = fiatAmount
-//        timestampLabel.text = timestamp
         backgroundView.gradientView(colors: colors,
                                     frame: self.bounds,
                                     startPoint: CGPoint(x: 1.0, y: 0.5),

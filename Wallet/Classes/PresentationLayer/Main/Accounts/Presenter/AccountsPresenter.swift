@@ -120,7 +120,9 @@ extension AccountsPresenter: AccountsDataManagerDelegate {
 // MARK: - TransactionsDatamanagerDelegate
 
 extension AccountsPresenter: TransactionsDataManagerDelegate {
-    func didChooseTransaction(_ transaction: TransactionDisplayable) { }
+    func didChooseTransaction(_ transaction: TransactionDisplayable) {
+        router.showTransactionDetails(with: transaction, from: view.viewController)
+    }
 }
 
 

@@ -18,12 +18,14 @@ class TransactionDisplayable {
     let direction: Direction
     let opponent: OpponentType
     let timestamp: String
+    let feeAmountString: String
     
     init(transaction: Transaction,
          cryptoAmountString: String,
          fiatAmountString: String,
          direction: Direction,
-         opponent: OpponentType) {
+         opponent: OpponentType,
+         feeAmountString: String) {
         
         self.transaction = transaction
         self.currency = transaction.currency
@@ -32,6 +34,7 @@ class TransactionDisplayable {
         self.direction = direction
         self.opponent = opponent
         self.timestamp = "\(transaction.timestamp.timeIntervalSince1970)"
+        self.feeAmountString = feeAmountString
     }
     
 }

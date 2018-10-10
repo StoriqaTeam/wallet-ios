@@ -38,7 +38,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     currency: .btc,
                     fromAddress: "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2",
                     toAddress: "1EvSi5mhycYPmmei1JBwyMvFSgNvPkkpXm ",
-                    cryptoAmount: Decimal(22.12555),
+                    cryptoAmount: Decimal(22.12),
                     fee: Decimal(0.2494),
                     timestamp: Date(timeIntervalSince1970: Double(153901973))),
         
@@ -46,7 +46,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     currency: .btc,
                     fromAddress: "13pwG5PtwxD6XBXTppWhnNKFYtoNP4WQKB",
                     toAddress: "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2  ",
-                    cryptoAmount: Decimal(15.12555),
+                    cryptoAmount: Decimal(15.32),
                     fee: Decimal(0.0494),
                     timestamp: Date(timeIntervalSince1970: Double(153921973))),
         
@@ -126,7 +126,6 @@ extension FakeTransactionsProvider {
             return transactions.filter { $0.currency == .eth }
         default:
             return transactions.filter { $0.currency == .stq }
-            
         }
     }
 }

@@ -57,8 +57,9 @@ class DeviceContactsProvider: DeviceContactsProviderProtocol {
                         guard let phoneNumber = contact.phoneNumbers.first?.value.stringValue else { return }
                         contacts.append(Contact(givenName: contact.givenName,
                                                 familyName: contact.familyName,
-                                                mobile: phoneNumber, imageData:
-                            contact.thumbnailImageData))
+                                                mobile: phoneNumber,
+                                                cryptoAddress: nil,
+                                                imageData: contact.thumbnailImageData))
                         
                     })
                     

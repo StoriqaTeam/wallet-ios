@@ -30,12 +30,9 @@ class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
         
         switch direction {
         case .receive:
-            guard let contact = contactsProvider.getContact(address: fromAddress) else {
-                return OpponentType.address(address: fromAddress)
-            }
-            
-            return OpponentType.contact(contact: contact)
-        case .send
+            return getOpponent(from: fromAddress)
+        case .send:
+            return getOpponent(from: toAddress)
         }
     }
 }
@@ -44,5 +41,11 @@ class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
 // MARK: - Private methods
 
 extension TransactionOpponentResolver {
-    private func
+    private func getOpponent(from address: String) -> OpponentType {
+        guard let contact = contactsProvider.getContact(address: address) else {
+            return OpponentType.address(address: address)
+        }
+        
+        return OpponentType.contact(contact: contact)
+    }
 }
