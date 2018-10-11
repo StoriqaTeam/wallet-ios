@@ -41,7 +41,7 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         return address
     }
     
-    func createTransaction() -> Transaction {
+    func createTransaction() -> Transaction? {
         let transaction = sendProvider.createTransaction()
         return transaction
     }

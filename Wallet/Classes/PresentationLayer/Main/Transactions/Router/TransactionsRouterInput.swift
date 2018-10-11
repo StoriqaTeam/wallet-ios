@@ -10,5 +10,5 @@ import UIKit
 
 
 protocol TransactionsRouterInput: class {
-    func showTransactionDetails(with transaction: Transaction, from viewController: UIViewController)
+    func showTransactionDetails(with transaction: TransactionDisplayable, from viewController: UIViewController)
 }

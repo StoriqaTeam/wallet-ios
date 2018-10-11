@@ -30,7 +30,7 @@ class TransactionDetailsViewController: UIViewController {
 
 extension TransactionDetailsViewController: TransactionDetailsViewInput {
     
-    func setupInitialState(transaction: Transaction) {
+    func setupInitialState(transaction: TransactionDisplayable) {
         detailView.configure(transaction: transaction)
         addDescriptionView(for: transaction)
     }
@@ -41,11 +41,8 @@ extension TransactionDetailsViewController: TransactionDetailsViewInput {
 // MARK: - Private methods
 
 extension TransactionDetailsViewController {
-    private func configureDescriptionView() {
-        
-    }
     
-    private func addDescriptionView(for transaction: Transaction) {
+    private func addDescriptionView(for transaction: TransactionDisplayable) {
         
         switch transaction.opponent {
         case .address(address: let address):
@@ -58,6 +55,7 @@ extension TransactionDetailsViewController {
             descriptionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
             descriptionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             descriptionView.topAnchor.constraint(equalTo: detailView.bottomAnchor, constant: 20).isActive = true
+            descriptionView.configure(address: address, accountType: transaction.currency.ISO, feeAmount: transaction.feeAmountString)
             
         case .contact(contact: let contact):
             let descriptionView = TransactionDescriptionContactView()
@@ -69,6 +67,10 @@ extension TransactionDetailsViewController {
             descriptionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
             descriptionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             descriptionView.topAnchor.constraint(equalTo: detailView.bottomAnchor, constant: 20).isActive = true
+            descriptionView.configure(address: contact.cryptoAddress ?? "",
+                                      accountType: transaction.currency.ISO,
+                                      contact: "\(contact.givenName) \(contact.familyName)",
+                                      feeAmount: transaction.feeAmountString)
         }
     }
 }

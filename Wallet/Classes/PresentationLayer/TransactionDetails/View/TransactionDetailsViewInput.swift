@@ -10,5 +10,5 @@ import UIKit
 
 
 protocol TransactionDetailsViewInput: class, Presentable {
-    func setupInitialState(transaction: Transaction)
+    func setupInitialState(transaction: TransactionDisplayable)
 }

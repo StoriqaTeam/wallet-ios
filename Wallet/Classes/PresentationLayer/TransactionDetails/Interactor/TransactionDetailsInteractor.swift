@@ -11,9 +11,9 @@ import Foundation
 
 class TransactionDetailsInteractor {
     weak var output: TransactionDetailsInteractorOutput!
-    private let transaction: Transaction
+    private let transaction: TransactionDisplayable
     
-    init(transaction: Transaction) {
+    init(transaction: TransactionDisplayable) {
         self.transaction = transaction
     }
 }
@@ -22,7 +22,7 @@ class TransactionDetailsInteractor {
 // MARK: - TransactionDetailsInteractorInput
 
 extension TransactionDetailsInteractor: TransactionDetailsInteractorInput {
-    func getTransaction() -> Transaction {
+    func getTransaction() -> TransactionDisplayable {
         return transaction
     }
 }

@@ -45,7 +45,7 @@
             <connections>
                 <outletCollection property="gestureRecognizers" destination="EQV-sP-fk9" appends="YES" id="JCN-3l-072"/>
             </connections>
-            <point key="canvasLocation" x="-627.20000000000005" y="-13.493253373313344"/>
+            <point key="canvasLocation" x="-346" y="-31"/>
         </view>
         <tapGestureRecognizer id="EQV-sP-fk9">
             <connections>

@@ -22,7 +22,7 @@ class  TransactionDescriptionContactView: LoadableFromXib {
                    feeAmount: String) {
         
         self.addresslabel.text = address
-        self.accountTypeLabel.text = accountType
+        self.accountTypeLabel.text = "\(accountType) account"
         self.contactLabel.text = contact
         self.feeAmountLabel.text = feeAmount
     }

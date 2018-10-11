@@ -6,39 +6,51 @@
 import UIKit
 
 class FakeAccountProvider: AccountsProviderProtocol {
+
     func getAllAccounts() -> [Account] {
         return [Account(id: "1",
                         balance: 1456784.71,
                         currency: .stq,
                         userId: "0",
-                        accountAddress: "0x7E0AfbeAb5ac7E13d4646bC10c5547e69b4AdD4E",
+                        accountAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
                         name: "STQ Gold account"),
                 Account(id: "2",
                         balance: 892.45,
                         currency: .eth,
                         userId: "0",
-                        accountAddress: "0x9Cc539183De54759261Ef0ee9B3Fe91AEB85407F",
+                        accountAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
                         name: "ETH account"),
                 Account(id: "3",
                         balance: 123.45,
                         currency: .btc,
                         userId: "0",
-                        accountAddress: "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD",
+                        accountAddress: "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2",
                         name: "BTC account"),
                 Account(id: "4",
                         balance: 4123.45,
                         currency: .stq,
                         userId: "0",
-                        accountAddress: "0x7E0AfbeAb5ac7E13d4646bC10c5547e69b4AdD4E",
+                        accountAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
                         name: "STQ Black account"),
                 Account(id: "5",
                         balance: 123.45,
                         currency: .stq,
                         userId: "0",
-                        accountAddress: "0x7E0AfbeAb5ac7E13d4646bC10c5547e69b4AdD4E",
+                        accountAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
                         name: "STQ account")
         ]
     }
+    
+    func getEthereumAddress() -> String {
+        let allAccounts = getAllAccounts()
+        return allAccounts.first(where: { $0.currency == .eth })!.accountAddress
+    }
+    
+    func getBitcoinAddress() -> String {
+        let allAccounts = getAllAccounts()
+        return allAccounts.first(where: { $0.currency == .btc })!.accountAddress
+    }
+    
 }
 
 

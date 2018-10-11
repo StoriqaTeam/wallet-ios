@@ -19,7 +19,7 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var opponentLabel: UILabel!
     
-    func configureWith(transaction: Transaction) {
+    func configureWith(transaction: TransactionDisplayable) {
         configureAppearence(transaction: transaction)
     }
 }
@@ -28,7 +28,7 @@ class TransactionTableViewCell: UITableViewCell {
 // MARK: - Private mehods
 
 extension TransactionTableViewCell {
-    private func configureAppearence(transaction: Transaction) {
+    private func configureAppearence(transaction: TransactionDisplayable) {
         let direction = transaction.direction
         currencyLabel.text = transaction.currency.symbol
         
@@ -43,15 +43,15 @@ extension TransactionTableViewCell {
         case .send:
             directionLabel.text = "Send"
             directionOpponentLabel.text = "to"
-            cryptoAmountLabel.text = "- \(transaction.cryptoAmount) \(transaction.currency.symbol)"
-            fiatAmountlabel.text = "-$\(transaction.fiatAmount)"
+            cryptoAmountLabel.text = "- \(transaction.cryptoAmountString)"
+            fiatAmountlabel.text = "- \(transaction.fiatAmountString)"
             directionImageView.image = UIImage(named: "SendStatusImg")
             cryptoAmountLabel.textColor = Theme.Text.Color.red
         case .receive:
             directionLabel.text = "Receive"
             directionOpponentLabel.text = "from"
-            cryptoAmountLabel.text = "+ \(transaction.cryptoAmount) \(transaction.currency.symbol)"
-            fiatAmountlabel.text = "+$\(transaction.fiatAmount)"
+            cryptoAmountLabel.text = "+ \(transaction.cryptoAmountString)"
+            fiatAmountlabel.text = "+\(transaction.fiatAmountString)"
             directionImageView.image = UIImage(named: "ReceiveStatusImg")
             cryptoAmountLabel.textColor = Theme.Text.Color.green
         }

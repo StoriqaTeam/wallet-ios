@@ -14,24 +14,24 @@ protocol CurrencyConverterProtocol {
 
 class BtcConverter: CurrencyConverterProtocol {
     func convert(amount: Decimal, to currency: Currency) -> Decimal {
-        return 11
+        return 11 * amount
     }
 }
 
 class EthConverter: CurrencyConverterProtocol {
     func convert(amount: Decimal, to currency: Currency) -> Decimal {
-        return 890
+        return 890 * amount
     }
 }
 
 class StqConverter: CurrencyConverterProtocol {
     func convert(amount: Decimal, to currency: Currency) -> Decimal {
-        return 33
+        return 0.26 * amount
     }
 }
 
 class FiatConverter: CurrencyConverterProtocol {
     func convert(amount: Decimal, to currency: Currency) -> Decimal {
-        return 44
+        return 44 * amount
     }
 }

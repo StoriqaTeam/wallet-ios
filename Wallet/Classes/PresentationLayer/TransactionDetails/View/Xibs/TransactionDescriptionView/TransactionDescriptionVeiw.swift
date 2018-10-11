@@ -16,7 +16,7 @@ class TransactionDescriptionAddressView: LoadableFromXib {
     
     func configure(address: String, accountType: String, feeAmount: String) {
         self.addressLabel.text = address
-        self.accountTypeLabel.text = accountType
+        self.accountTypeLabel.text = "\(accountType) account"
         self.feeAmountLabel.text = feeAmount
     }
 }

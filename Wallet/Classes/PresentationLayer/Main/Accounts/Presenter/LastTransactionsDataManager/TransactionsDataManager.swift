@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol TransactionsDataManagerDelegate: class {
-    func didChooseTransaction(_ transaction: Transaction)
+    func didChooseTransaction(_ transaction: TransactionDisplayable)
 }
 
 
@@ -18,10 +18,10 @@ class TransactionsDataManager: NSObject {
     
     weak var delegate: TransactionsDataManagerDelegate?
     private var lastTransactionsTableView: UITableView!
-    private var transactions: [Transaction]
+    private var transactions: [TransactionDisplayable]
     private let kCellId = "transactionCell"
     
-    init(transactions: [Transaction]) {
+    init(transactions: [TransactionDisplayable]) {
         self.transactions = transactions
     }
     
@@ -32,7 +32,7 @@ class TransactionsDataManager: NSObject {
         registerXib()
     }
     
-    func updateTransactions(_ transactions: [Transaction]) {
+    func updateTransactions(_ transactions: [TransactionDisplayable]) {
         self.transactions = transactions
         
         UIView.transition(with: lastTransactionsTableView,
