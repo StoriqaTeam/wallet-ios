@@ -41,6 +41,8 @@ extension ProfilePresenter: ProfileViewOutput {
         let user = interactor.getCurrentUser()
         let hasPhone = !user.phone.isEmpty
         view.setPhone(hasPhone: hasPhone, phone: user.phone)
+        
+        view.viewController.setWhiteNavigationBarButtons()
     }
     
     func settingsButtonTapped() {
@@ -137,11 +139,8 @@ extension ProfilePresenter: UINavigationControllerDelegate, UIImagePickerControl
 extension ProfilePresenter {
     
     private func configureNavigationBar() {
-        view.viewController.setWhiteTextNavigationBar()
-        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.navigationController?.navigationBar.isTranslucent = true
-        view.viewController.navigationController?.navigationBar.topItem?.title = "Profile"
+        view.viewController.setWhiteNavigationBar(title: "Profile")
     }
     
     private func showAlertVC(_ alert: UIAlertController) {

@@ -45,6 +45,7 @@ class SendViewController: UIViewController {
         super.viewWillAppear(animated)
         output.configureCollections()
         output.viewWillAppear()
+        setNavBarTransparency()
     }
     
     override func viewDidAppear(_ animated: Bool) {

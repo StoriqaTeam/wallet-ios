@@ -28,9 +28,9 @@ class ConnectPhoneViewController: UIViewController {
         output.viewIsReady()
     }
     
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        output.willMoveToParentVC()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
     }
     
     @IBAction func connectButtonPressed(_ sender: UIButton) {

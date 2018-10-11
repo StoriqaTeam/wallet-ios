@@ -93,15 +93,11 @@ extension ReceiverPresenter: ReceiverViewOutput {
         
         view.setupInitialState(apperance: appearence)
         view.setNextButtonHidden(true)
-    }
-    
-    func willMoveToParentVC() {
-        view.viewController.setWhiteTextNavigationBar()
+        configureNavigationBar()
     }
     
     func viewWillAppear() {
-        view.viewController.setDarkTextNavigationBar()
-        
+        view.viewController.setDarkNavigationBarButtons()
     }
     
 }
@@ -131,6 +127,7 @@ extension ReceiverPresenter: ReceiverModuleInput {
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
+    
 }
 
 
@@ -162,6 +159,11 @@ extension ReceiverPresenter: QRScannerDelegate {
 // MARK: - Private methods
 
 extension ReceiverPresenter {
+    private func configureNavigationBar() {
+        view.viewController.navigationItem.largeTitleDisplayMode = .never
+        view.viewController.setDarkNavigationBar(title: "receiver".localized())
+    }
+    
     private func getStringFrom(amount: Decimal?, currency: Currency) -> String {
         guard let amount = amount, !amount.isZero else {
             return ""

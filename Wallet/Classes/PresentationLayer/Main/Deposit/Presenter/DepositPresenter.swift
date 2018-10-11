@@ -68,6 +68,10 @@ extension DepositPresenter: DepositViewOutput {
         let qrCode = interactor.getQrCodeImage()
         view.setQrCode(qrCode)
     }
+    
+    func viewWillAppear() {
+        view.viewController.setWhiteNavigationBarButtons()
+    }
 
 }
 
@@ -131,9 +135,7 @@ extension DepositPresenter {
     }
     
     private func configureNavBar() {
-        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteTextNavigationBar()
-        view.viewController.navigationController?.navigationBar.topItem?.title = "Deposit to account"
+        view.viewController.setWhiteNavigationBar(title: "Deposit to account")
     }
 }

@@ -29,11 +29,6 @@ class TransactionsViewController: UIViewController {
         output.viewWillAppear()
     }
     
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        output.willMoveToParentVC()
-    }
-    
     
     // MARK: - Actions
     
