@@ -82,12 +82,6 @@ extension MyWalletViewController: MyWalletViewInput {
 extension MyWalletViewController {
     
     private func configureNavBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.topItem?.title = "my_wallet".localized()
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         addNewButton.addToNavigationBar(navigationBar)
         addNewButton.addTarget(self, action: #selector(addNew), for: .touchUpInside)
