@@ -28,6 +28,11 @@ class MyWalletViewController: UIViewController {
         configureNavBar()
         output.accountsCollectionView(collectionView)
         output.viewIsReady()
+        
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,6 +88,7 @@ extension MyWalletViewController {
     
     private func configureNavBar() {
         guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationController?.navigationBar.barStyle = .blackTranslucent
         addNewButton.addToNavigationBar(navigationBar)
         addNewButton.addTarget(self, action: #selector(addNew), for: .touchUpInside)
     }
@@ -97,3 +103,4 @@ extension MyWalletViewController {
     }
     
 }
+

@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "smallEthCard.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ethMinicardWhite@2x.png",
+      "filename" : "smallEthCard@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ethMinicardWhite@3x.png",
+      "filename" : "smallEthCard@3x.png",
       "scale" : "3x"
     }
   ],

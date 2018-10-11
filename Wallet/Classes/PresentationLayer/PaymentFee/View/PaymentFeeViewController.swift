@@ -64,6 +64,7 @@ class PaymentFeeViewController: UIViewController {
         output.willMoveToParentVC()
     }
     
+    
     // MARK: IBActions
     
     @IBAction func sliderMoved(_ sender: StepSlider) {
