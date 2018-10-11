@@ -63,6 +63,10 @@ class ExchangeViewController: UIViewController {
         output.configureCollections()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: IBActions
     
     @IBAction private func textDidChange(_ sender: UITextField) {

@@ -89,3 +89,9 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
+extension UINavigationController {
+    override open var childForStatusBarStyle: UIViewController? {
+        return self.topViewController
+    }
+}

@@ -85,4 +85,8 @@ extension AppDelegate {
     static var currentWindow: UIWindow {
         return currentDelegate.window!
     }
+    
+    static var currenctApplication: UIApplication {
+        return UIApplication.shared
+    }
 }
