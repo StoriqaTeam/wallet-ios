@@ -41,18 +41,22 @@ extension BiometryQuickLaunchViewController: BiometryQuickLaunchViewInput {
         
         let title: String
         let buttonTitle: String
+        let image: UIImage
         
         switch biometryType {
         case .touchId:
             title = "touchId_quick_launch_title".localized()
             buttonTitle = "use_touchId".localized()
+            image = #imageLiteral(resourceName: "touchIdQuickLaunch")
         case .faceId:
             title = "faceId_quick_launch_title".localized()
             buttonTitle = "use_faceId".localized()
+            image = #imageLiteral(resourceName: "faceIdQuickLaunch")
         default:
             fatalError("BiometryQuickLaunch view must not be shown in case of no biometryType")
         }
         
+        imageView.image = image
         titleLabel.text = title
         actionButton.setTitle(buttonTitle, for: .normal)
     }

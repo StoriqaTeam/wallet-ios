@@ -14,7 +14,7 @@
         <scene sceneID="Gq7-0f-tMU">
             <objects>
                 <viewController storyboardIdentifier="accountsVC" id="ARJ-pW-IrG" customClass="AccountsViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="N1j-mm-DmY">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="N1j-mm-DmY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

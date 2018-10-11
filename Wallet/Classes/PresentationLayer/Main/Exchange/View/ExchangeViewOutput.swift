@@ -11,6 +11,7 @@ import UIKit
 
 protocol ExchangeViewOutput: class {
     func viewIsReady()
+    func viewWillAppear()
     func accountsCollectionView(_ collectionView: UICollectionView)
     func accountsActionSheet(_ tableView: UITableView)
     func configureCollections()

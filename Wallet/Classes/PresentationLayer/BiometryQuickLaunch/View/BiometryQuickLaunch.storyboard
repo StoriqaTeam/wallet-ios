@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,11 +11,11 @@
             <objects>
                 <viewController storyboardIdentifier="BiometryQuickLaunchVC" title="Quick launch" id="jNQ-Ub-hGR" customClass="BiometryQuickLaunchViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7m8-go-uNv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXf-T8-lEf">
-                                <rect key="frame" x="68" y="56" width="240" height="57.5"/>
+                                <rect key="frame" x="180" y="56" width="240" height="57.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="cJo-Mh-FB0"/>
                                 </constraints>
@@ -30,14 +25,14 @@ launch?</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biometryQuickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="R11-Wv-KYj">
-                                <rect key="frame" x="0.0" y="66.5" width="375" height="534"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touchIdQuickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="R11-Wv-KYj">
+                                <rect key="frame" x="0.0" y="60" width="600" height="480"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PoN-le-L3Z">
-                                <rect key="frame" x="28" y="563" width="319" height="96"/>
+                                <rect key="frame" x="28" y="496" width="544" height="96"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOt-zw-a0e" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="319" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="544" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="F6F-d0-S7M"/>
                                         </constraints>
@@ -49,7 +44,7 @@ launch?</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVE-jD-zYe" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="52" width="319" height="44"/>
+                                        <rect key="frame" x="0.0" y="52" width="544" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="GdO-hy-mf1"/>
                                         </constraints>
@@ -90,6 +85,6 @@ launch?</string>
         </scene>
     </scenes>
     <resources>
-        <image name="biometryQuickLaunch" width="375" height="448"/>
+        <image name="touchIdQuickLaunch" width="16" height="16"/>
     </resources>
 </document>

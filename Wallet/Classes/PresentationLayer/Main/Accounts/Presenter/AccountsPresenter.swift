@@ -75,6 +75,10 @@ extension AccountsPresenter: AccountsViewOutput {
         view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
     }
+    
+    func viewWillAppear() {
+        view.viewController.setWhiteNavigationBarButtons()
+    }
 }
 
 
@@ -83,7 +87,7 @@ extension AccountsPresenter: AccountsViewOutput {
 extension AccountsPresenter: AccountsInteractorOutput {
     
     func ISODidChange(_ iso: String) {
-         view.viewController.title = "Account \(iso)"
+         view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
     }
     
     func transactionsDidChange(_ txs: [TransactionDisplayable]) {
@@ -141,11 +145,8 @@ extension AccountsPresenter {
     }
     
     private func configureNavBar() {
-        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.navigationController?.navigationBar.isTranslucent = true
-        view.viewController.setWhiteTextNavigationBar()
         let iso = interactor.getInitialCurrencyISO()
-        view.viewController.title = "Account \(iso)"
+        view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
     }
 }

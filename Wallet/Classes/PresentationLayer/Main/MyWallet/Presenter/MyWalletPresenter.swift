@@ -112,11 +112,15 @@ extension MyWalletPresenter {
     }
     
     private func configureNavigationBar() {
-        guard let navBar = view.viewController.navigationController else { return }
+        guard let navBar = view.viewController.navigationController?.navigationBar else { return }
 
-        view.viewController.setWhiteTextNavigationBar()
-        navBar.navigationBar.prefersLargeTitles = true
-        navBar.navigationBar.isTranslucent = true
-        navBar.navigationBar.topItem?.title = "my_wallet".localized()
+        navBar.prefersLargeTitles = true
+        navBar.topItem?.title = "my_wallet".localized()
+        
+        view.viewController.setWhiteNavigationBarButtons()
+        var titleTextAttributes = navBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
+        titleTextAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
+        navBar.titleTextAttributes = titleTextAttributes
+        navBar.largeTitleTextAttributes = titleTextAttributes
     }
 }

@@ -2252,8 +2252,7 @@
 			children = (
 				A56ED38D216CD7E2009FA58B /* TransactionDetailsPresenter.swift */,
 			);
-			name = Presenter;
-			path = "New Group";
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A56ED38F216CD807009FA58B /* Router */ = {
@@ -2262,8 +2261,7 @@
 				A56ED390216CD825009FA58B /* TransactionDetailsRouter.swift */,
 				A56ED391216CD825009FA58B /* TransactionDetailsRouterInput.swift */,
 			);
-			name = Router;
-			path = "New Group";
+			path = Router;
 			sourceTree = "<group>";
 		};
 		A56ED394216CEEAE009FA58B /* Mappers */ = {

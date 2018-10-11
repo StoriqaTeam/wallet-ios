@@ -45,18 +45,12 @@ class SendViewController: UIViewController {
         super.viewWillAppear(animated)
         output.configureCollections()
         output.viewWillAppear()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        // FIXME: - collection scroll bug, must be only in will appear
-        
-        super.viewDidAppear(animated)
-        output.configureCollections()
+        setNavBarTransparency()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        output.configureCollections()
         configureGradientView()
     }
     

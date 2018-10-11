@@ -33,19 +33,12 @@ class AccountsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.configureCollections()
+        output.viewWillAppear()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        // FIXME: - collection scroll bug, must be only in will appear
-        
-        super.viewDidAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         output.configureCollections()
-    }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        accountsCollectionView?.clipsToBounds = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

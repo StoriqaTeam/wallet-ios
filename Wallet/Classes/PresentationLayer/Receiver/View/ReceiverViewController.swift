@@ -27,7 +27,6 @@ class ReceiverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
         configInterface()
         output.contactsTableView(contactsTableView)
         addHideKeyboardGuesture()
@@ -45,14 +44,7 @@ class ReceiverViewController: UIViewController {
         output.viewWillAppear()
     }
     
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        output.willMoveToParentVC()
-    }
-    
     private func configInterface() {
-        title = "receiver".localized()
-        
         sendToTitleLabel.text = "send_to".localized()
         inputTextField.placeholder = "receiver_input_placeholder".localized()
         inputTextField.autocorrectionType = .no
@@ -93,17 +85,4 @@ extension ReceiverViewController: ReceiverViewInput {
             self?.output.editButtonPressed()
         })
     }
-}
-
-
-// MARK: - Private methods
-
-extension ReceiverViewController {
-    
-    private func configureNavBar() {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationItem.largeTitleDisplayMode = .never
-        setDarkTextNavigationBar()
-    }
-    
 }

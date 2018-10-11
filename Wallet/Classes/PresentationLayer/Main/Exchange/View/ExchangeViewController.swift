@@ -61,6 +61,13 @@ class ExchangeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.configureCollections()
+        output.viewWillAppear()
+        setNavBarTransparency()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        output.configureCollections()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

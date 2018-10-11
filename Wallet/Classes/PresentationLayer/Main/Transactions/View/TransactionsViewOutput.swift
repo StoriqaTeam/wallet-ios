@@ -12,7 +12,6 @@ import UIKit
 protocol TransactionsViewOutput: class {
     func viewIsReady()
     func transactionTableView(_ tableView: UITableView)
-    func willMoveToParentVC()
     func viewWillAppear()
     func didChooseSegment(at index: Int)
 }
