@@ -17,12 +17,8 @@ class SendModule {
         let converterFactory = CurrecncyConverterFactory()
         let formatter = CurrencyFormatter()
         let accountProvider = FakeAccountProvider()
-        let feeWaitProvider = FakePaymentFeeAndWaitProvider()
-        let sendProvider = SendTransactionProvider(converterFactory: converterFactory,
-                                                   currencyFormatter: formatter,
-                                                   accountProvider: accountProvider,
-                                                   feeWaitProvider: feeWaitProvider)
-        let sendTxBuilder = SendTransactionBuilder(defaultSendTxProvider: sendProvider)
+        
+        let sendTxBuilder = SendTransactionBuilder()
         let currencyImageProvider = CurrencyImageProvider()
         let accountTypeResolver = AccountTypeResolver()
         let accountDisplayer = AccountDisplayer(user: user,

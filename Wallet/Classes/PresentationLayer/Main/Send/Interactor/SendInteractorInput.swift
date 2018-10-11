@@ -14,6 +14,10 @@ protocol SendInteractorInput: class {
     func getAccounts() -> [Account]
     func getAccountsCount() -> Int
     func getAccountIndex() -> Int
+    func getConvertedAmount() -> Decimal
+    func getAmount() -> Decimal?
+    func getSelectedAccountCurrency() -> Currency
+    func getReceiverCurrency() -> Currency
     
     func isValidAmount(_ amount: String) -> Bool
     func setAmount(_ amount: String)
@@ -21,8 +25,7 @@ protocol SendInteractorInput: class {
     func setCurrentAccountWith(index: Int)
     func isFormValid() -> Bool
     
+    func updateTransactionProvider()
     func getTransactionBuilder() -> SendProviderBuilderProtocol
 
-    func getAmount() -> Decimal?
-    func getReceiverCurrency() -> Currency
 }

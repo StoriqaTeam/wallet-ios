@@ -11,6 +11,7 @@ import UIKit
 
 protocol SendViewOutput: class {
     func viewIsReady()
+    func viewWillAppear()
     func accountsCollectionView(_ collectionView: UICollectionView)
     func configureCollections()
     

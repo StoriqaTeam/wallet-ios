@@ -14,11 +14,12 @@ protocol PaymentFeeInteractorInput: class {
     func setPaymentFee(index: Int)
     func getFeeAndWait() -> (fee: String, wait: String)
     func getAddress() -> String
-    func getSubtotal() -> String
+    func getSubtotal() -> Decimal
     func isEnoughFunds() -> Bool
     func createTransaction() -> Transaction
 
-    func getAmount() -> Decimal?
+    func getAmount() -> Decimal
+    func getConvertedAmount() -> Decimal
     func getReceiverCurrency() -> Currency
     func getSelectedAccount() -> Account
     func getOpponent() -> OpponentType

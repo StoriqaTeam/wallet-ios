@@ -18,14 +18,11 @@ class PaymentFeePresenter {
     weak var mainTabBar: UITabBarController!
     
     private let currencyFormatter: CurrencyFormatterProtocol
-    private let converterFactory: CurrecncyConverterFactoryProtocol
     private let currencyImageProvider: CurrencyImageProviderProtocol
     
     init(currencyFormatter: CurrencyFormatterProtocol,
-         converterFactory: CurrecncyConverterFactoryProtocol,
          currencyImageProvider: CurrencyImageProviderProtocol) {
         self.currencyFormatter = currencyFormatter
-        self.converterFactory = converterFactory
         self.currencyImageProvider = currencyImageProvider
     }
     
@@ -43,7 +40,9 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
         view.setMedianWait(wait)
         
         let subtotal = interactor.getSubtotal()
-        view.setSubtotal(subtotal)
+        let accountCurrency = interactor.getSelectedAccount().currency
+        let subtotalStr = getStringFrom(amount: subtotal, currency: accountCurrency)
+        view.setSubtotal(subtotalStr)
         
         let isEnoughFunds = interactor.isEnoughFunds()
         view.setErrorHidden(isEnoughFunds)
@@ -70,7 +69,8 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
         let currency = interactor.getReceiverCurrency()
         let accountCurrency = interactor.getSelectedAccount().currency
         let amountString = getStringFrom(amount: amount, currency: currency)
-        let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
+        let convertedAmount = interactor.getConvertedAmount()
+        let amountStringInTxCurrency = "=" + getStringFrom(amount: convertedAmount, currency: accountCurrency)
         let opponentType = interactor.getOpponent()
         let currencyImage = currencyImageProvider.mediumImage(for: currency)
         
@@ -116,6 +116,7 @@ extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
     func confirmTransaction() {
         //TODO: send transaction
         _ = interactor.createTransaction()
+        interactor.clearBuilder()
         view.popToRoot()
         mainTabBar.selectedIndex = 0
     }
@@ -133,18 +134,6 @@ extension PaymentFeePresenter {
         
         let formatted = currencyFormatter.getStringFrom(amount: amount, currency: currency)
         return formatted
-    }
-    
-    private func getStringInTransactionCurrency(amount: Decimal?, accountCurrency: Currency) -> String {
-        guard let amount = amount, !amount.isZero else {
-            return ""
-        }
-        
-        let receiverCurrency = interactor.getReceiverCurrency()
-        let currencyConverter = converterFactory.createConverter(from: receiverCurrency)
-        let converted = currencyConverter.convert(amount: amount, to: accountCurrency)
-        let formatted = currencyFormatter.getStringFrom(amount: converted, currency: accountCurrency)
-        return "=" + formatted
     }
     
     private func paymentFeeScreen(header: SendingHeaderData, opponentType: OpponentType) -> PaymentFeeScreenData {

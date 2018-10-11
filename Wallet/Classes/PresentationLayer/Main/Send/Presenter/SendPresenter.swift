@@ -102,6 +102,19 @@ extension SendPresenter: SendViewOutput {
         accountsDataManager.scrollTo(index: index)
     }
     
+    func viewWillAppear() {
+        interactor.updateTransactionProvider()
+        
+        let selectedReceiverCurrency = interactor.getReceiverCurrency()
+        let receiverCurrencyIndex = currencies.firstIndex(of: selectedReceiverCurrency)!
+        let formIsValid = interactor.isFormValid()
+        
+        updateAmount()
+        updateConvertedAmount()
+        view.setReceiverCurrencyIndex(receiverCurrencyIndex)
+        view.setButtonEnabled(formIsValid)
+    }
+    
 }
 
 
@@ -116,8 +129,16 @@ extension SendPresenter: SendInteractorOutput {
         view.setAmount(amountString)
     }
     
-    func updateConvertedAmount(_ amount: String) {
-        view.setConvertedAmount(amount)
+    func updateConvertedAmount() {
+        let amount = interactor.getConvertedAmount()
+        
+        if amount.isZero {
+            view.setConvertedAmount("")
+        } else {
+            let currency = interactor.getSelectedAccountCurrency()
+            let amountString = "=" + getStringFrom(amount: amount, currency: currency)
+            view.setConvertedAmount(amountString)
+        }
     }
     
 }

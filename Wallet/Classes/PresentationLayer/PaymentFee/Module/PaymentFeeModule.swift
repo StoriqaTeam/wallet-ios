@@ -12,11 +12,9 @@ class PaymentFeeModule {
                       tabBar: UITabBarController) -> PaymentFeeModuleInput {
         let router = PaymentFeeRouter()
         let formatter = CurrencyFormatter()
-        let converterFactory = CurrecncyConverterFactory()
         let currencyImageProvider = CurrencyImageProvider()
         
         let presenter = PaymentFeePresenter(currencyFormatter: formatter,
-                                            converterFactory: converterFactory,
                                             currencyImageProvider: currencyImageProvider)
         presenter.mainTabBar = tabBar
         let interactor = PaymentFeeInteractor(sendTransactionBuilder: sendTransactionBuilder)

@@ -62,12 +62,16 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         return sendTransactionBuilder
     }
     
-    func getSubtotal() -> String {
+    func getSubtotal() -> Decimal {
         return sendProvider.getSubtotal()
     }
     
-    func getAmount() -> Decimal? {
+    func getAmount() -> Decimal {
         return sendProvider.amount
+    }
+    
+    func getConvertedAmount() -> Decimal {
+        return sendProvider.getConvertedAmount()
     }
     
     func getReceiverCurrency() -> Currency {
