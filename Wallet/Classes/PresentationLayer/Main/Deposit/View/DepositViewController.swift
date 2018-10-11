@@ -44,6 +44,10 @@ class DepositViewController: UIViewController {
         super.viewDidLayoutSubviews()
         configureGradientView()
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     // MARK: IBActions
     

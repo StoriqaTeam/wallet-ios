@@ -48,6 +48,9 @@ class AccountsViewController: UIViewController {
         accountsCollectionView?.clipsToBounds = true
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     // MARK: - Actions
 

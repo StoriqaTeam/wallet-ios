@@ -64,6 +64,11 @@ class PaymentFeeViewController: UIViewController {
         output.willMoveToParentVC()
     }
     
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: IBActions
     
     @IBAction func sliderMoved(_ sender: StepSlider) {
