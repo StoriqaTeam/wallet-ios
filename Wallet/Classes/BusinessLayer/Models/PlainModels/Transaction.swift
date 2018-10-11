@@ -5,6 +5,7 @@
 //  Created by Daniil Miroshnichecko on 24.09.2018.r
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 
@@ -55,8 +56,8 @@ extension Transaction: RealmMappable {
         object.currency = self.currency.ISO
         object.cryptoAmount = self.cryptoAmount.string
         object.fee = self.fee.string
-        let ts = self.timestamp.timeIntervalSince1970
-        object.timestamp = Double(ts)
+        let timestamp = self.timestamp.timeIntervalSince1970
+        object.timestamp = Double(timestamp)
         
         return object
     }

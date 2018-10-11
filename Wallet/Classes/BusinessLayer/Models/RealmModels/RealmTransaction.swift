@@ -5,6 +5,7 @@
 //  Created by Daniil Miroshnichecko on 09/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 import RealmSwift
@@ -20,5 +21,3 @@ class RealmTransaction: Object {
     dynamic var fee: String = ""
     dynamic var timestamp: Double = 0
 }
-
-
