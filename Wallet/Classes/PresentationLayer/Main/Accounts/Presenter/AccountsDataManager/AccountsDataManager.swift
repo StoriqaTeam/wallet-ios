@@ -59,8 +59,8 @@ class AccountsDataManager: NSObject {
     
     func scrollTo(index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
-        accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        delegate?.currentPageDidChange(indexPath.row)
+        accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        delegate?.currentPageDidChange(index)
     }
     
 }
