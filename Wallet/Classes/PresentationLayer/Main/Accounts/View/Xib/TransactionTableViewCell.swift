@@ -46,14 +46,12 @@ extension TransactionTableViewCell {
             cryptoAmountLabel.text = "- \(transaction.cryptoAmountString)"
             fiatAmountlabel.text = "- \(transaction.fiatAmountString)"
             directionImageView.image = UIImage(named: "SendStatusImg")
-            cryptoAmountLabel.textColor = Theme.Text.Color.red
         case .receive:
             directionLabel.text = "Receive"
             directionOpponentLabel.text = "from"
             cryptoAmountLabel.text = "+ \(transaction.cryptoAmountString)"
             fiatAmountlabel.text = "+\(transaction.fiatAmountString)"
             directionImageView.image = UIImage(named: "ReceiveStatusImg")
-            cryptoAmountLabel.textColor = Theme.Text.Color.green
         }
     }
 }
