@@ -32,6 +32,10 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
         configureNavigationBar(title: title)
         view.setConnectButtonEnabled(false)
     }
+    
+    func viewWillAppear() {
+        view.viewController.setDarkNavigationBarButtons()
+    }
 
     func isValidPhoneNumber(_ phone: String) -> Bool {
         view.setConnectButtonEnabled(phone.isValidPhoneNumber())

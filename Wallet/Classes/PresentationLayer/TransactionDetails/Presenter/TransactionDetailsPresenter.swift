@@ -29,6 +29,10 @@ extension TransactionDetailsPresenter: TransactionDetailsViewOutput {
         view.setupInitialState(transaction: transaction)
     }
 
+    func viewWillAppear() {
+        view.viewController.setDarkNavigationBarButtons()
+    }
+    
 }
 
 

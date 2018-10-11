@@ -28,6 +28,10 @@ extension SettingsPresenter: SettingsViewOutput {
         configureNavigationBar()
     }
     
+    func viewWillAppear() {
+        view.viewController.setDarkNavigationBarButtons()
+    }
+    
     func willMoveToParentVC() {
         guard let navigationBar = view.viewController.navigationController?.navigationBar else {
             return

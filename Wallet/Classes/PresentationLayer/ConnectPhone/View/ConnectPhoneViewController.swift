@@ -28,6 +28,11 @@ class ConnectPhoneViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
+    }
+    
     @IBAction func connectButtonPressed(_ sender: UIButton) {
         output.connectButtonPressed(phoneTextField.text!)
     }
