@@ -10,7 +10,19 @@ import Foundation
 
 class SendTransactionBuilder: SendProviderBuilderProtocol {
     
-    private lazy var defaultSendTxProvider: SendTransactionProvider = createSendTxProvider()
+    private var defaultSendTxProvider: SendTransactionProvider
+    
+    init() {
+        let converterFactory = CurrecncyConverterFactory()
+        let formatter = CurrencyFormatter()
+        let accountProvider = FakeAccountProvider()
+        let feeWaitProvider = FakePaymentFeeAndWaitProvider()
+        
+        defaultSendTxProvider = SendTransactionProvider(converterFactory: converterFactory,
+                                                        currencyFormatter: formatter,
+                                                        accountProvider: accountProvider,
+                                                        feeWaitProvider: feeWaitProvider)
+    }
     
     func set(account: Account) {
         defaultSendTxProvider.selectedAccount = account
@@ -46,23 +58,14 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     }
     
     func clear() {
-        defaultSendTxProvider = createSendTxProvider()
-    }
-}
-
-extension SendTransactionBuilder {
-    
-    private func createSendTxProvider() -> SendTransactionProvider {
         let converterFactory = CurrecncyConverterFactory()
         let formatter = CurrencyFormatter()
         let accountProvider = FakeAccountProvider()
         let feeWaitProvider = FakePaymentFeeAndWaitProvider()
         
-        let sendProvider = SendTransactionProvider(converterFactory: converterFactory,
-                                                   currencyFormatter: formatter,
-                                                   accountProvider: accountProvider,
-                                                   feeWaitProvider: feeWaitProvider)
-        return sendProvider
+        defaultSendTxProvider = SendTransactionProvider(converterFactory: converterFactory,
+                                                        currencyFormatter: formatter,
+                                                        accountProvider: accountProvider,
+                                                        feeWaitProvider: feeWaitProvider)
     }
-    
 }
