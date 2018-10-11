@@ -61,6 +61,8 @@ class ExchangeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.configureCollections()
+        output.viewWillAppear()
+        setNavBarTransparency()
     }
     
     // MARK: IBActions

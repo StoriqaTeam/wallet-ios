@@ -11,7 +11,6 @@ import UIKit
 
 protocol ConnectPhoneViewOutput: class {
     func viewIsReady()
-    func willMoveToParentVC()
     func isValidPhoneNumber(_ phone: String) -> Bool
     func connectButtonPressed(_ phone: String)
     func cancelButtonPressed()

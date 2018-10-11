@@ -33,6 +33,7 @@ class AccountsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.configureCollections()
+        output.viewWillAppear()
     }
     
     override func viewDidAppear(_ animated: Bool) {

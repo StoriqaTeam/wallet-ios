@@ -32,10 +32,6 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
         configureNavigationBar(title: title)
         view.setConnectButtonEnabled(false)
     }
-    
-    func willMoveToParentVC() {
-        view.viewController.setWhiteTextNavigationBar()
-    }
 
     func isValidPhoneNumber(_ phone: String) -> Bool {
         view.setConnectButtonEnabled(phone.isValidPhoneNumber())
@@ -76,9 +72,8 @@ extension ConnectPhonePresenter: ConnectPhoneModuleInput {
 extension ConnectPhonePresenter {
     
     private func configureNavigationBar(title: String) {
-        view.viewController.setDarkTextNavigationBar()
+        view.viewController.setDarkNavigationBar(title: title)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.title = title
     }
     
 }

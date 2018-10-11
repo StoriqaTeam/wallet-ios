@@ -42,13 +42,9 @@ extension TransactionsPresenter: TransactionsViewOutput {
         view.setupInitialState()
         configureNavBar()
     }
-
-    func willMoveToParentVC() {
-        view.viewController.setWhiteTextNavigationBar()
-    }
     
     func viewWillAppear() {
-        view.viewController.setDarkTextNavigationBar()
+        view.viewController.setDarkNavigationBarButtons()
     }
     
     func didChooseSegment(at index: Int) {
@@ -89,8 +85,7 @@ extension TransactionsPresenter: TransactionsDataManagerDelegate {
 
 extension TransactionsPresenter {
     private func configureNavBar() {
-        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.title = "Transactions"
+        view.viewController.setDarkNavigationBar(title: "Transactions")
     }
 }

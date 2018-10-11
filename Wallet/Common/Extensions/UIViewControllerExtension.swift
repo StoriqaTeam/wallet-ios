@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    func setDarkTextNavigationBar() {
-        setNavigationBarTextColor(.black)
+    func setDarkNavigationBarButtons() {
+        setNavigationBarButtonsColor(.black)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
-    func setWhiteTextNavigationBar() {
-        setNavigationBarTextColor(.white)
+    func setWhiteNavigationBarButtons() {
+        setNavigationBarButtonsColor(.white)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
@@ -25,26 +25,20 @@ extension UIViewController {
             log.warn("navigationBar is nil")
             return
         }
-        let customColor = navigationBar.titleTextAttributes?[NSAttributedString.Key.foregroundColor] as? UIColor
-        let color = customColor ?? UIColor.black
-        let alphaColor = color.withAlphaComponent(alpha)
+        let color = navigationBar.tintColor.withAlphaComponent(alpha)
+        setNavigationBarButtonsColor(color)
         
-        setNavigationBarTextColor(alphaColor)
+        if let navLabel = navigationItem.titleView as? UILabel {
+            navLabel.textColor = color
+        }
     }
     
-    private func setNavigationBarTextColor(_ color: UIColor) {
-        guard let navigationBar = navigationController?.navigationBar else {
-            log.warn("navigationBar is nil")
-            return
-        }
-        
-        navigationBar.barTintColor = color
-        navigationBar.tintColor = color
-        
-        var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
-        titleTextAttributes[NSAttributedString.Key.foregroundColor] = color
-        navigationBar.titleTextAttributes = titleTextAttributes
-        navigationBar.largeTitleTextAttributes = titleTextAttributes
+    func setDarkNavigationBar(title: String) {
+        setNavigationBar(title: title, color: .black)
+    }
+    
+    func setWhiteNavigationBar(title: String) {
+        setNavigationBar(title: title, color: .white)
     }
     
     func addHideKeyboardGuesture() {
@@ -88,4 +82,28 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+}
+
+// MARK: - Private methods
+
+extension UIViewController {
+    
+    private func setNavigationBarButtonsColor(_ color: UIColor) {
+        navigationController?.navigationBar.barTintColor = color
+        navigationController?.navigationBar.tintColor = color
+    }
+    
+    private func setNavigationBar(title: String, color: UIColor) {
+        let navLabel = UILabel()
+        navLabel.backgroundColor = .clear
+        navLabel.textColor = color
+        navLabel.font = UIFont.navigationBarTitle
+        navLabel.text = title
+        navLabel.textAlignment = .center
+        navLabel.sizeToFit()
+        navigationItem.titleView = navLabel
+        
+        setNavigationBarButtonsColor(color)
+    }
+    
 }

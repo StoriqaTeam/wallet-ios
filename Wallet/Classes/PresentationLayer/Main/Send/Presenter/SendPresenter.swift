@@ -103,6 +103,8 @@ extension SendPresenter: SendViewOutput {
     }
     
     func viewWillAppear() {
+        view.viewController.setWhiteNavigationBarButtons()
+        
         interactor.updateTransactionProvider()
         
         let selectedReceiverCurrency = interactor.getReceiverCurrency()
@@ -176,10 +178,8 @@ extension SendPresenter: AccountsDataManagerDelegate {
 
 extension SendPresenter {
     private func configureNavBar() {
-        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteTextNavigationBar()
-        view.viewController.navigationController?.navigationBar.topItem?.title = "send".localized()
+        view.viewController.setWhiteNavigationBar(title: "send".localized())
     }
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {

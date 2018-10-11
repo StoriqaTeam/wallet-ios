@@ -29,6 +29,11 @@ extension UIFont {
         return UIFont.systemFont(ofSize: 17)
     }
     
+    /** 17px semibold */
+    @nonobjc class var navigationBarTitle: UIFont {
+        return UIFont.systemFont(ofSize: 17, weight: .semibold)
+    }
+    
     /** 13px regular */
     @nonobjc class var smallText: UIFont {
         return UIFont.systemFont(ofSize: 13)

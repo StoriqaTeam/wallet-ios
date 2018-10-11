@@ -29,8 +29,6 @@ extension SettingsPresenter: SettingsViewOutput {
     }
     
     func willMoveToParentVC() {
-        view.viewController.setWhiteTextNavigationBar()
-        
         guard let navigationBar = view.viewController.navigationController?.navigationBar else {
             return
         }
@@ -74,9 +72,7 @@ extension SettingsPresenter: SettingsModuleInput {
 
 extension SettingsPresenter {
     func configureNavigationBar() {
-        view.viewController.title = "Settings"
-        view.viewController.setDarkTextNavigationBar()
-        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
+        view.viewController.setDarkNavigationBar(title: "Settings")
     }
 }

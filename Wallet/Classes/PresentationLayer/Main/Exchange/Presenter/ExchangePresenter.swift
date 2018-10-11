@@ -45,6 +45,10 @@ extension ExchangePresenter: ExchangeViewOutput {
         interactor.updateInitialState()
     }
     
+    func viewWillAppear() {
+        view.viewController.setWhiteNavigationBarButtons()
+    }
+    
     func accountsCollectionView(_ collectionView: UICollectionView) {
         collectionView.collectionViewLayout = collectionFlowLayout
         
@@ -237,9 +241,7 @@ extension ExchangePresenter {
     }
     
     private func configureNavBar() {
-        view.viewController.navigationController?.setNavigationBarHidden(false, animated: true)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteTextNavigationBar()
-        view.viewController.navigationController?.navigationBar.topItem?.title = "Exchange"
+        view.viewController.setWhiteNavigationBar(title: "Exchange")
     }
 }
