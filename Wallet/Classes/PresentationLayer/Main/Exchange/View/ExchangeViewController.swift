@@ -65,6 +65,11 @@ class ExchangeViewController: UIViewController {
         setNavBarTransparency()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        output.configureCollections()
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

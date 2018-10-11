@@ -44,6 +44,7 @@ class DepositViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        output.configureCollections()
         configureGradientView()
     }
     
