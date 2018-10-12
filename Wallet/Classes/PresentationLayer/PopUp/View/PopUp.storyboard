@@ -147,6 +147,7 @@
                         <outlet property="imageView" destination="bXf-dh-vgO" id="vXd-79-OrP"/>
                         <outlet property="textLabel" destination="j9L-RC-dkU" id="KZT-Fh-zaD"/>
                         <outlet property="titleLabel" destination="Uor-D0-5hH" id="6fU-dT-dV7"/>
+                        <outlet property="verticalCenterConstraint" destination="vQl-Nb-hWl" id="RDB-NT-q8v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ojs-cx-ikP" userLabel="First Responder" sceneMemberID="firstResponder"/>

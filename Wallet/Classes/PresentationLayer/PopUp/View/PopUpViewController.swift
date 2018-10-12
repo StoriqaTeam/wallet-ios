@@ -21,11 +21,13 @@ class PopUpViewController: UIViewController {
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var actionButton: DefaultButton!
     @IBOutlet private var closeButton: BaseButton!
+    @IBOutlet private var verticalCenterConstraint: NSLayoutConstraint!
     
     // MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        verticalCenterConstraint.constant = Constants.Sizes.screenHeight
         configureInterface()
         output.viewIsReady()
     }
@@ -33,32 +35,32 @@ class PopUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: { [weak self] in
-            self?.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
             }, completion: nil)
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {[weak self] in
-            self?.view.backgroundColor = .clear
+        verticalCenterConstraint.constant = 0
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut], animations: {
+            self.view.layoutIfNeeded()
             }, completion: nil)
     }
     
     // MARK: - Action
     
     @IBAction func actionButtonTapped(_ sender: UIButton) {
-        dismissViewController()
+        animateDismiss()
         viewModel.performAction()
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        dismissViewController()
+        animateDismiss()
         viewModel.cancelAction()
     }
-    
 }
 
 
@@ -98,6 +100,20 @@ extension PopUpViewController {
         textLabel.font = Theme.Font.smallText
         textLabel.textColor = Theme.Color.primaryGrey
         closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+    }
+    
+    private func animateDismiss() {
+        verticalCenterConstraint.constant = Constants.Sizes.screenHeight
+        
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut], animations: {
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            self.dismiss(animated: false, completion: nil)
+        })
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {
+            self.view.backgroundColor = .clear
+        }, completion: nil)
     }
     
 }
