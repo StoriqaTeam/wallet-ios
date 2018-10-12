@@ -80,6 +80,9 @@ extension ExchangeInteractor: ExchangeInteractorInput {
     }
     
     func setCurrentAccount(index: Int) {
+        let currentIndex = getAccountIndex()
+        guard currentIndex != index else { return }
+        
         let allAccounts = accountsProvider.getAllAccounts()
         accountWatcher.setAccount(allAccounts[index])
         recepientAccounts = updateRecepientAccounts()

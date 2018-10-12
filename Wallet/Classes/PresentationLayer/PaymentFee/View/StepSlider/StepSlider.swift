@@ -54,6 +54,7 @@ extension StepSlider {
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         calculateCurrentValue()
+        setValue(Float(currentSliderStep) * stepLength, animated: false)
     }
     
 }
@@ -74,7 +75,6 @@ extension StepSlider {
     
     private func calculateCurrentValue() {
         let step = Int(round(value / stepLength))
-        setValue(Float(step) * stepLength, animated: false)
         currentSliderStep = step
     }
 }
