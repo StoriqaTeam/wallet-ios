@@ -27,9 +27,9 @@ class BaseQuickLaunchViewController: UIViewController {
     }
     
     private func configureInterface() {
-        titleLabel.font = UIFont.title
-        subtitleLabel?.font = UIFont.subtitle
-        subtitleLabel?.textColor = .greyishBrown
+        titleLabel.font = Theme.Font.title
+        subtitleLabel?.font = Theme.Font.subtitle
+        subtitleLabel?.textColor = Theme.Color.greyishBrown
         cancelButton.setTitle("do_not_use".localized(), for: .normal)
     }
     

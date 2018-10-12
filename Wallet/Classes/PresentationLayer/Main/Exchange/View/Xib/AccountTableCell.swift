@@ -18,8 +18,8 @@ class AccountTableCell: UITableViewCell {
         super.awakeFromNib()
         accountName.font = UIFont.systemFont(ofSize: 19)
         amountLabel.font = UIFont.systemFont(ofSize: 15)
-        amountLabel.textColor = UIColor.captionGrey
-        currencyImage.tintColor = UIColor.mainBlue
+        amountLabel.textColor = Theme.Text.Color.captionGrey
+        currencyImage.tintColor = Theme.Color.brightSkyBlue
     }
     
     func configure(image: UIImage, accountName: String, amount: String) {

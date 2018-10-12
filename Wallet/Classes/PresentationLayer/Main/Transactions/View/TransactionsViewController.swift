@@ -60,7 +60,7 @@ extension TransactionsViewController {
     
     private func configiureSegmentControl() {
         let normalTextAttributes = [NSAttributedString.Key.font: Theme.Font.segmentTextFont,
-                                    NSAttributedString.Key.foregroundColor: Theme.Color.greyText]
+                                    NSAttributedString.Key.foregroundColor: Theme.Text.Color.grey]
         let selectedtextAttributes = [NSAttributedString.Key.font: Theme.Font.segmentTextFont,
                                       NSAttributedString.Key.foregroundColor: Theme.Color.brightSkyBlue]
         

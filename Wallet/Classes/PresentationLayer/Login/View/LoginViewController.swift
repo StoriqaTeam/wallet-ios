@@ -143,8 +143,8 @@ extension LoginViewController {
             self?.view.layoutIfNeeded()
         }
         
-        signInButton.title = "get_started".localized()
-        forgotPasswordButton.setTitleColor(UIColor.mainBlue, for: .normal)
+        signInButton.title = "sign_in".localized()
+        forgotPasswordButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
         forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
     }
     

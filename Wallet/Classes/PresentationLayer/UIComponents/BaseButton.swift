@@ -19,6 +19,6 @@ class BaseButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        setTitleColor(UIColor.mainBlue, for: .normal)
+        setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }
 }

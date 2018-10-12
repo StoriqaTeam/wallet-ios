@@ -17,7 +17,7 @@ class ActivityIndicatorView: UIView {
             let radius = self.frame.height / 2
             circleLayer = WCGraintCircleLayer(bounds: self.bounds,
                                               position: CGPoint(x: radius, y: radius),
-                                              fromColor: UIColor.mainBlue,
+                                              fromColor: Theme.Color.brightSkyBlue,
                                               toColor: UIColor.white,
                                               linewidth: 2.0)
         }

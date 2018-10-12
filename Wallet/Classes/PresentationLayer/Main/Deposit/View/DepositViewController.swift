@@ -114,16 +114,16 @@ extension DepositViewController {
     private func configureInterface() {
         scrollView.delegate = self
         
-        addressTitleLabel.font = UIFont.caption
-        qrCodeTitleLabel.font = UIFont.caption
-        addressLabel.font = UIFont.generalText
+        addressTitleLabel.font = Theme.Font.caption
+        qrCodeTitleLabel.font = Theme.Font.caption
+        addressLabel.font = Theme.Font.generalText
         
-        addressTitleLabel.textColor = Theme.Color.captionGrey
-        qrCodeTitleLabel.textColor = Theme.Color.captionGrey
+        addressTitleLabel.textColor = Theme.Text.Color.captionGrey
+        qrCodeTitleLabel.textColor = Theme.Text.Color.captionGrey
         
-        copyButton.titleLabel?.font = UIFont.smallText
+        copyButton.titleLabel?.font = Theme.Font.smallText
         copyButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
-        shareButton.titleLabel?.font = UIFont.smallText
+        shareButton.titleLabel?.font = Theme.Font.smallText
         shareButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }
     

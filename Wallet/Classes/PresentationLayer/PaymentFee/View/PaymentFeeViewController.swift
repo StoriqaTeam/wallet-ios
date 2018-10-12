@@ -154,28 +154,28 @@ extension PaymentFeeViewController {
         //TODO: локализации
         
         title = "Payment Fee"
-        addressTitleLabel.font = UIFont.caption
-        receiverTitleLabel.font = UIFont.caption
-        paymentFeeTitleLabel.font = UIFont.caption
-        medianWaitTitleLabel.font = UIFont.caption
-        subtotalTitleLabel.font = UIFont.caption
+        addressTitleLabel.font = Theme.Font.caption
+        receiverTitleLabel.font = Theme.Font.caption
+        paymentFeeTitleLabel.font = Theme.Font.caption
+        medianWaitTitleLabel.font = Theme.Font.caption
+        subtotalTitleLabel.font = Theme.Font.caption
         
-        paymentFeeLowLabel.font = UIFont.smallText
-        paymentFeeMediumLabel.font = UIFont.smallText
-        paymentFeeHighLabel.font = UIFont.smallText
-        errorLabel.font = UIFont.smallText
+        paymentFeeLowLabel.font = Theme.Font.smallText
+        paymentFeeMediumLabel.font = Theme.Font.smallText
+        paymentFeeHighLabel.font = Theme.Font.smallText
+        errorLabel.font = Theme.Font.smallText
         
-        addressTitleLabel.textColor = UIColor.bluegrey
-        receiverTitleLabel.textColor = UIColor.bluegrey
-        paymentFeeTitleLabel.textColor = UIColor.bluegrey
-        medianWaitTitleLabel.textColor = UIColor.bluegrey
-        subtotalTitleLabel.textColor = UIColor.bluegrey
+        addressTitleLabel.textColor = Theme.Color.bluegrey
+        receiverTitleLabel.textColor = Theme.Color.bluegrey
+        paymentFeeTitleLabel.textColor = Theme.Color.bluegrey
+        medianWaitTitleLabel.textColor = Theme.Color.bluegrey
+        subtotalTitleLabel.textColor = Theme.Color.bluegrey
         
-        paymentFeeLowLabel.textColor = UIColor.captionGrey
-        paymentFeeMediumLabel.textColor = UIColor.captionGrey
-        paymentFeeHighLabel.textColor = UIColor.captionGrey
+        paymentFeeLowLabel.textColor = Theme.Text.Color.captionGrey
+        paymentFeeMediumLabel.textColor = Theme.Text.Color.captionGrey
+        paymentFeeHighLabel.textColor = Theme.Text.Color.captionGrey
         
-        errorLabel.textColor = UIColor.errorRed
+        errorLabel.textColor = Theme.Text.Color.errorRed
   
         errorLabel.isHidden = true
         sendButton.isHidden = false

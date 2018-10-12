@@ -30,7 +30,7 @@ class RegistrationViewController: UIViewController {
     // MARK: - Variables
     
     private var isAcceptedAgreement = false
-    private let acceptedAgreementColor = UIColor.mainBlue
+    private let acceptedAgreementColor = Theme.Color.brightSkyBlue
     private let nonAcceptedAgreementColor = UIColor.lightGray
 
     // MARK: - Life cycle
@@ -177,7 +177,7 @@ extension RegistrationViewController {
         
         setAgreementTintColor()
         
-        agreementLabel.textColor = UIColor.secondaryGrey
+        agreementLabel.textColor = Theme.Color.primaryGrey
         agreementLabel.text = "accept_agreement".localized()
 
         signUpButton.title = "sign_up".localized()

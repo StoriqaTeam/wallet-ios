@@ -63,8 +63,8 @@ extension StepSlider {
 extension StepSlider {
     
     private func configure() {
-        minimumTrackTintColor = UIColor.mainBlue
-        maximumTrackTintColor = UIColor.mainBlue
+        minimumTrackTintColor = Theme.Color.brightSkyBlue
+        maximumTrackTintColor = Theme.Color.brightSkyBlue
         
         let thumbImage = #imageLiteral(resourceName: "thumbImage")
         for state: UIControl.State in  [.normal, .selected, .application, .reserved, .highlighted] {

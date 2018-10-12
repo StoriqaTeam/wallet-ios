@@ -36,8 +36,8 @@ extension PinSetupPresenter: PinSetupViewOutput {
         pinContainer.delegate = self
         pinContainer.totalDotCount = kPasswordDigits
         pinContainer.touchAuthenticationEnabled = false
-        pinContainer.tintColor = UIColor.mainBlue
-        pinContainer.highlightedColor = UIColor.mainBlue
+        pinContainer.tintColor = Theme.Color.brightSkyBlue
+        pinContainer.highlightedColor = Theme.Color.brightSkyBlue
     }
 
 }

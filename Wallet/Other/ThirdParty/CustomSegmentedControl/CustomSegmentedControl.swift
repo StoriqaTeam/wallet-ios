@@ -18,17 +18,17 @@ class CustomSegmentedControl: UIControl {
         didSet { updateView() }
     }
     
-    @IBInspectable var imageColor: UIColor = .cloudyBlue {
+    @IBInspectable var imageColor: UIColor = Theme.Color.cloudyBlue {
         didSet { updateButtonColors() }
     }
     
-    @IBInspectable var selectorColor: UIColor = .mainBlue {
+    @IBInspectable var selectorColor: UIColor = Theme.Color.brightSkyBlue {
         didSet {
             selector?.backgroundColor = selectorColor
         }
     }
     
-    @IBInspectable var selectedImageColor: UIColor = .mainBlue {
+    @IBInspectable var selectedImageColor: UIColor = Theme.Color.brightSkyBlue {
         didSet { updateButtonColors() }
     }
     

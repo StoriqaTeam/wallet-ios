@@ -116,7 +116,6 @@ extension SendViewController: SendViewInput {
     
     func setNewPage(_ index: Int) {
         accountsPageControl.currentPage = index
-        dismissKeyboard()
     }
     
     func setButtonEnabled(_ enabled: Bool) {
@@ -179,10 +178,10 @@ extension SendViewController {
         amountTextField.clearButtonMode = .never
         scrollView.delegate = self
         
-        receiverCurrencyTitleLabel.font = UIFont.caption
-        amountTitleLabel.font = UIFont.caption
-        receiverCurrencyTitleLabel.textColor = UIColor.captionGrey
-        amountTitleLabel.textColor = UIColor.captionGrey
+        receiverCurrencyTitleLabel.font = Theme.Font.caption
+        amountTitleLabel.font = Theme.Font.caption
+        receiverCurrencyTitleLabel.textColor = Theme.Text.Color.captionGrey
+        amountTitleLabel.textColor = Theme.Text.Color.captionGrey
         
         amountTitleLabel.text = "amount".localized()
         receiverCurrencyTitleLabel.text = "receiver_currency".localized()
@@ -214,15 +213,19 @@ extension SendViewController {
         }
         
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardHeight = keyboardFrame.cgRectValue.height
-            let delta = keyboardHeight - (view.frame.height - scrollView.contentSize.height) + 16
-        
+            let keyboardOrigin = view.frame.height - keyboardFrame.cgRectValue.height
+            let textFieldOrigin = amountTextField.superview!.convert(amountTextField.frame, to: view).maxY
+            var delta = textFieldOrigin - keyboardOrigin + 16
+            
+            if scrollView.contentSize.height < view.frame.height {
+                delta += view.frame.height - scrollView.contentSize.height
+            }
+            
             isKeyboardAnimating = true
             
             var contentInset = self.scrollView.contentInset
             contentInset.bottom = delta
             scrollView.contentInset = contentInset
-            
         }
     }
     
