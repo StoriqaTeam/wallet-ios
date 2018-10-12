@@ -53,10 +53,10 @@ class PasswordRecoveryBaseViewController: UIViewController {
     
     func configureInterface() {
         titleLabel.text = "password_recovery".localized()
-        titleLabel.font = UIFont.title
+        titleLabel.font = Theme.Font.title
         
-        subtitleLabel.font = UIFont.subtitle
-        subtitleLabel.textColor = UIColor.primaryGrey
+        subtitleLabel.font = Theme.Font.subtitle
+        subtitleLabel.textColor = Theme.Color.primaryGrey
         
         resetPasswordButtonBottomConstraint.constant = buttonBottomSpace
         if Device.model == .iPhoneSE {

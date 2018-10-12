@@ -17,7 +17,7 @@ class PopUpSendConfirmVM: PopUpViewModelProtocol {
     weak var delegate: PopUpSendConfirmVMDelegate?
     
     init(amount: String, address: String) {
-        let boldTextAttributes = [NSAttributedString.Key.font: UIFont.smallMediumWeightText,
+        let boldTextAttributes = [NSAttributedString.Key.font: Theme.Font.smallMediumWeightText,
                                   NSAttributedString.Key.foregroundColor: UIColor.black]
         
         let attrText = NSMutableAttributedString()

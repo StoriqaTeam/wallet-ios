@@ -54,6 +54,7 @@ extension StepSlider {
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         calculateCurrentValue()
+        setValue(Float(currentSliderStep) * stepLength, animated: false)
     }
     
 }
@@ -63,8 +64,8 @@ extension StepSlider {
 extension StepSlider {
     
     private func configure() {
-        minimumTrackTintColor = UIColor.mainBlue
-        maximumTrackTintColor = UIColor.mainBlue
+        minimumTrackTintColor = Theme.Color.brightSkyBlue
+        maximumTrackTintColor = Theme.Color.brightSkyBlue
         
         let thumbImage = #imageLiteral(resourceName: "thumbImage")
         for state: UIControl.State in  [.normal, .selected, .application, .reserved, .highlighted] {
@@ -74,7 +75,6 @@ extension StepSlider {
     
     private func calculateCurrentValue() {
         let step = Int(round(value / stepLength))
-        setValue(Float(step) * stepLength, animated: false)
         currentSliderStep = step
     }
 }

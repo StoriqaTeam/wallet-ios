@@ -29,8 +29,8 @@ extension PinInputPresenter: PinInputViewOutput {
     func pinContainer(_ pinContainer: PinContainerView) {
         pinContainer.delegate = self
         pinContainer.totalDotCount = kPasswordDigits
-        pinContainer.tintColor = UIColor.mainBlue
-        pinContainer.highlightedColor = UIColor.mainBlue
+        pinContainer.tintColor = Theme.Color.brightSkyBlue
+        pinContainer.highlightedColor = Theme.Color.brightSkyBlue
         pinContainer.touchAuthenticationEnabled = interactor.isBiometryAuthEnabled()
         pinContainer.authButtonImage = interactor.biometricAuthImage()
     }
@@ -59,6 +59,7 @@ extension PinInputPresenter: PinInputViewOutput {
         
         alertController.addAction(resetPin)
         alertController.addAction(cancelAction)
+        alertController.view.tintColor = Theme.Color.brightSkyBlue
         
         view.viewController.present(alertController, animated: true, completion: nil)
     }

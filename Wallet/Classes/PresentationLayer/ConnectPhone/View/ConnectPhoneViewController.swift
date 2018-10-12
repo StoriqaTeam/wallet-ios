@@ -86,11 +86,11 @@ extension ConnectPhoneViewController {
     private func configureInterface() {
         phoneTextField.delegate = self
         
-        headerTextLabel.font = UIFont.smallText
-        footerTextLabel.font = UIFont.smallText
+        headerTextLabel.font = Theme.Font.smallText
+        footerTextLabel.font = Theme.Font.smallText
         
-        headerTextLabel.textColor = Theme.Color.captionGrey
-        footerTextLabel.textColor = Theme.Color.captionGrey
+        headerTextLabel.textColor = Theme.Text.Color.captionGrey
+        footerTextLabel.textColor = Theme.Text.Color.captionGrey
         
         // TODO: localizations
     }

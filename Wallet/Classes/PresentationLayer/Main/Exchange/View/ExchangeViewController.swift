@@ -38,6 +38,8 @@ class ExchangeViewController: UIViewController {
     
     // MARK: Variables
 
+    private let keyboardAnimationDelay = 0.5
+    private var isKeyboardAnimating = false
     private let dimmingBackground = UIButton()
     private let accountsActionSheet = UITableView()
     private let animationDuration = 0.3
@@ -70,8 +72,30 @@ class ExchangeViewController: UIViewController {
         output.configureCollections()
     }
     
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name: UIResponder.keyboardDidHideNotification, object: nil)
+        
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: IBActions
@@ -154,7 +178,6 @@ extension ExchangeViewController: ExchangeViewInput {
     
     func setNewPage(_ index: Int) {
         accountsPageControl.currentPage = index
-        dismissKeyboard()
     }
     
     func setAmount(_ amount: String) {
@@ -291,36 +314,73 @@ extension ExchangeViewController {
         accountsActionSheet.frame = frame
     }
     
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard let scrollView = scrollView else {
+            return
+        }
+        
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardHeight = keyboardFrame.cgRectValue.height
+            let textFieldOrigin = amountTextField.convert(amountTextField.frame.origin, to: view).y
+            let delta = textFieldOrigin - keyboardHeight + 16
+            
+            isKeyboardAnimating = true
+            
+            var contentInset = self.scrollView.contentInset
+            contentInset.bottom = delta
+            scrollView.contentInset = contentInset
+            
+        }
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        guard let scrollView = scrollView else {
+            return
+        }
+        
+        isKeyboardAnimating = true
+        
+        let contentInset = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+        
+    }
+    
+    @objc private func keyboardFinishedAnimating(_ notification: Notification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + keyboardAnimationDelay) { [weak self] in
+            self?.isKeyboardAnimating = false
+        }
+    }
+    
     private func configInterface() {
         scrollView.delegate = self
         amountTextField.delegate = self
         amountTextField.clearButtonMode = .never
         
-        recepientAccountTitleLabel.font = UIFont.caption
-        amountTitleLabel.font = UIFont.caption
-        paymentFeeTitleLabel.font = UIFont.caption
-        medianWaitTitleLabel.font = UIFont.caption
-        subtotalTitleLabel.font = UIFont.caption
+        recepientAccountTitleLabel.font = Theme.Font.caption
+        amountTitleLabel.font = Theme.Font.caption
+        paymentFeeTitleLabel.font = Theme.Font.caption
+        medianWaitTitleLabel.font = Theme.Font.caption
+        subtotalTitleLabel.font = Theme.Font.caption
         
-        paymentFeeLowLabel.font = UIFont.smallText
-        paymentFeeMediumLabel.font = UIFont.smallText
-        paymentFeeHighLabel.font = UIFont.smallText
-        errorLabel.font = UIFont.smallText
+        paymentFeeLowLabel.font = Theme.Font.smallText
+        paymentFeeMediumLabel.font = Theme.Font.smallText
+        paymentFeeHighLabel.font = Theme.Font.smallText
+        errorLabel.font = Theme.Font.smallText
         
-        recepientAccountLabel.font = UIFont.generalText
-        amountTextField.font = UIFont.generalText
+        recepientAccountLabel.font = Theme.Font.generalText
+        amountTextField.font = Theme.Font.generalText
         
-        recepientAccountTitleLabel.textColor = UIColor.bluegrey
-        amountTitleLabel.textColor = UIColor.bluegrey
-        paymentFeeTitleLabel.textColor = UIColor.bluegrey
-        medianWaitTitleLabel.textColor = UIColor.bluegrey
-        subtotalTitleLabel.textColor = UIColor.bluegrey
+        recepientAccountTitleLabel.textColor = Theme.Color.bluegrey
+        amountTitleLabel.textColor = Theme.Color.bluegrey
+        paymentFeeTitleLabel.textColor = Theme.Color.bluegrey
+        medianWaitTitleLabel.textColor = Theme.Color.bluegrey
+        subtotalTitleLabel.textColor = Theme.Color.bluegrey
         
-        paymentFeeLowLabel.textColor = UIColor.captionGrey
-        paymentFeeMediumLabel.textColor = UIColor.captionGrey
-        paymentFeeHighLabel.textColor = UIColor.captionGrey
+        paymentFeeLowLabel.textColor = Theme.Text.Color.captionGrey
+        paymentFeeMediumLabel.textColor = Theme.Text.Color.captionGrey
+        paymentFeeHighLabel.textColor = Theme.Text.Color.captionGrey
         
-        errorLabel.textColor = UIColor.errorRed
+        errorLabel.textColor = Theme.Text.Color.errorRed
         
         errorLabel.isHidden = true
         exchangeButton.isHidden = false

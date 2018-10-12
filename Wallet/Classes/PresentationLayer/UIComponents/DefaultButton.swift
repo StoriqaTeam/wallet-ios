@@ -13,10 +13,10 @@ class DefaultButton: BaseButton {
     private var needsShadow: Bool = false
     private var shadowLayer: CAShapeLayer?
 
-    private var enabledBackgroundColor = UIColor.mainBlue
-    private var disabledBackgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 0.12)
-    private var enabledTitleColor = UIColor.white
-    private var disabledTitleColor = UIColor.secondaryGrey
+    private let enabledBackgroundColor = Theme.Button.Color.enabledBackground
+    private let disabledBackgroundColor = Theme.Button.Color.disabledBackground
+    private let enabledTitleColor = Theme.Button.Color.enabledTitle
+    private let disabledTitleColor = Theme.Button.Color.disabledTitle
     
     override var isEnabled: Bool {
         didSet {
@@ -32,17 +32,6 @@ class DefaultButton: BaseButton {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
-    }
-    
-    func setup(color: UIColor? = nil, titleColor: UIColor? = nil) {
-        if let color = color {
-            enabledBackgroundColor = color
-        }
-        if let titleColor = titleColor {
-            enabledTitleColor = titleColor
-        }
-        
         updateColors()
     }
     

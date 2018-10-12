@@ -27,8 +27,8 @@ class ErrorView: LoadableFromXib {
 
 extension ErrorView {
     private func configInterface() {
-        errorImageView.tintColor = UIColor.cloudyBlue
-        messageLabel.textColor = UIColor.bluegrey
-        messageLabel.font = UIFont.smallText
+        errorImageView.tintColor = Theme.Color.cloudyBlue
+        messageLabel.textColor = Theme.Color.bluegrey
+        messageLabel.font = Theme.Font.smallText
     }
 }

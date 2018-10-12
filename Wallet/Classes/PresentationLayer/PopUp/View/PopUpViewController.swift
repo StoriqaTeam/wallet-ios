@@ -94,10 +94,10 @@ extension PopUpViewController {
     
     private func configureInterface() {
         containerView.roundCorners(radius: 7)
-        titleLabel.font = UIFont.title
-        textLabel.font = UIFont.smallText
-        textLabel.textColor = UIColor.primaryGrey
-        closeButton.setTitleColor(UIColor.mainBlue, for: .normal)
+        titleLabel.font = Theme.Font.title
+        textLabel.font = Theme.Font.smallText
+        textLabel.textColor = Theme.Color.primaryGrey
+        closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }
     
 }

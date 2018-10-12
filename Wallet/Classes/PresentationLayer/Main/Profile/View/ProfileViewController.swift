@@ -118,7 +118,7 @@ extension ProfileViewController: ProfileViewInput {
 extension ProfileViewController {
     
     func configureInterface() {
-        signOutButton.setup(color: UIColor.errorRed, borderAlpha: 0.1)
+        signOutButton.setup(color: Theme.Button.Color.red, borderAlpha: 0.1)
         
     }
     
