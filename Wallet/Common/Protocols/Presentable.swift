@@ -63,7 +63,7 @@ extension Presentable where Self: UIViewController {
     }
     
     func presentModal(from viewController: UIViewController) {
-        viewController.present(self, animated: true, completion: nil)
+        viewController.present(self, animated: false, completion: nil)
     }
     
     func show(from viewController: UIViewController) {

@@ -33,7 +33,7 @@ class PopUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIView.animate(withDuration: 0.2, delay: 0.2, options: [.curveEaseIn], animations: { [weak self] in
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: { [weak self] in
             self?.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
             }, completion: nil)
         
