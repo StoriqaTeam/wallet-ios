@@ -20,10 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var configurators: [Configurable] = {
         return [
             ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider()),
-            CrashTrackerConfigurator()
+            CrashTrackerConfigurator(),
+            TestConfigurator()
         ]
     }()
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -10,8 +10,11 @@ import Foundation
 
 class TestConfigurator: Configurable {
     
+    let userDS = UserDataStoreService()
+    
     func configure() {
-        MainTabBarModule.create().present()
+        let user = userDS.getCurrentUser()
+        print(user)
     }
     
 }
