@@ -11,4 +11,5 @@ import UIKit
 
 protocol QRScannerViewOutput: class {
     func viewIsReady()
+    func viewWillAppear()
 }

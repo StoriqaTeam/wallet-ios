@@ -10,7 +10,13 @@ import Foundation
 import AVFoundation
 
 
+enum QRCodeAddressValidationResult {
+    case succeed
+    case wrongCurrency
+    case failed
+}
+
 protocol QRScannerInteractorInput: class {
     func setScannedAddress(_ address: String)
-    func isValidAddress(_ address: String) -> Bool
+    func validateAddress(_ address: String) -> QRCodeAddressValidationResult
 }
