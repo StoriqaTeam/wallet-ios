@@ -93,7 +93,6 @@ class WalletTests: XCTestCase {
         contactsDataStore.save(contact_1)
         contactsDataStore.save(contact_2)
         XCTAssert(contactsDataStore.getAllContacts().count ==  2)
-//        fakeListner.foo()
         
         contactsDataStore.updateAllContacts(with: [contact_1, contact_2, contact_3])
         XCTAssert(contactsDataStore.getAllContacts().count ==  3)
