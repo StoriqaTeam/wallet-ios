@@ -60,7 +60,7 @@ class TransactionsDataManager: NSObject {
 
 extension TransactionsDataManager: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        let filteredTransactions = filterTransactionByDate(transactions)
+        let filteredTransactions = sortTransactionByDate(transactions)
         return filteredTransactions.count
     }
     
@@ -70,12 +70,12 @@ extension TransactionsDataManager: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let filteredTransactions = filterTransactionByDate(transactions)
+        let filteredTransactions = sortTransactionByDate(transactions)
         return filteredTransactions[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let filteredTransactions = filterTransactionByDate(transactions)
+        let filteredTransactions = sortTransactionByDate(transactions)
         let mounthTransactions = filteredTransactions[indexPath.section]
         let transaction = mounthTransactions[indexPath.row]
         let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
@@ -96,15 +96,15 @@ extension TransactionsDataManager: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard !isHiddenSections else { return nil }
-        let filteredTransactions = filterTransactionByDate(transactions)
-        let mounthTransactions = filteredTransactions[section]
+        let sortedTransactions = sortTransactionByDate(transactions)
+        let mounthTransactions = sortedTransactions[section]
         return mounthTransactions[0].transaction.timestamp.getMonthName()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard !isHiddenSections else { return nil }
-        let filteredTransactions = filterTransactionByDate(transactions)
-        let mounthTransactions = filteredTransactions[section]
+        let sortedTransactions = sortTransactionByDate(transactions)
+        let mounthTransactions = sortedTransactions[section]
         let title = mounthTransactions[0].transaction.timestamp.getMonthName()
         return createHeaderView(with: title)
     }
@@ -119,7 +119,7 @@ extension TransactionsDataManager {
         lastTransactionsTableView.register(nib, forCellReuseIdentifier: kCellId)
     }
     
-    private func filterTransactionByDate(_ txs: [TransactionDisplayable]) -> [[TransactionDisplayable]] {
+    private func sortTransactionByDate(_ txs: [TransactionDisplayable]) -> [[TransactionDisplayable]] {
         guard !txs.isEmpty else { return [[]] }
         
         let inputArray = txs.sorted { $0.transaction.timestamp < $1.transaction.timestamp }
