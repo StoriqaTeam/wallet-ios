@@ -60,8 +60,8 @@ class TransactionsDataManager: NSObject {
 
 extension TransactionsDataManager: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        let filteredTransactions = sortTransactionByDate(transactions)
-        return filteredTransactions.count
+        let sortedTransactions = sortTransactionByDate(transactions)
+        return sortedTransactions.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -70,13 +70,13 @@ extension TransactionsDataManager: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let filteredTransactions = sortTransactionByDate(transactions)
-        return filteredTransactions[section].count
+        let sortedTransactions = sortTransactionByDate(transactions)
+        return sortedTransactions[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let filteredTransactions = sortTransactionByDate(transactions)
-        let mounthTransactions = filteredTransactions[indexPath.section]
+        let sortedTransactions = sortTransactionByDate(transactions)
+        let mounthTransactions = sortedTransactions[indexPath.section]
         let transaction = mounthTransactions[indexPath.row]
         let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
         cell.configureWith(transaction: transaction)
