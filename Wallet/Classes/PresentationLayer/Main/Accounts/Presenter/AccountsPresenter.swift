@@ -53,7 +53,7 @@ extension AccountsPresenter: AccountsViewOutput {
     
     func transactionTableView(_ tableView: UITableView) {
         let transations = interactor.getTransactionForCurrentAccount()
-        let txDataManager = TransactionsDataManager(transactions: transations)
+        let txDataManager = TransactionsDataManager(transactions: transations, isHiddenSections: true)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self

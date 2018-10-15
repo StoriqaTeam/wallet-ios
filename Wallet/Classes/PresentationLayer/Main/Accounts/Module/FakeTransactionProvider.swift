@@ -24,7 +24,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy",
                     cryptoAmount: Decimal(10.05),
                     fee: Decimal(0.5),
-                    timestamp: Date(timeIntervalSince1970: Double(1539165973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1535165973))),
 
         Transaction(id: "1",
                     currency: .btc,
@@ -32,7 +32,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2",
                     cryptoAmount: Decimal(1.4555),
                     fee: Decimal(0.05),
-                    timestamp: Date(timeIntervalSince1970: Double(1539121973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1539145923))),
         
         Transaction(id: "2",
                     currency: .btc,
@@ -40,7 +40,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "1EvSi5mhycYPmmei1JBwyMvFSgNvPkkpXm ",
                     cryptoAmount: Decimal(22.12),
                     fee: Decimal(0.2494),
-                    timestamp: Date(timeIntervalSince1970: Double(153901973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1539335923))),
         
         Transaction(id: "3",
                     currency: .btc,
@@ -48,7 +48,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2  ",
                     cryptoAmount: Decimal(15.32),
                     fee: Decimal(0.0494),
-                    timestamp: Date(timeIntervalSince1970: Double(153921973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1539315923))),
         
         Transaction(id: "4",
                     currency: .eth,
@@ -56,7 +56,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "0x92699c596c2cf744749c90049db3a521bb846ef4",
                     cryptoAmount: Decimal(10.555),
                     fee: Decimal(0.00044),
-                    timestamp: Date(timeIntervalSince1970: Double(153921973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1537012240))),
         
         Transaction(id: "5",
                     currency: .eth,
@@ -64,7 +64,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "0x6f50c6bff08ec925232937b204b0ae23c488402a",
                     cryptoAmount: Decimal(5.35),
                     fee: Decimal(0.00033),
-                    timestamp: Date(timeIntervalSince1970: Double(153925973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1537019240))),
         
         Transaction(id: "6",
                     currency: .eth,
@@ -72,7 +72,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
                     cryptoAmount: Decimal(7.5),
                     fee: Decimal(0.00033),
-                    timestamp: Date(timeIntervalSince1970: Double(153923973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1537002240))),
 
         Transaction(id: "7",
                     currency: .stq,
@@ -80,7 +80,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
                     cryptoAmount: Decimal(10000),
                     fee: Decimal(1),
-                    timestamp: Date(timeIntervalSince1970: Double(153922973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1539165923))),
         
         Transaction(id: "8",
                     currency: .stq,
@@ -88,7 +88,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "0xb89e4b025d5afa434c0a3b70a2482f42901bea46",
                     cryptoAmount: Decimal(10230),
                     fee: Decimal(1),
-                    timestamp: Date(timeIntervalSince1970: Double(153922973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1539375333))),
         
         Transaction(id: "9",
                     currency: .stq,
@@ -96,7 +96,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "0xb89e4b025d5afa434c0a3b70a2482f42901bea46",
                     cryptoAmount: Decimal(10230),
                     fee: Decimal(12),
-                    timestamp: Date(timeIntervalSince1970: Double(153922973))),
+                    timestamp: Date(timeIntervalSince1970: Double(1539369323))),
         
         Transaction(id: "10",
                     currency: .stq,
@@ -104,7 +104,7 @@ class FakeTransactionsProvider: TransactionsProviderProtocol {
                     toAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
                     cryptoAmount: Decimal(300230),
                     fee: Decimal(2),
-                    timestamp: Date(timeIntervalSince1970: Double(153929973)))
+                    timestamp: Date(timeIntervalSince1970: Double(1537012240)))
     ]
     
     

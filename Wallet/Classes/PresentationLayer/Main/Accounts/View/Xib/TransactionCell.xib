@@ -96,6 +96,7 @@
                 <outlet property="directionOpponentLabel" destination="IBe-fH-g7A" id="Pt5-vw-eH0"/>
                 <outlet property="fiatAmountlabel" destination="Oab-Hn-Aro" id="RX8-0K-oHh"/>
                 <outlet property="opponentLabel" destination="jHj-S5-XFc" id="e3Q-FP-pPo"/>
+                <outlet property="timestampLabel" destination="GFd-FL-QFo" id="F2r-U9-y7R"/>
             </connections>
             <point key="canvasLocation" x="-803.20000000000005" y="34.632683658170919"/>
         </tableViewCell>

@@ -26,7 +26,7 @@ extension TransactionsPresenter: TransactionsViewOutput {
 
     func transactionTableView(_ tableView: UITableView) {
         let transactions = interactor.getTransactions()
-        let txDataManager = TransactionsDataManager(transactions: transactions)
+        let txDataManager = TransactionsDataManager(transactions: transactions, isHiddenSections: false)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self

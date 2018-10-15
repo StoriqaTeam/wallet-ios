@@ -25,7 +25,8 @@ class TransactionDisplayable {
          fiatAmountString: String,
          direction: Direction,
          opponent: OpponentType,
-         feeAmountString: String) {
+         feeAmountString: String,
+         timestamp: String) {
         
         self.transaction = transaction
         self.currency = transaction.currency
@@ -33,7 +34,7 @@ class TransactionDisplayable {
         self.fiatAmountString = fiatAmountString
         self.direction = direction
         self.opponent = opponent
-        self.timestamp = "\(transaction.timestamp.timeIntervalSince1970)"
+        self.timestamp = timestamp
         self.feeAmountString = feeAmountString
     }
     

@@ -40,7 +40,7 @@ struct Theme {
     struct Text {
         struct Color {
             static let blackMain = UIColor(white: 0.0, alpha: 1.0)
-            static let captionGrey = UIColor(red: 135.0 / 255.0, green: 157.0 / 255.0, blue: 185.0 / 255.0, alpha: 1.0)
+            static let captionGrey = UIColor(red: 135/255, green: 157/255, blue: 185/255, alpha: 1.0)
             static let grey = UIColor(red: 219/255, green: 225/255, blue: 234/255, alpha: 1.0)
             static let detailsGreen = UIColor(red: 11/255, green: 231/255, blue: 160/255, alpha: 1)
             static let detailsRed = UIColor(red: 238/255, green: 113/255, blue: 113/255, alpha: 1)
@@ -56,8 +56,10 @@ struct Theme {
             static let detailsGreenGradient = [UIColor(displayP3Red: 240/255, green: 243/255, blue: 246/255, alpha: 0.70).cgColor,
                                                UIColor(displayP3Red: 233/255, green: 255/255, blue: 248/255, alpha: 0.70).cgColor]
         }
+        
         static let headerGradient = [UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
                                      UIColor(red: 45/255, green: 100/255, blue: 194/255, alpha: 1).cgColor]
+        
         static let sendingHeaderGradient = [UIColor(red: 55/255, green: 145/255, blue: 221/255, alpha: 1).cgColor,
                                             UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor ]
     }
