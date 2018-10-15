@@ -50,6 +50,7 @@ class ReceiverViewController: UIViewController {
         inputTextField.autocorrectionType = .no
         scanQRButton.setTitle("scan_QR".localized() + "   ", for: .normal)
         nextButton.setTitle("next".localized(), for: .normal)
+        contactsTableView.tintColor = Theme.Color.brightSkyBlue
     }
     
     // MARK: Actions
@@ -80,9 +81,13 @@ extension ReceiverViewController: ReceiverViewInput {
         inputTextField.text = input
     }
     
-    func setupInitialState(apperance: SendingHeaderData) {
+    func setupInitialState(apperance: SendingHeaderData, canScan: Bool) {
         senderView.setup(apperance: apperance, editBlock: { [weak self] in
             self?.output.editButtonPressed()
         })
+        
+        if !canScan {
+            scanQRButton.isHidden = true
+        }
     }
 }

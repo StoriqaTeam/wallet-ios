@@ -10,7 +10,8 @@ import UIKit
 
 
 protocol QRScannerViewInput: class, Presentable {
-    func setupInitialState()
+    func setupInitialState(message: String)
     func setPreviewLayer(_ previewLayer: CALayer)
     func changeAimColor(_ color: UIColor)
+    func changeMessage(_ text: String)
 }

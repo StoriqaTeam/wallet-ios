@@ -81,17 +81,18 @@ extension ReceiverPresenter: ReceiverViewOutput {
     func viewIsReady() {
         
         let amount = interactor.getAmount()
-        let currency = interactor.getReceiverCurrency()
+        let receiverCurrency = interactor.getReceiverCurrency()
         let accountCurrency = interactor.getSelectedAccount().currency
-        let amountString = getStringFrom(amount: amount, currency: currency)
+        let amountString = getStringFrom(amount: amount, currency: receiverCurrency)
         let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
-        let currencyImage = currencyImageProvider.mediumImage(for: currency)
+        let currencyImage = currencyImageProvider.mediumImage(for: receiverCurrency)
         
         let appearence = SendingHeaderData(amount: amountString,
                                            amountInTransactionCurrency: amountStringInTxCurrency,
                                            currencyImage: currencyImage)
+        let canScan = receiverCurrency != .fiat
         
-        view.setupInitialState(apperance: appearence)
+        view.setupInitialState(apperance: appearence, canScan: canScan)
         view.setNextButtonHidden(true)
         configureNavigationBar()
     }

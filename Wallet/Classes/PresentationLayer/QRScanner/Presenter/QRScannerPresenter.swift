@@ -19,6 +19,7 @@ class QRScannerPresenter: NSObject {
     
     private var captureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer!
+    private let defaultHintMessage = "qr_code_hint".localized()
     
 }
 
@@ -28,13 +29,18 @@ class QRScannerPresenter: NSObject {
 extension QRScannerPresenter: QRScannerViewOutput {
     
     func viewIsReady() {
-        view.setupInitialState()
+        view.setupInitialState(message: defaultHintMessage)
         createCaptureSession()
+        configureNavigationBar()
         
         guard let captureSession = captureSession else { return }
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         view.setPreviewLayer(previewLayer)
+    }
+    
+    func viewWillAppear() {
+        view.viewController.setWhiteNavigationBarButtons()
     }
     
 }
@@ -65,24 +71,38 @@ extension QRScannerPresenter: AVCaptureMetadataOutputObjectsDelegate {
                         didOutput metadataObjects: [AVMetadataObject],
                         from connection: AVCaptureConnection) {
         view.changeAimColor(.white)
+        view.changeMessage(defaultHintMessage)
+        
         if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
             let str = metadataObject.stringValue {
-            if interactor.isValidAddress(str) {
+            
+            let result = interactor.validateAddress(str)
+            
+            switch result {
+            case .succeed:
                 captureSession!.stopRunning()
                 AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                 found(address: str)
-            } else {
+            case .failed:
                 view.changeAimColor(.red)
+                view.changeMessage("")
+            case .wrongCurrency:
+                view.changeAimColor(.red)
+                view.changeMessage("qr_code_currency_does_not_match".localized())
             }
         }
     }
-    
 }
 
 
 // MARK: - Private methods
 
 extension QRScannerPresenter {
+    
+    private func configureNavigationBar() {
+        view.viewController.navigationItem.largeTitleDisplayMode = .never
+        view.viewController.setWhiteNavigationBar(title: "scan_QR".localized())
+    }
     
     private func createCaptureSession() {
         //TODO: info plist camera usage description
