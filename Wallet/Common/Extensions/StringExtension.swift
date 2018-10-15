@@ -85,14 +85,18 @@ extension String {
         return formatter.number(from: self) != nil
     }
     
-    func isValidPhoneNumber(unfinished: Bool = false) -> Bool {
+    func isValidPhone(hasPlusPrefix: Bool, unfinished: Bool = false) -> Bool {
         let trimmed = self.trim()
         
         if trimmed.isEmpty {
             return unfinished
         }
         
-        let phoneRegEx = "^[\\+]{1}[0-9\\- ()]{0,20}$"
+        if hasPlusPrefix && !self.hasPrefix("+") {
+            return false
+        }
+        
+        let phoneRegEx = "^[\\+]{0,1}[0-9\\- ()]{0,20}$"
         let isAlowedSymbols = trimmed.matchesReqex(phoneRegEx)
         
         if unfinished {
@@ -103,7 +107,8 @@ extension String {
             }
             
             let cleared = self.clearedPhoneNumber()
-            return cleared.count >= 11
+            let minCount = hasPlusPrefix ? 11 : 10
+            return cleared.count >= minCount
         }
         
     }

@@ -52,31 +52,3 @@ extension User: RealmMappable {
     }
     
 }
-
-// MARK: Private UIImage extension
-
-private extension UIImage {
-    func data() -> Data? {
-        if let data = self.pngData() ?? self.jpegData(compressionQuality: 1) {
-            if data.count > 16 * 1024 * 1024 {
-                let oldSize = self.size
-                let newSize = CGSize(width: 800, height: oldSize.height / oldSize.width * 800)
-                let newImage = self.imageWith(newSize: newSize)
-                let imageData = newImage.jpegData(compressionQuality: 1)
-                return imageData
-            } else {
-                return data
-            }
-        }
-        return nil
-    }
-    
-    func imageWith(newSize: CGSize) -> UIImage {
-        let renderer = UIGraphicsImageRenderer(size: newSize)
-        let image = renderer.image { _ in
-            self.draw(in: CGRect(origin: CGPoint.zero, size: newSize))
-        }
-        
-        return image
-    }
-}

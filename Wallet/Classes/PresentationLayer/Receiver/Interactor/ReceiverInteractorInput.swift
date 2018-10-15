@@ -15,8 +15,8 @@ protocol ReceiverInteractorInput: class {
     func searchContact(text: String)
     func getSendTransactionBuilder() -> SendProviderBuilderProtocol 
     func setScannedDelegate(_ delegate: QRScannerDelegate)
-    func setContact(_ contact: Contact)
-    func getContact() -> [Contact]
+    func setContact(_ contact: ContactDisplayable)
+    func getContact() -> ContactDisplayable?
 
     func getAmount() -> Decimal?
     func getReceiverCurrency() -> Currency
