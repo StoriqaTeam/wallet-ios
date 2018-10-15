@@ -85,23 +85,3 @@ extension UIView {
     }
     
 }
-
-
-extension UIImage {
-    class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage {
-        let rectangle = CGRect(origin: CGPoint.zero, size: size)
-        return getColoredRectImageWith(color: color, andRect: rectangle)
-    }
-    
-    class func getColoredRectImageWith(color: CGColor, andRect rect: CGRect) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
-        let graphicsContext = UIGraphicsGetCurrentContext()
-        graphicsContext?.setFillColor(color)
-        let rectangle = rect
-        graphicsContext?.fill(rectangle)
-        let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return rectangleImage!
-    }
-    
-}

@@ -13,13 +13,17 @@ class ReceiverModule {
         let router = ReceiverRouter()
         
         //Injections
-        let deviceContactsProvider = DeviceContactsProvider()
+        let deviceContactsFetcher = DeviceContactsFetcher()
         let formatter = CurrencyFormatter()
         let converterFactory = CurrecncyConverterFactory()
         let currencyImageProvider = CurrencyImageProvider()
+        let contactsSorter = ContactsSorter()
+        let contactsMapper = ContactsMapper()
         
-        let interactor = ReceiverInteractor(deviceContactsProvider: deviceContactsProvider,
-                                            sendTransactionBuilder: sendTransactionBuilder)
+        let interactor = ReceiverInteractor(deviceContactsFetcher: deviceContactsFetcher,
+                                            sendTransactionBuilder: sendTransactionBuilder,
+                                            contactsSorter: contactsSorter,
+                                            contactsMapper: contactsMapper)
         let presenter = ReceiverPresenter(currencyFormatter: formatter,
                                           converterFactory: converterFactory,
                                           currencyImageProvider: currencyImageProvider)

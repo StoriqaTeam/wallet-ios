@@ -37,12 +37,11 @@ class ReceiverPresenter {
 extension ReceiverPresenter: ReceiverViewOutput {
     
     func configureInput() {
-        let contacts = interactor.getContact()
+        guard let contact = interactor.getContact() else { return }
         
-        guard !contacts.isEmpty else { return }
-        interactor.searchContact(text: contacts[0].familyName)
+        interactor.searchContact(text: contact.familyName)
         view.setNextButtonHidden(false)
-        view.setInput(contacts[0].mobile)
+        view.setInput(contact.id)
     }
     
     func nextButtonPressed() {
@@ -107,7 +106,7 @@ extension ReceiverPresenter: ReceiverViewOutput {
 
 extension ReceiverPresenter: ReceiverInteractorOutput {
     
-    func updateContacts(_ contacts: [ContactsSection]) {
+    func updateContacts(_ contacts: [ContactsSectionDisplayable]) {
         contactsDataManager.updateContacts(contacts)
     }
     
@@ -135,9 +134,9 @@ extension ReceiverPresenter: ReceiverModuleInput {
 
 extension ReceiverPresenter: ContactsDataManagerDelegate {
     
-    func contactSelected(_ contact: Contact) {
+    func contactSelected(_ contact: ContactDisplayable) {
         interactor.setContact(contact)
-        view.setInput(contact.mobile)
+        view.setInput(contact.id)
         view.setNextButtonHidden(false)
     }
     

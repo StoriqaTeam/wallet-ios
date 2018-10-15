@@ -140,9 +140,9 @@ extension ExchangeInteractor {
     
     private func updateRecepientAccounts() -> [Account] {
         let allAccounts = accountsProvider.getAllAccounts()
-        let filtered = allAccounts.filter({
+        let filtered = allAccounts.filter {
             $0 != accountWatcher.getAccount()
-        })
+        }
         return filtered
     }
     

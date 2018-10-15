@@ -5,35 +5,59 @@
 //  Created by user on 26.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 
-class Contact: NSObject {
-    @objc let givenName: String
-    @objc let familyName: String
-    @objc let cryptoAddress: String?
+struct Contact {
+    let id: String
+    let givenName: String
+    let familyName: String
+    var cryptoAddress: String?
+    var image: UIImage?
+}
+
+// MARK: - RealmMappable
+
+extension Contact: RealmMappable {
     
-    let mobile: String
-    let image: UIImage?
-    
-    lazy var clearedPhoneNumber: String = mobile.clearedPhoneNumber()
-    lazy var name: String = givenName + (givenName.isEmpty ? "" : " ") + familyName
-    
-    init(givenName: String,
+    init(id: String,
+         givenName: String,
          familyName: String,
-         mobile: String,
          cryptoAddress: String?,
-         imageData: Data?) {
+         imageData: Data? ) {
         
+        self.id = id
         self.givenName = givenName
         self.familyName = familyName
-        self.mobile = mobile
         self.cryptoAddress = cryptoAddress
         
         if let imageData = imageData {
-            self.image = UIImage(data: imageData)
+            let image = UIImage(data: imageData)
+            self.image = image
         } else {
             self.image = nil
         }
     }
+    
+    init(_ object: RealmContact) {
+        self.init(id: object.id,
+                  givenName: object.givenName,
+                  familyName: object.familyName,
+                  cryptoAddress: object.cryptoAddress,
+                  imageData: object.image)
+    }
+    
+    func mapToRealmObject() -> RealmContact {
+        let object = RealmContact()
+        
+        object.id = self.id
+        object.givenName = self.givenName
+        object.familyName = self.familyName
+        object.cryptoAddress = self.cryptoAddress
+        object.image = self.image?.data()
+        
+        return object
+    }
+    
 }
