@@ -62,21 +62,31 @@ class DeviceContactsFetcher: DeviceContactsFetcherProtocol {
                     })
                     
                     completion(Result.success(contacts))
-                } catch let error as NSError {
+                } catch {
+                    let error = DeviceContactsFetcherError.failToAccessContacts
                     completion(Result.failure(error))
                     log.warn(error.localizedDescription)
                 }
                 
             } else {
-                let userInfo = [
-                    "NSLocalizedDescription": "Access Denied",
-                    "NSLocalizedFailureReason": "This application has not been granted permission to access Contacts."
-                ]
-                
-                let error = NSError(domain: "CNErrorDomain", code: 100, userInfo: userInfo)
+                let error = DeviceContactsFetcherError.accessDenied
                 completion(Result.failure(error))
             }
         }
     }
+}
+
+
+enum DeviceContactsFetcherError: LocalizedError {
+    case failToAccessContacts
+    case accessDenied
     
+    var localizedDescription: String {
+        switch self {
+        case .failToAccessContacts:
+            return "Fail to access contacts"
+        case .accessDenied:
+            return "This application has not been granted permission to access Contacts"
+        }
+    }
 }
