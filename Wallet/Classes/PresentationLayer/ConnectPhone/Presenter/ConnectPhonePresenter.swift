@@ -38,8 +38,8 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
     }
 
     func isValidPhoneNumber(_ phone: String) -> Bool {
-        view.setConnectButtonEnabled(phone.isValidPhoneNumber())
-        return phone.isValidPhoneNumber(unfinished: true)
+        view.setConnectButtonEnabled(phone.isValidPhone(hasPlusPrefix: true))
+        return phone.isValidPhone(hasPlusPrefix: true, unfinished: true)
     }
     
     func connectButtonPressed(_ phone: String) {

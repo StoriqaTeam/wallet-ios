@@ -60,6 +60,9 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func setCurrentAccountWith(index: Int) {
+        let currentIndex = getAccountIndex()
+        guard currentIndex != index else { return }
+        
         let allAccounts = accountsProvider.getAllAccounts()
         accountWatcher.setAccount(allAccounts[index])
         let account = allAccounts[index]

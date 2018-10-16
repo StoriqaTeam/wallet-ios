@@ -10,16 +10,6 @@
 import Foundation
 
 
-enum Direction {
-    case receive
-    case send
-}
-
-enum OpponentType {
-    case contact(contact: Contact)
-    case address(address: String)
-}
-
 struct Transaction {
     let id: String
     let currency: Currency

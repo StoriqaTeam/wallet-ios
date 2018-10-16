@@ -9,6 +9,16 @@
 import Foundation
 
 
+enum Direction {
+    case receive
+    case send
+}
+
+enum OpponentType {
+    case contact(contact: ContactDisplayable)
+    case address(address: String)
+}
+
 class TransactionDisplayable {
     
     let transaction: Transaction

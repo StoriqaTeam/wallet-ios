@@ -37,7 +37,7 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
         defaultSendTxProvider.scanDelegate?.didScanAddress(address)
     }
     
-    func setContact(_ contact: Contact) {
+    func setContact(_ contact: ContactDisplayable) {
         defaultSendTxProvider.opponentType = OpponentType.contact(contact: contact)
     }
     

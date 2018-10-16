@@ -27,7 +27,6 @@ class FakeUserDataStoreService: UserDataStoreServiceProtocol {
                         photo: nil)
         return user
     }
-    
 }
 
 class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {

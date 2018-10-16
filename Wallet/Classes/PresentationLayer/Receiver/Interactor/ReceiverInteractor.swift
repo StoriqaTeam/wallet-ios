@@ -12,16 +12,24 @@ import Foundation
 class ReceiverInteractor {
     weak var output: ReceiverInteractorOutput!
     
-    private let deviceContactsProvider: DeviceContactsProviderProtocol
+    private let deviceContactsFetcher: DeviceContactsFetcherProtocol
+    private let contactsSorter: ContactsSorterProtocol
+    private let contactsMapper: ContactsMapper
     private let sendTransactionBuilder: SendProviderBuilderProtocol
     private let sendProvider: SendTransactionProviderProtocol
     
-    init(deviceContactsProvider: DeviceContactsProviderProtocol,
-         sendTransactionBuilder: SendProviderBuilderProtocol) {
+    private var contacts: [ContactDisplayable] = []
+    
+    init(deviceContactsFetcher: DeviceContactsFetcherProtocol,
+         sendTransactionBuilder: SendProviderBuilderProtocol,
+         contactsSorter: ContactsSorterProtocol,
+         contactsMapper: ContactsMapper) {
         
-        self.deviceContactsProvider = deviceContactsProvider
+        self.deviceContactsFetcher = deviceContactsFetcher
         self.sendTransactionBuilder = sendTransactionBuilder
         self.sendProvider = sendTransactionBuilder.build()
+        self.contactsSorter = contactsSorter
+        self.contactsMapper = contactsMapper
     }
     
 }
@@ -32,36 +40,40 @@ class ReceiverInteractor {
 extension ReceiverInteractor: ReceiverInteractorInput {
     
     func fetchContacts() {
-        deviceContactsProvider.fetchContacts { [weak self] (result) in
-            switch result {
-            case .success(let sections):
-                DispatchQueue.main.async {
-                    self?.output.updateContacts(sections)
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
+        deviceContactsFetcher.fetchContacts { [weak self] (result) in
+            DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
+                
+                switch result {
+                case .success(let contacts):
+                    let displayable = contacts.map { strongSelf.contactsMapper.map(from: $0) }
+                    strongSelf.contacts = displayable
+                    
+                    let sorted = strongSelf.contactsSorter.sort(contacts: displayable)
+                    strongSelf.output.updateContacts(sorted)
+                case .failure(let error):
                     //TODO: text and image in case of no access to contacts
-                    self?.output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                    strongSelf.output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
                                              placeholderText: error.localizedDescription)
+                    
+                    log.warn(error.localizedDescription)
                 }
-                log.warn(error.localizedDescription)
             }
         }
     }
     
-    func getContact() -> [Contact] {
+    func getContact() -> ContactDisplayable? {
         let receiverName = getReceiverName(from: sendProvider.opponentType)
-        let filteredContacts = deviceContactsProvider.searchContact(text: receiverName)
-        guard !filteredContacts.isEmpty else { return [] }
-        
-        return filteredContacts[0].contacts
+        let filteredContacts = contactsSorter.searchContact(text: receiverName, contacts: contacts)
+
+        return filteredContacts.first?.contacts.first
     }
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
         sendTransactionBuilder.setScannedDelegate(delegate)
     }
     
-    func setContact(_ contact: Contact) {
+    func setContact(_ contact: ContactDisplayable) {
         sendTransactionBuilder.setContact(contact)
     }
     
@@ -70,8 +82,8 @@ extension ReceiverInteractor: ReceiverInteractorInput {
     }
     
     func searchContact(text: String) {
-        let filteredContacts = deviceContactsProvider.searchContact(text: text)
-        
+        let filteredContacts = contactsSorter.searchContact(text: text, contacts: contacts)
+
         if filteredContacts.isEmpty {
             output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
                                placeholderText: "There is no such number in system.\nUse another way to send funds.")

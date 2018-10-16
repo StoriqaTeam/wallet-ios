@@ -10,13 +10,13 @@ import Foundation
 
 
 protocol ContactsDataManagerDelegate: class {
-    func contactSelected(_ contact: Contact)
+    func contactSelected(_ contact: ContactDisplayable)
 }
 
 class ContactsDataManager: NSObject {
     weak var delegate: ContactsDataManagerDelegate?
     private var tableView: UITableView!
-    private var contacts = [ContactsSection]()
+    private var contacts = [ContactsSectionDisplayable]()
     private let kContactCell = "ContactCell"
     
     func setTableView(_ view: UITableView) {
@@ -28,7 +28,7 @@ class ContactsDataManager: NSObject {
         registerXib()
     }
     
-    func updateContacts(_ contacts: [ContactsSection]) {
+    func updateContacts(_ contacts: [ContactsSectionDisplayable]) {
         self.contacts = contacts
         self.tableView.backgroundView = nil
         self.tableView.reloadData()

@@ -21,9 +21,9 @@ class ContactCell: UITableViewCell {
         emptyThumbnailLabel.roundCorners(radius: radius)
     }
     
-    func config(contact: Contact) {
+    func config(contact: ContactDisplayable) {
         nameLabel.text = contact.name
-        phoneNumberLabel.text = contact.mobile
+        phoneNumberLabel.text = contact.id
         
         if let image = contact.image {
             contactImageView.image = image
@@ -31,7 +31,14 @@ class ContactCell: UITableViewCell {
         } else {
             contactImageView.image = nil
             emptyThumbnailLabel.text = String(contact.givenName.prefix(1) + contact.familyName.prefix(1))
+            emptyThumbnailLabel.sizeToFit()
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        contactImageView.image = nil
+        emptyThumbnailLabel.isHidden = false
     }
     
 }

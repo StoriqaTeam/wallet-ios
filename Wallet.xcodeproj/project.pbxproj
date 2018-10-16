@@ -271,6 +271,7 @@
 		A5E8D9A82153EBD600AC6A7E /* Exchange.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A72153EBD600AC6A7E /* Exchange.storyboard */; };
 		A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A92153EC5B00AC6A7E /* Deposit.storyboard */; };
 		A5E8D9AC2153ECE300AC6A7E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9AB2153ECE300AC6A7E /* Settings.storyboard */; };
+		A5EACC1621750AF2007A38A6 /* ContactsDataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EACC1521750AF2007A38A6 /* ContactsDataStoreService.swift */; };
 		A5F59AA721621968005F1765 /* TestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AA621621968005F1765 /* TestConfigurator.swift */; };
 		A5F59AB7216248C5005F1765 /* RealmMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AB6216248C5005F1765 /* RealmMappable.swift */; };
 		A5F59AB921624908005F1765 /* RealmStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AB821624908005F1765 /* RealmStorable.swift */; };
@@ -333,6 +334,12 @@
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
 		CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74D2126BEDB0097230A /* UserInfo.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
+		CE44019E2174AEC200F7C8D8 /* RealmContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44019D2174AEC200F7C8D8 /* RealmContact.swift */; };
+		CE4401A02174AF4400F7C8D8 /* ContactDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44019F2174AF4400F7C8D8 /* ContactDisplayable.swift */; };
+		CE4401A22174B2C500F7C8D8 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4401A12174B2C500F7C8D8 /* UIImageExtension.swift */; };
+		CE4401A52174DCC200F7C8D8 /* ContactsSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4401A42174DCC200F7C8D8 /* ContactsSorter.swift */; };
+		CE4401A72174DD5B00F7C8D8 /* ContactsSorterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4401A62174DD5B00F7C8D8 /* ContactsSorterTests.swift */; };
+		CE4401AA2174ECD800F7C8D8 /* ContactsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4401A92174ECD800F7C8D8 /* ContactsMapper.swift */; };
 		CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45A8BD212C029F0096DD5F /* StringExtension.swift */; };
 		CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C31212465A800A2EED2 /* AppDelegate.swift */; };
 		CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3A212465A900A2EED2 /* Assets.xcassets */; };
@@ -392,7 +399,7 @@
 		CEFC9CA021590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C9F21590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift */; };
 		CEFC9CA221590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CA121590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift */; };
 		CEFC9CA421590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CA321590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift */; };
-		CEFC9CAE215A140800962356 /* DeviceContactsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CAD215A140800962356 /* DeviceContactsProvider.swift */; };
+		CEFC9CAE215A140800962356 /* DeviceContactsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CAD215A140800962356 /* DeviceContactsFetcher.swift */; };
 		CEFC9CB0215A141600962356 /* Receiver.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9CAF215A141600962356 /* Receiver.storyboard */; };
 		CEFC9CB3215A182E00962356 /* ContactsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CB2215A182E00962356 /* ContactsDataManager.swift */; };
 		CEFC9CB6215A59E700962356 /* SendTransactionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9CB5215A59E700962356 /* SendTransactionProvider.swift */; };
@@ -773,6 +780,7 @@
 		A5E8D9A72153EBD600AC6A7E /* Exchange.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Exchange.storyboard; sourceTree = "<group>"; };
 		A5E8D9A92153EC5B00AC6A7E /* Deposit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Deposit.storyboard; sourceTree = "<group>"; };
 		A5E8D9AB2153ECE300AC6A7E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		A5EACC1521750AF2007A38A6 /* ContactsDataStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDataStoreService.swift; sourceTree = "<group>"; };
 		A5F59AA621621968005F1765 /* TestConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfigurator.swift; sourceTree = "<group>"; };
 		A5F59AB6216248C5005F1765 /* RealmMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMappable.swift; sourceTree = "<group>"; };
 		A5F59AB821624908005F1765 /* RealmStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorable.swift; sourceTree = "<group>"; };
@@ -836,6 +844,12 @@
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		CE44019D2174AEC200F7C8D8 /* RealmContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmContact.swift; sourceTree = "<group>"; };
+		CE44019F2174AF4400F7C8D8 /* ContactDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDisplayable.swift; sourceTree = "<group>"; };
+		CE4401A12174B2C500F7C8D8 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		CE4401A42174DCC200F7C8D8 /* ContactsSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSorter.swift; sourceTree = "<group>"; };
+		CE4401A62174DD5B00F7C8D8 /* ContactsSorterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSorterTests.swift; sourceTree = "<group>"; };
+		CE4401A92174ECD800F7C8D8 /* ContactsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsMapper.swift; sourceTree = "<group>"; };
 		CE45A8BD212C029F0096DD5F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		CE526C2E212465A800A2EED2 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE526C31212465A800A2EED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -898,7 +912,7 @@
 		CEFC9C9F21590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordEmailRecoveryFailedVM.swift; sourceTree = "<group>"; };
 		CEFC9CA121590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordRecoveryConfirmSuccessVM.swift; sourceTree = "<group>"; };
 		CEFC9CA321590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordRecoveryConfirmFailedVM.swift; sourceTree = "<group>"; };
-		CEFC9CAD215A140800962356 /* DeviceContactsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceContactsProvider.swift; sourceTree = "<group>"; };
+		CEFC9CAD215A140800962356 /* DeviceContactsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceContactsFetcher.swift; sourceTree = "<group>"; };
 		CEFC9CAF215A141600962356 /* Receiver.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Receiver.storyboard; sourceTree = "<group>"; };
 		CEFC9CB2215A182E00962356 /* ContactsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDataManager.swift; sourceTree = "<group>"; };
 		CEFC9CB5215A59E700962356 /* SendTransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionProvider.swift; sourceTree = "<group>"; };
@@ -2159,6 +2173,7 @@
 		A52C66AD2166743D0073071E /* DataStoreServices */ = {
 			isa = PBXGroup;
 			children = (
+				A5EACC1421750AD2007A38A6 /* ContactsDataStoreService */,
 				A52C66AF216753B30073071E /* UserDataStoreService */,
 			);
 			path = DataStoreServices;
@@ -2280,6 +2295,7 @@
 			isa = PBXGroup;
 			children = (
 				A56ED399216CEF36009FA58B /* TransactionDisplayable.swift */,
+				CE44019F2174AF4400F7C8D8 /* ContactDisplayable.swift */,
 			);
 			path = Displayable;
 			sourceTree = "<group>";
@@ -2410,6 +2426,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				CE4401A82174EAD700F7C8D8 /* ContactsMapper */,
 				A56ED3A7216E3204009FA58B /* ContactsProvider */,
 				A56ED3A4216E2D1A009FA58B /* TransactionResolvers */,
 				A521D46E21636FF900E5D51C /* CurrentAccountWatcher */,
@@ -2427,7 +2444,8 @@
 				CE5FAF932150ED48009E707E /* PinValidation */,
 				CE5FAF9C21512965009E707E /* RegistrationFormValidaton */,
 				CE5FAFB0215286B1009E707E /* QuickLaunch */,
-				CEFC9CAC215A13EF00962356 /* DeviceContactsProvider */,
+				CE4401A32174DCA900F7C8D8 /* ContactsSorter */,
+				CEFC9CAC215A13EF00962356 /* DeviceContactsFetcher */,
 				CEFC9CB4215A59B200962356 /* SendTransactionProvider */,
 				CED822E1215BC31400693B92 /* CurrencyConverter */,
 				CED822E8215BE07B00693B92 /* CurrencyFormatter */,
@@ -2535,6 +2553,7 @@
 			children = (
 				A5B78232215E2A7400EFD1A5 /* WalletTests.swift */,
 				A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */,
+				CE4401A62174DD5B00F7C8D8 /* ContactsSorterTests.swift */,
 				A5B7822C215E2A3E00EFD1A5 /* Info.plist */,
 			);
 			path = WalletTests;
@@ -2565,6 +2584,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		A5EACC1421750AD2007A38A6 /* ContactsDataStoreService */ = {
+			isa = PBXGroup;
+			children = (
+				A5EACC1521750AF2007A38A6 /* ContactsDataStoreService.swift */,
+			);
+			path = ContactsDataStoreService;
+			sourceTree = "<group>";
+		};
 		A5F59AA52162194B005F1765 /* TestConfigurator */ = {
 			isa = PBXGroup;
 			children = (
@@ -2579,6 +2606,7 @@
 				A52C66AB21666F610073071E /* RealmUser.swift */,
 				A52C66B5216767EA0073071E /* RealmAccount.swift */,
 				A56ED39B216CF060009FA58B /* RealmTransaction.swift */,
+				CE44019D2174AEC200F7C8D8 /* RealmContact.swift */,
 			);
 			path = RealmModels;
 			sourceTree = "<group>";
@@ -2828,6 +2856,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		CE4401A32174DCA900F7C8D8 /* ContactsSorter */ = {
+			isa = PBXGroup;
+			children = (
+				CE4401A42174DCC200F7C8D8 /* ContactsSorter.swift */,
+			);
+			path = ContactsSorter;
+			sourceTree = "<group>";
+		};
+		CE4401A82174EAD700F7C8D8 /* ContactsMapper */ = {
+			isa = PBXGroup;
+			children = (
+				CE4401A92174ECD800F7C8D8 /* ContactsMapper.swift */,
+			);
+			path = ContactsMapper;
+			sourceTree = "<group>";
+		};
 		CE526C25212465A800A2EED2 = {
 			isa = PBXGroup;
 			children = (
@@ -2880,6 +2924,7 @@
 			isa = PBXGroup;
 			children = (
 				CE45A8BD212C029F0096DD5F /* StringExtension.swift */,
+				CE4401A12174B2C500F7C8D8 /* UIImageExtension.swift */,
 				CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */,
 				CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */,
 				CE0E5A6D212DAE70003E2C5E /* UITextFieldExtension.swift */,
@@ -3080,12 +3125,12 @@
 			path = AccountViewCell;
 			sourceTree = "<group>";
 		};
-		CEFC9CAC215A13EF00962356 /* DeviceContactsProvider */ = {
+		CEFC9CAC215A13EF00962356 /* DeviceContactsFetcher */ = {
 			isa = PBXGroup;
 			children = (
-				CEFC9CAD215A140800962356 /* DeviceContactsProvider.swift */,
+				CEFC9CAD215A140800962356 /* DeviceContactsFetcher.swift */,
 			);
-			path = DeviceContactsProvider;
+			path = DeviceContactsFetcher;
 			sourceTree = "<group>";
 		};
 		CEFC9CB1215A181300962356 /* ContactsDataManager */ = {
@@ -3636,6 +3681,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4401A72174DD5B00F7C8D8 /* ContactsSorterTests.swift in Sources */,
 				A5B78233215E2A7400EFD1A5 /* WalletTests.swift in Sources */,
 				A5B78235215E2F3800EFD1A5 /* AddressValidator.swift in Sources */,
 			);
@@ -3719,6 +3765,7 @@
 				836A0F971469672F08324F42 /* PinInputModule.swift in Sources */,
 				A56ED381216CD6F6009FA58B /* TransactionDetailsModuleInput.swift in Sources */,
 				559A9C4888FBB801ECBBE758 /* FirstLaunchViewInput.swift in Sources */,
+				A5EACC1621750AF2007A38A6 /* ContactsDataStoreService.swift in Sources */,
 				A52C66AA21666ECC0073071E /* User.swift in Sources */,
 				A560C741216B57A3009F0E95 /* SettingsHeaderView.swift in Sources */,
 				3560EFC2F72358E0759F3690 /* FirstLaunchViewOutput.swift in Sources */,
@@ -3738,6 +3785,7 @@
 				A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */,
 				A5B7820D215E236F00EFD1A5 /* Network.swift in Sources */,
 				A51CB5472158E0DB00CDC80C /* TransactionsDataManager.swift in Sources */,
+				CE4401AA2174ECD800F7C8D8 /* ContactsMapper.swift in Sources */,
 				F0868C4BC96F8724DDDD2386 /* RegistrationViewOutput.swift in Sources */,
 				7D2290D15CEAF84FA8628C09 /* RegistrationViewController.swift in Sources */,
 				A5B78238215E33BA00EFD1A5 /* CryproAddressResolver.swift in Sources */,
@@ -3749,6 +3797,7 @@
 				165DB5F5FAA826D2789B39B1 /* RegistrationInteractorOutput.swift in Sources */,
 				2F361EA29F03389EB9F35B20 /* RegistrationInteractor.swift in Sources */,
 				CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */,
+				CE4401A22174B2C500F7C8D8 /* UIImageExtension.swift in Sources */,
 				1E743E76CB9A3AE2D7072FA9 /* RegistrationRouterInput.swift in Sources */,
 				42580D4883A4C123BC97C148 /* RegistrationRouter.swift in Sources */,
 				499A139819810CE495D7F452 /* RegistrationModuleInput.swift in Sources */,
@@ -3760,6 +3809,7 @@
 				706656F7D7EBAF794948CC03 /* PasswordEmailRecoveryPresenter.swift in Sources */,
 				5DD81EF717C591E4F8D0D515 /* PasswordEmailRecoveryInteractorInput.swift in Sources */,
 				BED2CF5C297BC1BCFF6EFCAA /* PasswordEmailRecoveryInteractorOutput.swift in Sources */,
+				CE44019E2174AEC200F7C8D8 /* RealmContact.swift in Sources */,
 				E20B13748E606969CEE8DA51 /* PasswordEmailRecoveryInteractor.swift in Sources */,
 				A52C66B1216753CA0073071E /* UserDataStoreService.swift in Sources */,
 				E91CCB5A6109B41C9C4BD075 /* PasswordEmailRecoveryRouterInput.swift in Sources */,
@@ -3869,7 +3919,7 @@
 				3D6198BCDDE3FB1DDD35D3FF /* MainTabBarViewInput.swift in Sources */,
 				EBCA36D03BBA6F52ECC7258D /* MainTabBarViewOutput.swift in Sources */,
 				CD8499CCEA4C0FBAC71AEDBD /* MainTabBarViewController.swift in Sources */,
-				CEFC9CAE215A140800962356 /* DeviceContactsProvider.swift in Sources */,
+				CEFC9CAE215A140800962356 /* DeviceContactsFetcher.swift in Sources */,
 				75BC72D950AA357E03897FF1 /* MainTabBarPresenter.swift in Sources */,
 				33BDB5A5300B26E466BE8AA9 /* MainTabBarInteractorInput.swift in Sources */,
 				971B60433C7D77610425C1EA /* MainTabBarInteractorOutput.swift in Sources */,
@@ -3939,6 +3989,7 @@
 				3000F328272A309F1310DA78 /* DepositInteractorInput.swift in Sources */,
 				70D91778B8FFB807C57A87E1 /* DepositInteractorOutput.swift in Sources */,
 				21015C726AD801A30F41DE91 /* DepositInteractor.swift in Sources */,
+				CE4401A02174AF4400F7C8D8 /* ContactDisplayable.swift in Sources */,
 				679C8567C9F7F0A5585CAC4D /* DepositRouterInput.swift in Sources */,
 				1499BCCDEF796FDA812A7DBC /* DepositRouter.swift in Sources */,
 				BCA4BFC5046C983A17062737 /* DepositModuleInput.swift in Sources */,
@@ -4035,6 +4086,7 @@
 				1F8EED368B9491D4564C5EAA /* TransactionsRouter.swift in Sources */,
 				270320A5E31AFF1AF5AE9A3C /* TransactionsModuleInput.swift in Sources */,
 				F93614C131B3CE5DCBCF2C92 /* TransactionsModuleOutput.swift in Sources */,
+				CE4401A52174DCC200F7C8D8 /* ContactsSorter.swift in Sources */,
 				E2A7205CD5320CBB749D2F33 /* TransactionsModule.swift in Sources */,
 				CA8E74EF79BDA2F910D844D7 /* ProfileViewInput.swift in Sources */,
 				40E6E5712F201D924D154423 /* ProfileViewOutput.swift in Sources */,
