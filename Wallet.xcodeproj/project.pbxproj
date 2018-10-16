@@ -271,6 +271,7 @@
 		A5E8D9A82153EBD600AC6A7E /* Exchange.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A72153EBD600AC6A7E /* Exchange.storyboard */; };
 		A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A92153EC5B00AC6A7E /* Deposit.storyboard */; };
 		A5E8D9AC2153ECE300AC6A7E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9AB2153ECE300AC6A7E /* Settings.storyboard */; };
+		A5EACC1621750AF2007A38A6 /* ContactsDataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EACC1521750AF2007A38A6 /* ContactsDataStoreService.swift */; };
 		A5F59AA721621968005F1765 /* TestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AA621621968005F1765 /* TestConfigurator.swift */; };
 		A5F59AB7216248C5005F1765 /* RealmMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AB6216248C5005F1765 /* RealmMappable.swift */; };
 		A5F59AB921624908005F1765 /* RealmStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F59AB821624908005F1765 /* RealmStorable.swift */; };
@@ -779,6 +780,7 @@
 		A5E8D9A72153EBD600AC6A7E /* Exchange.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Exchange.storyboard; sourceTree = "<group>"; };
 		A5E8D9A92153EC5B00AC6A7E /* Deposit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Deposit.storyboard; sourceTree = "<group>"; };
 		A5E8D9AB2153ECE300AC6A7E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		A5EACC1521750AF2007A38A6 /* ContactsDataStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDataStoreService.swift; sourceTree = "<group>"; };
 		A5F59AA621621968005F1765 /* TestConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfigurator.swift; sourceTree = "<group>"; };
 		A5F59AB6216248C5005F1765 /* RealmMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMappable.swift; sourceTree = "<group>"; };
 		A5F59AB821624908005F1765 /* RealmStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorable.swift; sourceTree = "<group>"; };
@@ -2171,6 +2173,7 @@
 		A52C66AD2166743D0073071E /* DataStoreServices */ = {
 			isa = PBXGroup;
 			children = (
+				A5EACC1421750AD2007A38A6 /* ContactsDataStoreService */,
 				A52C66AF216753B30073071E /* UserDataStoreService */,
 			);
 			path = DataStoreServices;
@@ -2579,6 +2582,14 @@
 				0F885B3024850DB0F282B24E /* Transactions */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		A5EACC1421750AD2007A38A6 /* ContactsDataStoreService */ = {
+			isa = PBXGroup;
+			children = (
+				A5EACC1521750AF2007A38A6 /* ContactsDataStoreService.swift */,
+			);
+			path = ContactsDataStoreService;
 			sourceTree = "<group>";
 		};
 		A5F59AA52162194B005F1765 /* TestConfigurator */ = {
@@ -3754,6 +3765,7 @@
 				836A0F971469672F08324F42 /* PinInputModule.swift in Sources */,
 				A56ED381216CD6F6009FA58B /* TransactionDetailsModuleInput.swift in Sources */,
 				559A9C4888FBB801ECBBE758 /* FirstLaunchViewInput.swift in Sources */,
+				A5EACC1621750AF2007A38A6 /* ContactsDataStoreService.swift in Sources */,
 				A52C66AA21666ECC0073071E /* User.swift in Sources */,
 				A560C741216B57A3009F0E95 /* SettingsHeaderView.swift in Sources */,
 				3560EFC2F72358E0759F3690 /* FirstLaunchViewOutput.swift in Sources */,

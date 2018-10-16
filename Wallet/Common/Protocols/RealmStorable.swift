@@ -61,6 +61,18 @@ class RealmStorable<PlainType: RealmMappable> {
         }
     }
     
+    func delete(primaryKey: String) {
+        let realm = try! Realm()
+
+        guard let realmObjectPrimaryKey = PlainType.RealmType.self.primaryKey() else { return }
+        let predicateString = "\(realmObjectPrimaryKey) == '\(primaryKey)'"
+        let objectToDelete = realm.objects(PlainType.RealmType.self).filter(predicateString)
+        
+        try! realm.write {
+            realm.delete(objectToDelete)
+        }
+    }
+    
     func deleteAll() {
         let realm = try! Realm()
         
