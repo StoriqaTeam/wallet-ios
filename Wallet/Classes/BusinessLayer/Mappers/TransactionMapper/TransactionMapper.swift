@@ -39,12 +39,27 @@ class TransactionMapper: Mappable {
         let fiatAmountString = currencyFormatter.getStringFrom(amount: fiatAmoutDecimal, currency: .fiat)
         let direction = transactionDirectionResolver.resolveDirection(for: obj)
         let opponent = transactionOpponentResolver.resolveOpponent(for: obj)
+        let timestamp = date(from: obj)
         
         return TransactionDisplayable(transaction: obj,
                                       cryptoAmountString: cryptoAmountString,
                                       fiatAmountString: fiatAmountString,
                                       direction: direction,
                                       opponent: opponent,
-                                      feeAmountString: feeAmountString)
+                                      feeAmountString: feeAmountString,
+                                      timestamp: timestamp)
+    }
+}
+
+
+// MARK: Private methods
+
+extension TransactionMapper {
+    private func date(from transaction: Transaction) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        let timestamp = transaction.timestamp
+        return dateFormatter.string(from: timestamp)
     }
 }

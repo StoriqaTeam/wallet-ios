@@ -20,15 +20,18 @@ class TransactionsDataManager: NSObject {
     private var lastTransactionsTableView: UITableView!
     private var transactions: [TransactionDisplayable]
     private let kCellId = "transactionCell"
+    private let isHiddenSections: Bool
     
-    init(transactions: [TransactionDisplayable]) {
+    init(transactions: [TransactionDisplayable], isHiddenSections: Bool) {
         self.transactions = transactions
+        self.isHiddenSections = isHiddenSections
     }
     
     func setTableView(_ view: UITableView) {
         lastTransactionsTableView = view
         lastTransactionsTableView.dataSource = self
         lastTransactionsTableView.delegate = self
+        lastTransactionsTableView.separatorStyle = .none
         registerXib()
     }
     
@@ -39,7 +42,6 @@ class TransactionsDataManager: NSObject {
                           duration: 0.2,
                           options: .transitionCrossDissolve,
                           animations: { self.lastTransactionsTableView.reloadData() })
-        
 
     }
     
@@ -58,13 +60,26 @@ class TransactionsDataManager: NSObject {
 // MARK: UITableViewDataSource
 
 extension TransactionsDataManager: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        let sortedTransactions = sortTransactionByDate(transactions)
+        return sortedTransactions.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if isHiddenSections { return CGFloat.leastNormalMagnitude }
+        return 44
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count
+        let sortedTransactions = sortTransactionByDate(transactions)
+        return sortedTransactions[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let transaction = transactions[indexPath.row]
-       let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
+        let sortedTransactions = sortTransactionByDate(transactions)
+        let mounthTransactions = sortedTransactions[indexPath.section]
+        let transaction = mounthTransactions[indexPath.row]
+        let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
         cell.configureWith(transaction: transaction)
         return cell
     }
@@ -79,6 +94,21 @@ extension TransactionsDataManager: UITableViewDelegate {
         let selectedTransaction = transactions[indexPath.row]
         delegate?.didChooseTransaction(selectedTransaction)
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard !isHiddenSections else { return nil }
+        let sortedTransactions = sortTransactionByDate(transactions)
+        let mounthTransactions = sortedTransactions[section]
+        return mounthTransactions[0].transaction.timestamp.getMonthName()
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard !isHiddenSections else { return nil }
+        let sortedTransactions = sortTransactionByDate(transactions)
+        let mounthTransactions = sortedTransactions[section]
+        let title = mounthTransactions[0].transaction.timestamp.getMonthName()
+        return createHeaderView(with: title)
+    }
 }
 
 
@@ -88,5 +118,49 @@ extension TransactionsDataManager {
     private func registerXib() {
         let nib = UINib(nibName: "TransactionCell", bundle: nil)
         lastTransactionsTableView.register(nib, forCellReuseIdentifier: kCellId)
+    }
+    
+    private func sortTransactionByDate(_ txs: [TransactionDisplayable]) -> [[TransactionDisplayable]] {
+        guard !txs.isEmpty else { return [[]] }
+        
+        let inputArray = txs.sorted { $0.transaction.timestamp < $1.transaction.timestamp }
+        var resultArray = [[inputArray[0]]]
+        
+        let calendar = Calendar(identifier: .gregorian)
+        for (prevTx, nextTx) in zip(inputArray, inputArray.dropFirst()) {
+            if !calendar.isDate(prevTx.transaction.timestamp, equalTo: nextTx.transaction.timestamp, toGranularity: .month) {
+                resultArray.append([])
+            }
+            
+            let lastIndex = resultArray.count - 1
+            resultArray[lastIndex].append(nextTx)
+        }
+        
+        return resultArray
+    }
+    
+    
+    private func createHeaderView(with title: String) -> UIView {
+        let headerWidth = UIScreen.main.bounds.width
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: headerWidth, height: 44))
+        headerView.backgroundColor = .white
+        
+        let label = UILabel(frame: CGRect(x: 20, y: 4, width: headerWidth, height: 40))
+        label.text = title.uppercased()
+        label.textColor = Theme.Text.Color.captionGrey
+        label.font = Theme.Font.smallText
+        headerView.addSubview(label)
+        
+        return headerView
+    }
+}
+
+
+extension Date {
+    func getMonthName() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        let strMonth = dateFormatter.string(from: self)
+        return strMonth
     }
 }

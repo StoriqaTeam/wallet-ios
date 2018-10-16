@@ -18,6 +18,7 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var directionOpponentLabel: UILabel!
     @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var opponentLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
     func configureWith(transaction: TransactionDisplayable) {
         configureAppearence(transaction: transaction)
@@ -31,6 +32,7 @@ extension TransactionTableViewCell {
     private func configureAppearence(transaction: TransactionDisplayable) {
         let direction = transaction.direction
         currencyLabel.text = transaction.currency.symbol
+        timestampLabel.text = transaction.timestamp
         
         switch transaction.opponent {
         case .address(address: let address):
