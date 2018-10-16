@@ -768,8 +768,6 @@
 		A5B7820E215E241800EFD1A5 /* BitcoinAddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinAddressValidator.swift; sourceTree = "<group>"; };
 		A5B78210215E24B600EFD1A5 /* EthereumAddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressValidator.swift; sourceTree = "<group>"; };
 		A5B78212215E25A200EFD1A5 /* Array+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Helper.swift"; sourceTree = "<group>"; };
-		A5B7821C215E2A0400EFD1A5 /* WalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUITests.swift; sourceTree = "<group>"; };
-		A5B7821E215E2A0400EFD1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5B78228215E2A3D00EFD1A5 /* WalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B7822C215E2A3E00EFD1A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5B78232215E2A7400EFD1A5 /* WalletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
@@ -2539,15 +2537,6 @@
 			path = BlockchainNetwork;
 			sourceTree = "<group>";
 		};
-		A5B7821B215E2A0400EFD1A5 /* WalletUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A5B7821C215E2A0400EFD1A5 /* WalletUITests.swift */,
-				A5B7821E215E2A0400EFD1A5 /* Info.plist */,
-			);
-			path = WalletUITests;
-			sourceTree = "<group>";
-		};
 		A5B78229215E2A3E00EFD1A5 /* WalletTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -2876,7 +2865,6 @@
 			isa = PBXGroup;
 			children = (
 				CE526C30212465A800A2EED2 /* Wallet */,
-				A5B7821B215E2A0400EFD1A5 /* WalletUITests */,
 				A5B78229215E2A3E00EFD1A5 /* WalletTests */,
 				3AD23EBFB46F9DD62D872C36 /* Frameworks */,
 				0A8E927335E4454C81DE3B38 /* Pods */,
