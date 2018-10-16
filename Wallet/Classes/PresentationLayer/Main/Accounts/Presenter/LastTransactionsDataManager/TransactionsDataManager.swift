@@ -31,6 +31,7 @@ class TransactionsDataManager: NSObject {
         lastTransactionsTableView = view
         lastTransactionsTableView.dataSource = self
         lastTransactionsTableView.delegate = self
+        lastTransactionsTableView.separatorStyle = .none
         registerXib()
     }
     
@@ -66,7 +67,7 @@ extension TransactionsDataManager: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if isHiddenSections { return CGFloat.leastNormalMagnitude }
-        return 25
+        return 44
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -141,10 +142,10 @@ extension TransactionsDataManager {
     
     private func createHeaderView(with title: String) -> UIView {
         let headerWidth = UIScreen.main.bounds.width
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: headerWidth, height: 25))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: headerWidth, height: 44))
         headerView.backgroundColor = .white
         
-        let label = UILabel(frame: CGRect(x: 20, y: 12.5, width: headerWidth, height: 15))
+        let label = UILabel(frame: CGRect(x: 20, y: 4, width: headerWidth, height: 40))
         label.text = title.uppercased()
         label.textColor = Theme.Text.Color.captionGrey
         label.font = Theme.Font.smallText
