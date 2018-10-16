@@ -50,7 +50,6 @@ class ReceiverViewController: UIViewController {
         inputTextField.autocorrectionType = .no
         scanQRButton.setTitle("scan_QR".localized() + "   ", for: .normal)
         nextButton.setTitle("next".localized(), for: .normal)
-        contactsTableView.tintColor = Theme.Color.brightSkyBlue
     }
     
     // MARK: Actions

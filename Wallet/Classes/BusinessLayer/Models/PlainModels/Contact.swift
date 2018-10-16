@@ -15,6 +15,10 @@ struct Contact {
     let familyName: String
     var cryptoAddress: String?
     var image: UIImage?
+    
+    mutating func setCryptoAddress(address: String?) {
+        self.cryptoAddress = address
+    }
 }
 
 // MARK: - RealmMappable
