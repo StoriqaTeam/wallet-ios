@@ -43,12 +43,9 @@ class TransactionFilterViewController: UIViewController {
         
         if  fromTextField.text?.isEmpty ?? true {
             let dateFormatter = filterDateFormatter()
-            fromTextField.text = dateFormatter.string(from: toDatePickerView.date)
+            fromTextField.text = dateFormatter.string(from: fromDatePickerView.date)
+            output.didSelectFrom(date: fromDatePickerView.date)
         }
-
-        fromDatePickerView.addTarget(self,
-                                     action: #selector(self.fromValueChanged),
-                                     for: .valueChanged)
     }
     
     @IBAction func toTextFieldEditing(_ sender: UnderlinedTextField) {
@@ -57,11 +54,8 @@ class TransactionFilterViewController: UIViewController {
         if  toTextField.text?.isEmpty ?? true {
             let dateFormatter = filterDateFormatter()
             toTextField.text = dateFormatter.string(from: toDatePickerView.date)
+            output.didSelectFrom(date: toDatePickerView.date)
         }
-
-        toDatePickerView.addTarget(self,
-                                   action: #selector(self.toValueChanged),
-                                   for: .valueChanged)
     }
     
     @IBAction func clearFilterPressed(_ sender: Any) {
@@ -89,12 +83,12 @@ extension TransactionFilterViewController: TransactionFilterViewInput {
     func setupInitialState() {
         configureDatePickers()
         addNotificationObservers()
+        addTargetsTextField()
     }
     
     func buttonsChangedState(isEnabled: Bool) {
         configureButtons(isEnable: isEnabled)
     }
-
 }
 
 
@@ -149,13 +143,23 @@ extension TransactionFilterViewController {
     
     private func configureButtons(isEnable: Bool) {
         okButton.isEnabled = isEnable
+        configureClearButton(isEnable: isEnable)
+    }
+    
+    private func configureClearButton(isEnable: Bool) {
+        let titleColor = isEnable ? Theme.Color.brightSkyBlue : Theme.Button.Color.disabledTitle
+        clearFilterButton.setTitleColor(titleColor, for: .normal)
         clearFilterButton.isEnabled = isEnable
-        if isEnable {
-            clearFilterButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
-            return
-        }
+    }
+    
+    private func addTargetsTextField() {
+        fromDatePickerView.addTarget(self,
+                                     action: #selector(self.fromValueChanged),
+                                     for: .valueChanged)
+        toDatePickerView.addTarget(self,
+                                   action: #selector(self.toValueChanged),
+                                   for: .valueChanged)
         
-        clearFilterButton.setTitleColor(Theme.Button.Color.disabledTitle, for: .normal)
     }
     
     private func configureDatePickers() {
@@ -188,6 +192,7 @@ extension TransactionFilterViewController {
                                                selector: #selector(self.keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
