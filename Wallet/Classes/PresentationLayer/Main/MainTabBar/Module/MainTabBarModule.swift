@@ -14,7 +14,7 @@ class MainTabBarModule {
         
         let accountsProvider = FakeAccountProvider()
         let accountWatcher = CurrentAccountWatcher(accountProvider: accountsProvider)
-        let userDataStoreService = FakeUserDataStoreService()
+        let userDataStoreService = UserDataStoreService()
         
         let interactor = MainTabBarInteractor(accountWatcher: accountWatcher,
                                               userDataStoreService: userDataStoreService)

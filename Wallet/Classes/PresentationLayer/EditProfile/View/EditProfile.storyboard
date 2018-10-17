@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Edit Profile View Controller-->
+        <scene sceneID="Q9t-tW-fPJ">
+            <objects>
+                <viewController storyboardIdentifier="EditProfileVC" id="Yvd-ea-A18" customClass="EditProfileViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l63-uz-0sK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erJ-qf-we5">
+                                <rect key="frame" x="19" y="40" width="337" height="116"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PERSONAL INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO9-9c-JBL">
+                                        <rect key="frame" x="0.0" y="0.0" width="337" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ygd-zx-b9Y" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="26" width="337" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="w3O-87-jbG"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next" textContentType="given-name"/>
+                                        <connections>
+                                            <action selector="textChanged:" destination="Yvd-ea-A18" eventType="editingChanged" id="M2U-wC-b2j"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Qp-MK-aqu" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="76" width="337" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ylb-Bl-jKB"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" textContentType="family-name"/>
+                                        <connections>
+                                            <action selector="textChanged:" destination="Yvd-ea-A18" eventType="editingChanged" id="0fa-rU-BW6"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bO9-9c-JBL" firstAttribute="leading" secondItem="erJ-qf-we5" secondAttribute="leading" id="7VH-Xj-Y5w"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Qp-MK-aqu" secondAttribute="trailing" id="8Vq-S5-TQa"/>
+                                    <constraint firstItem="9Qp-MK-aqu" firstAttribute="leading" secondItem="erJ-qf-we5" secondAttribute="leading" id="9Lx-Mm-tGa"/>
+                                    <constraint firstItem="9Qp-MK-aqu" firstAttribute="top" secondItem="ygd-zx-b9Y" secondAttribute="bottom" constant="10" id="OgX-MT-ZJK"/>
+                                    <constraint firstItem="ygd-zx-b9Y" firstAttribute="leading" secondItem="erJ-qf-we5" secondAttribute="leading" id="S5J-gW-eLH"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Qp-MK-aqu" secondAttribute="bottom" id="Uyk-N6-Nwc"/>
+                                    <constraint firstItem="bO9-9c-JBL" firstAttribute="top" secondItem="erJ-qf-we5" secondAttribute="top" id="cK5-Fo-LFb"/>
+                                    <constraint firstItem="ygd-zx-b9Y" firstAttribute="top" secondItem="bO9-9c-JBL" secondAttribute="bottom" constant="10" id="cRN-rT-EE0"/>
+                                    <constraint firstAttribute="trailing" secondItem="bO9-9c-JBL" secondAttribute="trailing" id="dyc-1i-vZT"/>
+                                    <constraint firstAttribute="trailing" secondItem="ygd-zx-b9Y" secondAttribute="trailing" id="zCA-ZB-3jO"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbD-Ki-eEX" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="20" y="594" width="335" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="336" id="5fM-Oz-Qfj"/>
+                                    <constraint firstAttribute="height" constant="45" id="sgH-sE-HIi"/>
+                                </constraints>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="Yvd-ea-A18" eventType="touchUpInside" id="Iph-v3-MLh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xbD-Ki-eEX" firstAttribute="centerX" secondItem="l63-uz-0sK" secondAttribute="centerX" id="5cV-hf-OtB"/>
+                            <constraint firstItem="xbD-Ki-eEX" firstAttribute="leading" secondItem="8Rs-tg-F92" secondAttribute="leading" constant="20" id="ObX-O9-Fu0"/>
+                            <constraint firstItem="erJ-qf-we5" firstAttribute="leading" secondItem="8Rs-tg-F92" secondAttribute="leading" constant="19" id="X0l-Pn-o5N"/>
+                            <constraint firstItem="erJ-qf-we5" firstAttribute="centerX" secondItem="l63-uz-0sK" secondAttribute="centerX" id="rht-J2-riA"/>
+                            <constraint firstItem="erJ-qf-we5" firstAttribute="top" secondItem="8Rs-tg-F92" secondAttribute="top" constant="20" id="x0n-6Q-NRx"/>
+                            <constraint firstItem="8Rs-tg-F92" firstAttribute="bottom" secondItem="xbD-Ki-eEX" secondAttribute="bottom" constant="28" id="xj5-WA-FGA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Rs-tg-F92"/>
+                    </view>
+                    <connections>
+                        <outlet property="firstNameTextField" destination="ygd-zx-b9Y" id="Zdy-vX-aS4"/>
+                        <outlet property="lastNameTextField" destination="9Qp-MK-aqu" id="FJL-oq-cAl"/>
+                        <outlet property="saveButton" destination="xbD-Ki-eEX" id="DgX-lE-Fy3"/>
+                        <outlet property="titleLabel" destination="bO9-9c-JBL" id="FGW-Zk-vCC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fkx-pB-dvX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-638" y="-24"/>
+        </scene>
+    </scenes>
+</document>

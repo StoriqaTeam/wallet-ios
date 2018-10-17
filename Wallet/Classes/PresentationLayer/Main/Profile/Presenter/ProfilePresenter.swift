@@ -40,7 +40,10 @@ extension ProfilePresenter: ProfileViewOutput {
     func viewWillAppear() {
         let user = interactor.getCurrentUser()
         let hasPhone = !user.phone.isEmpty
+        let name = user.lastName + " " + user.firstName
+        
         view.setPhone(hasPhone: hasPhone, phone: user.phone)
+        view.setName(name: name)
         
         view.viewController.setWhiteNavigationBarButtons()
     }
