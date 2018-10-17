@@ -21,7 +21,7 @@ struct Transaction {
 }
 
 
-// - MARK: - RealmMappablee
+// MARK: - RealmMappablee
 
 extension Transaction: RealmMappable {
     
