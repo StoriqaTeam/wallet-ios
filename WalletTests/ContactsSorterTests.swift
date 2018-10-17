@@ -25,22 +25,22 @@ class ContactsSorterTests: XCTestCase {
                                 givenName: "CName",
                                 familyName: "CSurname",
                                 cryptoAddress: nil,
-                                image: nil),
+                                imageData: nil),
                         Contact(id: "2",
                                 givenName: "DddName",
                                 familyName: "DddSurname",
                                 cryptoAddress: nil,
-                                image: nil),
+                                imageData: nil),
                         Contact(id: "3",
                                 givenName: "BName",
                                 familyName: "BSurname",
                                 cryptoAddress: nil,
-                                image: nil),
+                                imageData: nil),
                         Contact(id: "4",
                                 givenName: "DName",
                                 familyName: "DSurname",
                                 cryptoAddress: nil,
-                                image: nil)].map { contactsMapper.map(from: $0) }
+                                imageData: nil)].map { contactsMapper.map(from: $0) }
         let sortedSections = contactsSorter.sort(contacts: contacts)
         
         XCTAssertEqual(sortedSections.map({ $0.title }),
@@ -60,22 +60,22 @@ class ContactsSorterTests: XCTestCase {
                                 givenName: "CName",
                                 familyName: "CSurname",
                                 cryptoAddress: nil,
-                                image: nil),
+                                imageData: nil),
                         Contact(id: "testEmail@test.com",
                                 givenName: "DddName",
                                 familyName: "DddSurname",
                                 cryptoAddress: nil,
-                                image: nil),
+                                imageData: nil),
                         Contact(id: "98765432154224",
                                 givenName: "BName",
                                 familyName: "BSurname",
                                 cryptoAddress: nil,
-                                image: nil),
+                                imageData: nil),
                         Contact(id: "12398756735635",
                                 givenName: "DName",
                                 familyName: "DSurname",
                                 cryptoAddress: nil,
-                                image: nil)].map { contactsMapper.map(from: $0) }
+                                imageData: nil)].map { contactsMapper.map(from: $0) }
         
         var filtered = contactsSorter.searchContact(text: "", contacts: contacts)
         XCTAssertEqual(filtered.flatMap({ $0.contacts }).count,

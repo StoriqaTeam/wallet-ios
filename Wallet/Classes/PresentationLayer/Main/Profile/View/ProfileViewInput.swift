@@ -18,4 +18,5 @@ protocol ProfileViewInput: class, Presentable {
     
     func setPhoto(_ photo: UIImage)
     func setPhone(hasPhone: Bool, phone: String?)
+    func setName(name: String)
 }

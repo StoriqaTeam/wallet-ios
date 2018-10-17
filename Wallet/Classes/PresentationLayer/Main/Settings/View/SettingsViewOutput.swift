@@ -14,4 +14,7 @@ protocol SettingsViewOutput: class {
     func willMoveToParentVC()
     func viewWillAppear()
     func viewDidAppear()
+    func editProfileSelected()
+    func changePhoneSelected()
+    func changePasswordSelected()
 }

@@ -13,8 +13,8 @@ struct User {
     let id: String
     let email: String
     var phone: String
-    let firstName: String
-    let lastName: String
+    var firstName: String
+    var lastName: String
     var photo: UIImage?
 }
 

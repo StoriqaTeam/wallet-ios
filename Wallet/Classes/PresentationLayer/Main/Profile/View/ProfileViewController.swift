@@ -110,6 +110,10 @@ extension ProfileViewController: ProfileViewInput {
         }
     }
     
+    func setName(name: String) {
+        nameLabel.text = name
+    }
+    
 }
 
 

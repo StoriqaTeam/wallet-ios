@@ -34,6 +34,12 @@ class SettingsViewController: UITableViewController {
         super.viewDidAppear(animated)
         output.viewDidAppear()
     }
+}
+
+
+// MARK: - Table View methods
+
+extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SettingsHeaderView")
@@ -44,11 +50,28 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
-    
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 74
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case 0:
+                output.editProfileSelected()
+            case 1:
+                output.changePhoneSelected()
+            case 2:
+                output.changePasswordSelected()
+            default:
+                break
+            }
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
