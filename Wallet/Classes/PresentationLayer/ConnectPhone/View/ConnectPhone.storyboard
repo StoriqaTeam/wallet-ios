@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Connect Phone View Controller-->
+        <scene sceneID="V8G-bZ-fIA">
+            <objects>
+                <viewController storyboardIdentifier="ConnectPhoneVC" id="35Y-eg-B29" customClass="ConnectPhoneViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8LD-b7-WSn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can attach telephone number to protect your account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SkB-Mz-R72">
+                                <rect key="frame" x="68.5" y="66" width="238" height="31.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="238" id="9py-vN-mRi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxq-5M-AqX">
+                                <rect key="frame" x="28.5" y="147.5" width="318" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ATm-ex-Caj">
+                                        <rect key="frame" x="0.0" y="0.0" width="318" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad" returnKeyType="done" textContentType="tel"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PfT-Ao-9O6" customClass="SeparatorView" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="39" width="318" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="wLH-jJ-UQ6"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ATm-ex-Caj" firstAttribute="top" secondItem="kxq-5M-AqX" secondAttribute="top" id="2L0-ei-dTc"/>
+                                    <constraint firstAttribute="bottom" secondItem="PfT-Ao-9O6" secondAttribute="bottom" id="5jh-FO-wt6"/>
+                                    <constraint firstAttribute="height" constant="40" id="Ri4-Yz-bGV"/>
+                                    <constraint firstAttribute="trailing" secondItem="ATm-ex-Caj" secondAttribute="trailing" id="Vsd-gM-u2z"/>
+                                    <constraint firstAttribute="bottom" secondItem="ATm-ex-Caj" secondAttribute="bottom" id="WFf-eF-jBC"/>
+                                    <constraint firstItem="PfT-Ao-9O6" firstAttribute="leading" secondItem="kxq-5M-AqX" secondAttribute="leading" id="X1f-pb-X9X"/>
+                                    <constraint firstAttribute="width" priority="750" constant="318" id="ehO-13-5gh"/>
+                                    <constraint firstItem="ATm-ex-Caj" firstAttribute="leading" secondItem="kxq-5M-AqX" secondAttribute="leading" id="uW4-g3-3P8"/>
+                                    <constraint firstAttribute="trailing" secondItem="PfT-Ao-9O6" secondAttribute="trailing" id="ubG-Rt-pLn"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your number starting form country code. Example for US: +1-541-754-3010" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="28e-Vq-aOz">
+                                <rect key="frame" x="28.5" y="195.5" width="318" height="31.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0F-ZR-xEU" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="28.5" y="596" width="318" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="PZV-aF-hRW"/>
+                                </constraints>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="connectButtonPressed:" destination="35Y-eg-B29" eventType="touchUpInside" id="60s-9h-Nu5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XO5-9H-r62" firstAttribute="bottom" secondItem="N0F-ZR-xEU" secondAttribute="bottom" constant="26" id="7GV-aU-9Bt"/>
+                            <constraint firstItem="SkB-Mz-R72" firstAttribute="centerX" secondItem="8LD-b7-WSn" secondAttribute="centerX" id="BKa-8X-5om"/>
+                            <constraint firstItem="28e-Vq-aOz" firstAttribute="leading" secondItem="kxq-5M-AqX" secondAttribute="leading" id="S3M-Uf-tQI"/>
+                            <constraint firstItem="N0F-ZR-xEU" firstAttribute="width" secondItem="kxq-5M-AqX" secondAttribute="width" id="TwW-Je-sjW"/>
+                            <constraint firstItem="kxq-5M-AqX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XO5-9H-r62" secondAttribute="leading" constant="16" id="WHq-Ec-SCO"/>
+                            <constraint firstItem="28e-Vq-aOz" firstAttribute="trailing" secondItem="kxq-5M-AqX" secondAttribute="trailing" id="fDO-2E-l1u"/>
+                            <constraint firstItem="N0F-ZR-xEU" firstAttribute="centerX" secondItem="8LD-b7-WSn" secondAttribute="centerX" id="hDx-K3-VvA"/>
+                            <constraint firstItem="SkB-Mz-R72" firstAttribute="top" secondItem="XO5-9H-r62" secondAttribute="top" constant="46" id="oSJ-sK-dPg"/>
+                            <constraint firstItem="kxq-5M-AqX" firstAttribute="centerX" secondItem="8LD-b7-WSn" secondAttribute="centerX" id="tz6-qi-Hfl"/>
+                            <constraint firstItem="kxq-5M-AqX" firstAttribute="top" secondItem="SkB-Mz-R72" secondAttribute="bottom" constant="50" id="uZy-5p-S5F"/>
+                            <constraint firstItem="28e-Vq-aOz" firstAttribute="top" secondItem="kxq-5M-AqX" secondAttribute="bottom" constant="8" id="yEL-kG-Ma8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XO5-9H-r62"/>
+                    </view>
+                    <connections>
+                        <outlet property="connectButton" destination="N0F-ZR-xEU" id="GHt-Ic-0OS"/>
+                        <outlet property="footerTextLabel" destination="28e-Vq-aOz" id="r8f-2a-Gmi"/>
+                        <outlet property="headerTextLabel" destination="SkB-Mz-R72" id="rgI-dU-syQ"/>
+                        <outlet property="phoneTextField" destination="ATm-ex-Caj" id="soT-Am-HL7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lpV-Eh-G6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-244" y="94"/>
+        </scene>
+    </scenes>
+</document>

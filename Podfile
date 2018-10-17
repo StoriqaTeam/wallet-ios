@@ -6,23 +6,19 @@ target 'Wallet' do
   use_frameworks!
 
   # Pods for Wallet
-
   pod 'Alamofire', '~> 4.7'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
   pod 'Slog'
+  pod 'RealmSwift'
+  pod 'SwiftLint'
   
-  #social networks
+  # social networks
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'GoogleSignIn'
 
-  target 'WalletTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'WalletUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  # crash analitics
+  pod 'Fabric'
+  pod 'Crashlytics'
+  
 end

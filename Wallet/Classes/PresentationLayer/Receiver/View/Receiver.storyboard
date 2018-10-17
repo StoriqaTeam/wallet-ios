@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Receiver View Controller-->
+        <scene sceneID="nna-dn-MMP">
+            <objects>
+                <viewController storyboardIdentifier="ReceiverVC" id="5ZZ-Yd-9ln" customClass="ReceiverViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JH1-ia-RAY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MlY-ES-cfd" customClass="SendingHeaderView" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="355" height="93"/>
+                                <color key="backgroundColor" red="0.54509803921568623" green="0.61568627450980395" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="93" id="ZJc-M0-u14"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNG-L0-HhK">
+                                <rect key="frame" x="19" y="133" width="336" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND TO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h80-M0-VzR">
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBo-gF-WZ2">
+                                        <rect key="frame" x="221" y="0.0" width="115" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="-1" maxY="0.0"/>
+                                        <state key="normal" title="Scan QR-code   " image="scan">
+                                            <color key="titleColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="scanButtonPressed" destination="5ZZ-Yd-9ln" eventType="touchUpInside" id="GPJ-0L-b1h"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Wallet address or phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ojn-a9-3Yt" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24" width="336" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ZPV-LA-m9e"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textDidChange:" destination="5ZZ-Yd-9ln" eventType="editingChanged" id="pKK-Fz-xfu"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ojn-a9-3Yt" secondAttribute="trailing" id="89e-RN-gjw"/>
+                                    <constraint firstItem="h80-M0-VzR" firstAttribute="top" secondItem="BNG-L0-HhK" secondAttribute="top" id="AIS-A2-w4O"/>
+                                    <constraint firstItem="h80-M0-VzR" firstAttribute="leading" secondItem="BNG-L0-HhK" secondAttribute="leading" id="PhY-i5-2sh"/>
+                                    <constraint firstItem="tBo-gF-WZ2" firstAttribute="top" secondItem="BNG-L0-HhK" secondAttribute="top" id="REb-oc-Dka"/>
+                                    <constraint firstItem="Ojn-a9-3Yt" firstAttribute="leading" secondItem="BNG-L0-HhK" secondAttribute="leading" id="U8C-XQ-PzR"/>
+                                    <constraint firstAttribute="trailing" secondItem="tBo-gF-WZ2" secondAttribute="trailing" id="U9J-ka-eHV"/>
+                                    <constraint firstItem="Ojn-a9-3Yt" firstAttribute="top" secondItem="h80-M0-VzR" secondAttribute="bottom" constant="8" id="ahM-aI-s1L"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ojn-a9-3Yt" secondAttribute="bottom" id="iOF-ah-vUw"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Rej-TM-je3">
+                                <rect key="frame" x="0.0" y="197" width="375" height="470"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XF-LS-HhL" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="20.5" y="600" width="334" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="751" constant="334" id="4iJ-yu-qzn"/>
+                                    <constraint firstAttribute="height" constant="45" id="6eq-6z-RPn"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="nextButtonPressed" destination="5ZZ-Yd-9ln" eventType="touchUpInside" id="j8I-qp-N8r"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5XF-LS-HhL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lfK-8d-PY9" secondAttribute="leading" constant="20" id="1gl-bO-PFi"/>
+                            <constraint firstItem="5XF-LS-HhL" firstAttribute="centerX" secondItem="JH1-ia-RAY" secondAttribute="centerX" id="26C-qQ-ZM2"/>
+                            <constraint firstItem="lfK-8d-PY9" firstAttribute="trailing" secondItem="MlY-ES-cfd" secondAttribute="trailing" constant="20" id="2vQ-NU-z55"/>
+                            <constraint firstItem="BNG-L0-HhK" firstAttribute="top" secondItem="MlY-ES-cfd" secondAttribute="bottom" constant="20" id="EJN-8u-HuG"/>
+                            <constraint firstItem="lfK-8d-PY9" firstAttribute="trailing" secondItem="BNG-L0-HhK" secondAttribute="trailing" constant="20" id="FK6-6j-q4w"/>
+                            <constraint firstItem="Rej-TM-je3" firstAttribute="top" secondItem="BNG-L0-HhK" secondAttribute="bottom" id="TmY-hd-edK"/>
+                            <constraint firstItem="Rej-TM-je3" firstAttribute="leading" secondItem="lfK-8d-PY9" secondAttribute="leading" id="WF3-Mn-diz"/>
+                            <constraint firstItem="lfK-8d-PY9" firstAttribute="bottom" secondItem="5XF-LS-HhL" secondAttribute="bottom" constant="22" id="caI-Tz-9fE"/>
+                            <constraint firstItem="BNG-L0-HhK" firstAttribute="leading" secondItem="lfK-8d-PY9" secondAttribute="leading" constant="19" id="dzd-gE-6Xz"/>
+                            <constraint firstItem="MlY-ES-cfd" firstAttribute="top" secondItem="lfK-8d-PY9" secondAttribute="top" id="kCx-lA-YeE"/>
+                            <constraint firstItem="lfK-8d-PY9" firstAttribute="trailing" secondItem="Rej-TM-je3" secondAttribute="trailing" id="km9-Yw-Dd4"/>
+                            <constraint firstItem="lfK-8d-PY9" firstAttribute="bottom" secondItem="Rej-TM-je3" secondAttribute="bottom" id="nc2-8P-iU8"/>
+                            <constraint firstItem="MlY-ES-cfd" firstAttribute="leading" secondItem="lfK-8d-PY9" secondAttribute="leading" id="xvc-bB-XiL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lfK-8d-PY9"/>
+                    </view>
+                    <connections>
+                        <outlet property="contactsTableView" destination="Rej-TM-je3" id="arO-Mg-2Zy"/>
+                        <outlet property="inputTextField" destination="Ojn-a9-3Yt" id="MBy-mS-HQc"/>
+                        <outlet property="nextButton" destination="5XF-LS-HhL" id="LYT-8m-IGZ"/>
+                        <outlet property="scanQRButton" destination="tBo-gF-WZ2" id="qv3-Um-knU"/>
+                        <outlet property="sendToTitleLabel" destination="h80-M0-VzR" id="znq-HB-6rk"/>
+                        <outlet property="senderView" destination="MlY-ES-cfd" id="OQo-LR-dwz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9R8-by-g4F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-594.39999999999998" y="296.40179910044981"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="scan" width="17" height="17"/>
+    </resources>
+</document>
