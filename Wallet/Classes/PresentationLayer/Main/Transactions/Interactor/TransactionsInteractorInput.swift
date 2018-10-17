@@ -12,4 +12,5 @@ import Foundation
 protocol TransactionsInteractorInput: class {
     func getTransactions() -> [TransactionDisplayable]
     func getFilteredTransacitons(index: Int) -> [TransactionDisplayable]
+    func getTransactionDateFilter() -> TransactionDateFilterProtocol
 }

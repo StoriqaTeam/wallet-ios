@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TransactionFilter: Int {
+enum DirectionFilter: Int {
     case all, send, receive
 }
 
@@ -16,9 +16,11 @@ enum TransactionFilter: Int {
 class TransactionsInteractor {
     weak var output: TransactionsInteractorOutput!
     private let transactions: [TransactionDisplayable]
+    private let transactionsDateFilter: TransactionDateFilterProtocol
     
-    init(transactions: [TransactionDisplayable]) {
+    init(transactions: [TransactionDisplayable], transactionsDateFilter: TransactionDateFilterProtocol) {
         self.transactions = transactions
+        self.transactionsDateFilter = transactionsDateFilter
     }
 }
 
@@ -26,15 +28,20 @@ class TransactionsInteractor {
 // MARK: - TransactionsInteractorInput
 
 extension TransactionsInteractor: TransactionsInteractorInput {
+    func getTransactionDateFilter() -> TransactionDateFilterProtocol {
+        return self.transactionsDateFilter
+    }
+    
     
     func getFilteredTransacitons(index: Int) -> [TransactionDisplayable] {
-        guard let filter = TransactionFilter(rawValue: index) else { return [] }
-        let filteredTransactions = filterTransactions(filter)
+        guard let filter = DirectionFilter(rawValue: index) else { return [] }
+        let filteredTransactions = filterTransactionsByDirection(filter)
         return filteredTransactions
     }
     
     func getTransactions() -> [TransactionDisplayable] {
-        return transactions
+        let dateFilteredTransactions = transactionsDateFilter.applyFilter(for: transactions)
+        return dateFilteredTransactions
     }
     
 }
@@ -43,14 +50,15 @@ extension TransactionsInteractor: TransactionsInteractorInput {
 // MARK: - Private methods
 
 extension TransactionsInteractor {
-    private func filterTransactions(_ filter: TransactionFilter) -> [TransactionDisplayable] {
+    private func filterTransactionsByDirection(_ filter: DirectionFilter) -> [TransactionDisplayable] {
+        let dateFilteredTransactions = transactionsDateFilter.applyFilter(for: transactions)
         switch filter {
         case .all:
-            return transactions
+            return dateFilteredTransactions
         case .send:
-            return transactions.filter { $0.direction == .send }
+            return dateFilteredTransactions.filter { $0.direction == .send }
         case .receive:
-            return transactions.filter { $0.direction == .receive }
+            return dateFilteredTransactions.filter { $0.direction == .receive }
         }
     }
 }
