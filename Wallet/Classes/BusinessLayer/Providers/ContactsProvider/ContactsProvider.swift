@@ -61,17 +61,18 @@ class ContactsProvider: ContactsProviderProtocol {
 }
 
 class FakeContactsProvider: ContactsProviderProtocol {
+    
     let contactsStorage = [Contact(id: "8-925-342-43-76",
                                    givenName: "Satoshi",
                                    familyName: "Nakamoto",
                                    cryptoAddress: "3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy",
-                                   image: nil),
+                                   imageData: nil),
                            
                            Contact(id: "8-985-644-65-71",
                                    givenName: "Vitaly",
                                    familyName: "Buterin",
                                    cryptoAddress: "0x6f50c6bff08ec925232937b204b0ae23c488402a",
-                                   image: nil)]
+                                   imageData: nil)]
     
     func setObserver(_ observer: ContactsProviderDelegate) { }
     

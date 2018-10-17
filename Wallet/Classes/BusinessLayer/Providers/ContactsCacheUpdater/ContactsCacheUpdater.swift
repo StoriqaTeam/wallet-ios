@@ -26,8 +26,6 @@ class ContactsCacheUpdater: ContactsCacheUpdaterProtocol {
         self.deviceContactsFetcher = deviceContactsFetcher
         self.contactsNetworkProvider = contactsNetworkProvider
         self.contactsAddressLinker = contactsAddressLinker
-        
-        contactsNetworkProvider.delegate = self
     }
     
     func update(errorHandler: @escaping (Error) -> Void ) {
@@ -44,19 +42,21 @@ class ContactsCacheUpdater: ContactsCacheUpdaterProtocol {
     }
 }
 
-// MARK: ContactsNetworkProviderDelegate
-
-extension ContactsCacheUpdater: ContactsNetworkProviderDelegate {
-    func didReceiveContactsAddresses(_ pairs: [String: String]) {
-        contactsAddressLinker.link(contacts: contacts, address: pairs)
-    }
-}
 
 // MARK: Private methods
 
 extension ContactsCacheUpdater {
     private func loadAddresses(contacts: [Contact]) {
         let ids = contacts.map { $0.id }
-        contactsNetworkProvider.getContacts(ids: ids)
+        
+        contactsNetworkProvider.getContacts(ids: ids) { [weak self] (result) in
+            switch result {
+            case .success(let pairs):
+                self?.contactsAddressLinker.link(contacts: contacts, address: pairs)
+            case .failure:
+                // TODO: handle error
+                break
+            }
+        }
     }
 }

@@ -19,17 +19,12 @@ struct Contact {
     mutating func setCryptoAddress(address: String?) {
         self.cryptoAddress = address
     }
-}
-
-// MARK: - RealmMappable
-
-extension Contact: RealmMappable {
     
     init(id: String,
          givenName: String,
          familyName: String,
          cryptoAddress: String?,
-         imageData: Data? ) {
+         imageData: Data?) {
         
         self.id = id
         self.givenName = givenName
@@ -43,7 +38,11 @@ extension Contact: RealmMappable {
             self.image = nil
         }
     }
-    
+}
+
+// MARK: - RealmMappable
+
+extension Contact: RealmMappable {
     init(_ object: RealmContact) {
         self.init(id: object.id,
                   givenName: object.givenName,
@@ -63,5 +62,4 @@ extension Contact: RealmMappable {
         
         return object
     }
-    
 }

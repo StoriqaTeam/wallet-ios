@@ -57,17 +57,17 @@ class DeviceContactsFetcher: DeviceContactsFetcherProtocol {
                     
                     let identifiers = phones + emails
                     
-                    identifiers.forEach { (identifier) in
-                        let contact = Contact(id: identifier,
-                                              givenName: contact.givenName,
-                                              familyName: contact.familyName,
-                                              cryptoAddress: nil,
-                                              imageData: contact.thumbnailImageData)
-                        contacts.append(contact)
-                    }
+                    contacts.append(contentsOf: identifiers.map {
+                        Contact(id: $0,
+                                givenName: contact.givenName,
+                                familyName: contact.familyName,
+                                cryptoAddress: nil,
+                                imageData: contact.thumbnailImageData)
+                    })
                 })
                 
                 completion(Result.success(contacts))
+                
             } catch {
                 let error = DeviceContactsFetcherError.failToAccessContacts
                 completion(Result.failure(error))

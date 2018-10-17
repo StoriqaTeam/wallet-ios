@@ -8,19 +8,11 @@
 
 import Foundation
 
-
-protocol ContactsNetworkProviderDelegate: class {
-    func didReceiveContactsAddresses(_ pairs: [String: String])
-}
-
 protocol ContactsNetworkProviderProtocol: class {
-    var delegate: ContactsNetworkProviderDelegate? { get set }
-    func getContacts(ids: [String])
+    func getContacts(ids: [String], completion: (Result<[String: String]>) -> Void)
 }
 
 class FakeContactsNetworkProvider: ContactsNetworkProviderProtocol {
-    weak var delegate: ContactsNetworkProviderDelegate?
-    
     private var addresses = [
         "1QC8Wax1H4obQAo3FE1cawXgzwy7GZNd6V",
         "1EStjAD37Xc18ynaF5dti468AZfM7924HK",
@@ -31,7 +23,7 @@ class FakeContactsNetworkProvider: ContactsNetworkProviderProtocol {
         "0x39d7647073DD8FC590960930d883880e34052ee5",
         "0x9Cc539183De54759261Ef0ee9B3Fe91AEB85407F"]
     
-    func getContacts(ids: [String]) {
+    func getContacts(ids: [String], completion: (Result<[String: String]>) -> Void) {
         var fakeResult = [String: String]()
         
         for identifier in ids {
@@ -40,7 +32,7 @@ class FakeContactsNetworkProvider: ContactsNetworkProviderProtocol {
             }
         }
         
-        delegate?.didReceiveContactsAddresses(fakeResult)
-        
+        let result = Result.success(fakeResult)
+        completion(result)
     }
 }
