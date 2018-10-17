@@ -113,6 +113,8 @@ extension ContactsDataManager {
         tableView.backgroundColor = .white
         tableView.tableFooterView = UIView() //removing empty cells
         tableView.keyboardDismissMode = .onDrag
+        tableView.tintColor = Theme.Text.Color.captionGrey
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     }
     
     private func registerXib() {

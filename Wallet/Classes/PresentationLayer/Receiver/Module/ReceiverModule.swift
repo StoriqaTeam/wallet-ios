@@ -13,20 +13,28 @@ class ReceiverModule {
         let router = ReceiverRouter()
         
         //Injections
+        let contactsDataStoreService = ContactsDataStoreService()
+        let contactsAddressLinker = ContactsAddressLinker(contactsDataStoreService: contactsDataStoreService)
         let deviceContactsFetcher = DeviceContactsFetcher()
+        let contactsNetworkProvider = FakeContactsNetworkProvider()
+        let contactsUpdater = ContactsCacheUpdater(deviceContactsFetcher: deviceContactsFetcher,
+                                                   contactsNetworkProvider: contactsNetworkProvider,
+                                                   contactsAddressLinker: contactsAddressLinker)
+        let contactsProvider = ContactsProvider(dataStoreService: contactsDataStoreService)
         let formatter = CurrencyFormatter()
         let converterFactory = CurrecncyConverterFactory()
         let currencyImageProvider = CurrencyImageProvider()
         let contactsSorter = ContactsSorter()
         let contactsMapper = ContactsMapper()
         
-        let interactor = ReceiverInteractor(deviceContactsFetcher: deviceContactsFetcher,
-                                            sendTransactionBuilder: sendTransactionBuilder,
-                                            contactsSorter: contactsSorter,
-                                            contactsMapper: contactsMapper)
+        let interactor = ReceiverInteractor(sendTransactionBuilder: sendTransactionBuilder,
+                                            contactsProvider: contactsProvider,
+                                            contactsUpdater: contactsUpdater)
         let presenter = ReceiverPresenter(currencyFormatter: formatter,
                                           converterFactory: converterFactory,
-                                          currencyImageProvider: currencyImageProvider)
+                                          currencyImageProvider: currencyImageProvider,
+                                          contactsMapper: contactsMapper,
+                                          contactsSorter: contactsSorter)
         presenter.mainTabBar = tabBar
         
         let accountsVC = UIStoryboard(name: "Receiver", bundle: nil)
