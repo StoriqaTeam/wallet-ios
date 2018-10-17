@@ -21,35 +21,35 @@ class WalletTests: XCTestCase {
                                     givenName: "Name_1",
                                     familyName: "Family_1",
                                     cryptoAddress: nil,
-                                    image: nil)
+                                    imageData: nil)
     
     private let contact_2 = Contact(id: "2",
                                     givenName: "Name_2",
                                     familyName: "Family_1",
                                     cryptoAddress: nil,
-                                    image: nil)
+                                    imageData: nil)
     private let contact_3 = Contact(id: "3",
                                     givenName: "Name_3",
                                     familyName: "Family_3",
                                     cryptoAddress: nil,
-                                    image: nil)
+                                    imageData: nil)
     
     
     private let updatedContact_1 = Contact(id: "1",
                                            givenName: "updated_1",
                                            familyName: "Family_1",
                                            cryptoAddress: "crypto_address_1",
-                                           image: nil)
+                                           imageData: nil)
     private let updatedContact_2 = Contact(id: "2",
                                            givenName: "updated_2",
                                            familyName: "Family_1",
                                            cryptoAddress: "crypto_address_2",
-                                           image: nil)
+                                           imageData: nil)
     private let updatedContact_3 = Contact(id: "3",
                                            givenName: "updated_3",
                                            familyName: "Family_1",
                                            cryptoAddress: "crypto_address_3",
-                                           image: nil)
+                                           imageData: nil)
     
     
     override func setUp() {
@@ -66,24 +66,24 @@ class WalletTests: XCTestCase {
     
     func testContactCreation() {
         contactsDataStore.save(contact_1)
-        XCTAssert(contactsDataStore.getAllContacts().count ==  1)
+        XCTAssertEqual(contactsDataStore.getAllContacts().count, 1)
         removeTestContacts()
     }
     
     func testSingleContactReplacing() {
         contactsDataStore.save(contact_1)
         let oldContact = contactsDataStore.getContactWith(id: contact_1.id)
-        XCTAssert(contactsDataStore.getAllContacts().count ==  1)
+        XCTAssertEqual(contactsDataStore.getAllContacts().count, 1)
         XCTAssert(oldContact!.cryptoAddress == nil)
         
         let updatedContact = Contact(id: contact_1.id,
                                      givenName: "NewName",
                                      familyName: "Family_1",
                                      cryptoAddress: "crypto_address",
-                                     image: nil)
+                                     imageData: nil)
         contactsDataStore.save(updatedContact)
         let newContact = contactsDataStore.getContactWith(id: contact_1.id)
-        XCTAssert(contactsDataStore.getAllContacts().count ==  1)
+        XCTAssertEqual(contactsDataStore.getAllContacts().count, 1)
         XCTAssert(newContact!.cryptoAddress == "crypto_address")
         removeTestContacts()
     }
@@ -92,21 +92,21 @@ class WalletTests: XCTestCase {
     func testUpdateAllContacts() {
         contactsDataStore.save(contact_1)
         contactsDataStore.save(contact_2)
-        XCTAssert(contactsDataStore.getAllContacts().count ==  2)
+        XCTAssertEqual(contactsDataStore.getAllContacts().count, 2)
         
         contactsDataStore.updateAllContacts(with: [contact_1, contact_2, contact_3])
-        XCTAssert(contactsDataStore.getAllContacts().count ==  3)
+        XCTAssertEqual(contactsDataStore.getAllContacts().count, 3)
         removeTestContacts()
     }
     
     
     func testBatchUpdateContacts() {
-        contactsDataStore.save([contact_1, contact_2, contact_3])
-        XCTAssert(contactsDataStore.getAllContacts().count ==  3)
+        contactsDataStore.updateAllContacts(with: [contact_1, contact_2, contact_3])
+        XCTAssertEqual(contactsDataStore.getAllContacts().count, 3)
         
         let batchUpdate = [updatedContact_1, updatedContact_2, updatedContact_3]
-        contactsDataStore.updateAllContacts(with: batchUpdate)
-        XCTAssert(contactsDataStore.getAllContacts().count ==  3)
+        contactsDataStore.batchUpdateContacts(with: batchUpdate)
+        XCTAssertEqual(contactsDataStore.getAllContacts().count, 3)
         
         let updatedContacts = contactsDataStore.getAllContacts()
         for contact in updatedContacts where contact.cryptoAddress == nil {

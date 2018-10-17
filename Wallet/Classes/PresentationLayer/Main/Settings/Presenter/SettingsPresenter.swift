@@ -52,6 +52,19 @@ extension SettingsPresenter: SettingsViewOutput {
         navigationBar.backgroundColor = .white
     }
     
+    func editProfileSelected() {
+        router.showEditProfile(from: view.viewController)
+    }
+    
+    func changePhoneSelected() {
+        router.showChangePhone(from: view.viewController)
+    }
+    
+    func changePasswordSelected() {
+        router.showChangePassword(from: view.viewController)
+    }
+    
+    
 }
 
 
