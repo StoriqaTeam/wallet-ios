@@ -54,7 +54,7 @@ class TransactionFilterViewController: UIViewController {
         if  toTextField.text?.isEmpty ?? true {
             let dateFormatter = filterDateFormatter()
             toTextField.text = dateFormatter.string(from: toDatePickerView.date)
-            output.didSelectFrom(date: toDatePickerView.date)
+            output.didSelectTo(date: toDatePickerView.date)
         }
     }
     
@@ -77,6 +77,9 @@ extension TransactionFilterViewController: TransactionFilterViewInput {
         let dateFormatter = filterDateFormatter()
         fromTextField.text = dateFormatter.string(from: fromDate)
         toTextField.text = dateFormatter.string(from: toDate)
+        
+        fromDatePickerView.date = fromDate
+        toDatePickerView.date = toDate
     }
     
 

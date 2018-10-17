@@ -253,7 +253,6 @@
 		A56ED3A9216E3214009FA58B /* ContactsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED3A8216E3214009FA58B /* ContactsProvider.swift */; };
 		A57434D42175E6DA006B4CAE /* TransactionFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A57434D32175E6DA006B4CAE /* TransactionFilter.storyboard */; };
 		A57434D721764159006B4CAE /* TransactionsDateFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434D621764159006B4CAE /* TransactionsDateFilter.swift */; };
-		A57434D9217749E6006B4CAE /* ContactsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434D8217749E6006B4CAE /* ContactsMapper.swift */; };
 		A57434DF21774B37006B4CAE /* ContactsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434DE21774B37006B4CAE /* ContactsMapper.swift */; };
 		A57434E221774B6A006B4CAE /* ContactsNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434E121774B6A006B4CAE /* ContactsNetworkProvider.swift */; };
 		A57434E521774B85006B4CAE /* ContactsCacheUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434E421774B84006B4CAE /* ContactsCacheUpdater.swift */; };
@@ -794,7 +793,6 @@
 		A56ED3A8216E3214009FA58B /* ContactsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsProvider.swift; sourceTree = "<group>"; };
 		A57434D32175E6DA006B4CAE /* TransactionFilter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TransactionFilter.storyboard; sourceTree = "<group>"; };
 		A57434D621764159006B4CAE /* TransactionsDateFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDateFilter.swift; sourceTree = "<group>"; };
-		A57434D8217749E6006B4CAE /* ContactsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsMapper.swift; path = Wallet/Classes/BusinessLayer/Mappers/ContactsMapper/ContactsMapper.swift; sourceTree = SOURCE_ROOT; };
 		A57434DE21774B37006B4CAE /* ContactsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsMapper.swift; sourceTree = "<group>"; };
 		A57434E121774B6A006B4CAE /* ContactsNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsNetworkProvider.swift; sourceTree = "<group>"; };
 		A57434E421774B84006B4CAE /* ContactsCacheUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCacheUpdater.swift; sourceTree = "<group>"; };
@@ -2445,7 +2443,6 @@
 		A57434DC21774B01006B4CAE /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				A57434D8217749E6006B4CAE /* ContactsMapper.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -4161,7 +4158,6 @@
 				AA6D33F045D1085DB5FDD1CC /* MainTabBarModule.swift in Sources */,
 				CAAB484F397C75347D8B8009 /* MyWalletViewInput.swift in Sources */,
 				4C0507FF9CBC5622BB373D27 /* MyWalletViewOutput.swift in Sources */,
-				A57434D9217749E6006B4CAE /* ContactsMapper.swift in Sources */,
 				788528FA82E51BB20908D6F9 /* MyWalletViewController.swift in Sources */,
 				A52C66B32167634E0073071E /* Account.swift in Sources */,
 				1ABB8F5652BD323E32D4A38E /* MyWalletPresenter.swift in Sources */,

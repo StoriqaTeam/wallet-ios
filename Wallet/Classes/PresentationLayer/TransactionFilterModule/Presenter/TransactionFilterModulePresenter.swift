@@ -49,14 +49,14 @@ extension TransactionFilterPresenter: TransactionFilterViewOutput {
     }
 
     func didSelectFrom(date: Date) {
-        transactionDateFilter.fromDate = date
+        transactionDateFilter.fromDate = removeTime(from: date)
         let validFilter = transactionDateFilter.canApplyFilter()
         view.buttonsChangedState(isEnabled: validFilter)
         
     }
     
     func didSelectTo(date: Date) {
-        transactionDateFilter.toDate = date
+        transactionDateFilter.toDate = removeTime(from: date)
         let validFilter = transactionDateFilter.canApplyFilter()
         view.buttonsChangedState(isEnabled: validFilter)
     }
@@ -100,5 +100,13 @@ extension TransactionFilterPresenter {
         
         view.fillTextFileld(fromDate: fromDate, toDate: toDate)
         view.buttonsChangedState(isEnabled: true)
+    }
+    
+    private func removeTime(from date: Date) -> Date {
+        var seconds = Int(date.timeIntervalSinceReferenceDate)
+        seconds -= (seconds % (3600*24))
+        
+        let cleared = Date(timeIntervalSinceReferenceDate: TimeInterval(seconds))
+        return cleared
     }
 }

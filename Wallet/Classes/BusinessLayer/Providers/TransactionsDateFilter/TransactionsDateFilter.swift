@@ -43,7 +43,7 @@ class TransactionDateFilter: TransactionDateFilterProtocol {
         guard let fromDate = fromDate else { return false }
         guard let toDate = toDate else { return false }
         
-        return fromDate < toDate
+        return Int(fromDate.timeIntervalSince1970) < Int(toDate.timeIntervalSince1970)
     }
 }
 
