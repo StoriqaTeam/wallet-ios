@@ -14,4 +14,5 @@ protocol TransactionsViewOutput: class {
     func transactionTableView(_ tableView: UITableView)
     func viewWillAppear()
     func didChooseSegment(at index: Int)
+    func filterByDateTapped()
 }

@@ -12,7 +12,9 @@ class TransactionsModule {
         let router = TransactionsRouter()
         let presenter = TransactionsPresenter()
         
-        let interactor = TransactionsInteractor(transactions: transactions)
+        // @dev init with empty filter
+        let txDateFilter = TransactionDateFilter()
+        let interactor = TransactionsInteractor(transactions: transactions, transactionsDateFilter: txDateFilter)
         
         let txSB = UIStoryboard(name: "Transactions", bundle: nil)
         let viewController = txSB.instantiateViewController(withIdentifier: "transactionsVC") as! TransactionsViewController

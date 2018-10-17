@@ -48,8 +48,11 @@ class DefaultButton: BaseButton {
     }
 }
 
-private extension DefaultButton {
-    func updateColors() {
+
+// MARK: - Private methods
+
+extension DefaultButton {
+    private func updateColors() {
         if isEnabled {
             setEnabled()
         } else {
@@ -57,13 +60,13 @@ private extension DefaultButton {
         }
     }
     
-    func setEnabled() {
+    private func setEnabled() {
         needsShadow = true
         backgroundColor = enabledBackgroundColor
         setTitleColor(enabledTitleColor, for: .normal)
     }
     
-    func setDisabled() {
+    private func setDisabled() {
         needsShadow = false
         backgroundColor = disabledBackgroundColor
         setTitleColor(disabledTitleColor, for: .normal)

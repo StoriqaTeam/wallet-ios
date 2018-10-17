@@ -21,6 +21,7 @@ class TransactionsDataManager: NSObject {
     private var transactions: [TransactionDisplayable]
     private let kCellId = "transactionCell"
     private let isHiddenSections: Bool
+    private var emptyViewPlaceholder: EmptyView?
     
     init(transactions: [TransactionDisplayable], isHiddenSections: Bool) {
         self.transactions = transactions
@@ -38,6 +39,17 @@ class TransactionsDataManager: NSObject {
     func updateTransactions(_ transactions: [TransactionDisplayable]) {
         self.transactions = transactions
         
+        if let _ = emptyViewPlaceholder {
+            lastTransactionsTableView.tableFooterView = nil
+            lastTransactionsTableView.backgroundView = nil
+            lastTransactionsTableView.tableFooterView?.removeFromSuperview()
+        }
+        
+        if self.transactions.isEmpty {
+            updateEmpty(placeholderImage: UIImage(named: "noTxs")!, placeholderText: "")
+            return
+        }
+        
         UIView.transition(with: lastTransactionsTableView,
                           duration: 0.2,
                           options: .transitionCrossDissolve,
@@ -46,12 +58,11 @@ class TransactionsDataManager: NSObject {
     }
     
     func updateEmpty(placeholderImage: UIImage, placeholderText: String) {        
-        let placeholder = EmptyView(frame: lastTransactionsTableView.frame)
-
-        placeholder.setup(image: placeholderImage)
+        emptyViewPlaceholder = EmptyView(frame: lastTransactionsTableView.frame)
+        emptyViewPlaceholder!.setup(image: placeholderImage)
 
         lastTransactionsTableView.tableFooterView = UIView()
-        lastTransactionsTableView.backgroundView = placeholder
+        lastTransactionsTableView.backgroundView = emptyViewPlaceholder
         lastTransactionsTableView.reloadData()
     }
 }
@@ -67,6 +78,7 @@ extension TransactionsDataManager: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if isHiddenSections { return CGFloat.leastNormalMagnitude }
+        if transactions.isEmpty { return CGFloat.leastNormalMagnitude }
         return 44
     }
     
@@ -98,6 +110,7 @@ extension TransactionsDataManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard !isHiddenSections else { return nil }
         let sortedTransactions = sortTransactionByDate(transactions)
+        guard !sortedTransactions[0].isEmpty else { return nil }
         let mounthTransactions = sortedTransactions[section]
         return mounthTransactions[0].transaction.timestamp.getMonthName()
     }
@@ -105,6 +118,7 @@ extension TransactionsDataManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard !isHiddenSections else { return nil }
         let sortedTransactions = sortTransactionByDate(transactions)
+        guard !sortedTransactions[0].isEmpty else { return nil }
         let mounthTransactions = sortedTransactions[section]
         let title = mounthTransactions[0].transaction.timestamp.getMonthName()
         return createHeaderView(with: title)

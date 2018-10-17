@@ -21,6 +21,7 @@
 		0B71D203EA67FB0928D31D05 /* QuickLaunchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FE257678A8696EAB653BE /* QuickLaunchModule.swift */; };
 		0F5C6FA888352D3BCF88000F /* QRScannerInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E866C93770DDFD6C5D5B592 /* QRScannerInteractorInput.swift */; };
 		1499BCCDEF796FDA812A7DBC /* DepositRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519067607EDD7E0421E70871 /* DepositRouter.swift */; };
+		161EBEEB0A2979906EFA8F41 /* TransactionFilterModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C33E51F6C2D877BEB3EDE95 /* TransactionFilterModuleRouter.swift */; };
 		165DB5F5FAA826D2789B39B1 /* RegistrationInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F102CE15CBE076997898FA67 /* RegistrationInteractorOutput.swift */; };
 		19012E8AA68C9F3F63547FF4 /* PinQuickLaunchRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EA168845DE25F12215A68E /* PinQuickLaunchRouterInput.swift */; };
 		19C992F649EC96AB1D2EB274 /* PinInputRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0B86D1518BF13364C96281 /* PinInputRouterInput.swift */; };
@@ -94,6 +95,7 @@
 		4A8416E8E79E93524467F707 /* MyWalletInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E191E21DE3BCEB408C79029 /* MyWalletInteractor.swift */; };
 		4B42C53D0968DE8E1FFE0BAE /* RegistrationViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A24D3A19D2AAD73DEEA15 /* RegistrationViewInput.swift */; };
 		4C0507FF9CBC5622BB373D27 /* MyWalletViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756B60B05CAEF8B5BF27211E /* MyWalletViewOutput.swift */; };
+		4C9AC1E9C6D0D8C5181C95BF /* TransactionFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117E4C7BA28A085044E3D48E /* TransactionFilterViewController.swift */; };
 		4D12ADD2691133DFA814DD26 /* PinQuickLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E77C7652077B01BFAD892D /* PinQuickLaunchViewController.swift */; };
 		4E5BC89F50726A6F7AA8256E /* PinInputnteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B27BA5EC4202B73FE8F821 /* PinInputnteractorInput.swift */; };
 		4F27BDC61CC80C07B40BA53D /* PinSetupRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B88B7B4A3CC91B28D220E0 /* PinSetupRouterInput.swift */; };
@@ -124,9 +126,11 @@
 		6C058C8AD6F82CA0A27040AC /* AccountsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E778658164181DCDC63E9AE /* AccountsViewInput.swift */; };
 		6CF496C0626DE43C8B12A28C /* QuickLaunchInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5C18F46BC7569ABB715E75 /* QuickLaunchInteractorInput.swift */; };
 		6D2F370D03CC576C40C28A3A /* ProfileInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A00BBC1208ED512B27D9CE1 /* ProfileInteractorInput.swift */; };
+		6FC1A3D461CBFECC89185438 /* TransactionFilterModuleInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCEC7F1413473D2F053BF17 /* TransactionFilterModuleInteractorOutput.swift */; };
 		706656F7D7EBAF794948CC03 /* PasswordEmailRecoveryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4ED0815E61CF22DB8393CF /* PasswordEmailRecoveryPresenter.swift */; };
 		70D0185949E966619D914F17 /* PopUpViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420B604421EEAE11A4CE026F /* PopUpViewOutput.swift */; };
 		70D91778B8FFB807C57A87E1 /* DepositInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D985FDF9CE4E15B606476 /* DepositInteractorOutput.swift */; };
+		727589FADC2388827FDDD932 /* TransactionFilterModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE40FA45A19AA345622BF2 /* TransactionFilterModuleInput.swift */; };
 		734C581B32C15CF05D4481B4 /* ExchangeRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6FB378C1C745E09CB480EB /* ExchangeRouterInput.swift */; };
 		75BC72D950AA357E03897FF1 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8281DDFF92A6E3137D4E511 /* MainTabBarPresenter.swift */; };
 		7802FA10023A55BCB10D8538 /* FirstLaunchModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49396E582D646CBCCC1A469 /* FirstLaunchModuleInput.swift */; };
@@ -161,6 +165,7 @@
 		8DCE3EEDBEA0BC7E7957D47D /* PinInputModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B43F6C7017C03C18BCB6DF /* PinInputModuleInput.swift */; };
 		90F0761D1E9CE2D22E3D740F /* ReceiverRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A27037510C0B75B4D68104 /* ReceiverRouter.swift */; };
 		91222D27E9ACA0B31B779533 /* SendRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5938DC427C7E8743582935 /* SendRouter.swift */; };
+		92C789BF23E3A6D6B9F08F71 /* TransactionFilterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF7D44617048E2AE57E58B /* TransactionFilterModule.swift */; };
 		93D422C2B6717A2E6C0B2903 /* BiometryQuickLaunchInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A58646680E6F707CC3318D /* BiometryQuickLaunchInteractorOutput.swift */; };
 		93E7B3BF9EDD80639D31C0B1 /* ConnectPhoneInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4C4F9E43402ACE56E5C029 /* ConnectPhoneInteractorInput.swift */; };
 		943FD1525EFA0861E6AA1193 /* PinQuickLaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C35C227A0EB43501E053516 /* PinQuickLaunchPresenter.swift */; };
@@ -246,6 +251,8 @@
 		A56ED39F216E01BC009FA58B /* TransactionDirectionResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED39E216E01BC009FA58B /* TransactionDirectionResolver.swift */; };
 		A56ED3A6216E2D36009FA58B /* TransactionOpponentResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED3A5216E2D36009FA58B /* TransactionOpponentResolver.swift */; };
 		A56ED3A9216E3214009FA58B /* ContactsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED3A8216E3214009FA58B /* ContactsProvider.swift */; };
+		A57434D42175E6DA006B4CAE /* TransactionFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A57434D32175E6DA006B4CAE /* TransactionFilter.storyboard */; };
+		A57434D721764159006B4CAE /* TransactionsDateFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434D621764159006B4CAE /* TransactionsDateFilter.swift */; };
 		A58D54E8215D0ED1003D9D0C /* FakeTransactionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
@@ -278,13 +285,16 @@
 		A6888E54A2AF18D001988E63 /* MainTabBarRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5940AC3989E9EB903BFDE420 /* MainTabBarRouterInput.swift */; };
 		A69BEB443BFB8D712A5DD1E7 /* DepositPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3717D21DED5D0441A0FD1D /* DepositPresenter.swift */; };
 		A6F5B3DAAEA6C2400283BAE8 /* PinSetupModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D614C3F339D50C93566CA /* PinSetupModuleInput.swift */; };
+		A7B879DB4C2E78DC60D11D96 /* TransactionFilterModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE8AC3F21EBDF40A3AFFBF8 /* TransactionFilterModulePresenter.swift */; };
 		A7CE669CEF8C840A16382864 /* PaymentFeeInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB498C5FAA9033DE7CD6565 /* PaymentFeeInteractorInput.swift */; };
 		A94569B43B0A5C670A352940 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5A627B3631F5EA37D9E794 /* SettingsRouter.swift */; };
 		AA6D33F045D1085DB5FDD1CC /* MainTabBarModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDB1081E3B59616497BA0F0 /* MainTabBarModule.swift */; };
 		AAF839BB8A7DB1396F7FAC33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E68F2791C11BF019BE072 /* LoginViewController.swift */; };
+		AC64C1C921224168B77DB559 /* TransactionFilterModuleModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6803DF498658353F5739E266 /* TransactionFilterModuleModuleOutput.swift */; };
 		ADB11F188C9F0760BBEFF576 /* PaymentFeeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26157C487BEEC2CE7F0AA0A6 /* PaymentFeeModuleInput.swift */; };
 		AE15451EF54175EA14849158 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5160A4CA4216CB99563B0FB6 /* ProfileViewController.swift */; };
 		AE2282A5E23671E2690EEBB7 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E27E24CE03DA7F24E9C3F22 /* ProfilePresenter.swift */; };
+		AE25E836624D8FB16AABA72B /* TransactionFilterModuleInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552EC801EF18B11B6AC2EE9C /* TransactionFilterModuleInteractorInput.swift */; };
 		AE3D99DB0E383E9F099380B0 /* AccountsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9346E648CDE41C22839F32B /* AccountsInteractorInput.swift */; };
 		B039B47DC64841F3151D9B32 /* PinQuickLaunchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A547672EF418EFEC87450DB /* PinQuickLaunchInteractor.swift */; };
 		B0E5A86CA04385F2DB04472E /* SendInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16D5F88B24F7221D3C24309 /* SendInteractorInput.swift */; };
@@ -301,6 +311,7 @@
 		BC5B1AC1C08666ED0D21E500 /* QRScannerInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C31B262DC570614CEE539 /* QRScannerInteractorOutput.swift */; };
 		BCA4BFC5046C983A17062737 /* DepositModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04F53F9D75BC74DFD477AD /* DepositModuleInput.swift */; };
 		BD77230FE2D1F20DB9EB5064 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14E7C3DB39C2B2C32A2D52 /* TransactionsViewController.swift */; };
+		BE9590E0480343163111D6DB /* TransactionFilterModuleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD74645140B8988B96C229A5 /* TransactionFilterModuleInteractor.swift */; };
 		BED2CF5C297BC1BCFF6EFCAA /* PasswordEmailRecoveryInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E66E11D8FF05AEB1F443E12 /* PasswordEmailRecoveryInteractorOutput.swift */; };
 		BEEDE5E6BEDC5F138D876770 /* PasswordEmailRecoveryViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385B8417057A339D5D2CFEE /* PasswordEmailRecoveryViewInput.swift */; };
 		BF550A4D541C2E921C542231 /* MyWalletRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0176C8CE859F7A547CB5C6CB /* MyWalletRouterInput.swift */; };
@@ -424,6 +435,7 @@
 		DA1A1B4454CF99D98B79BD28 /* LoginRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6003FC56CA2CEFC5BC47FE /* LoginRouterInput.swift */; };
 		DA6B0429F75C1AA3AFBCE034 /* DepositModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2D12C66255F9F68043B4F /* DepositModuleOutput.swift */; };
 		DAD66F6925304312D772B826 /* FirstLaunchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20AFFE8EBAFA104AF111038 /* FirstLaunchModule.swift */; };
+		DAFD2DF5B826F36BA9EF420C /* TransactionFilterModuleRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BC5412757E9B28F6B828F7 /* TransactionFilterModuleRouterInput.swift */; };
 		DB0167269CDCA1A26EFD340D /* PinSetupInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36364E63D962C92F146BA8E7 /* PinSetupInteractorInput.swift */; };
 		DBDC98669AC4320EAFC55E3F /* PinSetupInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9529FD71E76E63F3678FC5B7 /* PinSetupInteractorOutput.swift */; };
 		DCCD990699B49FC6A3B47B52 /* LoginInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF1D54551EE7E6F7D7E705B /* LoginInteractorOutput.swift */; };
@@ -446,6 +458,7 @@
 		E454D06D1C3D8744B3F666F2 /* PinInputViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782A15357B69ED5C10B1D116 /* PinInputViewInput.swift */; };
 		E474B064916E332E2C3B70C1 /* QRScannerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472FB06D9D523AA02940BBB /* QRScannerInteractor.swift */; };
 		E4760D4F175190FCE277280C /* PasswordRecoveryConfirmViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DFDAFBB213DB18269D4ACB /* PasswordRecoveryConfirmViewOutput.swift */; };
+		E48F38E3F6C54C04DF13180D /* TransactionFilterViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A28663A0E1F5A3A399F7C7B /* TransactionFilterViewInput.swift */; };
 		E5A30170E901FC7507851349 /* QRScannerViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C6CFAEA791B4D3D89441D1 /* QRScannerViewInput.swift */; };
 		E6A7E495FCFF6F3B00BCA629 /* PopUpInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932756D5217E34FDAB97218 /* PopUpInteractorInput.swift */; };
 		E75BA378AB9872B3E84F37B8 /* PinInputInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30759375BE660B1458C46BAE /* PinInputInteractor.swift */; };
@@ -466,6 +479,7 @@
 		F5680734F20F3B633F33DD1B /* PaymentFeePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D976B5B6623CC743D0F1A1D /* PaymentFeePresenter.swift */; };
 		F5AB86357D59D1B81AC1B476 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93E747B51EE5CC2684785C /* SettingsInteractor.swift */; };
 		F65CB8AA94F7350D95BCC3B4 /* MyWalletInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BBBBB3BACA309B11B1510 /* MyWalletInteractorOutput.swift */; };
+		F686C7139F346CD48BB88FFC /* TransactionFilterViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACC3C72A78B25A08D98936 /* TransactionFilterViewOutput.swift */; };
 		F6FFC06886618EE0C23D164A /* DepositViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645AA16961B16438A2B53C92 /* DepositViewOutput.swift */; };
 		F724C3EE1C872FF0DF3C37D7 /* PinInputModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB5A3DC24D8C7A866DD767 /* PinInputModuleOutput.swift */; };
 		F84105BB46F917B0AB9317C9 /* BiometryQuickLaunchRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780B0994FB4C72C4468647B0 /* BiometryQuickLaunchRouterInput.swift */; };
@@ -510,8 +524,10 @@
 		0F65B7DB590634BF2BA5EC1C /* PopUpPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpPresenter.swift; sourceTree = "<group>"; };
 		0F6D7544E0F7F80B63B1689C /* PaymentFeeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaymentFeeViewController.swift; sourceTree = "<group>"; };
 		0F8AF32F0B960F8792570D3E /* PinQuickLaunchInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchInteractorInput.swift; sourceTree = "<group>"; };
+		0FACC3C72A78B25A08D98936 /* TransactionFilterViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterViewOutput.swift; sourceTree = "<group>"; };
 		0FE47F775464F7BD41756322 /* PopUpViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpViewInput.swift; sourceTree = "<group>"; };
 		10EA168845DE25F12215A68E /* PinQuickLaunchRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchRouterInput.swift; sourceTree = "<group>"; };
+		117E4C7BA28A085044E3D48E /* TransactionFilterViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterViewController.swift; sourceTree = "<group>"; };
 		11AD7ACE12CF166AA12D406E /* ExchangeViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeViewInput.swift; sourceTree = "<group>"; };
 		123CB3E67FBEF434C635D8A4 /* AccountsInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsInteractorOutput.swift; sourceTree = "<group>"; };
 		12A9A2D92E74B7C610DD3FE3 /* PinSetupViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupViewOutput.swift; sourceTree = "<group>"; };
@@ -549,6 +565,7 @@
 		27DBFDB112FCFAF70104F362 /* ConnectPhoneModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectPhoneModule.swift; sourceTree = "<group>"; };
 		298F7BD03847EEB6421588D8 /* ReceiverInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReceiverInteractorInput.swift; sourceTree = "<group>"; };
 		2AA1A26B2D9F5AAEC2BD7BC9 /* PasswordRecoveryConfirmViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmViewInput.swift; sourceTree = "<group>"; };
+		2BCEC7F1413473D2F053BF17 /* TransactionFilterModuleInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleInteractorOutput.swift; sourceTree = "<group>"; };
 		2C09F895E4A56157DD0CC0F3 /* TransactionsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsPresenter.swift; sourceTree = "<group>"; };
 		2D7FD855475F1D75C278C785 /* ReceiverInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReceiverInteractor.swift; sourceTree = "<group>"; };
 		2DBF2A22248EF5C4AF19A2F8 /* PasswordEmailRecoveryInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryInteractorInput.swift; sourceTree = "<group>"; };
@@ -569,6 +586,7 @@
 		3AD5C5E1184438EBAB0618BC /* AccountsRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsRouterInput.swift; sourceTree = "<group>"; };
 		3CBC2A11D9B65A4016994E69 /* FirstLaunchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchPresenter.swift; sourceTree = "<group>"; };
 		3CF7B40D3A60AB3A135372B4 /* BiometryQuickLaunchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchPresenter.swift; sourceTree = "<group>"; };
+		3CFE40FA45A19AA345622BF2 /* TransactionFilterModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleInput.swift; sourceTree = "<group>"; };
 		3D23D91FE95C35E0F5969E34 /* PinInputPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputPresenter.swift; sourceTree = "<group>"; };
 		3DA6F4BC76CBBC79955671EA /* PinQuickLaunchModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchModuleOutput.swift; sourceTree = "<group>"; };
 		420B604421EEAE11A4CE026F /* PopUpViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpViewOutput.swift; sourceTree = "<group>"; };
@@ -580,6 +598,7 @@
 		48103454DCB87F4930BCC86F /* PasswordEmailRecoveryViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryViewController.swift; sourceTree = "<group>"; };
 		483EA059D7E6160ECD4BA0E5 /* PaymentFeeInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaymentFeeInteractor.swift; sourceTree = "<group>"; };
 		48A12B501B3C01B17C85EDE6 /* TransactionsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsModuleInput.swift; sourceTree = "<group>"; };
+		4A28663A0E1F5A3A399F7C7B /* TransactionFilterViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterViewInput.swift; sourceTree = "<group>"; };
 		4A36ECA6CA6EB262B594A23D /* ProfileModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModule.swift; sourceTree = "<group>"; };
 		4B0B86D1518BF13364C96281 /* PinInputRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputRouterInput.swift; sourceTree = "<group>"; };
 		4B4ED0815E61CF22DB8393CF /* PasswordEmailRecoveryPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryPresenter.swift; sourceTree = "<group>"; };
@@ -592,6 +611,7 @@
 		5232549A6E9E79B8513CB8E0 /* PinSetupModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupModule.swift; sourceTree = "<group>"; };
 		52C9ECD2CAF63023D5CEE07A /* QRScannerViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewOutput.swift; sourceTree = "<group>"; };
 		52DBF6C57F49D49576D93C9E /* MainTabBarModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarModuleInput.swift; sourceTree = "<group>"; };
+		552EC801EF18B11B6AC2EE9C /* TransactionFilterModuleInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleInteractorInput.swift; sourceTree = "<group>"; };
 		57CB5A3DC24D8C7A866DD767 /* PinInputModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputModuleOutput.swift; sourceTree = "<group>"; };
 		5868B6B0A8A70DED0058C476 /* ReceiverViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReceiverViewController.swift; sourceTree = "<group>"; };
 		58E7F7A8AC5D3B2855959998 /* MainTabBarInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarInteractorInput.swift; sourceTree = "<group>"; };
@@ -618,6 +638,7 @@
 		66F87C123CCB845393E9A751 /* FirstLaunchViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchViewInput.swift; sourceTree = "<group>"; };
 		677CA2E638264F4628E48B2E /* ExchangeInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeInteractor.swift; sourceTree = "<group>"; };
 		67E15D2B306FE84D4A71D4C0 /* PinQuickLaunchViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchViewOutput.swift; sourceTree = "<group>"; };
+		6803DF498658353F5739E266 /* TransactionFilterModuleModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleModuleOutput.swift; sourceTree = "<group>"; };
 		6A00BBC1208ED512B27D9CE1 /* ProfileInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileInteractorInput.swift; sourceTree = "<group>"; };
 		6AA730DB69FC32F87185E9AA /* ReceiverRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReceiverRouterInput.swift; sourceTree = "<group>"; };
 		6AD618365786E3DA2F887FAA /* PasswordEmailRecoveryViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryViewOutput.swift; sourceTree = "<group>"; };
@@ -667,7 +688,9 @@
 		89B93F5D4CB1B4D6000F8C9B /* TransactionsModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsModuleOutput.swift; sourceTree = "<group>"; };
 		8A547672EF418EFEC87450DB /* PinQuickLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchInteractor.swift; sourceTree = "<group>"; };
 		8BF1D54551EE7E6F7D7E705B /* LoginInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorOutput.swift; sourceTree = "<group>"; };
+		8C33E51F6C2D877BEB3EDE95 /* TransactionFilterModuleRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleRouter.swift; sourceTree = "<group>"; };
 		8CD47475EC5C86EAEFBA888B /* AccountsModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsModuleOutput.swift; sourceTree = "<group>"; };
+		8CE8AC3F21EBDF40A3AFFBF8 /* TransactionFilterModulePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModulePresenter.swift; sourceTree = "<group>"; };
 		8E191E21DE3BCEB408C79029 /* MyWalletInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyWalletInteractor.swift; sourceTree = "<group>"; };
 		8E866C93770DDFD6C5D5B592 /* QRScannerInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorInput.swift; sourceTree = "<group>"; };
 		9382E17D9F1AE337DF105E81 /* PasswordEmailRecoveryRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryRouter.swift; sourceTree = "<group>"; };
@@ -752,6 +775,8 @@
 		A56ED39E216E01BC009FA58B /* TransactionDirectionResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDirectionResolver.swift; sourceTree = "<group>"; };
 		A56ED3A5216E2D36009FA58B /* TransactionOpponentResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionOpponentResolver.swift; sourceTree = "<group>"; };
 		A56ED3A8216E3214009FA58B /* ContactsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsProvider.swift; sourceTree = "<group>"; };
+		A57434D32175E6DA006B4CAE /* TransactionFilter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TransactionFilter.storyboard; sourceTree = "<group>"; };
+		A57434D621764159006B4CAE /* TransactionsDateFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDateFilter.swift; sourceTree = "<group>"; };
 		A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTransactionProvider.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
@@ -782,6 +807,7 @@
 		A5F59AA621621968005F1765 /* TestConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfigurator.swift; sourceTree = "<group>"; };
 		A5F59AB6216248C5005F1765 /* RealmMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMappable.swift; sourceTree = "<group>"; };
 		A5F59AB821624908005F1765 /* RealmStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorable.swift; sourceTree = "<group>"; };
+		A7AF7D44617048E2AE57E58B /* TransactionFilterModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModule.swift; sourceTree = "<group>"; };
 		A8281DDFF92A6E3137D4E511 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		A831E3F2AD4AB52930892954 /* PasswordRecoveryConfirmRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmRouterInput.swift; sourceTree = "<group>"; };
 		A932756D5217E34FDAB97218 /* PopUpInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpInteractorInput.swift; sourceTree = "<group>"; };
@@ -810,6 +836,7 @@
 		BC8627BDF0C5D57632E5C188 /* ExchangeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		BC9D1601A483ADBA7DD0D526 /* SettingsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsViewOutput.swift; sourceTree = "<group>"; };
 		BD2BB9E942735421F64D092F /* FirstLaunchViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchViewController.swift; sourceTree = "<group>"; };
+		BD74645140B8988B96C229A5 /* TransactionFilterModuleInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleInteractor.swift; sourceTree = "<group>"; };
 		BDEA6B789B6E12147C774834 /* SendViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		BE14E7C3DB39C2B2C32A2D52 /* TransactionsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		C16D5F88B24F7221D3C24309 /* SendInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendInteractorInput.swift; sourceTree = "<group>"; };
@@ -821,6 +848,7 @@
 		C4D2F13364BE6B168335FE8E /* PopUpViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		C5B88B7B4A3CC91B28D220E0 /* PinSetupRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupRouterInput.swift; sourceTree = "<group>"; };
 		C6B4793E5C178AAA2D6FBD6E /* ConnectPhoneViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectPhoneViewController.swift; sourceTree = "<group>"; };
+		C6BC5412757E9B28F6B828F7 /* TransactionFilterModuleRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleRouterInput.swift; sourceTree = "<group>"; };
 		C72AC441189C39BCEDF435E8 /* SettingsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsModuleInput.swift; sourceTree = "<group>"; };
 		C732EBE19CE3E7EE51024672 /* DepositViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositViewInput.swift; sourceTree = "<group>"; };
 		C82D0537B4CB1FBCDB8A1D56 /* FirstLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchInteractor.swift; sourceTree = "<group>"; };
@@ -1569,6 +1597,18 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
+		501682A62E4DE05D8FB80374 /* TransactionFilterModule */ = {
+			isa = PBXGroup;
+			children = (
+				57DD3A1BE5FD9DD181A3BE2F /* View */,
+				9652AC9E684582838BF777E1 /* Presenter */,
+				E5F1CA395EE53059E8300FE6 /* Interactor */,
+				9F482FEC69C60CE9943AB1B5 /* Router */,
+				B29C26D0B53B18D83436BE77 /* Module */,
+			);
+			path = TransactionFilterModule;
+			sourceTree = "<group>";
+		};
 		520E8BC93AB0DAFE3E7895D2 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1599,6 +1639,17 @@
 				19A9730E68FB8E82DF5CD447 /* ReceiverViewOutput.swift */,
 				5868B6B0A8A70DED0058C476 /* ReceiverViewController.swift */,
 				CEFC9CAF215A141600962356 /* Receiver.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		57DD3A1BE5FD9DD181A3BE2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A28663A0E1F5A3A399F7C7B /* TransactionFilterViewInput.swift */,
+				0FACC3C72A78B25A08D98936 /* TransactionFilterViewOutput.swift */,
+				117E4C7BA28A085044E3D48E /* TransactionFilterViewController.swift */,
+				A57434D32175E6DA006B4CAE /* TransactionFilter.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1987,6 +2038,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		9652AC9E684582838BF777E1 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8CE8AC3F21EBDF40A3AFFBF8 /* TransactionFilterModulePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		98A6098AFCB62E3B6671A997 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -2034,6 +2093,15 @@
 				984F93D4B12D95B9833F9D4A /* SendInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		9F482FEC69C60CE9943AB1B5 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C6BC5412757E9B28F6B828F7 /* TransactionFilterModuleRouterInput.swift */,
+				8C33E51F6C2D877BEB3EDE95 /* TransactionFilterModuleRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		A06BEC31EAA14F0F34FA76EE /* Presenter */ = {
@@ -2331,6 +2399,14 @@
 			path = ContactsProvider;
 			sourceTree = "<group>";
 		};
+		A57434D52176412D006B4CAE /* TransactionsDateFilter */ = {
+			isa = PBXGroup;
+			children = (
+				A57434D621764159006B4CAE /* TransactionsDateFilter.swift */,
+			);
+			path = TransactionsDateFilter;
+			sourceTree = "<group>";
+		};
 		A58EE3B0214FFD370096C155 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2363,6 +2439,7 @@
 				37A40EFEFDB1490B20F427A8 /* PaymentFee */,
 				316941A164C8DCB4F12F4F83 /* TransactionDetails */,
 				6704FB5590F7ABAD4F91D9C6 /* ConnectPhone */,
+				501682A62E4DE05D8FB80374 /* TransactionFilterModule */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -2424,6 +2501,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A57434D52176412D006B4CAE /* TransactionsDateFilter */,
 				CE4401A82174EAD700F7C8D8 /* ContactsMapper */,
 				A56ED3A7216E3204009FA58B /* ContactsProvider */,
 				A56ED3A4216E2D1A009FA58B /* TransactionResolvers */,
@@ -2689,6 +2767,16 @@
 				BABCA1BD63695156C7C53148 /* PinSetupRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		B29C26D0B53B18D83436BE77 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				3CFE40FA45A19AA345622BF2 /* TransactionFilterModuleInput.swift */,
+				6803DF498658353F5739E266 /* TransactionFilterModuleModuleOutput.swift */,
+				A7AF7D44617048E2AE57E58B /* TransactionFilterModule.swift */,
+			);
+			path = Module;
 			sourceTree = "<group>";
 		};
 		B76D0D4B8FA14BD3B34B245C /* Module */ = {
@@ -3287,6 +3375,16 @@
 			path = BiometryQuickLaunch;
 			sourceTree = "<group>";
 		};
+		E5F1CA395EE53059E8300FE6 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				552EC801EF18B11B6AC2EE9C /* TransactionFilterModuleInteractorInput.swift */,
+				2BCEC7F1413473D2F053BF17 /* TransactionFilterModuleInteractorOutput.swift */,
+				BD74645140B8988B96C229A5 /* TransactionFilterModuleInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
 		E641E23F32A99BE5CAD2703B /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -3527,6 +3625,7 @@
 				CED822D4215A796500693B92 /* QRScanner.storyboard in Resources */,
 				CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */,
 				CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */,
+				A57434D42175E6DA006B4CAE /* TransactionFilter.storyboard in Resources */,
 				A5E8D9A62153EB3900AC6A7E /* Send.storyboard in Resources */,
 				A56ED379216CAE27009FA58B /* TransactionDescriptionContactView.xib in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
@@ -3885,6 +3984,7 @@
 				5A19DCEBA97EFA317880745E /* BiometryQuickLaunchRouter.swift in Sources */,
 				A51CB5492158E60500CDC80C /* Transaction.swift in Sources */,
 				A52C66B6216767EA0073071E /* RealmAccount.swift in Sources */,
+				A57434D721764159006B4CAE /* TransactionsDateFilter.swift in Sources */,
 				1D29389B7211768F5C82EF1B /* BiometryQuickLaunchModuleInput.swift in Sources */,
 				A3AC2118172F25D9C46E786B /* BiometryQuickLaunchModuleOutput.swift in Sources */,
 				4FD0957C495AB450B60609F7 /* BiometryQuickLaunchModule.swift in Sources */,
@@ -4101,6 +4201,18 @@
 				41BE6CD39AB51A11D33C65CC /* ConnectPhoneModuleInput.swift in Sources */,
 				D1E2319F1277268F069541E3 /* ConnectPhoneModuleOutput.swift in Sources */,
 				7934CE37D1CDACDF65C1F2DF /* ConnectPhoneModule.swift in Sources */,
+				E48F38E3F6C54C04DF13180D /* TransactionFilterViewInput.swift in Sources */,
+				F686C7139F346CD48BB88FFC /* TransactionFilterViewOutput.swift in Sources */,
+				4C9AC1E9C6D0D8C5181C95BF /* TransactionFilterViewController.swift in Sources */,
+				A7B879DB4C2E78DC60D11D96 /* TransactionFilterModulePresenter.swift in Sources */,
+				AE25E836624D8FB16AABA72B /* TransactionFilterModuleInteractorInput.swift in Sources */,
+				6FC1A3D461CBFECC89185438 /* TransactionFilterModuleInteractorOutput.swift in Sources */,
+				BE9590E0480343163111D6DB /* TransactionFilterModuleInteractor.swift in Sources */,
+				DAFD2DF5B826F36BA9EF420C /* TransactionFilterModuleRouterInput.swift in Sources */,
+				161EBEEB0A2979906EFA8F41 /* TransactionFilterModuleRouter.swift in Sources */,
+				727589FADC2388827FDDD932 /* TransactionFilterModuleInput.swift in Sources */,
+				AC64C1C921224168B77DB559 /* TransactionFilterModuleModuleOutput.swift in Sources */,
+				92C789BF23E3A6D6B9F08F71 /* TransactionFilterModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

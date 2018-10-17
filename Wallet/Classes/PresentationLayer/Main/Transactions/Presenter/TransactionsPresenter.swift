@@ -23,7 +23,12 @@ class TransactionsPresenter: NSObject {
 // MARK: - TransactionsViewOutput
 
 extension TransactionsPresenter: TransactionsViewOutput {
-
+    
+    func viewIsReady() {
+        view.setupInitialState()
+        configureNavBar()
+    }
+    
     func transactionTableView(_ tableView: UITableView) {
         let transactions = interactor.getTransactions()
         let txDataManager = TransactionsDataManager(transactions: transactions, isHiddenSections: false)
@@ -38,18 +43,20 @@ extension TransactionsPresenter: TransactionsViewOutput {
         
     }
     
-    func viewIsReady() {
-        view.setupInitialState()
-        configureNavBar()
-    }
-    
     func viewWillAppear() {
         view.viewController.setDarkNavigationBarButtons()
+        let transactions = interactor.getTransactions()
+        transactionDataManager.updateTransactions(transactions)
     }
     
     func didChooseSegment(at index: Int) {
         let filtered = interactor.getFilteredTransacitons(index: index)
         transactionDataManager.updateTransactions(filtered)
+    }
+    
+    func filterByDateTapped() {
+        let txDateFilter = interactor.getTransactionDateFilter()
+        router.showTransactionFilter(with: txDateFilter, from: view.viewController)
     }
     
 }

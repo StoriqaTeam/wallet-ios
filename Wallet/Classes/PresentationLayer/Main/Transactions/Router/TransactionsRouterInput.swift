@@ -11,4 +11,5 @@ import UIKit
 
 protocol TransactionsRouterInput: class {
     func showTransactionDetails(with transaction: TransactionDisplayable, from viewController: UIViewController)
+    func showTransactionFilter(with transactionDateFilter: TransactionDateFilterProtocol, from viewController: UIViewController)
 }

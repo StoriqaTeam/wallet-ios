@@ -35,6 +35,11 @@ class TransactionsViewController: UIViewController {
     @IBAction func filterTapped(_ sender: UISegmentedControl) {
         output.didChooseSegment(at: sender.selectedSegmentIndex)
     }
+    
+    
+    @objc func filterByDateTapped() {
+        output.filterByDateTapped()
+    }
 }
 
 
@@ -45,8 +50,8 @@ extension TransactionsViewController: TransactionsViewInput {
     func setupInitialState() {
         configureTableView()
         configiureSegmentControl()
+        addFilterButton()
     }
-
 }
 
 
@@ -80,6 +85,15 @@ extension TransactionsViewController {
         filterSegmentControl.setWidth(40, forSegmentAt: 0)
         filterSegmentControl.setWidth(90, forSegmentAt: 1)
         filterSegmentControl.setWidth(90, forSegmentAt: 2)
+    }
+    
+    private func addFilterButton() {
+        let filterButton = UIButton(type: .custom)
+        filterButton.setImage(UIImage(named: "filter"), for: .normal)
+        filterButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        filterButton.addTarget(self, action: #selector(self.filterByDateTapped), for: .touchUpInside)
+        let rightItem = UIBarButtonItem(customView: filterButton)
+        self.navigationItem.setRightBarButton(rightItem, animated: true)
     }
     
 }
