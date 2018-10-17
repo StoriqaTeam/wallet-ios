@@ -13,11 +13,11 @@ class TransactionFilterViewController: UIViewController {
 
     var output: TransactionFilterViewOutput!
     
-    @IBOutlet weak var fromTextField: UnderlinedTextField!
-    @IBOutlet weak var toTextField: UnderlinedTextField!
-    @IBOutlet weak var okButton: DefaultButton!
-    @IBOutlet weak var clearFilterButton: UIButton!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var fromTextField: UnderlinedTextField!
+    @IBOutlet private var toTextField: UnderlinedTextField!
+    @IBOutlet private var okButton: DefaultButton!
+    @IBOutlet private var clearFilterButton: UIButton!
+    @IBOutlet private var bottomConstraint: NSLayoutConstraint!
     
     private var fromDatePickerView: UIDatePicker!
     private var toDatePickerView: UIDatePicker!
@@ -40,16 +40,28 @@ class TransactionFilterViewController: UIViewController {
     
     @IBAction func fromTextFieldEditing(_ sender: UnderlinedTextField) {
         fromTextField.inputView = fromDatePickerView
+        
+        if  fromTextField.text?.isEmpty ?? true {
+            let dateFormatter = filterDateFormatter()
+            fromTextField.text = dateFormatter.string(from: toDatePickerView.date)
+        }
+
         fromDatePickerView.addTarget(self,
-                                 action: #selector(self.fromValueChanged),
-                                 for: .valueChanged)
+                                     action: #selector(self.fromValueChanged),
+                                     for: .valueChanged)
     }
     
     @IBAction func toTextFieldEditing(_ sender: UnderlinedTextField) {
         toTextField.inputView = toDatePickerView
+        
+        if  toTextField.text?.isEmpty ?? true {
+            let dateFormatter = filterDateFormatter()
+            toTextField.text = dateFormatter.string(from: toDatePickerView.date)
+        }
+
         toDatePickerView.addTarget(self,
-                                 action: #selector(self.toValueChanged),
-                                 for: .valueChanged)
+                                   action: #selector(self.toValueChanged),
+                                   for: .valueChanged)
     }
     
     @IBAction func clearFilterPressed(_ sender: Any) {

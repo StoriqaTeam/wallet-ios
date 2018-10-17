@@ -25,7 +25,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PKE-M9-Sxe" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="19" y="135" width="163" height="21"/>
+                                <rect key="frame" x="19" y="125" width="163" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0Dl-xz-u5o"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -34,7 +37,10 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="To" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cjS-a9-vgN" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="193" y="135" width="163" height="21"/>
+                                <rect key="frame" x="193" y="125" width="163" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="k7X-fs-oxh"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -65,7 +71,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="PKE-M9-Sxe" firstAttribute="top" secondItem="9Pz-O5-NC3" secondAttribute="bottom" constant="30" id="3FI-ku-MEJ"/>
+                            <constraint firstItem="PKE-M9-Sxe" firstAttribute="top" secondItem="9Pz-O5-NC3" secondAttribute="bottom" constant="20" id="3FI-ku-MEJ"/>
                             <constraint firstItem="cjS-a9-vgN" firstAttribute="width" secondItem="PKE-M9-Sxe" secondAttribute="width" id="AOt-S9-UHd"/>
                             <constraint firstItem="PKE-M9-Sxe" firstAttribute="width" secondItem="ksd-vL-ia3" secondAttribute="width" multiplier="1:2.3" id="BOy-6B-90O"/>
                             <constraint firstItem="9Pz-O5-NC3" firstAttribute="leading" secondItem="OFF-0j-4cM" secondAttribute="leading" constant="19" id="N9K-Hp-Gwf"/>
