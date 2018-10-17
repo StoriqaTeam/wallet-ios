@@ -105,7 +105,7 @@ class WalletTests: XCTestCase {
         XCTAssertEqual(contactsDataStore.getAllContacts().count, 3)
         
         let batchUpdate = [updatedContact_1, updatedContact_2, updatedContact_3]
-        contactsDataStore.updateAllContacts(with: batchUpdate)
+        contactsDataStore.batchUpdateContacts(with: batchUpdate)
         XCTAssertEqual(contactsDataStore.getAllContacts().count, 3)
         
         let updatedContacts = contactsDataStore.getAllContacts()
