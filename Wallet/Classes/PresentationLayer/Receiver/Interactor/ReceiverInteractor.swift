@@ -12,24 +12,19 @@ import Foundation
 class ReceiverInteractor {
     weak var output: ReceiverInteractorOutput!
     
-    private let deviceContactsFetcher: DeviceContactsFetcherProtocol
-    private let contactsSorter: ContactsSorterProtocol
-    private let contactsMapper: ContactsMapper
     private let sendTransactionBuilder: SendProviderBuilderProtocol
     private let sendProvider: SendTransactionProviderProtocol
+    private let contactsProvider: ContactsProviderProtocol
+    private let contactsUpdater: ContactsCacheUpdaterProtocol
     
-    private var contacts: [ContactDisplayable] = []
-    
-    init(deviceContactsFetcher: DeviceContactsFetcherProtocol,
-         sendTransactionBuilder: SendProviderBuilderProtocol,
-         contactsSorter: ContactsSorterProtocol,
-         contactsMapper: ContactsMapper) {
+    init(sendTransactionBuilder: SendProviderBuilderProtocol,
+         contactsProvider: ContactsProviderProtocol,
+         contactsUpdater: ContactsCacheUpdaterProtocol) {
         
-        self.deviceContactsFetcher = deviceContactsFetcher
         self.sendTransactionBuilder = sendTransactionBuilder
         self.sendProvider = sendTransactionBuilder.build()
-        self.contactsSorter = contactsSorter
-        self.contactsMapper = contactsMapper
+        self.contactsProvider = contactsProvider
+        self.contactsUpdater = contactsUpdater
     }
     
 }
@@ -39,34 +34,23 @@ class ReceiverInteractor {
 
 extension ReceiverInteractor: ReceiverInteractorInput {
     
-    func fetchContacts() {
-        deviceContactsFetcher.fetchContacts { [weak self] (result) in
+    func loadContacts() {
+        contactsProvider.setObserver(self)
+        contactsUpdater.update { [weak self] (error) in
             DispatchQueue.main.async {
-                guard let strongSelf = self else { return }
-                
-                switch result {
-                case .success(let contacts):
-                    let displayable = contacts.map { strongSelf.contactsMapper.map(from: $0) }
-                    strongSelf.contacts = displayable
-                    
-                    let sorted = strongSelf.contactsSorter.sort(contacts: displayable)
-                    strongSelf.output.updateContacts(sorted)
-                case .failure(let error):
-                    //TODO: text and image in case of no access to contacts
-                    strongSelf.output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
-                                             placeholderText: error.localizedDescription)
-                    
-                    log.warn(error.localizedDescription)
-                }
+                self?.output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                                         placeholderText: error.localizedDescription)
             }
         }
     }
     
     func getContact() -> ContactDisplayable? {
-        let receiverName = getReceiverName(from: sendProvider.opponentType)
-        let filteredContacts = contactsSorter.searchContact(text: receiverName, contacts: contacts)
-
-        return filteredContacts.first?.contacts.first
+        switch sendProvider.opponentType {
+        case .contact(let contact):
+            return contact
+        default:
+            return nil
+        }
     }
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
@@ -81,18 +65,6 @@ extension ReceiverInteractor: ReceiverInteractorInput {
         return sendTransactionBuilder
     }
     
-    func searchContact(text: String) {
-        let filteredContacts = contactsSorter.searchContact(text: text, contacts: contacts)
-
-        if filteredContacts.isEmpty {
-            output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
-                               placeholderText: "There is no such number in system.\nUse another way to send funds.")
-        } else {
-            output.updateContacts(filteredContacts)
-        }
-    }
-    
-    
     func getAmount() -> Decimal? {
         return sendProvider.amount
     }
@@ -106,8 +78,18 @@ extension ReceiverInteractor: ReceiverInteractorInput {
     }
 }
 
+extension ReceiverInteractor: ContactsProviderDelegate {
+    func contactsDidUpdate(_ contacts: [Contact]) {
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.output.updateContacts(contacts)
+        }
+    }
+}
+
 
 // MARK: - Private methods
+
 extension ReceiverInteractor {
     private func getReceiverName(from opponent: OpponentType) -> String {
         switch opponent {

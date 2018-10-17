@@ -39,8 +39,10 @@ class AccountsModule {
         let accountTypeResolver = AccountTypeResolver()
         let transactionDirectionResolver = TransactionDirectionResolver(accountsProvider: accountsProvider)
         let contactsProvider = FakeContactsProvider()
+        let contactsMapper = ContactsMapper()
         let transactionOpponentResolver = TransactionOpponentResolver(contactsProvider: contactsProvider,
-                                                                      transactionDirectionResolver: transactionDirectionResolver)
+                                                                      transactionDirectionResolver: transactionDirectionResolver,
+                                                                      contactsMapper: contactsMapper)
         
         let transactionMapper = TransactionMapper(currencyFormatter: currencyFormatter,
                                                   converterFactory: converterFactory,

@@ -11,7 +11,8 @@ import Contacts
 
 
 protocol DeviceContactsFetcherProtocol {
-    func fetchContacts(completion: @escaping (Result<[Contact]>) -> Void)}
+    func fetchContacts(completion: @escaping (Result<[Contact]>) -> Void)
+}
 
 class DeviceContactsFetcher: DeviceContactsFetcherProtocol {
     
@@ -21,56 +22,56 @@ class DeviceContactsFetcher: DeviceContactsFetcherProtocol {
         let store = CNContactStore()
         
         store.requestAccess(for: (.contacts)) { (granted, err) in
-
+            
             if let err = err {
                 completion(Result.failure(err))
                 return
             }
             
-            if granted {
-                let keys = [CNContactGivenNameKey,
-                            CNContactFamilyNameKey,
-                            CNContactPhoneNumbersKey,
-                            CNContactThumbnailImageDataKey,
-                            CNContactEmailAddressesKey]
-                let fetchRequest = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-                var contacts = [Contact]()
-                
-                do {
-                    try store.enumerateContacts(with: fetchRequest, usingBlock: { ( contact, _) in
-                        
-                        let phones = contact.phoneNumbers.compactMap { (phone) -> String? in
-                            let phone = phone.value.stringValue
-                            return phone.isValidPhone(hasPlusPrefix: false) ? phone : nil
-                        }
-                        
-                        let emails = contact.emailAddresses.compactMap { (email) -> String? in
-                            let email = email.value as String
-                            return email.isValidEmail() ? email : nil
-                        }
-                        
-                        let identifiers = phones + emails
-                        
-                        identifiers.forEach { (identifier) in
-                            let contact = Contact(id: identifier,
-                                                  givenName: contact.givenName,
-                                                  familyName: contact.familyName,
-                                                  cryptoAddress: nil,
-                                                  imageData: contact.thumbnailImageData)
-                            contacts.append(contact)
-                        }
-                    })
-                    
-                    completion(Result.success(contacts))
-                } catch {
-                    let error = DeviceContactsFetcherError.failToAccessContacts
-                    completion(Result.failure(error))
-                    log.warn(error.localizedDescription)
-                }
-                
-            } else {
+            guard granted else {
                 let error = DeviceContactsFetcherError.accessDenied
                 completion(Result.failure(error))
+                return
+            }
+            
+            let keys = [CNContactGivenNameKey,
+                        CNContactFamilyNameKey,
+                        CNContactPhoneNumbersKey,
+                        CNContactThumbnailImageDataKey,
+                        CNContactEmailAddressesKey]
+            let fetchRequest = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+            var contacts = [Contact]()
+            
+            do {
+                try store.enumerateContacts(with: fetchRequest, usingBlock: { ( contact, _) in
+                    
+                    let phones = contact.phoneNumbers.compactMap { (phone) -> String? in
+                        let phone = phone.value.stringValue
+                        return phone.isValidPhone(hasPlusPrefix: false) ? phone : nil
+                    }
+                    
+                    let emails = contact.emailAddresses.compactMap { (email) -> String? in
+                        let email = email.value as String
+                        return email.isValidEmail() ? email : nil
+                    }
+                    
+                    let identifiers = phones + emails
+                    
+                    contacts.append(contentsOf: identifiers.map {
+                        Contact(id: $0,
+                                givenName: contact.givenName,
+                                familyName: contact.familyName,
+                                cryptoAddress: nil,
+                                imageData: contact.thumbnailImageData)
+                    })
+                })
+                
+                completion(Result.success(contacts))
+                
+            } catch {
+                let error = DeviceContactsFetcherError.failToAccessContacts
+                completion(Result.failure(error))
+                return
             }
         }
     }
@@ -81,7 +82,7 @@ enum DeviceContactsFetcherError: LocalizedError {
     case failToAccessContacts
     case accessDenied
     
-    var localizedDescription: String {
+    var errorDescription: String? {
         switch self {
         case .failToAccessContacts:
             return "Fail to access contacts"

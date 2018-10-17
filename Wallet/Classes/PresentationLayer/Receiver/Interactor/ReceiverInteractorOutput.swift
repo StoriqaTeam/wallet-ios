@@ -10,6 +10,6 @@ import Foundation
 
 
 protocol ReceiverInteractorOutput: class {
-    func updateContacts(_ contacts: [ContactsSectionDisplayable])
+    func updateContacts(_ contacts: [Contact])
     func updateEmpty(placeholderImage: UIImage, placeholderText: String)
 }

@@ -20,14 +20,22 @@ class ReceiverPresenter {
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private let currencyImageProvider: CurrencyImageProviderProtocol
+    private let contactsMapper: ContactsMapper
+    private let contactsSorter: ContactsSorterProtocol
     private var contactsDataManager: ContactsDataManager!
+    
+    private var contacts: [ContactDisplayable] = []
     
     init(currencyFormatter: CurrencyFormatterProtocol,
          converterFactory: CurrecncyConverterFactoryProtocol,
-         currencyImageProvider: CurrencyImageProviderProtocol) {
+         currencyImageProvider: CurrencyImageProviderProtocol,
+         contactsMapper: ContactsMapper,
+         contactsSorter: ContactsSorterProtocol) {
         self.currencyFormatter = currencyFormatter
         self.converterFactory = converterFactory
         self.currencyImageProvider = currencyImageProvider
+        self.contactsMapper = contactsMapper
+        self.contactsSorter = contactsSorter
     }
 }
 
@@ -39,7 +47,7 @@ extension ReceiverPresenter: ReceiverViewOutput {
     func configureInput() {
         guard let contact = interactor.getContact() else { return }
         
-        interactor.searchContact(text: contact.familyName)
+        searchContact(text: contact.familyName)
         view.setNextButtonHidden(false)
         view.setInput(contact.id)
     }
@@ -66,7 +74,7 @@ extension ReceiverPresenter: ReceiverViewOutput {
         //TODO: нужны проверки, валидный ли номер, чтобы активировать кнопку.
         //Пока кнопка активируется только по клику на контакт и скану
         view.setNextButtonHidden(true)
-        interactor.searchContact(text: input)
+        searchContact(text: input)
     }
     
     
@@ -74,11 +82,11 @@ extension ReceiverPresenter: ReceiverViewOutput {
         contactsDataManager = ContactsDataManager()
         contactsDataManager.setTableView(tableView)
         contactsDataManager.delegate = self
-        interactor.fetchContacts()
+        
+        interactor.loadContacts()
     }
     
     func viewIsReady() {
-        
         let amount = interactor.getAmount()
         let receiverCurrency = interactor.getReceiverCurrency()
         let accountCurrency = interactor.getSelectedAccount().currency
@@ -107,8 +115,18 @@ extension ReceiverPresenter: ReceiverViewOutput {
 
 extension ReceiverPresenter: ReceiverInteractorOutput {
     
-    func updateContacts(_ contacts: [ContactsSectionDisplayable]) {
-        contactsDataManager.updateContacts(contacts)
+    func updateContacts(_ contacts: [Contact]) {
+        let displayable = contacts.map { contactsMapper.map(from: $0) }
+        self.contacts = displayable
+        let sorted = contactsSorter.sort(contacts: displayable)
+        
+        // TODO: empty contact list message
+        if sorted.isEmpty {
+            updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                        placeholderText: "Contact list is empty")
+        } else {
+            contactsDataManager.updateContacts(sorted)
+        }
     }
     
     func updateEmpty(placeholderImage: UIImage, placeholderText: String) {
@@ -116,7 +134,6 @@ extension ReceiverPresenter: ReceiverInteractorOutput {
                                         placeholderText: placeholderText)
     }
     
-
 }
 
 
@@ -136,9 +153,13 @@ extension ReceiverPresenter: ReceiverModuleInput {
 extension ReceiverPresenter: ContactsDataManagerDelegate {
     
     func contactSelected(_ contact: ContactDisplayable) {
-        interactor.setContact(contact)
-        view.setInput(contact.id)
-        view.setNextButtonHidden(false)
+        if contact.cryptoAddress != nil {
+            interactor.setContact(contact)
+            view.setInput(contact.id)
+            view.setNextButtonHidden(false)
+        } else {
+            // TODO: what to show when no address
+        }
     }
     
 }
@@ -183,5 +204,16 @@ extension ReceiverPresenter {
         let converted = currencyConverter.convert(amount: amount, to: accountCurrency)
         let formatted = currencyFormatter.getStringFrom(amount: converted, currency: accountCurrency)
         return "=" + formatted
+    }
+    
+    private func searchContact(text: String) {
+        let filteredSections = contactsSorter.searchContact(text: text, contacts: contacts)
+        
+        if filteredSections.isEmpty {
+            updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                        placeholderText: "There is no such number in system.\nUse another way to send funds.")
+        } else {
+            contactsDataManager.updateContacts(filteredSections)
+        }
     }
 }

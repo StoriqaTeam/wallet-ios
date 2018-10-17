@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRm-ng-Zg0">
-                        <rect key="frame" x="79" y="21" width="276" height="38.5"/>
+                        <rect key="frame" x="79" y="21" width="237.5" height="38.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Friend" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5G7-dT-KOO">
                                 <rect key="frame" x="0.0" y="0.0" width="85" height="20.5"/>
@@ -65,14 +65,21 @@
                             <constraint firstAttribute="height" constant="1" id="5PB-Fr-80e"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTp-wh-7oN">
+                        <rect key="frame" x="320.5" y="30.5" width="42.5" height="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="zRm-ng-Zg0" firstAttribute="leading" secondItem="ID3-4d-gAb" secondAttribute="trailing" constant="15" id="4c8-AV-8u9"/>
                     <constraint firstItem="op4-hF-iUS" firstAttribute="bottom" secondItem="ID3-4d-gAb" secondAttribute="bottom" id="68w-rl-BXk"/>
                     <constraint firstItem="op4-hF-iUS" firstAttribute="top" secondItem="ID3-4d-gAb" secondAttribute="top" id="8wm-Uq-tb0"/>
                     <constraint firstItem="ID3-4d-gAb" firstAttribute="leading" secondItem="Yql-Dm-VPc" secondAttribute="leading" constant="19" id="9mt-Z0-c6l"/>
-                    <constraint firstAttribute="trailing" secondItem="zRm-ng-Zg0" secondAttribute="trailing" constant="20" id="AR7-xu-UPL"/>
+                    <constraint firstItem="PTp-wh-7oN" firstAttribute="leading" secondItem="zRm-ng-Zg0" secondAttribute="trailing" constant="4" id="BmG-Yx-NGQ"/>
                     <constraint firstItem="zRm-ng-Zg0" firstAttribute="centerY" secondItem="Yql-Dm-VPc" secondAttribute="centerY" id="CPN-zM-wkH"/>
+                    <constraint firstItem="PTp-wh-7oN" firstAttribute="centerY" secondItem="Yql-Dm-VPc" secondAttribute="centerY" id="GBa-HW-yvx"/>
                     <constraint firstAttribute="bottom" secondItem="45W-9d-vCn" secondAttribute="bottom" id="Gi1-fG-VMy"/>
                     <constraint firstAttribute="trailing" secondItem="45W-9d-vCn" secondAttribute="trailing" id="O4N-pg-Ww2"/>
                     <constraint firstItem="45W-9d-vCn" firstAttribute="leading" secondItem="Yql-Dm-VPc" secondAttribute="leading" constant="21" id="Uu9-zo-TXE"/>
@@ -80,6 +87,7 @@
                     <constraint firstItem="ID3-4d-gAb" firstAttribute="centerY" secondItem="Yql-Dm-VPc" secondAttribute="centerY" id="ay0-9D-XrR"/>
                     <constraint firstItem="ID3-4d-gAb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Yql-Dm-VPc" secondAttribute="top" constant="15" id="ial-TV-0VZ"/>
                     <constraint firstItem="op4-hF-iUS" firstAttribute="leading" secondItem="ID3-4d-gAb" secondAttribute="leading" id="szT-g8-Z2h"/>
+                    <constraint firstAttribute="trailing" secondItem="PTp-wh-7oN" secondAttribute="trailing" constant="12" id="umb-6b-hmn"/>
                     <constraint firstItem="op4-hF-iUS" firstAttribute="trailing" secondItem="ID3-4d-gAb" secondAttribute="trailing" id="z0t-Zs-BpP"/>
                 </constraints>
             </tableViewCellContentView>
@@ -88,7 +96,9 @@
                 <outlet property="emptyThumbnailLabel" destination="op4-hF-iUS" id="0Cy-G6-5xu"/>
                 <outlet property="nameLabel" destination="5G7-dT-KOO" id="fgC-IU-GaA"/>
                 <outlet property="phoneNumberLabel" destination="0i2-gd-dIc" id="N67-ns-qJo"/>
+                <outlet property="walletMark" destination="PTp-wh-7oN" id="dhY-xh-1So"/>
             </connections>
+            <point key="canvasLocation" x="55.200000000000003" y="48.125937031484263"/>
         </tableViewCell>
     </objects>
 </document>

@@ -17,10 +17,14 @@ class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
     
     private let contactsProvider: ContactsProviderProtocol
     private let transactionDirectionResolver: TransactionDirectionResolverProtocol
+    private let contactsMapper: ContactsMapper
     
-    init(contactsProvider: ContactsProviderProtocol, transactionDirectionResolver: TransactionDirectionResolverProtocol) {
+    init(contactsProvider: ContactsProviderProtocol,
+         transactionDirectionResolver: TransactionDirectionResolverProtocol,
+         contactsMapper: ContactsMapper) {
         self.contactsProvider = contactsProvider
         self.transactionDirectionResolver = transactionDirectionResolver
+        self.contactsMapper = contactsMapper
     }
     
     func resolveOpponent(for transaction: Transaction) -> OpponentType {
@@ -46,6 +50,7 @@ extension TransactionOpponentResolver {
             return OpponentType.address(address: address)
         }
         
-        return OpponentType.contact(contact: contact)
+        let displayable = contactsMapper.map(from: contact)
+        return OpponentType.contact(contact: displayable)
     }
 }

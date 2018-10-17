@@ -329,6 +329,9 @@
 		CE1A47DC212E9C5400418C11 /* PinDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PinDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PinInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PinInputView.swift */; };
 		CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */; };
+		CE1E3450217617BB001B1477 /* ContactsCacheUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E344F217617BB001B1477 /* ContactsCacheUpdater.swift */; };
+		CE1E34532176359E001B1477 /* ContactsNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E34522176359E001B1477 /* ContactsNetworkProvider.swift */; };
+		CE1E3456217635BD001B1477 /* ContactsAddressLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E3455217635BD001B1477 /* ContactsAddressLinker.swift */; };
 		CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */; };
 		CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
@@ -837,6 +840,9 @@
 		CE1A47D8212E9C5400418C11 /* PinContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PinDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDotView.swift; sourceTree = "<group>"; };
 		CE1A47DA212E9C5400418C11 /* PinInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinInputView.swift; sourceTree = "<group>"; };
+		CE1E344F217617BB001B1477 /* ContactsCacheUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCacheUpdater.swift; sourceTree = "<group>"; };
+		CE1E34522176359E001B1477 /* ContactsNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsNetworkProvider.swift; sourceTree = "<group>"; };
+		CE1E3455217635BD001B1477 /* ContactsAddressLinker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsAddressLinker.swift; sourceTree = "<group>"; };
 		CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmVM.swift; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
@@ -2276,6 +2282,7 @@
 		A56ED394216CEEAE009FA58B /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
+				CE4401A82174EAD700F7C8D8 /* ContactsMapper */,
 				A56ED395216CEEF6009FA58B /* TransactionMapper */,
 			);
 			path = Mappers;
@@ -2424,7 +2431,9 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				CE4401A82174EAD700F7C8D8 /* ContactsMapper */,
+				CE1E3454217635B4001B1477 /* ContactsAddressLinker */,
+				CE1E345121763589001B1477 /* ContactsNetworkProvider */,
+				CE1E344E2176179C001B1477 /* ContactsCacheUpdater */,
 				A56ED3A7216E3204009FA58B /* ContactsProvider */,
 				A56ED3A4216E2D1A009FA58B /* TransactionResolvers */,
 				A521D46E21636FF900E5D51C /* CurrentAccountWatcher */,
@@ -2824,6 +2833,30 @@
 				CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */,
 			);
 			path = SmileLock;
+			sourceTree = "<group>";
+		};
+		CE1E344E2176179C001B1477 /* ContactsCacheUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				CE1E344F217617BB001B1477 /* ContactsCacheUpdater.swift */,
+			);
+			path = ContactsCacheUpdater;
+			sourceTree = "<group>";
+		};
+		CE1E345121763589001B1477 /* ContactsNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE1E34522176359E001B1477 /* ContactsNetworkProvider.swift */,
+			);
+			path = ContactsNetworkProvider;
+			sourceTree = "<group>";
+		};
+		CE1E3454217635B4001B1477 /* ContactsAddressLinker */ = {
+			isa = PBXGroup;
+			children = (
+				CE1E3455217635BD001B1477 /* ContactsAddressLinker.swift */,
+			);
+			path = ContactsAddressLinker;
 			sourceTree = "<group>";
 		};
 		CE23D321215CB9DB0016FEBD /* CustomSegmentedControl */ = {
@@ -3742,6 +3775,7 @@
 				A56ED3A9216E3214009FA58B /* ContactsProvider.swift in Sources */,
 				DF86683226807C4513BF70C6 /* PinInputPresenter.swift in Sources */,
 				4E5BC89F50726A6F7AA8256E /* PinInputnteractorInput.swift in Sources */,
+				CE1E3456217635BD001B1477 /* ContactsAddressLinker.swift in Sources */,
 				A5B78211215E24B600EFD1A5 /* EthereumAddressValidator.swift in Sources */,
 				0087C8EE381913F94BBF1F79 /* PinInputInteractorOutput.swift in Sources */,
 				E75BA378AB9872B3E84F37B8 /* PinInputInteractor.swift in Sources */,
@@ -3779,6 +3813,7 @@
 				A5B78238215E33BA00EFD1A5 /* CryproAddressResolver.swift in Sources */,
 				CED822DC215B5C1500693B92 /* ErrorView.swift in Sources */,
 				F91599534C9DC69FA45F1EF4 /* RegistrationPresenter.swift in Sources */,
+				CE1E34532176359E001B1477 /* ContactsNetworkProvider.swift in Sources */,
 				A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */,
 				A56B4C7E215D00DC0017B337 /* EmptyView.swift in Sources */,
 				D673BB210C0EE94821BDEFFA /* RegistrationInteractorInput.swift in Sources */,
@@ -4095,6 +4130,7 @@
 				5204D9FA16C33FE34875A023 /* ConnectPhonePresenter.swift in Sources */,
 				93E7B3BF9EDD80639D31C0B1 /* ConnectPhoneInteractorInput.swift in Sources */,
 				EC91C88F82722139B3F1C7CB /* ConnectPhoneInteractorOutput.swift in Sources */,
+				CE1E3450217617BB001B1477 /* ContactsCacheUpdater.swift in Sources */,
 				56F837621197A9323EFB0B23 /* ConnectPhoneInteractor.swift in Sources */,
 				46338A8E78AF151F358EA4EF /* ConnectPhoneRouterInput.swift in Sources */,
 				4A716DCE68EFC893326C5B35 /* ConnectPhoneRouter.swift in Sources */,

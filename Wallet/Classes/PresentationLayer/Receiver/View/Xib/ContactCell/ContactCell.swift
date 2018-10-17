@@ -13,12 +13,14 @@ class ContactCell: UITableViewCell {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var phoneNumberLabel: UILabel!
     @IBOutlet private var emptyThumbnailLabel: UILabel!
+    @IBOutlet private var walletMark: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         let radius = contactImageView.frame.height / 2
         contactImageView.roundCorners(radius: radius)
         emptyThumbnailLabel.roundCorners(radius: radius)
+        walletMark.textColor = Theme.Color.brightSkyBlue
     }
     
     func config(contact: ContactDisplayable) {
@@ -33,12 +35,15 @@ class ContactCell: UITableViewCell {
             emptyThumbnailLabel.text = String(contact.givenName.prefix(1) + contact.familyName.prefix(1))
             emptyThumbnailLabel.sizeToFit()
         }
+        
+        walletMark.isHidden = contact.cryptoAddress == nil
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         contactImageView.image = nil
         emptyThumbnailLabel.isHidden = false
+        walletMark.isHidden = true
     }
     
 }
