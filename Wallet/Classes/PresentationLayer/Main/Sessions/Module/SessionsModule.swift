@@ -10,9 +10,15 @@ class SessionsModule {
     
     class func create() -> SessionsModuleInput {
         let router = SessionsRouter()
-        let presenter = SessionsPresenter()
-        let interactor = SessionsInteractor()
-        let viewController = SessionsViewController()
+        
+        let sessionDateSorter = SessionDateSorter()
+        let presenter = SessionsPresenter(sessionDateSorter: sessionDateSorter)
+        
+        let sessionsDataStoreService = SessionsDataStoreService()
+        let interactor = SessionsInteractor(sessionsDataStoreService: sessionsDataStoreService)
+        
+        let sessionsSb = UIStoryboard(name: "Sessions", bundle: nil)
+        let viewController = sessionsSb.instantiateViewController(withIdentifier: "sessionsVC") as! SessionsViewController
 
         interactor.output = presenter
 

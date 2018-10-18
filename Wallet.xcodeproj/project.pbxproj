@@ -287,6 +287,11 @@
 		A574352A217774E3006B4CAE /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743529217774E3006B4CAE /* Session.swift */; };
 		A574352C217775AE006B4CAE /* RealmSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574352B217775AE006B4CAE /* RealmSession.swift */; };
 		A574352F217781AD006B4CAE /* SessionsDataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574352E217781AD006B4CAE /* SessionsDataStoreService.swift */; };
+		A574353321788110006B4CAE /* SessionsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574353221788110006B4CAE /* SessionsConfigurator.swift */; };
+		A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574353521789A03006B4CAE /* SessionsDataManager.swift */; };
+		A574353921789BB3006B4CAE /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A574353821789BB3006B4CAE /* SessionCell.xib */; };
+		A574353B21789E3C006B4CAE /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574353A21789E3C006B4CAE /* SessionTableViewCell.swift */; };
+		A574353E2178B025006B4CAE /* SessiondateSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574353D2178B025006B4CAE /* SessiondateSorter.swift */; };
 		A58D54E8215D0ED1003D9D0C /* FakeTransactionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
@@ -844,6 +849,11 @@
 		A5743529217774E3006B4CAE /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		A574352B217775AE006B4CAE /* RealmSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSession.swift; sourceTree = "<group>"; };
 		A574352E217781AD006B4CAE /* SessionsDataStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsDataStoreService.swift; sourceTree = "<group>"; };
+		A574353221788110006B4CAE /* SessionsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsConfigurator.swift; sourceTree = "<group>"; };
+		A574353521789A03006B4CAE /* SessionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsDataManager.swift; sourceTree = "<group>"; };
+		A574353821789BB3006B4CAE /* SessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
+		A574353A21789E3C006B4CAE /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		A574353D2178B025006B4CAE /* SessiondateSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessiondateSorter.swift; sourceTree = "<group>"; };
 		A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTransactionProvider.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
@@ -2593,6 +2603,7 @@
 		A574350E2177737E006B4CAE /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A5743534217899EB006B4CAE /* SessionsDataMeneger */,
 				A574350F2177737E006B4CAE /* SessionsPresenter.swift */,
 			);
 			path = Presenter;
@@ -2601,6 +2612,7 @@
 		A57435102177737E006B4CAE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A574353721789B9C006B4CAE /* Xib */,
 				A57435112177737E006B4CAE /* SessionsViewOutput.swift */,
 				A57435122177737E006B4CAE /* SessionsViewInput.swift */,
 				A57435132177737E006B4CAE /* SessionsViewController.swift */,
@@ -2634,6 +2646,39 @@
 				A574352E217781AD006B4CAE /* SessionsDataStoreService.swift */,
 			);
 			path = SessionsDataStoreService;
+			sourceTree = "<group>";
+		};
+		A5743530217880DF006B4CAE /* SessionsConfigurator */ = {
+			isa = PBXGroup;
+			children = (
+				A574353221788110006B4CAE /* SessionsConfigurator.swift */,
+			);
+			path = SessionsConfigurator;
+			sourceTree = "<group>";
+		};
+		A5743534217899EB006B4CAE /* SessionsDataMeneger */ = {
+			isa = PBXGroup;
+			children = (
+				A574353521789A03006B4CAE /* SessionsDataManager.swift */,
+			);
+			path = SessionsDataMeneger;
+			sourceTree = "<group>";
+		};
+		A574353721789B9C006B4CAE /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				A574353821789BB3006B4CAE /* SessionCell.xib */,
+				A574353A21789E3C006B4CAE /* SessionTableViewCell.swift */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		A574353C2178AFFF006B4CAE /* SessionSorter */ = {
+			isa = PBXGroup;
+			children = (
+				A574353D2178B025006B4CAE /* SessiondateSorter.swift */,
+			);
+			path = SessionSorter;
 			sourceTree = "<group>";
 		};
 		A58EE3B0214FFD370096C155 /* Classes */ = {
@@ -2686,6 +2731,7 @@
 		A58EE3B3214FFD5D0096C155 /* ApplicationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				A5743530217880DF006B4CAE /* SessionsConfigurator */,
 				A5A20BB5215E77CB00001340 /* CrashAnaliticConfigurator */,
 				A5F59AA52162194B005F1765 /* TestConfigurator */,
 				A58EE3C2215004710096C155 /* ApplicationConfigurator */,
@@ -2730,6 +2776,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A574353C2178AFFF006B4CAE /* SessionSorter */,
 				A57434E621774BA0006B4CAE /* ContactsAddressLinker */,
 				A57434E321774B84006B4CAE /* ContactsCacheUpdater */,
 				A57434E021774B6A006B4CAE /* ContactsNetworkProvider */,
@@ -3883,6 +3930,7 @@
 				CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */,
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
 				A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */,
+				A574353921789BB3006B4CAE /* SessionCell.xib in Resources */,
 				A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */,
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
 				A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */,
@@ -4250,6 +4298,7 @@
 				F34BB7AD7D33FF940EFBBD05 /* PinSetupModuleOutput.swift in Sources */,
 				E2ED95B2BB076E4FB9B465A9 /* PinSetupModule.swift in Sources */,
 				3D6198BCDDE3FB1DDD35D3FF /* MainTabBarViewInput.swift in Sources */,
+				A574353E2178B025006B4CAE /* SessiondateSorter.swift in Sources */,
 				EBCA36D03BBA6F52ECC7258D /* MainTabBarViewOutput.swift in Sources */,
 				CD8499CCEA4C0FBAC71AEDBD /* MainTabBarViewController.swift in Sources */,
 				CEFC9CAE215A140800962356 /* DeviceContactsFetcher.swift in Sources */,
@@ -4275,6 +4324,7 @@
 				CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */,
 				CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */,
 				CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */,
+				A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */,
 				4A8416E8E79E93524467F707 /* MyWalletInteractor.swift in Sources */,
 				BF550A4D541C2E921C542231 /* MyWalletRouterInput.swift in Sources */,
 				7CA5701D87FA184CFCC87D46 /* MyWalletRouter.swift in Sources */,
@@ -4308,6 +4358,7 @@
 				2BF62C8E1BD9FDB1E68E4AA9 /* ExchangeInteractor.swift in Sources */,
 				734C581B32C15CF05D4481B4 /* ExchangeRouterInput.swift in Sources */,
 				B98F7B6D236E5C7D1D3FD552 /* ExchangeRouter.swift in Sources */,
+				A574353B21789E3C006B4CAE /* SessionTableViewCell.swift in Sources */,
 				505F3C485B956B860664837B /* ExchangeModuleInput.swift in Sources */,
 				A5B78213215E25A200EFD1A5 /* Array+Helper.swift in Sources */,
 				32AE32F42A7235157AE8F11C /* ExchangeModuleOutput.swift in Sources */,
@@ -4383,6 +4434,7 @@
 				F04C3B3DC184DB88429D7531 /* ReceiverInteractor.swift in Sources */,
 				CE57C6962165F76100696FF7 /* AccountsTableDataManager.swift in Sources */,
 				0294B4E5CA1161C609EC0923 /* ReceiverRouterInput.swift in Sources */,
+				A574353321788110006B4CAE /* SessionsConfigurator.swift in Sources */,
 				90F0761D1E9CE2D22E3D740F /* ReceiverRouter.swift in Sources */,
 				67C034CED1DEE6BDD16D5340 /* ReceiverModuleInput.swift in Sources */,
 				9ECC74CF3811C94390E66C1D /* ReceiverModuleOutput.swift in Sources */,

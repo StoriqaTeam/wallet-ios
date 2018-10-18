@@ -10,5 +10,7 @@ import UIKit
 
 
 protocol SessionsViewOutput: class {
-    func viewIsReady()  
+    func viewIsReady()
+    func sessionDataManager(_ tableView: UITableView)
+    func deleteAllSessions()
 }

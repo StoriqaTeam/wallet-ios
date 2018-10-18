@@ -14,4 +14,5 @@ protocol SettingsRouterInput: class {
     func showEditProfile(from viewController: UIViewController)
     func showChangePhone(from viewController: UIViewController)
     func showChangePassword(from viewController: UIViewController)
+    func showSessions(from viewController: UIViewController)
 }

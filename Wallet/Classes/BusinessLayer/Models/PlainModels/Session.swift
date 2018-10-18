@@ -23,27 +23,43 @@ enum DeviceSession: String {
 }
 
 struct Session {
-    let date: Date
+    var date: Date
     let device: DeviceSession
 }
 
 
 // MARK: - RealmMappablee
 
-extension Session {
+extension Session: RealmMappable {
     typealias RealmType = RealmSession
     
     init(_ object: RealmSession) {
-        date = Date(timeIntervalSince1970: object.date)
+        date = Date()
         device = DeviceSession(string: object.device)
+        
+        let dateFormatter = sessionDateFormatter()
+        date = dateFormatter.date(from: object.date) ?? Date(timeIntervalSince1970: 0)
     }
     
     func mapToRealmObject() -> RealmSession {
         let object = RealmSession()
-        
-        object.date = Double(date.timeIntervalSince1970)
+        let dateFormatter = sessionDateFormatter()
+        object.date = dateFormatter.string(from: date)
         object.device = device.rawValue
         
         return object
+    }
+}
+
+
+// MARK: - Private methods
+
+extension Session {
+    private func sessionDateFormatter() -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter
     }
 }

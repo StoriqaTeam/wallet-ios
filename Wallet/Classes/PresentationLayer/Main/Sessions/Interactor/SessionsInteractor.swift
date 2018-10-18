@@ -11,11 +11,28 @@ import Foundation
 
 class SessionsInteractor {
     weak var output: SessionsInteractorOutput!
+    
+    private let sessionsDataStore: SessionsDataStoreServiceProtocol
+    
+    init(sessionsDataStoreService: SessionsDataStoreServiceProtocol) {
+        self.sessionsDataStore = sessionsDataStoreService
+    }
+
 }
 
 
 // MARK: - SessionsInteractorInput
 
 extension SessionsInteractor: SessionsInteractorInput {
-
+    func deleteAllSessions() {
+        sessionsDataStore.deleteAll()
+    }
+    
+    func delete(session: Session) {
+        sessionsDataStore.delete(session)
+    }
+    
+    func getSessions() -> [Session] {
+        return sessionsDataStore.getAllSessions()
+    }
 }

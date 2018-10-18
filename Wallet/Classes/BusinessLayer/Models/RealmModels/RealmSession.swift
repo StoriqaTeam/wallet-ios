@@ -11,6 +11,11 @@ import RealmSwift
 
 @objcMembers
 class RealmSession: Object {
-    dynamic var date: Double = 0
+    dynamic var date: String = ""
     dynamic var device: String = ""
+    
+    override class func primaryKey() -> String? {
+        return "date"
+    }
+    
 }

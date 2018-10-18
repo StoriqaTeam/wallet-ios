@@ -10,5 +10,7 @@ import Foundation
 
 
 protocol SessionsInteractorInput: class {
-
+    func getSessions() -> [Session]
+    func delete(session: Session)
+    func deleteAllSessions()
 }

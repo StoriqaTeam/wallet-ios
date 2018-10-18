@@ -22,6 +22,9 @@ class SettingsPresenter {
 // MARK: - SettingsViewOutput
 
 extension SettingsPresenter: SettingsViewOutput {
+    func sessionSelected() {
+        router.showSessions(from: view.viewController)
+    }
     
     func viewIsReady() {
         view.setupInitialState()
@@ -29,7 +32,9 @@ extension SettingsPresenter: SettingsViewOutput {
     }
     
     func viewWillAppear() {
+        let sessionsCount = interactor.getSessionsCount()
         view.viewController.setDarkNavigationBarButtons()
+        view.setSessions(count: sessionsCount)
     }
     
     func willMoveToParentVC() {

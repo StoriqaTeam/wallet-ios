@@ -51,6 +51,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
     
     func addNewTapped() {
         // TODO: addNewTapped
+        // TODO: Fix TODO description
     }
     
 }
