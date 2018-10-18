@@ -18,7 +18,7 @@ class SessionsConfigurator: Configurable {
     }
     
     func configure() {
-        saveCurrenctSession()
+        saveCurrentSession()
     }
 }
 
@@ -26,7 +26,7 @@ class SessionsConfigurator: Configurable {
 // MARK: - Private methods
 
 extension SessionsConfigurator {
-    private func saveCurrenctSession() {
+    private func saveCurrentSession() {
         let timestamp = Date().timeIntervalSince1970
         let date = Date(timeIntervalSince1970: timestamp)
         let decice = DeviceSession.iphone

@@ -43,11 +43,6 @@ class SessionDataManager: NSObject {
 
 extension SessionDataManager: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 { return "last activity" }
-        return "Recent activity"
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         if sessions.isEmpty { return 0 }
         return 2
@@ -120,7 +115,8 @@ extension SessionDataManager: UITableViewDelegate {
 
 extension SessionDataManager {
     private func registerXib() {
-        sessionsTableView.register(UINib(nibName: kSessionCellIdentifier, bundle: nil), forCellReuseIdentifier: kSessionCellIdentifier)
+        let nib = UINib(nibName: kSessionCellIdentifier, bundle: nil)
+        sessionsTableView.register(nib, forCellReuseIdentifier: kSessionCellIdentifier)
     }
     
     private func createHeaderView(with title: String) -> UIView {
