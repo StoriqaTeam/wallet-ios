@@ -12,6 +12,8 @@ import UIKit
 class SettingsViewController: UITableViewController {
 
     var output: SettingsViewOutput!
+    
+    @IBOutlet private var sessionsCountLabel: UILabel!
 
     // MARK: Life cycle
 
@@ -71,6 +73,15 @@ extension SettingsViewController {
             }
         }
         
+        if indexPath.section == 2 {
+            switch indexPath.row {
+            case 1:
+                output.sessionSelected()
+            default:
+                break
+            }
+        }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -79,13 +90,15 @@ extension SettingsViewController {
 // MARK: - SettingsViewInput
 
 extension SettingsViewController: SettingsViewInput {
-    
     func setupInitialState() {
         loadNib()
         view.backgroundColor = .white
         tableView.alwaysBounceVertical = false
     }
-
+    
+    func setSessions(count: Int) {
+        sessionsCountLabel.text = "\(count)"
+    }
 }
 
 

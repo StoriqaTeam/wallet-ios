@@ -17,4 +17,5 @@ protocol SettingsViewOutput: class {
     func editProfileSelected()
     func changePhoneSelected()
     func changePasswordSelected()
+    func sessionSelected()
 }

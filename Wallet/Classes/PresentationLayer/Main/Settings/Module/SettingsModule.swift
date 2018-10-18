@@ -14,7 +14,11 @@ class SettingsModule {
         
         let defaultProvider = DefaultsProvider()
         let keychainProvider = KeychainProvider()
-        let interactor = SettingsInteractor(defaults: defaultProvider, keychain: keychainProvider)
+        let sessionsDataStore = SessionsDataStoreService()
+        
+        let interactor = SettingsInteractor(defaults: defaultProvider,
+                                            keychain: keychainProvider,
+                                            sessionsDataStore: sessionsDataStore)
         
         let settingsSb = UIStoryboard(name: "Settings", bundle: nil)
         let viewController = settingsSb.instantiateViewController(withIdentifier: "settingsVC") as! SettingsViewController

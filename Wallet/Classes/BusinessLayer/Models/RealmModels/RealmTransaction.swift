@@ -20,4 +20,6 @@ class RealmTransaction: Object {
     dynamic var currency: String = ""
     dynamic var fee: String = ""
     dynamic var timestamp: Double = 0
+    
+    //TODO: TODO - Add Primary key
 }

@@ -83,6 +83,20 @@ extension UIViewController {
         alert.view.tintColor = Theme.Color.brightSkyBlue
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func showAlert(title: String = "", message: String = "", success: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            success()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        alert.view.tintColor = Theme.Color.brightSkyBlue
+        self.present(alert, animated: true, completion: nil)
+
+    }
 }
 
 // MARK: - Private methods

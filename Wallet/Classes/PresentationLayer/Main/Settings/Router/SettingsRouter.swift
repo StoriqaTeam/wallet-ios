@@ -25,9 +25,15 @@ extension SettingsRouter: SettingsRouterInput {
         ConnectPhoneModule.create().present(from: viewController)
     }
     
+    func showSessions(from viewController: UIViewController) {
+        SessionsModule.create().present(from: viewController)
+    }
+    
     func showChangePassword(from viewController: UIViewController) {
         // TODO: change password module
     }
+    
+    
     
     func showLogin() {
         LoginModule.create().present()

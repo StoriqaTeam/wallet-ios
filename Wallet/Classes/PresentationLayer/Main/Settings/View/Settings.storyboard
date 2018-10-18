@@ -219,6 +219,9 @@
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="sessionsCountLabel" destination="1KX-KD-ksC" id="h3O-FP-I1o"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S9-1I-3nC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

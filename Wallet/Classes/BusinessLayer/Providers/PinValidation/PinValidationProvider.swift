@@ -32,5 +32,4 @@ class PinValidationProvider: PinValidationProviderProtocol {
     func resetPin() {
         keychainProvider.pincode = nil
     }
-    
 }
