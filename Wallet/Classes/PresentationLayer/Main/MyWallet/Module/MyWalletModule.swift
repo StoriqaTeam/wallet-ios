@@ -8,12 +8,12 @@ import UIKit
 class FakeAccountProvider: AccountsProviderProtocol {
 
     func getAllAccounts() -> [Account] {
-        return [Account(id: "1",
-                        balance: 1456784.71,
+        return [Account(id: "4",
+                        balance: 4123.45,
                         currency: .stq,
                         userId: "0",
                         accountAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
-                        name: "STQ Gold account"),
+                        name: "STQ Black account"),
                 Account(id: "2",
                         balance: 892.45,
                         currency: .eth,
@@ -25,19 +25,7 @@ class FakeAccountProvider: AccountsProviderProtocol {
                         currency: .btc,
                         userId: "0",
                         accountAddress: "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2",
-                        name: "BTC account"),
-                Account(id: "4",
-                        balance: 4123.45,
-                        currency: .stq,
-                        userId: "0",
-                        accountAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
-                        name: "STQ Black account"),
-                Account(id: "5",
-                        balance: 123.45,
-                        currency: .stq,
-                        userId: "0",
-                        accountAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
-                        name: "STQ account")
+                        name: "BTC account")
         ]
     }
     

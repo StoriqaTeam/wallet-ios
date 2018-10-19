@@ -138,7 +138,7 @@ extension SendPresenter: SendInteractorOutput {
             view.setConvertedAmount("")
         } else {
             let currency = interactor.getSelectedAccountCurrency()
-            let amountString = "=" + getStringFrom(amount: amount, currency: currency)
+            let amountString = "≈" + getStringFrom(amount: amount, currency: currency)
             view.setConvertedAmount(amountString)
         }
     }

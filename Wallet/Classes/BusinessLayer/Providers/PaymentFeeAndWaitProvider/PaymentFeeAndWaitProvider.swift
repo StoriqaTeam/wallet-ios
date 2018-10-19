@@ -13,17 +13,47 @@ protocol PaymentFeeAndWaitProviderProtocol {
     func getValuesCount() -> Int
     func getIndex(fee: Decimal) -> Int
     func getFee(index: Int) -> Decimal
-    func getWait(fee: Decimal) -> Decimal
+    func getWait(fee: Decimal) -> String
 }
 
 class FakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol {
     
-    private var stqFeeWait: [Decimal: Decimal] = [1: 10, 2: 9, 3: 8, 4: 7, 5: 6, 6: 5]
-    private var btcFeeWait: [Decimal: Decimal] = [10: 101, 20: 91, 30: 81, 40: 71, 50: 61, 60: 51]
-    private var ethFeeWait: [Decimal: Decimal] = [11: 102, 12: 92, 13: 82, 14: 72, 15: 62, 16: 52]
-    private var fiatFeeWait: [Decimal: Decimal] = [21: 103, 22: 93, 23: 83, 24: 73, 25: 63, 26: 53]
+    private let satoshi = 0.000_000_01
+    private let aproxBlockBytes = 220.0
+    private let gwei = 0.000_000_001
+    private let transferGas = 21000.0
     
-    private var selected = [Decimal: Decimal]()
+    private lazy var stqFeeWait: [Decimal: String] = [
+        1: "41s",
+        2: "37s",
+        3: "33s",
+        4: "29s",
+        5: "25s",
+        6: "22s",
+        7: "20s",
+        8: "17s",
+        9: "15s"
+    ]
+    private lazy var btcFeeWait: [Decimal: String] = [
+        Decimal(12 * satoshi * aproxBlockBytes): "60m",
+        Decimal(13 * satoshi * aproxBlockBytes): "45m",
+        Decimal(14 * satoshi * aproxBlockBytes): "30m",
+        Decimal(15 * satoshi * aproxBlockBytes): "20m",
+        Decimal(16 * satoshi * aproxBlockBytes): "10m"
+    ]
+    private lazy var ethFeeWait: [Decimal: String] = [
+        Decimal(2 * gwei * transferGas): "41s",
+        Decimal(3 * gwei * transferGas): "37s",
+        Decimal(4 * gwei * transferGas): "33s",
+        Decimal(5 * gwei * transferGas): "29s",
+        Decimal(6 * gwei * transferGas): "25s",
+        Decimal(7 * gwei * transferGas): "22s",
+        Decimal(8 * gwei * transferGas): "20s",
+        Decimal(9 * gwei * transferGas): "17s",
+        Decimal(10 * gwei * transferGas): "15s"
+    ]
+    
+    private var selected = [Decimal: String]()
     
     func updateSelectedForCurrency(_ currency: Currency) {
         switch currency {
@@ -34,7 +64,7 @@ class FakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol {
         case .eth:
             selected = ethFeeWait
         case .fiat:
-            selected = fiatFeeWait
+            selected = [Decimal: String]()
         }
     }
     
@@ -54,8 +84,8 @@ class FakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol {
         
     }
     
-    func getWait(fee: Decimal) -> Decimal {
+    func getWait(fee: Decimal) -> String {
         return selected[fee]!
     }
-
+    
 }
