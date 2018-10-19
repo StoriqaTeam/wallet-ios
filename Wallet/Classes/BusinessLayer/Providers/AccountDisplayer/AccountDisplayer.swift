@@ -45,7 +45,7 @@ class AccountDisplayer: AccountDisplayerProtocol {
         let balance = account.balance
         let currency = account.currency
         let converter = converterFactory.createConverter(from: currency)
-        let fiat = converter.convert(amount: balance, to: currency)
+        let fiat = converter.convert(amount: balance, to: .fiat)
         let formatted = currencyFormatter.getStringFrom(amount: fiat, currency: .fiat)
         return formatted
     }

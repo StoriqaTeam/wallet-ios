@@ -203,7 +203,7 @@ extension ReceiverPresenter {
         let currencyConverter = converterFactory.createConverter(from: receiverCurrency)
         let converted = currencyConverter.convert(amount: amount, to: accountCurrency)
         let formatted = currencyFormatter.getStringFrom(amount: converted, currency: accountCurrency)
-        return "=" + formatted
+        return "≈" + formatted
     }
     
     private func searchContact(text: String) {

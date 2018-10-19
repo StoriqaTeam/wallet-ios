@@ -18,7 +18,7 @@ class MyWalletViewController: UIViewController {
     
     // MARK: variables
     
-    private let addNewButton = ResizableNavigationBarButton(title: "add_new".localized() + " \u{FF0B}")
+    private let addNewButton = ResizableNavigationBarButton(title: "add_new".localized())
     private let accountCellIdentifier = "AccountViewCell"
     
     // MARK: Life cycle

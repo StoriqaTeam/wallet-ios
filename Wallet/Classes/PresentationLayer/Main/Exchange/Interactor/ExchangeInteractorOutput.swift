@@ -16,7 +16,7 @@ protocol ExchangeInteractorOutput: class {
     func convertAmount(_ amount: Decimal, to currency: Currency)
     func updatePaymentFee(_ fee: Decimal)
     func updatePaymentFees(count: Int, selected: Int)
-    func updateMedianWait(_ wait: Decimal)
+    func updateMedianWait(_ wait: String)
     func updateTotal(_ total: Decimal, accountCurrency: Currency)
     func updateIsEnoughFunds(_ enough: Bool)
     func updateFormIsValid(_ valid: Bool)

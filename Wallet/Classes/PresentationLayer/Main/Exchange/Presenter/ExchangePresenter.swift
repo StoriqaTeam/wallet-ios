@@ -144,7 +144,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         
         let converted = currencyConverter.convert(amount: amount, to: currency)
         let formatted = currencyFormatter.getStringFrom(amount: converted, currency: currency)
-        view.setConvertedAmount("=" + formatted)
+        view.setConvertedAmount("≈" + formatted)
     }
     
     func updatePaymentFee(_ fee: Decimal) {
@@ -157,9 +157,8 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setPaymentFee(count: count, value: selected)
     }
     
-    func updateMedianWait(_ wait: Decimal) {
-        let waitStr = wait.description + "s"
-        view.setMedianWait(waitStr)
+    func updateMedianWait(_ wait: String) {
+        view.setMedianWait(wait)
     }
     
     func updateTotal(_ total: Decimal, accountCurrency: Currency) {

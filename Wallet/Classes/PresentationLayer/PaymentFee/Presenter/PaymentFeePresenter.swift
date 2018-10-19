@@ -70,7 +70,7 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
         let accountCurrency = interactor.getSelectedAccount().currency
         let amountString = getStringFrom(amount: amount, currency: currency)
         let convertedAmount = interactor.getConvertedAmount()
-        let amountStringInTxCurrency = "=" + getStringFrom(amount: convertedAmount, currency: accountCurrency)
+        let amountStringInTxCurrency = "≈" + getStringFrom(amount: convertedAmount, currency: accountCurrency)
         let opponentType = interactor.getOpponent()
         let currencyImage = currencyImageProvider.mediumImage(for: currency)
         

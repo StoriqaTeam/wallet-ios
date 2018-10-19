@@ -10,16 +10,28 @@ import Foundation
 
 protocol CurrencyFormatterProtocol {
     func getStringFrom(amount: Decimal, currency: Currency) -> String
+    func getStringFrom(amount: Decimal, currency: Currency, fractionDigits: Int) -> String
 }
 
 class CurrencyFormatter: CurrencyFormatterProtocol {
     
     func getStringFrom(amount: Decimal, currency: Currency) -> String {
+        return getStringFrom(amount: amount, currency: currency, fractionDigits: 8)
+    }
+    
+    func getStringFrom(amount: Decimal, currency: Currency, fractionDigits: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = fractionDigits
+        
+        let amountStr = formatter.string(from: NSNumber(value: amount.double))!
+        
         switch currency {
         case .fiat:
-            return currency.symbol + amount.string
+            return currency.symbol + amountStr
         default:
-            return amount.string + " " + currency.symbol
+            return amountStr + " " + currency.symbol
         }
     }
     
