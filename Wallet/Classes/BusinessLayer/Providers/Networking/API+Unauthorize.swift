@@ -40,7 +40,7 @@ extension API.Unauthorized: APIMethodProtocol {
         }
     }
     
-    var headers: [String : String] {
+    var headers: [String: String] {
         switch self {
         case .login:
             return [
