@@ -53,13 +53,15 @@ class PopUpViewController: UIViewController {
     // MARK: - Action
     
     @IBAction func actionButtonTapped(_ sender: UIButton) {
-        animateDismiss()
-        viewModel.performAction()
+        animateDismiss { [weak self] in
+            self?.viewModel.performAction()
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        animateDismiss()
-        viewModel.cancelAction()
+        animateDismiss { [weak self] in
+            self?.viewModel.cancelAction()
+        }
     }
 }
 
@@ -102,13 +104,13 @@ extension PopUpViewController {
         closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }
     
-    private func animateDismiss() {
+    private func animateDismiss(completion: @escaping () -> Void) {
         verticalCenterConstraint.constant = Constants.Sizes.screenHeight
         
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut], animations: {
             self.view.layoutIfNeeded()
         }, completion: { _ in
-            self.dismiss(animated: false, completion: nil)
+            self.dismiss(animated: false, completion: completion)
         })
         
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {

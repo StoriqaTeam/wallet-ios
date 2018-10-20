@@ -30,6 +30,7 @@ extension RegistrationPresenter: RegistrationViewOutput {
 
     func register(firstName: String, lastName: String, email: String, password: String) {
         let registrationData = RegistrationData(firstName: firstName, lastName: lastName, email: email, password: password)
+        //TODO: activity animation starts
         interactor.register(with: registrationData)
     }
     
@@ -55,11 +56,13 @@ extension RegistrationPresenter: RegistrationViewOutput {
     
     func socialNetworkRegisterSucceed() {
         //TODO: будем ли передавать email
+        //TODO: activity animation ends
         router.showSuccess(email: "", popUpDelegate: self, from: view.viewController)
     }
     
     func socialNetworkRegisterFailed() {
         //TODO: сообщение при регистрации через соц сети
+        //TODO: activity animation ends
         router.showSocialNetworkFailure(message: Constants.Errors.userFriendly, from: view.viewController)
     }
     

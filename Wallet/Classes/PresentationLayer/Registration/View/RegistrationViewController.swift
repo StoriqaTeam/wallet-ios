@@ -26,6 +26,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
     @IBOutlet private var textFields: [UnderlinedTextField]!
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var passwordVisibilityButtons: [UIButton]!
     
     // MARK: - Variables
     
@@ -203,8 +204,13 @@ extension RegistrationViewController {
     
     private func restoreSecureFields() {
         //hide password just in case
-        passwordTextField.isSecureTextEntry = true
-        repeatPasswordTextField.isSecureTextEntry = true
+        if !passwordTextField.isSecureTextEntry {
+            passwordTextField.togglePasswordVisibility(passwordVisibilityButtons[0])
+        }
+        
+        if !repeatPasswordTextField.isSecureTextEntry {
+            repeatPasswordTextField.togglePasswordVisibility(passwordVisibilityButtons[1])
+        }
     }
     
     private func showSignInViewController() {
