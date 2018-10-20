@@ -40,18 +40,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjm-wb-IjY" userLabel="fields">
                                 <rect key="frame" x="26" y="164" width="362" height="224"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8mO-PC-egc" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="ylS-9Q-yux"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
-                                        <connections>
-                                            <outlet property="bottomConstraint" destination="qrn-cK-cgk" id="9hM-bH-AzV"/>
-                                        </connections>
-                                    </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OUb-B4-Dho" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="60" width="362" height="40"/>
                                         <constraints>
@@ -97,6 +85,18 @@
                                             <action selector="forgotPasswordTapped" destination="9ol-tP-dQp" eventType="touchUpInside" id="p9h-uD-58i"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8mO-PC-egc" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ylS-9Q-yux"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="bottomConstraint" destination="qrn-cK-cgk" id="9hM-bH-AzV"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -153,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eco-Mu-LwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5390" y="-1719"/>
+            <point key="canvasLocation" x="-4970" y="-1726"/>
         </scene>
     </scenes>
     <resources>

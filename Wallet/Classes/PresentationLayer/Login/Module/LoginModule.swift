@@ -17,9 +17,11 @@ class LoginModule {
         let defaultsProvider = DefaultsProvider()
         let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: LoginManager())
         let biometricAuthProvider = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
+        let loginNetworkProvider = LoginNetworkProvider()
         let interactor = LoginInteractor(socialViewVM: socialVM,
                                          defaultProvider: defaultsProvider,
-                                         biometricAuthProvider: biometricAuthProvider)
+                                         biometricAuthProvider: biometricAuthProvider,
+                                         loginNetworkProvider: loginNetworkProvider)
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
