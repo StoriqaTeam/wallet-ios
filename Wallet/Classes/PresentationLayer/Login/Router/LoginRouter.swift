@@ -16,6 +16,12 @@ class LoginRouter {
 // MARK: - LoginRouterInput
 
 extension LoginRouter: LoginRouterInput {
+    func showFailurePopup(message: String, popUpDelegate: PopUpRegistrationFailedVMDelegate, from viewController: UIViewController) {
+        let viewModel = PopUpRegistrationFailedVM(message: message)
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
     func showPasswordRecovery(from viewController: UIViewController) {
         PasswordEmailRecoveryModule.create().present(from: viewController)
     }
@@ -35,5 +41,4 @@ extension LoginRouter: LoginRouterInput {
     func showAuthorizedZone() {
         MainTabBarModule.create().present()
     }
-    
 }

@@ -9,10 +9,10 @@
 import UIKit
 
 class PopUpViewController: UIViewController {
-
+    
     var output: PopUpViewOutput!
     var viewModel: PopUpViewModelProtocol!
-
+    
     // MARK: - IBOutlets
     
     @IBOutlet private var imageView: UIImageView!
@@ -24,7 +24,7 @@ class PopUpViewController: UIViewController {
     @IBOutlet private var verticalCenterConstraint: NSLayoutConstraint!
     
     // MARK: - Life cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         verticalCenterConstraint.constant = Constants.Sizes.screenHeight
@@ -37,7 +37,7 @@ class PopUpViewController: UIViewController {
         
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            }, completion: nil)
+        }, completion: nil)
         
     }
     
@@ -47,19 +47,21 @@ class PopUpViewController: UIViewController {
         verticalCenterConstraint.constant = 0
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut], animations: {
             self.view.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
     }
     
     // MARK: - Action
     
     @IBAction func actionButtonTapped(_ sender: UIButton) {
-        animateDismiss()
-        viewModel.performAction()
+        animateDismiss { [weak self] in
+            self?.viewModel.performAction()
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        animateDismiss()
-        viewModel.cancelAction()
+        animateDismiss { [weak self] in
+            self?.viewModel.cancelAction()
+        }
     }
 }
 
@@ -102,13 +104,13 @@ extension PopUpViewController {
         closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }
     
-    private func animateDismiss() {
+    private func animateDismiss(completion: @escaping () -> Void) {
         verticalCenterConstraint.constant = Constants.Sizes.screenHeight
         
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut], animations: {
             self.view.layoutIfNeeded()
         }, completion: { _ in
-            self.dismiss(animated: false, completion: nil)
+            self.dismiss(animated: false, completion: completion)
         })
         
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {

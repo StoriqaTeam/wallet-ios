@@ -16,6 +16,8 @@ class LoginPresenter {
     var interactor: LoginInteractorInput!
     var router: LoginRouterInput!
     
+    private var loader: ActivityIndicatorView!
+    
 }
 
 
@@ -30,6 +32,7 @@ extension LoginPresenter: LoginViewOutput {
     func viewIsReady() {
         view.setupInitialState()
         let viewModel = interactor.getSocialVM()
+        addLoader()
         view.setSocialView(viewModel: viewModel)
     }
 
@@ -51,7 +54,20 @@ extension LoginPresenter: LoginViewOutput {
 // MARK: - LoginInteractorOutput
 
 extension LoginPresenter: LoginInteractorOutput {
+    func failToLogin(reason: String) {
+        router.showFailurePopup(message: reason, popUpDelegate: self, from: view.viewController)
+    }
     
+    func loader(isShown: Bool) {
+        if isShown {
+            loader.alpha = 1.0
+            loader.showActivityIndicator()
+        } else {
+            loader.hideActivityIndicator()
+            loader.alpha = 0.0
+        }
+    }
+
     func loginSucceed() {
         router.showAuthorizedZone()
     }
@@ -88,5 +104,28 @@ extension LoginPresenter: LoginModuleInput {
 
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
+    }
+}
+
+
+// MARK: - PopUpRegistrationFailedVMDelegate
+
+extension LoginPresenter: PopUpRegistrationFailedVMDelegate {
+    func retry() {
+        view.relogin()
+    }
+}
+
+
+// MARK: - Private methods
+
+extension LoginPresenter {
+    private func addLoader() {
+        guard let parentView = view.viewController.view else { return }
+        loader = ActivityIndicatorView()
+        loader.isUserInteractionEnabled = false
+        loader.frame.size = CGSize(width: 80, height: 80)
+        loader.center = parentView.convert(parentView.center, to: loader)
+        parentView.addSubview(loader)
     }
 }
