@@ -56,12 +56,12 @@ class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
 }
 
 
-enum LoginProviderError: LocalizedError {
+enum LoginProviderError: LocalizedError, Error {
     case badRequest
     case unauthorized
     case unknownError
     
-    var localizedDescription: String {
+    var errorDescription: String? {
         switch self {
         case .badRequest:
             return "Bad request"
@@ -72,5 +72,3 @@ enum LoginProviderError: LocalizedError {
         }
     }
 }
-
-
