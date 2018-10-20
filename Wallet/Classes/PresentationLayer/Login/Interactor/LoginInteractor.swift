@@ -50,7 +50,7 @@ extension LoginInteractor: LoginInteractorInput {
                                         case .success(let tok):
                                             print(tok)
                                         case .failure(let error):
-                                            print(error)
+                                            print(error.localizedDescription)
                                         }
         }
         
