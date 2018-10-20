@@ -292,6 +292,9 @@
 		A574353921789BB3006B4CAE /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A574353821789BB3006B4CAE /* SessionCell.xib */; };
 		A574353B21789E3C006B4CAE /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574353A21789E3C006B4CAE /* SessionTableViewCell.swift */; };
 		A574353E2178B025006B4CAE /* SessiondateSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574353D2178B025006B4CAE /* SessiondateSorter.swift */; };
+		A5743540217A1B09006B4CAE /* API+Unauthorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574353F217A1B09006B4CAE /* API+Unauthorize.swift */; };
+		A5743543217A2D3C006B4CAE /* LoginNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743542217A2D3C006B4CAE /* LoginNetworkProvider.swift */; };
+		A5743546217A309D006B4CAE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743545217A309D006B4CAE /* SwiftyJSON.swift */; };
 		A58D54E8215D0ED1003D9D0C /* FakeTransactionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
@@ -854,6 +857,9 @@
 		A574353821789BB3006B4CAE /* SessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
 		A574353A21789E3C006B4CAE /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		A574353D2178B025006B4CAE /* SessiondateSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessiondateSorter.swift; sourceTree = "<group>"; };
+		A574353F217A1B09006B4CAE /* API+Unauthorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Unauthorize.swift"; sourceTree = "<group>"; };
+		A5743542217A2D3C006B4CAE /* LoginNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkProvider.swift; sourceTree = "<group>"; };
+		A5743545217A309D006B4CAE /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTransactionProvider.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
@@ -2207,7 +2213,9 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A5743541217A2D0E006B4CAE /* LoginNetworkProvider */,
 				A50086082150F95B00C47015 /* API.swift */,
+				A574353F217A1B09006B4CAE /* API+Unauthorize.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -2681,6 +2689,22 @@
 			path = SessionSorter;
 			sourceTree = "<group>";
 		};
+		A5743541217A2D0E006B4CAE /* LoginNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A5743542217A2D3C006B4CAE /* LoginNetworkProvider.swift */,
+			);
+			path = LoginNetworkProvider;
+			sourceTree = "<group>";
+		};
+		A5743544217A307A006B4CAE /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				A5743545217A309D006B4CAE /* SwiftyJSON.swift */,
+			);
+			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
 		A58EE3B0214FFD370096C155 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2767,6 +2791,7 @@
 		A58EE3B6214FFDBC0096C155 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				A5743544217A307A006B4CAE /* SwiftyJSON */,
 				CE23D321215CB9DB0016FEBD /* CustomSegmentedControl */,
 				CE1A47D1212E9C0200418C11 /* SmileLock */,
 			);
@@ -4234,6 +4259,7 @@
 				DFBA3637496010C727B6DA1D /* QuickLaunchInteractorOutput.swift in Sources */,
 				CEFC9CB3215A182E00962356 /* ContactsDataManager.swift in Sources */,
 				3E9218F42D39892DE0FA26C8 /* QuickLaunchInteractor.swift in Sources */,
+				A5743546217A309D006B4CAE /* SwiftyJSON.swift in Sources */,
 				C177BB07723F235A87EF4141 /* QuickLaunchRouterInput.swift in Sources */,
 				B2EE15BCB20ED6ED71584DC2 /* QuickLaunchRouter.swift in Sources */,
 				A40E2F8BB4E10D0E0A388DCF /* QuickLaunchModuleInput.swift in Sources */,
@@ -4298,6 +4324,7 @@
 				F34BB7AD7D33FF940EFBBD05 /* PinSetupModuleOutput.swift in Sources */,
 				E2ED95B2BB076E4FB9B465A9 /* PinSetupModule.swift in Sources */,
 				3D6198BCDDE3FB1DDD35D3FF /* MainTabBarViewInput.swift in Sources */,
+				A5743543217A2D3C006B4CAE /* LoginNetworkProvider.swift in Sources */,
 				A574353E2178B025006B4CAE /* SessiondateSorter.swift in Sources */,
 				EBCA36D03BBA6F52ECC7258D /* MainTabBarViewOutput.swift in Sources */,
 				CD8499CCEA4C0FBAC71AEDBD /* MainTabBarViewController.swift in Sources */,
@@ -4480,6 +4507,7 @@
 				1BE6EE265C53555ACE296093 /* TransactionsInteractorOutput.swift in Sources */,
 				C4A238A1D91E3EAB1A09CB08 /* TransactionsInteractor.swift in Sources */,
 				A58D54E8215D0ED1003D9D0C /* FakeTransactionProvider.swift in Sources */,
+				A5743540217A1B09006B4CAE /* API+Unauthorize.swift in Sources */,
 				83AFFB2DDED752D79D48DD23 /* TransactionsRouterInput.swift in Sources */,
 				1F8EED368B9491D4564C5EAA /* TransactionsRouter.swift in Sources */,
 				270320A5E31AFF1AF5AE9A3C /* TransactionsModuleInput.swift in Sources */,

@@ -15,15 +15,18 @@ class LoginInteractor {
     private let socialViewVM: SocialNetworkAuthViewModel
     private let defaultProvider: DefaultsProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
+    private let loginNetworkProvider: LoginNetworkProviderProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
-         biometricAuthProvider: BiometricAuthProviderProtocol) {
+         biometricAuthProvider: BiometricAuthProviderProtocol,
+         loginNetworkProvider: LoginNetworkProvider) {
+        
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
         self.biometricAuthProvider = biometricAuthProvider
+        self.loginNetworkProvider = loginNetworkProvider
     }
-    
 }
 
 
@@ -38,6 +41,18 @@ extension LoginInteractor: LoginInteractorInput {
     func signIn(email: String, password: String) {
         //TODO: implement in new provider
         log.warn("implement login provider")
+        
+        loginNetworkProvider.loginUser(email: email,
+                                       password: password,
+                                       queue: .main) { (result) in
+                                        
+                                        switch result {
+                                        case .success(let tok):
+                                            print(tok)
+                                        case .failure(let error):
+                                            print(error.localizedDescription)
+                                        }
+        }
         
         // FIXME: - stub
         loginSucceed(authData: .email(email: email, password: password))

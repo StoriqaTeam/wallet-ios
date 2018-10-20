@@ -16,14 +16,11 @@ let log = Slog(level: .debug, useEmoji: true)
 struct Constants {
     typealias Sizes = SizeConstants
     
-    struct Keys {
-        static let kIsFirstLaunch = "isFirstLaunch"
-        static let kIsQuickLaunchSet = "isQuickLaunchSet"
+    struct Network {
+        static let baseUrl = "https://pay-nightly.stq.cloud/v1"
     }
     
     struct Errors {
-        static let serverResponse = "server_response_error".localized()
-        static let unknown = "unknown_error".localized()
         static let userFriendly = "user_friendly_error".localized()
     }
     
