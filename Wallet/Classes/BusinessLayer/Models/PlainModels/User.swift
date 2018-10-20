@@ -38,6 +38,24 @@ extension User: RealmMappable {
         }
     }
     
+    init?(json: JSON) {
+        guard let id = json["id"].string,
+            let email = json["email"].string,
+            let firstName = json["firstName"].string,
+            let lastName = json["lastName"].string else {
+            return nil
+        }
+        
+        let phone = json["phone"].stringValue
+        
+        self.id = id
+        self.email = email
+        self.phone = phone
+        self.firstName = firstName
+        self.lastName = lastName
+        
+    }
+    
     func mapToRealmObject() -> RealmUser {
         let object = RealmUser()
         
