@@ -9,10 +9,10 @@
 import UIKit
 
 class PopUpViewController: UIViewController {
-
+    
     var output: PopUpViewOutput!
     var viewModel: PopUpViewModelProtocol!
-
+    
     // MARK: - IBOutlets
     
     @IBOutlet private var imageView: UIImageView!
@@ -24,7 +24,7 @@ class PopUpViewController: UIViewController {
     @IBOutlet private var verticalCenterConstraint: NSLayoutConstraint!
     
     // MARK: - Life cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         verticalCenterConstraint.constant = Constants.Sizes.screenHeight
@@ -37,7 +37,7 @@ class PopUpViewController: UIViewController {
         
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            }, completion: nil)
+        }, completion: nil)
         
     }
     
@@ -47,7 +47,7 @@ class PopUpViewController: UIViewController {
         verticalCenterConstraint.constant = 0
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut], animations: {
             self.view.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
     }
     
     // MARK: - Action

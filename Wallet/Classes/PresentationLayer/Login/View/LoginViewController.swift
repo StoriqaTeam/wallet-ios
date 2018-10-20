@@ -79,6 +79,10 @@ extension LoginViewController: LoginViewInput {
     func setSocialView(viewModel: SocialNetworkAuthViewModel) {
         socialNetworkAuthView.bindViewModel(viewModel)
     }
+    
+    func relogin() {
+        signIn()
+    }
 }
 
 

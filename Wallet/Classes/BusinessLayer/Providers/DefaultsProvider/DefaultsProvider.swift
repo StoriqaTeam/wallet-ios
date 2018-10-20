@@ -12,6 +12,7 @@ protocol DefaultsProviderProtocol: class {
     var isFirstLaunch: Bool { get set }
     var isQuickLaunchShown: Bool { get set }
     var isBiometryAuthEnabled: Bool { get set }
+    var authToken: String? { get set }
     var fiatISO: String { get set }
 }
 
@@ -21,9 +22,18 @@ class DefaultsProvider: DefaultsProviderProtocol {
         case isFirstLaunch
         case isQuickLaunchShown
         case isBiometryAuthEnabled
+        case authToken
         case fiatISO
     }
     
+    var authToken: String? {
+        get {
+            return getString(.authToken)
+        }
+        set {
+            setString(newValue, key: .authToken)
+        }
+    }
     
     var isFirstLaunch: Bool {
         get {

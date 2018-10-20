@@ -39,25 +39,20 @@ extension LoginInteractor: LoginInteractorInput {
     }
     
     func signIn(email: String, password: String) {
-        //TODO: implement in new provider
-        log.warn("implement login provider")
-        
+        output.loader(isShown: true)
         loginNetworkProvider.loginUser(email: email,
                                        password: password,
-                                       queue: .main) { (result) in
-                                        
+                                       queue: .main) { [weak self] (result) in
                                         switch result {
-                                        case .success(let tok):
-                                            print(tok)
+                                        case .success(let authToken):
+                                            self?.output.loader(isShown: false)
+                                            self?.defaultProvider.authToken = authToken
+                                            self?.loginSucceed(authData: .email(email: email, password: password))
                                         case .failure(let error):
-                                            print(error.localizedDescription)
+                                            self?.output.loader(isShown: false)
+                                            self?.output.failToLogin(reason: error.localizedDescription)
                                         }
         }
-        
-        // FIXME: - stub
-        loginSucceed(authData: .email(email: email, password: password))
-        // ------------------------------
-        
     }
     
     func signIn(tokenProvider: SocialNetworkTokenProvider, socialNetworkToken: String) {
@@ -68,7 +63,12 @@ extension LoginInteractor: LoginInteractorInput {
         loginSucceed(authData: .socialProvider(provider: tokenProvider, token: socialNetworkToken))
         // ------------------------------
     }
-    
+}
+
+
+// MARK: - Private methods
+
+extension LoginInteractor {
     private func loginSucceed(authData: AuthData) {
         if !defaultProvider.isQuickLaunchShown {
             if biometricAuthProvider.canAuthWithBiometry {
@@ -82,5 +82,4 @@ extension LoginInteractor: LoginInteractorInput {
             output.loginSucceed()
         }
     }
-    
 }

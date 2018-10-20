@@ -15,4 +15,7 @@ protocol LoginRouterInput: class {
     func showQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController)
     func showPinQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController)
     func showAuthorizedZone()
+    func showFailurePopup(message: String,
+                          popUpDelegate: PopUpRegistrationFailedVMDelegate,
+                          from viewController: UIViewController)
 }
