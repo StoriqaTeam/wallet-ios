@@ -308,6 +308,8 @@
                         <outletCollection property="textFields" destination="jhR-J5-2og" collectionClass="NSMutableArray" id="6qT-xf-Soj"/>
                         <outletCollection property="textFields" destination="4O1-dh-iSq" collectionClass="NSMutableArray" id="Q88-nB-Wu4"/>
                         <outletCollection property="textFields" destination="lw0-HL-BH8" collectionClass="NSMutableArray" id="PMK-AB-YRu"/>
+                        <outletCollection property="passwordVisibilityButtons" destination="Rd6-xp-3d5" collectionClass="NSMutableArray" id="K7a-Fv-QQl"/>
+                        <outletCollection property="passwordVisibilityButtons" destination="9Xp-Gk-DTq" collectionClass="NSMutableArray" id="7dR-2i-wpU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xg-U2-n3f" userLabel="First Responder" sceneMemberID="firstResponder"/>

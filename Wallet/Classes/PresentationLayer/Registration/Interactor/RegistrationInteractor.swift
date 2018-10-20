@@ -22,10 +22,17 @@ class RegistrationInteractor {
     
     private let socialViewVM: SocialNetworkAuthViewModel
     private let formValidationProvider: RegistrationFormValidatonProviderProtocol
+    private let reginstrationNetworkProvider: RegistrationNetworkProviderProtocol
+    private let userDataStore: UserDataStoreServiceProtocol
     
-    init(socialViewVM: SocialNetworkAuthViewModel, formValidationProvider: RegistrationFormValidatonProviderProtocol) {
+    init(socialViewVM: SocialNetworkAuthViewModel,
+         formValidationProvider: RegistrationFormValidatonProviderProtocol,
+         reginstrationNetworkProvider: RegistrationNetworkProviderProtocol,
+         userDataStore: UserDataStoreServiceProtocol) {
         self.socialViewVM = socialViewVM
         self.formValidationProvider = formValidationProvider
+        self.reginstrationNetworkProvider = reginstrationNetworkProvider
+        self.userDataStore = userDataStore
     }
     
 }
@@ -52,20 +59,24 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         // TODO: - implement new provider
         log.warn("implement registration provider")
         
-        // FIXME: - stub
-        if Bool.random() {
-            let user = User(id: "0",
-                            email: registrationData.email,
-                            phone: "",
-                            firstName: registrationData.firstName,
-                            lastName: registrationData.lastName,
-                            photo: nil)
-            UserDataStoreService().save(user)
-            output.registrationSucceed(email: registrationData.email)
-        } else {
-            output.registrationFailed(message: Constants.Errors.userFriendly)
+        reginstrationNetworkProvider.register(
+            email: registrationData.email,
+            password: registrationData.password,
+            firstName: registrationData.firstName,
+            lastName: registrationData.lastName,
+            queue: .main) { [weak self] (result) in
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                switch result {
+                case .success(let user):
+                    strongSelf.userDataStore.save(user)
+                    strongSelf.output.registrationSucceed(email: registrationData.email)
+                case .failure(let error):
+                    strongSelf.output.registrationFailed(message: error.localizedDescription)
+                }
         }
-        // ------------------------------
     }
     
     func retryRegistration() {

@@ -382,6 +382,7 @@
 		CE1A47DC212E9C5400418C11 /* PinDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PinDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PinInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PinInputView.swift */; };
 		CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */; };
+		CE1E345B217B212E001B1477 /* RegistrationNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E345A217B212E001B1477 /* RegistrationNetworkProvider.swift */; };
 		CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */; };
 		CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
@@ -948,6 +949,7 @@
 		CE1A47D8212E9C5400418C11 /* PinContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PinDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDotView.swift; sourceTree = "<group>"; };
 		CE1A47DA212E9C5400418C11 /* PinInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinInputView.swift; sourceTree = "<group>"; };
+		CE1E345A217B212E001B1477 /* RegistrationNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNetworkProvider.swift; sourceTree = "<group>"; };
 		CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmVM.swift; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
@@ -2213,6 +2215,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CE1E3459217B2119001B1477 /* RegistrationNetworkProvider */,
 				A5743541217A2D0E006B4CAE /* LoginNetworkProvider */,
 				A50086082150F95B00C47015 /* API.swift */,
 				A574353F217A1B09006B4CAE /* API+Unauthorize.swift */,
@@ -3217,6 +3220,14 @@
 				CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */,
 			);
 			path = SmileLock;
+			sourceTree = "<group>";
+		};
+		CE1E3459217B2119001B1477 /* RegistrationNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE1E345A217B212E001B1477 /* RegistrationNetworkProvider.swift */,
+			);
+			path = RegistrationNetworkProvider;
 			sourceTree = "<group>";
 		};
 		CE23D321215CB9DB0016FEBD /* CustomSegmentedControl */ = {
@@ -4550,6 +4561,7 @@
 				BE9590E0480343163111D6DB /* TransactionFilterModuleInteractor.swift in Sources */,
 				DAFD2DF5B826F36BA9EF420C /* TransactionFilterModuleRouterInput.swift in Sources */,
 				161EBEEB0A2979906EFA8F41 /* TransactionFilterModuleRouter.swift in Sources */,
+				CE1E345B217B212E001B1477 /* RegistrationNetworkProvider.swift in Sources */,
 				727589FADC2388827FDDD932 /* TransactionFilterModuleInput.swift in Sources */,
 				AC64C1C921224168B77DB559 /* TransactionFilterModuleModuleOutput.swift in Sources */,
 				92C789BF23E3A6D6B9F08F71 /* TransactionFilterModule.swift in Sources */,
