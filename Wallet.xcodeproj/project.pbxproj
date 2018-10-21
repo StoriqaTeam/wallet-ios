@@ -315,6 +315,7 @@
 		A5B78233215E2A7400EFD1A5 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78232215E2A7400EFD1A5 /* WalletTests.swift */; };
 		A5B78235215E2F3800EFD1A5 /* AddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */; };
 		A5B78238215E33BA00EFD1A5 /* CryproAddressResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78237215E33BA00EFD1A5 /* CryproAddressResolver.swift */; };
+		A5C12E48217B672300A7D68C /* StoriqaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E47217B672300A7D68C /* StoriqaLoader.swift */; };
 		A5D5BB7C217B57D4008BEB74 /* API+Authorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */; };
 		A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */; };
 		A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */; };
@@ -884,6 +885,7 @@
 		A5B78232215E2A7400EFD1A5 /* WalletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
 		A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressValidator.swift; sourceTree = "<group>"; };
 		A5B78237215E33BA00EFD1A5 /* CryproAddressResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryproAddressResolver.swift; sourceTree = "<group>"; };
+		A5C12E47217B672300A7D68C /* StoriqaLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriqaLoader.swift; sourceTree = "<group>"; };
 		A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Authorize.swift"; sourceTree = "<group>"; };
 		A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserNetworkProvider.swift; sourceTree = "<group>"; };
 		A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyWallet.storyboard; sourceTree = "<group>"; };
@@ -2947,6 +2949,14 @@
 			path = AddressResolver;
 			sourceTree = "<group>";
 		};
+		A5C12E46217B671400A7D68C /* StoriqaLoader */ = {
+			isa = PBXGroup;
+			children = (
+				A5C12E47217B672300A7D68C /* StoriqaLoader.swift */,
+			);
+			path = StoriqaLoader;
+			sourceTree = "<group>";
+		};
 		A5D5BB7D217B598B008BEB74 /* CurrentUserNetworkProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -3306,6 +3316,7 @@
 		CE526C6F21247F8500A2EED2 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A5C12E46217B671400A7D68C /* StoriqaLoader */,
 				A51CB55B215942DA00CDC80C /* Xibs */,
 				CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */,
 				CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */,
@@ -4400,6 +4411,7 @@
 				09A1CEBCE8C1B2CD243902EC /* SendModuleInput.swift in Sources */,
 				342AB1F25E5B5D468E2F7687 /* SendModuleOutput.swift in Sources */,
 				A56ED39A216CEF36009FA58B /* TransactionDisplayable.swift in Sources */,
+				A5C12E48217B672300A7D68C /* StoriqaLoader.swift in Sources */,
 				A56ED382216CD709009FA58B /* TransactionDetailsInteractorInput.swift in Sources */,
 				225C1777C92B40C17A58275B /* SendModule.swift in Sources */,
 				D029C2BDAA326AE7EB885D7C /* ExchangeViewInput.swift in Sources */,

@@ -16,7 +16,7 @@ class LoginPresenter {
     var interactor: LoginInteractorInput!
     var router: LoginRouterInput!
     
-    private var loader: ActivityIndicatorView!
+    private var storiqaLoader: StoriqaLoader!
     
 }
 
@@ -32,8 +32,8 @@ extension LoginPresenter: LoginViewOutput {
     func viewIsReady() {
         view.setupInitialState()
         let viewModel = interactor.getSocialVM()
-        addLoader()
         view.setSocialView(viewModel: viewModel)
+        addLoader()
     }
 
     func showRegistration() {
@@ -60,11 +60,9 @@ extension LoginPresenter: LoginInteractorOutput {
     
     func loader(isShown: Bool) {
         if isShown {
-            loader.alpha = 1.0
-            loader.showActivityIndicator()
+            storiqaLoader.startLoader()
         } else {
-            loader.hideActivityIndicator()
-            loader.alpha = 0.0
+            storiqaLoader.stopLoader()
         }
     }
 
@@ -122,10 +120,6 @@ extension LoginPresenter: PopUpRegistrationFailedVMDelegate {
 extension LoginPresenter {
     private func addLoader() {
         guard let parentView = view.viewController.view else { return }
-        loader = ActivityIndicatorView()
-        loader.isUserInteractionEnabled = false
-        loader.frame.size = CGSize(width: 80, height: 80)
-        loader.center = parentView.convert(parentView.center, to: loader)
-        parentView.addSubview(loader)
+        storiqaLoader = StoriqaLoader(parentView: parentView)
     }
 }
