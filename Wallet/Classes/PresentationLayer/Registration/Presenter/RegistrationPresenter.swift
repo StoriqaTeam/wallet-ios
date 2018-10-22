@@ -15,6 +15,7 @@ class RegistrationPresenter {
     var interactor: RegistrationInteractorInput!
     var router: RegistrationRouterInput!
     
+    private var storiqaLoader: StoriqaLoader!
 }
 
 
@@ -26,11 +27,12 @@ extension RegistrationPresenter: RegistrationViewOutput {
         view.setupInitialState()
         let viewModel = interactor.getSocialVM()
         view.setSocialView(viewModel: viewModel)
+        addLoader()
     }
 
     func register(firstName: String, lastName: String, email: String, password: String) {
         let registrationData = RegistrationData(firstName: firstName, lastName: lastName, email: email, password: password)
-        //TODO: activity animation starts
+        storiqaLoader.startLoader()
         interactor.register(with: registrationData)
     }
     
@@ -56,13 +58,13 @@ extension RegistrationPresenter: RegistrationViewOutput {
     
     func socialNetworkRegisterSucceed() {
         //TODO: будем ли передавать email
-        //TODO: activity animation ends
+        storiqaLoader.stopLoader()
         router.showSuccess(email: "", popUpDelegate: self, from: view.viewController)
     }
     
     func socialNetworkRegisterFailed() {
         //TODO: сообщение при регистрации через соц сети
-        //TODO: activity animation ends
+        storiqaLoader.stopLoader()
         router.showSocialNetworkFailure(message: Constants.Errors.userFriendly, from: view.viewController)
     }
     
@@ -78,10 +80,12 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     }
     
     func registrationSucceed(email: String) {
+        storiqaLoader.stopLoader()
         router.showSuccess(email: email, popUpDelegate: self, from: view.viewController)
     }
     
     func registrationFailed(message: String) {
+        storiqaLoader.stopLoader()
         router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
     }
 }
@@ -90,7 +94,6 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
 // MARK: - RegistrationModuleInput
 
 extension RegistrationPresenter: RegistrationModuleInput {
-    
     func present() {
         view.present()
     }
@@ -104,20 +107,27 @@ extension RegistrationPresenter: RegistrationModuleInput {
 // MARK: - PopUpRegistrationSuccessVMDelegate
 
 extension RegistrationPresenter: PopUpRegistrationSuccessVMDelegate {
-    
     func showAuthorizedZone() {
         router.showAuthorizedZone()
     }
-    
 }
 
 
 // MARK: - PopUpRegistrationFailedVMDelegate
 
 extension RegistrationPresenter: PopUpRegistrationFailedVMDelegate {
-    
     func retry() {
+        storiqaLoader.startLoader()
         interactor.retryRegistration()
     }
-    
+}
+
+
+// MARK: - Private methods
+
+extension RegistrationPresenter {
+    private func addLoader() {
+        guard let parentView = view.viewController.view else { return }
+        storiqaLoader = StoriqaLoader(parentView: parentView)
+    }
 }

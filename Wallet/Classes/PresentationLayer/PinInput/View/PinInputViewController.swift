@@ -98,7 +98,7 @@ extension PinInputViewController {
     }
     
     private func showActivityIndicator() {
-        userPhotoContainerView.showActivityIndicator()
+        userPhotoContainerView.showActivityIndicator(linewidth: 2.0)
     }
     
     private func hideActivityIndicator() {
