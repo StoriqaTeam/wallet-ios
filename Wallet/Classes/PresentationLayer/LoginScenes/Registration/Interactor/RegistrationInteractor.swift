@@ -22,17 +22,14 @@ class RegistrationInteractor {
     
     private let socialViewVM: SocialNetworkAuthViewModel
     private let formValidationProvider: RegistrationFormValidatonProviderProtocol
-    private let reginstrationNetworkProvider: RegistrationNetworkProviderProtocol
-    private let userDataStore: UserDataStoreServiceProtocol
+    private let registrationNetworkProvider: RegistrationNetworkProviderProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          formValidationProvider: RegistrationFormValidatonProviderProtocol,
-         reginstrationNetworkProvider: RegistrationNetworkProviderProtocol,
-         userDataStore: UserDataStoreServiceProtocol) {
+         registrationNetworkProvider: RegistrationNetworkProviderProtocol) {
         self.socialViewVM = socialViewVM
         self.formValidationProvider = formValidationProvider
-        self.reginstrationNetworkProvider = reginstrationNetworkProvider
-        self.userDataStore = userDataStore
+        self.registrationNetworkProvider = registrationNetworkProvider
     }
     
 }
@@ -41,7 +38,6 @@ class RegistrationInteractor {
 // MARK: - RegistrationInteractorInput
 
 extension RegistrationInteractor: RegistrationInteractorInput {
-    
     func getSocialVM() -> SocialNetworkAuthViewModel {
         return socialViewVM
     }
@@ -59,7 +55,7 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         // TODO: - implement new provider
         log.warn("implement registration provider")
         
-        reginstrationNetworkProvider.register(
+        registrationNetworkProvider.register(
             email: registrationData.email,
             password: registrationData.password,
             firstName: registrationData.firstName,
@@ -70,8 +66,7 @@ extension RegistrationInteractor: RegistrationInteractorInput {
                 }
                 
                 switch result {
-                case .success(let user):
-                    strongSelf.userDataStore.save(user)
+                case .success:
                     strongSelf.output.registrationSucceed(email: registrationData.email)
                 case .failure(let error):
                     strongSelf.output.registrationFailed(message: error.localizedDescription)
@@ -85,5 +80,4 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         }
         register(with: registrationData)
     }
-    
 }

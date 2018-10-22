@@ -11,7 +11,7 @@ import Foundation
 protocol CurrentUserNetworkProviderProtocol {
     func getCurrentUser(authToken: String,
                         queue: DispatchQueue,
-                        completion: @escaping (Result<JSON>) -> Void)
+                        completion: @escaping (Result<User>) -> Void)
 }
 
 
@@ -19,20 +19,25 @@ class CurrentUserNetworkProvider: NetworkLoadable, CurrentUserNetworkProviderPro
     
     func getCurrentUser(authToken: String,
                         queue: DispatchQueue,
-                        completion: @escaping (Result<JSON>) -> Void) {
+                        completion: @escaping (Result<User>) -> Void) {
         
         let request = API.Authorized.user(authToken: authToken)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
-            case .success(let responce):
-                let json = JSON(responce)
-                completion(.success(json))
+            case .success(let response):
+                let json = JSON(response)
+                
+                if let user = User(json: json) {
+                    completion(.success(user))
+                } else {
+                    let apiError = CurrentUserNetworkProviderError(json: json)
+                    completion(.failure(apiError))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
         }
-        
     }
 }
 
@@ -54,7 +59,7 @@ enum CurrentUserNetworkProviderError: LocalizedError, Error {
         case .unauthorized:
             return "User unauthorized"
         case .unknownError:
-            return "Unknown error"
+            return Constants.Errors.userFriendly
         }
     }
 }

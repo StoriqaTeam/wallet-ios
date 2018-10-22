@@ -16,16 +16,22 @@ class LoginInteractor {
     private let defaultProvider: DefaultsProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
     private let loginNetworkProvider: LoginNetworkProviderProtocol
+    private let userNetworkProvider: CurrentUserNetworkProviderProtocol
+    private let userDataStore: UserDataStoreServiceProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
          biometricAuthProvider: BiometricAuthProviderProtocol,
-         loginNetworkProvider: LoginNetworkProvider) {
+         loginNetworkProvider: LoginNetworkProvider,
+         userNetworkProvider: CurrentUserNetworkProviderProtocol,
+         userDataStore: UserDataStoreServiceProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
         self.biometricAuthProvider = biometricAuthProvider
         self.loginNetworkProvider = loginNetworkProvider
+        self.userNetworkProvider = userNetworkProvider
+        self.userDataStore = userDataStore
     }
 }
 
@@ -39,19 +45,21 @@ extension LoginInteractor: LoginInteractorInput {
     }
     
     func signIn(email: String, password: String) {
-        output.loader(isShown: true)
-        loginNetworkProvider.loginUser(email: email,
-                                       password: password,
-                                       queue: .main) { [weak self] (result) in
-                                        switch result {
-                                        case .success(let authToken):
-                                            self?.output.loader(isShown: false)
-                                            self?.defaultProvider.authToken = authToken
-                                            self?.loginSucceed(authData: .email(email: email, password: password))
-                                        case .failure(let error):
-                                            self?.output.loader(isShown: false)
-                                            self?.output.failToLogin(reason: error.localizedDescription)
-                                        }
+        loginNetworkProvider.loginUser(
+            email: email,
+            password: password,
+            queue: .main) { [weak self] (result) in
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                switch result {
+                case .success(let authToken):
+                    strongSelf.defaultProvider.authToken = authToken
+                    strongSelf.getUser(authToken: authToken, authData: .email(email: email, password: password))
+                case .failure(let error):
+                    strongSelf.output.failToLogin(reason: error.localizedDescription)
+                }
         }
     }
     
@@ -69,6 +77,24 @@ extension LoginInteractor: LoginInteractorInput {
 // MARK: - Private methods
 
 extension LoginInteractor {
+    private func getUser(authToken: String, authData: AuthData) {
+        userNetworkProvider.getCurrentUser(
+            authToken: authToken,
+            queue: .main) { [weak self] (result) in
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                switch result {
+                case .success(let user):
+                    strongSelf.userDataStore.update(user)
+                    strongSelf.loginSucceed(authData: authData)
+                case .failure(let error):
+                    strongSelf.output.failToLogin(reason: error.localizedDescription)
+                }
+        }
+    }
+    
     private func loginSucceed(authData: AuthData) {
         if !defaultProvider.isQuickLaunchShown {
             if biometricAuthProvider.canAuthWithBiometry {

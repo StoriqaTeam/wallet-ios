@@ -24,8 +24,12 @@ extension ProfileRouter: ProfileRouterInput {
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
-    func signOut() {
-        LoginModule.create().present()
+    func signOut(isPinEnabled: Bool) {
+        if isPinEnabled {
+            PinInputModule.create().present()
+        } else {
+            LoginModule.create().present()
+        }
     }
     
     func showSettings(from viewController: UIViewController) {
@@ -35,5 +39,4 @@ extension ProfileRouter: ProfileRouterInput {
     func showConnectPhone(from viewController: UIViewController) {
         ConnectPhoneModule.create().present(from: viewController)
     }
-    
 }

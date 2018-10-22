@@ -12,10 +12,13 @@ import Foundation
 class ProfileInteractor {
     weak var output: ProfileInteractorOutput!
     
+    private let keychainProvider: KeychainProviderProtocol
     private let userStoreService: UserDataStoreServiceProtocol
     
-    init(userStoreService: UserDataStoreServiceProtocol) {
+    init(userStoreService: UserDataStoreServiceProtocol,
+         keychainProvider: KeychainProviderProtocol) {
         self.userStoreService = userStoreService
+        self.keychainProvider = keychainProvider
     }
 }
 
@@ -35,6 +38,10 @@ extension ProfileInteractor: ProfileInteractorInput {
         DispatchQueue.main.async { [weak self] in
             self?.userStoreService.save(user)
         }
+    }
+    
+    func isPinLoginEnabled() -> Bool {
+        return keychainProvider.pincode != nil
     }
     
 }

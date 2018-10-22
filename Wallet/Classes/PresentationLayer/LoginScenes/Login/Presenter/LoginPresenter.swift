@@ -41,10 +41,12 @@ extension LoginPresenter: LoginViewOutput {
     }
     
     func signIn(email: String, password: String) {
+        storiqaLoader.startLoader()
         interactor.signIn(email: email, password: password)
     }
     
     func signIn(tokenProvider: SocialNetworkTokenProvider, token: String) {
+        storiqaLoader.startLoader()
         interactor.signIn(tokenProvider: tokenProvider, socialNetworkToken: token)
     }
     
@@ -55,18 +57,12 @@ extension LoginPresenter: LoginViewOutput {
 
 extension LoginPresenter: LoginInteractorOutput {
     func failToLogin(reason: String) {
+        storiqaLoader.stopLoader()
         router.showFailurePopup(message: reason, popUpDelegate: self, from: view.viewController)
     }
     
-    func loader(isShown: Bool) {
-        if isShown {
-            storiqaLoader.startLoader()
-        } else {
-            storiqaLoader.stopLoader()
-        }
-    }
-
     func loginSucceed() {
+        storiqaLoader.stopLoader()
         router.showAuthorizedZone()
     }
     
