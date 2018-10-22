@@ -17,11 +17,9 @@ class RegistrationModule {
         let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: LoginManager())
         let validationProvider = RegistrationFormValidatonProvider()
         let reginstrationNetworkProvider = RegistrationNetworkProvider()
-        let userDataStore = UserDataStoreService()
         let interactor = RegistrationInteractor(socialViewVM: socialVM,
                                                 formValidationProvider: validationProvider,
-                                                reginstrationNetworkProvider: reginstrationNetworkProvider,
-                                                userDataStore: userDataStore)
+                                                reginstrationNetworkProvider: reginstrationNetworkProvider)
         
         let registrationSb = UIStoryboard(name: "Registration", bundle: nil)
         let viewController = registrationSb.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationViewController

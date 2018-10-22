@@ -14,6 +14,5 @@ protocol LoginInteractorOutput: class {
     func loginFailed(message: String)
     func showQuickLaunch(authData: AuthData, token: String)
     func showPinQuickLaunch(authData: AuthData, token: String)
-    func loader(isShown: Bool)
     func failToLogin(reason: String)
 }

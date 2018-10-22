@@ -114,7 +114,8 @@ extension ProfilePresenter: ProfileModuleInput {
 extension ProfilePresenter: PopUpSignOutVMDelegate {
     
     func signOut() {
-        router.signOut()
+        let isPinEnabled = interactor.isPinLoginEnabled()
+        router.signOut(isPinEnabled: isPinEnabled)
     }
     
 }

@@ -32,8 +32,4 @@ extension SettingsRouter: SettingsRouterInput {
     func showChangePassword(from viewController: UIViewController) {
         // TODO: change password module
     }
-    
-    func showLogin() {
-        LoginModule.create().present()
-    }
 }
