@@ -9,6 +9,8 @@
 import UIKit
 
 class MyWalletViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.MyWallet
 
     var output: MyWalletViewOutput!
 
@@ -18,7 +20,7 @@ class MyWalletViewController: UIViewController {
     
     // MARK: variables
     
-    private let addNewButton = ResizableNavigationBarButton(title: "add_new".localized())
+    private let addNewButton = ResizableNavigationBarButton(title: LocalizedStrings.buttonTitle)
     private let accountCellIdentifier = "AccountViewCell"
     
     // MARK: Life cycle
