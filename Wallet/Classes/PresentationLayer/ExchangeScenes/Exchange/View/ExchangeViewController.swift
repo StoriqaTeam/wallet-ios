@@ -11,6 +11,8 @@ import UIKit
 
 class ExchangeViewController: UIViewController {
 
+    typealias Localization = Strings.Exchange
+    
     var output: ExchangeViewOutput!
 
     // MARK: IBOutlets
@@ -386,7 +388,7 @@ extension ExchangeViewController {
         exchangeButton.isHidden = false
         
         //TODO: локализации
-        amountTitleLabel.text = "amount".localized()
-        amountTextField.placeholder = "enter_amount".localized()
+        amountTitleLabel.text = Localizations.amountTitle
+        amountTextField.placeholder = Localizations.amountPlaceholder
     }
 }

@@ -12,6 +12,8 @@ import AVFoundation
 
 class ReceiverViewController: UIViewController {
     
+    typealias Localization = Strings.Receiver
+    
     var output: ReceiverViewOutput!
     
     // MARK: IBOutlets
@@ -45,11 +47,11 @@ class ReceiverViewController: UIViewController {
     }
     
     private func configInterface() {
-        sendToTitleLabel.text = "send_to".localized()
-        inputTextField.placeholder = "receiver_input_placeholder".localized()
+        sendToTitleLabel.text = Localization.sendToInputTitle
+        inputTextField.placeholder = Localization.sendToInputPlaceholder
         inputTextField.autocorrectionType = .no
-        scanQRButton.setTitle("scan_QR".localized() + "   ", for: .normal)
-        nextButton.setTitle("next".localized(), for: .normal)
+        scanQRButton.setTitle(Localization.scanQRButton + "   ", for: .normal)
+        nextButton.setTitle(Localization.nextButton, for: .normal)
     }
     
     // MARK: Actions

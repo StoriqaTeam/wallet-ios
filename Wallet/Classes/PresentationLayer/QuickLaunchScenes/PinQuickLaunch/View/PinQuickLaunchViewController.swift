@@ -11,6 +11,8 @@ import UIKit
 
 class PinQuickLaunchViewController: BaseQuickLaunchViewController {
 
+    typealias Localization = Strings.PinQuickLaunch
+    
     var output: PinQuickLaunchViewOutput!
 
     // MARK: Life cycle
@@ -22,8 +24,8 @@ class PinQuickLaunchViewController: BaseQuickLaunchViewController {
     }
     
     private func configureInterface() {
-        titleLabel.text = "pin_quick_launch_title".localized()
-        actionButton.setTitle("set_up_pin".localized(), for: .normal)
+        titleLabel.text = Localization.title
+        actionButton.setTitle(Localization.button, for: .normal)
     }
     
     // MARK: Actions

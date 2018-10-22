@@ -10,6 +10,8 @@ import UIKit
 
 class QuickLaunchViewController: BaseQuickLaunchViewController {
 
+    typealias Localization = Strings.QuickLaunch
+    
     var output: QuickLaunchViewOutput!
     
     // MARK: Life cycle
@@ -21,9 +23,9 @@ class QuickLaunchViewController: BaseQuickLaunchViewController {
     }
     
     private func configureInterface() {
-        titleLabel.text = "quick_launch_title".localized()
-        subtitleLabel?.text = "quick_launch_subtitle".localized()
-        actionButton.setTitle("set_up_quick_launch".localized(), for: .normal)
+        titleLabel.text = Localization.title
+        subtitleLabel?.text = Localization.subtitle
+        actionButton.setTitle(Localization.setUpButton, for: .normal)
     }
     
     // MARK: Actions

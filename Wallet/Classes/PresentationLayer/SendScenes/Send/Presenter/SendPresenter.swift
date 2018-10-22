@@ -11,6 +11,8 @@ import UIKit
 
 class SendPresenter {
     
+    typealias Localization = Strings.Send
+    
     weak var view: SendViewInput!
     weak var output: SendModuleOutput?
     var interactor: SendInteractorInput!
@@ -179,7 +181,7 @@ extension SendPresenter: AccountsDataManagerDelegate {
 extension SendPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: "send".localized())
+        view.viewController.setWhiteNavigationBar(title: Localization.screenTitle)
     }
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {

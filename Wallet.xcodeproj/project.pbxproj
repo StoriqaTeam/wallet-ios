@@ -389,6 +389,24 @@
 		CE1A47DD212E9C5400418C11 /* PinInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PinInputView.swift */; };
 		CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */; };
 		CE1E345B217B212E001B1477 /* RegistrationNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E345A217B212E001B1477 /* RegistrationNetworkProvider.swift */; };
+		CE1E3469217E067D001B1477 /* Error.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E3468217E067D001B1477 /* Error.strings */; };
+		CE1E346B217E0804001B1477 /* Strings+BiometryQuickLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E346A217E0804001B1477 /* Strings+BiometryQuickLaunch.swift */; };
+		CE1E346D217E0816001B1477 /* BiometryQuickLaunch.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E346C217E0816001B1477 /* BiometryQuickLaunch.strings */; };
+		CE1E346F217E0A40001B1477 /* Strings+PinQuickLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E346E217E0A40001B1477 /* Strings+PinQuickLaunch.swift */; };
+		CE1E3471217E0A61001B1477 /* PinQuickLaunch.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E3470217E0A61001B1477 /* PinQuickLaunch.strings */; };
+		CE1E3473217E0C37001B1477 /* Permission.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E3472217E0C37001B1477 /* Permission.strings */; };
+		CE1E3475217E0CCF001B1477 /* Strings+QuickLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E3474217E0CCF001B1477 /* Strings+QuickLaunch.swift */; };
+		CE1E3477217E0D00001B1477 /* QuickLaunch.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E3476217E0D00001B1477 /* QuickLaunch.strings */; };
+		CE1E3479217E1083001B1477 /* Strings+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E3478217E1083001B1477 /* Strings+Profile.swift */; };
+		CE1E347B217E108F001B1477 /* Profile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E347A217E108E001B1477 /* Profile.strings */; };
+		CE1E347D217E126E001B1477 /* Strings+Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E347C217E126E001B1477 /* Strings+Exchange.swift */; };
+		CE1E347F217E127B001B1477 /* Exchange.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E347E217E127B001B1477 /* Exchange.strings */; };
+		CE1E3481217E13BA001B1477 /* Strings+Receiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E3480217E13BA001B1477 /* Strings+Receiver.swift */; };
+		CE1E3483217E13C4001B1477 /* Receiver.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E3482217E13C4001B1477 /* Receiver.strings */; };
+		CE1E3485217E173B001B1477 /* Strings+Send.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E3484217E173B001B1477 /* Strings+Send.swift */; };
+		CE1E3487217E1745001B1477 /* Send.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E3486217E1745001B1477 /* Send.strings */; };
+		CE1E3489217E1AC1001B1477 /* Strings+QRScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E3488217E1AC1001B1477 /* Strings+QRScanner.swift */; };
+		CE1E348B217E1ACB001B1477 /* QRScanner.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1E348A217E1ACB001B1477 /* QRScanner.strings */; };
 		CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */; };
 		CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
@@ -963,6 +981,24 @@
 		CE1A47D9212E9C5400418C11 /* PinDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDotView.swift; sourceTree = "<group>"; };
 		CE1A47DA212E9C5400418C11 /* PinInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinInputView.swift; sourceTree = "<group>"; };
 		CE1E345A217B212E001B1477 /* RegistrationNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNetworkProvider.swift; sourceTree = "<group>"; };
+		CE1E3468217E067D001B1477 /* Error.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Error.strings; sourceTree = "<group>"; };
+		CE1E346A217E0804001B1477 /* Strings+BiometryQuickLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+BiometryQuickLaunch.swift"; sourceTree = "<group>"; };
+		CE1E346C217E0816001B1477 /* BiometryQuickLaunch.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = BiometryQuickLaunch.strings; sourceTree = "<group>"; };
+		CE1E346E217E0A40001B1477 /* Strings+PinQuickLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PinQuickLaunch.swift"; sourceTree = "<group>"; };
+		CE1E3470217E0A61001B1477 /* PinQuickLaunch.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PinQuickLaunch.strings; sourceTree = "<group>"; };
+		CE1E3472217E0C37001B1477 /* Permission.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Permission.strings; sourceTree = "<group>"; };
+		CE1E3474217E0CCF001B1477 /* Strings+QuickLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+QuickLaunch.swift"; sourceTree = "<group>"; };
+		CE1E3476217E0D00001B1477 /* QuickLaunch.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = QuickLaunch.strings; sourceTree = "<group>"; };
+		CE1E3478217E1083001B1477 /* Strings+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Profile.swift"; sourceTree = "<group>"; };
+		CE1E347A217E108E001B1477 /* Profile.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Profile.strings; sourceTree = "<group>"; };
+		CE1E347C217E126E001B1477 /* Strings+Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Exchange.swift"; sourceTree = "<group>"; };
+		CE1E347E217E127B001B1477 /* Exchange.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Exchange.strings; sourceTree = "<group>"; };
+		CE1E3480217E13BA001B1477 /* Strings+Receiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Receiver.swift"; sourceTree = "<group>"; };
+		CE1E3482217E13C4001B1477 /* Receiver.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Receiver.strings; sourceTree = "<group>"; };
+		CE1E3484217E173B001B1477 /* Strings+Send.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Send.swift"; sourceTree = "<group>"; };
+		CE1E3486217E1745001B1477 /* Send.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Send.strings; sourceTree = "<group>"; };
+		CE1E3488217E1AC1001B1477 /* Strings+QRScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+QRScanner.swift"; sourceTree = "<group>"; };
+		CE1E348A217E1ACB001B1477 /* QRScanner.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = QRScanner.strings; sourceTree = "<group>"; };
 		CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmVM.swift; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
@@ -1223,6 +1259,8 @@
 				3544DD6D94942645B2A2EC18 /* Interactor */,
 				92F1C8E8168E335BFD1E9A05 /* Router */,
 				9D5AF64084126D486E02A6D8 /* Module */,
+				CE1E3488217E1AC1001B1477 /* Strings+QRScanner.swift */,
+				CE1E348A217E1ACB001B1477 /* QRScanner.strings */,
 			);
 			path = QRScanner;
 			sourceTree = "<group>";
@@ -1292,6 +1330,8 @@
 				6FD17D0D1608028D5BF1EB27 /* Interactor */,
 				878844F24CE76BE85FBA5B9E /* Router */,
 				2184744D2552513155BD831F /* Module */,
+				CE1E346E217E0A40001B1477 /* Strings+PinQuickLaunch.swift */,
+				CE1E3470217E0A61001B1477 /* PinQuickLaunch.strings */,
 			);
 			path = PinQuickLaunch;
 			sourceTree = "<group>";
@@ -1425,6 +1465,8 @@
 				9EC956BDFFE32A4E043BEB78 /* Interactor */,
 				A5FD9DA6E7DA9EAA4977CC25 /* Router */,
 				EE6533B47B27691635F0D845 /* Module */,
+				CE1E3484217E173B001B1477 /* Strings+Send.swift */,
+				CE1E3486217E1745001B1477 /* Send.strings */,
 			);
 			path = Send;
 			sourceTree = "<group>";
@@ -1496,6 +1538,8 @@
 				4F4D825C1164EEFBFCB75FC6 /* Interactor */,
 				BB8BBCAAA1B5D8C699C26A29 /* Router */,
 				AE9DCAC9430899D5FCCDD0C4 /* Module */,
+				CE1E347C217E126E001B1477 /* Strings+Exchange.swift */,
+				CE1E347E217E127B001B1477 /* Exchange.strings */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
@@ -1790,6 +1834,8 @@
 				0841286249C47AFA3D2EABCC /* Interactor */,
 				E880F6847A44BAA9F3A3CD64 /* Router */,
 				A7AACAD30D3C04B9CC59C556 /* Module */,
+				CE1E3478217E1083001B1477 /* Strings+Profile.swift */,
+				CE1E347A217E108E001B1477 /* Profile.strings */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2051,6 +2097,8 @@
 				61DC381EF64FFAB70B4F29B8 /* Interactor */,
 				C21ADBA0D61F64D90826D54D /* Router */,
 				480CEE33EDC2D1ED82E947E0 /* Module */,
+				CE1E3480217E13BA001B1477 /* Strings+Receiver.swift */,
+				CE1E3482217E13C4001B1477 /* Receiver.strings */,
 			);
 			path = Receiver;
 			sourceTree = "<group>";
@@ -2953,6 +3001,8 @@
 			children = (
 				CE185496214BE558009D1360 /* Localizable.strings */,
 				A5C12E4A217DE8CC00A7D68C /* Strings.swift */,
+				CE1E3468217E067D001B1477 /* Error.strings */,
+				CE1E3472217E0C37001B1477 /* Permission.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -3285,6 +3335,8 @@
 			isa = PBXGroup;
 			children = (
 				D1A05278CDB8B0ADE5A9E419 /* QuickLaunch */,
+				CE1E3474217E0CCF001B1477 /* Strings+QuickLaunch.swift */,
+				CE1E3476217E0D00001B1477 /* QuickLaunch.strings */,
 				145754F06027B916A9383527 /* PinQuickLaunch */,
 				E463DB1BBB09AD64D8E037EB /* BiometryQuickLaunch */,
 			);
@@ -3771,6 +3823,8 @@
 				2B22AB6B418E72E79166BF1B /* Interactor */,
 				AAE1264226A17A0997F37672 /* Router */,
 				F8090C8C9DCC7D6C59EC515D /* Module */,
+				CE1E346A217E0804001B1477 /* Strings+BiometryQuickLaunch.swift */,
+				CE1E346C217E0816001B1477 /* BiometryQuickLaunch.strings */,
 			);
 			path = BiometryQuickLaunch;
 			sourceTree = "<group>";
@@ -4023,13 +4077,16 @@
 				A5E8D9AC2153ECE300AC6A7E /* Settings.storyboard in Resources */,
 				A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */,
 				CED822D4215A796500693B92 /* QRScanner.storyboard in Resources */,
+				CE1E3469217E067D001B1477 /* Error.strings in Resources */,
 				CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */,
 				A574350221776226006B4CAE /* EditProfile.storyboard in Resources */,
 				CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */,
+				CE1E3471217E0A61001B1477 /* PinQuickLaunch.strings in Resources */,
 				A57434D42175E6DA006B4CAE /* TransactionFilter.storyboard in Resources */,
 				A5E8D9A62153EB3900AC6A7E /* Send.storyboard in Resources */,
 				A56ED379216CAE27009FA58B /* TransactionDescriptionContactView.xib in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
+				CE1E3483217E13C4001B1477 /* Receiver.strings in Resources */,
 				A50086012150BD2B00C47015 /* PinInput.storyboard in Resources */,
 				CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */,
 				CE5FAFAD215253D1009E707E /* PopUp.storyboard in Resources */,
@@ -4037,6 +4094,8 @@
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
 				A5A52854216B940200DB03B6 /* TransactionDetails.storyboard in Resources */,
 				CE57C6992165F83400696FF7 /* AccountTableCell.xib in Resources */,
+				CE1E348B217E1ACB001B1477 /* QRScanner.strings in Resources */,
+				CE1E3473217E0C37001B1477 /* Permission.strings in Resources */,
 				A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */,
 				CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */,
 				A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */,
@@ -4054,6 +4113,7 @@
 				CEFC9CBB215A5BE400962356 /* ContactCell.xib in Resources */,
 				CE6A0974216CE3AE004A96A8 /* ConnectPhone.storyboard in Resources */,
 				CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */,
+				CE1E3487217E1745001B1477 /* Send.strings in Resources */,
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
 				A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */,
 				A574353921789BB3006B4CAE /* SessionCell.xib in Resources */,
@@ -4062,8 +4122,12 @@
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
 				A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */,
 				A51CB55D215942F400CDC80C /* RouteButton.xib in Resources */,
+				CE1E346D217E0816001B1477 /* BiometryQuickLaunch.strings in Resources */,
+				CE1E3477217E0D00001B1477 /* QuickLaunch.strings in Resources */,
 				CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */,
+				CE1E347F217E127B001B1477 /* Exchange.strings in Resources */,
 				A58EE3C62150379E0096C155 /* Login.storyboard in Resources */,
+				CE1E347B217E108F001B1477 /* Profile.strings in Resources */,
 				A560C743216B57F9009F0E95 /* SettingsHeaderView.xib in Resources */,
 				CE5FAFB92153801F009E707E /* PinQuickLaunch.storyboard in Resources */,
 			);
@@ -4203,7 +4267,9 @@
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
 				A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */,
 				A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */,
+				CE1E3481217E13BA001B1477 /* Strings+Receiver.swift in Sources */,
 				A56ED397216CEF12009FA58B /* TransactionMapper.swift in Sources */,
+				CE1E3479217E1083001B1477 /* Strings+Profile.swift in Sources */,
 				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEFC9C9821590D1200962356 /* PopUpRegistrationSuccessVM.swift in Sources */,
 				A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */,
@@ -4245,6 +4311,7 @@
 				00EAF6788F8B93E22E1921A7 /* LoginModuleInput.swift in Sources */,
 				85DE84599B70A7C4900FE60F /* LoginModuleOutput.swift in Sources */,
 				A574350521776226006B4CAE /* EditProfileInteractorInput.swift in Sources */,
+				CE1E346B217E0804001B1477 /* Strings+BiometryQuickLaunch.swift in Sources */,
 				A50086162151237B00C47015 /* Data+Helpers.swift in Sources */,
 				DCF2945472E263853448156F /* LoginModule.swift in Sources */,
 				E454D06D1C3D8744B3F666F2 /* PinInputViewInput.swift in Sources */,
@@ -4292,6 +4359,7 @@
 				7D2290D15CEAF84FA8628C09 /* RegistrationViewController.swift in Sources */,
 				A5B78238215E33BA00EFD1A5 /* CryproAddressResolver.swift in Sources */,
 				CED822DC215B5C1500693B92 /* ErrorView.swift in Sources */,
+				CE1E346F217E0A40001B1477 /* Strings+PinQuickLaunch.swift in Sources */,
 				F91599534C9DC69FA45F1EF4 /* RegistrationPresenter.swift in Sources */,
 				A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */,
 				A56B4C7E215D00DC0017B337 /* EmptyView.swift in Sources */,
@@ -4323,6 +4391,7 @@
 				D10F92311EC6645E14E46422 /* PasswordEmailRecoveryModule.swift in Sources */,
 				A35080A95A411AAFFCADC2F4 /* PasswordRecoveryConfirmViewInput.swift in Sources */,
 				E4760D4F175190FCE277280C /* PasswordRecoveryConfirmViewOutput.swift in Sources */,
+				CE1E3485217E173B001B1477 /* Strings+Send.swift in Sources */,
 				A574351D21777383006B4CAE /* SessionsModule.swift in Sources */,
 				CE5FAFAB2152420D009E707E /* PasswordRecoveryConfirmFormValidator.swift in Sources */,
 				E25A0E75B3C836260DA96051 /* PasswordRecoveryConfirmViewController.swift in Sources */,
@@ -4439,6 +4508,7 @@
 				A57434FF21776226006B4CAE /* EditProfilePresenter.swift in Sources */,
 				D69842DA885486CC31EC62BD /* MainTabBarInteractor.swift in Sources */,
 				A6888E54A2AF18D001988E63 /* MainTabBarRouterInput.swift in Sources */,
+				CE1E3475217E0CCF001B1477 /* Strings+QuickLaunch.swift in Sources */,
 				2A54B35D5547E88D673E83CB /* MainTabBarRouter.swift in Sources */,
 				F9E1E2A5FDFCDE04A10EBF47 /* MainTabBarModuleInput.swift in Sources */,
 				1AB7CDBED5FDA6EC39631D91 /* MainTabBarModuleOutput.swift in Sources */,
@@ -4539,6 +4609,7 @@
 				A51CB5552158FF6300CDC80C /* AccountsLinker.swift in Sources */,
 				FD150ED3C6B8A12165E57D93 /* SettingsModule.swift in Sources */,
 				6C058C8AD6F82CA0A27040AC /* AccountsViewInput.swift in Sources */,
+				CE1E3489217E1AC1001B1477 /* Strings+QRScanner.swift in Sources */,
 				CE57C69B2165F83D00696FF7 /* AccountTableCell.swift in Sources */,
 				F4982C167CCC098B2C5C15BF /* AccountsViewOutput.swift in Sources */,
 				A51CB55821590F4700CDC80C /* TransactionTableViewCell.swift in Sources */,
@@ -4548,6 +4619,7 @@
 				CED822EA215BE09F00693B92 /* CurrencyFormatter.swift in Sources */,
 				976C69F50B9E785FE8122C16 /* AccountsPresenter.swift in Sources */,
 				AE3D99DB0E383E9F099380B0 /* AccountsInteractorInput.swift in Sources */,
+				CE1E347D217E126E001B1477 /* Strings+Exchange.swift in Sources */,
 				9E5BB8C19D08FA91F242EC06 /* AccountsInteractorOutput.swift in Sources */,
 				387049FD4CBF2A4D85926766 /* AccountsInteractor.swift in Sources */,
 				A574352121777383006B4CAE /* SessionsViewController.swift in Sources */,

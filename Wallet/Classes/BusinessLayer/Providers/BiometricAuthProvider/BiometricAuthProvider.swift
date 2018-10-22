@@ -26,9 +26,6 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
     private let errorParser: BiometricAuthErrorParserProtocol
     private let context = LAContext()
     
-    //FIXME: - localization
-    private let touchAuthenticationReason = "Authentication is needed to access your account"//.localized()
-    
     init(errorParser: BiometricAuthErrorParserProtocol) {
         self.errorParser = errorParser
     }
@@ -73,7 +70,7 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
         
         // show the authentication UI
         context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
-                               localizedReason: touchAuthenticationReason) {[weak self] (success, error) in
+                               localizedReason: Strings.Permission.biometryAuthentication) {[weak self] (success, error) in
             completion(success, self?.errorParser.errorMessageForLAErrorCode(error: error))
         }
     }

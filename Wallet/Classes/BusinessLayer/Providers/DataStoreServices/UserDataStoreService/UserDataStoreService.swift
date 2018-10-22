@@ -35,7 +35,19 @@ class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
     }
     
     func getCurrentUser() -> User {
-        return find().first!
+        
+        if let saved = find().first {
+            return saved
+        } else {
+            let user = User(id: "0",
+                            email: "email@email.com",
+                            phone: "",
+                            firstName: "Dmitrii",
+                            lastName: "Mushchinskii",
+                            photo: nil)
+            save(user)
+            return user
+        }
     }
     
 }

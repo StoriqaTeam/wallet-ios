@@ -21,7 +21,7 @@ struct Constants {
     }
     
     struct Errors {
-        static let userFriendly = "user_friendly_error".localized()
+        static let userFriendly = Strings.Error.userFriendly
     }
     
     struct NetworkAuth {

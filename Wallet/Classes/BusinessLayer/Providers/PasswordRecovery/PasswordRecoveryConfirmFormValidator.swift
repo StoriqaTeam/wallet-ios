@@ -23,8 +23,7 @@ class PasswordRecoveryConfirmFormValidator: PasswordRecoveryConfirmFormValidator
         let feildsNonEmpty = !newPassword.isEmpty && !passwordConfirm.isEmpty
     
         if feildsNonEmpty && newPassword != passwordConfirm {
-            //TODO: сообщение
-            return (false, "passwords_nonequeal".localized())
+            return (false, Strings.Error.passwordsNonEqual)
         } else {
             return (feildsNonEmpty, nil)
         }

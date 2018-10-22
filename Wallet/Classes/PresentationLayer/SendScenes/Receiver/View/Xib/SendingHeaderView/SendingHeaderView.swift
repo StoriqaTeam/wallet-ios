@@ -16,6 +16,8 @@ struct SendingHeaderData {
 
 class SendingHeaderView: LoadableFromXib {
     
+    typealias Localization = Strings.Send
+    
     // IBOutlets
     @IBOutlet private var sendingTitleLabel: UILabel!
     @IBOutlet private var amountLabel: UILabel!
@@ -57,7 +59,7 @@ class SendingHeaderView: LoadableFromXib {
 extension SendingHeaderView {
     
     private func configInterface() {
-        sendingTitleLabel.text = "sending".localized()
+        sendingTitleLabel.text = Localization.headerTitle
         currencyImageView.tintColor = .white
     }
     

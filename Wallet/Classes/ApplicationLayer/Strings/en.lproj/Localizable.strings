@@ -13,7 +13,7 @@
 "last_name" = "Last name";
 "password" = "Password";
 "repeat_password" = "Repeat password";
-"enter_amount" = "Enter amount";
+//"enter_amount" = "Enter amount";
 
 //Buttons
 "get_started" = "Get started";
@@ -23,20 +23,20 @@
 "try_again" = "Try again";
 "confirm_new_password" = "Confirm new password";
 "reset_password" = "Reset password";
-"set_up_pin" = "Set up PIN code";
-"use_touchId" = "Use Touch ID";
-"use_faceId" = "Use Face ID";
+//"set_up_pin" = "Set up PIN code";
+//"use_touchId" = "Use Touch ID";
+//"use_faceId" = "Use Face ID";
 "register" = "Register";
 "sign_in" = "Sign in";
 "add_new" = "Add new";
 "ok" = "Ok";
-"set_up_quick_launch" = "Set up quick launch";
-"do_not_use" = "Do not use";
-"scan_QR" = "Scan QR-code";
-"next" = "Next";
-"send" = "Send";
+//"set_up_quick_launch" = "Set up quick launch";
+//"do_not_use" = "Do not use";
+//"scan_QR" = "Scan QR-code";
+//"next" = "Next";
+//"send" = "Send";
 "confirm_transaction" = "Confirm transaction";
-"make_photo" = "Make a photo";
+//"make_photo" = "Make a photo";
 "from_gallery" = "Take from gallery";
 "cancel" = "Cancel";
 "sure" = "Yepp sure!";
@@ -49,12 +49,12 @@
 "enter_pin" = "Enter 4-digit PIN";
 "confirm_pin" = "Confirm PIN";
 "my_wallet" = "My wallet";
-"receiver" = "Receiver";
-"sending" = "SENDING";
-"send_to" = "SEND TO";
-"receiver_input_placeholder" = "Wallet address or phone number";
-"receiver_currency" = "RECEIVER CURRENCY";
-"amount" = "AMOUNT";
+//"receiver" = "Receiver";
+//"sending" = "SENDING";
+//"send_to" = "SEND TO";
+//"receiver_input_placeholder" = "Wallet address or phone number";
+//"receiver_currency" = "RECEIVER CURRENCY";
+//"amount" = "AMOUNT";
 
 
 //Labels
@@ -62,18 +62,18 @@
 "password_recovery" = "Password recovery";
 "psw_recovery_confirm_subtitle" = "Create new password and confirm it.";
 "email_for_psw_recovery" = "Enter email address where new password recovering instructions will be sent to.";
-"quick_launch_title" = "Wanna use quick launch?";
-"quick_launch_subtitle" = "Choose the way to confirm your identity";
-"pin_quick_launch_title" = "Set up PIN code?";
-"touchId_quick_launch_title" = "Set up fingerprint launch?";
-"faceId_quick_launch_title" = "Set up Face ID launch?";
+//"quick_launch_title" = "Wanna use quick launch?";
+//"quick_launch_subtitle" = "Choose the way to confirm your identity";
+//"pin_quick_launch_title" = "Set up PIN code?";
+//"touchId_quick_launch_title" = "Set up fingerprint launch?";
+//"faceId_quick_launch_title" = "Set up Face ID launch?";
 "have_account" = "Have an account?";
 "have_no_account" = "Haven’t got account?";
 "sign_in_social" = "Sign in via social account";
 "sign_up_social" = "Sign up via social account";
 
 //Messages
-"passwords_nonequeal" = "Passwords are not equeal";
+//"passwords_nonequeal" = "Passwords are not equeal";
 "email_sent" = "Email sent successfully";
 "check_email" = "Check the mail! We sent instruction how to confirm your account to your email address ";
 "smth_went_wrong" = "Oops! Something gone wrong!";
@@ -83,16 +83,16 @@
 "you_are_going_to_send" = "You are going to send";
 "to" = "to";
 "check_mail_password_recovery" = "Check your mailbox and follow the link to recover your password";
-"change_photo" = "Change profile photo";
+//"change_photo" = "Change profile photo";
 "sign_out_title" = "Sure to sign out?";
 "sign_out_text" = "After signing out you won’t be able to receive notifications from Wallet app";
-"qr_code_hint" = "Place QR-code inside white frame. Try not to shake your phone.";
+//"qr_code_hint" = "Place QR-code inside white frame. Try not to shake your phone.";
 
 
 //Error constants
 "server_response_error" = "Server response error";
 "unknown_error" = "Unknown error";
-"user_friendly_error" = "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!";
+//"user_friendly_error" = "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!";
 "pins_not_match_alert" = "Codes do not match. Try again.";
-"qr_code_currency_does_not_match" = "Currency of scanned address doesn't match previously selected receiver currency.";
+//"qr_code_currency_does_not_match" = "Currency of scanned address doesn't match previously selected receiver currency.";
 

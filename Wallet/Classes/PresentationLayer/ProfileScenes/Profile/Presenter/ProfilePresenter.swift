@@ -23,6 +23,8 @@ class ProfilePresenter: NSObject {
 
 extension ProfilePresenter: ProfileViewOutput {
 
+    typealias Localization = Strings.Profile
+    
     func viewIsReady() {
         let user = interactor.getCurrentUser()
         let photo = user.photo ?? #imageLiteral(resourceName: "profilePhotoPlaceholder")
@@ -65,16 +67,16 @@ extension ProfilePresenter: ProfileViewOutput {
     }
     
     func photoTapped() {
-        let alert = UIAlertController(title: "change_photo".localized(),
+        let alert = UIAlertController(title: Localization.changePhotoTitle,
                                       message: nil,
                                       preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: "make_photo".localized(), style: .default) { _ in
+        let cameraAction = UIAlertAction(title: Localization.makePhotoButton, style: .default) { _ in
             self.openCamera()
         }
-        let gallaryAction = UIAlertAction(title: "from_gallery".localized(), style: .default) { _ in
+        let gallaryAction = UIAlertAction(title: Localization.fromGalleryButton, style: .default) { _ in
             self.openGallary()
         }
-        let cancelAction = UIAlertAction(title: "cancel".localized(), style: .cancel)
+        let cancelAction = UIAlertAction(title: Localization.cancelButton, style: .cancel)
         
         // Add the actions
         alert.addAction(cameraAction)

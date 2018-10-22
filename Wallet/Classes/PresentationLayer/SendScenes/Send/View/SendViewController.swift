@@ -10,6 +10,8 @@ import UIKit
 
 class SendViewController: UIViewController {
     
+    typealias Localization = Strings.Send
+    
     var output: SendViewOutput!
     
     // MARK: IBOutlets
@@ -183,9 +185,9 @@ extension SendViewController {
         receiverCurrencyTitleLabel.textColor = Theme.Text.Color.captionGrey
         amountTitleLabel.textColor = Theme.Text.Color.captionGrey
         
-        amountTitleLabel.text = "amount".localized()
-        receiverCurrencyTitleLabel.text = "receiver_currency".localized()
-        amountTextField.placeholder = "enter_amount".localized()
+        amountTitleLabel.text = Localization.amountTitle
+        receiverCurrencyTitleLabel.text = Localization.receiverCurrencyTitle
+        amountTextField.placeholder = Localization.amountPlaceholder
     }
     
     private func configureGradientView() {

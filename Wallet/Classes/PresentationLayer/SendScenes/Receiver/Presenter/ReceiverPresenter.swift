@@ -11,6 +11,8 @@ import UIKit
 
 class ReceiverPresenter {
     
+    typealias Localization = Strings.Receiver
+    
     weak var view: ReceiverViewInput!
     weak var output: ReceiverModuleOutput?
     var interactor: ReceiverInteractorInput!
@@ -123,7 +125,7 @@ extension ReceiverPresenter: ReceiverInteractorOutput {
         // TODO: empty contact list message
         if sorted.isEmpty {
             updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
-                        placeholderText: "Contact list is empty")
+                        placeholderText: Localizations.emptyListPlaceholder)
         } else {
             contactsDataManager.updateContacts(sorted)
         }
@@ -182,7 +184,7 @@ extension ReceiverPresenter: QRScannerDelegate {
 extension ReceiverPresenter {
     private func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: "receiver".localized())
+        view.viewController.setDarkNavigationBar(title: Localizations.screenTitle)
     }
     
     private func getStringFrom(amount: Decimal?, currency: Currency) -> String {
@@ -211,7 +213,7 @@ extension ReceiverPresenter {
         
         if filteredSections.isEmpty {
             updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
-                        placeholderText: "There is no such number in system.\nUse another way to send funds.")
+                        placeholderText: Localizations.noSuchNumberPlaceholder)
         } else {
             contactsDataManager.updateContacts(filteredSections)
         }

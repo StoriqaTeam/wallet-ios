@@ -11,6 +11,8 @@ import UIKit
 
 class BiometryQuickLaunchViewController: BaseQuickLaunchViewController {
 
+    typealias Localization = Strings.BiometryQuickLaunch
+    
     var output: BiometryQuickLaunchViewOutput!
     
     // MARK: Life cycle
@@ -45,12 +47,12 @@ extension BiometryQuickLaunchViewController: BiometryQuickLaunchViewInput {
         
         switch biometryType {
         case .touchId:
-            title = "touchId_quick_launch_title".localized()
-            buttonTitle = "use_touchId".localized()
+            title = Localization.touchIdTitle
+            buttonTitle = Localization.touchIdButton
             image = #imageLiteral(resourceName: "touchIdQuickLaunch")
         case .faceId:
-            title = "faceId_quick_launch_title".localized()
-            buttonTitle = "use_faceId".localized()
+            title = Localization.touchIdTitle
+            buttonTitle = Localization.faceIdButton
             image = #imageLiteral(resourceName: "faceIdQuickLaunch")
         default:
             fatalError("BiometryQuickLaunch view must not be shown in case of no biometryType")
