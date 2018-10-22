@@ -316,6 +316,9 @@
 		A5B78235215E2F3800EFD1A5 /* AddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */; };
 		A5B78238215E33BA00EFD1A5 /* CryproAddressResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78237215E33BA00EFD1A5 /* CryproAddressResolver.swift */; };
 		A5C12E48217B672300A7D68C /* StoriqaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E47217B672300A7D68C /* StoriqaLoader.swift */; };
+		A5C12E4B217DE8CC00A7D68C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E4A217DE8CC00A7D68C /* Strings.swift */; };
+		A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E5F217DF65300A7D68C /* MyWallet.strings */; };
+		A5C12E67217DFEBA00A7D68C /* Strings+MyWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E66217DFEBA00A7D68C /* Strings+MyWallet.swift */; };
 		A5D5BB7C217B57D4008BEB74 /* API+Authorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */; };
 		A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */; };
 		A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */; };
@@ -886,6 +889,10 @@
 		A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressValidator.swift; sourceTree = "<group>"; };
 		A5B78237215E33BA00EFD1A5 /* CryproAddressResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryproAddressResolver.swift; sourceTree = "<group>"; };
 		A5C12E47217B672300A7D68C /* StoriqaLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriqaLoader.swift; sourceTree = "<group>"; };
+		A5C12E4A217DE8CC00A7D68C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		A5C12E53217DF38C00A7D68C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A5C12E5E217DF65300A7D68C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MyWallet.strings; sourceTree = "<group>"; };
+		A5C12E66217DFEBA00A7D68C /* Strings+MyWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+MyWallet.swift"; sourceTree = "<group>"; };
 		A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Authorize.swift"; sourceTree = "<group>"; };
 		A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserNetworkProvider.swift; sourceTree = "<group>"; };
 		A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyWallet.storyboard; sourceTree = "<group>"; };
@@ -970,7 +977,6 @@
 		CE526C2E212465A800A2EED2 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE526C31212465A800A2EED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE526C3A212465A900A2EED2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CE526C3D212465A900A2EED2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE526C3F212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CE526C67212471CE00A2EED2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -1971,6 +1977,8 @@
 				DE00EACD2483C0AC3099769D /* Interactor */,
 				7628476557E1846695DEF456 /* Router */,
 				59754B3A3DA7D2142C620D2B /* Module */,
+				A5C12E5F217DF65300A7D68C /* MyWallet.strings */,
+				A5C12E66217DFEBA00A7D68C /* Strings+MyWallet.swift */,
 			);
 			path = MyWallet;
 			sourceTree = "<group>";
@@ -2750,6 +2758,7 @@
 		A58EE3B3214FFD5D0096C155 /* ApplicationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				A5C12E49217DE81600A7D68C /* Strings */,
 				A5743530217880DF006B4CAE /* SessionsConfigurator */,
 				A5A20BB5215E77CB00001340 /* CrashAnaliticConfigurator */,
 				A5F59AA52162194B005F1765 /* TestConfigurator */,
@@ -2766,7 +2775,6 @@
 				CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */,
 				CE526C3A212465A900A2EED2 /* Assets.xcassets */,
 				CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */,
-				CE185496214BE558009D1360 /* Localizable.strings */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -2938,6 +2946,15 @@
 				A5C12E47217B672300A7D68C /* StoriqaLoader.swift */,
 			);
 			path = StoriqaLoader;
+			sourceTree = "<group>";
+		};
+		A5C12E49217DE81600A7D68C /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				CE185496214BE558009D1360 /* Localizable.strings */,
+				A5C12E4A217DE8CC00A7D68C /* Strings.swift */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 		A5D5BB7D217B598B008BEB74 /* CurrentUserNetworkProvider */ = {
@@ -4040,6 +4057,7 @@
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
 				A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */,
 				A574353921789BB3006B4CAE /* SessionCell.xib in Resources */,
+				A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */,
 				A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */,
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
 				A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */,
@@ -4266,6 +4284,7 @@
 				DAD66F6925304312D772B826 /* FirstLaunchModule.swift in Sources */,
 				4B42C53D0968DE8E1FFE0BAE /* RegistrationViewInput.swift in Sources */,
 				A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */,
+				A5C12E4B217DE8CC00A7D68C /* Strings.swift in Sources */,
 				A574352C217775AE006B4CAE /* RealmSession.swift in Sources */,
 				A5B7820D215E236F00EFD1A5 /* Network.swift in Sources */,
 				A51CB5472158E0DB00CDC80C /* TransactionsDataManager.swift in Sources */,
@@ -4454,6 +4473,7 @@
 				3CF59DC5D81EA7FC56AE2D5E /* SendInteractor.swift in Sources */,
 				7F478B40359F79AE643EF8EC /* SendRouterInput.swift in Sources */,
 				A56ED384216CD70D009FA58B /* TransactionDetailsInteractor.swift in Sources */,
+				A5C12E67217DFEBA00A7D68C /* Strings+MyWallet.swift in Sources */,
 				91222D27E9ACA0B31B779533 /* SendRouter.swift in Sources */,
 				CEFC9C9E21590D8400962356 /* PopUpPasswordEmailRecoverySuccessVM.swift in Sources */,
 				09A1CEBCE8C1B2CD243902EC /* SendModuleInput.swift in Sources */,
@@ -4655,6 +4675,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A5C12E5F217DF65300A7D68C /* MyWallet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5C12E5E217DF65300A7D68C /* en */,
+			);
+			name = MyWallet.strings;
+			sourceTree = "<group>";
+		};
 		CE185496214BE558009D1360 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4666,7 +4694,7 @@
 		CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CE526C3D212465A900A2EED2 /* Base */,
+				A5C12E53217DF38C00A7D68C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -4718,6 +4746,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -4778,6 +4807,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
