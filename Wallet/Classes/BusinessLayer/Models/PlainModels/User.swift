@@ -39,7 +39,10 @@ extension User: RealmMappable {
     }
     
     init?(json: JSON) {
-        guard let id = json["id"].string,
+        // FIXME: stub! remove!
+        let id = "60"
+        
+        guard //let id = json["id"].string,
             let email = json["email"].string,
             let firstName = json["firstName"].string,
             let lastName = json["lastName"].string else {

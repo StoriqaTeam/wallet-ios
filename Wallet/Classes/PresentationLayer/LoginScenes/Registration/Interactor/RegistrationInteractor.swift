@@ -22,14 +22,14 @@ class RegistrationInteractor {
     
     private let socialViewVM: SocialNetworkAuthViewModel
     private let formValidationProvider: RegistrationFormValidatonProviderProtocol
-    private let reginstrationNetworkProvider: RegistrationNetworkProviderProtocol
+    private let registrationNetworkProvider: RegistrationNetworkProviderProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          formValidationProvider: RegistrationFormValidatonProviderProtocol,
-         reginstrationNetworkProvider: RegistrationNetworkProviderProtocol) {
+         registrationNetworkProvider: RegistrationNetworkProviderProtocol) {
         self.socialViewVM = socialViewVM
         self.formValidationProvider = formValidationProvider
-        self.reginstrationNetworkProvider = reginstrationNetworkProvider
+        self.registrationNetworkProvider = registrationNetworkProvider
     }
     
 }
@@ -55,7 +55,7 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         // TODO: - implement new provider
         log.warn("implement registration provider")
         
-        reginstrationNetworkProvider.register(
+        registrationNetworkProvider.register(
             email: registrationData.email,
             password: registrationData.password,
             firstName: registrationData.firstName,
