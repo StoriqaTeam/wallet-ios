@@ -1,23 +1,23 @@
- //
- //  LoginNetworkProvider.swift
- //  Wallet
- //
- //  Created by Storiqa on 19/10/2018.
- //  Copyright © 2018 Storiqa. All rights reserved.
- //
- 
- import Foundation
- 
- 
- protocol LoginNetworkProviderProtocol: class {
+//
+//  LoginNetworkProvider.swift
+//  Wallet
+//
+//  Created by Storiqa on 19/10/2018.
+//  Copyright © 2018 Storiqa. All rights reserved.
+//
+
+import Foundation
+
+
+protocol LoginNetworkProviderProtocol: class {
     func loginUser(email: String,
                    password: String,
                    queue: DispatchQueue,
                    completion: @escaping (Result<String>) -> Void)
- }
- 
- 
- class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
+}
+
+
+class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
     func loginUser(email: String,
                    password: String,
                    queue: DispatchQueue,
@@ -50,10 +50,10 @@
             }
         }
     }
- }
- 
- 
- enum LoginProviderError: LocalizedError, Error {
+}
+
+
+enum LoginProviderError: LocalizedError, Error {
     case badRequest
     case unauthorized
     case unknownError
@@ -78,4 +78,4 @@
             return "Unknown error"
         }
     }
- }
+}

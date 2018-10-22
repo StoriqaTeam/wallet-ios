@@ -33,8 +33,6 @@ extension SettingsRouter: SettingsRouterInput {
         // TODO: change password module
     }
     
-    
-    
     func showLogin() {
         LoginModule.create().present()
     }

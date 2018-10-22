@@ -36,5 +36,3 @@ extension SessionTableViewCell {
         return dateFormatter
     }
 }
-
-

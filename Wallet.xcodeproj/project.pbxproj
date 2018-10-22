@@ -811,9 +811,9 @@
 		A56ED376216CA429009FA58B /* TransactionDescriptionVeiw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDescriptionVeiw.swift; sourceTree = "<group>"; };
 		A56ED378216CAE27009FA58B /* TransactionDescriptionContactView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDescriptionContactView.xib; sourceTree = "<group>"; };
 		A56ED37A216CAE37009FA58B /* TransactionDescriptionContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDescriptionContactView.swift; sourceTree = "<group>"; };
-		A56ED38D216CD7E2009FA58B /* TransactionDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailsPresenter.swift; path = Wallet/Classes/PresentationLayer/TransactionDetails/Presenter/TransactionDetailsPresenter.swift; sourceTree = SOURCE_ROOT; };
-		A56ED390216CD825009FA58B /* TransactionDetailsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailsRouter.swift; path = Wallet/Classes/PresentationLayer/TransactionDetails/Router/TransactionDetailsRouter.swift; sourceTree = SOURCE_ROOT; };
-		A56ED391216CD825009FA58B /* TransactionDetailsRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailsRouterInput.swift; path = Wallet/Classes/PresentationLayer/TransactionDetails/Router/TransactionDetailsRouterInput.swift; sourceTree = SOURCE_ROOT; };
+		A56ED38D216CD7E2009FA58B /* TransactionDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsPresenter.swift; sourceTree = "<group>"; };
+		A56ED390216CD825009FA58B /* TransactionDetailsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsRouter.swift; sourceTree = "<group>"; };
+		A56ED391216CD825009FA58B /* TransactionDetailsRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsRouterInput.swift; sourceTree = "<group>"; };
 		A56ED396216CEF12009FA58B /* TransactionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMapper.swift; sourceTree = "<group>"; };
 		A56ED399216CEF36009FA58B /* TransactionDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDisplayable.swift; sourceTree = "<group>"; };
 		A56ED39B216CF060009FA58B /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
@@ -2210,17 +2210,18 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		A50086022150C48B00C47015 /* Biometric */ = {
+		A50086022150C48B00C47015 /* BiometricAuthProvider */ = {
 			isa = PBXGroup;
 			children = (
 				A58EE3C32150215B0096C155 /* BiometricAuthProvider.swift */,
 			);
-			path = Biometric;
+			path = BiometricAuthProvider;
 			sourceTree = "<group>";
 		};
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A57434E021774B6A006B4CAE /* ContactsNetworkProvider */,
 				A5D5BB7D217B598B008BEB74 /* CurrentUserNetworkProvider */,
 				CE1E3459217B2119001B1477 /* RegistrationNetworkProvider */,
 				A5743541217A2D0E006B4CAE /* LoginNetworkProvider */,
@@ -2229,14 +2230,6 @@
 				A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		A500860E215108B200C47015 /* KeychainProvider */ = {
-			isa = PBXGroup;
-			children = (
-				A500860F2151166100C47015 /* KeychainProvider.swift */,
-			);
-			name = KeychainProvider;
 			sourceTree = "<group>";
 		};
 		A50086172151241300C47015 /* DefaultsProvider */ = {
@@ -2730,25 +2723,16 @@
 			isa = PBXGroup;
 			children = (
 				CE526C6F21247F8500A2EED2 /* UIComponents */,
-				CBDC562DBB37E87E10321A50 /* Login */,
-				E298913915285D81F5C290ED /* PinInput */,
+				1414E86993CBDD87B873942D /* MainTabBar */,
+				CE1E345C217DC810001B1477 /* LoginScenes */,
+				CE1E345E217DC863001B1477 /* MyWalletScenes */,
+				CE1E345D217DC83C001B1477 /* SendScenes */,
+				CE1E345F217DC8A8001B1477 /* ExchangeScenes */,
+				CE1E3461217DC8F9001B1477 /* DepositScenes */,
+				CE1E3462217DC921001B1477 /* ProfileScenes */,
 				1F5CC2762745A1888809B71C /* FirstLaunch */,
-				0470919340405B88C0254B63 /* Registration */,
-				59A031E8BD43381C63F480F4 /* PasswordEmailRecovery */,
-				CF3351575A07B8E3876198EB /* PasswordRecoveryConfirm */,
 				7C3BA4968353AE0FB00EA5A2 /* PopUp */,
-				D1A05278CDB8B0ADE5A9E419 /* QuickLaunch */,
-				145754F06027B916A9383527 /* PinQuickLaunch */,
-				E463DB1BBB09AD64D8E037EB /* BiometryQuickLaunch */,
-				74E1EE79A36215B0DCA248BA /* PinSetup */,
-				A5E8D9AD2153ED6400AC6A7E /* Main */,
-				8332EE2317AA4878D16647FC /* Receiver */,
-				08EAE368F63BFA16E28C2905 /* QRScanner */,
-				37A40EFEFDB1490B20F427A8 /* PaymentFee */,
-				316941A164C8DCB4F12F4F83 /* TransactionDetails */,
-				A57434E921776222006B4CAE /* EditProfile */,
-				6704FB5590F7ABAD4F91D9C6 /* ConnectPhone */,
-				501682A62E4DE05D8FB80374 /* TransactionFilterModule */,
+				CE1E3460217DC8DD001B1477 /* QuickLaunchScenes */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -2815,7 +2799,6 @@
 				A574353C2178AFFF006B4CAE /* SessionSorter */,
 				A57434E621774BA0006B4CAE /* ContactsAddressLinker */,
 				A57434E321774B84006B4CAE /* ContactsCacheUpdater */,
-				A57434E021774B6A006B4CAE /* ContactsNetworkProvider */,
 				A57434D52176412D006B4CAE /* TransactionsDateFilter */,
 				A56ED3A7216E3204009FA58B /* ContactsProvider */,
 				A56ED3A4216E2D1A009FA58B /* TransactionResolvers */,
@@ -2828,12 +2811,12 @@
 				A55A197021553D3700330EB8 /* AccountsProvider */,
 				CE5FAFA52152323F009E707E /* PasswordRecovery */,
 				A50086172151241300C47015 /* DefaultsProvider */,
-				A500860E215108B200C47015 /* KeychainProvider */,
-				A50086022150C48B00C47015 /* Biometric */,
+				CE1E3463217DCAB9001B1477 /* KeychainProvider */,
+				A50086022150C48B00C47015 /* BiometricAuthProvider */,
 				A50086062150F94300C47015 /* Networking */,
 				CE5FAF932150ED48009E707E /* PinValidation */,
 				CE5FAF9C21512965009E707E /* RegistrationFormValidaton */,
-				CE5FAFB0215286B1009E707E /* QuickLaunch */,
+				CE5FAFB0215286B1009E707E /* QuickLaunchProvider */,
 				CE4401A32174DCA900F7C8D8 /* ContactsSorter */,
 				CEFC9CAC215A13EF00962356 /* DeviceContactsFetcher */,
 				CEFC9CB4215A59B200962356 /* SendTransactionProvider */,
@@ -2963,23 +2946,6 @@
 				A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */,
 			);
 			path = CurrentUserNetworkProvider;
-			sourceTree = "<group>";
-		};
-		A5E8D9AD2153ED6400AC6A7E /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				5C77DE802363AA80F9795E84 /* Profile */,
-				03DEA8D9D07CEF8B40D2423D /* Accounts */,
-				1414E86993CBDD87B873942D /* MainTabBar */,
-				79A0299B8552AE1BB7CAC938 /* MyWallet */,
-				2A360CCC6346A87184A65AFE /* Send */,
-				35A0221638484423AA99FE5F /* Exchange */,
-				DF8952FA5870E8F52C704535 /* Deposit */,
-				824A8F0F01793996DDA8CE1B /* Settings */,
-				0F885B3024850DB0F282B24E /* Transactions */,
-				A57435092177737E006B4CAE /* Sessions */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		A5EACC1421750AD2007A38A6 /* ContactsDataStoreService */ = {
@@ -3254,6 +3220,88 @@
 			path = RegistrationNetworkProvider;
 			sourceTree = "<group>";
 		};
+		CE1E345C217DC810001B1477 /* LoginScenes */ = {
+			isa = PBXGroup;
+			children = (
+				CBDC562DBB37E87E10321A50 /* Login */,
+				E298913915285D81F5C290ED /* PinInput */,
+				0470919340405B88C0254B63 /* Registration */,
+				59A031E8BD43381C63F480F4 /* PasswordEmailRecovery */,
+				CF3351575A07B8E3876198EB /* PasswordRecoveryConfirm */,
+				74E1EE79A36215B0DCA248BA /* PinSetup */,
+			);
+			path = LoginScenes;
+			sourceTree = "<group>";
+		};
+		CE1E345D217DC83C001B1477 /* SendScenes */ = {
+			isa = PBXGroup;
+			children = (
+				2A360CCC6346A87184A65AFE /* Send */,
+				08EAE368F63BFA16E28C2905 /* QRScanner */,
+				8332EE2317AA4878D16647FC /* Receiver */,
+				37A40EFEFDB1490B20F427A8 /* PaymentFee */,
+			);
+			path = SendScenes;
+			sourceTree = "<group>";
+		};
+		CE1E345E217DC863001B1477 /* MyWalletScenes */ = {
+			isa = PBXGroup;
+			children = (
+				501682A62E4DE05D8FB80374 /* TransactionFilterModule */,
+				316941A164C8DCB4F12F4F83 /* TransactionDetails */,
+				0F885B3024850DB0F282B24E /* Transactions */,
+				79A0299B8552AE1BB7CAC938 /* MyWallet */,
+				03DEA8D9D07CEF8B40D2423D /* Accounts */,
+			);
+			path = MyWalletScenes;
+			sourceTree = "<group>";
+		};
+		CE1E345F217DC8A8001B1477 /* ExchangeScenes */ = {
+			isa = PBXGroup;
+			children = (
+				35A0221638484423AA99FE5F /* Exchange */,
+			);
+			path = ExchangeScenes;
+			sourceTree = "<group>";
+		};
+		CE1E3460217DC8DD001B1477 /* QuickLaunchScenes */ = {
+			isa = PBXGroup;
+			children = (
+				D1A05278CDB8B0ADE5A9E419 /* QuickLaunch */,
+				145754F06027B916A9383527 /* PinQuickLaunch */,
+				E463DB1BBB09AD64D8E037EB /* BiometryQuickLaunch */,
+			);
+			path = QuickLaunchScenes;
+			sourceTree = "<group>";
+		};
+		CE1E3461217DC8F9001B1477 /* DepositScenes */ = {
+			isa = PBXGroup;
+			children = (
+				DF8952FA5870E8F52C704535 /* Deposit */,
+			);
+			path = DepositScenes;
+			sourceTree = "<group>";
+		};
+		CE1E3462217DC921001B1477 /* ProfileScenes */ = {
+			isa = PBXGroup;
+			children = (
+				A57435092177737E006B4CAE /* Sessions */,
+				824A8F0F01793996DDA8CE1B /* Settings */,
+				5C77DE802363AA80F9795E84 /* Profile */,
+				A57434E921776222006B4CAE /* EditProfile */,
+				6704FB5590F7ABAD4F91D9C6 /* ConnectPhone */,
+			);
+			path = ProfileScenes;
+			sourceTree = "<group>";
+		};
+		CE1E3463217DCAB9001B1477 /* KeychainProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A500860F2151166100C47015 /* KeychainProvider.swift */,
+			);
+			path = KeychainProvider;
+			sourceTree = "<group>";
+		};
 		CE23D321215CB9DB0016FEBD /* CustomSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -3396,12 +3444,12 @@
 			path = PasswordRecovery;
 			sourceTree = "<group>";
 		};
-		CE5FAFB0215286B1009E707E /* QuickLaunch */ = {
+		CE5FAFB0215286B1009E707E /* QuickLaunchProvider */ = {
 			isa = PBXGroup;
 			children = (
 				CE5FAFB2215286D8009E707E /* QuickLaunchProvider.swift */,
 			);
-			path = QuickLaunch;
+			path = QuickLaunchProvider;
 			sourceTree = "<group>";
 		};
 		CE8CC9902167A8F200EA9EED /* AccountDisplayer */ = {
