@@ -315,6 +315,9 @@
 		A5B78233215E2A7400EFD1A5 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78232215E2A7400EFD1A5 /* WalletTests.swift */; };
 		A5B78235215E2F3800EFD1A5 /* AddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */; };
 		A5B78238215E33BA00EFD1A5 /* CryproAddressResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78237215E33BA00EFD1A5 /* CryproAddressResolver.swift */; };
+		A5C12E48217B672300A7D68C /* StoriqaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E47217B672300A7D68C /* StoriqaLoader.swift */; };
+		A5D5BB7C217B57D4008BEB74 /* API+Authorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */; };
+		A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */; };
 		A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */; };
 		A5E8D9A62153EB3900AC6A7E /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A52153EB3900AC6A7E /* Send.storyboard */; };
 		A5E8D9A82153EBD600AC6A7E /* Exchange.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A72153EBD600AC6A7E /* Exchange.storyboard */; };
@@ -882,6 +885,9 @@
 		A5B78232215E2A7400EFD1A5 /* WalletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
 		A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressValidator.swift; sourceTree = "<group>"; };
 		A5B78237215E33BA00EFD1A5 /* CryproAddressResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryproAddressResolver.swift; sourceTree = "<group>"; };
+		A5C12E47217B672300A7D68C /* StoriqaLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriqaLoader.swift; sourceTree = "<group>"; };
+		A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Authorize.swift"; sourceTree = "<group>"; };
+		A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserNetworkProvider.swift; sourceTree = "<group>"; };
 		A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyWallet.storyboard; sourceTree = "<group>"; };
 		A5E8D9A52153EB3900AC6A7E /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
 		A5E8D9A72153EBD600AC6A7E /* Exchange.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Exchange.storyboard; sourceTree = "<group>"; };
@@ -2215,10 +2221,12 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A5D5BB7D217B598B008BEB74 /* CurrentUserNetworkProvider */,
 				CE1E3459217B2119001B1477 /* RegistrationNetworkProvider */,
 				A5743541217A2D0E006B4CAE /* LoginNetworkProvider */,
 				A50086082150F95B00C47015 /* API.swift */,
 				A574353F217A1B09006B4CAE /* API+Unauthorize.swift */,
+				A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -2941,6 +2949,22 @@
 			path = AddressResolver;
 			sourceTree = "<group>";
 		};
+		A5C12E46217B671400A7D68C /* StoriqaLoader */ = {
+			isa = PBXGroup;
+			children = (
+				A5C12E47217B672300A7D68C /* StoriqaLoader.swift */,
+			);
+			path = StoriqaLoader;
+			sourceTree = "<group>";
+		};
+		A5D5BB7D217B598B008BEB74 /* CurrentUserNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */,
+			);
+			path = CurrentUserNetworkProvider;
+			sourceTree = "<group>";
+		};
 		A5E8D9AD2153ED6400AC6A7E /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -3292,6 +3316,7 @@
 		CE526C6F21247F8500A2EED2 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A5C12E46217B671400A7D68C /* StoriqaLoader */,
 				A51CB55B215942DA00CDC80C /* Xibs */,
 				CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */,
 				CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */,
@@ -4141,6 +4166,7 @@
 				DFDE5A674BD838BB7BB04166 /* LoginInteractorInput.swift in Sources */,
 				CEFC9C9C21590D3E00962356 /* PopUpSocialRegistrationFailedVM.swift in Sources */,
 				DCCD990699B49FC6A3B47B52 /* LoginInteractorOutput.swift in Sources */,
+				A5D5BB7C217B57D4008BEB74 /* API+Authorize.swift in Sources */,
 				2FEA8584021E0A7A53B742A5 /* LoginInteractor.swift in Sources */,
 				DA1A1B4454CF99D98B79BD28 /* LoginRouterInput.swift in Sources */,
 				A57434E821774BA0006B4CAE /* ContactsAddressLinker.swift in Sources */,
@@ -4385,6 +4411,7 @@
 				09A1CEBCE8C1B2CD243902EC /* SendModuleInput.swift in Sources */,
 				342AB1F25E5B5D468E2F7687 /* SendModuleOutput.swift in Sources */,
 				A56ED39A216CEF36009FA58B /* TransactionDisplayable.swift in Sources */,
+				A5C12E48217B672300A7D68C /* StoriqaLoader.swift in Sources */,
 				A56ED382216CD709009FA58B /* TransactionDetailsInteractorInput.swift in Sources */,
 				225C1777C92B40C17A58275B /* SendModule.swift in Sources */,
 				D029C2BDAA326AE7EB885D7C /* ExchangeViewInput.swift in Sources */,
@@ -4414,6 +4441,7 @@
 				3000F328272A309F1310DA78 /* DepositInteractorInput.swift in Sources */,
 				70D91778B8FFB807C57A87E1 /* DepositInteractorOutput.swift in Sources */,
 				21015C726AD801A30F41DE91 /* DepositInteractor.swift in Sources */,
+				A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */,
 				CE4401A02174AF4400F7C8D8 /* ContactDisplayable.swift in Sources */,
 				679C8567C9F7F0A5585CAC4D /* DepositRouterInput.swift in Sources */,
 				1499BCCDEF796FDA812A7DBC /* DepositRouter.swift in Sources */,
