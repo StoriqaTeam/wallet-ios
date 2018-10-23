@@ -319,6 +319,9 @@
 		A5C12E4B217DE8CC00A7D68C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E4A217DE8CC00A7D68C /* Strings.swift */; };
 		A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E5F217DF65300A7D68C /* MyWallet.strings */; };
 		A5C12E67217DFEBA00A7D68C /* Strings+MyWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E66217DFEBA00A7D68C /* Strings+MyWallet.swift */; };
+		A5C12E7F217F009D00A7D68C /* AuthTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E7E217F009D00A7D68C /* AuthTokenProvider.swift */; };
+		A5C12E82217F211200A7D68C /* JwtTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E81217F211200A7D68C /* JwtTokenParser.swift */; };
+		A5C12E84217F261C00A7D68C /* JwtParcerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */; };
 		A5D5BB7C217B57D4008BEB74 /* API+Authorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */; };
 		A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */; };
 		A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */; };
@@ -893,6 +896,9 @@
 		A5C12E53217DF38C00A7D68C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5C12E5E217DF65300A7D68C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MyWallet.strings; sourceTree = "<group>"; };
 		A5C12E66217DFEBA00A7D68C /* Strings+MyWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+MyWallet.swift"; sourceTree = "<group>"; };
+		A5C12E7E217F009D00A7D68C /* AuthTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenProvider.swift; sourceTree = "<group>"; };
+		A5C12E81217F211200A7D68C /* JwtTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtTokenParser.swift; sourceTree = "<group>"; };
+		A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtParcerTests.swift; sourceTree = "<group>"; };
 		A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Authorize.swift"; sourceTree = "<group>"; };
 		A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserNetworkProvider.swift; sourceTree = "<group>"; };
 		A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyWallet.storyboard; sourceTree = "<group>"; };
@@ -2804,6 +2810,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A5C12E7D217F007F00A7D68C /* AuthTokenProvider */,
 				A574353C2178AFFF006B4CAE /* SessionSorter */,
 				A57434E621774BA0006B4CAE /* ContactsAddressLinker */,
 				A57434E321774B84006B4CAE /* ContactsCacheUpdater */,
@@ -2927,6 +2934,7 @@
 				A5B78234215E2F3800EFD1A5 /* AddressValidator.swift */,
 				CE4401A62174DD5B00F7C8D8 /* ContactsSorterTests.swift */,
 				A5B7822C215E2A3E00EFD1A5 /* Info.plist */,
+				A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */,
 			);
 			path = WalletTests;
 			sourceTree = "<group>";
@@ -2955,6 +2963,23 @@
 				A5C12E4A217DE8CC00A7D68C /* Strings.swift */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		A5C12E7D217F007F00A7D68C /* AuthTokenProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A5C12E80217F20FA00A7D68C /* JwtTokenParser */,
+				A5C12E7E217F009D00A7D68C /* AuthTokenProvider.swift */,
+			);
+			path = AuthTokenProvider;
+			sourceTree = "<group>";
+		};
+		A5C12E80217F20FA00A7D68C /* JwtTokenParser */ = {
+			isa = PBXGroup;
+			children = (
+				A5C12E81217F211200A7D68C /* JwtTokenParser.swift */,
+			);
+			path = JwtTokenParser;
 			sourceTree = "<group>";
 		};
 		A5D5BB7D217B598B008BEB74 /* CurrentUserNetworkProvider */ = {
@@ -4172,6 +4197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5C12E84217F261C00A7D68C /* JwtParcerTests.swift in Sources */,
 				CE4401A72174DD5B00F7C8D8 /* ContactsSorterTests.swift in Sources */,
 				A5B78233215E2A7400EFD1A5 /* WalletTests.swift in Sources */,
 				A5B78235215E2F3800EFD1A5 /* AddressValidator.swift in Sources */,
@@ -4242,6 +4268,7 @@
 				CEFC9CA021590D9500962356 /* PopUpPasswordEmailRecoveryFailedVM.swift in Sources */,
 				A51CB56321594E4A00CDC80C /* LoadableFromXib.swift in Sources */,
 				A56ED37F216CD6F1009FA58B /* TransactionDetailsModule.swift in Sources */,
+				A5C12E82217F211200A7D68C /* JwtTokenParser.swift in Sources */,
 				00EAF6788F8B93E22E1921A7 /* LoginModuleInput.swift in Sources */,
 				85DE84599B70A7C4900FE60F /* LoginModuleOutput.swift in Sources */,
 				A574350521776226006B4CAE /* EditProfileInteractorInput.swift in Sources */,
@@ -4483,6 +4510,7 @@
 				A56ED382216CD709009FA58B /* TransactionDetailsInteractorInput.swift in Sources */,
 				225C1777C92B40C17A58275B /* SendModule.swift in Sources */,
 				D029C2BDAA326AE7EB885D7C /* ExchangeViewInput.swift in Sources */,
+				A5C12E7F217F009D00A7D68C /* AuthTokenProvider.swift in Sources */,
 				8AD5E3C4C55B5557FCDFC2AD /* ExchangeViewOutput.swift in Sources */,
 				F3EB762CF50BA3699D0CB2AA /* ExchangeViewController.swift in Sources */,
 				A2BF7A83622A583455A9055F /* ExchangePresenter.swift in Sources */,

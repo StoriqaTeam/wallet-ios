@@ -18,13 +18,15 @@ class LoginInteractor {
     private let loginNetworkProvider: LoginNetworkProviderProtocol
     private let userNetworkProvider: CurrentUserNetworkProviderProtocol
     private let userDataStore: UserDataStoreServiceProtocol
+    private let keychain: KeychainProviderProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
          biometricAuthProvider: BiometricAuthProviderProtocol,
          loginNetworkProvider: LoginNetworkProvider,
          userNetworkProvider: CurrentUserNetworkProviderProtocol,
-         userDataStore: UserDataStoreServiceProtocol) {
+         userDataStore: UserDataStoreServiceProtocol,
+         keychain: KeychainProviderProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
@@ -32,6 +34,7 @@ class LoginInteractor {
         self.loginNetworkProvider = loginNetworkProvider
         self.userNetworkProvider = userNetworkProvider
         self.userDataStore = userDataStore
+        self.keychain = keychain
     }
 }
 
@@ -57,6 +60,7 @@ extension LoginInteractor: LoginInteractorInput {
                 case .success(let authToken):
                     strongSelf.defaultProvider.authToken = authToken
                     strongSelf.getUser(authToken: authToken, authData: .email(email: email, password: password))
+                    strongSelf.keychain.password = password
                 case .failure(let error):
                     strongSelf.output.failToLogin(reason: error.localizedDescription)
                 }

@@ -30,7 +30,6 @@ class MyWalletViewController: UIViewController {
         configureNavBar()
         output.accountsCollectionView(collectionView)
         output.viewIsReady()
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

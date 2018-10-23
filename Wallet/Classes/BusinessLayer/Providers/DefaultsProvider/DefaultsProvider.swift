@@ -26,6 +26,7 @@ class DefaultsProvider: DefaultsProviderProtocol {
         case fiatISO
     }
     
+    // MARK: WARN - Get token ONLY from AuthTokenProvider
     var authToken: String? {
         get {
             return getString(.authToken)
