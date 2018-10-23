@@ -13,11 +13,19 @@ protocol SessionsDataStoreServiceProtocol {
     func getAllSessions() -> [Session]
     func saveSession(_ session: Session)
     func delete(_ session: Session)
-    func deleteAll()
+    func deleteAllSessions()
 }
 
 
 class SessionsDataStoreService: RealmStorable<Session>, SessionsDataStoreServiceProtocol {
+    
+    func deleteAllSessions() {
+        let sessions = getAllSessions()
+        for session in sessions {
+            delete(session)
+        }
+    }
+    
     func getAllSessions() -> [Session] {
         return find()
     }
