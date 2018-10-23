@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="R86-gN-eWu" customClass="AccountTableCell" customModule="Wallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="362" height="62"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R86-gN-eWu" id="yMI-xs-XIj">
+                <rect key="frame" x="0.0" y="0.0" width="362" height="61.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="currency_btc_small" translatesAutoresizingMaskIntoConstraints="NO" id="Er5-gP-ifK">
+                        <rect key="frame" x="0.0" y="0.0" width="57" height="61.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="57" id="e94-NF-0Mm"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hma-cI-9Oj">
+                        <rect key="frame" x="57" y="11.5" width="305" height="39"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mil-ZR-8fT">
+                                <rect key="frame" x="0.0" y="0.0" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGr-SX-max">
+                                <rect key="frame" x="0.0" y="21" width="54" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Mil-ZR-8fT" firstAttribute="leading" secondItem="Hma-cI-9Oj" secondAttribute="leading" id="AGg-d3-c2a"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JGr-SX-max" secondAttribute="trailing" id="cPh-3J-13E"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Mil-ZR-8fT" secondAttribute="trailing" id="dXA-4C-hRS"/>
+                            <constraint firstItem="JGr-SX-max" firstAttribute="leading" secondItem="Hma-cI-9Oj" secondAttribute="leading" id="hld-pJ-KrK"/>
+                            <constraint firstItem="Mil-ZR-8fT" firstAttribute="top" secondItem="Hma-cI-9Oj" secondAttribute="top" id="swP-kc-yY8"/>
+                            <constraint firstAttribute="bottom" secondItem="JGr-SX-max" secondAttribute="bottom" id="tNX-lr-eWL"/>
+                            <constraint firstItem="JGr-SX-max" firstAttribute="top" secondItem="Mil-ZR-8fT" secondAttribute="bottom" id="zgX-5x-7El"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Hma-cI-9Oj" firstAttribute="centerY" secondItem="yMI-xs-XIj" secondAttribute="centerY" id="Hmr-27-0Fc"/>
+                    <constraint firstItem="Er5-gP-ifK" firstAttribute="leading" secondItem="yMI-xs-XIj" secondAttribute="leading" id="Pw4-VA-eH3"/>
+                    <constraint firstItem="Hma-cI-9Oj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yMI-xs-XIj" secondAttribute="top" id="YOs-m1-VOM"/>
+                    <constraint firstAttribute="trailing" secondItem="Hma-cI-9Oj" secondAttribute="trailing" id="eTE-RH-Ykr"/>
+                    <constraint firstAttribute="bottom" secondItem="Er5-gP-ifK" secondAttribute="bottom" id="w88-Q4-Oyk"/>
+                    <constraint firstItem="Hma-cI-9Oj" firstAttribute="leading" secondItem="Er5-gP-ifK" secondAttribute="trailing" id="w9g-3M-DZA"/>
+                    <constraint firstItem="Er5-gP-ifK" firstAttribute="top" secondItem="yMI-xs-XIj" secondAttribute="top" id="zvv-mA-HgQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="accountName" destination="Mil-ZR-8fT" id="Bnh-5g-np7"/>
+                <outlet property="amountLabel" destination="JGr-SX-max" id="Kff-hR-lTK"/>
+                <outlet property="currencyImage" destination="Er5-gP-ifK" id="Rh5-jI-1vb"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="currency_btc_small" width="37" height="37"/>
+    </resources>
+</document>

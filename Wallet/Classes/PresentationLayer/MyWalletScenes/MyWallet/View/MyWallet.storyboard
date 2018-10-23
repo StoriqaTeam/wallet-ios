@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Wallet View Controller-->
+        <scene sceneID="bBI-QD-6Qj">
+            <objects>
+                <viewController storyboardIdentifier="myWalletVC" id="aZD-B3-BFA" customClass="MyWalletViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IXN-jW-1ZI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nxK-Lh-jgQ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="17" minimumInteritemSpacing="17" id="dkI-IX-Dse">
+                                    <size key="itemSize" width="336" height="198"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="17" maxX="0.0" maxY="17"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nxK-Lh-jgQ" firstAttribute="leading" secondItem="iyw-Od-pLW" secondAttribute="leading" id="6fG-LF-uPf"/>
+                            <constraint firstItem="iyw-Od-pLW" firstAttribute="bottom" secondItem="nxK-Lh-jgQ" secondAttribute="bottom" id="Aro-Xj-ojq"/>
+                            <constraint firstItem="nxK-Lh-jgQ" firstAttribute="top" secondItem="iyw-Od-pLW" secondAttribute="top" id="j44-4t-3xG"/>
+                            <constraint firstItem="iyw-Od-pLW" firstAttribute="trailing" secondItem="nxK-Lh-jgQ" secondAttribute="trailing" id="uIJ-ft-AVc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iyw-Od-pLW"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="walletTab" id="Mdj-TS-7d4">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="nxK-Lh-jgQ" id="0v7-vD-X2K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SfZ-GB-bAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-506.39999999999998" y="128.18590704647679"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="walletTab" width="17" height="14"/>
+    </resources>
+</document>

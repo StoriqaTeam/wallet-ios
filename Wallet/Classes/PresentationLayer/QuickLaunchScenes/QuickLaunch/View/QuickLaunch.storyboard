@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Quick launch-->
+        <scene sceneID="PaX-Ik-QoR">
+            <objects>
+                <viewController storyboardIdentifier="QuickLaunchVC" title="Quick launch" id="qxa-kj-BLd" customClass="QuickLaunchViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uhB-co-kKa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Wanna use quick launch?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aQ-4a-ati">
+                                <rect key="frame" x="68" y="56" width="240" height="57.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="cC2-qb-IxS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="rbh-eJ-5Ej">
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="534"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eyK-a2-zp7">
+                                <rect key="frame" x="28" y="518" width="319" height="141"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev0-xC-A5j">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="37"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Choose the way to confirm your identity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSD-dp-r8q">
+                                                <rect key="frame" x="69" y="0.0" width="181" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="181" id="hws-90-peq"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="RSD-dp-r8q" secondAttribute="bottom" constant="8" id="5sL-rl-tJ8"/>
+                                            <constraint firstItem="RSD-dp-r8q" firstAttribute="top" secondItem="ev0-xC-A5j" secondAttribute="top" id="D67-c3-X5d"/>
+                                            <constraint firstItem="RSD-dp-r8q" firstAttribute="centerX" secondItem="ev0-xC-A5j" secondAttribute="centerX" id="eJe-cm-Y4W"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NM-Ms-gHQ" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="45" width="319" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="b4r-TP-RdL"/>
+                                        </constraints>
+                                        <state key="normal" title="Set up quick launch">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="performAction:" destination="qxa-kj-BLd" eventType="touchUpInside" id="OCG-Wf-mu2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4V-Ra-ynD" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="97" width="319" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="QpW-T8-yy8"/>
+                                        </constraints>
+                                        <state key="normal" title="Do not use">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelSetup:" destination="qxa-kj-BLd" eventType="touchUpInside" id="vz8-fC-34P"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8aQ-4a-ati" firstAttribute="top" secondItem="gmk-lA-eDi" secondAttribute="top" constant="36" id="3ZW-cX-xUo"/>
+                            <constraint firstItem="rbh-eJ-5Ej" firstAttribute="centerY" secondItem="uhB-co-kKa" secondAttribute="centerY" id="VAt-c3-FUF"/>
+                            <constraint firstItem="eyK-a2-zp7" firstAttribute="centerX" secondItem="uhB-co-kKa" secondAttribute="centerX" id="Zsb-Jx-Z0R"/>
+                            <constraint firstItem="eyK-a2-zp7" firstAttribute="leading" secondItem="gmk-lA-eDi" secondAttribute="leading" constant="28" id="am0-Nc-4wS"/>
+                            <constraint firstItem="rbh-eJ-5Ej" firstAttribute="width" secondItem="uhB-co-kKa" secondAttribute="width" id="hnj-KZ-yTQ"/>
+                            <constraint firstItem="rbh-eJ-5Ej" firstAttribute="height" secondItem="uhB-co-kKa" secondAttribute="height" multiplier="0.8" id="i8U-Rh-3u5"/>
+                            <constraint firstItem="8aQ-4a-ati" firstAttribute="centerX" secondItem="uhB-co-kKa" secondAttribute="centerX" id="xqU-r0-IeU"/>
+                            <constraint firstItem="gmk-lA-eDi" firstAttribute="bottom" secondItem="eyK-a2-zp7" secondAttribute="bottom" constant="8" id="ycz-Y4-0Tt"/>
+                            <constraint firstItem="rbh-eJ-5Ej" firstAttribute="centerX" secondItem="uhB-co-kKa" secondAttribute="centerX" id="zRT-eF-yyZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gmk-lA-eDi"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="6NM-Ms-gHQ" id="Dkk-d7-3vy"/>
+                        <outlet property="cancelButton" destination="V4V-Ra-ynD" id="mSY-j0-7vE"/>
+                        <outlet property="imageView" destination="rbh-eJ-5Ej" id="dl7-J3-w5Z"/>
+                        <outlet property="subtitleLabel" destination="RSD-dp-r8q" id="2nU-Wv-Eid"/>
+                        <outlet property="titleLabel" destination="8aQ-4a-ati" id="XPR-ea-HSp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D2c-SN-1RJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1327" y="-18"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="quickLaunch" width="377" height="428"/>
+    </resources>
+</document>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SessionCell" rowHeight="67" id="6BR-Ez-haP" customClass="SessionTableViewCell" customModule="Wallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6BR-Ez-haP" id="Tnm-eT-KlW">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71k-tV-biq">
+                        <rect key="frame" x="17" y="13" width="341" height="41"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone Moscow, Russia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkJ-Zc-8yA">
+                                <rect key="frame" x="0.0" y="0.0" width="341" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today 17:24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j35-Ws-ZbY">
+                                <rect key="frame" x="0.0" y="23" width="341" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="j35-Ws-ZbY" secondAttribute="bottom" id="7dJ-Ys-XxX"/>
+                            <constraint firstAttribute="trailing" secondItem="j35-Ws-ZbY" secondAttribute="trailing" id="EFg-gr-cTb"/>
+                            <constraint firstItem="pkJ-Zc-8yA" firstAttribute="top" secondItem="71k-tV-biq" secondAttribute="top" id="k1S-3L-tG0"/>
+                            <constraint firstAttribute="trailing" secondItem="pkJ-Zc-8yA" secondAttribute="trailing" id="kne-oK-r2e"/>
+                            <constraint firstItem="j35-Ws-ZbY" firstAttribute="leading" secondItem="71k-tV-biq" secondAttribute="leading" id="nzT-EH-4Qp"/>
+                            <constraint firstItem="pkJ-Zc-8yA" firstAttribute="leading" secondItem="71k-tV-biq" secondAttribute="leading" id="ugL-ep-IfH"/>
+                            <constraint firstItem="j35-Ws-ZbY" firstAttribute="top" secondItem="pkJ-Zc-8yA" secondAttribute="bottom" constant="2" id="xpf-RV-3zN"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="71k-tV-biq" secondAttribute="trailing" constant="17" id="Ncp-Ut-rr3"/>
+                    <constraint firstItem="71k-tV-biq" firstAttribute="centerY" secondItem="Tnm-eT-KlW" secondAttribute="centerY" id="WZY-Hl-qAP"/>
+                    <constraint firstItem="71k-tV-biq" firstAttribute="leading" secondItem="Tnm-eT-KlW" secondAttribute="leading" constant="17" id="kf4-7U-804"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="j35-Ws-ZbY" id="RlD-QX-Ch5"/>
+                <outlet property="deviceLabel" destination="pkJ-Zc-8yA" id="CcT-b2-hny"/>
+            </connections>
+            <point key="canvasLocation" x="-145" y="-25"/>
+        </tableViewCell>
+    </objects>
+</document>
