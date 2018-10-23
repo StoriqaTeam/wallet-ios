@@ -106,6 +106,10 @@ extension SendViewController: SendViewInput {
         accountsPageControl.numberOfPages = numberOfPages
     }
     
+    func updatePagesCount(_ count: Int) {
+        accountsPageControl.numberOfPages = count
+    }
+    
     func setAmount(_ amount: String) {
         amountTextField.text = amount
     }

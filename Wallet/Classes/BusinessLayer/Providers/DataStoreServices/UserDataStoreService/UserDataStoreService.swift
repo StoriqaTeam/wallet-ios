@@ -18,17 +18,18 @@ protocol UserDataStoreServiceProtocol {
 
 class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
     func delete() {
-        deleteAll()
+        find().forEach { delete(primaryKey: "\($0.id)") }
     }
     
     func update(_ user: User) {
         var user = user
-        let current = getCurrentUser()
+        let current = find().first
         
-        if current.id != user.id {
-            deleteAll()
+        if let current = current,
+            current.id != user.id {
+            delete()
         } else if user.photo == nil {
-            user.photo = current.photo
+            user.photo = current?.photo
         }
         
         save(user)

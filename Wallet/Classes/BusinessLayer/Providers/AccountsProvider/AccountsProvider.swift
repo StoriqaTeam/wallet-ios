@@ -10,22 +10,36 @@ import Foundation
 
 protocol AccountsProviderProtocol: class {
     func getAllAccounts() -> [Account]
-    func getEthereumAddress() -> String
-    func getBitcoinAddress() -> String
+    func getAddresses() -> [String]
+    func setObserver(_ observer: AccountsProviderDelegate)
 }
 
+protocol AccountsProviderDelegate: class {
+    func accountsDidUpdate(_ accounts: [Account])
+}
 
-class AccountsProvider: AccountsProviderProtocol {
-    func getEthereumAddress() -> String {
-        fatalError("Need to implement")
+class AccountsProvider: RealmStorable<Account>, AccountsProviderProtocol {
+    private weak var observer: AccountsProviderDelegate?
+    private let dataStoreService: AccountsDataStoreProtocol
+    
+    init(dataStoreService: AccountsDataStoreProtocol) {
+        self.dataStoreService = dataStoreService
     }
     
-    func getBitcoinAddress() -> String {
-        fatalError("Need to implement")
+    func setObserver(_ observer: AccountsProviderDelegate) {
+        self.observer = observer
+        
+        dataStoreService.observe { [weak self] (accounts) in
+            self?.observer?.accountsDidUpdate(accounts)
+        }
     }
     
+    func getAddresses() -> [String] {
+        let allAccounts = getAllAccounts()
+        return allAccounts.map { $0.accountAddress }
+    }
     
     func getAllAccounts() -> [Account] {
-        fatalError("Need to implement")
+        return find()
     }
 }

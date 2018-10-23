@@ -107,8 +107,8 @@ extension RegistrationPresenter: RegistrationModuleInput {
 // MARK: - PopUpRegistrationSuccessVMDelegate
 
 extension RegistrationPresenter: PopUpRegistrationSuccessVMDelegate {
-    func showAuthorizedZone() {
-        router.showAuthorizedZone()
+    func okButtonPressed() {
+        router.showLogin()
     }
 }
 

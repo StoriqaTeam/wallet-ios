@@ -25,7 +25,7 @@ class SessionsInteractor {
 
 extension SessionsInteractor: SessionsInteractorInput {
     func deleteAllSessions() {
-        sessionsDataStore.deleteAll()
+        sessionsDataStore.deleteAllSessions()
     }
     
     func delete(session: Session) {

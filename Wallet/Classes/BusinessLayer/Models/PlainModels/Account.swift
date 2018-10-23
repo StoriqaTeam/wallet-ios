@@ -14,7 +14,7 @@ struct Account {
     let id: String
     let balance: Decimal
     var currency: Currency
-    let userId: String
+    let userId: Int
     let accountAddress: String
     let name: String
 }
@@ -33,6 +33,35 @@ extension Account: RealmMappable {
         self.currency = Currency(string: object.currency)
     }
     
+    init?(json: JSON) {
+        guard let id = json["id"].string,
+            let userId = json["userId"].int,
+            let currencyStr = json["currency"].string,
+            let accountAddress = json["accountAddress"].string,
+            let name = json["name"].string,
+            let balance = json["balance"].string else {
+                return nil
+        }
+        let currency = Currency(string: currencyStr)
+        
+        self.id = id
+        self.userId = userId
+        self.currency = currency
+        
+        switch currency {
+        case .eth, .stq:
+            self.accountAddress = "0x\(accountAddress)"
+        default:
+            self.accountAddress = accountAddress
+        }
+        
+        self.name = name
+        self.balance = Decimal(balance) / pow(10, 18)
+
+        // FIXME: приходит createdAt и updatedAt
+        
+    }
+    
     func mapToRealmObject() -> RealmAccount {
         let object = RealmAccount()
         
@@ -49,5 +78,7 @@ extension Account: RealmMappable {
 
 
 extension Account: Equatable {
-    
+    public static func == (lhs: Account, rhs: Account) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

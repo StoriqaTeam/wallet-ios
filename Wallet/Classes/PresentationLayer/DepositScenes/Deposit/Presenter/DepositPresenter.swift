@@ -67,6 +67,8 @@ extension DepositPresenter: DepositViewOutput {
         
         let qrCode = interactor.getQrCodeImage()
         view.setQrCode(qrCode)
+        
+        interactor.startObservers()
     }
     
     func viewWillAppear() {
@@ -79,7 +81,14 @@ extension DepositPresenter: DepositViewOutput {
 // MARK: - DepositInteractorOutput
 
 extension DepositPresenter: DepositInteractorOutput {
-
+    
+    func updateAccounts(accounts: [Account], index: Int) {
+        accountsDataManager?.updateAccounts(accounts)
+        accountsDataManager?.scrollTo(index: index)
+        view.updatePagesCount(accounts.count)
+        view.setNewPage(index)
+    }
+    
 }
 
 

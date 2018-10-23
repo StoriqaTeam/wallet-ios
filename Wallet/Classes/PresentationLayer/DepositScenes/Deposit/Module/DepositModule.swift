@@ -13,7 +13,8 @@ class DepositModule {
         
         //Injections
         let qrProvider = QRCodeProvider()
-        let accProvider = FakeAccountProvider()
+        let dataStoreService = AccountsDataStore()
+        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
         let converterFactory = CurrecncyConverterFactory()
         let currencyFormatter = CurrencyFormatter()
         let accountTypeResolver = AccountTypeResolver()
@@ -24,7 +25,7 @@ class DepositModule {
         
         let presenter = DepositPresenter(accountDisplayer: accountDisplayer)
         let interactor = DepositInteractor(qrProvider: qrProvider,
-                                           accountsProvider: accProvider,
+                                           accountsProvider: accountsProvider,
                                            accountWatcher: accountWatcher)
         
         let depositVC = UIStoryboard(name: "Deposit", bundle: nil)

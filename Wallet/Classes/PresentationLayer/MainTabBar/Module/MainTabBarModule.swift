@@ -12,12 +12,27 @@ class MainTabBarModule {
         let router = MainTabBarRouter()
         let presenter = MainTabBarPresenter()
         
-        let accountsProvider = FakeAccountProvider()
+        let accountsDataStore = AccountsDataStore()
+        let accountsProvider = AccountsProvider(dataStoreService: accountsDataStore)
         let accountWatcher = CurrentAccountWatcher(accountProvider: accountsProvider)
         let userDataStoreService = UserDataStoreService()
+        let accountsNetworkProvider = AccountsNetworkProvider()
+        let defaults = DefaultsProvider()
+        let keychain = KeychainProvider()
+        let loginNetworkProvider = LoginNetworkProvider()
+        
+        let authTokenProvider = AuthTokenProvider(defaults: defaults,
+                                                  keychain: keychain,
+                                                  loginNetworkProvider: loginNetworkProvider,
+                                                  userDataStoreService: userDataStoreService)
+        
+        let accountsUpdater = AccountsUpdater(accountsNetworkProvider: accountsNetworkProvider,
+                                              accountsDataStore: accountsDataStore,
+                                              authTokenProvider: authTokenProvider)
         
         let interactor = MainTabBarInteractor(accountWatcher: accountWatcher,
-                                              userDataStoreService: userDataStoreService)
+                                              userDataStoreService: userDataStoreService,
+                                              accountsUpdater: accountsUpdater)
         
         let storyboard = UIStoryboard(name: "MainTabBar", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "mainTabBarVC") as! MainTabBarViewController

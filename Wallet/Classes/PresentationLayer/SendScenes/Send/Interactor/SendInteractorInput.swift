@@ -27,5 +27,7 @@ protocol SendInteractorInput: class {
     
     func updateTransactionProvider()
     func getTransactionBuilder() -> SendProviderBuilderProtocol
+    
+    func startObservers()
 
 }

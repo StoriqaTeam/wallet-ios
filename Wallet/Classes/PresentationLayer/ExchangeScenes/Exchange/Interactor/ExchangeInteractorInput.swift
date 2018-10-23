@@ -24,4 +24,5 @@ protocol ExchangeInteractorInput: class {
     func setPaymentFee(index: Int)
     
     func updateInitialState()
+    func startObservers()
 }

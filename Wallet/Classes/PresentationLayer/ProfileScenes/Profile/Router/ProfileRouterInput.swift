@@ -13,6 +13,6 @@ protocol ProfileRouterInput: class {
     func showSettings(from viewController: UIViewController)
     func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate,
                              from viewController: UIViewController)
-    func signOut(isPinEnabled: Bool)
+    func signOut()
     func showConnectPhone(from viewController: UIViewController)
 }

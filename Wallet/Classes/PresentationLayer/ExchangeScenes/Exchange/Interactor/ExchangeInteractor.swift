@@ -17,7 +17,7 @@ class ExchangeInteractor {
     private let converterFactory: CurrecncyConverterFactoryProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
     private var currencyConverter: CurrencyConverterProtocol!
-    private var recepientAccount: Account! {
+    private var recepientAccount: Account? {
         didSet { updateConverter() }
     }
     private var amount: Decimal
@@ -37,10 +37,11 @@ class ExchangeInteractor {
         amount = 0
         paymentFee = 0
         recepientAccounts = updateRecepientAccounts()
-        recepientAccount = recepientAccounts.first!
+        recepientAccount = recepientAccounts.first
         
         loadPaymentFees()
         updateConverter()
+        
     }
 }
 
@@ -48,6 +49,9 @@ class ExchangeInteractor {
 // MARK: - ExchangeInteractorInput
 
 extension ExchangeInteractor: ExchangeInteractorInput {
+    func startObservers() {
+        accountsProvider.setObserver(self)
+    }
     
     func getAccountsCount() -> Int {
         return accountsProvider.getAllAccounts().count
@@ -76,6 +80,10 @@ extension ExchangeInteractor: ExchangeInteractorInput {
     }
     
     func getRecepientCurrency() -> Currency {
+        guard let recepientAccount = recepientAccount else {
+            // In case when there is only one account
+            return getAccountCurrency()
+        }
         return recepientAccount.currency
     }
     
@@ -135,7 +143,7 @@ extension ExchangeInteractor {
     
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
-        return allAccounts.index { $0 == account }!
+        return allAccounts.index { $0 == account } ?? 0
     }
     
     private func updateRecepientAccounts() -> [Account] {
@@ -176,7 +184,8 @@ extension ExchangeInteractor {
     }
     
     private func updateConverter() {
-        let currency = recepientAccount.currency
+        // In case when there is only one account
+        let currency = recepientAccount?.currency ?? getAccountCurrency()
         currencyConverter = converterFactory.createConverter(from: currency)
     }
     
@@ -189,13 +198,17 @@ extension ExchangeInteractor {
     
     private func updateRecepientAccount() {
         if !recepientAccounts.contains(where: { $0 == recepientAccount }) {
-            recepientAccount = recepientAccounts.first!
+            recepientAccount = recepientAccounts.first
         }
         
         output.updateRecepientAccount(recepientAccount)
     }
     
     private func updateAmount() {
+        guard let recepientAccount = recepientAccount else {
+            return
+        }
+        
         let currency = recepientAccount.currency
         output.updateAmount(amount, currency: currency)
     }
@@ -222,11 +235,25 @@ extension ExchangeInteractor {
         let accountCurrency = accountWatcher.getAccount().currency
         let total = calculateTotalAmount()
         let isEnough = isEnoughFunds(total: total)
-        let formIsValid = isEnough && !amount.isZero
+        let formIsValid = isEnough && !amount.isZero && recepientAccount != nil
         
         output.updateTotal(total, accountCurrency: accountCurrency)
         output.updateIsEnoughFunds(isEnough)
         output.updateFormIsValid(formIsValid)
     }
     
+}
+
+
+// MARK: - AccountsProviderDelegate
+
+extension ExchangeInteractor: AccountsProviderDelegate {
+    func accountsDidUpdate(_ accounts: [Account]) {
+        let account = accountWatcher.getAccount()
+        let index = accounts.index { $0 == account } ?? 0
+        
+        accountWatcher.setAccount(accounts[index])
+        updateRecepientAccount()
+        output.updateAccounts(accounts: accounts, index: index)
+    }
 }

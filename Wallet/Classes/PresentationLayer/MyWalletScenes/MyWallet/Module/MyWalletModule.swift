@@ -5,42 +5,6 @@
 
 import UIKit
 
-class FakeAccountProvider: AccountsProviderProtocol {
-
-    func getAllAccounts() -> [Account] {
-        return [Account(id: "4",
-                        balance: 4123.45,
-                        currency: .stq,
-                        userId: "0",
-                        accountAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
-                        name: "STQ Black account"),
-                Account(id: "2",
-                        balance: 892.45,
-                        currency: .eth,
-                        userId: "0",
-                        accountAddress: "0x1f2a4b1936a19a222410bd32f411cacacac7a027",
-                        name: "ETH account"),
-                Account(id: "3",
-                        balance: 123.45,
-                        currency: .btc,
-                        userId: "0",
-                        accountAddress: "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2",
-                        name: "BTC account")
-        ]
-    }
-    
-    func getEthereumAddress() -> String {
-        let allAccounts = getAllAccounts()
-        return allAccounts.first(where: { $0.currency == .eth })!.accountAddress
-    }
-    
-    func getBitcoinAddress() -> String {
-        let allAccounts = getAllAccounts()
-        return allAccounts.first(where: { $0.currency == .btc })!.accountAddress
-    }
-    
-}
-
 
 class MyWalletModule {
     
@@ -52,7 +16,8 @@ class MyWalletModule {
         // Injections
         let converterFactory = CurrecncyConverterFactory()
         let currencyFormatter = CurrencyFormatter()
-        let fakeAccountsProvider = FakeAccountProvider()
+        let dataStoreService = AccountsDataStore()
+        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
         let accountTypeResolver = AccountTypeResolver()
         let accountDisplayer = AccountDisplayer(user: user,
                                                 currencyFormatter: currencyFormatter,
@@ -62,7 +27,7 @@ class MyWalletModule {
         let presenter = MyWalletPresenter(user: user,
                                           accountDisplayer: accountDisplayer)
         presenter.mainTabBar = tabBar
-        let interactor = MyWalletInteractor(accountsProvider: fakeAccountsProvider,
+        let interactor = MyWalletInteractor(accountsProvider: accountsProvider,
                                             accountWatcher: accountWatcher)
         
         let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)

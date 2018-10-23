@@ -42,7 +42,7 @@ enum Currency: String {
     }
     
     init(string: String) {
-        switch string {
+        switch string.uppercased() {
         case "ETH":
             self = .eth
         case "STQ":

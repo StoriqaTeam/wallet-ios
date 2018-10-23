@@ -14,11 +14,17 @@ class MainTabBarInteractor {
     
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
+    private let accountsUpdater: AccountsUpdaterProtocol
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
-         userDataStoreService: UserDataStoreServiceProtocol) {
+         userDataStoreService: UserDataStoreServiceProtocol,
+         accountsUpdater: AccountsUpdaterProtocol) {
         self.accountWatcher = accountWatcher
         self.userDataStoreService = userDataStoreService
+        self.accountsUpdater = accountsUpdater
+        
+        let user = getCurrentUser()
+        accountsUpdater.update(userId: user.id)
     }
 }
 

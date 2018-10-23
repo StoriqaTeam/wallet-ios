@@ -13,9 +13,7 @@ class ProfileModule {
         let presenter = ProfilePresenter()
         
         let userStoreService = UserDataStoreService()
-        let keychainProvider = KeychainProvider()
-        let interactor = ProfileInteractor(userStoreService: userStoreService,
-                                           keychainProvider: keychainProvider)
+        let interactor = ProfileInteractor(userStoreService: userStoreService)
         
         let accountsVC = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController

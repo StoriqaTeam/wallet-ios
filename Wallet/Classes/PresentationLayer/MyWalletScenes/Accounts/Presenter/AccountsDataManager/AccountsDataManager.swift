@@ -58,6 +58,10 @@ class AccountsDataManager: NSObject {
     }
     
     func scrollTo(index: Int) {
+        guard index < accounts.count else {
+            return
+        }
+        
         let indexPath = IndexPath(row: index, section: 0)
         accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
         delegate?.currentPageDidChange(index)

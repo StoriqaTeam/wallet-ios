@@ -17,5 +17,6 @@ protocol AccountsInteractorInput: class {
     func getTransactionForCurrentAccount() -> [TransactionDisplayable]
     func getAccountsCount() -> Int
     func setCurrentAccountWith(index: Int)
+    func startObservers()
     
 }

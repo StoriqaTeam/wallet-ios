@@ -15,5 +15,5 @@ protocol PasswordRecoveryConfirmRouterInput: class {
     func showFailure(message: String,
                      popUpDelegate: PopUpPasswordRecoveryConfirmFailedVMDelegate,
                      from viewController: UIViewController)
-    func showAuthorizedZone()
+    func showLogin()
 }

@@ -57,6 +57,10 @@ class AccountsViewController: UIViewController {
 // MARK: - AccountsViewInput
 
 extension AccountsViewController: AccountsViewInput {
+    func updatePagesCount(_ count: Int) {
+        accountsPageControl.numberOfPages = count
+    }
+    
     func setNewPage(_ index: Int) {
         accountsPageControl.currentPage = index
     }
