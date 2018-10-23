@@ -31,6 +31,7 @@ protocol SocialNetworkAuthViewDelegate: class {
 
 class SocialNetworkAuthView: UIView {
     var viewModel: SocialNetworkAuthViewModel!
+    typealias Localized = Strings.SocialNetworkAuth
     
     enum SocialNetworkAuthViewType {
         case login
@@ -82,13 +83,13 @@ class SocialNetworkAuthView: UIView {
 
         switch type {
         case .login:
-            titleLabel.text = "sign_in_social".localized()
-            footerTitleLabel.text = "have_no_account".localized()
-            footerButton.setTitle("register".localized(), for: .normal)
+            titleLabel.text = Localized.sighInTitle
+            footerTitleLabel.text = Localized.noAccountsTitle
+            footerButton.setTitle(Localized.registerButtonTitle, for: .normal)
         case .register:
-            titleLabel.text = "sign_up_social".localized()
-            footerTitleLabel.text = "have_account".localized()
-            footerButton.setTitle("sign_in".localized(), for: .normal)
+            titleLabel.text = Localized.sighUpTitle
+            footerTitleLabel.text = Localized.haveAccountTitle
+            footerButton.setTitle(Localized.signInButton, for: .normal)
         }
     }
 }

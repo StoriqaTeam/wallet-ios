@@ -12,6 +12,7 @@ import UIKit
 class RegistrationViewController: UIViewController {
 
     var output: RegistrationViewOutput!
+    typealias Localized = Strings.Registration
 
     // MARK: - Outlets
     
@@ -161,27 +162,27 @@ extension RegistrationViewController {
             self?.view.layoutIfNeeded()
         }
         
-        firstNameTextField.placeholder = "first_name".localized()
+        firstNameTextField.placeholder = Localized.firstNamePlaceholder
         firstNameTextField.layoutBlock = layoutBlock
         
-        lastNameTextField.placeholder = "last_name".localized()
+        lastNameTextField.placeholder = Localized.lastNamePlaceholder
         lastNameTextField.layoutBlock = layoutBlock
         
-        emailTextField.placeholder = "email".localized()
+        emailTextField.placeholder = Localized.emailPlaceholder
         emailTextField.layoutBlock = layoutBlock
         
-        passwordTextField.placeholder = "password".localized()
+        passwordTextField.placeholder = Localized.passwordPlaceholder
         passwordTextField.layoutBlock = layoutBlock
         
-        repeatPasswordTextField.placeholder = "repeat_password".localized()
+        repeatPasswordTextField.placeholder = Localized.repeatPasswordPlaceholder
         repeatPasswordTextField.layoutBlock = layoutBlock
         
         setAgreementTintColor()
         
         agreementLabel.textColor = Theme.Color.primaryGrey
-        agreementLabel.text = "accept_agreement".localized()
+        agreementLabel.text = Localized.acceptAgreementLabel
 
-        signUpButton.title = "sign_up".localized()
+        signUpButton.title = Localized.signUpButtonTitle
     }
     
     private func updateContinueButton() {

@@ -11,6 +11,8 @@ import UIKit
 
 class MyWalletPresenter {
     
+    typealias Localized = Strings.MyWallet
+    
     weak var view: MyWalletViewInput!
     weak var output: MyWalletModuleOutput?
     var interactor: MyWalletInteractorInput!
@@ -116,7 +118,7 @@ extension MyWalletPresenter {
         guard let navBar = view.viewController.navigationController?.navigationBar else { return }
 
         navBar.prefersLargeTitles = true
-        navBar.topItem?.title = "my_wallet".localized()
+        navBar.topItem?.title = Localized.navBarTitle
         
         view.viewController.setWhiteNavigationBarButtons()
         var titleTextAttributes = navBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()

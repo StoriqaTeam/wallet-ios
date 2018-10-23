@@ -12,6 +12,7 @@ import UIKit
 class PinInputViewController: UIViewController {
 
     var output: PinInputViewOutput!
+    typealias Localized = Strings.PinInput
     
     // MARK: IBOutlet
     
@@ -87,7 +88,7 @@ extension PinInputViewController {
             greetingVerticalSpacingConstraint.constant = 0
             greetingLabel.text = ""
         } else {
-            greetingLabel.text = name + "greeting".localized()
+            greetingLabel.text = name + Localized.greetingLabelTitle
         }
     }
     

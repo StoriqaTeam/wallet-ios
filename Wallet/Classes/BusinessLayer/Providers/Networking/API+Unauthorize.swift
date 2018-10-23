@@ -57,7 +57,7 @@ extension API.Unauthorized: APIMethodProtocol {
     
     var headers: [String: String] {
         switch self {
-        case .login, .register:
+        case .login, .register:            
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json"

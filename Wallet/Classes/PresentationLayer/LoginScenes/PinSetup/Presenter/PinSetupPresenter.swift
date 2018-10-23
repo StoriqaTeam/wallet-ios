@@ -12,14 +12,16 @@ import AudioToolbox
 
 class PinSetupPresenter {
     
+    typealias Localized = Strings.PinSetup
+    
     weak var view: PinSetupViewInput!
     weak var output: PinSetupModuleOutput?
     var interactor: PinSetupInteractorInput!
     var router: PinSetupRouterInput!
     
     private let kPasswordDigits = 4
-    private let firstInputTitle = "enter_pin".localized()
-    private let confirmInputTitle = "confirm_pin".localized()
+    private let firstInputTitle = Localized.enterPinTitle
+    private let confirmInputTitle = Localized.confirmPinTitle
 }
 
 
@@ -61,7 +63,7 @@ extension PinSetupPresenter: PinSetupInteractorOutput {
     }
     
     func enterPinAgain() {
-        view.viewController.showAlert(message: "pins_not_match_alert".localized())
+        view.viewController.showAlert(message: Localized.pinNotMatchAlert)
         
         view.setTitle(title: firstInputTitle)
         view.wrongInput()

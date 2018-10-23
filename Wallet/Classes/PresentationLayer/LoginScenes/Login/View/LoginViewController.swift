@@ -12,6 +12,8 @@ class LoginViewController: UIViewController {
 
     var output: LoginViewOutput!
     
+    typealias Localized = Strings.Login
+    
     // MARK: - Outlets
     
     @IBOutlet private var emailTextField: UnderlinedTextField!
@@ -137,19 +139,19 @@ extension LoginViewController {
     }
     
     private func configureControls() {
-        emailTextField.placeholder = "email".localized()
+        emailTextField.placeholder = Localized.emailPlaceholder
         emailTextField.layoutBlock = {[weak self] in
             self?.view.layoutIfNeeded()
         }
         
-        passwordTextField.placeholder = "password".localized()
+        passwordTextField.placeholder = Localized.emailPlaceholder
         passwordTextField.layoutBlock = {[weak self] in
             self?.view.layoutIfNeeded()
         }
         
-        signInButton.title = "sign_in".localized()
+        signInButton.title = Localized.signInButtonTitle
         forgotPasswordButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
-        forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
+        forgotPasswordButton.setTitle(Localized.forgotButtonTitle, for: .normal)
     }
     
     private func setSocialView() {

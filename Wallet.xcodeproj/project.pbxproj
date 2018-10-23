@@ -319,6 +319,16 @@
 		A5C12E4B217DE8CC00A7D68C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E4A217DE8CC00A7D68C /* Strings.swift */; };
 		A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E5F217DF65300A7D68C /* MyWallet.strings */; };
 		A5C12E67217DFEBA00A7D68C /* Strings+MyWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E66217DFEBA00A7D68C /* Strings+MyWallet.swift */; };
+		A5C12E69217E04F700A7D68C /* Strings+SocialNetworkAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E68217E04F700A7D68C /* Strings+SocialNetworkAuth.swift */; };
+		A5C12E6B217E0ADA00A7D68C /* SocialNetworkAuth.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E6A217E0ADA00A7D68C /* SocialNetworkAuth.strings */; };
+		A5C12E6E217E0B3B00A7D68C /* Strings+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E6D217E0B3B00A7D68C /* Strings+Login.swift */; };
+		A5C12E70217E0D6700A7D68C /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E6F217E0D6700A7D68C /* Login.strings */; };
+		A5C12E72217E120D00A7D68C /* Strings+PinInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E71217E120D00A7D68C /* Strings+PinInput.swift */; };
+		A5C12E74217E122B00A7D68C /* PinInput.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E73217E122B00A7D68C /* PinInput.strings */; };
+		A5C12E76217E135D00A7D68C /* Strings+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E75217E135D00A7D68C /* Strings+Registration.swift */; };
+		A5C12E78217E137700A7D68C /* Registration.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E77217E137700A7D68C /* Registration.strings */; };
+		A5C12E7A217E16AC00A7D68C /* Strings+PinSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E79217E16AC00A7D68C /* Strings+PinSetup.swift */; };
+		A5C12E7C217E16DB00A7D68C /* PinSetup.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E7B217E16DB00A7D68C /* PinSetup.strings */; };
 		A5D5BB7C217B57D4008BEB74 /* API+Authorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */; };
 		A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */; };
 		A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */; };
@@ -893,6 +903,16 @@
 		A5C12E53217DF38C00A7D68C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5C12E5E217DF65300A7D68C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MyWallet.strings; sourceTree = "<group>"; };
 		A5C12E66217DFEBA00A7D68C /* Strings+MyWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+MyWallet.swift"; sourceTree = "<group>"; };
+		A5C12E68217E04F700A7D68C /* Strings+SocialNetworkAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+SocialNetworkAuth.swift"; sourceTree = "<group>"; };
+		A5C12E6A217E0ADA00A7D68C /* SocialNetworkAuth.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SocialNetworkAuth.strings; sourceTree = "<group>"; };
+		A5C12E6D217E0B3B00A7D68C /* Strings+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Login.swift"; sourceTree = "<group>"; };
+		A5C12E6F217E0D6700A7D68C /* Login.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Login.strings; sourceTree = "<group>"; };
+		A5C12E71217E120D00A7D68C /* Strings+PinInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PinInput.swift"; sourceTree = "<group>"; };
+		A5C12E73217E122B00A7D68C /* PinInput.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PinInput.strings; sourceTree = "<group>"; };
+		A5C12E75217E135D00A7D68C /* Strings+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Registration.swift"; sourceTree = "<group>"; };
+		A5C12E77217E137700A7D68C /* Registration.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Registration.strings; sourceTree = "<group>"; };
+		A5C12E79217E16AC00A7D68C /* Strings+PinSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PinSetup.swift"; sourceTree = "<group>"; };
+		A5C12E7B217E16DB00A7D68C /* PinSetup.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PinSetup.strings; sourceTree = "<group>"; };
 		A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Authorize.swift"; sourceTree = "<group>"; };
 		A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserNetworkProvider.swift; sourceTree = "<group>"; };
 		A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyWallet.storyboard; sourceTree = "<group>"; };
@@ -1156,6 +1176,8 @@
 				085F6DC8178F69BE94191DA0 /* Interactor */,
 				FEE5EAA1FCA39E71B5D89FDC /* Router */,
 				069CAAF02E6AC36AE779CED5 /* Module */,
+				A5C12E75217E135D00A7D68C /* Strings+Registration.swift */,
+				A5C12E77217E137700A7D68C /* Registration.strings */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -1946,6 +1968,8 @@
 				B90828930B61D8754E0B5BA4 /* Interactor */,
 				B19C4A1751BF807CA83CE829 /* Router */,
 				CB0C6C14F23EAD92D741F255 /* Module */,
+				A5C12E79217E16AC00A7D68C /* Strings+PinSetup.swift */,
+				A5C12E7B217E16DB00A7D68C /* PinSetup.strings */,
 			);
 			path = PinSetup;
 			sourceTree = "<group>";
@@ -3206,6 +3230,8 @@
 				92C159F7C4A0BFCC5BFBDDCB /* Interactor */,
 				30FC739FF644B05AAE36577F /* Router */,
 				B76D0D4B8FA14BD3B34B245C /* Module */,
+				A5C12E6D217E0B3B00A7D68C /* Strings+Login.swift */,
+				A5C12E6F217E0D6700A7D68C /* Login.strings */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3554,6 +3580,8 @@
 		CEDDDEF921302D8200490781 /* SocialNetworkAuthView */ = {
 			isa = PBXGroup;
 			children = (
+				A5C12E68217E04F700A7D68C /* Strings+SocialNetworkAuth.swift */,
+				A5C12E6A217E0ADA00A7D68C /* SocialNetworkAuth.strings */,
 				CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */,
 				A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */,
 				CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */,
@@ -3759,6 +3787,8 @@
 				8702542F0A68E20E6EEB0B8A /* Interactor */,
 				9DF0F8D9F30D65C93D4CE1DB /* Router */,
 				C8F2C4517605AB053895013E /* Module */,
+				A5C12E71217E120D00A7D68C /* Strings+PinInput.swift */,
+				A5C12E73217E122B00A7D68C /* PinInput.strings */,
 			);
 			path = PinInput;
 			sourceTree = "<group>";
@@ -4054,7 +4084,10 @@
 				CEFC9CBB215A5BE400962356 /* ContactCell.xib in Resources */,
 				CE6A0974216CE3AE004A96A8 /* ConnectPhone.storyboard in Resources */,
 				CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */,
+				A5C12E6B217E0ADA00A7D68C /* SocialNetworkAuth.strings in Resources */,
+				A5C12E74217E122B00A7D68C /* PinInput.strings in Resources */,
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
+				A5C12E78217E137700A7D68C /* Registration.strings in Resources */,
 				A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */,
 				A574353921789BB3006B4CAE /* SessionCell.xib in Resources */,
 				A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */,
@@ -4063,8 +4096,10 @@
 				A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */,
 				A51CB55D215942F400CDC80C /* RouteButton.xib in Resources */,
 				CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */,
+				A5C12E7C217E16DB00A7D68C /* PinSetup.strings in Resources */,
 				A58EE3C62150379E0096C155 /* Login.storyboard in Resources */,
 				A560C743216B57F9009F0E95 /* SettingsHeaderView.xib in Resources */,
+				A5C12E70217E0D6700A7D68C /* Login.strings in Resources */,
 				CE5FAFB92153801F009E707E /* PinQuickLaunch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4283,6 +4318,7 @@
 				DF3822DC4DAE4101FC197A94 /* FirstLaunchModuleOutput.swift in Sources */,
 				DAD66F6925304312D772B826 /* FirstLaunchModule.swift in Sources */,
 				4B42C53D0968DE8E1FFE0BAE /* RegistrationViewInput.swift in Sources */,
+				A5C12E72217E120D00A7D68C /* Strings+PinInput.swift in Sources */,
 				A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */,
 				A5C12E4B217DE8CC00A7D68C /* Strings.swift in Sources */,
 				A574352C217775AE006B4CAE /* RealmSession.swift in Sources */,
@@ -4370,6 +4406,7 @@
 				0B71D203EA67FB0928D31D05 /* QuickLaunchModule.swift in Sources */,
 				A56B4C76215CD8F10017B337 /* Device.swift in Sources */,
 				A56ED383216CD70B009FA58B /* TransactionDetailsInteractorOutput.swift in Sources */,
+				A5C12E69217E04F700A7D68C /* Strings+SocialNetworkAuth.swift in Sources */,
 				21C9A25E63FE311BA5837841 /* PinQuickLaunchViewInput.swift in Sources */,
 				A50BF8AC215409B500FB0DA2 /* Theme.swift in Sources */,
 				840E0ADCB367221C2EB81EA6 /* PinQuickLaunchViewOutput.swift in Sources */,
@@ -4453,6 +4490,7 @@
 				6214E91B27DC987F18161F2F /* MyWalletInteractorInput.swift in Sources */,
 				F65CB8AA94F7350D95BCC3B4 /* MyWalletInteractorOutput.swift in Sources */,
 				CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */,
+				A5C12E6E217E0B3B00A7D68C /* Strings+Login.swift in Sources */,
 				CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */,
 				CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */,
 				A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */,
@@ -4493,6 +4531,7 @@
 				B98F7B6D236E5C7D1D3FD552 /* ExchangeRouter.swift in Sources */,
 				A574353B21789E3C006B4CAE /* SessionTableViewCell.swift in Sources */,
 				505F3C485B956B860664837B /* ExchangeModuleInput.swift in Sources */,
+				A5C12E7A217E16AC00A7D68C /* Strings+PinSetup.swift in Sources */,
 				A5B78213215E25A200EFD1A5 /* Array+Helper.swift in Sources */,
 				32AE32F42A7235157AE8F11C /* ExchangeModuleOutput.swift in Sources */,
 				CE0C3C2C216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift in Sources */,
@@ -4630,6 +4669,7 @@
 				A56ED38E216CD7E2009FA58B /* TransactionDetailsPresenter.swift in Sources */,
 				FB6A70C28C7786B6536478B8 /* ProfileInteractor.swift in Sources */,
 				A574350821776226006B4CAE /* EditProfileRouter.swift in Sources */,
+				A5C12E76217E135D00A7D68C /* Strings+Registration.swift in Sources */,
 				2DCC590F1683AF50B1B15403 /* ProfileRouterInput.swift in Sources */,
 				F2D470CFD53146653BAE83BC /* ProfileRouter.swift in Sources */,
 				B28B1DB2D406C58BAECE85FE /* ProfileModuleInput.swift in Sources */,
