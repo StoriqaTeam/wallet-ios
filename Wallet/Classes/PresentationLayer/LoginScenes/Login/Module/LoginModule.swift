@@ -20,24 +20,18 @@ class LoginModule {
         let loginNetworkProvider = LoginNetworkProvider()
         let userNetworkProvider = CurrentUserNetworkProvider()
         let userDataStore = UserDataStoreService()
-<<<<<<< HEAD
         let accountsNetworkProvider = AccountsNetworkProvider()
         let accountsDataStore = AccountsDataStore()
-=======
         let keychain = KeychainProvider()
->>>>>>> dev
         let interactor = LoginInteractor(socialViewVM: socialVM,
                                          defaultProvider: defaultsProvider,
                                          biometricAuthProvider: biometricAuthProvider,
                                          loginNetworkProvider: loginNetworkProvider,
                                          userNetworkProvider: userNetworkProvider,
                                          userDataStore: userDataStore,
-<<<<<<< HEAD
+                                         keychain: keychain,
                                          accountsNetworkProvider: accountsNetworkProvider,
                                          accountsDataStore: accountsDataStore)
-=======
-                                         keychain: keychain)
->>>>>>> dev
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController

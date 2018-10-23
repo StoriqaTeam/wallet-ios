@@ -17,8 +17,18 @@ class MainTabBarModule {
         let accountWatcher = CurrentAccountWatcher(accountProvider: accountsProvider)
         let userDataStoreService = UserDataStoreService()
         let accountsNetworkProvider = AccountsNetworkProvider()
+        let defaults = DefaultsProvider()
+        let keychain = KeychainProvider()
+        let loginNetworkProvider = LoginNetworkProvider()
+        
+        let authTokenProvider = AuthTokenProvider(defaults: defaults,
+                                                  keychain: keychain,
+                                                  loginNetworkProvider: loginNetworkProvider,
+                                                  userDataStoreService: userDataStoreService)
+        
         let accountsUpdater = AccountsUpdater(accountsNetworkProvider: accountsNetworkProvider,
-                                              accountsDataStore: accountsDataStore)
+                                              accountsDataStore: accountsDataStore,
+                                              authTokenProvider: authTokenProvider)
         
         let interactor = MainTabBarInteractor(accountWatcher: accountWatcher,
                                               userDataStoreService: userDataStoreService,

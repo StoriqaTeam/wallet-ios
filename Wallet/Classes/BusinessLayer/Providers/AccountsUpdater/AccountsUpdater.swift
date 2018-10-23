@@ -16,32 +16,36 @@ class AccountsUpdater: AccountsUpdaterProtocol {
     
     private let accountsNetworkProvider: AccountsNetworkProviderProtocol
     private let accountsDataStore: AccountsDataStoreProtocol
+    private let authTokenProvider: AuthTokenProviderProtocol
     
     init(accountsNetworkProvider: AccountsNetworkProviderProtocol,
-         accountsDataStore: AccountsDataStoreProtocol) {
+         accountsDataStore: AccountsDataStoreProtocol,
+         authTokenProvider: AuthTokenProviderProtocol) {
         self.accountsNetworkProvider = accountsNetworkProvider
         self.accountsDataStore = accountsDataStore
+        self.authTokenProvider = authTokenProvider
     }
     
     func update(userId: Int) {
-        
-        // FIXME: auth token provider
-        guard let authToken = DefaultsProvider().authToken else {
-            return
-        }
-        
-        accountsNetworkProvider.getAccounts(
-            authToken: authToken,
-            userId: userId,
-            queue: .main) { [weak self] (result) in
-                switch result {
-                case .success(let accounts):
-                    log.debug(accounts.map { $0.id })
-                    self?.accountsDataStore.update(accounts)
-                    
-                case .failure(let error):
-                    log.warn(error.localizedDescription)
+        authTokenProvider.currentAuthToken { [weak self] (result) in
+            switch result {
+            case .success(let token):
+                self?.accountsNetworkProvider.getAccounts(
+                    authToken: token,
+                    userId: userId,
+                    queue: .main) { [weak self] (result) in
+                        switch result {
+                        case .success(let accounts):
+                            log.debug(accounts.map { $0.id })
+                            self?.accountsDataStore.update(accounts)
+                            
+                        case .failure(let error):
+                            log.warn(error.localizedDescription)
+                        }
                 }
+            case .failure(let error):
+                log.warn(error.localizedDescription)
+            }
         }
     }
 }

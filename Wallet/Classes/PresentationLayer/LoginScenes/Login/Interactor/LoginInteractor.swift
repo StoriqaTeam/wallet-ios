@@ -65,8 +65,8 @@ extension LoginInteractor: LoginInteractorInput {
                 switch result {
                 case .success(let authToken):
                     strongSelf.defaultProvider.authToken = authToken
-                    strongSelf.getUser(authToken: authToken, authData: .email(email: email, password: password))
                     strongSelf.keychain.password = password
+                    strongSelf.getUser(authToken: authToken, authData: .email(email: email, password: password))
                 case .failure(let error):
                     strongSelf.output.failToLogin(reason: error.localizedDescription)
                 }
@@ -97,11 +97,8 @@ extension LoginInteractor {
                 
                 switch result {
                 case .success(let user):
-            
-                    // FIXME: auth token provider
-                    
                     strongSelf.userDataStore.update(user)
-                    strongSelf.getAccounts(authData: authData, userId: user.id)
+                    strongSelf.getAccounts(authToken: authToken, authData: authData, userId: user.id)
                     
                 case .failure(let error):
                     strongSelf.output.failToLogin(reason: error.localizedDescription)
@@ -109,14 +106,7 @@ extension LoginInteractor {
         }
     }
     
-    private func getAccounts(authData: AuthData, userId: Int) {
-        
-        // FIXME: auth token provider
-        
-        guard let authToken = defaultProvider.authToken else {
-            return
-        }
-        
+    private func getAccounts(authToken: String, authData: AuthData, userId: Int) {
         accountsNetworkProvider.getAccounts(
             authToken: authToken,
             userId: userId,
