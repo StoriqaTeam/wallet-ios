@@ -55,7 +55,7 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
             return
         }
         
-        if !isExparedToken() {
+        if !isExpiredToken() {
             completion(.success(aToken.token))
             return
         }
@@ -103,7 +103,7 @@ extension AuthTokenProvider {
         authToken = jwtParser.parse(jwtToken: jwtTokenString)
     }
     
-    private func isExparedToken() -> Bool {
+    private func isExpiredToken() -> Bool {
         guard let expiredTime = authToken?.expiredTimeStamp else { return false }
         return now >= expiredTime
     }
