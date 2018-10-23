@@ -14,6 +14,7 @@ import Security
 
 protocol KeychainProviderProtocol: class {
     var pincode: String? { get set }
+    var password: String? { get set }
     func deleteAll()
 }
 
@@ -34,9 +35,8 @@ class KeychainProvider: KeychainProviderProtocol {
     // swiftlint:disable trailing_whitespace
     enum KeychainKeys: String, CaseIterable {
         case pincode
+        case password
     }
-
-    
     
     var pincode: String? {
         get {
@@ -44,6 +44,16 @@ class KeychainProvider: KeychainProviderProtocol {
         }
         set {
             setString(newValue, for: .pincode)
+        }
+    }
+    
+    var password: String? {
+        get {
+            return getString(for: .password)
+        }
+        
+        set {
+            return setString(newValue, for: .password)
         }
     }
     
