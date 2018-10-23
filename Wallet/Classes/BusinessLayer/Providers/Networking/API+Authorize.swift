@@ -12,6 +12,7 @@ import Alamofire
 extension API {
     enum Authorized {
         case user(authToken: String)
+        case getAccounts(authToken: String, userId: Int)
     }
 }
 
@@ -20,6 +21,8 @@ extension API.Authorized: APIMethodProtocol {
         switch self {
         case .user:
             return .get
+        case .getAccounts:
+            return .get
         }
     }
     
@@ -27,6 +30,9 @@ extension API.Authorized: APIMethodProtocol {
         switch self {
         case .user:
             return "\(Constants.Network.baseUrl)/users/me"
+        case .getAccounts(_, let userId):
+            // FIXME: разобраться с offset и limit
+            return "\(Constants.Network.baseUrl)/users/\(userId)/accounts?offset=0&limit=20"
         }
     }
     
@@ -34,6 +40,11 @@ extension API.Authorized: APIMethodProtocol {
         switch self {
         case .user(let authToken):
             return [
+                "Authorization": "Bearer \(authToken)"
+            ]
+        case .getAccounts(let authToken, _):
+            return [
+                "accept": "application/json",
                 "Authorization": "Bearer \(authToken)"
             ]
         }

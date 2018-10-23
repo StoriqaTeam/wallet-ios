@@ -63,6 +63,22 @@ extension AccountsInteractor: AccountsInteractorInput {
         return currentAccount.currency.ISO
     }
     
+    func startObservers() {
+        accountLinker.setObserver(self)
+    }
+}
+
+
+// MARK: - AccountsProviderDelegate
+
+extension AccountsInteractor: AccountsProviderDelegate {
+    func accountsDidUpdate(_ accounts: [Account]) {
+        let account = accountWatcher.getAccount()
+        let index = accounts.index { $0 == account } ?? 0
+        
+        setCurrentAccountWith(index: index)
+        output.updateAccounts(accounts: accounts, index: index)
+    }
 }
 
 
@@ -71,7 +87,7 @@ extension AccountsInteractor: AccountsInteractorInput {
 extension AccountsInteractor {
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountLinker.getAllAccounts()
-        return allAccounts.index { $0 == account }!
+        return allAccounts.index { $0 == account } ?? 0
     }
     
     private func transactions(for account: Account) -> [TransactionDisplayable] {

@@ -18,13 +18,17 @@ class LoginInteractor {
     private let loginNetworkProvider: LoginNetworkProviderProtocol
     private let userNetworkProvider: CurrentUserNetworkProviderProtocol
     private let userDataStore: UserDataStoreServiceProtocol
+    private let accountsNetworkProvider: AccountsNetworkProviderProtocol
+    private let accountsDataStore: AccountsDataStoreProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
          biometricAuthProvider: BiometricAuthProviderProtocol,
          loginNetworkProvider: LoginNetworkProvider,
          userNetworkProvider: CurrentUserNetworkProviderProtocol,
-         userDataStore: UserDataStoreServiceProtocol) {
+         userDataStore: UserDataStoreServiceProtocol,
+         accountsNetworkProvider: AccountsNetworkProviderProtocol,
+         accountsDataStore: AccountsDataStoreProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
@@ -32,6 +36,8 @@ class LoginInteractor {
         self.loginNetworkProvider = loginNetworkProvider
         self.userNetworkProvider = userNetworkProvider
         self.userDataStore = userDataStore
+        self.accountsNetworkProvider = accountsNetworkProvider
+        self.accountsDataStore = accountsDataStore
     }
 }
 
@@ -87,10 +93,39 @@ extension LoginInteractor {
                 
                 switch result {
                 case .success(let user):
+            
+                    // FIXME: auth token provider
+                    
                     strongSelf.userDataStore.update(user)
-                    strongSelf.loginSucceed(authData: authData)
+                    strongSelf.getAccounts(authData: authData, userId: user.id)
+                    
                 case .failure(let error):
                     strongSelf.output.failToLogin(reason: error.localizedDescription)
+                }
+        }
+    }
+    
+    private func getAccounts(authData: AuthData, userId: Int) {
+        
+        // FIXME: auth token provider
+        
+        guard let authToken = defaultProvider.authToken else {
+            return
+        }
+        
+        accountsNetworkProvider.getAccounts(
+            authToken: authToken,
+            userId: userId,
+            queue: .main) { [weak self] (result) in
+                switch result {
+                case .success(let accounts):
+                    log.debug(accounts.map { $0.id })
+                    self?.accountsDataStore.update(accounts)
+                    self?.loginSucceed(authData: authData)
+                    
+                case .failure(let error):
+                    self?.output.failToLogin(reason: error.localizedDescription)
+                    log.warn(error.localizedDescription)
                 }
         }
     }

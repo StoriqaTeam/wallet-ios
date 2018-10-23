@@ -37,6 +37,11 @@ class MyWalletDataManager: NSObject {
         registerXib()
     }
     
+    func updateAccounts(accounts: [Account]) {
+        self.accounts = accounts
+        collectionView.reloadData()
+    }
+    
 }
 
 

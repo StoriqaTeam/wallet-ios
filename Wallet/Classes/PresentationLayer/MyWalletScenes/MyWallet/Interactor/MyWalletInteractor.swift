@@ -18,6 +18,8 @@ class MyWalletInteractor {
          accountWatcher: CurrentAccountWatcherProtocol) {
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
+        
+        accountsProvider.setObserver(self)
     }
 }
 
@@ -25,7 +27,6 @@ class MyWalletInteractor {
 // MARK: - MyWalletInteractorInput
 
 extension MyWalletInteractor: MyWalletInteractorInput {
-    
     func getAccounts() -> [Account] {
         return accountsProvider.getAllAccounts()
     }
@@ -33,5 +34,13 @@ extension MyWalletInteractor: MyWalletInteractorInput {
     func getAccountWatcher() -> CurrentAccountWatcherProtocol {
         return accountWatcher
     }
-    
+}
+
+
+// MARK: - AccountsProviderDelegate
+
+extension MyWalletInteractor: AccountsProviderDelegate {
+    func accountsDidUpdate(_ accounts: [Account]) {
+        output.updateAccounts(accounts: accounts)
+    }
 }

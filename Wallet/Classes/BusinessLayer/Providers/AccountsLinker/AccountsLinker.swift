@@ -12,6 +12,7 @@ import Foundation
 protocol AccountsLinkerProtocol: class {
     func getTransactionsFor(account: Account) -> [TransactionDisplayable]?
     func getAllAccounts() -> [Account]
+    func setObserver(_ observer: AccountsProviderDelegate)
 }
 
 
@@ -39,4 +40,9 @@ class AccountsLinker: AccountsLinkerProtocol {
     func getAllAccounts() -> [Account] {
         return accountsProvider.getAllAccounts()
     }
+    
+    func setObserver(_ observer: AccountsProviderDelegate) {
+        accountsProvider.setObserver(observer)
+    }
+    
 }

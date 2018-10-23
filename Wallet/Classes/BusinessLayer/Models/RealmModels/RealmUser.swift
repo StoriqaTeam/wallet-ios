@@ -12,7 +12,7 @@ import RealmSwift
 
 @objcMembers
 class RealmUser: Object {
-    dynamic var id: String = ""
+    dynamic var id: Int = 0
     dynamic var email: String = ""
     dynamic var phone: String = ""
     dynamic var firstName: String = ""

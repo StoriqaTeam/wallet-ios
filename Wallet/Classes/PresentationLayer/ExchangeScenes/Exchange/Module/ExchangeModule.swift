@@ -15,7 +15,8 @@ class ExchangeModule {
         let converterFactory = CurrecncyConverterFactory()
         let currencyFormatter = CurrencyFormatter()
         let feeWaitProvider = FakePaymentFeeAndWaitProvider()
-        let accountsProvider = FakeAccountProvider()
+        let dataStoreService = AccountsDataStore()
+        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
         let accountTypeResolver = AccountTypeResolver()
         let accountDisplayer = AccountDisplayer(user: user,
                                                 currencyFormatter: currencyFormatter,

@@ -50,4 +50,8 @@ class ContactsDataStoreService: RealmStorable<Contact>, ContactsDataStoreService
     func batchUpdateContacts(with contacts: [Contact]) {
         save(contacts)
     }
+    
+    override func deleteAll() {
+        find().forEach { delete(primaryKey: $0.id) }
+    }
 }

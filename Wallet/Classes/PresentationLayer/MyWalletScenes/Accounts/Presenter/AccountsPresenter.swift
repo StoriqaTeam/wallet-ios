@@ -74,6 +74,7 @@ extension AccountsPresenter: AccountsViewOutput {
         let numberOfPages = interactor.getAccountsCount()
         view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
+        interactor.startObservers()
     }
     
     func viewWillAppear() {
@@ -92,6 +93,13 @@ extension AccountsPresenter: AccountsInteractorOutput {
     
     func transactionsDidChange(_ txs: [TransactionDisplayable]) {
         transactionDataManager.updateTransactions(txs)
+    }
+    
+    func updateAccounts(accounts: [Account], index: Int) {
+        accountsDataManager?.updateAccounts(accounts)
+        accountsDataManager?.scrollTo(index: index)
+        view.updatePagesCount(accounts.count)
+        view.setNewPage(index)
     }
     
 }

@@ -67,6 +67,9 @@ class DepositViewController: UIViewController {
 // MARK: - DepositViewInput
 
 extension DepositViewController: DepositViewInput {
+    func updatePagesCount(_ count: Int) {
+        accountsPageControl.numberOfPages = count
+    }
     
     func setNewPage(_ index: Int) {
         accountsPageControl.currentPage = index

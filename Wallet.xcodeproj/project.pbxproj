@@ -389,6 +389,8 @@
 		CE1A47DD212E9C5400418C11 /* PinInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PinInputView.swift */; };
 		CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */; };
 		CE1E345B217B212E001B1477 /* RegistrationNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E345A217B212E001B1477 /* RegistrationNetworkProvider.swift */; };
+		CE1E348E217F007F001B1477 /* AccountsNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E348D217F007F001B1477 /* AccountsNetworkProvider.swift */; };
+		CE1E3491217F1464001B1477 /* AccountsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E3490217F1464001B1477 /* AccountsUpdater.swift */; };
 		CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */; };
 		CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
@@ -963,6 +965,8 @@
 		CE1A47D9212E9C5400418C11 /* PinDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDotView.swift; sourceTree = "<group>"; };
 		CE1A47DA212E9C5400418C11 /* PinInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinInputView.swift; sourceTree = "<group>"; };
 		CE1E345A217B212E001B1477 /* RegistrationNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNetworkProvider.swift; sourceTree = "<group>"; };
+		CE1E348D217F007F001B1477 /* AccountsNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsNetworkProvider.swift; sourceTree = "<group>"; };
+		CE1E3490217F1464001B1477 /* AccountsUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsUpdater.swift; sourceTree = "<group>"; };
 		CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmVM.swift; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
@@ -2229,6 +2233,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CE1E348C217F006A001B1477 /* AccountsNetworkProvider */,
 				A57434E021774B6A006B4CAE /* ContactsNetworkProvider */,
 				A5D5BB7D217B598B008BEB74 /* CurrentUserNetworkProvider */,
 				CE1E3459217B2119001B1477 /* RegistrationNetworkProvider */,
@@ -2804,6 +2809,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				CE1E348F217F1450001B1477 /* AccountsUpdater */,
 				A574353C2178AFFF006B4CAE /* SessionSorter */,
 				A57434E621774BA0006B4CAE /* ContactsAddressLinker */,
 				A57434E321774B84006B4CAE /* ContactsCacheUpdater */,
@@ -3317,6 +3323,22 @@
 				A500860F2151166100C47015 /* KeychainProvider.swift */,
 			);
 			path = KeychainProvider;
+			sourceTree = "<group>";
+		};
+		CE1E348C217F006A001B1477 /* AccountsNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE1E348D217F007F001B1477 /* AccountsNetworkProvider.swift */,
+			);
+			path = AccountsNetworkProvider;
+			sourceTree = "<group>";
+		};
+		CE1E348F217F1450001B1477 /* AccountsUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				CE1E3490217F1464001B1477 /* AccountsUpdater.swift */,
+			);
+			path = AccountsUpdater;
 			sourceTree = "<group>";
 		};
 		CE23D321215CB9DB0016FEBD /* CustomSegmentedControl */ = {
@@ -4259,6 +4281,7 @@
 				19C992F649EC96AB1D2EB274 /* PinInputRouterInput.swift in Sources */,
 				3F5CD24DFF4FE1F0033868ED /* PinInputRouter.swift in Sources */,
 				A574352321777383006B4CAE /* SessionsInteractorOutput.swift in Sources */,
+				CE1E348E217F007F001B1477 /* AccountsNetworkProvider.swift in Sources */,
 				8DCE3EEDBEA0BC7E7957D47D /* PinInputModuleInput.swift in Sources */,
 				A5F59AB7216248C5005F1765 /* RealmMappable.swift in Sources */,
 				F724C3EE1C872FF0DF3C37D7 /* PinInputModuleOutput.swift in Sources */,
@@ -4560,6 +4583,7 @@
 				798B0AA0B4D1AE185E6CA442 /* ReceiverViewOutput.swift in Sources */,
 				59167B7950CD438C415AC908 /* ReceiverViewController.swift in Sources */,
 				8BE6FAE0FE224B20E12FF108 /* ReceiverPresenter.swift in Sources */,
+				CE1E3491217F1464001B1477 /* AccountsUpdater.swift in Sources */,
 				35845AAC175D6D276692694B /* ReceiverInteractorInput.swift in Sources */,
 				A574350421776226006B4CAE /* EditProfileInteractor.swift in Sources */,
 				A56ED37B216CAE37009FA58B /* TransactionDescriptionContactView.swift in Sources */,

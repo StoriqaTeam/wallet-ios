@@ -23,12 +23,13 @@ class TransactionDirectionResolver: TransactionDirectionResolverProtocol {
     }
     
     func resolveDirection(for transaction: Transaction) -> Direction {
-        let ethAddress = accountsProvider.getEthereumAddress()
-        let btcAddress = accountsProvider.getBitcoinAddress()
-        let allBlockchainAddresses = [ethAddress, btcAddress]
+        let addresses = accountsProvider.getAddresses()
         let toAddress = transaction.toAddress
         
-        if allBlockchainAddresses.contains(where: { $0 == toAddress }) { return Direction.receive }
-        return Direction.send
+        if addresses.contains(where: { $0 == toAddress }) {
+            return Direction.receive
+        } else {
+            return Direction.send
+        }
     }
 }

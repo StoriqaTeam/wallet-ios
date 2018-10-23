@@ -10,7 +10,7 @@
 import Foundation
 
 struct User {
-    let id: String
+    let id: Int
     let email: String
     var phone: String
     var firstName: String
@@ -39,10 +39,8 @@ extension User: RealmMappable {
     }
     
     init?(json: JSON) {
-        // FIXME: stub! remove!
-        let id = "60"
         
-        guard //let id = json["id"].string,
+        guard let id = json["id"].int,
             let email = json["email"].string,
             let firstName = json["firstName"].string,
             let lastName = json["lastName"].string else {

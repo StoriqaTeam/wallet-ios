@@ -77,8 +77,7 @@ extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmModuleInput {
 extension PasswordRecoveryConfirmPresenter: PopUpPasswordRecoveryConfirmSuccessVMDelegate {
     
     func signIn() {
-        // replace saved in keychain data
-        router.showAuthorizedZone()
+        router.showLogin()
     }
     
 }

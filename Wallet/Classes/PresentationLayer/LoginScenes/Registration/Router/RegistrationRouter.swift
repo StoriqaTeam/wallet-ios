@@ -38,11 +38,6 @@ extension RegistrationRouter: RegistrationRouterInput {
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
-    func showAuthorizedZone() {
-        MainTabBarModule.create().present()
-    }
-    
-    
     func showLogin() {
         LoginModule.create().present()
     }

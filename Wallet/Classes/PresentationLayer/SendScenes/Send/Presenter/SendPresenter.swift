@@ -84,6 +84,7 @@ extension SendPresenter: SendViewOutput {
         configureNavBar()
         view.setButtonEnabled(false)
         view.setupInitialState(currencyImages: currencyImages, numberOfPages: numberOfPages)
+        interactor.startObservers()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -123,7 +124,6 @@ extension SendPresenter: SendViewOutput {
 // MARK: - SendInteractorOutput
 
 extension SendPresenter: SendInteractorOutput {
-    
     func updateAmount() {
         let amount = interactor.getAmount()
         let currency = interactor.getReceiverCurrency()
@@ -143,6 +143,12 @@ extension SendPresenter: SendInteractorOutput {
         }
     }
     
+    func updateAccounts(accounts: [Account], index: Int) {
+        accountsDataManager?.updateAccounts(accounts)
+        accountsDataManager?.scrollTo(index: index)
+        view.updatePagesCount(accounts.count)
+        view.setNewPage(index)
+    }
 }
 
 

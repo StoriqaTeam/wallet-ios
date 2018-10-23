@@ -22,6 +22,11 @@ class FakeAccountLinker: AccountsLinkerProtocol {
     func getAllAccounts() -> [Account] {
         return fakeAccProvider.getAllAccounts()
     }
+    
+    func setObserver(_ observer: AccountsProviderDelegate) {
+        fakeAccProvider.setObserver(observer)
+    }
+    
 }
 
 
@@ -33,7 +38,8 @@ class AccountsModule {
         let router = AccountsRouter()
         
         // Injections
-        let accountsProvider = FakeAccountProvider()
+        let dataStoreService = AccountsDataStore()
+        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
         let converterFactory = CurrecncyConverterFactory()
         let currencyFormatter = CurrencyFormatter()
         let accountTypeResolver = AccountTypeResolver()

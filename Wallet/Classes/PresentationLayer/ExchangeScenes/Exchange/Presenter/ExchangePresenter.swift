@@ -43,6 +43,7 @@ extension ExchangePresenter: ExchangeViewOutput {
         configureNavBar()
         
         interactor.updateInitialState()
+        interactor.startObservers()
     }
     
     func viewWillAppear() {
@@ -104,6 +105,11 @@ extension ExchangePresenter: ExchangeViewOutput {
     
     func recepientAccountPressed() {
         let accounts = interactor.getRecepientAccounts()
+        
+        guard !accounts.isEmpty else {
+            return
+        }
+        
         accountsTableDataManager.accounts = accounts
         
         let height = accountsTableDataManager.calculateHeight()
@@ -121,7 +127,19 @@ extension ExchangePresenter: ExchangeViewOutput {
 
 extension ExchangePresenter: ExchangeInteractorOutput {
     
-    func updateRecepientAccount(_ account: Account) {
+    func updateAccounts(accounts: [Account], index: Int) {
+        accountsDataManager?.updateAccounts(accounts)
+        accountsDataManager?.scrollTo(index: index)
+        view.updatePagesCount(accounts.count)
+        view.setNewPage(index)
+    }
+    
+    func updateRecepientAccount(_ account: Account?) {
+        guard let account = account else {
+            view.setRecepientAccount("No accounts available")
+            return
+        }
+        
         currencyConverter = converterFactory.createConverter(from: account.currency)
         view.setRecepientAccount(account.name)
     }
@@ -137,7 +155,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
     }
     
     func convertAmount(_ amount: Decimal, to currency: Currency) {
-        guard !amount.isZero else {
+        guard let currencyConverter = currencyConverter, !amount.isZero else {
             view.setConvertedAmount("")
             return
         }

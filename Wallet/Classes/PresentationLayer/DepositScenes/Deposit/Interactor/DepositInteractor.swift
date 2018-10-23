@@ -29,6 +29,10 @@ class DepositInteractor {
 // MARK: - DepositInteractorInput
 
 extension DepositInteractor: DepositInteractorInput {
+    func startObservers() {
+        accountsProvider.setObserver(self)
+    }
+    
     func getAccounts() -> [Account] {
         return accountsProvider.getAllAccounts()
     }
@@ -67,12 +71,24 @@ extension DepositInteractor: DepositInteractorInput {
 }
 
 
+// MARK: - AccountsProviderDelegate
+
+extension DepositInteractor: AccountsProviderDelegate {
+    func accountsDidUpdate(_ accounts: [Account]) {
+        let account = accountWatcher.getAccount()
+        let index = accounts.index { $0 == account } ?? 0
+        
+        accountWatcher.setAccount(accounts[index])
+        output.updateAccounts(accounts: accounts, index: index)
+    }
+}
+
+
 // MARK: - Private methods
 
 extension DepositInteractor {
-    
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
-        return allAccounts.index { $0 == account }!
+        return allAccounts.index { $0 == account } ?? 0
     }
 }

@@ -16,7 +16,8 @@ class SendModule {
         //Injections
         let converterFactory = CurrecncyConverterFactory()
         let formatter = CurrencyFormatter()
-        let accountProvider = FakeAccountProvider()
+        let dataStoreService = AccountsDataStore()
+        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
         
         let sendTxBuilder = SendTransactionBuilder()
         let currencyImageProvider = CurrencyImageProvider()
@@ -31,7 +32,7 @@ class SendModule {
                                       accountDisplayer: accountDisplayer)
         presenter.mainTabBar = tabBar
         let interactor = SendInteractor(sendTransactionBuilder: sendTxBuilder,
-                                        accountsProvider: accountProvider,
+                                        accountsProvider: accountsProvider,
                                         accountWatcher: accountWatcher)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)

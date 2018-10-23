@@ -16,7 +16,11 @@ class RealmAccount: Object {
     dynamic var id: String = ""
     dynamic var balance: String = ""
     dynamic var currency: String = ""
-    dynamic var userId: String = ""
+    dynamic var userId: Int = 0
     dynamic var accountAddress: String = ""
     dynamic var name: String = ""
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
 }

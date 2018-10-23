@@ -60,7 +60,9 @@ extension MyWalletPresenter: MyWalletViewOutput {
 // MARK: - MyWalletInteractorOutput
 
 extension MyWalletPresenter: MyWalletInteractorOutput {
-
+    func updateAccounts(accounts: [Account]) {
+        dataManager?.updateAccounts(accounts: accounts)
+    }
 }
 
 
