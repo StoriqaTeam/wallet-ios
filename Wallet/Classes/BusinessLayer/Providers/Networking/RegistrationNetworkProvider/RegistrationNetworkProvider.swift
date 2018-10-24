@@ -62,8 +62,7 @@ enum RegistrationProviderError: LocalizedError, Error {
     case badRequest
     case unknownError
     case internalServer
-    case invalidEmail
-    case invalidPassword
+    case validationError(email: String?, password: String?)
     
     init(json: JSON) {
         if let description = json["description"].string {
@@ -73,8 +72,24 @@ enum RegistrationProviderError: LocalizedError, Error {
             default: self = .unknownError
             }
         } else {
-            // FIXME: parse validation error
-            self = .unknownError
+            var emailMessage: String?
+            var passwordMessage: String?
+            
+            if let emailErrors = json["email"].array {
+                emailMessage = emailErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
+            }
+            if let passwordErrors = json["password"].array {
+                passwordMessage = passwordErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
+            }
+            
+            let hasEmailError = emailMessage != nil && !emailMessage!.isEmpty
+            let hasPasswordError = passwordMessage != nil && !passwordMessage!.isEmpty
+            
+            if hasEmailError || hasPasswordError {
+                self = .validationError(email: emailMessage, password: passwordMessage)
+            } else {
+                self = .unknownError
+            }
         }
     }
     
@@ -84,10 +99,18 @@ enum RegistrationProviderError: LocalizedError, Error {
             return "Bad request"
         case .internalServer:
             return "Internal server error"
-        case .unknownError,
-             .invalidEmail,
-             .invalidPassword:
+        case .unknownError:
             return Constants.Errors.userFriendly
+        case .validationError(let email, let password):
+            var result = email ?? ""
+            if let password = password {
+                if !result.isEmpty {
+                    result += "\n"
+                }
+                result += password
+            }
+            
+            return result.trim()
         }
     }
 }

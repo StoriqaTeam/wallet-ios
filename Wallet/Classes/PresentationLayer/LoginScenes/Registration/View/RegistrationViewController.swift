@@ -105,6 +105,10 @@ extension RegistrationViewController: RegistrationViewInput {
         repeatPasswordTextField.errorText = message
     }
     
+    func showErrorMessage(email: String?, password: String?) {
+        emailTextField.errorText = email
+        passwordTextField.errorText = password
+    }
 }
 
 

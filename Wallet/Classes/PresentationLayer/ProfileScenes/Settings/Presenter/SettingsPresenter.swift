@@ -69,7 +69,6 @@ extension SettingsPresenter: SettingsViewOutput {
         router.showChangePassword(from: view.viewController)
     }
     
-    
 }
 
 

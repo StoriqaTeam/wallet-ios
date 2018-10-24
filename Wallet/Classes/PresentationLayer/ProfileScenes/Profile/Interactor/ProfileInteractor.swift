@@ -12,9 +12,15 @@ import Foundation
 class ProfileInteractor {
     weak var output: ProfileInteractorOutput!
     
+    private let defaultsProvider: DefaultsProviderProtocol
+    private let keychainProvider: KeychainProviderProtocol
     private let userStoreService: UserDataStoreServiceProtocol
     
-    init(userStoreService: UserDataStoreServiceProtocol) {
+    init(defaults: DefaultsProviderProtocol,
+         keychain: KeychainProviderProtocol,
+         userStoreService: UserDataStoreServiceProtocol) {
+        self.defaultsProvider = defaults
+        self.keychainProvider = keychain
         self.userStoreService = userStoreService
     }
 }
@@ -37,4 +43,10 @@ extension ProfileInteractor: ProfileInteractorInput {
         }
     }
     
+    func deleteAppData() {
+        userStoreService.resetAllDatabase()
+        keychainProvider.deleteAll()
+        defaultsProvider.isFirstLaunch = true
+        defaultsProvider.isQuickLaunchShown = false
+    }
 }

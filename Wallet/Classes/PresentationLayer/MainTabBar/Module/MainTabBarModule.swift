@@ -17,7 +17,7 @@ class MainTabBarModule {
         let accountWatcher = CurrentAccountWatcher(accountProvider: accountsProvider)
         let userDataStoreService = UserDataStoreService()
         let accountsNetworkProvider = AccountsNetworkProvider()
-        let defaults = DefaultsProvider()
+        let defaults = AuthTokenDefaultsProvider()
         let keychain = KeychainProvider()
         let loginNetworkProvider = LoginNetworkProvider()
         

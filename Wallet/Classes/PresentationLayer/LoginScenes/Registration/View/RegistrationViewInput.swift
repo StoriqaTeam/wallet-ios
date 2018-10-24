@@ -14,4 +14,5 @@ protocol RegistrationViewInput: class, Presentable {
     func setSocialView(viewModel: SocialNetworkAuthViewModel)
     func setButtonEnabled(_ enabled: Bool)
     func showPasswordsNotEqual(message: String?)
+    func showErrorMessage(email: String?, password: String?)
 }
