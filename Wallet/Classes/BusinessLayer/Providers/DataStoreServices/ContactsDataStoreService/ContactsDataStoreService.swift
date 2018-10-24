@@ -51,7 +51,7 @@ class ContactsDataStoreService: RealmStorable<Contact>, ContactsDataStoreService
         save(contacts)
     }
     
-    override func deleteAll() {
+    func deleteAll() {
         find().forEach { delete(primaryKey: $0.id) }
     }
 }

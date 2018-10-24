@@ -23,8 +23,10 @@ class LoginModule {
         let accountsNetworkProvider = AccountsNetworkProvider()
         let accountsDataStore = AccountsDataStore()
         let keychain = KeychainProvider()
+        let authTokenDefaultsProvider = AuthTokenDefaultsProvider()
         let interactor = LoginInteractor(socialViewVM: socialVM,
                                          defaultProvider: defaultsProvider,
+                                         authTokenDefaultsProvider: authTokenDefaultsProvider,
                                          biometricAuthProvider: biometricAuthProvider,
                                          loginNetworkProvider: loginNetworkProvider,
                                          userNetworkProvider: userNetworkProvider,

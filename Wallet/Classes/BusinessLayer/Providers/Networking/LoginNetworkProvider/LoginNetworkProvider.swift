@@ -57,14 +57,35 @@ enum LoginProviderError: LocalizedError, Error {
     case badRequest
     case unauthorized
     case unknownError
+    case validationError(email: String?, password: String?)
     
     init(json: JSON) {
-        let description = json["description"].stringValue
-        
-        switch description {
-        case "Bad request": self = .badRequest
-        case "Unauthorized": self = .unauthorized
-        default: self = .unknownError
+        if let description = json["description"].string {
+            
+            switch description {
+            case "Bad request": self = .badRequest
+            case "Unauthorized": self = .unauthorized
+            default: self = .unknownError
+            }
+        } else {
+            var emailMessage: String?
+            var passwordMessage: String?
+            
+            if let emailErrors = json["email"].array {
+                emailMessage = emailErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
+            }
+            if let passwordErrors = json["password"].array {
+                passwordMessage = passwordErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
+            }
+            
+            let hasEmailError = emailMessage != nil && !emailMessage!.isEmpty
+            let hasPasswordError = passwordMessage != nil && !passwordMessage!.isEmpty
+            
+            if hasEmailError || hasPasswordError {
+                self = .validationError(email: emailMessage, password: passwordMessage)
+            } else {
+                self = .unknownError
+            }
         }
     }
     
@@ -75,7 +96,17 @@ enum LoginProviderError: LocalizedError, Error {
         case .unauthorized:
             return "User unauthorized"
         case .unknownError:
-            return "Unknown error"
+            return Constants.Errors.userFriendly
+        case .validationError(let email, let password):
+            var result = email ?? ""
+            if let password = password {
+                if !result.isEmpty {
+                    result += "\n"
+                }
+                result += password
+            }
+            
+            return result.trim()
         }
     }
 }
