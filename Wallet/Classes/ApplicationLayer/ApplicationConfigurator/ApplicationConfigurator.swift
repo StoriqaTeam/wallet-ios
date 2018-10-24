@@ -32,6 +32,7 @@ extension ApplicationConfigurator {
     private func setInitialVC() {
         if defaults.isFirstLaunch {
             defaults.isFirstLaunch = false
+            keychain.deleteAll()
             FirstLaunchModule.create().present()
         } else if isPinSet() {
             PinInputModule.create().present()

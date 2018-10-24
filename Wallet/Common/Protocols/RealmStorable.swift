@@ -73,7 +73,7 @@ class RealmStorable<PlainType: RealmMappable> {
         }
     }
     
-    func deleteAll() {
+    func resetAllDatabase() {
         let realm = try! Realm()
         
         try! realm.write {

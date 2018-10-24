@@ -74,6 +74,11 @@ extension RegistrationPresenter: RegistrationViewOutput {
 // MARK: - RegistrationInteractorOutput
 
 extension RegistrationPresenter: RegistrationInteractorOutput {
+    func formValidationFailed(email: String?, password: String?) {
+        storiqaLoader.stopLoader()
+        view.showErrorMessage(email: email, password: password)
+    }
+    
     func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?) {
         view.setButtonEnabled(valid)
         view.showPasswordsNotEqual(message: passwordsEqualityMessage)

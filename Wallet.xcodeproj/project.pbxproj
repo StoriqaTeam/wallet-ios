@@ -433,6 +433,7 @@
 		CE6A0972216CD1B3004A96A8 /* PopUpSignOutVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A0971216CD1B3004A96A8 /* PopUpSignOutVM.swift */; };
 		CE6A0974216CE3AE004A96A8 /* ConnectPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6A0973216CE3AE004A96A8 /* ConnectPhone.storyboard */; };
 		CE6A0976216DE003004A96A8 /* HeaderGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A0975216DE003004A96A8 /* HeaderGradientView.swift */; };
+		CE81AD69218080CB0033F75D /* AuthTokenDefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81AD68218080CB0033F75D /* AuthTokenDefaultsProvider.swift */; };
 		CE8CC9922167A90D00EA9EED /* AccountDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */; };
 		CE8CC9952167A92B00EA9EED /* CurrencyImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */; };
 		CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9962167B7A500EA9EED /* Currency.swift */; };
@@ -1013,6 +1014,7 @@
 		CE6A0971216CD1B3004A96A8 /* PopUpSignOutVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSignOutVM.swift; sourceTree = "<group>"; };
 		CE6A0973216CE3AE004A96A8 /* ConnectPhone.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConnectPhone.storyboard; sourceTree = "<group>"; };
 		CE6A0975216DE003004A96A8 /* HeaderGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderGradientView.swift; sourceTree = "<group>"; };
+		CE81AD68218080CB0033F75D /* AuthTokenDefaultsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenDefaultsProvider.swift; sourceTree = "<group>"; };
 		CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayer.swift; sourceTree = "<group>"; };
 		CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyImageProvider.swift; sourceTree = "<group>"; };
 		CE8CC9962167B7A500EA9EED /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -2255,6 +2257,7 @@
 			isa = PBXGroup;
 			children = (
 				A50086182151242B00C47015 /* DefaultsProvider.swift */,
+				CE81AD68218080CB0033F75D /* AuthTokenDefaultsProvider.swift */,
 			);
 			path = DefaultsProvider;
 			sourceTree = "<group>";
@@ -4650,6 +4653,7 @@
 				A7CE669CEF8C840A16382864 /* PaymentFeeInteractorInput.swift in Sources */,
 				22192DA41BD15AD968C7ACD2 /* PaymentFeeInteractorOutput.swift in Sources */,
 				82FD617641F645A9CF453898 /* PaymentFeeInteractor.swift in Sources */,
+				CE81AD69218080CB0033F75D /* AuthTokenDefaultsProvider.swift in Sources */,
 				A56ED39C216CF060009FA58B /* RealmTransaction.swift in Sources */,
 				A574350121776226006B4CAE /* EditProfileViewController.swift in Sources */,
 				BF61230B999DE085DBBEC7AC /* PaymentFeeRouterInput.swift in Sources */,

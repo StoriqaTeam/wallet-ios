@@ -56,10 +56,6 @@ extension LoginPresenter: LoginViewOutput {
 // MARK: - LoginInteractorOutput
 
 extension LoginPresenter: LoginInteractorOutput {
-    func failToLogin(reason: String) {
-        storiqaLoader.stopLoader()
-        router.showFailurePopup(message: reason, popUpDelegate: self, from: view.viewController)
-    }
     
     func loginSucceed() {
         storiqaLoader.stopLoader()
@@ -75,14 +71,12 @@ extension LoginPresenter: LoginInteractorOutput {
     }
     
     func loginFailed(message: String) {
-        //TODO: display login failure
+        storiqaLoader.stopLoader()
+        router.showFailurePopup(message: message, popUpDelegate: self, from: view.viewController)
+    }
+    
+    func formValidationFailed(email: String?, password: String?) {
         
-        
-        // FIXME: - stub
-        
-        view.viewController.showAlert(title: "", message: message)
-        
-        //-----------------------------------------
     }
     
 }

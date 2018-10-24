@@ -14,6 +14,7 @@ protocol UserDataStoreServiceProtocol {
     func update(_ user: User)
     func delete()
     func getCurrentUser() -> User
+    func resetAllDatabase()
 }
 
 class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
