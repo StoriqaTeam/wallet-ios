@@ -74,6 +74,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
+    // MARK: - Handle universal links
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        print(userActivity.webpageURL ?? "Not web page")
+        
+        
+        var view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        let label = UILabel(frame: view.frame)
+        let url = userActivity.webpageURL
+        label.text = "UNIVERSAL LINK: \(url)"
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        AppDelegate.currentWindow.addSubview(view)
+        view.addSubview(label)
+        label.center = view.center
+        
+        return true
+    }
+    
 }
 
 

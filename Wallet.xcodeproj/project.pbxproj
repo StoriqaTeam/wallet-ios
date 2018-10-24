@@ -902,6 +902,7 @@
 		A5C12E7E217F009D00A7D68C /* AuthTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenProvider.swift; sourceTree = "<group>"; };
 		A5C12E81217F211200A7D68C /* JwtTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtTokenParser.swift; sourceTree = "<group>"; };
 		A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtParcerTests.swift; sourceTree = "<group>"; };
+		A5C12E872180B6D500A7D68C /* Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wallet.entitlements; sourceTree = "<group>"; };
 		A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Authorize.swift"; sourceTree = "<group>"; };
 		A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserNetworkProvider.swift; sourceTree = "<group>"; };
 		A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyWallet.storyboard; sourceTree = "<group>"; };
@@ -3420,6 +3421,7 @@
 		CE526C30212465A800A2EED2 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				A5C12E872180B6D500A7D68C /* Wallet.entitlements */,
 				A58EE3B0214FFD370096C155 /* Classes */,
 				A58EE3B4214FFD810096C155 /* Other */,
 				A58EE3B5214FFD880096C155 /* Common */,
@@ -4034,6 +4036,11 @@
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -4918,6 +4925,7 @@
 			baseConfigurationReference = ADE2B87D000AB5C20D3AD8A0 /* Pods-Wallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Wallet/Wallet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HS8AM3WUSX;
 				INFOPLIST_FILE = Wallet/Info.plist;
@@ -4936,6 +4944,7 @@
 			baseConfigurationReference = 9C21C637BF3AA6BA1C4DA088 /* Pods-Wallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Wallet/Wallet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HS8AM3WUSX;
 				INFOPLIST_FILE = Wallet/Info.plist;
