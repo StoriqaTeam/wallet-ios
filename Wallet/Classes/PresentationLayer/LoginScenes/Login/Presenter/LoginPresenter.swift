@@ -76,7 +76,8 @@ extension LoginPresenter: LoginInteractorOutput {
     }
     
     func formValidationFailed(email: String?, password: String?) {
-        
+        storiqaLoader.stopLoader()
+        view.showErrorMessage(email: email, password: password)
     }
     
 }
