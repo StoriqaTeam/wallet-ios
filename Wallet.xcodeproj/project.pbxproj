@@ -16,6 +16,7 @@
 		03DF85A5D2888FC92859DBE1 /* MyWalletModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B66333E735FE119B60B018 /* MyWalletModuleOutput.swift */; };
 		06B75F52B160C8A6E54107D2 /* SettingsInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E163CEC2CB350E1DA250960 /* SettingsInteractorOutput.swift */; };
 		070336A292D45E0D80B57B4D /* SendPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A60173F588F5769A50050 /* SendPresenter.swift */; };
+		0822C96FE27A18E633423834 /* EmailConfirmInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E0F92992E8141C96AB52BE /* EmailConfirmInteractor.swift */; };
 		09A1CEBCE8C1B2CD243902EC /* SendModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908F43F43FD91ACFA068854 /* SendModuleInput.swift */; };
 		0AD8715BD2694513BA2BE25C /* PasswordRecoveryConfirmInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF962FEE45869770D4CEE25A /* PasswordRecoveryConfirmInteractor.swift */; };
 		0B71D203EA67FB0928D31D05 /* QuickLaunchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FE257678A8696EAB653BE /* QuickLaunchModule.swift */; };
@@ -34,6 +35,7 @@
 		1E743E76CB9A3AE2D7072FA9 /* RegistrationRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DB5E02FE5651F48C824921 /* RegistrationRouterInput.swift */; };
 		1F8EED368B9491D4564C5EAA /* TransactionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFE41EA7548E0436872528 /* TransactionsRouter.swift */; };
 		20221229492A0723B97F1D4D /* PopUpModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6560AA3BA970648A76953C88 /* PopUpModuleOutput.swift */; };
+		2026A93121590F265E790911 /* EmailConfirmModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A2639C541491D6C987F9CC /* EmailConfirmModuleOutput.swift */; };
 		21015C726AD801A30F41DE91 /* DepositInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E45BC6A318B149B5612AD /* DepositInteractor.swift */; };
 		210AB6BCC83B235B9CA055B9 /* LoginViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE9B902C733C5566826FD64 /* LoginViewInput.swift */; };
 		21871BCFB964904C754FD3CF /* PasswordEmailRecoveryViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD618365786E3DA2F887FAA /* PasswordEmailRecoveryViewOutput.swift */; };
@@ -42,6 +44,7 @@
 		225C1777C92B40C17A58275B /* SendModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B74590A6608E81246AD4E5C /* SendModule.swift */; };
 		22613A5133717DCD88294579 /* AccountsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE43219401A4A1B0EA609C /* AccountsRouter.swift */; };
 		25F219D759BBDCBB79AC76A8 /* PinQuickLaunchModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6F4BC76CBBC79955671EA /* PinQuickLaunchModuleOutput.swift */; };
+		26ECD67DADE404F2577D16BA /* EmailConfirmRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE54673F899B5D4A9EE9D60 /* EmailConfirmRouter.swift */; };
 		270320A5E31AFF1AF5AE9A3C /* TransactionsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A12B501B3C01B17C85EDE6 /* TransactionsModuleInput.swift */; };
 		281AD99C14981D32720CF996 /* QRScannerModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C75A7C050EF55BE109BEBE /* QRScannerModuleInput.swift */; };
 		29640821A6A627670C90FB72 /* PopUpModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9342E2EEEB9FD01F7454A /* PopUpModule.swift */; };
@@ -105,10 +108,12 @@
 		5190C80AF91A79F1263D9412 /* BiometryQuickLaunchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4C9E9BF72EBCC926DA594D /* BiometryQuickLaunchInteractor.swift */; };
 		5204D9FA16C33FE34875A023 /* ConnectPhonePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0980380C954DA1F652CCCDFB /* ConnectPhonePresenter.swift */; };
 		559A9C4888FBB801ECBBE758 /* FirstLaunchViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F87C123CCB845393E9A751 /* FirstLaunchViewInput.swift */; };
+		559FC8BA4571B6DFDC9C5935 /* EmailConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EDBF5F5648660EDE35636A /* EmailConfirmViewController.swift */; };
 		56F837621197A9323EFB0B23 /* ConnectPhoneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6738812C0D2143C351E779 /* ConnectPhoneInteractor.swift */; };
 		59167B7950CD438C415AC908 /* ReceiverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5868B6B0A8A70DED0058C476 /* ReceiverViewController.swift */; };
 		5A19DCEBA97EFA317880745E /* BiometryQuickLaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E17B58F33D0B0EC0E02E670 /* BiometryQuickLaunchRouter.swift */; };
 		5AC5FFA1C9FB9E8AFC69EC30 /* ReceiverModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FBF0E827531DEFD6C32A90 /* ReceiverModule.swift */; };
+		5ADE6F8D816203E102D9792D /* EmailConfirmViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9472120B8C84841DE65798 /* EmailConfirmViewOutput.swift */; };
 		5CB377C30BE6A3E3A6A71B8D /* PinQuickLaunchModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A17C419475A62BBD16C45 /* PinQuickLaunchModuleInput.swift */; };
 		5D5AB809379ECAA0157B7C0A /* SendInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CB543678E8ABAD4E04851B /* SendInteractorOutput.swift */; };
 		5DD81EF717C591E4F8D0D515 /* PasswordEmailRecoveryInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBF2A22248EF5C4AF19A2F8 /* PasswordEmailRecoveryInteractorInput.swift */; };
@@ -119,6 +124,7 @@
 		635DE3E3C1E8A42654DE5A1E /* ConnectPhoneViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0B91A3DD6F7B558027E75 /* ConnectPhoneViewInput.swift */; };
 		64E23EAB94A275122397F4F0 /* TransactionsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB3F5F89F8F320497E32D /* TransactionsViewInput.swift */; };
 		655663AF844FD6B0CB44B4C4 /* PasswordRecoveryConfirmModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA0B4EBFD1C925C15BC8DAD /* PasswordRecoveryConfirmModule.swift */; };
+		66738892F25F028DCF4B2AA0 /* EmailConfirmInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9C0875B382721069A0AD0 /* EmailConfirmInteractorInput.swift */; };
 		679C8567C9F7F0A5585CAC4D /* DepositRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADD43CD709F6675284FE1BF /* DepositRouterInput.swift */; };
 		67C034CED1DEE6BDD16D5340 /* ReceiverModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34775E3B8E188C003A81F4C /* ReceiverModuleInput.swift */; };
 		68881E00744C84EFFCA3C726 /* ProfileInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009DBD3597521C1702F47D2E /* ProfileInteractorOutput.swift */; };
@@ -140,6 +146,7 @@
 		79A2AC994D7556E90171E7E5 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB570057C07D6076058081 /* SettingsPresenter.swift */; };
 		7A80EBB895B1151398C2D79F /* FirstLaunchInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219DFCAB6CBDC3E890FAF9C9 /* FirstLaunchInteractorOutput.swift */; };
 		7B69B52D9D87B8566F124536 /* PinSetupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FCBD96969A196C8C385425 /* PinSetupInteractor.swift */; };
+		7B9F18FBA520DC83A6AB791C /* EmailConfirmPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890D47AD43519417E0753F9E /* EmailConfirmPresenter.swift */; };
 		7BB2AD26A425C207E35F2F71 /* QuickLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E02B43649E0ECD2535CDF0 /* QuickLaunchViewController.swift */; };
 		7CA5701D87FA184CFCC87D46 /* MyWalletRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85537FD11C446E7767F08CF2 /* MyWalletRouter.swift */; };
 		7D2290D15CEAF84FA8628C09 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F382C2DE8685587EC1DC8E /* RegistrationViewController.swift */; };
@@ -160,6 +167,7 @@
 		8654A9AF519CBAD05884EF9F /* BiometryQuickLaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF7B40D3A60AB3A135372B4 /* BiometryQuickLaunchPresenter.swift */; };
 		8766665A802F01EF3B6DA3B3 /* TransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09F895E4A56157DD0CC0F3 /* TransactionsPresenter.swift */; };
 		88AC5EAD0F529E1EC0EE8B83 /* PopUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F65B7DB590634BF2BA5EC1C /* PopUpPresenter.swift */; };
+		88D70C010879BC6604910455 /* EmailConfirmViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5D2EE257F311B538D89D4C /* EmailConfirmViewInput.swift */; };
 		8AD5E3C4C55B5557FCDFC2AD /* ExchangeViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04617CEE34362F8864083DE /* ExchangeViewOutput.swift */; };
 		8BE6FAE0FE224B20E12FF108 /* ReceiverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B56DC38885CA40C208B3981 /* ReceiverPresenter.swift */; };
 		8DCE3EEDBEA0BC7E7957D47D /* PinInputModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B43F6C7017C03C18BCB6DF /* PinInputModuleInput.swift */; };
@@ -173,6 +181,7 @@
 		976C69F50B9E785FE8122C16 /* AccountsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C074289CC1494E89D028D8 /* AccountsPresenter.swift */; };
 		9B102E1CDAB4C764C2D1EC8E /* PinSetupViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840C4C35D8B6DF585C991F2 /* PinSetupViewInput.swift */; };
 		9B162F9E0DE1551AF5090C60 /* PopUpRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CB4BA6CB14E8E91E28D49 /* PopUpRouterInput.swift */; };
+		9B2CB65D1A38CBC88EB5FB67 /* EmailConfirmRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E584CA20C39C7B025BFCF2D /* EmailConfirmRouterInput.swift */; };
 		9E5BB8C19D08FA91F242EC06 /* AccountsInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CB3E67FBEF434C635D8A4 /* AccountsInteractorOutput.swift */; };
 		9ECC74CF3811C94390E66C1D /* ReceiverModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62B1599439382B10076D62 /* ReceiverModuleOutput.swift */; };
 		9ED262790FC8BC9BE0AD4D6F /* PinSetupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABCA1BD63695156C7C53148 /* PinSetupRouter.swift */; };
@@ -399,6 +408,11 @@
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
 		CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74D2126BEDB0097230A /* UserInfo.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
+		CE41F3432181A8EB00070D5D /* UniversalLinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */; };
+		CE41F3462181AAF900070D5D /* EmailConfirm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */; };
+		CE41F3482181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */; };
+		CE41F34A2181B03300070D5D /* PopUpEmailConfirmFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3492181B03300070D5D /* PopUpEmailConfirmFailedVM.swift */; };
+		CE41F34C2181B91700070D5D /* EmailConfirmNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F34B2181B91700070D5D /* EmailConfirmNetworkProvider.swift */; };
 		CE44019E2174AEC200F7C8D8 /* RealmContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44019D2174AEC200F7C8D8 /* RealmContact.swift */; };
 		CE4401A02174AF4400F7C8D8 /* ContactDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44019F2174AF4400F7C8D8 /* ContactDisplayable.swift */; };
 		CE4401A22174B2C500F7C8D8 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4401A12174B2C500F7C8D8 /* UIImageExtension.swift */; };
@@ -498,6 +512,7 @@
 		DF86683226807C4513BF70C6 /* PinInputPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D23D91FE95C35E0F5969E34 /* PinInputPresenter.swift */; };
 		DFBA3637496010C727B6DA1D /* QuickLaunchInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4358BCC88C550903126F1444 /* QuickLaunchInteractorOutput.swift */; };
 		DFDE5A674BD838BB7BB04166 /* LoginInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648C3EBE8D921191A1CC3820 /* LoginInteractorInput.swift */; };
+		E07883BC4CF8529B07863B80 /* EmailConfirmModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521083562F9A5874956A585 /* EmailConfirmModule.swift */; };
 		E0AD72DCFDB861B1D4DEF6CC /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E5F511DC518DF5D8AB4C97 /* QRScannerViewController.swift */; };
 		E0DF0351D7D35BE96C9E164C /* QRScannerViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C9ECD2CAF63023D5CEE07A /* QRScannerViewOutput.swift */; };
 		E176B44B7388B0331A49C684 /* BiometryQuickLaunchViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D33681916760FB8F37D8E /* BiometryQuickLaunchViewInput.swift */; };
@@ -514,10 +529,12 @@
 		E4760D4F175190FCE277280C /* PasswordRecoveryConfirmViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DFDAFBB213DB18269D4ACB /* PasswordRecoveryConfirmViewOutput.swift */; };
 		E48F38E3F6C54C04DF13180D /* TransactionFilterViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A28663A0E1F5A3A399F7C7B /* TransactionFilterViewInput.swift */; };
 		E5A30170E901FC7507851349 /* QRScannerViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C6CFAEA791B4D3D89441D1 /* QRScannerViewInput.swift */; };
+		E63BE09DD4FFD65FD8124442 /* EmailConfirmInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094E8352B5D4F1AB97BD4A91 /* EmailConfirmInteractorOutput.swift */; };
 		E6A7E495FCFF6F3B00BCA629 /* PopUpInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932756D5217E34FDAB97218 /* PopUpInteractorInput.swift */; };
 		E75BA378AB9872B3E84F37B8 /* PinInputInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30759375BE660B1458C46BAE /* PinInputInteractor.swift */; };
 		E78F4EC67B3E8FDF9D609118 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA6B789B6E12147C774834 /* SendViewController.swift */; };
 		E91CCB5A6109B41C9C4BD075 /* PasswordEmailRecoveryRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073D57C3CCC26A47302EA263 /* PasswordEmailRecoveryRouterInput.swift */; };
+		EB9BBB3F7CA31145810C7A5E /* EmailConfirmModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20EA5F8EF5BC6EE2DC02E22 /* EmailConfirmModuleInput.swift */; };
 		EBA3144E74DD09EC8832E45F /* FirstLaunchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82D0537B4CB1FBCDB8A1D56 /* FirstLaunchInteractor.swift */; };
 		EBCA36D03BBA6F52ECC7258D /* MainTabBarViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E523E81B6C7956E0629857F1 /* MainTabBarViewOutput.swift */; };
 		EC91C88F82722139B3F1C7CB /* ConnectPhoneInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A7DB7FCB9E33101C800989 /* ConnectPhoneInteractorOutput.swift */; };
@@ -566,6 +583,7 @@
 		05B43F6C7017C03C18BCB6DF /* PinInputModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputModuleInput.swift; sourceTree = "<group>"; };
 		073D57C3CCC26A47302EA263 /* PasswordEmailRecoveryRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryRouterInput.swift; sourceTree = "<group>"; };
 		0849B2AAA3A871FDF9AB9401 /* ExchangeModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeModuleInput.swift; sourceTree = "<group>"; };
+		094E8352B5D4F1AB97BD4A91 /* EmailConfirmInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmInteractorOutput.swift; sourceTree = "<group>"; };
 		0980380C954DA1F652CCCDFB /* ConnectPhonePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectPhonePresenter.swift; sourceTree = "<group>"; };
 		0AF0DE6FD8C9683A638BCD75 /* PasswordRecoveryConfirmInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmInteractorInput.swift; sourceTree = "<group>"; };
 		0B40DBBB4C12369B9BAA8E08 /* PaymentFeeModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaymentFeeModuleOutput.swift; sourceTree = "<group>"; };
@@ -586,6 +604,7 @@
 		123CB3E67FBEF434C635D8A4 /* AccountsInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsInteractorOutput.swift; sourceTree = "<group>"; };
 		12A9A2D92E74B7C610DD3FE3 /* PinSetupViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupViewOutput.swift; sourceTree = "<group>"; };
 		14801C46CD8CE051B726A955 /* LoginModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleInput.swift; sourceTree = "<group>"; };
+		1521083562F9A5874956A585 /* EmailConfirmModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmModule.swift; sourceTree = "<group>"; };
 		173B08554CD8BCEDCB6E671D /* BiometryQuickLaunchViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchViewOutput.swift; sourceTree = "<group>"; };
 		175FE257678A8696EAB653BE /* QuickLaunchModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchModule.swift; sourceTree = "<group>"; };
 		1840C4C35D8B6DF585C991F2 /* PinSetupViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupViewInput.swift; sourceTree = "<group>"; };
@@ -657,6 +676,7 @@
 		4B0B86D1518BF13364C96281 /* PinInputRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputRouterInput.swift; sourceTree = "<group>"; };
 		4B4ED0815E61CF22DB8393CF /* PasswordEmailRecoveryPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryPresenter.swift; sourceTree = "<group>"; };
 		4D976B5B6623CC743D0F1A1D /* PaymentFeePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaymentFeePresenter.swift; sourceTree = "<group>"; };
+		4E584CA20C39C7B025BFCF2D /* EmailConfirmRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmRouterInput.swift; sourceTree = "<group>"; };
 		4E6003FC56CA2CEFC5BC47FE /* LoginRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouterInput.swift; sourceTree = "<group>"; };
 		4F96950A5C35E3D0F8701CF8 /* PasswordRecoveryConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmViewController.swift; sourceTree = "<group>"; };
 		5160A4CA4216CB99563B0FB6 /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -684,6 +704,7 @@
 		5F4C9E9BF72EBCC926DA594D /* BiometryQuickLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchInteractor.swift; sourceTree = "<group>"; };
 		60F382C2DE8685587EC1DC8E /* RegistrationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		616A1AA2A6115C09EE2EBBB4 /* SendRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendRouterInput.swift; sourceTree = "<group>"; };
+		63E0F92992E8141C96AB52BE /* EmailConfirmInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmInteractor.swift; sourceTree = "<group>"; };
 		645AA16961B16438A2B53C92 /* DepositViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositViewOutput.swift; sourceTree = "<group>"; };
 		646123339EE8F4258E518E08 /* TransactionsModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsModule.swift; sourceTree = "<group>"; };
 		648C3EBE8D921191A1CC3820 /* LoginInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorInput.swift; sourceTree = "<group>"; };
@@ -701,6 +722,7 @@
 		6D8FADE0EC6E66D44DA3DEE6 /* RegistrationModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationModuleOutput.swift; sourceTree = "<group>"; };
 		6E6096D6763E2E99032C4001 /* TransactionsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsInteractor.swift; sourceTree = "<group>"; };
 		6E6738812C0D2143C351E779 /* ConnectPhoneInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectPhoneInteractor.swift; sourceTree = "<group>"; };
+		6F9472120B8C84841DE65798 /* EmailConfirmViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmViewOutput.swift; sourceTree = "<group>"; };
 		70CA8F79C9B850C18EE16038 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		72281BFA29D45AEE30F5DBB5 /* PinInputModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputModule.swift; sourceTree = "<group>"; };
 		72CA12A0178A39F2C747B57C /* RegistrationModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationModuleInput.swift; sourceTree = "<group>"; };
@@ -739,6 +761,7 @@
 		87885221F8558DE638669A14 /* QuickLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchInteractor.swift; sourceTree = "<group>"; };
 		87FA43E8B1A61C3C3CDE60A7 /* PopUpModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpModuleInput.swift; sourceTree = "<group>"; };
 		87FCBD96969A196C8C385425 /* PinSetupInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupInteractor.swift; sourceTree = "<group>"; };
+		890D47AD43519417E0753F9E /* EmailConfirmPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmPresenter.swift; sourceTree = "<group>"; };
 		89B93F5D4CB1B4D6000F8C9B /* TransactionsModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsModuleOutput.swift; sourceTree = "<group>"; };
 		8A547672EF418EFEC87450DB /* PinQuickLaunchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchInteractor.swift; sourceTree = "<group>"; };
 		8BF1D54551EE7E6F7D7E705B /* LoginInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorOutput.swift; sourceTree = "<group>"; };
@@ -751,12 +774,15 @@
 		9385B8417057A339D5D2CFEE /* PasswordEmailRecoveryViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryViewInput.swift; sourceTree = "<group>"; };
 		93C75A7C050EF55BE109BEBE /* QRScannerModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerModuleInput.swift; sourceTree = "<group>"; };
 		945E6AA0A90F853FE1A56D27 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		94A2639C541491D6C987F9CC /* EmailConfirmModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmModuleOutput.swift; sourceTree = "<group>"; };
 		9529FD71E76E63F3678FC5B7 /* PinSetupInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupInteractorOutput.swift; sourceTree = "<group>"; };
 		95A8724397CC4953A7F9E72E /* Pods_WalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95A9C0875B382721069A0AD0 /* EmailConfirmInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmInteractorInput.swift; sourceTree = "<group>"; };
 		975BD0D3F70E223C9AB39665 /* PinQuickLaunchModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchModule.swift; sourceTree = "<group>"; };
 		976B40A786A61A1F2C083835 /* PinInputInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputInteractorOutput.swift; sourceTree = "<group>"; };
 		984F93D4B12D95B9833F9D4A /* SendInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendInteractor.swift; sourceTree = "<group>"; };
 		98B5D21CB0AFC9B873659326 /* ConnectPhoneRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectPhoneRouterInput.swift; sourceTree = "<group>"; };
+		98EDBF5F5648660EDE35636A /* EmailConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmViewController.swift; sourceTree = "<group>"; };
 		9AA0B4EBFD1C925C15BC8DAD /* PasswordRecoveryConfirmModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmModule.swift; sourceTree = "<group>"; };
 		9ADF6E15C1DAF769875670F2 /* PaymentFeeRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaymentFeeRouter.swift; sourceTree = "<group>"; };
 		9B675C855852336EE09D5024 /* PinInputRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputRouter.swift; sourceTree = "<group>"; };
@@ -946,6 +972,7 @@
 		BD74645140B8988B96C229A5 /* TransactionFilterModuleInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleInteractor.swift; sourceTree = "<group>"; };
 		BDEA6B789B6E12147C774834 /* SendViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		BE14E7C3DB39C2B2C32A2D52 /* TransactionsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		BE5D2EE257F311B538D89D4C /* EmailConfirmViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmViewInput.swift; sourceTree = "<group>"; };
 		C16D5F88B24F7221D3C24309 /* SendInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendInteractorInput.swift; sourceTree = "<group>"; };
 		C21A24D3A19D2AAD73DEEA15 /* RegistrationViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationViewInput.swift; sourceTree = "<group>"; };
 		C21D6D273BC444BAEE497DFC /* TransactionDetailsInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionDetailsInteractorOutput.swift; sourceTree = "<group>"; };
@@ -980,6 +1007,11 @@
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLinkParser.swift; sourceTree = "<group>"; };
+		CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailConfirm.storyboard; sourceTree = "<group>"; };
+		CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEmailConfirmSuccessVM.swift; sourceTree = "<group>"; };
+		CE41F3492181B03300070D5D /* PopUpEmailConfirmFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEmailConfirmFailedVM.swift; sourceTree = "<group>"; };
+		CE41F34B2181B91700070D5D /* EmailConfirmNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmNetworkProvider.swift; sourceTree = "<group>"; };
 		CE44019D2174AEC200F7C8D8 /* RealmContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmContact.swift; sourceTree = "<group>"; };
 		CE44019F2174AF4400F7C8D8 /* ContactDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDisplayable.swift; sourceTree = "<group>"; };
 		CE4401A12174B2C500F7C8D8 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -1083,11 +1115,13 @@
 		E8DE60D3416CBB1526E45766 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
 		E915C3052BF99CAB17844FFD /* MainTabBarInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarInteractorOutput.swift; sourceTree = "<group>"; };
 		EBB2F52A00FAE31274E1D336 /* LoginModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleOutput.swift; sourceTree = "<group>"; };
+		ECE54673F899B5D4A9EE9D60 /* EmailConfirmRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmRouter.swift; sourceTree = "<group>"; };
 		ED5938DC427C7E8743582935 /* SendRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendRouter.swift; sourceTree = "<group>"; };
 		EDEA23B5D83156F44A5A3317 /* LoginModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModule.swift; sourceTree = "<group>"; };
 		EED3208FF935CC66779A7912 /* MyWalletInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyWalletInteractorInput.swift; sourceTree = "<group>"; };
 		EF16F8223B1C0D2204A8D9AE /* PasswordEmailRecoveryModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryModuleOutput.swift; sourceTree = "<group>"; };
 		F102CE15CBE076997898FA67 /* RegistrationInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationInteractorOutput.swift; sourceTree = "<group>"; };
+		F20EA5F8EF5BC6EE2DC02E22 /* EmailConfirmModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmModuleInput.swift; sourceTree = "<group>"; };
 		F2407DA6D79A3208812DC6CB /* Pods_WalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FFE41EA7548E0436872528 /* TransactionsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsRouter.swift; sourceTree = "<group>"; };
 		F3C6CFAEA791B4D3D89441D1 /* QRScannerViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewInput.swift; sourceTree = "<group>"; };
@@ -1135,6 +1169,16 @@
 				52DBF6C57F49D49576D93C9E /* MainTabBarModuleInput.swift */,
 				84FDDD8F60973724D25BA1EB /* MainTabBarModuleOutput.swift */,
 				1DDB1081E3B59616497BA0F0 /* MainTabBarModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		011744B5BD23D1710A033DD0 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				F20EA5F8EF5BC6EE2DC02E22 /* EmailConfirmModuleInput.swift */,
+				94A2639C541491D6C987F9CC /* EmailConfirmModuleOutput.swift */,
+				1521083562F9A5874956A585 /* EmailConfirmModule.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -1380,6 +1424,18 @@
 				635FD9F8E978B3274FBF2056 /* Module */,
 			);
 			path = FirstLaunch;
+			sourceTree = "<group>";
+		};
+		20AF74ED816A9420367EB18E /* EmailConfirm */ = {
+			isa = PBXGroup;
+			children = (
+				F17A6015EA6D4DAF192E525C /* View */,
+				950A3F6EF1E9E627CFB756CF /* Presenter */,
+				4DC3C346B95995C54A34B720 /* Interactor */,
+				51B6FE4CDCBCD4708D9E4612 /* Router */,
+				011744B5BD23D1710A033DD0 /* Module */,
+			);
+			path = EmailConfirm;
 			sourceTree = "<group>";
 		};
 		2184744D2552513155BD831F /* Module */ = {
@@ -1688,6 +1744,18 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		4DC3C346B95995C54A34B720 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				95A9C0875B382721069A0AD0 /* EmailConfirmInteractorInput.swift */,
+				094E8352B5D4F1AB97BD4A91 /* EmailConfirmInteractorOutput.swift */,
+				63E0F92992E8141C96AB52BE /* EmailConfirmInteractor.swift */,
+				CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */,
+				CE41F3492181B03300070D5D /* PopUpEmailConfirmFailedVM.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
 		4F46DB08B1FF05D67D7532CF /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1716,6 +1784,15 @@
 				B29C26D0B53B18D83436BE77 /* Module */,
 			);
 			path = TransactionFilterModule;
+			sourceTree = "<group>";
+		};
+		51B6FE4CDCBCD4708D9E4612 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				4E584CA20C39C7B025BFCF2D /* EmailConfirmRouterInput.swift */,
+				ECE54673F899B5D4A9EE9D60 /* EmailConfirmRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		520E8BC93AB0DAFE3E7895D2 /* View */ = {
@@ -2149,6 +2226,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		950A3F6EF1E9E627CFB756CF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				890D47AD43519417E0753F9E /* EmailConfirmPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		9652AC9E684582838BF777E1 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2247,6 +2332,7 @@
 				A5D5BB7D217B598B008BEB74 /* CurrentUserNetworkProvider */,
 				CE1E3459217B2119001B1477 /* RegistrationNetworkProvider */,
 				A5743541217A2D0E006B4CAE /* LoginNetworkProvider */,
+				CE41F34D2181B91B00070D5D /* EmailConfirmNetworkProvider */,
 				A50086082150F95B00C47015 /* API.swift */,
 				A574353F217A1B09006B4CAE /* API+Unauthorize.swift */,
 				A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */,
@@ -2852,6 +2938,7 @@
 				CE8CC9932167A91500EA9EED /* CurrencyImageProvider */,
 				CE8CC9902167A8F200EA9EED /* AccountDisplayer */,
 				CE8CC99B216B7ED200EA9EED /* AccountTypeResolver */,
+				CE41F3442181A8F100070D5D /* UniversalLinkParser */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -3281,6 +3368,7 @@
 				59A031E8BD43381C63F480F4 /* PasswordEmailRecovery */,
 				CF3351575A07B8E3876198EB /* PasswordRecoveryConfirm */,
 				74E1EE79A36215B0DCA248BA /* PinSetup */,
+				20AF74ED816A9420367EB18E /* EmailConfirm */,
 			);
 			path = LoginScenes;
 			sourceTree = "<group>";
@@ -3387,6 +3475,22 @@
 				A500860C2150FA1600C47015 /* Result.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CE41F3442181A8F100070D5D /* UniversalLinkParser */ = {
+			isa = PBXGroup;
+			children = (
+				CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */,
+			);
+			path = UniversalLinkParser;
+			sourceTree = "<group>";
+		};
+		CE41F34D2181B91B00070D5D /* EmailConfirmNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE41F34B2181B91700070D5D /* EmailConfirmNetworkProvider.swift */,
+			);
+			path = EmailConfirmNetworkProvider;
 			sourceTree = "<group>";
 		};
 		CE4401A32174DCA900F7C8D8 /* ContactsSorter */ = {
@@ -3924,6 +4028,17 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		F17A6015EA6D4DAF192E525C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE5D2EE257F311B538D89D4C /* EmailConfirmViewInput.swift */,
+				6F9472120B8C84841DE65798 /* EmailConfirmViewOutput.swift */,
+				98EDBF5F5648660EDE35636A /* EmailConfirmViewController.swift */,
+				CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F5FC6D1A3DA457D7E48D50B7 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -4097,6 +4212,7 @@
 				A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */,
 				CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */,
 				A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */,
+				CE41F3462181AAF900070D5D /* EmailConfirm.storyboard in Resources */,
 				CEFC9CC1215A5DB600962356 /* SendingHeaderView.xib in Resources */,
 				A56ED373216C9F6F009FA58B /* TransactionDescriptionAddressView.xib in Resources */,
 				CE185494214BE558009D1360 /* Localizable.strings in Resources */,
@@ -4329,6 +4445,7 @@
 				A574350621776226006B4CAE /* EditProfileInteractorOutput.swift in Sources */,
 				A52C66AA21666ECC0073071E /* User.swift in Sources */,
 				A560C741216B57A3009F0E95 /* SettingsHeaderView.swift in Sources */,
+				CE41F34C2181B91700070D5D /* EmailConfirmNetworkProvider.swift in Sources */,
 				3560EFC2F72358E0759F3690 /* FirstLaunchViewOutput.swift in Sources */,
 				48D375B575D57A4CF0D1F591 /* FirstLaunchViewController.swift in Sources */,
 				A500860D2150FA1600C47015 /* Result.swift in Sources */,
@@ -4518,6 +4635,7 @@
 				A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */,
 				4A8416E8E79E93524467F707 /* MyWalletInteractor.swift in Sources */,
 				BF550A4D541C2E921C542231 /* MyWalletRouterInput.swift in Sources */,
+				CE41F3482181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift in Sources */,
 				7CA5701D87FA184CFCC87D46 /* MyWalletRouter.swift in Sources */,
 				A36F15E016B8AA17388F5F6F /* MyWalletModuleInput.swift in Sources */,
 				03DF85A5D2888FC92859DBE1 /* MyWalletModuleOutput.swift in Sources */,
@@ -4546,6 +4664,7 @@
 				A5C12E7F217F009D00A7D68C /* AuthTokenProvider.swift in Sources */,
 				8AD5E3C4C55B5557FCDFC2AD /* ExchangeViewOutput.swift in Sources */,
 				F3EB762CF50BA3699D0CB2AA /* ExchangeViewController.swift in Sources */,
+				CE41F34A2181B03300070D5D /* PopUpEmailConfirmFailedVM.swift in Sources */,
 				A2BF7A83622A583455A9055F /* ExchangePresenter.swift in Sources */,
 				B782CF02B33B1093E9AF38BB /* ExchangeInteractorInput.swift in Sources */,
 				849FF2B75F4BABC44B17ACE0 /* ExchangeInteractorOutput.swift in Sources */,
@@ -4662,6 +4781,7 @@
 				82FD617641F645A9CF453898 /* PaymentFeeInteractor.swift in Sources */,
 				CE81AD69218080CB0033F75D /* AuthTokenDefaultsProvider.swift in Sources */,
 				A56ED39C216CF060009FA58B /* RealmTransaction.swift in Sources */,
+				CE41F3432181A8EB00070D5D /* UniversalLinkParser.swift in Sources */,
 				A574350121776226006B4CAE /* EditProfileViewController.swift in Sources */,
 				BF61230B999DE085DBBEC7AC /* PaymentFeeRouterInput.swift in Sources */,
 				406B19D4D7E374DB797F1A6E /* PaymentFeeRouter.swift in Sources */,
@@ -4724,6 +4844,18 @@
 				727589FADC2388827FDDD932 /* TransactionFilterModuleInput.swift in Sources */,
 				AC64C1C921224168B77DB559 /* TransactionFilterModuleModuleOutput.swift in Sources */,
 				92C789BF23E3A6D6B9F08F71 /* TransactionFilterModule.swift in Sources */,
+				88D70C010879BC6604910455 /* EmailConfirmViewInput.swift in Sources */,
+				5ADE6F8D816203E102D9792D /* EmailConfirmViewOutput.swift in Sources */,
+				559FC8BA4571B6DFDC9C5935 /* EmailConfirmViewController.swift in Sources */,
+				7B9F18FBA520DC83A6AB791C /* EmailConfirmPresenter.swift in Sources */,
+				66738892F25F028DCF4B2AA0 /* EmailConfirmInteractorInput.swift in Sources */,
+				E63BE09DD4FFD65FD8124442 /* EmailConfirmInteractorOutput.swift in Sources */,
+				0822C96FE27A18E633423834 /* EmailConfirmInteractor.swift in Sources */,
+				9B2CB65D1A38CBC88EB5FB67 /* EmailConfirmRouterInput.swift in Sources */,
+				26ECD67DADE404F2577D16BA /* EmailConfirmRouter.swift in Sources */,
+				EB9BBB3F7CA31145810C7A5E /* EmailConfirmModuleInput.swift in Sources */,
+				2026A93121590F265E790911 /* EmailConfirmModuleOutput.swift in Sources */,
+				E07883BC4CF8529B07863B80 /* EmailConfirmModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -68,7 +68,7 @@ enum RegistrationProviderError: LocalizedError, Error {
         if let description = json["description"].string {
             switch description {
             case "Bad request": self = .badRequest
-            case "Internal server erro": self = .internalServer
+            case "Internal server error": self = .internalServer
             default: self = .unknownError
             }
         } else {
