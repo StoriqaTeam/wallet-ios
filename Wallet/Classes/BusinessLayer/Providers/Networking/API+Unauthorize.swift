@@ -30,6 +30,7 @@ extension API {
             deviceType: DeviceType,
             deviceOs: String,
             deviceId: String)
+        case confirmEmail(token: String)
     }
 
 }
@@ -43,6 +44,8 @@ extension API.Unauthorized: APIMethodProtocol {
             return .post
         case .register:
             return .post
+        case .confirmEmail:
+            return .post
         }
     }
     
@@ -52,12 +55,14 @@ extension API.Unauthorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/sessions"
         case .register:
             return "\(Constants.Network.baseUrl)/users"
+        case .confirmEmail:
+            return "\(Constants.Network.baseUrl)/users/confirm_email"
         }
     }
     
     var headers: [String: String] {
         switch self {
-        case .login, .register:
+        case .login, .register, .confirmEmail:
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json"
@@ -85,6 +90,12 @@ extension API.Unauthorized: APIMethodProtocol {
                 "deviceOs": deviceOs,
                 "deviceId": deviceId
             ]
+        case .confirmEmail(let token):
+            return [
+                "emailConfirmToken": token
+            ]
         }
+        
+        
     }
 }

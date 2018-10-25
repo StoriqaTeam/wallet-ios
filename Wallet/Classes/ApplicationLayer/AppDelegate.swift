@@ -39,8 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         
-        let appSchemeName = "storiqaWallet://"
-        
         let urlStr = url.absoluteString
         if urlStr.contains(Constants.NetworkAuth.kFacebookAppId) {
             return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
@@ -49,26 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                      sourceApplication: options[.sourceApplication] as? String,
                                                      annotation: options[.annotation])
             
-        } else if urlStr.hasPrefix(appSchemeName) {
-            log.debug(urlStr)
-            
-            let token = String(urlStr.dropFirst(appSchemeName.count))
-            
-            if let window = self.window, let rootViewController = window.rootViewController {
-                var currentController = rootViewController
-                
-                while let presentedController = currentController.presentedViewController {
-                    currentController = presentedController
-                }
-                
-                if let root = (currentController as? UINavigationController)?.viewControllers.last,
-                    root is PasswordRecoveryConfirmViewController {
-                    // PasswordRecoveryConfirmViewController is already opened
-                    return true
-                }
-                
-                PasswordRecoveryConfirmModule.create(token: token).present()
-            }
         }
         
         return true
@@ -77,21 +55,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Handle universal links
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        print(userActivity.webpageURL ?? "Not web page")
+        guard let link = UniversalLinkParser().parse(link: userActivity.webpageURL) else {
+            return false
+        }
         
-        
-        var view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        let label = UILabel(frame: view.frame)
-        let url = userActivity.webpageURL
-        label.text = "UNIVERSAL LINK: \(url)"
-        label.textColor = .red
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        AppDelegate.currentWindow.addSubview(view)
-        view.addSubview(label)
-        label.center = view.center
+        switch link {
+        case .verifyEmail(let token):
+            EmailConfirmModule.create(token: token).present()
+        case .resetPassword(let token):
+            PasswordRecoveryConfirmModule.create(token: token).present()
+        }
         
         return true
     }
