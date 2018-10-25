@@ -413,6 +413,8 @@
 		CE41F3482181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */; };
 		CE41F34A2181B03300070D5D /* PopUpEmailConfirmFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3492181B03300070D5D /* PopUpEmailConfirmFailedVM.swift */; };
 		CE41F34C2181B91700070D5D /* EmailConfirmNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F34B2181B91700070D5D /* EmailConfirmNetworkProvider.swift */; };
+		CE41F34F2181FC7500070D5D /* TransactionAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F34E2181FC7500070D5D /* TransactionAccount.swift */; };
+		CE41F3512181FC9600070D5D /* RealmTransactionAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3502181FC9600070D5D /* RealmTransactionAccount.swift */; };
 		CE44019E2174AEC200F7C8D8 /* RealmContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44019D2174AEC200F7C8D8 /* RealmContact.swift */; };
 		CE4401A02174AF4400F7C8D8 /* ContactDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44019F2174AF4400F7C8D8 /* ContactDisplayable.swift */; };
 		CE4401A22174B2C500F7C8D8 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4401A12174B2C500F7C8D8 /* UIImageExtension.swift */; };
@@ -1012,6 +1014,8 @@
 		CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEmailConfirmSuccessVM.swift; sourceTree = "<group>"; };
 		CE41F3492181B03300070D5D /* PopUpEmailConfirmFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEmailConfirmFailedVM.swift; sourceTree = "<group>"; };
 		CE41F34B2181B91700070D5D /* EmailConfirmNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmNetworkProvider.swift; sourceTree = "<group>"; };
+		CE41F34E2181FC7500070D5D /* TransactionAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionAccount.swift; sourceTree = "<group>"; };
+		CE41F3502181FC9600070D5D /* RealmTransactionAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransactionAccount.swift; sourceTree = "<group>"; };
 		CE44019D2174AEC200F7C8D8 /* RealmContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmContact.swift; sourceTree = "<group>"; };
 		CE44019F2174AF4400F7C8D8 /* ContactDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDisplayable.swift; sourceTree = "<group>"; };
 		CE4401A12174B2C500F7C8D8 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -3109,6 +3113,7 @@
 				A52C66AB21666F610073071E /* RealmUser.swift */,
 				A52C66B5216767EA0073071E /* RealmAccount.swift */,
 				A56ED39B216CF060009FA58B /* RealmTransaction.swift */,
+				CE41F3502181FC9600070D5D /* RealmTransactionAccount.swift */,
 				CE44019D2174AEC200F7C8D8 /* RealmContact.swift */,
 				A574352B217775AE006B4CAE /* RealmSession.swift */,
 			);
@@ -3732,6 +3737,7 @@
 			children = (
 				CED822DF215BB8CE00693B92 /* Contact.swift */,
 				A51CB5482158E60500CDC80C /* Transaction.swift */,
+				CE41F34E2181FC7500070D5D /* TransactionAccount.swift */,
 				A52C66A921666ECC0073071E /* User.swift */,
 				A52C66B22167634E0073071E /* Account.swift */,
 				CE8CC9962167B7A500EA9EED /* Currency.swift */,
@@ -4378,6 +4384,7 @@
 				A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */,
 				A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */,
 				A56ED397216CEF12009FA58B /* TransactionMapper.swift in Sources */,
+				CE41F3512181FC9600070D5D /* RealmTransactionAccount.swift in Sources */,
 				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEFC9C9821590D1200962356 /* PopUpRegistrationSuccessVM.swift in Sources */,
 				A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */,
@@ -4569,6 +4576,7 @@
 				E176B44B7388B0331A49C684 /* BiometryQuickLaunchViewInput.swift in Sources */,
 				860E97FA0D267899D0A69A75 /* BiometryQuickLaunchViewOutput.swift in Sources */,
 				A574352A217774E3006B4CAE /* Session.swift in Sources */,
+				CE41F34F2181FC7500070D5D /* TransactionAccount.swift in Sources */,
 				42AAFB7B52547D34DE57DDA6 /* BiometryQuickLaunchViewController.swift in Sources */,
 				A5F59AB921624908005F1765 /* RealmStorable.swift in Sources */,
 				8654A9AF519CBAD05884EF9F /* BiometryQuickLaunchPresenter.swift in Sources */,

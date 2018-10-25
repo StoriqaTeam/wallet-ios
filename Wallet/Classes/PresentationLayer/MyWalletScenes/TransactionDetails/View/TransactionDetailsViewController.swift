@@ -50,33 +50,40 @@ extension TransactionDetailsViewController {
     
     private func addDescriptionView(for transaction: TransactionDisplayable) {
         
+        let descriptionView: UIView
+        
         switch transaction.opponent {
-        case .address(address: let address):
-            let descriptionView = TransactionDescriptionAddressView()
-            descriptionView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(descriptionView)
+        case .address(let address):
+            let view = TransactionDescriptionAddressView()
+            view.configure(address: address,
+                           accountType: transaction.currency.ISO,
+                           feeAmount: transaction.feeAmountString)
+            descriptionView = view
             
-            descriptionView.translatesAutoresizingMaskIntoConstraints = false
-            descriptionView.widthAnchor.constraint(equalTo: detailView.widthAnchor).isActive = true
-            descriptionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            descriptionView.topAnchor.constraint(equalTo: detailView.bottomAnchor, constant: 20).isActive = true
-            descriptionView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: 20).isActive = true
-            descriptionView.configure(address: address, accountType: transaction.currency.ISO, feeAmount: transaction.feeAmountString)
+        case .contact(let contact):
+            let view = TransactionDescriptionContactView()
+            view.configure(address: contact.cryptoAddress ?? "",
+                           accountType: transaction.currency.ISO,
+                           contact: "\(contact.givenName) \(contact.familyName)",
+                           feeAmount: transaction.feeAmountString)
+            descriptionView = view
             
-        case .contact(contact: let contact):
-            let descriptionView = TransactionDescriptionContactView()
-            descriptionView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(descriptionView)
-            
-            descriptionView.translatesAutoresizingMaskIntoConstraints = false
-            descriptionView.widthAnchor.constraint(equalTo: detailView.widthAnchor).isActive = true
-            descriptionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            descriptionView.topAnchor.constraint(equalTo: detailView.bottomAnchor, constant: 20).isActive = true
-            descriptionView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: 20).isActive = true
-            descriptionView.configure(address: contact.cryptoAddress ?? "",
-                                      accountType: transaction.currency.ISO,
-                                      contact: "\(contact.givenName) \(contact.familyName)",
-                                      feeAmount: transaction.feeAmountString)
+        case .trxAccount(let account, let address):
+            let view = TransactionDescriptionContactView()
+            view.configure(address: address,
+                           accountType: transaction.currency.ISO,
+                           contact: account.ownerName,
+                           feeAmount: transaction.feeAmountString)
+            descriptionView = view
         }
+        
+        descriptionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(descriptionView)
+        
+        descriptionView.translatesAutoresizingMaskIntoConstraints = false
+        descriptionView.widthAnchor.constraint(equalTo: detailView.widthAnchor).isActive = true
+        descriptionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        descriptionView.topAnchor.constraint(equalTo: detailView.bottomAnchor, constant: 20).isActive = true
+        descriptionView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: 20).isActive = true
     }
 }

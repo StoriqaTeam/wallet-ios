@@ -34,8 +34,14 @@ class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
         
         switch direction {
         case .receive:
+            if let trxAccount = transaction.fromAccount {
+                return OpponentType.trxAccount(account: trxAccount, address: transaction.fromAddress)
+            }
             return getOpponent(from: fromAddress)
         case .send:
+            if let trxAccount = transaction.toAccount {
+                return OpponentType.trxAccount(account: trxAccount, address: transaction.toAddress)
+            }
             return getOpponent(from: toAddress)
         }
     }

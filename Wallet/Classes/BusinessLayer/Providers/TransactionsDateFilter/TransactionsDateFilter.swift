@@ -59,7 +59,7 @@ extension TransactionDateFilter {
         var filtered = [TransactionDisplayable]()
         
         for transaction in transactions {
-            let timestamp = transaction.transaction.timestamp
+            let timestamp = transaction.transaction.createdAt
             let largerThenLowerBound = timestamp >= fromDate
             let lessThenUpperBound = timestamp <= toDate
             

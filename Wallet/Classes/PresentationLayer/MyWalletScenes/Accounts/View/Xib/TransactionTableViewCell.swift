@@ -35,10 +35,12 @@ extension TransactionTableViewCell {
         timestampLabel.text = transaction.timestamp
         
         switch transaction.opponent {
-        case .address(address: let address):
+        case .address(let address):
             opponentLabel.text = address
-        case .contact(contact: let contact):
+        case .contact(let contact):
             opponentLabel.text = contact.name
+        case .trxAccount(let account, _):
+            opponentLabel.text = account.ownerName
         }
         
         switch direction {

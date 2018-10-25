@@ -59,7 +59,7 @@ extension TransactionMapper {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        let timestamp = transaction.timestamp
+        let timestamp = transaction.createdAt
         return dateFormatter.string(from: timestamp)
     }
 }

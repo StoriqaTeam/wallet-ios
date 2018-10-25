@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alex " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHj-S5-XFc">
-                        <rect key="frame" x="79" y="26" width="188" height="16"/>
+                        <rect key="frame" x="77" y="26" width="188" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                     <constraint firstItem="I5E-b2-s0y" firstAttribute="top" secondItem="nQn-DC-Y93" secondAttribute="top" id="34U-0K-6X4"/>
                     <constraint firstItem="ZKQ-Zr-eqf" firstAttribute="centerY" secondItem="I5E-b2-s0y" secondAttribute="centerY" id="BX7-C6-OLf"/>
                     <constraint firstItem="I5E-b2-s0y" firstAttribute="leading" secondItem="nQn-DC-Y93" secondAttribute="trailing" constant="11" id="BY1-du-pF9"/>
-                    <constraint firstItem="jHj-S5-XFc" firstAttribute="leading" secondItem="IBe-fH-g7A" secondAttribute="trailing" constant="6" id="CCs-6t-FuF"/>
+                    <constraint firstItem="jHj-S5-XFc" firstAttribute="leading" secondItem="IBe-fH-g7A" secondAttribute="trailing" constant="4" id="CCs-6t-FuF"/>
                     <constraint firstItem="Oab-Hn-Aro" firstAttribute="centerY" secondItem="jHj-S5-XFc" secondAttribute="centerY" id="FNY-zf-wo4"/>
                     <constraint firstItem="91o-8T-wzl" firstAttribute="centerY" secondItem="ZKQ-Zr-eqf" secondAttribute="centerY" id="Ibp-wc-b5B"/>
                     <constraint firstItem="IBe-fH-g7A" firstAttribute="top" secondItem="I5E-b2-s0y" secondAttribute="bottom" id="OOD-xO-PFb"/>

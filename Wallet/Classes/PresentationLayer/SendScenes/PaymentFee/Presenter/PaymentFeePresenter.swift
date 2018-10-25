@@ -147,6 +147,8 @@ extension PaymentFeePresenter {
         case .address(let addr):
             address = addr
             receiverName = "-"
+        case .trxAccount:
+            fatalError("TransactionAccount is impossible on send")
         }
         
         return PaymentFeeScreenData(header: header,
