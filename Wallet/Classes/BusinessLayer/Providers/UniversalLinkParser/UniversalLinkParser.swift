@@ -30,9 +30,9 @@ class UniversalLinkParser: UniversalLinkParserProtocol {
         
         let type = link.lastPathComponent
         switch type {
-        case "verify-email":
+        case "verify_email":
             return .verifyEmail(token: token)
-        case "reset-password":
+        case "reset_password":
             return .resetPassword(token: token)
         default:
             log.warn("Invalid Universal Link: \(link)")
