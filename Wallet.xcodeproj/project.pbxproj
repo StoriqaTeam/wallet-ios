@@ -305,6 +305,7 @@
 		A5743543217A2D3C006B4CAE /* LoginNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743542217A2D3C006B4CAE /* LoginNetworkProvider.swift */; };
 		A5743546217A309D006B4CAE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743545217A309D006B4CAE /* SwiftyJSON.swift */; };
 		A58D54E8215D0ED1003D9D0C /* FakeTransactionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */; };
+		A58DB4E5218346E80024E463 /* ShortPollingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DB4E4218346E80024E463 /* ShortPollingTimer.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
 		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
@@ -902,6 +903,7 @@
 		A5743542217A2D3C006B4CAE /* LoginNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkProvider.swift; sourceTree = "<group>"; };
 		A5743545217A309D006B4CAE /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		A58D54E7215D0ED1003D9D0C /* FakeTransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTransactionProvider.swift; sourceTree = "<group>"; };
+		A58DB4E4218346E80024E463 /* ShortPollingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortPollingTimer.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
@@ -2822,6 +2824,14 @@
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
+		A58DB4E3218346C10024E463 /* ShortPollingTimer */ = {
+			isa = PBXGroup;
+			children = (
+				A58DB4E4218346E80024E463 /* ShortPollingTimer.swift */,
+			);
+			path = ShortPollingTimer;
+			sourceTree = "<group>";
+		};
 		A58EE3B0214FFD370096C155 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2909,6 +2919,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A58DB4E3218346C10024E463 /* ShortPollingTimer */,
 				A5C12E7D217F007F00A7D68C /* AuthTokenProvider */,
 				CE1E348F217F1450001B1477 /* AccountsUpdater */,
 				A574353C2178AFFF006B4CAE /* SessionSorter */,
@@ -4794,6 +4805,7 @@
 				BF61230B999DE085DBBEC7AC /* PaymentFeeRouterInput.swift in Sources */,
 				406B19D4D7E374DB797F1A6E /* PaymentFeeRouter.swift in Sources */,
 				ADB11F188C9F0760BBEFF576 /* PaymentFeeModuleInput.swift in Sources */,
+				A58DB4E5218346E80024E463 /* ShortPollingTimer.swift in Sources */,
 				E3FC5E63AD2B0EE5E0E906A2 /* PaymentFeeModuleOutput.swift in Sources */,
 				A4648BF2B098C22BBA140E85 /* PaymentFeeModule.swift in Sources */,
 				64E23EAB94A275122397F4F0 /* TransactionsViewInput.swift in Sources */,
