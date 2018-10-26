@@ -14,9 +14,11 @@ class EmailConfirmInteractor {
     
     private let token: String
     private let emailConfirmProvider: EmailConfirmNetworkProviderProtocol
+    private let authTokenDefaults: AuthTokenDefaultsProviderProtocol
     
-    init(token: String, emailConfirmProvider: EmailConfirmNetworkProviderProtocol) {
+    init(token: String, emailConfirmProvider: EmailConfirmNetworkProviderProtocol, authTokenDefaults: AuthTokenDefaultsProviderProtocol) {
         self.token = token
+        self.authTokenDefaults = authTokenDefaults
         self.emailConfirmProvider = emailConfirmProvider
     }
 }
@@ -28,9 +30,9 @@ extension EmailConfirmInteractor: EmailConfirmInteractorInput {
     func confirmEmail() {
         emailConfirmProvider.confirm(token: token, queue: .main) { [weak self] (result) in
             switch result {
-            case .success:
+            case .success(let authToken):
+                self?.authTokenDefaults.authToken = authToken
                 self?.output.confirmationSucceed()
-                
             case .failure(let error):
                 self?.output.confirmationFailed(message: error.localizedDescription)
             }

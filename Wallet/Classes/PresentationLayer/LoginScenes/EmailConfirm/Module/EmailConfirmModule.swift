@@ -16,7 +16,10 @@ class EmailConfirmModule {
         let viewController = storyboard.instantiateViewController(withIdentifier: "EmailConfirmVC") as! EmailConfirmViewController
         
         let emailConfirmProvider = EmailConfirmNetworkProvider()
-        let interactor = EmailConfirmInteractor(token: token, emailConfirmProvider: emailConfirmProvider)
+        let authTokenDefaults = AuthTokenDefaultsProvider()
+        let interactor = EmailConfirmInteractor(token: token,
+                                                emailConfirmProvider: emailConfirmProvider,
+                                                authTokenDefaults: authTokenDefaults)
 
         interactor.output = presenter
 
