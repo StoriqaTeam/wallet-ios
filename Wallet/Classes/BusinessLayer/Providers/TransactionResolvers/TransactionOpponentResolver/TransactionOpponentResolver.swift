@@ -32,15 +32,17 @@ class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
         let fromAddress = transaction.fromAddress
         let toAddress = transaction.toAddress
         
+        // FIXME: как отображать для биткоина?
+        
         switch direction {
         case .receive:
-            if let trxAccount = transaction.fromAccount {
-                return OpponentType.trxAccount(account: trxAccount, address: transaction.fromAddress)
+            if let trxAccount = transaction.fromAccount.first {
+                return OpponentType.trxAccount(account: trxAccount, address: fromAddress.first!)
             }
-            return getOpponent(from: fromAddress)
+            return getOpponent(from: fromAddress.first!)
         case .send:
             if let trxAccount = transaction.toAccount {
-                return OpponentType.trxAccount(account: trxAccount, address: transaction.toAddress)
+                return OpponentType.trxAccount(account: trxAccount, address: toAddress)
             }
             return getOpponent(from: toAddress)
         }
