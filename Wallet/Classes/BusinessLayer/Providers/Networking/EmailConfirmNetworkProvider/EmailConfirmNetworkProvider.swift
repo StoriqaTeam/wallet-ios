@@ -26,7 +26,7 @@ class EmailConfirmNetworkProvider: NetworkLoadable, EmailConfirmNetworkProviderP
             case .success(let response):
                 let json = JSON(response)
                 
-                if let token = json["token"].string {
+                if let token = json.string {
                     completion(.success(token))
                 } else {
                     let apiError = EmailConfirmProviderError(json: json)

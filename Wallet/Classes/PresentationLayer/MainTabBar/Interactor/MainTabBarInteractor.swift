@@ -15,6 +15,7 @@ class MainTabBarInteractor {
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
     private let accountsUpdater: AccountsUpdaterProtocol
+    private let shortPollingService: ShortPollingTimer
     private let trxsUpdater: TransactionsUpdaterProtocol
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
@@ -26,6 +27,7 @@ class MainTabBarInteractor {
         self.accountsUpdater = accountsUpdater
         self.trxsUpdater = trxsUpdater
         
+        self.shortPollingService = ShortPollingTimer(timeout: 1)
         let user = getCurrentUser()
         accountsUpdater.update(userId: user.id)
         trxsUpdater.update(userId: user.id)
