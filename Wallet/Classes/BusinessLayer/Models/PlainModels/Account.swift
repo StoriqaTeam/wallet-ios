@@ -47,14 +47,13 @@ extension Account: RealmMappable {
         self.id = id
         self.userId = userId
         self.currency = currency
+        self.accountAddress = accountAddress
         
         switch currency {
         case .eth, .stq:
             self.balance = Decimal(balance) / pow(10, 18)
-            self.accountAddress = "0x\(accountAddress)"
         default:
             self.balance = Decimal(balance) / pow(10, 8)
-            self.accountAddress = accountAddress
         }
         
         self.name = name

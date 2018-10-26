@@ -121,9 +121,9 @@ extension Transaction: RealmMappable {
         self.blockchainId = blockchainId
         self.createdAt = Date(timeIntervalSince1970: createdAt)
         self.updatedAt = Date(timeIntervalSince1970: updatedAt)
-//        self.toAddress = toAddress
+        self.toAddress = toAddress
         self.toAccount = toAccount
-//        self.fromAddress = fromAddress
+        self.fromAddress = fromAddress
         self.fromAccount = fromAccounts
         
         switch currency {
@@ -133,25 +133,6 @@ extension Transaction: RealmMappable {
         default:
             self.cryptoAmount = Decimal(value) / pow(10, 8)
             self.fee = Decimal(fee) / pow(10, 8)
-        }
-        
-        
-        // FIXME: префикс будет приходить!
-        let btcMainetValidator = BitcoinAddressValidator(network: .btcMainnet)
-        let btcTestnetValidator = BitcoinAddressValidator(network: .btcTestnet)
-        
-        if !btcMainetValidator.isValid(address: toAddress) && !btcTestnetValidator.isValid(address: toAddress) {
-            self.toAddress = "0x\(toAddress)"
-        } else {
-            self.toAddress = toAddress
-        }
-        
-        self.fromAddress = fromAddress.map {
-            if !btcMainetValidator.isValid(address: $0) && !btcTestnetValidator.isValid(address: $0) {
-                return "0x\($0)"
-            } else {
-                return $0
-            }
         }
     }
 }
