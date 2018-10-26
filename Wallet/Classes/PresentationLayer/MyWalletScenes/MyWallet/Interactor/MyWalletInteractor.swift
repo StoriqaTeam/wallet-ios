@@ -63,6 +63,6 @@ extension MyWalletInteractor {
     
     @objc
     private func pol() {
-        print("Получили сигнал в майволлете")
+        log.debug("Get polling signal")
     }
 }

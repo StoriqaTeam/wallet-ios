@@ -36,8 +36,8 @@ class ShortPollingTimer: ShortPollingTimerProtocol {
         timer?.cancel()
         timer = Timer.createDispatchTimer(interval: .seconds(timeout),
                                           leeway: .seconds(0),
-                                          queue: pollingQueue) { [unowned self] in
-                                            self.sendPollingSignal()
+                                          queue: pollingQueue) { [weak self] in
+                                            self?.sendPollingSignal()
         }
     }
     
@@ -61,23 +61,22 @@ class ShortPollingTimer: ShortPollingTimerProtocol {
 
 extension ShortPollingTimer {
     private func sendPollingSignal() {
-        print("Хэндлер отработал в потоке - \(Thread.current)")
+        log.debug("Send polling signal in thread - \(Thread.current)")
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .startPolling, object: nil)
-            log.info("Сигнал поллинга!!!!!!")
         }
     }
     
     @objc
     private func appMovedToBackground() {
         pause()
-        log.info("Таймер паусед!!!!!!")
+        log.debug("Polling timer paused")
     }
     
     @objc
     private func appBecomeActive() {
         resume()
-        log.info("Таймер ресюмед!!!!!!")
+        log.debug("Polling timer resumed")
     }
     
     private func subscribeNotification() {
