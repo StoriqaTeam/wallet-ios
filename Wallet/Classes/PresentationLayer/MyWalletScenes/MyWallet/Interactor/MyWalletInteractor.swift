@@ -20,6 +20,11 @@ class MyWalletInteractor {
         self.accountWatcher = accountWatcher
         
         accountsProvider.setObserver(self)
+        subscribeToNotifications()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -42,5 +47,22 @@ extension MyWalletInteractor: MyWalletInteractorInput {
 extension MyWalletInteractor: AccountsProviderDelegate {
     func accountsDidUpdate(_ accounts: [Account]) {
         output.updateAccounts(accounts: accounts)
+    }
+}
+
+
+// MARK: - Private methods
+
+extension MyWalletInteractor {
+    private func subscribeToNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(pol),
+                                               name: .startPolling,
+                                               object: nil)
+    }
+    
+    @objc
+    private func pol() {
+        print("Получили сигнал в майволлете")
     }
 }
