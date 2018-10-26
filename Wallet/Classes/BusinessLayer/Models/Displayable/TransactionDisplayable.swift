@@ -16,6 +16,7 @@ enum Direction {
 
 enum OpponentType {
     case contact(contact: ContactDisplayable)
+    case trxAccount(account: TransactionAccount, address: String)
     case address(address: String)
 }
 

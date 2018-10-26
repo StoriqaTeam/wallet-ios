@@ -36,6 +36,8 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
             address = "1xJBQjtg8YYzgVZ8htvknGiK7tbYAF9KD"
         case .address(let addr):
             address = addr
+        case .trxAccount:
+            fatalError("TransactionAccount is impossible on send")
         }
         
         return address

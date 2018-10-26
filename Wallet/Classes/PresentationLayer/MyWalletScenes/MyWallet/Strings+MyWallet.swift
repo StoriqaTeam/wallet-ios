@@ -10,6 +10,9 @@ import Foundation
 
 extension Strings {
     enum MyWallet {
-        static let buttonTitle = NSLocalizedString("MyWallet.buttonTitle", tableName: "MyWallet", value: "Add new", comment: "Button at the right side of navigation bar")
+        static let buttonTitle = NSLocalizedString("MyWallet.buttonTitle",
+                                                   tableName: "MyWallet",
+                                                   value: "Add new",
+                                                   comment: "Button at the right side of navigation bar")
     }
 }
