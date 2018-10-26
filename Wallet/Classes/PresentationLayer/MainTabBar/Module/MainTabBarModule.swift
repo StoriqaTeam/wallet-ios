@@ -17,11 +17,16 @@ class MainTabBarModule {
         let accountWatcher = CurrentAccountWatcher(accountProvider: accountsProvider)
         let userDataStoreService = UserDataStoreService()
         let accountsNetworkProvider = AccountsNetworkProvider()
-        let defaults = AuthTokenDefaultsProvider()
+        let authTokenDefaults = AuthTokenDefaultsProvider()
         let keychain = KeychainProvider()
         let loginNetworkProvider = LoginNetworkProvider()
+        let transactionDataStoreService = TransactionDataStoreService()
         
-        let authTokenProvider = AuthTokenProvider(defaults: defaults,
+        let transactionsProvider = TransactionsProvider(transactionDataStoreService: transactionDataStoreService)
+        let transactionsNetworkProvider = TransactionsNetworkProvider()
+        let defaults = DefaultsProvider()
+        
+        let authTokenProvider = AuthTokenProvider(defaults: authTokenDefaults,
                                                   keychain: keychain,
                                                   loginNetworkProvider: loginNetworkProvider,
                                                   userDataStoreService: userDataStoreService)
@@ -30,17 +35,23 @@ class MainTabBarModule {
                                               accountsDataStore: accountsDataStore,
                                               authTokenProvider: authTokenProvider)
         
+        let trxsUpdater = TransactionsUpdater(transactionsProvider: transactionsProvider,
+                                              transactionsNetworkProvider: transactionsNetworkProvider,
+                                              transactionsDataStoreService: transactionDataStoreService,
+                                              defaultsProvider: defaults, authTokenProvider: authTokenProvider)
+        
         let interactor = MainTabBarInteractor(accountWatcher: accountWatcher,
                                               userDataStoreService: userDataStoreService,
-                                              accountsUpdater: accountsUpdater)
+                                              accountsUpdater: accountsUpdater,
+                                              trxsUpdater: trxsUpdater)
         
         let storyboard = UIStoryboard(name: "MainTabBar", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "mainTabBarVC") as! MainTabBarViewController
-
+        
         interactor.output = presenter
-
+        
         viewController.output = presenter
-
+        
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor

@@ -13,6 +13,7 @@ protocol DefaultsProviderProtocol: class {
     var isQuickLaunchShown: Bool { get set }
     var isBiometryAuthEnabled: Bool { get set }
     var fiatISO: String { get set }
+    var lastTrxTimastamp: TimeInterval? { get set }
 }
 
 class DefaultsProvider: DefaultsProviderProtocol {
@@ -22,6 +23,7 @@ class DefaultsProvider: DefaultsProviderProtocol {
         case isQuickLaunchShown
         case isBiometryAuthEnabled
         case fiatISO
+        case lastTrxTimastamp
     }
     
     var isFirstLaunch: Bool {
@@ -69,6 +71,15 @@ class DefaultsProvider: DefaultsProviderProtocol {
         }
     }
     
+    var lastTrxTimastamp: TimeInterval? {
+        get {
+            return getDouble(.lastTrxTimastamp)
+        }
+        set {
+            setDouble(newValue, key: .lastTrxTimastamp)
+        }
+    }
+    
 }
 
 
@@ -80,6 +91,15 @@ extension DefaultsProvider {
     }
     
     private func setString(_ value: String?, key: DefaultsKey) {
+        UserDefaults.standard.set(value, forKey: key.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+    
+    private func getDouble(_ key: DefaultsKey) -> Double? {
+        return UserDefaults.standard.double(forKey: key.rawValue)
+    }
+    
+    private func setDouble(_ value: Double?, key: DefaultsKey) {
         UserDefaults.standard.set(value, forKey: key.rawValue)
         UserDefaults.standard.synchronize()
     }

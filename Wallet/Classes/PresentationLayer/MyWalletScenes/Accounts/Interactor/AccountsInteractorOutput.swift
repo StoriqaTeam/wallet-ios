@@ -11,6 +11,6 @@ import Foundation
 
 protocol AccountsInteractorOutput: class {
     func ISODidChange(_ iso: String)
-    func transactionsDidChange(_ txs: [TransactionDisplayable])
+    func transactionsDidChange(_ txs: [Transaction])
     func updateAccounts(accounts: [Account], index: Int) 
 }

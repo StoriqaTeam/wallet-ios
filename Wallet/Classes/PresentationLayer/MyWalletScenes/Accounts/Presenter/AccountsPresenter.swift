@@ -18,11 +18,14 @@ class AccountsPresenter {
     weak var mainTabBar: UITabBarController!
     
     private let accountDisplayer: AccountDisplayerProtocol
+    private let transactionsMapper: TransactionMapper
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: TransactionsDataManager!
     
-    init(accountDisplayer: AccountDisplayerProtocol) {
+    init(accountDisplayer: AccountDisplayerProtocol,
+         transactionsMapper: TransactionMapper) {
         self.accountDisplayer = accountDisplayer
+        self.transactionsMapper = transactionsMapper
     }
 }
 
@@ -31,8 +34,8 @@ class AccountsPresenter {
 
 extension AccountsPresenter: AccountsViewOutput {
     func viewAllPressed() {
-        let transactions = interactor.getTransactionForCurrentAccount()
-        router.showTransactions(from: view.viewController, transactions: transactions)
+        let account = interactor.getSelectedAccount()
+        router.showTransactions(from: view.viewController, account: account)
     }
     
     func configureCollections() {
@@ -52,8 +55,9 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func transactionTableView(_ tableView: UITableView) {
-        let transations = interactor.getTransactionForCurrentAccount()
-        let txDataManager = TransactionsDataManager(transactions: transations, isHiddenSections: true)
+        let transactions = interactor.getTransactionForCurrentAccount()
+        let displayable = transactions.map { transactionsMapper.map(from: $0) }
+        let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
@@ -91,8 +95,9 @@ extension AccountsPresenter: AccountsInteractorOutput {
          view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
     }
     
-    func transactionsDidChange(_ txs: [TransactionDisplayable]) {
-        transactionDataManager.updateTransactions(txs)
+    func transactionsDidChange(_ txs: [Transaction]) {
+        let displayable = txs.map { transactionsMapper.map(from: $0) }
+        transactionDataManager.updateTransactions(displayable)
     }
     
     func updateAccounts(accounts: [Account], index: Int) {

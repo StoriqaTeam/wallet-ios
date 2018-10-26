@@ -13,12 +13,14 @@ class AccountsInteractor {
     weak var output: AccountsInteractorOutput!
     private var accountWatcher: CurrentAccountWatcherProtocol
     private let accountLinker: AccountsLinkerProtocol
+    private let transactionsProvider: TransactionsProviderProtocol
     
     init(accountLinker: AccountsLinkerProtocol,
-         accountWatcher: CurrentAccountWatcherProtocol) {
-        
+         accountWatcher: CurrentAccountWatcherProtocol,
+         transactionsProvider: TransactionsProviderProtocol) {
         self.accountLinker = accountLinker
         self.accountWatcher = accountWatcher
+        self.transactionsProvider = transactionsProvider
     }
 }
 
@@ -36,12 +38,17 @@ extension AccountsInteractor: AccountsInteractorInput {
         return index
     }
     
+    func getSelectedAccount() -> Account {
+        let account = accountWatcher.getAccount()
+        return account
+    }
+    
     func getAccountsCount() -> Int {
         let allAccounts = accountLinker.getAllAccounts()
         return allAccounts.count
     }
     
-    func getTransactionForCurrentAccount() -> [TransactionDisplayable] {
+    func getTransactionForCurrentAccount() -> [Transaction] {
         let currentAccount = accountWatcher.getAccount()
         return transactions(for: currentAccount)
     }
@@ -65,6 +72,7 @@ extension AccountsInteractor: AccountsInteractorInput {
     
     func startObservers() {
         accountLinker.setObserver(self)
+        transactionsProvider.setObserver(self)
     }
 }
 
@@ -82,6 +90,17 @@ extension AccountsInteractor: AccountsProviderDelegate {
 }
 
 
+// MARK: - TransactionsProviderDelegate
+
+extension AccountsInteractor: TransactionsProviderDelegate {
+    func transactionsDidUpdate(_ trxs: [Transaction]) {
+        let currentAccount = accountWatcher.getAccount()
+        let txs = transactions(for: currentAccount)
+        output.transactionsDidChange(txs)
+    }
+}
+
+
 // MARK: - Private methods
 
 extension AccountsInteractor {
@@ -90,7 +109,7 @@ extension AccountsInteractor {
         return allAccounts.index { $0 == account } ?? 0
     }
     
-    private func transactions(for account: Account) -> [TransactionDisplayable] {
+    private func transactions(for account: Account) -> [Transaction] {
         guard let txs = accountLinker.getTransactionsFor(account: account) else { fatalError("Given account not found") }
         return txs
     }

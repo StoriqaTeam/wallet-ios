@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol AccountsLinkerProtocol: class {
-    func getTransactionsFor(account: Account) -> [TransactionDisplayable]?
+    func getTransactionsFor(account: Account) -> [Transaction]?
     func getAllAccounts() -> [Account]
     func setObserver(_ observer: AccountsProviderDelegate)
 }
@@ -27,7 +27,7 @@ class AccountsLinker: AccountsLinkerProtocol {
     }
    
     // @dev returns nil if given account not found
-    func getTransactionsFor(account: Account) -> [TransactionDisplayable]? {
+    func getTransactionsFor(account: Account) -> [Transaction]? {
         let allAccounts = accountsProvider.getAllAccounts()
         
         for acc in allAccounts where acc == account {
