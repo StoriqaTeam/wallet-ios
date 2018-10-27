@@ -23,7 +23,7 @@ class DefaultsProvider: DefaultsProviderProtocol {
         case isQuickLaunchShown
         case isBiometryAuthEnabled
         case fiatISO
-        case lastTrxTimastamp
+        case lastTxnTimastamp
     }
     
     var isFirstLaunch: Bool {
@@ -73,10 +73,10 @@ class DefaultsProvider: DefaultsProviderProtocol {
     
     var lastTrxTimastamp: TimeInterval? {
         get {
-            return getDouble(.lastTrxTimastamp)
+            return getDouble(.lastTxnTimastamp)
         }
         set {
-            setDouble(newValue, key: .lastTrxTimastamp)
+            setDouble(newValue, key: .lastTxnTimastamp)
         }
     }
     
