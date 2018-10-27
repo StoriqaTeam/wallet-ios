@@ -47,16 +47,16 @@ extension Account: RealmMappable {
         self.id = id
         self.userId = userId
         self.currency = currency
+        self.accountAddress = accountAddress
         
         switch currency {
         case .eth, .stq:
-            self.accountAddress = "0x\(accountAddress)"
+            self.balance = Decimal(balance) / pow(10, 18)
         default:
-            self.accountAddress = accountAddress
+            self.balance = Decimal(balance) / pow(10, 8)
         }
         
         self.name = name
-        self.balance = Decimal(balance) / pow(10, 18)
 
         // FIXME: приходит createdAt и updatedAt
         

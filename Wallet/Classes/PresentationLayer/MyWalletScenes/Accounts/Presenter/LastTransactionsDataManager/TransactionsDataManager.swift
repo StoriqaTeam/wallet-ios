@@ -39,11 +39,13 @@ class TransactionsDataManager: NSObject {
     
     func updateTransactions(_ transactions: [TransactionDisplayable]) {
         if transactions.isEmpty {
+            transactionsByMonths.removeAll()
+            lastTransactionsTableView.reloadData()
             updateEmpty(placeholderImage: UIImage(named: "noTxs")!, placeholderText: "")
             return
         }
         
-        self.transactionsByMonths = sortTransactionByDate(transactions)
+        transactionsByMonths = sortTransactionByDate(transactions)
         
         if let _ = emptyViewPlaceholder {
             lastTransactionsTableView.tableFooterView = nil
@@ -133,7 +135,7 @@ extension TransactionsDataManager {
     private func sortTransactionByDate(_ txs: [TransactionDisplayable]) -> [[TransactionDisplayable]] {
         guard !txs.isEmpty else { return [[]] }
         
-        let inputArray = txs.sorted { $0.transaction.createdAt < $1.transaction.createdAt }
+        let inputArray = txs.sorted { $0.transaction.createdAt > $1.transaction.createdAt }
         var resultArray = [[inputArray[0]]]
         
         let calendar = Calendar(identifier: .gregorian)

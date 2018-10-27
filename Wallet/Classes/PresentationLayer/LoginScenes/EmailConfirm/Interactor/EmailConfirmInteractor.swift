@@ -16,7 +16,9 @@ class EmailConfirmInteractor {
     private let emailConfirmProvider: EmailConfirmNetworkProviderProtocol
     private let authTokenDefaults: AuthTokenDefaultsProviderProtocol
     
-    init(token: String, emailConfirmProvider: EmailConfirmNetworkProviderProtocol, authTokenDefaults: AuthTokenDefaultsProviderProtocol) {
+    init(token: String,
+         emailConfirmProvider: EmailConfirmNetworkProviderProtocol,
+         authTokenDefaults: AuthTokenDefaultsProviderProtocol) {
         self.token = token
         self.authTokenDefaults = authTokenDefaults
         self.emailConfirmProvider = emailConfirmProvider

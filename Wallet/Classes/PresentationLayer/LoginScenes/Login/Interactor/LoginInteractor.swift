@@ -52,6 +52,10 @@ class LoginInteractor {
 
 extension LoginInteractor: LoginInteractorInput {
     
+    func viewIsReady() {
+        userDataStore.resetAllDatabase()
+    }
+    
     func getSocialVM() -> SocialNetworkAuthViewModel {
         return socialViewVM
     }

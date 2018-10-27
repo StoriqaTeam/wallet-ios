@@ -34,4 +34,13 @@ extension TransactionAccount: RealmMappable {
         return object
     }
     
+    init?(json: JSON) {
+        guard let accountId = json["account_id"].string,
+            let name = json["owner_name"].string else {
+                return nil
+        }
+        self.accountId = accountId
+        self.ownerName = name
+    }
+    
 }

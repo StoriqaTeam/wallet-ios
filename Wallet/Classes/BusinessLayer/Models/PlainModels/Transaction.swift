@@ -91,4 +91,48 @@ extension Transaction: RealmMappable {
         
         return object
     }
+    
+    init?(json: JSON) {
+        guard let id = json["id"].string,
+            let currencyStr = json["currency"].string,
+            let value = json["value"].string,
+            let fee = json["fee"].string,
+            let blockchainId = json["blockchainTxId"].string,
+            let statusStr = json["status"].string,
+            let createdAt = json["createdAt"].double,
+            let updatedAt = json["updatedAt"].double,
+            let from = json["from"].array else {
+                return nil
+        }
+        
+        let to = json["to"]
+        let toAccount = TransactionAccount(json: to)
+        let fromAddress = from.compactMap { $0["blockchain_address"].string }
+        let fromAccounts = from.compactMap { TransactionAccount(json: $0) }
+        
+        guard let toAddress = to["blockchain_address"].string,
+            !fromAddress.isEmpty else {
+                return nil
+        }
+        
+        self.id = id
+        self.currency = Currency(string: currencyStr)
+        self.status = TransactionStatus(string: statusStr)
+        self.blockchainId = blockchainId
+        self.createdAt = Date(timeIntervalSince1970: createdAt)
+        self.updatedAt = Date(timeIntervalSince1970: updatedAt)
+        self.toAddress = toAddress
+        self.toAccount = toAccount
+        self.fromAddress = fromAddress
+        self.fromAccount = fromAccounts
+        
+        switch currency {
+        case .eth, .stq:
+            self.cryptoAmount = Decimal(value) / pow(10, 18)
+            self.fee = Decimal(fee) / pow(10, 18)
+        default:
+            self.cryptoAmount = Decimal(value) / pow(10, 8)
+            self.fee = Decimal(fee) / pow(10, 8)
+        }
+    }
 }
