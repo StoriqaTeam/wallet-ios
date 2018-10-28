@@ -10,7 +10,12 @@ import Foundation
 
 
 class MyWalletRouter {
-
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -23,7 +28,7 @@ extension MyWalletRouter: MyWalletRouterInput {
                           user: User) {
         
         
-        let accountsPresenter = AccountsModule.create(accountWatcher: accountWatcher, tabBar: tabBar, user: user)
+        let accountsPresenter = AccountsModule.create(app: app, accountWatcher: accountWatcher, tabBar: tabBar, user: user)
         accountsPresenter.present(from: fromViewController)
     }
 }

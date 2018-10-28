@@ -10,6 +10,12 @@ import Foundation
 
 
 class EditProfileRouter {
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 
 }
 

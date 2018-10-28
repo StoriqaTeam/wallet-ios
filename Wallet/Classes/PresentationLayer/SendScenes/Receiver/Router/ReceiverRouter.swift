@@ -10,7 +10,11 @@ import Foundation
 
 
 class ReceiverRouter {
+    private let app: Application
     
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -20,10 +24,10 @@ extension ReceiverRouter: ReceiverRouterInput {
     func showPaymentFee(sendTransactionBuilder: SendProviderBuilderProtocol,
                         from viewController: UIViewController,
                         tabBar: UITabBarController) {
-        PaymentFeeModule.create(sendTransactionBuilder: sendTransactionBuilder, tabBar: tabBar).present(from: viewController)
+        PaymentFeeModule.create(app: app, sendTransactionBuilder: sendTransactionBuilder, tabBar: tabBar).present(from: viewController)
     }
     
     func showScanner(sendTransactionBuilder: SendProviderBuilderProtocol, from viewController: UIViewController) {
-        QRScannerModule.create(sendTransactionBuilder: sendTransactionBuilder).present(from: viewController)
+        QRScannerModule.create(app: app, sendTransactionBuilder: sendTransactionBuilder).present(from: viewController)
     }
 }

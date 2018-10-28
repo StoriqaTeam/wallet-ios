@@ -5,6 +5,7 @@
 //  Created by Storiqa on 20/09/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 
@@ -13,6 +14,7 @@ class MyWalletInteractor {
     
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
+    private var shortPollingChannelInput: ShortPollingChannel?
     
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol) {
@@ -20,12 +22,29 @@ class MyWalletInteractor {
         self.accountWatcher = accountWatcher
         
         accountsProvider.setObserver(self)
-        subscribeToNotifications()
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        self.shortPollingChannelInput?.removeObserver(withId: self.objId)
+        self.shortPollingChannelInput = nil
     }
+    
+    
+    // MARK: - Channels
+    
+    private lazy var objId: String = {
+        let id = "\(type(of: self)):\(String(format: "%p", unsafeBitCast(self, to: Int.self)))"
+        return id
+    }()
+    
+    func setShortPollingChannelInput(_ channel: ShortPollingChannel) {
+        self.shortPollingChannelInput = channel
+        let observer = Observer<String?>(id: self.objId) { [weak self] (_) in
+            self?.signalPolling()
+        }
+        self.shortPollingChannelInput?.addObserver(observer)
+    }
+    
 }
 
 
@@ -54,15 +73,8 @@ extension MyWalletInteractor: AccountsProviderDelegate {
 // MARK: - Private methods
 
 extension MyWalletInteractor {
-    private func subscribeToNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(pol),
-                                               name: .startPolling,
-                                               object: nil)
-    }
     
-    @objc
-    private func pol() {
+    private func signalPolling() {
         log.debug("Get polling signal")
     }
 }

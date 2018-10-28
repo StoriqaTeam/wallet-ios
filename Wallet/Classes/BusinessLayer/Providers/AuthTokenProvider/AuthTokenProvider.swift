@@ -18,7 +18,7 @@ struct AuthToken {
 
 protocol AuthTokenProviderProtocol {
     func currentAuthToken(completion: @escaping (Result<String>) -> Void)
-}
+} 
 
 
 class AuthTokenProvider: AuthTokenProviderProtocol {

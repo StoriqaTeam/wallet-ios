@@ -12,12 +12,12 @@ import Foundation
 class TransactionMapper: Mappable {
     
     private let currencyFormatter: CurrencyFormatterProtocol
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let transactionDirectionResolver: TransactionDirectionResolverProtocol
     private let transactionOpponentResolver: TransactionOpponentResolverProtocol
     
     init(currencyFormatter: CurrencyFormatterProtocol,
-         converterFactory: CurrecncyConverterFactoryProtocol,
+         converterFactory: CurrencyConverterFactoryProtocol,
          transactionDirectionResolver: TransactionDirectionResolverProtocol,
          transactionOpponentResolver: TransactionOpponentResolverProtocol) {
         

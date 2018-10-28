@@ -8,18 +8,12 @@ import UIKit
 
 class QRScannerModule {
     
-    class func create(sendTransactionBuilder: SendProviderBuilderProtocol) -> QRScannerModuleInput {
-        let router = QRScannerRouter()
+    class func create(app: Application, sendTransactionBuilder: SendProviderBuilderProtocol) -> QRScannerModuleInput {
+        let router = QRScannerRouter(app: app)
         let presenter = QRScannerPresenter()
         
-        //Injections
-        let btcValidator = BitcoinAddressValidator(network: .btcMainnet)
-        let ethValidator = EthereumAddressValidator()
-        let addressResolver = CryptoAddressResolver(btcAddressValidator: btcValidator,
-                                                    ethAddressValidator: ethValidator)
-        
         let interactor = QRScannerInteractor(sendTransactionBuilder: sendTransactionBuilder,
-                                             addressResolver: addressResolver)
+                                             addressResolver: app.cryptoAddressResolver)
         
         let loginSb = UIStoryboard(name: "QRScanner", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "QRScannerVC") as! QRScannerViewController

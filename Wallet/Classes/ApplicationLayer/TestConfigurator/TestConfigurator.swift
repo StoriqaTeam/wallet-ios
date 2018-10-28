@@ -11,7 +11,7 @@ import Foundation
 class TestConfigurator: Configurable {
     
     func configure() {
-        MainTabBarModule.create().present()
+//        MainTabBarModule.create().present()
     }
     
 }

@@ -15,11 +15,11 @@ protocol AccountsUpdaterProtocol {
 class AccountsUpdater: AccountsUpdaterProtocol {
     
     private let accountsNetworkProvider: AccountsNetworkProviderProtocol
-    private let accountsDataStore: AccountsDataStoreProtocol
+    private let accountsDataStore: AccountsDataStoreServiceProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
     
     init(accountsNetworkProvider: AccountsNetworkProviderProtocol,
-         accountsDataStore: AccountsDataStoreProtocol,
+         accountsDataStore: AccountsDataStoreServiceProtocol,
          authTokenProvider: AuthTokenProviderProtocol) {
         self.accountsNetworkProvider = accountsNetworkProvider
         self.accountsDataStore = accountsDataStore

@@ -17,11 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    private var configurators: [Configurable] = {
+    private let app = Application()
+    
+    private lazy var configurators: [Configurable] = {
         return [
-            ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider()),
+            ApplicationConfigurator(app: app),
             CrashTrackerConfigurator(),
-            SessionsConfigurator(sessionsDataStore: SessionsDataStoreService())
+            SessionsConfigurator(app: app)
         ]
     }()
     
@@ -61,9 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         switch link {
         case .verifyEmail(let token):
-            EmailConfirmModule.create(token: token).present()
+            EmailConfirmModule.create(app: app, token: token).present()
         case .resetPassword(let token):
-            PasswordRecoveryConfirmModule.create(token: token).present()
+            PasswordRecoveryConfirmModule.create(app: app, token: token).present()
         }
         
         return true

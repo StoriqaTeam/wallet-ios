@@ -13,15 +13,20 @@ class ApplicationConfigurator: Configurable {
     
     private let keychain: KeychainProviderProtocol
     private let defaults: DefaultsProviderProtocol
+    private let shortPollingTimer: ShortPollingTimerProtocol
+    let app: Application
     
-    init(keychain: KeychainProviderProtocol, defaults: DefaultsProviderProtocol) {
-        self.keychain = keychain
-        self.defaults = defaults
+    init(app: Application) {
+        self.keychain = app.keychainProvider
+        self.defaults = app.defaultsProvider
+        self.shortPollingTimer = app.shortPollingTimer
+        self.app = app
     }
     
     func configure() {
         setInitialVC()
         setGID()
+        setupChannel()
     }    
 }
 
@@ -33,11 +38,11 @@ extension ApplicationConfigurator {
         if defaults.isFirstLaunch {
             defaults.isFirstLaunch = false
             keychain.deleteAll()
-            FirstLaunchModule.create().present()
+            FirstLaunchModule.create(app: app).present()
         } else if isPinSet() {
-            PinInputModule.create().present()
+            PinInputModule.create(app: app).present()
         } else {
-            LoginModule.create().present()
+            LoginModule.create(app: app).present()
         }
     }
     
@@ -48,5 +53,11 @@ extension ApplicationConfigurator {
     private func setGID() {
         NetworkActivityIndicatorManager.shared.isEnabled = true
         GIDSignIn.sharedInstance().clientID = Constants.NetworkAuth.kGoogleClientId
+    }
+    
+    private func setupChannel() {
+        let shortPollingChannel = app.channelStorage.shortPollingChannel
+        self.shortPollingTimer.setOutputChannel(shortPollingChannel)
+        self.shortPollingTimer.startPolling()
     }
 }

@@ -16,14 +16,14 @@ class ExchangePresenter {
     var interactor: ExchangeInteractorInput!
     var router: ExchangeRouterInput!
     
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
     private var currencyConverter: CurrencyConverterProtocol!
     private let accountDisplayer: AccountDisplayerProtocol
     private var accountsTableDataManager: AccountsTableDataManager!
     private var accountsDataManager: AccountsDataManager!
     
-    init(converterFactory: CurrecncyConverterFactoryProtocol,
+    init(converterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
          accountDisplayer: AccountDisplayerProtocol) {
         self.converterFactory = converterFactory

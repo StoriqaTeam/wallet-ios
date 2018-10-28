@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol CurrecncyConverterFactoryProtocol {
+protocol CurrencyConverterFactoryProtocol {
     func createConverter(from currency: Currency) -> CurrencyConverterProtocol
 }
 
-class CurrecncyConverterFactory: CurrecncyConverterFactoryProtocol {
+class CurrencyConverterFactory: CurrencyConverterFactoryProtocol {
     
     func createConverter(from currency: Currency) -> CurrencyConverterProtocol {
         switch currency {

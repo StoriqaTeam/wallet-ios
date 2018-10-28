@@ -14,7 +14,7 @@ class ExchangeInteractor {
     
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let accountsProvider: AccountsProviderProtocol
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
     private var currencyConverter: CurrencyConverterProtocol!
     private var recepientAccount: Account? {
@@ -26,7 +26,7 @@ class ExchangeInteractor {
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
          accountsProvider: AccountsProviderProtocol,
-         converterFactory: CurrecncyConverterFactoryProtocol,
+         converterFactory: CurrencyConverterFactoryProtocol,
          feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
         self.accountWatcher = accountWatcher
         self.accountsProvider = accountsProvider

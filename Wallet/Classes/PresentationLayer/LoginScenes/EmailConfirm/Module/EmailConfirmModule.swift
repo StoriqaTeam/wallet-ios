@@ -8,18 +8,16 @@ import UIKit
 
 class EmailConfirmModule {
     
-    class func create(token: String) -> EmailConfirmModuleInput {
-        let router = EmailConfirmRouter()
+    class func create(app: Application, token: String) -> EmailConfirmModuleInput {
+        let router = EmailConfirmRouter(app: app)
         let presenter = EmailConfirmPresenter()
         
         let storyboard = UIStoryboard(name: "EmailConfirm", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "EmailConfirmVC") as! EmailConfirmViewController
         
-        let emailConfirmProvider = EmailConfirmNetworkProvider()
-        let authTokenDefaults = AuthTokenDefaultsProvider()
         let interactor = EmailConfirmInteractor(token: token,
-                                                emailConfirmProvider: emailConfirmProvider,
-                                                authTokenDefaults: authTokenDefaults)
+                                                emailConfirmProvider: app.emailConfirmNetworkProvider,
+                                                authTokenDefaults: app.authTokenDefaultsProvider)
 
         interactor.output = presenter
 

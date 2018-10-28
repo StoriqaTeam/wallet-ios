@@ -9,14 +9,14 @@
 import Foundation
 
 
-protocol AccountsDataStoreProtocol: class {
+protocol AccountsDataStoreServiceProtocol: class {
     func update(_ accounts: [Account])
     func getAllAccounts(userId: Int) -> [Account]
     func observe(updateHandler: @escaping ([Account]) -> Void)
 }
 
 
-class AccountsDataStore: RealmStorable<Account>, AccountsDataStoreProtocol {
+class AccountsDataStoreService: RealmStorable<Account>, AccountsDataStoreServiceProtocol {
     
     func update(_ accounts: [Account]) {
         find().forEach { delete(primaryKey: $0.id) }

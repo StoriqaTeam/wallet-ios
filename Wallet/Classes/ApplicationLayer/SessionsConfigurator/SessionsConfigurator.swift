@@ -11,10 +11,12 @@ import Foundation
 
 class SessionsConfigurator: Configurable {
     
+    private let app: Application
     private let sessionsDataStore: SessionsDataStoreServiceProtocol
     
-    init(sessionsDataStore: SessionsDataStoreService) {
-        self.sessionsDataStore = sessionsDataStore
+    init(app: Application) {
+        self.app = app
+        self.sessionsDataStore = app.sessionsDataStoreService
     }
     
     func configure() {

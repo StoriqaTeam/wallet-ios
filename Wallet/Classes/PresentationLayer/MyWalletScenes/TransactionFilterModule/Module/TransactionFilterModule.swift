@@ -9,8 +9,8 @@ import UIKit
 
 class TransactionFilterModule {
     
-    class func create(transactionDateFilter: TransactionDateFilterProtocol) -> TransactionFilterModuleInput {
-        let router = TransactionFilterRouter()
+    class func create(app: Application, transactionDateFilter: TransactionDateFilterProtocol) -> TransactionFilterModuleInput {
+        let router = TransactionFilterRouter(app: app)
         let presenter = TransactionFilterPresenter(transactionDateFilter: transactionDateFilter)
         let interactor = TransactionFilterInteractor()
         let transactionFilterSB = UIStoryboard(name: "TransactionFilter", bundle: nil)

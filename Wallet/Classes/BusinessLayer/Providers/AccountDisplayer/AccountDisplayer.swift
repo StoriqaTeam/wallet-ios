@@ -21,12 +21,12 @@ class AccountDisplayer: AccountDisplayerProtocol {
     
     private let user: User
     private let currencyFormatter: CurrencyFormatterProtocol
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let accountTypeResolver: AccountTypeResolverProtocol
     
     init(user: User,
          currencyFormatter: CurrencyFormatterProtocol,
-         converterFactory: CurrecncyConverterFactoryProtocol,
+         converterFactory: CurrencyConverterFactoryProtocol,
          accountTypeResolver: AccountTypeResolverProtocol) {
         self.user = user
         self.converterFactory = converterFactory

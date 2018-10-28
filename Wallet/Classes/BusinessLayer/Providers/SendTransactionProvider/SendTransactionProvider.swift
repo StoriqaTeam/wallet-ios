@@ -40,13 +40,13 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         didSet { updateConverter() }
     }
     
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
     private let accountProvider: AccountsProviderProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
     private var currencyConverter: CurrencyConverterProtocol!
     
-    init(converterFactory: CurrecncyConverterFactoryProtocol,
+    init(converterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
          accountProvider: AccountsProviderProtocol,
          feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {

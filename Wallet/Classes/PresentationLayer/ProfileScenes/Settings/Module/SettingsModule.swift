@@ -8,12 +8,11 @@ import UIKit
 
 class SettingsModule {
     
-    class func create() -> SettingsModuleInput {
-        let router = SettingsRouter()
+    class func create(app: Application) -> SettingsModuleInput {
+        let router = SettingsRouter(app: app)
         let presenter = SettingsPresenter()
         
-        let sessionsDataStore = SessionsDataStoreService()
-        let interactor = SettingsInteractor(sessionsDataStore: sessionsDataStore)
+        let interactor = SettingsInteractor(sessionsDataStore: app.sessionsDataStoreService)
         
         let settingsSb = UIStoryboard(name: "Settings", bundle: nil)
         let viewController = settingsSb.instantiateViewController(withIdentifier: "settingsVC") as! SettingsViewController

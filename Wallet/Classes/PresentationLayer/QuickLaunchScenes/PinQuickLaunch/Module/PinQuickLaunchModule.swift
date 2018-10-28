@@ -8,8 +8,8 @@ import UIKit
 
 class PinQuickLaunchModule {
     
-    class func create(qiuckLaunchProvider: QuickLaunchProviderProtocol) -> PinQuickLaunchModuleInput {
-        let router = PinQuickLaunchRouter()
+    class func create(app: Application, qiuckLaunchProvider: QuickLaunchProviderProtocol) -> PinQuickLaunchModuleInput {
+        let router = PinQuickLaunchRouter(app: app)
         let presenter = PinQuickLaunchPresenter()
         let interactor = PinQuickLaunchInteractor(qiuckLaunchProvider: qiuckLaunchProvider)
         
@@ -28,7 +28,7 @@ class PinQuickLaunchModule {
     }
     
     
-    class func create(authData: AuthData, token: String) -> PinQuickLaunchModuleInput {
+    class func create(app: Application, authData: AuthData, token: String) -> PinQuickLaunchModuleInput {
         //Injections
         let defaultsProvider = DefaultsProvider()
         let keychainProvider = KeychainProvider()
@@ -38,8 +38,8 @@ class PinQuickLaunchModule {
                                            defaultsProvider: defaultsProvider,
                                            keychainProvider: keychainProvider,
                                            biometricAuthProvider: biometricAuthProvider)
-        
-        return create(qiuckLaunchProvider: provider)
+
+        return create(app: app, qiuckLaunchProvider: provider)
     }
     
 }

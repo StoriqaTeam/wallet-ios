@@ -10,6 +10,12 @@ import Foundation
 
 
 class EmailConfirmRouter {
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 
 }
 
@@ -33,6 +39,6 @@ extension EmailConfirmRouter: EmailConfirmRouterInput {
     }
     
     func showLogin() {
-        LoginModule.create().present()
+        LoginModule.create(app: app).present()
     }
 }
