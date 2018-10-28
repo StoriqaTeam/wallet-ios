@@ -63,8 +63,6 @@ class ShortPollingTimer: ShortPollingTimerProtocol {
     func setOutputChannel(_ channel: ShortPollingChannel) {
         self.shortPollingChannelOutput = channel
     }
-    
-    
 }
 
 
@@ -74,7 +72,6 @@ extension ShortPollingTimer {
     private func sendPollingSignal() {
         log.debug("Send polling signal in thread - \(Thread.current)")
         DispatchQueue.main.async {
-//            NotificationCenter.default.post(name: .startPolling, object: nil)
             self.shortPollingChannelOutput?.send(nil)
         }
     }
@@ -103,11 +100,6 @@ extension ShortPollingTimer {
         
     }
 }
-
-
-//extension Notification.Name {
-//    public static let startPolling = Notification.Name("StartPolling")
-//}
 
 extension Timer {
     
