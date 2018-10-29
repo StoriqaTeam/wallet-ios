@@ -8,17 +8,15 @@ import UIKit
 
 class PasswordRecoveryConfirmModule {
     
-    class func create(token: String) -> PasswordRecoveryConfirmModuleInput {
-        let router = PasswordRecoveryConfirmRouter()
+    class func create(app: Application, token: String) -> PasswordRecoveryConfirmModuleInput {
+        let router = PasswordRecoveryConfirmRouter(app: app)
         let presenter = PasswordRecoveryConfirmPresenter()
         
-        //Injection
-        let validator = PasswordRecoveryConfirmFormValidator()
-        let interactor = PasswordRecoveryConfirmInteractor(token: token, formValidator: validator)
+        let interactor = PasswordRecoveryConfirmInteractor(token: token, formValidator: app.passwordRecoveryConfirmFormValidator)
         
         let storyboard = UIStoryboard(name: "PasswordRecoveryConfirm", bundle: nil)
-        let vcId = "PasswordRecoveryConfirmVC"
-        let viewController = storyboard.instantiateViewController(withIdentifier: vcId) as! PasswordRecoveryConfirmViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "PasswordRecoveryConfirmVC")
+            as! PasswordRecoveryConfirmViewController
 
         interactor.output = presenter
 

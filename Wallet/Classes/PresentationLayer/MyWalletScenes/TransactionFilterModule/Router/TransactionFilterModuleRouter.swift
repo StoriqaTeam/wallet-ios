@@ -10,7 +10,12 @@ import Foundation
 
 
 class TransactionFilterRouter {
-
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 

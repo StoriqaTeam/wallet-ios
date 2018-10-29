@@ -10,7 +10,12 @@ import Foundation
 
 
 class SendRouter {
-
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -21,8 +26,8 @@ extension SendRouter: SendRouterInput {
                       from viewController: UIViewController,
                       mainTabBar: UITabBarController) {
         
-        ReceiverModule
-            .create(sendTransactionBuilder: sendTransactionBuilder, tabBar: mainTabBar)
-            .present(from: viewController)
+        ReceiverModule.create(app: app,
+                              sendTransactionBuilder: sendTransactionBuilder,
+                              tabBar: mainTabBar).present(from: viewController)
     }
 }

@@ -12,17 +12,26 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     
     private var defaultSendTxProvider: SendTransactionProvider
     
-    init() {
-        let converterFactory = CurrecncyConverterFactory()
-        let formatter = CurrencyFormatter()
-        let dataStoreService = AccountsDataStore()
-        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
-        let feeWaitProvider = FakePaymentFeeAndWaitProvider()
+    private let currencyConverterFactory: CurrencyConverterFactoryProtocol
+    private let currencyFormatter: CurrencyFormatterProtocol
+    private let accountsProvider: AccountsProviderProtocol
+    private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    
+    init(currencyConverterFactory: CurrencyConverterFactoryProtocol,
+         currencyFormatter: CurrencyFormatterProtocol,
+         accountsProvider: AccountsProviderProtocol,
+         feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
         
-        defaultSendTxProvider = SendTransactionProvider(converterFactory: converterFactory,
-                                                        currencyFormatter: formatter,
-                                                        accountProvider: accountsProvider,
-                                                        feeWaitProvider: feeWaitProvider)
+        
+        self.currencyConverterFactory = currencyConverterFactory
+        self.currencyFormatter = currencyFormatter
+        self.accountsProvider = accountsProvider
+        self.feeWaitProvider = feeWaitProvider
+        
+        defaultSendTxProvider = SendTransactionProvider(converterFactory: self.currencyConverterFactory,
+                                                        currencyFormatter: self.currencyFormatter,
+                                                        accountProvider: self.accountsProvider,
+                                                        feeWaitProvider: self.feeWaitProvider)
     }
     
     func set(account: Account) {
@@ -59,15 +68,9 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     }
     
     func clear() {
-        let converterFactory = CurrecncyConverterFactory()
-        let formatter = CurrencyFormatter()
-        let dataStoreService = AccountsDataStore()
-        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
-        let feeWaitProvider = FakePaymentFeeAndWaitProvider()
-        
-        defaultSendTxProvider = SendTransactionProvider(converterFactory: converterFactory,
-                                                        currencyFormatter: formatter,
-                                                        accountProvider: accountsProvider,
-                                                        feeWaitProvider: feeWaitProvider)
+        defaultSendTxProvider = SendTransactionProvider(converterFactory: self.currencyConverterFactory,
+                                                        currencyFormatter: self.currencyFormatter,
+                                                        accountProvider: self.accountsProvider,
+                                                        feeWaitProvider: self.feeWaitProvider)
     }
 }

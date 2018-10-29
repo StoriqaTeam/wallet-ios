@@ -12,20 +12,17 @@ enum AuthData {
 
 class QuickLaunchModule {
     
-    class func create(authData: AuthData, token: String) -> QuickLaunchModuleInput {
-        let router = QuickLaunchRouter()
+    class func create(app: Application, authData: AuthData, token: String) -> QuickLaunchModuleInput {
+        let router = QuickLaunchRouter(app: app)
         let presenter = QuickLaunchPresenter()
         
-        //Injections
-        let defaultsProvider = DefaultsProvider()
-        let keychainProvider = KeychainProvider()
-        let biometricAuthProvider = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
-        let provider = QuickLaunchProvider(authData: authData,
+        let quickLaunchProvider = QuickLaunchProvider(authData: authData,
                                            token: token,
-                                           defaultsProvider: defaultsProvider,
-                                           keychainProvider: keychainProvider,
-                                           biometricAuthProvider: biometricAuthProvider)
-        let interactor = QuickLaunchInteractor(qiuckLaunchProvider: provider)
+                                           defaultsProvider: app.defaultsProvider,
+                                           keychainProvider: app.keychainProvider,
+                                           biometricAuthProvider: app.biometricAuthProvider)
+        
+        let interactor = QuickLaunchInteractor(qiuckLaunchProvider: quickLaunchProvider)
         
         let storyboard = UIStoryboard(name: "QuickLaunch", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "QuickLaunchVC") as! QuickLaunchViewController

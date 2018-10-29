@@ -15,22 +15,22 @@ class MainTabBarInteractor {
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
     private let accountsUpdater: AccountsUpdaterProtocol
-    private let shortPollingService: ShortPollingTimer
-    private let trxsUpdater: TransactionsUpdaterProtocol
+    private let txsUpdater: TransactionsUpdaterProtocol
+    private let app: Application
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
          accountsUpdater: AccountsUpdaterProtocol,
-         trxsUpdater: TransactionsUpdaterProtocol) {
+         txsUpdater: TransactionsUpdaterProtocol,
+         app: Application) {
         self.accountWatcher = accountWatcher
         self.userDataStoreService = userDataStoreService
         self.accountsUpdater = accountsUpdater
-        self.trxsUpdater = trxsUpdater
-        
-        self.shortPollingService = ShortPollingTimer(timeout: 1)
+        self.txsUpdater = txsUpdater
+        self.app = app
         let user = getCurrentUser()
         accountsUpdater.update(userId: user.id)
-        trxsUpdater.update(userId: user.id)
+        txsUpdater.update(userId: user.id)
     }
 }
 
@@ -38,6 +38,10 @@ class MainTabBarInteractor {
 // MARK: - MainTabBarInteractorInput
 
 extension MainTabBarInteractor: MainTabBarInteractorInput {
+    func getApplication() -> Application {
+        return self.app
+    }
+    
     func getCurrentUser() -> User {
         return userDataStoreService.getCurrentUser()
     }

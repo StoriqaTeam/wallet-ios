@@ -8,12 +8,11 @@ import UIKit
 
 class ConnectPhoneModule {
     
-    class func create() -> ConnectPhoneModuleInput {
-        let router = ConnectPhoneRouter()
+    class func create(app: Application) -> ConnectPhoneModuleInput {
+        let router = ConnectPhoneRouter(app: app)
         let presenter = ConnectPhonePresenter()
         
-        let userStoreService = UserDataStoreService()
-        let interactor = ConnectPhoneInteractor(userStoreService: userStoreService)
+        let interactor = ConnectPhoneInteractor(userStoreService: app.userDataStoreService)
         
         let storyboard = UIStoryboard(name: "ConnectPhone", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ConnectPhoneVC") as! ConnectPhoneViewController

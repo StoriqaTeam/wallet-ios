@@ -21,18 +21,18 @@ class LoginInteractor {
     private let userDataStore: UserDataStoreServiceProtocol
     private let keychain: KeychainProviderProtocol
     private let accountsNetworkProvider: AccountsNetworkProviderProtocol
-    private let accountsDataStore: AccountsDataStoreProtocol
+    private let accountsDataStore: AccountsDataStoreServiceProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
          authTokenDefaultsProvider: AuthTokenDefaultsProviderProtocol,
          biometricAuthProvider: BiometricAuthProviderProtocol,
-         loginNetworkProvider: LoginNetworkProvider,
+         loginNetworkProvider: LoginNetworkProviderProtocol,
          userNetworkProvider: CurrentUserNetworkProviderProtocol,
          userDataStore: UserDataStoreServiceProtocol,
          keychain: KeychainProviderProtocol,
          accountsNetworkProvider: AccountsNetworkProviderProtocol,
-         accountsDataStore: AccountsDataStoreProtocol) {
+         accountsDataStore: AccountsDataStoreServiceProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider

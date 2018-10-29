@@ -7,7 +7,6 @@
 //
 
 import XCTest
-
 @testable import Wallet
 
 class WalletTests: XCTestCase {

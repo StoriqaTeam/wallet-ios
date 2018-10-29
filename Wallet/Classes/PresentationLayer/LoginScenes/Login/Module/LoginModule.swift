@@ -9,31 +9,22 @@ import FacebookLogin
 
 class LoginModule {
     
-    class func create() -> LoginModuleInput {
-        let router = LoginRouter()
+    class func create(app: Application) -> LoginModuleInput {
+        let router = LoginRouter(app: app)
         let presenter = LoginPresenter()
         
-        //Injections
-        let defaultsProvider = DefaultsProvider()
-        let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: LoginManager())
-        let biometricAuthProvider = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
-        let loginNetworkProvider = LoginNetworkProvider()
-        let userNetworkProvider = CurrentUserNetworkProvider()
-        let userDataStore = UserDataStoreService()
-        let accountsNetworkProvider = AccountsNetworkProvider()
-        let accountsDataStore = AccountsDataStore()
-        let keychain = KeychainProvider()
-        let authTokenDefaultsProvider = AuthTokenDefaultsProvider()
+        let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: app.facebookLoginManager)
+        
         let interactor = LoginInteractor(socialViewVM: socialVM,
-                                         defaultProvider: defaultsProvider,
-                                         authTokenDefaultsProvider: authTokenDefaultsProvider,
-                                         biometricAuthProvider: biometricAuthProvider,
-                                         loginNetworkProvider: loginNetworkProvider,
-                                         userNetworkProvider: userNetworkProvider,
-                                         userDataStore: userDataStore,
-                                         keychain: keychain,
-                                         accountsNetworkProvider: accountsNetworkProvider,
-                                         accountsDataStore: accountsDataStore)
+                                         defaultProvider: app.defaultsProvider,
+                                         authTokenDefaultsProvider: app.authTokenDefaultsProvider,
+                                         biometricAuthProvider: app.biometricAuthProvider,
+                                         loginNetworkProvider: app.loginNetworkProvider,
+                                         userNetworkProvider: app.userNetworkProvider,
+                                         userDataStore: app.userDataStoreService,
+                                         keychain: app.keychainProvider,
+                                         accountsNetworkProvider: app.accountsNetworkProvider,
+                                         accountsDataStore: app.accountsDataStoreService)
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController

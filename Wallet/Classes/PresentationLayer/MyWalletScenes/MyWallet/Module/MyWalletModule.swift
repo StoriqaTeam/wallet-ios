@@ -8,26 +8,21 @@ import UIKit
 
 class MyWalletModule {
     
-    class func create(tabBar: UITabBarController,
+    class func create(app: Application,
+                      tabBar: UITabBarController,
                       accountWatcher: CurrentAccountWatcherProtocol,
                       user: User) -> MyWalletModuleInput {
-        let router = MyWalletRouter()
+        let router = MyWalletRouter(app: app)
         
-        // Injections
-        let converterFactory = CurrecncyConverterFactory()
-        let currencyFormatter = CurrencyFormatter()
-        let dataStoreService = AccountsDataStore()
-        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
-        let accountTypeResolver = AccountTypeResolver()
         let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: currencyFormatter,
-                                                converterFactory: converterFactory,
-                                                accountTypeResolver: accountTypeResolver)
+                                                currencyFormatter: app.currencyFormatter,
+                                                converterFactory: app.currencyConverterFactory,
+                                                accountTypeResolver: app.accountTypeResolver)
         
-        let presenter = MyWalletPresenter(user: user,
-                                          accountDisplayer: accountDisplayer)
+        let presenter = MyWalletPresenter(user: user, accountDisplayer: accountDisplayer)
         presenter.mainTabBar = tabBar
-        let interactor = MyWalletInteractor(accountsProvider: accountsProvider,
+        
+        let interactor = MyWalletInteractor(accountsProvider: app.accountsProvider,
                                             accountWatcher: accountWatcher)
         
         let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)
@@ -40,6 +35,10 @@ class MyWalletModule {
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor
+        
+        // MARK: - Channels
+        let shortPollingChannel = app.channelStorage.shortPollingChannel
+        interactor.setShortPollingChannelInput(shortPollingChannel)
         
         return presenter
     }

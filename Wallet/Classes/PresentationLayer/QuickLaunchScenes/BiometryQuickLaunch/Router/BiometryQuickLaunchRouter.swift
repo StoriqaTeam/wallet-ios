@@ -10,7 +10,11 @@ import Foundation
 
 
 class BiometryQuickLaunchRouter {
-
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -19,7 +23,7 @@ class BiometryQuickLaunchRouter {
 extension BiometryQuickLaunchRouter: BiometryQuickLaunchRouterInput {
     
     func showAuthorizedZone() {
-        MainTabBarModule.create().present()
+        MainTabBarModule.create(app: app).present()
     }
     
 }

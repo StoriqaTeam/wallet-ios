@@ -10,7 +10,12 @@ import Foundation
 
 
 class RegistrationRouter {
-
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -39,7 +44,7 @@ extension RegistrationRouter: RegistrationRouterInput {
     }
     
     func showLogin() {
-        LoginModule.create().present()
+        LoginModule.create(app: app).present()
     }
     
 }

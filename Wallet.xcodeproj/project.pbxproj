@@ -228,6 +228,12 @@
 		A52C66B6216767EA0073071E /* RealmAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66B5216767EA0073071E /* RealmAccount.swift */; };
 		A52C66B821676AB70073071E /* Decimal+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66B721676AB70073071E /* Decimal+Helpers.swift */; };
 		A52C66BD216786930073071E /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66BC216786930073071E /* Mappable.swift */; };
+		A52FE2A321847ACC00100E21 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2A221847ACC00100E21 /* Application.swift */; };
+		A52FE2AC2185FB2200100E21 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2A92185FB2200100E21 /* Identifier.swift */; };
+		A52FE2AD2185FB2200100E21 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2AA2185FB2200100E21 /* Channel.swift */; };
+		A52FE2AE2185FB2200100E21 /* ChannelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2AB2185FB2200100E21 /* ChannelStorage.swift */; };
+		A52FE2B02185FB2800100E21 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2AF2185FB2800100E21 /* Observer.swift */; };
+		A52FE2B221860D2300100E21 /* ChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2B121860D2300100E21 /* ChannelTests.swift */; };
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
@@ -837,6 +843,12 @@
 		A52C66B5216767EA0073071E /* RealmAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAccount.swift; sourceTree = "<group>"; };
 		A52C66B721676AB70073071E /* Decimal+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Helpers.swift"; sourceTree = "<group>"; };
 		A52C66BC216786930073071E /* Mappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		A52FE2A221847ACC00100E21 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		A52FE2A92185FB2200100E21 /* Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		A52FE2AA2185FB2200100E21 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		A52FE2AB2185FB2200100E21 /* ChannelStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelStorage.swift; sourceTree = "<group>"; };
+		A52FE2AF2185FB2800100E21 /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		A52FE2B121860D2300100E21 /* ChannelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTests.swift; sourceTree = "<group>"; };
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
@@ -2453,6 +2465,25 @@
 			path = UserDataStoreService;
 			sourceTree = "<group>";
 		};
+		A52FE2A421848AE100100E21 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A52FE2A221847ACC00100E21 /* Application.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A52FE2A72185FAA400100E21 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				A52FE2AA2185FB2200100E21 /* Channel.swift */,
+				A52FE2AB2185FB2200100E21 /* ChannelStorage.swift */,
+				A52FE2A92185FB2200100E21 /* Identifier.swift */,
+				A52FE2AF2185FB2800100E21 /* Observer.swift */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
 		A534883D230884E6416A5516 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -2866,6 +2897,8 @@
 		A58EE3B2214FFD510096C155 /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
+				A52FE2A72185FAA400100E21 /* Channels */,
+				A52FE2A421848AE100100E21 /* Application */,
 				A56ED394216CEEAE009FA58B /* Mappers */,
 				CEFC9C872154E57B00962356 /* Models */,
 				A58EE3B7214FFE130096C155 /* Providers */,
@@ -3051,6 +3084,7 @@
 				CE4401A62174DD5B00F7C8D8 /* ContactsSorterTests.swift */,
 				A5B7822C215E2A3E00EFD1A5 /* Info.plist */,
 				A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */,
+				A52FE2B121860D2300100E21 /* ChannelTests.swift */,
 			);
 			path = WalletTests;
 			sourceTree = "<group>";
@@ -4382,6 +4416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5C12E84217F261C00A7D68C /* JwtParcerTests.swift in Sources */,
+				A52FE2B221860D2300100E21 /* ChannelTests.swift in Sources */,
 				CE4401A72174DD5B00F7C8D8 /* ContactsSorterTests.swift in Sources */,
 				A5B78233215E2A7400EFD1A5 /* WalletTests.swift in Sources */,
 				A5B78235215E2F3800EFD1A5 /* AddressValidator.swift in Sources */,
@@ -4528,6 +4563,7 @@
 				706656F7D7EBAF794948CC03 /* PasswordEmailRecoveryPresenter.swift in Sources */,
 				5DD81EF717C591E4F8D0D515 /* PasswordEmailRecoveryInteractorInput.swift in Sources */,
 				BED2CF5C297BC1BCFF6EFCAA /* PasswordEmailRecoveryInteractorOutput.swift in Sources */,
+				A52FE2AC2185FB2200100E21 /* Identifier.swift in Sources */,
 				CE44019E2174AEC200F7C8D8 /* RealmContact.swift in Sources */,
 				E20B13748E606969CEE8DA51 /* PasswordEmailRecoveryInteractor.swift in Sources */,
 				A52C66B1216753CA0073071E /* UserDataStoreService.swift in Sources */,
@@ -4627,6 +4663,7 @@
 				A57434FD21776226006B4CAE /* EditProfileModuleOutput.swift in Sources */,
 				A3AC2118172F25D9C46E786B /* BiometryQuickLaunchModuleOutput.swift in Sources */,
 				4FD0957C495AB450B60609F7 /* BiometryQuickLaunchModule.swift in Sources */,
+				A52FE2A321847ACC00100E21 /* Application.swift in Sources */,
 				A5B78205215E214A00EFD1A5 /* AddressValidatorProtocol.swift in Sources */,
 				9B102E1CDAB4C764C2D1EC8E /* PinSetupViewInput.swift in Sources */,
 				2A19AADF0DD8BF43FC246A74 /* PinSetupViewOutput.swift in Sources */,
@@ -4639,6 +4676,7 @@
 				7B69B52D9D87B8566F124536 /* PinSetupInteractor.swift in Sources */,
 				A51CB55F2159431200CDC80C /* RoutrButton.swift in Sources */,
 				4F27BDC61CC80C07B40BA53D /* PinSetupRouterInput.swift in Sources */,
+				A52FE2AE2185FB2200100E21 /* ChannelStorage.swift in Sources */,
 				9ED262790FC8BC9BE0AD4D6F /* PinSetupRouter.swift in Sources */,
 				CED822E0215BB8CE00693B92 /* Contact.swift in Sources */,
 				A6F5B3DAAEA6C2400283BAE8 /* PinSetupModuleInput.swift in Sources */,
@@ -4679,6 +4717,7 @@
 				7CA5701D87FA184CFCC87D46 /* MyWalletRouter.swift in Sources */,
 				A36F15E016B8AA17388F5F6F /* MyWalletModuleInput.swift in Sources */,
 				03DF85A5D2888FC92859DBE1 /* MyWalletModuleOutput.swift in Sources */,
+				A52FE2AD2185FB2200100E21 /* Channel.swift in Sources */,
 				A10997FA546EB63EEDF766AD /* MyWalletModule.swift in Sources */,
 				4A659A86A3EDA0F183827EC1 /* SendViewInput.swift in Sources */,
 				808AA9FAC10B0D3D3CB59FC4 /* SendViewOutput.swift in Sources */,
@@ -4691,6 +4730,7 @@
 				3CF59DC5D81EA7FC56AE2D5E /* SendInteractor.swift in Sources */,
 				7F478B40359F79AE643EF8EC /* SendRouterInput.swift in Sources */,
 				A56ED384216CD70D009FA58B /* TransactionDetailsInteractor.swift in Sources */,
+				A52FE2B02185FB2800100E21 /* Observer.swift in Sources */,
 				A5C12E67217DFEBA00A7D68C /* Strings+MyWallet.swift in Sources */,
 				91222D27E9ACA0B31B779533 /* SendRouter.swift in Sources */,
 				CEFC9C9E21590D8400962356 /* PopUpPasswordEmailRecoverySuccessVM.swift in Sources */,

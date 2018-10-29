@@ -10,7 +10,11 @@ import Foundation
 
 
 class LoginRouter {
-
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 // MARK: - LoginRouterInput
@@ -23,22 +27,22 @@ extension LoginRouter: LoginRouterInput {
     }
     
     func showPasswordRecovery(from viewController: UIViewController) {
-        PasswordEmailRecoveryModule.create().present(from: viewController)
+        PasswordEmailRecoveryModule.create(app: app).present(from: viewController)
     }
     
     func showRegistration() {
-        RegistrationModule.create().present()
+        RegistrationModule.create(app: app).present()
     }
     
     func showQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController) {
-        QuickLaunchModule.create(authData: authData, token: token).present(from: viewController)
+        QuickLaunchModule.create(app: app, authData: authData, token: token).present(from: viewController)
     }
     
     func showPinQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController) {
-        PinQuickLaunchModule.create(authData: authData, token: token).present(from: viewController)
+        PinQuickLaunchModule.create(app: app, authData: authData, token: token).present(from: viewController)
     }
     
     func showAuthorizedZone() {
-        MainTabBarModule.create().present()
+        MainTabBarModule.create(app: app).present()
     }
 }

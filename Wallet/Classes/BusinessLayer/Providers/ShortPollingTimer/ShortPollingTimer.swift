@@ -13,6 +13,7 @@ protocol ShortPollingTimerProtocol {
     func invalidate()
     func pause()
     func resume()
+    func setOutputChannel(_ channel: ShortPollingChannel)
 }
 
 class ShortPollingTimer: ShortPollingTimerProtocol {
@@ -20,10 +21,10 @@ class ShortPollingTimer: ShortPollingTimerProtocol {
     private var timer: DispatchSourceTimer?
     private let pollingQueue = DispatchQueue(label: "com.storiqaWallet.shortPolling", attributes: .concurrent)
     private let timeout: Int
+    private var shortPollingChannelOutput: ShortPollingChannel?
     
     init(timeout: Int) {
         self.timeout = timeout
-        startPolling()
         subscribeNotification()
     }
     
@@ -46,7 +47,10 @@ class ShortPollingTimer: ShortPollingTimerProtocol {
     }
     
     func resume() {
-        timer?.resume()
+        guard let pollingTimer = timer else { return }
+        if pollingTimer.isCancelled {
+            pollingTimer.resume()
+        }
     }
     
     func invalidate() {
@@ -54,6 +58,11 @@ class ShortPollingTimer: ShortPollingTimerProtocol {
         timer = nil
     }
     
+    // MARK: - Channel
+    
+    func setOutputChannel(_ channel: ShortPollingChannel) {
+        self.shortPollingChannelOutput = channel
+    }
 }
 
 
@@ -63,7 +72,7 @@ extension ShortPollingTimer {
     private func sendPollingSignal() {
         log.debug("Send polling signal in thread - \(Thread.current)")
         DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .startPolling, object: nil)
+            self.shortPollingChannelOutput?.send(nil)
         }
     }
     
@@ -90,11 +99,6 @@ extension ShortPollingTimer {
                                                object: nil)
         
     }
-}
-
-
-extension Notification.Name {
-    public static let startPolling = Notification.Name("StartPolling")
 }
 
 extension Timer {

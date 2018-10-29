@@ -10,7 +10,12 @@ import Foundation
 
 
 class PasswordRecoveryConfirmRouter {
+    
+    private let app: Application
 
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -34,7 +39,7 @@ extension PasswordRecoveryConfirmRouter: PasswordRecoveryConfirmRouterInput {
     }
     
     func showLogin() {
-        LoginModule.create().present()
+        LoginModule.create(app: app).present()
     }
     
 }

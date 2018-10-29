@@ -8,8 +8,8 @@ import UIKit
 
 class FirstLaunchModule {
     
-    class func create() -> FirstLaunchModuleInput {
-        let router = FirstLaunchRouter()
+    class func create(app: Application) -> FirstLaunchModuleInput {
+        let router = FirstLaunchRouter(app: app)
         let presenter = FirstLaunchPresenter()
         let interactor = FirstLaunchInteractor()
         

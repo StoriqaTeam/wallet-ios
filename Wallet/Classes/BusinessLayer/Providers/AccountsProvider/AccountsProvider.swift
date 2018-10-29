@@ -20,9 +20,9 @@ protocol AccountsProviderDelegate: class {
 
 class AccountsProvider: RealmStorable<Account>, AccountsProviderProtocol {
     private weak var observer: AccountsProviderDelegate?
-    private let dataStoreService: AccountsDataStoreProtocol
+    private let dataStoreService: AccountsDataStoreServiceProtocol
     
-    init(dataStoreService: AccountsDataStoreProtocol) {
+    init(dataStoreService: AccountsDataStoreServiceProtocol) {
         self.dataStoreService = dataStoreService
     }
     

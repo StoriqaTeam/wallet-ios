@@ -10,7 +10,13 @@ import Foundation
 
 
 class ExchangeRouter {
-
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
+    
 }
 
 

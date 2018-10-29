@@ -8,35 +8,16 @@ import UIKit
 
 class TransactionsModule {
     
-    class func create(account: Account) -> TransactionsModuleInput {
-        let router = TransactionsRouter()
-        
-        let dataStoreService = AccountsDataStore()
-        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
-        let currencyFormatter = CurrencyFormatter()
-        let converterFactory = CurrecncyConverterFactory()
-        let transactionDirectionResolver = TransactionDirectionResolver(accountsProvider: accountsProvider)
-        let contactsDataStoreService = ContactsDataStoreService()
-        let contactsProvider = ContactsProvider(dataStoreService: contactsDataStoreService)
-        let contactsMapper = ContactsMapper()
-        let transactionOpponentResolver = TransactionOpponentResolver(
-            contactsProvider: contactsProvider,
-            transactionDirectionResolver: transactionDirectionResolver,
-            contactsMapper: contactsMapper)
-        let transactionMapper = TransactionMapper(currencyFormatter: currencyFormatter,
-                                                  converterFactory: converterFactory,
-                                                  transactionDirectionResolver: transactionDirectionResolver,
-                                                  transactionOpponentResolver: transactionOpponentResolver)
-        let transactionDataStoreService = TransactionDataStoreService()
-        let transactionsProvider = TransactionsProvider(transactionDataStoreService: transactionDataStoreService)
-        
+    class func create(app: Application, account: Account) -> TransactionsModuleInput {
+        let router = TransactionsRouter(app: app)
+
         // @dev init with empty filter
         let txDateFilter = TransactionDateFilter()
         
         let presenter = TransactionsPresenter(transactionsDateFilter: txDateFilter,
-                                              transactionsMapper: transactionMapper)
+                                              transactionsMapper: app.transactionMapper)
         let interactor = TransactionsInteractor(account: account,
-                                                transactionsProvider: transactionsProvider)
+                                                transactionsProvider: app.transactionsProvider)
         
         let txSB = UIStoryboard(name: "Transactions", bundle: nil)
         let viewController = txSB.instantiateViewController(withIdentifier: "transactionsVC") as! TransactionsViewController

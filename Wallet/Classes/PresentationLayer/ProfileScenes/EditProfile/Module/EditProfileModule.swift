@@ -8,12 +8,11 @@ import UIKit
 
 class EditProfileModule {
     
-    class func create() -> EditProfileModuleInput {
-        let router = EditProfileRouter()
+    class func create(app: Application) -> EditProfileModuleInput {
+        let router = EditProfileRouter(app: app)
         let presenter = EditProfilePresenter()
         
-        let userDataStore = UserDataStoreService()
-        let interactor = EditProfileInteractor(userDataStore: userDataStore)
+        let interactor = EditProfileInteractor(userDataStore: app.userDataStoreService)
         
         let storyboard = UIStoryboard(name: "EditProfile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "EditProfileVC") as! EditProfileViewController
