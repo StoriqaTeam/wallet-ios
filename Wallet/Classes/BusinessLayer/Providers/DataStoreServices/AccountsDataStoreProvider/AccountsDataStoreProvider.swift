@@ -18,9 +18,18 @@ protocol AccountsDataStoreServiceProtocol: class {
 
 class AccountsDataStoreService: RealmStorable<Account>, AccountsDataStoreServiceProtocol {
     
+    private var updateHandler: (([Account]) -> Void)?
+    
     func update(_ accounts: [Account]) {
+        notificationToken?.invalidate()
+        notificationToken = nil
+        
         find().forEach { delete(primaryKey: $0.id) }
         save(accounts)
+        
+        if let updateHandler = updateHandler {
+            super.observe(updateHandler: updateHandler)
+        }
     }
     
     func getAllAccounts(userId: Int) -> [Account] {
@@ -29,5 +38,11 @@ class AccountsDataStoreService: RealmStorable<Account>, AccountsDataStoreService
             return $0.userId == userId
         }
         return usersAccounts
+    }
+    
+    
+    override func observe(updateHandler: @escaping ([Account]) -> Void) {
+        self.updateHandler = updateHandler
+        super.observe(updateHandler: updateHandler)
     }
 }

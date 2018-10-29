@@ -39,7 +39,7 @@ extension TransactionTableViewCell {
             opponentLabel.text = address
         case .contact(let contact):
             opponentLabel.text = contact.name
-        case .trxAccount(let account, _):
+        case .txAccount(let account, _):
             opponentLabel.text = account.ownerName
         }
         

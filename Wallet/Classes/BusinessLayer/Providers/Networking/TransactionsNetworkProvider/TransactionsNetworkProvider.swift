@@ -26,9 +26,9 @@ class TransactionsNetworkProvider: NetworkLoadable, TransactionsNetworkProviderP
             case .success(let response):
                 let json = JSON(response)
                 
-                if let trxsJson = json.array {
-                    let trxs = trxsJson.compactMap { Transaction(json: $0) }
-                    completion(.success(trxs))
+                if let txsJson = json.array {
+                    let txs = txsJson.compactMap { Transaction(json: $0) }
+                    completion(.success(txs))
                 } else {
                     let apiError = TransactionsNetworkProviderError(json: json)
                     completion(.failure(apiError))

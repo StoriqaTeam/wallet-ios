@@ -34,6 +34,11 @@ class DepositModule {
         presenter.router = router
         presenter.interactor = interactor
         
+        // MARK: - Channels
+        let accountsUpadteChannel = app.channelStorage.accountsUpadteChannel
+        app.accountsProvider.setAccountsUpdaterChannel(accountsUpadteChannel)
+        interactor.setAccountsUpdateChannelInput(accountsUpadteChannel)
+        
         return presenter
     }
     

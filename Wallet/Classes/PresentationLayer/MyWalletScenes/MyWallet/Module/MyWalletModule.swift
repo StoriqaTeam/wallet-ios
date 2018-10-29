@@ -37,8 +37,9 @@ class MyWalletModule {
         presenter.interactor = interactor
         
         // MARK: - Channels
-        let shortPollingChannel = app.channelStorage.shortPollingChannel
-        interactor.setShortPollingChannelInput(shortPollingChannel)
+        let accountsUpadteChannel = app.channelStorage.accountsUpadteChannel
+        app.accountsProvider.setAccountsUpdaterChannel(accountsUpadteChannel)
+        interactor.setAccountsUpdateChannelInput(accountsUpadteChannel)
         
         return presenter
     }
