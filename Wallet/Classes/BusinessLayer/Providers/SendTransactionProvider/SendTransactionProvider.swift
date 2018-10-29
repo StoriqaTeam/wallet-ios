@@ -26,7 +26,7 @@ protocol SendTransactionProviderProtocol: class {
     func getConvertedAmount() -> Decimal
     func getSubtotal() -> Decimal
     func isEnoughFunds() -> Bool
-    func createTransaction() -> Transaction?
+    func createTransaction() -> Transaction
 }
 
 class SendTransactionProvider: SendTransactionProviderProtocol {
@@ -103,7 +103,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         return sum.isLessThanOrEqualTo(available)
     }
     
-    func createTransaction() -> Transaction? {
+    func createTransaction() -> Transaction {
         let uuid = UUID().uuidString
         let timestamp = Date()
         let currency = selectedAccount.currency

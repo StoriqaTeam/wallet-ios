@@ -56,7 +56,6 @@ class TransactionMapper: Mappable {
         let timestamp = date(from: obj)
         
         
-        
         return TransactionDisplayable(transaction: obj,
                                       cryptoAmountString: cryptoAmountString,
                                       fiatAmountString: fiatAmountString,

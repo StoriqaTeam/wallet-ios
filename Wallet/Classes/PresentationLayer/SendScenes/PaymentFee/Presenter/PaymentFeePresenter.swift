@@ -115,7 +115,10 @@ extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
     
     func confirmTransaction() {
         //TODO: send transaction
-        _ = interactor.createTransaction()
+//        _ = interactor.createTransaction()
+        interactor.sendTransaction { (result) in
+            
+        }
         interactor.clearBuilder()
         view.popToRoot()
         mainTabBar.selectedIndex = 0

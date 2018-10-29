@@ -35,7 +35,8 @@ class Application {
     lazy var transactionsNetworkProvider: TransactionsNetworkProviderProtocol = TransactionsNetworkProvider()
     lazy var resetPasswordNetworkProvider: ResetPasswordNetworkProviderProtocol = ResetPasswordNetworkProvider()
     lazy var confirmResetPasswordNetworkProvider: ConfirmResetPasswordNetworkProviderProtocol = ConfirmResetPasswordNetworkProvider()
-
+    lazy var sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol = SendTransactionNetworkProvider()
+    
     
     // MARK: - Common Providers
     lazy var pinValidationProvider: PinValidationProviderProtocol = PinValidationProvider(keychainProvider: self.keychainProvider)
@@ -52,7 +53,8 @@ class Application {
     lazy var contactsProvider: ContactsProviderProtocol = ContactsProvider(dataStoreService: self.contactsDataStoreService)
     lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService)
     lazy var accountWatcher: CurrentAccountWatcherProtocol = CurrentAccountWatcher(accountProvider: self.accountsProvider)
-    lazy var transactionsProvider: TransactionsProviderProtocol = TransactionsProvider(transactionDataStoreService: self.transactionDataStoreService)
+    lazy var transactionsProvider: TransactionsProviderProtocol = TransactionsProvider(transactionDataStoreService:
+        self.transactionDataStoreService)
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
     
     // MARK: - Updaters
