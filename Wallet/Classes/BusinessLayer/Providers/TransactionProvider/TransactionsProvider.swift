@@ -12,26 +12,27 @@ protocol TransactionsProviderProtocol: class {
     func getAllTransactions() -> [Transaction]
     func transactionsFor(account: Account) -> [Transaction]
     func getLastTransactionTime() -> TimeInterval
-    func setObserver(_ observer: TransactionsProviderDelegate)
-}
-
-protocol TransactionsProviderDelegate: class {
-    func transactionsDidUpdate(_ transactions: [Transaction])
+    func setTxnUpdaterChannel(_ channel: TxnUpadteChannel)
 }
 
 class TransactionsProvider: TransactionsProviderProtocol {
-    private weak var observer: TransactionsProviderDelegate?
     private let dataStore: TransactionDataStoreServiceProtocol
+    private var txnUpadateChannelOutput: TxnUpadteChannel?
     
     init(transactionDataStoreService: TransactionDataStoreServiceProtocol) {
         self.dataStore = transactionDataStoreService
     }
     
-    func setObserver(_ observer: TransactionsProviderDelegate) {
-        self.observer = observer
+    func setTxnUpdaterChannel(_ channel: TxnUpadteChannel) {
+        guard txnUpadateChannelOutput == nil else {
+            return
+        }
+        
+        self.txnUpadateChannelOutput = channel
         
         dataStore.observe { [weak self] (transactions) in
-            self?.observer?.transactionsDidUpdate(transactions)
+            log.debug("Transactions updated: \(transactions.map { $0.id })", "count: \(transactions.count)")
+            self?.txnUpadateChannelOutput?.send(transactions)
         }
     }
     

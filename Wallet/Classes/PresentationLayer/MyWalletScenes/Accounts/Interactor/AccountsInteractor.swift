@@ -14,6 +14,8 @@ class AccountsInteractor {
     private var accountWatcher: CurrentAccountWatcherProtocol
     private let accountLinker: AccountsLinkerProtocol
     private let transactionsProvider: TransactionsProviderProtocol
+    private var txnUpdateChannelInput: TxnUpadteChannel?
+    private var accountsUpadteChannelInput: AccountsUpadteChannel?
     
     init(accountLinker: AccountsLinkerProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
@@ -22,6 +24,22 @@ class AccountsInteractor {
         self.accountWatcher = accountWatcher
         self.transactionsProvider = transactionsProvider
     }
+    
+    deinit {
+        self.txnUpdateChannelInput?.removeObserver(withId: self.objId)
+        self.txnUpdateChannelInput = nil
+        
+        self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
+        self.accountsUpadteChannelInput = nil
+    }
+    
+    
+    // MARK: - Channels
+    
+    private lazy var objId: String = {
+        let identifier = "\(type(of: self)):\(String(format: "%p", unsafeBitCast(self, to: Int.self)))"
+        return identifier
+    }()
 }
 
 
@@ -70,34 +88,28 @@ extension AccountsInteractor: AccountsInteractorInput {
         return currentAccount.currency.ISO
     }
     
+    // MARK: Channels
+    
     func startObservers() {
-        accountLinker.setObserver(self)
-        transactionsProvider.setObserver(self)
-    }
-}
-
-
-// MARK: - AccountsProviderDelegate
-
-extension AccountsInteractor: AccountsProviderDelegate {
-    func accountsDidUpdate(_ accounts: [Account]) {
-        let account = accountWatcher.getAccount()
-        let index = accounts.index { $0 == account } ?? 0
+        let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
+            self?.accountsDidUpdate(accounts)
+        }
+        self.accountsUpadteChannelInput?.addObserver(accountsObserver)
         
-        setCurrentAccountWith(index: index)
-        output.updateAccounts(accounts: accounts, index: index)
+        let txnObserver = Observer<[Transaction]>(id: self.objId) { [weak self] (txn) in
+            self?.transactionsDidUpdate(txn)
+        }
+        self.txnUpdateChannelInput?.addObserver(txnObserver)
     }
-}
-
-
-// MARK: - TransactionsProviderDelegate
-
-extension AccountsInteractor: TransactionsProviderDelegate {
-    func transactionsDidUpdate(_ trxs: [Transaction]) {
-        let currentAccount = accountWatcher.getAccount()
-        let txs = transactions(for: currentAccount)
-        output.transactionsDidChange(txs)
+    
+    func setTxnUpdateChannelInput(_ channel: TxnUpadteChannel) {
+        self.txnUpdateChannelInput = channel
     }
+    
+    func setAccountsUpdateChannelInput(_ channel: AccountsUpadteChannel) {
+        self.accountsUpadteChannelInput = channel
+    }
+    
 }
 
 
@@ -112,5 +124,19 @@ extension AccountsInteractor {
     private func transactions(for account: Account) -> [Transaction] {
         guard let txs = accountLinker.getTransactionsFor(account: account) else { fatalError("Given account not found") }
         return txs
+    }
+    
+    private func transactionsDidUpdate(_ trxs: [Transaction]) {
+        let currentAccount = accountWatcher.getAccount()
+        let txs = transactions(for: currentAccount)
+        output.transactionsDidChange(txs)
+    }
+    
+    private func accountsDidUpdate(_ accounts: [Account]) {
+        let account = accountWatcher.getAccount()
+        let index = accounts.index { $0 == account } ?? 0
+        
+        setCurrentAccountWith(index: index)
+        output.updateAccounts(accounts: accounts, index: index)
     }
 }

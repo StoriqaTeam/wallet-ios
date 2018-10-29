@@ -39,6 +39,12 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     }
     
     func update(userId: Int) {
+        guard !isUpdating else {
+            return
+        }
+        
+        isUpdating = true
+        
         self.userId = userId
         
         if let unfinishedTime = defaults.lastTrxTimastamp {
@@ -105,8 +111,6 @@ extension TransactionsUpdater {
     }
     
     private func isTxAlreadyLoaded(_ transaction: Transaction) -> Bool {
-        print("lastTrxTime: \(lastTrxTime!)", "trx: \(transaction.createdAt.timeIntervalSince1970)")
-        
         return lastTrxTime >= transaction.createdAt.timeIntervalSince1970
     }
     

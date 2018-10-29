@@ -10,7 +10,11 @@ import Foundation
 
 
 typealias ShortPollingChannel = Channel<String?>
+typealias TxnUpadteChannel = Channel<[Transaction]>
+typealias AccountsUpadteChannel = Channel<[Account]>
 
 struct ChannelStorage {
-    let shortPollingChannel: ShortPollingChannel = Channel<String?>(queue: .main)
+    let shortPollingChannel: ShortPollingChannel = ShortPollingChannel(queue: .main)
+    let txnUpadteChannel: TxnUpadteChannel = TxnUpadteChannel(queue: .main)
+    let accountsUpadteChannel: AccountsUpadteChannel = AccountsUpadteChannel(queue: .main)
 }

@@ -96,6 +96,9 @@ extension DefaultsProvider {
     }
     
     private func getDouble(_ key: DefaultsKey) -> Double? {
+        guard isKeyPresentInUserDefaults(key: key) else {
+            return nil
+        }
         return UserDefaults.standard.double(forKey: key.rawValue)
     }
     

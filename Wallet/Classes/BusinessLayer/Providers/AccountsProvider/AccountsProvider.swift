@@ -11,26 +11,28 @@ import Foundation
 protocol AccountsProviderProtocol: class {
     func getAllAccounts() -> [Account]
     func getAddresses() -> [String]
-    func setObserver(_ observer: AccountsProviderDelegate)
-}
-
-protocol AccountsProviderDelegate: class {
-    func accountsDidUpdate(_ accounts: [Account])
+    func setAccountsUpdaterChannel(_ channel: AccountsUpadteChannel)
 }
 
 class AccountsProvider: RealmStorable<Account>, AccountsProviderProtocol {
-    private weak var observer: AccountsProviderDelegate?
     private let dataStoreService: AccountsDataStoreServiceProtocol
+    private var accountsUpadateChannelOutput: AccountsUpadteChannel?
     
     init(dataStoreService: AccountsDataStoreServiceProtocol) {
         self.dataStoreService = dataStoreService
     }
     
-    func setObserver(_ observer: AccountsProviderDelegate) {
-        self.observer = observer
+    func setAccountsUpdaterChannel(_ channel: AccountsUpadteChannel) {
+        guard accountsUpadateChannelOutput == nil else {
+            return
+        }
+        
+        self.accountsUpadateChannelOutput = channel
         
         dataStoreService.observe { [weak self] (accounts) in
-            self?.observer?.accountsDidUpdate(accounts)
+            log.debug("Accounts updated: \(accounts.map { $0.id })", "count: \(accounts.count)")
+            
+            self?.accountsUpadateChannelOutput?.send(accounts)
         }
     }
     

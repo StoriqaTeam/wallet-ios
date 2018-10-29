@@ -38,6 +38,15 @@ class AccountsModule {
         presenter.router = router
         presenter.interactor = interactor
         
+        // MARK: - Channels
+        let txnUpdateChannel = app.channelStorage.txnUpadteChannel
+        app.transactionsProvider.setTxnUpdaterChannel(txnUpdateChannel)
+        interactor.setTxnUpdateChannelInput(txnUpdateChannel)
+        
+        let accountsUpdateChannel = app.channelStorage.accountsUpadteChannel
+        app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
+        interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
+        
         return presenter
     }
     
