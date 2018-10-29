@@ -30,6 +30,11 @@ class TransactionsModule {
         presenter.router = router
         presenter.interactor = interactor
         
+        // MARK: - Channels
+        let txsUpdateChannel = app.channelStorage.txsUpadteChannel
+        app.transactionsProvider.setTxsUpdaterChannel(txsUpdateChannel)
+        interactor.setTxsUpdateChannelInput(txsUpdateChannel)
+        
         return presenter
     }
     

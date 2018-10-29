@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Slog
 
-let log = Slog(level: .debug, useEmoji: true)
+let log = Slog(level: .debug, useEmoji: false)
 
 
 struct Constants {

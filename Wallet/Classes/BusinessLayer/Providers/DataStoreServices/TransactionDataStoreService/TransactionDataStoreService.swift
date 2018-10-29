@@ -18,8 +18,8 @@ protocol TransactionDataStoreServiceProtocol: class {
 class TransactionDataStoreService: RealmStorable<Transaction>, TransactionDataStoreServiceProtocol {
     
     func getTransactions() -> [Transaction] {
-        let trxs = find()
-        return trxs
+        let txs = find()
+        return txs
     }
     
 }

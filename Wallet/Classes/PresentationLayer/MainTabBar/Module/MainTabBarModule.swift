@@ -29,6 +29,10 @@ class MainTabBarModule {
         presenter.router = router
         presenter.interactor = interactor
         
+        // MARK: - Channels
+        let shortPollingChannel = app.channelStorage.shortPollingChannel
+        interactor.setShortPollingChannelInput(shortPollingChannel)
+        
         return presenter
     }
     

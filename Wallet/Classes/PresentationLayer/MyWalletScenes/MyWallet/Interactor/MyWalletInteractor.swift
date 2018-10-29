@@ -14,19 +14,17 @@ class MyWalletInteractor {
     
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
-    private var shortPollingChannelInput: ShortPollingChannel?
+    private var accountsUpadteChannelInput: AccountsUpdateChannel?
     
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol) {
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
-        
-        accountsProvider.setObserver(self)
     }
     
     deinit {
-        self.shortPollingChannelInput?.removeObserver(withId: self.objId)
-        self.shortPollingChannelInput = nil
+        self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
+        self.accountsUpadteChannelInput = nil
     }
     
     
@@ -37,12 +35,13 @@ class MyWalletInteractor {
         return id
     }()
     
-    func setShortPollingChannelInput(_ channel: ShortPollingChannel) {
-        self.shortPollingChannelInput = channel
-        let observer = Observer<String?>(id: self.objId) { [weak self] (_) in
-            self?.signalPolling()
+    func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
+        self.accountsUpadteChannelInput = channel
+        
+        let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
+            self?.accountsDidUpdate(accounts)
         }
-        self.shortPollingChannelInput?.addObserver(observer)
+        self.accountsUpadteChannelInput?.addObserver(accountsObserver)
     }
     
 }
@@ -61,20 +60,11 @@ extension MyWalletInteractor: MyWalletInteractorInput {
 }
 
 
-// MARK: - AccountsProviderDelegate
-
-extension MyWalletInteractor: AccountsProviderDelegate {
-    func accountsDidUpdate(_ accounts: [Account]) {
-        output.updateAccounts(accounts: accounts)
-    }
-}
-
-
 // MARK: - Private methods
 
 extension MyWalletInteractor {
     
-    private func signalPolling() {
-        log.debug("Get polling signal")
+    private func accountsDidUpdate(_ accounts: [Account]) {
+        output.updateAccounts(accounts: accounts)
     }
 }

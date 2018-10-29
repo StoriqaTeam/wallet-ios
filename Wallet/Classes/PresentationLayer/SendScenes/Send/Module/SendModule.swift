@@ -38,6 +38,11 @@ class SendModule {
         presenter.router = router
         presenter.interactor = interactor
         
+        // MARK: - Channels
+        let accountsUpdateChannel = app.channelStorage.accountsUpadteChannel
+        app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
+        interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
+        
         return presenter
     }
     
