@@ -35,7 +35,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBo-gF-WZ2">
-                                        <rect key="frame" x="221" y="0.0" width="115" height="17"/>
+                                        <rect key="frame" x="221" y="-12" width="115" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="6a4-hD-jab"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="-1" maxY="0.0"/>
                                         <state key="normal" title="Scan QR-code   " image="scan">
@@ -63,11 +66,11 @@
                                     <constraint firstAttribute="trailing" secondItem="Ojn-a9-3Yt" secondAttribute="trailing" id="89e-RN-gjw"/>
                                     <constraint firstItem="h80-M0-VzR" firstAttribute="top" secondItem="BNG-L0-HhK" secondAttribute="top" id="AIS-A2-w4O"/>
                                     <constraint firstItem="h80-M0-VzR" firstAttribute="leading" secondItem="BNG-L0-HhK" secondAttribute="leading" id="PhY-i5-2sh"/>
-                                    <constraint firstItem="tBo-gF-WZ2" firstAttribute="top" secondItem="BNG-L0-HhK" secondAttribute="top" id="REb-oc-Dka"/>
                                     <constraint firstItem="Ojn-a9-3Yt" firstAttribute="leading" secondItem="BNG-L0-HhK" secondAttribute="leading" id="U8C-XQ-PzR"/>
                                     <constraint firstAttribute="trailing" secondItem="tBo-gF-WZ2" secondAttribute="trailing" id="U9J-ka-eHV"/>
                                     <constraint firstItem="Ojn-a9-3Yt" firstAttribute="top" secondItem="h80-M0-VzR" secondAttribute="bottom" constant="8" id="ahM-aI-s1L"/>
                                     <constraint firstAttribute="bottom" secondItem="Ojn-a9-3Yt" secondAttribute="bottom" id="iOF-ah-vUw"/>
+                                    <constraint firstItem="tBo-gF-WZ2" firstAttribute="centerY" secondItem="h80-M0-VzR" secondAttribute="centerY" id="rxy-Vf-jVp"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Rej-TM-je3">

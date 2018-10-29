@@ -104,6 +104,10 @@ extension SendViewController: SendViewInput {
         output.receiverCurrencyChanged(receiverCurrencySegmentedControl.selectedSegmentIndex)
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
+        
+        
+        // FIXME: disabled before release
+        receiverCurrencySegmentedControl.isUserInteractionEnabled = false
     }
     
     func updatePagesCount(_ count: Int) {
@@ -127,6 +131,10 @@ extension SendViewController: SendViewInput {
     }
     
     func setReceiverCurrencyIndex(_ index: Int) {
+        guard receiverCurrencySegmentedControl.selectedSegmentIndex != index else {
+            return
+        }
+        
         receiverCurrencySegmentedControl.setSelectedSegmentIndex(index)
     }
     
