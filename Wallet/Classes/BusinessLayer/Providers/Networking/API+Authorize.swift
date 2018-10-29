@@ -9,11 +9,21 @@
 import Foundation
 import Alamofire
 
+
+enum ReceiverType {
+    case address
+    case account(account: String)
+}
+
+
+
+
 extension API {
     enum Authorized {
         case user(authToken: String)
         case getAccounts(authToken: String, userId: Int)
         case getTransactions(authToken: String, userId: Int, offset: Int, limit: Int)
+        case sendTransaction(authToken: String, transactionId: String, userId: String,  fromAccount: String,  )
     }
 }
 
