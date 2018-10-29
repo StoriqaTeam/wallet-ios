@@ -99,5 +99,4 @@ class AccountDisplayer: AccountDisplayerProtocol {
             return UIColor.black
         }
     }
-    
 }

@@ -125,14 +125,7 @@ extension Transaction: RealmMappable {
         self.toAccount = toAccount
         self.fromAddress = fromAddress
         self.fromAccount = fromAccounts
-        
-        switch currency {
-        case .eth, .stq:
-            self.cryptoAmount = Decimal(value) / pow(10, 18)
-            self.fee = Decimal(fee) / pow(10, 18)
-        default:
-            self.cryptoAmount = Decimal(value) / pow(10, 8)
-            self.fee = Decimal(fee) / pow(10, 8)
-        }
+        self.cryptoAmount = Decimal(value)
+        self.fee = Decimal(fee)
     }
 }
