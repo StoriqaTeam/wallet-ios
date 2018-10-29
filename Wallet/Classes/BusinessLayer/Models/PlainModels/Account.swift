@@ -49,6 +49,10 @@ extension Account: RealmMappable {
         self.currency = currency
         self.accountAddress = accountAddress
         
+        // FIXME: перенести приведение от минимальных единиц в displayer
+        // FIXME: не забыть поправить в AccountTypeResolver
+        
+        
         switch currency {
         case .eth, .stq:
             self.balance = Decimal(balance) / pow(10, 18)

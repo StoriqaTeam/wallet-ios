@@ -28,9 +28,23 @@ class TransactionMapper: Mappable {
     }
     
     func map(from obj: Transaction) -> TransactionDisplayable {
-        let cryptoAmountDecimal = obj.cryptoAmount
+        
+        let cryptoAmountDecimal: Decimal
+        let feeAmountDecimal: Decimal
+        
+        switch obj.currency {
+        case .eth, .stq:
+            cryptoAmountDecimal = obj.cryptoAmount / pow(10, 18)
+            feeAmountDecimal = obj.fee / pow(10, 18)
+        case .btc:
+            cryptoAmountDecimal = obj.cryptoAmount / pow(10, 8)
+            feeAmountDecimal = obj.fee / pow(10, 8)
+        case .fiat:
+            cryptoAmountDecimal = obj.cryptoAmount
+            feeAmountDecimal = obj.fee
+        }
+        
         let currency = obj.currency
-        let feeAmountDecimal = obj.fee
         let converter = converterFactory.createConverter(from: currency)
         let fiatAmoutDecimal = converter.convert(amount: cryptoAmountDecimal, to: .fiat)
         
@@ -40,6 +54,8 @@ class TransactionMapper: Mappable {
         let direction = transactionDirectionResolver.resolveDirection(for: obj)
         let opponent = transactionOpponentResolver.resolveOpponent(for: obj)
         let timestamp = date(from: obj)
+        
+        
         
         return TransactionDisplayable(transaction: obj,
                                       cryptoAmountString: cryptoAmountString,
