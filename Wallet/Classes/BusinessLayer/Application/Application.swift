@@ -82,7 +82,7 @@ class Application {
     
     
     // MARK: Validators
-    lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: .btcMainnet)
+    lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: .btcTestnet)
     lazy var ethAddressValidator: AddressValidatorProtocol = EthereumAddressValidator()
     
     

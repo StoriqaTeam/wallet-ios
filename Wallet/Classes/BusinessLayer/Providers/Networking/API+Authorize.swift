@@ -21,7 +21,7 @@ extension API {
         case user(authToken: String)
         case getAccounts(authToken: String, userId: Int)
         case getTransactions(authToken: String, userId: Int, offset: Int, limit: Int)
-        case sendTransaction(authToken: String, transactionId: String, userId: String, fromAccount: String, receiverType: ReceiverType, currency: Currency, value: String, fee: String)
+        case sendTransaction(authToken: String, transactionId: String, userId: Int, fromAccount: String, receiverType: ReceiverType, currency: Currency, value: String, fee: String)
     }
 }
 
@@ -49,7 +49,7 @@ extension API.Authorized: APIMethodProtocol {
         case .getTransactions(_, let userId, let offset, let limit):
             return "\(Constants.Network.baseUrl)/users/\(userId)/transactions?offset=\(offset)&limit=\(limit)"
         case .sendTransaction:
-            return "\(Constants.Network.baseUrl)/transactions/"
+            return "\(Constants.Network.baseUrl)/transactions"
         }
     }
     

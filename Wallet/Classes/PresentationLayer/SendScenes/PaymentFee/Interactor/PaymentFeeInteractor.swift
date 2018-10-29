@@ -18,13 +18,11 @@ class PaymentFeeInteractor {
     private let sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
-    private let accountsProvider: AccountsProviderProtocol
     
     init(sendTransactionBuilder: SendProviderBuilderProtocol,
          sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
-         authTokenProvider: AuthTokenProviderProtocol,
-         accountsProvider: AccountsProviderProtocol) {
+         authTokenProvider: AuthTokenProviderProtocol) {
         
         self.sendTransactionBuilder = sendTransactionBuilder
         self.sendProvider = sendTransactionBuilder.build()
@@ -63,22 +61,27 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
     func sendTransaction(completion: @escaping (Result<Transaction>) -> Void) {
         let txToSend = sendProvider.createTransaction()
         let userId = userDataStoreService.getCurrentUser().id
-        let fromAccount = sendProvider.selectedAccount.accountAddress
+        let account = sendProvider.selectedAccount
+        let fromAccount = account.id.lowercased()
+        
         
         
         authTokenProvider.currentAuthToken { [weak self] (result) in
             switch result {
             case .success(let token):
-                sendTransactionNetworkProvider.send(transaction: txToSend,
-                                                    userId: "\(userId)",
-                                                    fromAccount: <#T##String#>,
-                                                    authToken: <#T##String#>,
+                self?.sendTransactionNetworkProvider.send(transaction: txToSend,
+                                                    userId: userId,
+                                                    fromAccount: fromAccount,
+                                                    authToken: token,
                                                     queue: .main,
                                                     completion: { (result) in
-                                                        print(result)
+                                                        switch result {
+                                                        case .success(let transaction):
+                                                            completion(.success(transaction))
+                                                        case .failure(let error):
+                                                            completion(.failure(error))
+                                                        }
                 })
-                
-                
             case .failure(let error):
                 completion(.failure(error))
                 return
@@ -134,22 +137,4 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         sendTransactionBuilder.clear()
     }
     
-}
-
-
-// MARK: - Private methods
-
-extension PaymentFeeInteractor {
-    private func prepareAddressToSending(account: Account) -> String {
-        let currency = account.currency
-        
-        switch currency {
-        case .btc:
-            return account.accountAddress
-        case .eth:
-            let address = account.accountAddress
-            
-            
-        }
-    }
 }

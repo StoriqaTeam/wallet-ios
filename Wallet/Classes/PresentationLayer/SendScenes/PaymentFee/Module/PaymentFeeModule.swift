@@ -19,8 +19,7 @@ class PaymentFeeModule {
         let interactor = PaymentFeeInteractor(sendTransactionBuilder: sendTransactionBuilder,
                                               sendTransactionNetworkProvider: app.sendTransactionNetworkProvider,
                                               userDataStoreService: app.userDataStoreService,
-                                              authTokenProvider: app.authTokenProvider,
-                                              accountsProvider: app.accountsProvider)
+                                              authTokenProvider: app.authTokenProvider)
         
         let accountsVC = UIStoryboard(name: "PaymentFee", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "PaymentFeeVC") as! PaymentFeeViewController

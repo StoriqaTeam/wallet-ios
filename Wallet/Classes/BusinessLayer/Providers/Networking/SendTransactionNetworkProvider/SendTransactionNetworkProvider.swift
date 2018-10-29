@@ -11,7 +11,7 @@ import Foundation
 
 protocol SendTransactionNetworkProviderProtocol {
     func send(transaction: Transaction,
-              userId: String,
+              userId: Int,
               fromAccount: String,
               authToken: String,
               queue: DispatchQueue,
@@ -21,7 +21,7 @@ protocol SendTransactionNetworkProviderProtocol {
 class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkProviderProtocol {
     
     func send(transaction: Transaction,
-              userId: String,
+              userId: Int,
               fromAccount: String,
               authToken: String,
               queue: DispatchQueue,
@@ -80,8 +80,20 @@ extension SendTransactionNetworkProvider {
     
     private func getReceiverType(transaction: Transaction) -> ReceiverType {
         guard let account = transaction.toAccount else {
-            let cryptoAddress = transaction.toAddress
-            return ReceiverType.address(address: cryptoAddress)
+            let cryptoAddress = transaction.toAddress.lowercased()
+            
+            switch transaction.currency {
+            case .eth, .stq:
+                if cryptoAddress.count == 42 {
+                    let address = String(cryptoAddress.suffix(40)).lowercased()
+                    return ReceiverType.address(address: address)
+                }
+                
+                return ReceiverType.address(address: cryptoAddress)
+            default:
+                return ReceiverType.address(address: cryptoAddress)
+                
+            }
         }
         
         let accountString = account.accountId
