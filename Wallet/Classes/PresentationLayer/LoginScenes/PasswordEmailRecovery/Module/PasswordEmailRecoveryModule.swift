@@ -11,7 +11,7 @@ class PasswordEmailRecoveryModule {
     class func create(app: Application) -> PasswordEmailRecoveryModuleInput {
         let router = PasswordEmailRecoveryRouter(app: app)
         let presenter = PasswordEmailRecoveryPresenter()
-        let interactor = PasswordEmailRecoveryInteractor()
+        let interactor = PasswordEmailRecoveryInteractor(networkProvider: app.resetPasswordNetworkProvider)
         
         let storyboard = UIStoryboard(name: "PasswordEmailRecovery", bundle: nil)
         let controllerId = "PasswordRecoveryVC"

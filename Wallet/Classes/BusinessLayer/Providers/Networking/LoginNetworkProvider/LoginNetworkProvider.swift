@@ -35,12 +35,12 @@ class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
-                let json = JSON(response)
+                let json = JSON(response.value)
                 
                 if let token = json["token"].string {
                     completion(.success(token))
                 } else {
-                    let apiError = LoginProviderError(json: json)
+                    let apiError = LoginProviderError(code: response.responseStatusCode, json: json)
                     completion(.failure(apiError))
                 }
                 
@@ -57,17 +57,16 @@ enum LoginProviderError: LocalizedError, Error {
     case badRequest
     case unauthorized
     case unknownError
+    case internalServer
     case validationError(email: String?, password: String?)
     
-    init(json: JSON) {
-        if let description = json["description"].string {
-            
-            switch description {
-            case "Bad request": self = .badRequest
-            case "Unauthorized": self = .unauthorized
-            default: self = .unknownError
-            }
-        } else {
+    init(code: Int, json: JSON) {
+        switch code {
+        case 400:
+            self = .badRequest
+        case 401:
+            self = .unauthorized
+        case 422:
             var emailMessage: String?
             var passwordMessage: String?
             
@@ -86,6 +85,10 @@ enum LoginProviderError: LocalizedError, Error {
             } else {
                 self = .unknownError
             }
+        case 500:
+            self = .internalServer
+        default:
+            self = .unknownError
         }
     }
     
@@ -95,7 +98,7 @@ enum LoginProviderError: LocalizedError, Error {
             return "Bad request"
         case .unauthorized:
             return "User unauthorized"
-        case .unknownError:
+        case .unknownError, .internalServer:
             return Constants.Errors.userFriendly
         case .validationError(let email, let password):
             var result = email ?? ""

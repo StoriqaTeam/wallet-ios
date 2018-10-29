@@ -24,12 +24,12 @@ class EmailConfirmNetworkProvider: NetworkLoadable, EmailConfirmNetworkProviderP
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
-                let json = JSON(response)
+                let json = JSON(response.value)
                 
                 if let token = json.string {
                     completion(.success(token))
                 } else {
-                    let apiError = EmailConfirmProviderError(json: json)
+                    let apiError = EmailConfirmProviderError(code: response.responseStatusCode)
                     completion(.failure(apiError))
                 }
                 
@@ -46,16 +46,14 @@ enum EmailConfirmProviderError: LocalizedError, Error {
     case unauthorized
     case unknownError
     
-    init(json: JSON) {
-        guard let description = json["description"].string else {
+    init(code: Int) {
+        switch code {
+        case 401:
+            self = .unauthorized
+        case 500:
+            self = .internalServer
+        default:
             self = .unknownError
-            return
-        }
-        
-        switch description {
-        case "Unauthorized": self = .unauthorized
-        case "Internal server error": self = .internalServer
-        default: self = .unknownError
         }
     }
     

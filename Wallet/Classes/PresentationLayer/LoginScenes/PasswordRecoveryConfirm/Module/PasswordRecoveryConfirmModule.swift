@@ -12,7 +12,9 @@ class PasswordRecoveryConfirmModule {
         let router = PasswordRecoveryConfirmRouter(app: app)
         let presenter = PasswordRecoveryConfirmPresenter()
         
-        let interactor = PasswordRecoveryConfirmInteractor(token: token, formValidator: app.passwordRecoveryConfirmFormValidator)
+        let interactor = PasswordRecoveryConfirmInteractor(token: token,
+                                                           formValidator: app.passwordRecoveryConfirmFormValidator,
+                                                           networkProvider: app.confirmResetPasswordNetworkProvider)
         
         let storyboard = UIStoryboard(name: "PasswordRecoveryConfirm", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PasswordRecoveryConfirmVC")

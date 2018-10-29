@@ -41,12 +41,12 @@ class RegistrationNetworkProvider: NetworkLoadable, RegistrationNetworkProviderP
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
-                let json = JSON(response)
+                let json = JSON(response.value)
                 
                 if let user = User(json: json) {
                     completion(.success(user))
                 } else {
-                    let apiError = RegistrationProviderError(json: json)
+                    let apiError = RegistrationProviderError(code: response.responseStatusCode, json: json)
                     completion(.failure(apiError))
                 }
             case .failure(let error):
@@ -64,14 +64,11 @@ enum RegistrationProviderError: LocalizedError, Error {
     case internalServer
     case validationError(email: String?, password: String?)
     
-    init(json: JSON) {
-        if let description = json["description"].string {
-            switch description {
-            case "Bad request": self = .badRequest
-            case "Internal server error": self = .internalServer
-            default: self = .unknownError
-            }
-        } else {
+    init(code: Int, json: JSON) {
+        switch code {
+        case 400:
+            self = .badRequest
+        case 422:
             var emailMessage: String?
             var passwordMessage: String?
             
@@ -90,6 +87,10 @@ enum RegistrationProviderError: LocalizedError, Error {
             } else {
                 self = .unknownError
             }
+        case 500:
+            self = .internalServer
+        default:
+            self = .unknownError
         }
     }
     

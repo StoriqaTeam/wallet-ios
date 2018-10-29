@@ -424,6 +424,7 @@
 		CE41F3512181FC9600070D5D /* RealmTransactionAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3502181FC9600070D5D /* RealmTransactionAccount.swift */; };
 		CE41F3532183106500070D5D /* TransactionsNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3522183106500070D5D /* TransactionsNetworkProvider.swift */; };
 		CE41F35621831C5900070D5D /* TransactionsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F35521831C5900070D5D /* TransactionsUpdater.swift */; };
+		CE41F35A21873CAB00070D5D /* ConfirmResetPasswordNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F35921873CAB00070D5D /* ConfirmResetPasswordNetworkProvider.swift */; };
 		CE44019E2174AEC200F7C8D8 /* RealmContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44019D2174AEC200F7C8D8 /* RealmContact.swift */; };
 		CE4401A02174AF4400F7C8D8 /* ContactDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44019F2174AF4400F7C8D8 /* ContactDisplayable.swift */; };
 		CE4401A22174B2C500F7C8D8 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4401A12174B2C500F7C8D8 /* UIImageExtension.swift */; };
@@ -1034,6 +1035,7 @@
 		CE41F3502181FC9600070D5D /* RealmTransactionAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransactionAccount.swift; sourceTree = "<group>"; };
 		CE41F3522183106500070D5D /* TransactionsNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsNetworkProvider.swift; sourceTree = "<group>"; };
 		CE41F35521831C5900070D5D /* TransactionsUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsUpdater.swift; sourceTree = "<group>"; };
+		CE41F35921873CAB00070D5D /* ConfirmResetPasswordNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordNetworkProvider.swift; sourceTree = "<group>"; };
 		CE44019D2174AEC200F7C8D8 /* RealmContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmContact.swift; sourceTree = "<group>"; };
 		CE44019F2174AF4400F7C8D8 /* ContactDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDisplayable.swift; sourceTree = "<group>"; };
 		CE4401A12174B2C500F7C8D8 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -2349,6 +2351,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CE41F35821873CA000070D5D /* ConfirmResetPasswordNetworkProvider */,
 				A5641E3721870332002C2ABE /* ResetPasswordNetworkProvider */,
 				CE1E348C217F006A001B1477 /* AccountsNetworkProvider */,
 				A57434E021774B6A006B4CAE /* ContactsNetworkProvider */,
@@ -3573,6 +3576,14 @@
 			path = TransactionsUpdater;
 			sourceTree = "<group>";
 		};
+		CE41F35821873CA000070D5D /* ConfirmResetPasswordNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE41F35921873CAB00070D5D /* ConfirmResetPasswordNetworkProvider.swift */,
+			);
+			path = ConfirmResetPasswordNetworkProvider;
+			sourceTree = "<group>";
+		};
 		CE4401A32174DCA900F7C8D8 /* ContactsSorter */ = {
 			isa = PBXGroup;
 			children = (
@@ -4666,6 +4677,7 @@
 				5190C80AF91A79F1263D9412 /* BiometryQuickLaunchInteractor.swift in Sources */,
 				A56ED39F216E01BC009FA58B /* TransactionDirectionResolver.swift in Sources */,
 				A51CB5522158FF1800CDC80C /* AccountsDataStoreProvider.swift in Sources */,
+				CE41F35A21873CAB00070D5D /* ConfirmResetPasswordNetworkProvider.swift in Sources */,
 				F84105BB46F917B0AB9317C9 /* BiometryQuickLaunchRouterInput.swift in Sources */,
 				5A19DCEBA97EFA317880745E /* BiometryQuickLaunchRouter.swift in Sources */,
 				A51CB5492158E60500CDC80C /* Transaction.swift in Sources */,

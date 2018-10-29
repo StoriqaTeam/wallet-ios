@@ -24,13 +24,13 @@ class TransactionsNetworkProvider: NetworkLoadable, TransactionsNetworkProviderP
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
-                let json = JSON(response)
+                let json = JSON(response.value)
                 
                 if let trxsJson = json.array {
                     let trxs = trxsJson.compactMap { Transaction(json: $0) }
                     completion(.success(trxs))
                 } else {
-                    let apiError = TransactionsNetworkProviderError(json: json)
+                    let apiError = TransactionsNetworkProviderError(code: response.responseStatusCode)
                     completion(.failure(apiError))
                 }
             case .failure(let error):
@@ -46,13 +46,14 @@ enum TransactionsNetworkProviderError: LocalizedError, Error {
     case unknownError
     case internalServer
     
-    init(json: JSON) {
-        let description = json["description"].stringValue
-        
-        switch description {
-        case "Unauthorized": self = .unauthorized
-        case "Internal server error": self = .internalServer
-        default: self = .unknownError
+    init(code: Int) {
+        switch code {
+        case 401:
+            self = .unauthorized
+        case 500:
+            self = .internalServer
+        default:
+            self = .unknownError
         }
     }
     

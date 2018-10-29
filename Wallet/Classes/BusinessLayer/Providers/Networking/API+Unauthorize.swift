@@ -31,6 +31,8 @@ extension API {
             deviceOs: String,
             deviceId: String)
         case confirmEmail(token: String)
+        case resetPassword(email: String, deviceType: DeviceType)
+        case confirmResetPassword(token: String, password: String)
     }
 
 }
@@ -46,6 +48,10 @@ extension API.Unauthorized: APIMethodProtocol {
             return .post
         case .confirmEmail:
             return .post
+        case .resetPassword:
+            return .post
+        case .confirmResetPassword:
+            return .post
         }
     }
     
@@ -57,12 +63,16 @@ extension API.Unauthorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/users"
         case .confirmEmail:
             return "\(Constants.Network.baseUrl)/users/confirm_email"
+        case .resetPassword:
+            return "\(Constants.Network.baseUrl)/users/reset_password"
+        case .confirmResetPassword:
+            return "\(Constants.Network.baseUrl)/users/confirm_reset_password"
         }
     }
     
     var headers: [String: String] {
         switch self {
-        case .login, .register, .confirmEmail:
+        case .login, .register, .confirmEmail, .resetPassword, .confirmResetPassword:
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json"
@@ -93,6 +103,16 @@ extension API.Unauthorized: APIMethodProtocol {
         case .confirmEmail(let token):
             return [
                 "emailConfirmToken": token
+            ]
+        case .resetPassword(let email, let deviceType):
+            return [
+                "email": email,
+                "deviceType": deviceType.rawValue
+            ]
+        case .confirmResetPassword(let token, let password):
+            return [
+                "token": token,
+                "password": password
             ]
         }
     }

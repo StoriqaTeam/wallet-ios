@@ -32,7 +32,7 @@ class UniversalLinkParser: UniversalLinkParserProtocol {
         switch type {
         case "verify_email":
             return .verifyEmail(token: token)
-        case "reset_password":
+        case "password_reset":
             return .resetPassword(token: token)
         default:
             log.warn("Invalid Universal Link: \(link)")
