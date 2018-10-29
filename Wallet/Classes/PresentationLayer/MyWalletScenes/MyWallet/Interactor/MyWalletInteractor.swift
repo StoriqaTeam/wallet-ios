@@ -14,17 +14,21 @@ class MyWalletInteractor {
     
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
-    private var accountsUpadteChannelInput: AccountsUpdateChannel?
+    private let accountsUpdater: AccountsUpdaterProtocol
+    private var accountsUpadateChannelInput: AccountsUpdateChannel?
     
     init(accountsProvider: AccountsProviderProtocol,
-         accountWatcher: CurrentAccountWatcherProtocol) {
+         accountWatcher: CurrentAccountWatcherProtocol,
+         accountsUpdater: AccountsUpdaterProtocol) {
+        
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
+        self.accountsUpdater = accountsUpdater
     }
     
     deinit {
-        self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
-        self.accountsUpadteChannelInput = nil
+        self.accountsUpadateChannelInput?.removeObserver(withId: self.objId)
+        self.accountsUpadateChannelInput = nil
     }
     
     
@@ -36,12 +40,12 @@ class MyWalletInteractor {
     }()
     
     func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
-        self.accountsUpadteChannelInput = channel
+        self.accountsUpadateChannelInput = channel
         
         let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
             self?.accountsDidUpdate(accounts)
         }
-        self.accountsUpadteChannelInput?.addObserver(accountsObserver)
+        self.accountsUpadateChannelInput?.addObserver(accountsObserver)
     }
     
 }
@@ -50,6 +54,10 @@ class MyWalletInteractor {
 // MARK: - MyWalletInteractorInput
 
 extension MyWalletInteractor: MyWalletInteractorInput {
+    func refreshAccounts(for user: User) {
+        accountsUpdater.update(userId: user.id)
+    }
+    
     func getAccounts() -> [Account] {
         return accountsProvider.getAllAccounts()
     }
