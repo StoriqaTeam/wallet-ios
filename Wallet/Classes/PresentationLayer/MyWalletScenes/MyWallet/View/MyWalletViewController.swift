@@ -102,5 +102,4 @@ extension MyWalletViewController {
             self.addNewButton.alpha = show ? 1.0 : 0.0
         }
     }
-    
 }
