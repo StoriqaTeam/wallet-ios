@@ -15,10 +15,9 @@ class LoginModule {
         
         let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: app.facebookLoginManager)
         
-        let authTokenDefaultsProvider = AuthTokenDefaultsProvider()
         let interactor = LoginInteractor(socialViewVM: socialVM,
                                          defaultProvider: app.defaultsProvider,
-                                         authTokenDefaultsProvider: authTokenDefaultsProvider,
+                                         authTokenDefaultsProvider: app.authTokenDefaultsProvider,
                                          biometricAuthProvider: app.biometricAuthProvider,
                                          loginNetworkProvider: app.loginNetworkProvider,
                                          userNetworkProvider: app.userNetworkProvider,

@@ -5,6 +5,7 @@
 //  Created by Даниил Мирошниченко on 26/10/2018.
 //  Copyright © 2018 Даниил Мирошниченко. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 

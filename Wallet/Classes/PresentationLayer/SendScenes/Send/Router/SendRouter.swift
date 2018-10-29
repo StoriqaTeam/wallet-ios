@@ -26,6 +26,8 @@ extension SendRouter: SendRouterInput {
                       from viewController: UIViewController,
                       mainTabBar: UITabBarController) {
         
-        ReceiverModule.create(app: app, sendTransactionBuilder: sendTransactionBuilder, tabBar: mainTabBar).present(from: viewController)
+        ReceiverModule.create(app: app,
+                              sendTransactionBuilder: sendTransactionBuilder,
+                              tabBar: mainTabBar).present(from: viewController)
     }
 }
