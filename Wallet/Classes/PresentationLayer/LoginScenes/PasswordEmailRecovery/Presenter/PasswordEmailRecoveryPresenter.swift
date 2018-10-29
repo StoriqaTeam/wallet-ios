@@ -100,4 +100,3 @@ extension PasswordEmailRecoveryPresenter {
         storiqaLoader = StoriqaLoader(parentView: parentView)
     }
 }
-
