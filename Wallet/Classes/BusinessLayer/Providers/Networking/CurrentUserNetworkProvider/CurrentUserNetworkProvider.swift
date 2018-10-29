@@ -26,12 +26,12 @@ class CurrentUserNetworkProvider: NetworkLoadable, CurrentUserNetworkProviderPro
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
-                let json = JSON(response)
+                let json = JSON(response.value)
                 
                 if let user = User(json: json) {
                     completion(.success(user))
                 } else {
-                    let apiError = CurrentUserNetworkProviderError(json: json)
+                    let apiError = CurrentUserNetworkProviderError(code: response.responseStatusCode)
                     completion(.failure(apiError))
                 }
             case .failure(let error):
@@ -44,13 +44,16 @@ class CurrentUserNetworkProvider: NetworkLoadable, CurrentUserNetworkProviderPro
 enum CurrentUserNetworkProviderError: LocalizedError, Error {
     case unauthorized
     case unknownError
+    case internalServer
     
-    init(json: JSON) {
-        let description = json["description"].stringValue
-        
-        switch description {
-        case "Unauthorized": self = .unauthorized
-        default: self = .unknownError
+    init(code: Int) {
+        switch code {
+        case 401:
+            self = .unauthorized
+        case 500:
+            self = .internalServer
+        default:
+            self = .unknownError
         }
     }
     
@@ -58,7 +61,7 @@ enum CurrentUserNetworkProviderError: LocalizedError, Error {
         switch self {
         case .unauthorized:
             return "User unauthorized"
-        case .unknownError:
+        case .unknownError, .internalServer:
             return Constants.Errors.userFriendly
         }
     }

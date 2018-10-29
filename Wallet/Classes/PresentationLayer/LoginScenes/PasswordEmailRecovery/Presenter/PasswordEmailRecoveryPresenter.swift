@@ -16,6 +16,7 @@ class PasswordEmailRecoveryPresenter {
     var interactor: PasswordEmailRecoveryInteractorInput!
     var router: PasswordEmailRecoveryRouterInput!
     
+    private var storiqaLoader: StoriqaLoader!
 }
 
 
@@ -24,12 +25,14 @@ class PasswordEmailRecoveryPresenter {
 extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryViewOutput {
     
     func resetPassword(email: String) {
-       interactor.resetPassword(email: email)
+        storiqaLoader.startLoader()
+        interactor.resetPassword(email: email)
     }
 
     func viewIsReady() {
         view.setupInitialState()
         view.viewController.setDarkNavigationBarButtons()
+        addLoader()
     }
     
 }
@@ -44,10 +47,12 @@ extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryInteractorOutput 
     
     
     func emailSentSuccessfully() {
+        storiqaLoader.stopLoader()
         router.showSuccess(popUpDelegate: self, from: view.viewController)
     }
     
     func emailSendingFailed(message: String) {
+        storiqaLoader.stopLoader()
         router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
     }
     
@@ -81,6 +86,18 @@ extension PasswordEmailRecoveryPresenter: PopUpPasswordEmailRecoverySuccessVMDel
 extension PasswordEmailRecoveryPresenter: PopUpPasswordEmailRecoveryFailedVMDelegate {
     
     func retry() {
+        storiqaLoader.startLoader()
         interactor.retry()
     }
 }
+
+
+// MARK: - Private methods
+
+extension PasswordEmailRecoveryPresenter {
+    private func addLoader() {
+        guard let parentView = view.viewController.view else { return }
+        storiqaLoader = StoriqaLoader(parentView: parentView)
+    }
+}
+

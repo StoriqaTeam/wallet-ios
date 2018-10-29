@@ -27,13 +27,13 @@ class AccountsNetworkProvider: NetworkLoadable, AccountsNetworkProviderProtocol 
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
-                let json = JSON(response)
+                let json = JSON(response.value)
                 
                 if let accountsJson = json.array {
                     let accounts = accountsJson.compactMap { Account(json: $0) }
                     completion(.success(accounts))
                 } else {
-                    let apiError = AccountsNetworkProviderError(json: json)
+                    let apiError = AccountsNetworkProviderError(code: response.responseStatusCode)
                     completion(.failure(apiError))
                 }
             case .failure(let error):
@@ -41,7 +41,7 @@ class AccountsNetworkProvider: NetworkLoadable, AccountsNetworkProviderProtocol 
             }
         }
     }
-    
+
 }
 
 enum AccountsNetworkProviderError: LocalizedError, Error {
@@ -49,13 +49,14 @@ enum AccountsNetworkProviderError: LocalizedError, Error {
     case unknownError
     case internalServer
     
-    init(json: JSON) {
-        let description = json["description"].stringValue
-        
-        switch description {
-        case "Unauthorized": self = .unauthorized
-        case "Internal server error": self = .internalServer
-        default: self = .unknownError
+    init(code: Int) {
+        switch code {
+        case 401:
+            self = .unauthorized
+        case 500:
+            self = .internalServer
+        default:
+            self = .unknownError
         }
     }
     

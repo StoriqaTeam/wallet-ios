@@ -1,35 +1,34 @@
 //
-//  EmailConfirmNetworkProvider.swift
+//  ResetPasswordNetworkProvider.swift
 //  Wallet
 //
-//  Created by Tata Gri on 25/10/2018.
+//  Created by Daniil Miroshnichecko on 29/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import Foundation
 
 
-protocol EmailConfirmNetworkProviderProtocol {
-    func confirm(token: String,
-                 queue: DispatchQueue,
-                 completion: @escaping (Result<String>) -> Void)
+protocol ResetPasswordNetworkProviderProtocol {
+    func resetPassword(email: String, queue: DispatchQueue, completion: @escaping (Result<String?>) -> Void)
 }
 
-class EmailConfirmNetworkProvider: NetworkLoadable, EmailConfirmNetworkProviderProtocol {
-    func confirm(token: String,
-                 queue: DispatchQueue,
-                 completion: @escaping (Result<String>) -> Void) {
-        let request = API.Unauthorized.confirmEmail(token: token)
+
+class ResetPasswordNetworkProvider: NetworkLoadable, ResetPasswordNetworkProviderProtocol {
+    func resetPassword(email: String, queue: DispatchQueue, completion: @escaping (Result<String?>) -> Void) {
+        
+        let request = API.Unauthorized.resetPassword(email: email, deviceType: .ios)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
-                let json = JSON(response.value)
+                let code = response.responseStatusCode
                 
-                if let token = json.string {
-                    completion(.success(token))
-                } else {
-                    let apiError = EmailConfirmProviderError(code: response.responseStatusCode)
+                switch code {
+                case 200:
+                    completion(.success(nil))
+                default:
+                    let apiError = ResetPasswordNetworkProviderError(code: code)
                     completion(.failure(apiError))
                 }
                 
@@ -41,9 +40,9 @@ class EmailConfirmNetworkProvider: NetworkLoadable, EmailConfirmNetworkProviderP
     }
 }
 
-enum EmailConfirmProviderError: LocalizedError, Error {
-    case internalServer
+enum ResetPasswordNetworkProviderError: LocalizedError, Error {
     case unauthorized
+    case internalServer
     case unknownError
     
     init(code: Int) {
