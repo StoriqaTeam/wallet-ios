@@ -94,7 +94,7 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
 // MARK: - PaymentFeeInteractorOutput
 
 extension PaymentFeePresenter: PaymentFeeInteractorOutput {
-
+    
 }
 
 
@@ -116,12 +116,20 @@ extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
     func confirmTransaction() {
         //TODO: send transaction
 //        _ = interactor.createTransaction()
-        interactor.sendTransaction { (result) in
+        interactor.sendTransaction { [weak self] (result) in
+            guard let strongSelf = self else {
+                return
+            }
             
+            switch result {
+            case .success:
+                strongSelf.interactor.clearBuilder()
+                strongSelf.view.popToRoot()
+                strongSelf.mainTabBar.selectedIndex = 0
+            case .failure(let error):
+                strongSelf.router.showConfirmFailed(message: error.localizedDescription, from: strongSelf.view.viewController)
+            }
         }
-        interactor.clearBuilder()
-        view.popToRoot()
-        mainTabBar.selectedIndex = 0
     }
     
 }
