@@ -33,4 +33,10 @@ extension PaymentFeeRouter: PaymentFeeRouterInput {
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
+    func showConfirmFailed(message: String,
+                           from viewController: UIViewController) {
+        let viewModel = PopUpSendConfirmFailureVM(message: message)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
 }
