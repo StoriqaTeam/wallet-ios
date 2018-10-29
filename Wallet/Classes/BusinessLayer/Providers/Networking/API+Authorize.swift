@@ -34,7 +34,7 @@ extension API.Authorized: APIMethodProtocol {
         case .user:
             return "\(Constants.Network.baseUrl)/users/me"
         case .getAccounts(_, let userId):
-            // FIXME: разобраться с offset и limit
+            // FIXME: разобраться с offset и limit!!!
             return "\(Constants.Network.baseUrl)/users/\(userId)/accounts?offset=0&limit=20"
         case .getTransactions(_, let userId, let offset, let limit):
             return "\(Constants.Network.baseUrl)/users/\(userId)/transactions?offset=\(offset)&limit=\(limit)"
@@ -57,6 +57,17 @@ extension API.Authorized: APIMethodProtocol {
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)"
             ]
+        }
+    }
+    
+    var params: Params? {
+        switch self {
+        case .getAccounts:
+            return nil
+        case .user:
+            return nil
+        case .getTransactions:
+            return nil
         }
     }
 }

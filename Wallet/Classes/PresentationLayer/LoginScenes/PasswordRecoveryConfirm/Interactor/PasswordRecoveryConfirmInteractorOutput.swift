@@ -13,4 +13,5 @@ protocol PasswordRecoveryConfirmInteractorOutput: class {
     func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?)
     func passwordRecoverySucceed()
     func passwordRecoveryFailed(message: String)
+    func formValidationFailed(password: String?)
 }
