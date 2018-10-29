@@ -176,6 +176,17 @@ extension SendPresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccountWith(index: newIndex)
         view.setNewPage(newIndex)
+        
+        
+        // FIXME: disabled before release
+        let selectedCurrency = interactor.getReceiverCurrency()
+        let newCurrency = interactor.getSelectedAccountCurrency()
+        
+        if selectedCurrency != newCurrency {
+            interactor.setReceiverCurrency(newCurrency)
+            let index = currencies.firstIndex(of: newCurrency)!
+            view.setReceiverCurrencyIndex(index)
+        }
     }
 }
 

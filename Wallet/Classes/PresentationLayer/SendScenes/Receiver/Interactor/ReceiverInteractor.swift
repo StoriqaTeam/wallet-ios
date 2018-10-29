@@ -35,13 +35,18 @@ class ReceiverInteractor {
 extension ReceiverInteractor: ReceiverInteractorInput {
     
     func loadContacts() {
-        contactsProvider.setObserver(self)
-        contactsUpdater.update { [weak self] (error) in
-            DispatchQueue.main.async {
-                self?.output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
-                                         placeholderText: error.localizedDescription)
-            }
-        }
+        
+        // FIXME: disabled before release
+        output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                           placeholderText: "Contact list in not available in this app version")
+            
+//        contactsProvider.setObserver(self)
+//        contactsUpdater.update { [weak self] (error) in
+//            DispatchQueue.main.async {
+//                self?.output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+//                                         placeholderText: error.localizedDescription)
+//            }
+//        }
     }
     
     func getContact() -> ContactDisplayable? {
@@ -81,9 +86,13 @@ extension ReceiverInteractor: ReceiverInteractorInput {
 extension ReceiverInteractor: ContactsProviderDelegate {
     func contactsDidUpdate(_ contacts: [Contact]) {
         
-        DispatchQueue.main.async { [weak self] in
-            self?.output.updateContacts(contacts)
-        }
+        // FIXME: disabled before release
+        output.updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
+                           placeholderText: "Contact list in not available yet")
+            
+//        DispatchQueue.main.async { [weak self] in
+//            self?.output.updateContacts(contacts)
+//        }
     }
 }
 

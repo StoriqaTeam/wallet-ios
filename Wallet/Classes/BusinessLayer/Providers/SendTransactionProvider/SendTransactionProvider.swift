@@ -5,6 +5,7 @@
 //  Created by Storiqa on 25.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+//swiftlint:disable function_body_length
 
 import Foundation
 
@@ -103,17 +104,54 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     }
     
     func createTransaction() -> Transaction? {
-        //TODO: timestamp?
-//        let timestamp = Date()
-//        let fiatAmount = currencyConverter.convert(amount: amount, to: .fiat)
-//        let transaction = Transaction(currency: selectedAccount.currency,
-//                                      direction: .send,
-//                                      fiatAmount: fiatAmount,
-//                                      cryptoAmount: amount,
-//                                      timestamp: timestamp,
-//                                      status: .pending,
-//                                      opponent: opponentType)
-        return nil
+        let uuid = UUID().uuidString
+        let timestamp = Date()
+        let currency = selectedAccount.currency
+        let fromAddress = selectedAccount.accountAddress
+        let toAddress: String
+        let toAccount: TransactionAccount?
+        
+        switch opponentType {
+        case .address(let address):
+            toAddress = address
+            toAccount = nil
+        case .contact(let contact):
+            // TODO: contact would know account (но это не точно)
+            toAddress = contact.cryptoAddress!
+            toAccount = nil
+        case .txAccount(let account, let address):
+            toAddress = address
+            toAccount = account
+        }
+        
+        let cryptoAmount: Decimal
+        let fee: Decimal
+        
+        switch currency {
+        case .btc:
+            cryptoAmount = amount * pow(10, 8)
+            fee = paymentFee * pow(10, 8)
+        case .eth, .stq:
+            cryptoAmount = amount * pow(10, 18)
+            fee = paymentFee * pow(10, 18)
+        case .fiat:
+            cryptoAmount = amount
+            fee = paymentFee
+        }
+        
+        let transaction = Transaction(id: uuid,
+                                      currency: currency,
+                                      fromAddress: [fromAddress],
+                                      fromAccount: [],
+                                      toAddress: toAddress,
+                                      toAccount: toAccount,
+                                      cryptoAmount: cryptoAmount,
+                                      fee: fee,
+                                      blockchainId: "",
+                                      createdAt: timestamp,
+                                      updatedAt: timestamp,
+                                      status: .pending)
+        return transaction
     }
     
 }
