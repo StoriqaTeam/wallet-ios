@@ -55,7 +55,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                 
                 if code == 200 {
                     guard let transaction = Transaction(json: json) else {
-                        let apiError = SendTransactionNetworkProviderError(code: 500)
+                        let apiError = SendTransactionNetworkProviderError.failToParseJson
                         completion(.failure(apiError))
                         return
                     }
@@ -106,6 +106,7 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
     case internalServer
     case unauthorized
     case unknownError
+    case failToParseJson
     
     init(code: Int) {
         switch code {
@@ -126,6 +127,8 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
             return "Internal server error"
         case .unknownError:
             return Constants.Errors.userFriendly
+        case .failToParseJson:
+            return "Fail to parse JSON"
         }
     }
 }

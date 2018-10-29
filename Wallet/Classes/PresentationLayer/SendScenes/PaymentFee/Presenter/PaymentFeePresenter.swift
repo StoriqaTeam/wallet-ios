@@ -114,8 +114,6 @@ extension PaymentFeePresenter: PaymentFeeModuleInput {
 extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
     
     func confirmTransaction() {
-        //TODO: send transaction
-//        _ = interactor.createTransaction()
         interactor.sendTransaction { [weak self] (result) in
             guard let strongSelf = self else {
                 return

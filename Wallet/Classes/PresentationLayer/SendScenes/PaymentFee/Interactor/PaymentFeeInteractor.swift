@@ -64,8 +64,6 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         let account = sendProvider.selectedAccount
         let fromAccount = account.id.lowercased()
         
-        
-        
         authTokenProvider.currentAuthToken { [weak self] (result) in
             switch result {
             case .success(let token):
