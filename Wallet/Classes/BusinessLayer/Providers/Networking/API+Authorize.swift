@@ -6,6 +6,7 @@
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
+
 import Foundation
 import Alamofire
 
@@ -21,7 +22,14 @@ extension API {
         case user(authToken: String)
         case getAccounts(authToken: String, userId: Int)
         case getTransactions(authToken: String, userId: Int, offset: Int, limit: Int)
-        case sendTransaction(authToken: String, transactionId: String, userId: Int, fromAccount: String, receiverType: ReceiverType, currency: Currency, value: String, fee: String)
+        case sendTransaction(authToken: String,
+            transactionId: String,
+            userId: Int,
+            fromAccount: String,
+            receiverType: ReceiverType,
+            currency: Currency,
+            value: String,
+            fee: String)
     }
 }
 
