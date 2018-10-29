@@ -23,7 +23,8 @@ class MyWalletModule {
         presenter.mainTabBar = tabBar
         
         let interactor = MyWalletInteractor(accountsProvider: app.accountsProvider,
-                                            accountWatcher: accountWatcher)
+                                            accountWatcher: accountWatcher,
+                                            accountsUpdater: app.accountsUpdater)
         
         let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)
         let viewController = myWalletSb.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController
