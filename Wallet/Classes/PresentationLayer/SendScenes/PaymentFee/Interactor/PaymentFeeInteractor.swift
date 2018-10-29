@@ -10,16 +10,26 @@ import Foundation
 
 
 class PaymentFeeInteractor {
+    
     weak var output: PaymentFeeInteractorOutput!
     
     private let sendTransactionBuilder: SendProviderBuilderProtocol
     private let sendProvider: SendTransactionProviderProtocol
+    private let sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
+    private let authTokenProvider: AuthTokenProviderProtocol
     
-    init(sendTransactionBuilder: SendProviderBuilderProtocol) {
+    init(sendTransactionBuilder: SendProviderBuilderProtocol,
+         sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol,
+         authTokenProvider: AuthTokenProviderProtocol) {
+        
         self.sendTransactionBuilder = sendTransactionBuilder
         self.sendProvider = sendTransactionBuilder.build()
+        self.userDataStoreService = userDataStoreService
+        self.sendTransactionNetworkProvider = sendTransactionNetworkProvider
+        self.authTokenProvider = authTokenProvider
     }
-    
 }
 
 
@@ -46,6 +56,35 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
     func createTransaction() -> Transaction? {
         let transaction = sendProvider.createTransaction()
         return transaction
+    }
+    
+    func sendTransaction(completion: @escaping (Result<Transaction>) -> Void) {
+        let txToSend = sendProvider.createTransaction()
+        let userId = userDataStoreService.getCurrentUser().id
+        let account = sendProvider.selectedAccount
+        let fromAccount = account.id.lowercased()
+        
+        authTokenProvider.currentAuthToken { [weak self] (result) in
+            switch result {
+            case .success(let token):
+                self?.sendTransactionNetworkProvider.send(transaction: txToSend,
+                                                    userId: userId,
+                                                    fromAccount: fromAccount,
+                                                    authToken: token,
+                                                    queue: .main,
+                                                    completion: { (result) in
+                                                        switch result {
+                                                        case .success(let transaction):
+                                                            completion(.success(transaction))
+                                                        case .failure(let error):
+                                                            completion(.failure(error))
+                                                        }
+                })
+            case .failure(let error):
+                completion(.failure(error))
+                return
+            }
+        }
     }
     
     func isEnoughFunds() -> Bool {
