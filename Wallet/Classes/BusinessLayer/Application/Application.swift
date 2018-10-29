@@ -33,6 +33,7 @@ class Application {
     lazy var registrationNetworkProvider: RegistrationNetworkProviderProtocol = RegistrationNetworkProvider()
     lazy var emailConfirmNetworkProvider: EmailConfirmNetworkProviderProtocol = EmailConfirmNetworkProvider()
     lazy var transactionsNetworkProvider: TransactionsNetworkProviderProtocol = TransactionsNetworkProvider()
+
     
 
     // MARK: - Common Providers

@@ -239,6 +239,7 @@
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
 		A560C741216B57A3009F0E95 /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A560C740216B57A3009F0E95 /* SettingsHeaderView.swift */; };
 		A560C743216B57F9009F0E95 /* SettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A560C742216B57F9009F0E95 /* SettingsHeaderView.xib */; };
+		A5641E3921870361002C2ABE /* ResetPasswordNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5641E3821870361002C2ABE /* ResetPasswordNetworkProvider.swift */; };
 		A5669D37C5A3E197CE60ACEB /* PasswordEmailRecoveryModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C23610EB031515F3F3FD6 /* PasswordEmailRecoveryModuleInput.swift */; };
 		A56B4C76215CD8F10017B337 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B4C75215CD8F10017B337 /* Device.swift */; };
 		A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B4C77215CE1B80017B337 /* Transactions.storyboard */; };
@@ -854,6 +855,7 @@
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
 		A560C740216B57A3009F0E95 /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
 		A560C742216B57F9009F0E95 /* SettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsHeaderView.xib; sourceTree = "<group>"; };
+		A5641E3821870361002C2ABE /* ResetPasswordNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordNetworkProvider.swift; sourceTree = "<group>"; };
 		A56B4C75215CD8F10017B337 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A56B4C77215CE1B80017B337 /* Transactions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
 		A56B4C7B215CFE080017B337 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
@@ -2347,6 +2349,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A5641E3721870332002C2ABE /* ResetPasswordNetworkProvider */,
 				CE1E348C217F006A001B1477 /* AccountsNetworkProvider */,
 				A57434E021774B6A006B4CAE /* ContactsNetworkProvider */,
 				A5D5BB7D217B598B008BEB74 /* CurrentUserNetworkProvider */,
@@ -2516,6 +2519,14 @@
 				A560C742216B57F9009F0E95 /* SettingsHeaderView.xib */,
 			);
 			path = Xib;
+			sourceTree = "<group>";
+		};
+		A5641E3721870332002C2ABE /* ResetPasswordNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A5641E3821870361002C2ABE /* ResetPasswordNetworkProvider.swift */,
+			);
+			path = ResetPasswordNetworkProvider;
 			sourceTree = "<group>";
 		};
 		A56B4C74215CD8DF0017B337 /* Device */ = {
@@ -4535,6 +4546,7 @@
 				DAD66F6925304312D772B826 /* FirstLaunchModule.swift in Sources */,
 				4B42C53D0968DE8E1FFE0BAE /* RegistrationViewInput.swift in Sources */,
 				A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */,
+				A5641E3921870361002C2ABE /* ResetPasswordNetworkProvider.swift in Sources */,
 				A5C12E4B217DE8CC00A7D68C /* Strings.swift in Sources */,
 				A574352C217775AE006B4CAE /* RealmSession.swift in Sources */,
 				A5B7820D215E236F00EFD1A5 /* Network.swift in Sources */,

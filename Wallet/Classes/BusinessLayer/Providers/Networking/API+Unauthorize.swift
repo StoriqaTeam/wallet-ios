@@ -95,7 +95,5 @@ extension API.Unauthorized: APIMethodProtocol {
                 "emailConfirmToken": token
             ]
         }
-        
-        
     }
 }

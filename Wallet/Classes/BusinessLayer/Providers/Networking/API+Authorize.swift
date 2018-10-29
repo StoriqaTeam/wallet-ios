@@ -14,6 +14,7 @@ extension API {
         case user(authToken: String)
         case getAccounts(authToken: String, userId: Int)
         case getTransactions(authToken: String, userId: Int, offset: Int, limit: Int)
+        case resetPassword(authToken: String, email: String, deviceType: DeviceType)
     }
 }
 
@@ -26,6 +27,8 @@ extension API.Authorized: APIMethodProtocol {
             return .get
         case .getTransactions:
             return .get
+        case .resetPassword:
+            return .post
         }
     }
     
@@ -34,10 +37,12 @@ extension API.Authorized: APIMethodProtocol {
         case .user:
             return "\(Constants.Network.baseUrl)/users/me"
         case .getAccounts(_, let userId):
-            // FIXME: разобраться с offset и limit
+            // FIXME: разобраться с offset и limit!!!
             return "\(Constants.Network.baseUrl)/users/\(userId)/accounts?offset=0&limit=20"
         case .getTransactions(_, let userId, let offset, let limit):
             return "\(Constants.Network.baseUrl)/users/\(userId)/transactions?offset=\(offset)&limit=\(limit)"
+        case .resetPassword:
+            return "\(Constants.Network.baseUrl)/users/reset_password"
         }
     }
     
@@ -56,6 +61,27 @@ extension API.Authorized: APIMethodProtocol {
             return [
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)"
+            ]
+        case .resetPassword(let authToken, _, _):
+            return [
+                "accept": "application/json",
+                "Authorization": "Bearer \(authToken)"
+            ]
+        }
+    }
+    
+    var params: Params? {
+        switch self {
+        case .getAccounts:
+            return nil
+        case .user:
+            return nil
+        case .getTransactions:
+            return nil
+        case .resetPassword(_, let email, let deviceType):
+            return [
+                "email": email,
+                "deviceType": deviceType.rawValue
             ]
         }
     }
