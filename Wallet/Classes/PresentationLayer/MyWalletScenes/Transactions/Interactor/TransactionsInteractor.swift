@@ -18,7 +18,7 @@ class TransactionsInteractor {
     
     private let account: Account
     private let transactionsProvider: TransactionsProviderProtocol
-    private var txnUpdateChannelInput: TxnUpadteChannel?
+    private var txsUpdateChannelInput: TxsUpdateChannel?
     
     init(account: Account,
          transactionsProvider: TransactionsProviderProtocol) {
@@ -27,10 +27,9 @@ class TransactionsInteractor {
     }
     
     deinit {
-        self.txnUpdateChannelInput?.removeObserver(withId: self.objId)
-        self.txnUpdateChannelInput = nil
+        self.txsUpdateChannelInput?.removeObserver(withId: self.objId)
+        self.txsUpdateChannelInput = nil
     }
-    
     
     // MARK: - Channels
     
@@ -38,6 +37,10 @@ class TransactionsInteractor {
         let identifier = "\(type(of: self)):\(String(format: "%p", unsafeBitCast(self, to: Int.self)))"
         return identifier
     }()
+    
+    func setTxsUpdateChannelInput(_ channel: TxsUpdateChannel) {
+        self.txsUpdateChannelInput = channel
+    }
     
 }
 
@@ -51,17 +54,11 @@ extension TransactionsInteractor: TransactionsInteractorInput {
         return transactions
     }
     
-    // MARK: - Channels
-    
     func startObservers() {
-        let observer = Observer<[Transaction]>(id: self.objId) { [weak self] (txn) in
-            self?.transactionsDidUpdate(txn)
+        let observer = Observer<[Transaction]>(id: self.objId) { [weak self] (txs) in
+            self?.transactionsDidUpdate(txs)
         }
-        self.txnUpdateChannelInput?.addObserver(observer)
-    }
-    
-    func setTxnUpdateChannelInput(_ channel: TxnUpadteChannel) {
-        self.txnUpdateChannelInput = channel
+        self.txsUpdateChannelInput?.addObserver(observer)
     }
     
 }
@@ -71,7 +68,7 @@ extension TransactionsInteractor: TransactionsInteractorInput {
 
 extension TransactionsInteractor {
     
-    private func transactionsDidUpdate(_ trxs: [Transaction]) {
+    private func transactionsDidUpdate(_ txs: [Transaction]) {
         let txs = getTransactions()
         output.updateTransactions(txs)
     }

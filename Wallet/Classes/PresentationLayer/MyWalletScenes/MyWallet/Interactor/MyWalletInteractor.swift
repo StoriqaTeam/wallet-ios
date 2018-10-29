@@ -14,7 +14,7 @@ class MyWalletInteractor {
     
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
-    private var accountsUpadteChannelInput: AccountsUpadteChannel?
+    private var accountsUpadteChannelInput: AccountsUpdateChannel?
     
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol) {
@@ -35,7 +35,7 @@ class MyWalletInteractor {
         return id
     }()
     
-    func setAccountsUpdateChannelInput(_ channel: AccountsUpadteChannel) {
+    func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
         self.accountsUpadteChannelInput = channel
         
         let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in

@@ -14,8 +14,8 @@ class AccountsInteractor {
     private var accountWatcher: CurrentAccountWatcherProtocol
     private let accountLinker: AccountsLinkerProtocol
     private let transactionsProvider: TransactionsProviderProtocol
-    private var txnUpdateChannelInput: TxnUpadteChannel?
-    private var accountsUpadteChannelInput: AccountsUpadteChannel?
+    private var txsUpdateChannelInput: TxsUpdateChannel?
+    private var accountsUpadteChannelInput: AccountsUpdateChannel?
     
     init(accountLinker: AccountsLinkerProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
@@ -26,8 +26,8 @@ class AccountsInteractor {
     }
     
     deinit {
-        self.txnUpdateChannelInput?.removeObserver(withId: self.objId)
-        self.txnUpdateChannelInput = nil
+        self.txsUpdateChannelInput?.removeObserver(withId: self.objId)
+        self.txsUpdateChannelInput = nil
         
         self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
         self.accountsUpadteChannelInput = nil
@@ -40,6 +40,14 @@ class AccountsInteractor {
         let identifier = "\(type(of: self)):\(String(format: "%p", unsafeBitCast(self, to: Int.self)))"
         return identifier
     }()
+    
+    func setTxsUpdateChannelInput(_ channel: TxsUpdateChannel) {
+        self.txsUpdateChannelInput = channel
+    }
+    
+    func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
+        self.accountsUpadteChannelInput = channel
+    }
 }
 
 
@@ -88,28 +96,17 @@ extension AccountsInteractor: AccountsInteractorInput {
         return currentAccount.currency.ISO
     }
     
-    // MARK: Channels
-    
     func startObservers() {
         let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
             self?.accountsDidUpdate(accounts)
         }
         self.accountsUpadteChannelInput?.addObserver(accountsObserver)
         
-        let txnObserver = Observer<[Transaction]>(id: self.objId) { [weak self] (txn) in
-            self?.transactionsDidUpdate(txn)
+        let txsObserver = Observer<[Transaction]>(id: self.objId) { [weak self] (txs) in
+            self?.transactionsDidUpdate(txs)
         }
-        self.txnUpdateChannelInput?.addObserver(txnObserver)
+        self.txsUpdateChannelInput?.addObserver(txsObserver)
     }
-    
-    func setTxnUpdateChannelInput(_ channel: TxnUpadteChannel) {
-        self.txnUpdateChannelInput = channel
-    }
-    
-    func setAccountsUpdateChannelInput(_ channel: AccountsUpadteChannel) {
-        self.accountsUpadteChannelInput = channel
-    }
-    
 }
 
 
@@ -126,7 +123,7 @@ extension AccountsInteractor {
         return txs
     }
     
-    private func transactionsDidUpdate(_ trxs: [Transaction]) {
+    private func transactionsDidUpdate(_ txs: [Transaction]) {
         let currentAccount = accountWatcher.getAccount()
         let txs = transactions(for: currentAccount)
         output.transactionsDidChange(txs)

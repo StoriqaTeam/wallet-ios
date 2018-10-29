@@ -11,18 +11,18 @@ import Foundation
 protocol AccountsProviderProtocol: class {
     func getAllAccounts() -> [Account]
     func getAddresses() -> [String]
-    func setAccountsUpdaterChannel(_ channel: AccountsUpadteChannel)
+    func setAccountsUpdaterChannel(_ channel: AccountsUpdateChannel)
 }
 
 class AccountsProvider: RealmStorable<Account>, AccountsProviderProtocol {
     private let dataStoreService: AccountsDataStoreServiceProtocol
-    private var accountsUpadateChannelOutput: AccountsUpadteChannel?
+    private var accountsUpadateChannelOutput: AccountsUpdateChannel?
     
     init(dataStoreService: AccountsDataStoreServiceProtocol) {
         self.dataStoreService = dataStoreService
     }
     
-    func setAccountsUpdaterChannel(_ channel: AccountsUpadteChannel) {
+    func setAccountsUpdaterChannel(_ channel: AccountsUpdateChannel) {
         guard accountsUpadateChannelOutput == nil else {
             return
         }

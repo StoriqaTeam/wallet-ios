@@ -21,7 +21,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     private let authTokenProvider: AuthTokenProviderProtocol
     
     private var isUpdating = false
-    private var lastTrxTime: TimeInterval!
+    private var lastTxTime: TimeInterval!
     private var userId: Int!
     private var offset = 0
     private let limit = 2
@@ -47,11 +47,11 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
         
         self.userId = userId
         
-        if let unfinishedTime = defaults.lastTrxTimastamp {
-            lastTrxTime = unfinishedTime
+        if let unfinishedTime = defaults.lastTxTimastamp {
+            lastTxTime = unfinishedTime
         } else {
-            lastTrxTime = provider.getLastTransactionTime()
-            defaults.lastTrxTimastamp = lastTrxTime
+            lastTxTime = provider.getLastTransactionTime()
+            defaults.lastTxTimastamp = lastTxTime
         }
         
         update()
@@ -86,9 +86,9 @@ extension TransactionsUpdater {
             queue: .main,
             completion: { [weak self] (result) in
                 switch result {
-                case .success(let trxs):
-                    log.debug(trxs.map { $0.id })
-                    self?.transactionsLoaded(trxs)
+                case .success(let txs):
+                    log.debug(txs.map { $0.id })
+                    self?.transactionsLoaded(txs)
                 case .failure(let error):
                     log.error(error.localizedDescription)
                     self?.isUpdating = false
@@ -97,13 +97,13 @@ extension TransactionsUpdater {
         )
     }
     
-    private func transactionsLoaded(_ trxs: [Transaction]) {
-        dataStore.save(trxs)
+    private func transactionsLoaded(_ txs: [Transaction]) {
+        dataStore.save(txs)
         
-        if trxs.count < limit ||
-            isTxAlreadyLoaded(trxs.first!) {
+        if txs.count < limit ||
+            isTxAlreadyLoaded(txs.first!) {
             isUpdating = false
-            defaults.lastTrxTimastamp = nil
+            defaults.lastTxTimastamp = nil
         } else {
             offset += limit
             update()
@@ -111,7 +111,7 @@ extension TransactionsUpdater {
     }
     
     private func isTxAlreadyLoaded(_ transaction: Transaction) -> Bool {
-        return lastTrxTime >= transaction.createdAt.timeIntervalSince1970
+        return lastTxTime >= transaction.createdAt.timeIntervalSince1970
     }
     
 }

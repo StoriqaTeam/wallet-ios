@@ -14,7 +14,7 @@ class DepositInteractor {
     private let qrProvider: QRCodeProviderProtocol
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
-    private var accountsUpadteChannelInput: AccountsUpadteChannel?
+    private var accountsUpadteChannelInput: AccountsUpdateChannel?
     
     init(qrProvider: QRCodeProviderProtocol,
          accountsProvider: AccountsProviderProtocol,
@@ -29,12 +29,17 @@ class DepositInteractor {
         self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
         self.accountsUpadteChannelInput = nil
     }
+    
     // MARK: - Channels
     
     private lazy var objId: String = {
         let identifier = "\(type(of: self)):\(String(format: "%p", unsafeBitCast(self, to: Int.self)))"
         return identifier
     }()
+    
+    func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
+        self.accountsUpadteChannelInput = channel
+    }
 }
 
 
@@ -78,17 +83,11 @@ extension DepositInteractor: DepositInteractorInput {
         return allAccounts.count
     }
     
-    // MARK: Channels
-    
     func startObservers() {
         let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
             self?.accountsDidUpdate(accounts)
         }
         self.accountsUpadteChannelInput?.addObserver(accountsObserver)
-    }
-    
-    func setAccountsUpdateChannelInput(_ channel: AccountsUpadteChannel) {
-        self.accountsUpadteChannelInput = channel
     }
 }
 

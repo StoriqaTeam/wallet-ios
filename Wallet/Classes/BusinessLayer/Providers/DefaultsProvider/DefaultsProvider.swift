@@ -13,7 +13,7 @@ protocol DefaultsProviderProtocol: class {
     var isQuickLaunchShown: Bool { get set }
     var isBiometryAuthEnabled: Bool { get set }
     var fiatISO: String { get set }
-    var lastTrxTimastamp: TimeInterval? { get set }
+    var lastTxTimastamp: TimeInterval? { get set }
 }
 
 class DefaultsProvider: DefaultsProviderProtocol {
@@ -23,7 +23,7 @@ class DefaultsProvider: DefaultsProviderProtocol {
         case isQuickLaunchShown
         case isBiometryAuthEnabled
         case fiatISO
-        case lastTxnTimastamp
+        case lastTxTimastamp
     }
     
     var isFirstLaunch: Bool {
@@ -71,12 +71,12 @@ class DefaultsProvider: DefaultsProviderProtocol {
         }
     }
     
-    var lastTrxTimastamp: TimeInterval? {
+    var lastTxTimastamp: TimeInterval? {
         get {
-            return getDouble(.lastTxnTimastamp)
+            return getDouble(.lastTxTimastamp)
         }
         set {
-            setDouble(newValue, key: .lastTxnTimastamp)
+            setDouble(newValue, key: .lastTxTimastamp)
         }
     }
     

@@ -12,52 +12,52 @@ protocol TransactionsProviderProtocol: class {
     func getAllTransactions() -> [Transaction]
     func transactionsFor(account: Account) -> [Transaction]
     func getLastTransactionTime() -> TimeInterval
-    func setTxnUpdaterChannel(_ channel: TxnUpadteChannel)
+    func setTxsUpdaterChannel(_ channel: TxsUpdateChannel)
 }
 
 class TransactionsProvider: TransactionsProviderProtocol {
     private let dataStore: TransactionDataStoreServiceProtocol
-    private var txnUpadateChannelOutput: TxnUpadteChannel?
+    private var txsUpadateChannelOutput: TxsUpdateChannel?
     
     init(transactionDataStoreService: TransactionDataStoreServiceProtocol) {
         self.dataStore = transactionDataStoreService
     }
     
-    func setTxnUpdaterChannel(_ channel: TxnUpadteChannel) {
-        guard txnUpadateChannelOutput == nil else {
+    func setTxsUpdaterChannel(_ channel: TxsUpdateChannel) {
+        guard txsUpadateChannelOutput == nil else {
             return
         }
         
-        self.txnUpadateChannelOutput = channel
+        self.txsUpadateChannelOutput = channel
         
         dataStore.observe { [weak self] (transactions) in
             log.debug("Transactions updated: \(transactions.map { $0.id })", "count: \(transactions.count)")
-            self?.txnUpadateChannelOutput?.send(transactions)
+            self?.txsUpadateChannelOutput?.send(transactions)
         }
     }
     
     func getAllTransactions() -> [Transaction] {
-        let allTrxs = dataStore.getTransactions()
-        return allTrxs
+        let allTxs = dataStore.getTransactions()
+        return allTxs
     }
     
     func transactionsFor(account: Account) -> [Transaction] {
-        let allTrxs = dataStore.getTransactions()
+        let allTxs = dataStore.getTransactions()
         let accAddress = account.accountAddress
-        let accountTrxs = allTrxs.filter {
+        let accountTxs = allTxs.filter {
             return $0.toAddress == accAddress || $0.fromAddress.contains(accAddress)
         }
-        return accountTrxs
+        return accountTxs
     }
     
     func getLastTransactionTime() -> TimeInterval {
-        let allTrxs = dataStore.getTransactions()
+        let allTxs = dataStore.getTransactions()
         
-        guard !allTrxs.isEmpty else {
+        guard !allTxs.isEmpty else {
             return 0
         }
         
-        let sorted = sortedTransaction(allTrxs)
+        let sorted = sortedTransaction(allTxs)
     
         if var lastPending = sorted.lastIndex(where: { $0.status == .pending }) {
             if lastPending == sorted.count - 1 {
@@ -68,8 +68,8 @@ class TransactionsProvider: TransactionsProviderProtocol {
             return sorted[lastPending].createdAt.timeIntervalSince1970
         }
         
-        let firstTrxTime = sorted.first?.createdAt.timeIntervalSince1970 ?? 0
-        return firstTrxTime
+        let firstTxTime = sorted.first?.createdAt.timeIntervalSince1970 ?? 0
+        return firstTxTime
     }
 }
 
