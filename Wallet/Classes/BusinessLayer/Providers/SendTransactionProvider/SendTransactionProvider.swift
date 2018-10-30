@@ -5,7 +5,6 @@
 //  Created by Storiqa on 25.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-//swiftlint:disable function_body_length
 
 import Foundation
 
@@ -45,17 +44,20 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     private let currencyFormatter: CurrencyFormatterProtocol
     private let accountProvider: AccountsProviderProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     private var currencyConverter: CurrencyConverterProtocol!
     
     init(converterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
          accountProvider: AccountsProviderProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
+         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
+         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
         self.accountProvider = accountProvider
         self.feeWaitProvider = feeWaitProvider
+        self.denominationUnitsConverter = denominationUnitsConverter
         
         // default build
         self.amount = 0
@@ -124,21 +126,9 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
             toAccount = account
         }
         
-        let cryptoAmount: Decimal
-        let fee: Decimal
-        
-        switch currency {
-        case .btc:
-            cryptoAmount = amount * pow(10, 8)
-            fee = paymentFee * pow(10, 8)
-        case .eth, .stq:
-            cryptoAmount = amount * pow(10, 18)
-            fee = paymentFee * pow(10, 18)
-        case .fiat:
-            cryptoAmount = amount
-            fee = paymentFee
-        }
-        
+        let cryptoAmount = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
+        let fee = denominationUnitsConverter.amountToMinUnits(paymentFee, currency: currency)
+   
         let transaction = Transaction(id: uuid,
                                       currency: currency,
                                       fromAddress: [fromAddress],

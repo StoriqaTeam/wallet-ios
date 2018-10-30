@@ -99,7 +99,7 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func isValidAmount(_ amount: String) -> Bool {
-        return amount.isEmpty || amount == Locale.current.decimalSeparator || amount.isValidDecimal()
+        return amount.isEmpty || amount == "." || amount == "," || amount.isValidDecimal()
     }
     
     func setAmount(_ amount: String) {

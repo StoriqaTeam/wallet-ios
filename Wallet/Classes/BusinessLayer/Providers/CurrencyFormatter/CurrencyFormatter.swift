@@ -10,22 +10,13 @@ import Foundation
 
 protocol CurrencyFormatterProtocol {
     func getStringFrom(amount: Decimal, currency: Currency) -> String
-    func getStringFrom(amount: Decimal, currency: Currency, fractionDigits: Int) -> String
+    func getStringWithoutCurrencyFrom(amount: Decimal, currency: Currency) -> String
 }
 
 class CurrencyFormatter: CurrencyFormatterProtocol {
     
     func getStringFrom(amount: Decimal, currency: Currency) -> String {
-        return getStringFrom(amount: amount, currency: currency, fractionDigits: 8)
-    }
-    
-    func getStringFrom(amount: Decimal, currency: Currency, fractionDigits: Int) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = fractionDigits
-        
-        let amountStr = formatter.string(from: NSNumber(value: amount.double))!
+        let amountStr = getFormatted(amount: amount, currency: currency, usesGroupingSeparator: true)
         
         switch currency {
         case .fiat:
@@ -35,4 +26,34 @@ class CurrencyFormatter: CurrencyFormatterProtocol {
         }
     }
     
+    func getStringWithoutCurrencyFrom(amount: Decimal, currency: Currency) -> String {
+        let amountStr = getFormatted(amount: amount, currency: currency, usesGroupingSeparator: false)
+        return amountStr
+    }
+}
+
+
+// MARK: Private methods
+
+extension CurrencyFormatter {
+    private func getFormatted(amount: Decimal, currency: Currency, usesGroupingSeparator: Bool) -> String {
+        let fractionDigits: Int
+        switch currency {
+        case .eth, .stq:
+            fractionDigits = 18
+        case .btc:
+            fractionDigits = 8
+        default:
+            fractionDigits = 2
+        }
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = fractionDigits
+        formatter.usesGroupingSeparator = usesGroupingSeparator
+        
+        let amountStr = formatter.string(from: NSNumber(value: amount.double))!
+        return amountStr
+    }
 }

@@ -16,22 +16,25 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     private let currencyFormatter: CurrencyFormatterProtocol
     private let accountsProvider: AccountsProviderProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
     init(currencyConverterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
          accountsProvider: AccountsProviderProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
-        
+         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
+         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.currencyConverterFactory = currencyConverterFactory
         self.currencyFormatter = currencyFormatter
         self.accountsProvider = accountsProvider
         self.feeWaitProvider = feeWaitProvider
+        self.denominationUnitsConverter = denominationUnitsConverter
         
         defaultSendTxProvider = SendTransactionProvider(converterFactory: self.currencyConverterFactory,
                                                         currencyFormatter: self.currencyFormatter,
                                                         accountProvider: self.accountsProvider,
-                                                        feeWaitProvider: self.feeWaitProvider)
+                                                        feeWaitProvider: self.feeWaitProvider,
+                                                        denominationUnitsConverter: self.denominationUnitsConverter)
     }
     
     func set(account: Account) {
@@ -71,6 +74,7 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
         defaultSendTxProvider = SendTransactionProvider(converterFactory: self.currencyConverterFactory,
                                                         currencyFormatter: self.currencyFormatter,
                                                         accountProvider: self.accountsProvider,
-                                                        feeWaitProvider: self.feeWaitProvider)
+                                                        feeWaitProvider: self.feeWaitProvider,
+                                                        denominationUnitsConverter: self.denominationUnitsConverter)
     }
 }

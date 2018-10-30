@@ -75,15 +75,16 @@ class Application {
     lazy var sendTransactionBuilder: SendTransactionBuilder = SendTransactionBuilder(currencyConverterFactory: self.currencyConverterFactory,
                                                                                      currencyFormatter: self.currencyFormatter,
                                                                                      accountsProvider: self.accountsProvider,
-                                                                                     feeWaitProvider: self.fakePaymentFeeAndWaitProvider)
+                                                                                     feeWaitProvider: self.fakePaymentFeeAndWaitProvider,
+                                                                                     denominationUnitsConverter: self.denominationUnitsConverter)
     
     // MARK: - Converters and formattera
     lazy var currencyConverterFactory: CurrencyConverterFactoryProtocol = CurrencyConverterFactory()
     lazy var currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatter()
-    
+    lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
     
     // MARK: Validators
-    lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: .btcMainnet)
+    lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: .btcTestnet)
     lazy var ethAddressValidator: AddressValidatorProtocol = EthereumAddressValidator()
     
     
@@ -110,7 +111,8 @@ class Application {
     lazy var transactionMapper: TransactionMapper = TransactionMapper(currencyFormatter: self.currencyFormatter,
                                                                       converterFactory: self.currencyConverterFactory,
                                                                       transactionDirectionResolver: self.transactionDirectionResolver,
-                                                                      transactionOpponentResolver: self.transactionOpponentResolver)
+                                                                      transactionOpponentResolver: self.transactionOpponentResolver,
+                                                                      denominationUnitsConverter: self.denominationUnitsConverter)
     
     // MARK: - Social Networks
     lazy var  facebookLoginManager: LoginManager = LoginManager()
