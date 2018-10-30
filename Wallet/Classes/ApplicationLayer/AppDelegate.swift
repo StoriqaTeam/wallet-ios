@@ -39,6 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+         app.appLockerProvider.autolock()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        app.appLockerProvider.setLock()
+    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         
         let urlStr = url.absoluteString

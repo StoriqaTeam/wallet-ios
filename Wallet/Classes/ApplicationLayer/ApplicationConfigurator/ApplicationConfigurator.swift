@@ -39,17 +39,11 @@ extension ApplicationConfigurator {
             defaults.isFirstLaunch = false
             keychain.deleteAll()
             FirstLaunchModule.create(app: app).present()
-        } else if isPinSet() {
-            PinInputModule.create(app: app).present()
         } else {
             LoginModule.create(app: app).present()
         }
     }
-    
-    private func isPinSet() -> Bool {
-        return keychain.pincode != nil
-    }
-    
+
     private func setGID() {
         NetworkActivityIndicatorManager.shared.isEnabled = true
         GIDSignIn.sharedInstance().clientID = Constants.NetworkAuth.kGoogleClientId
