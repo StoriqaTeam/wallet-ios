@@ -120,7 +120,7 @@ class Application {
     
     
     // MARK: - Global services
-    lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 300)
+    lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 90)
     
     // MARK: - Channels
     lazy var channelStorage: ChannelStorage = ChannelStorage()

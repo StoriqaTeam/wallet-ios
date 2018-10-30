@@ -16,7 +16,8 @@ class ReceiverModule {
         
         let interactor = ReceiverInteractor(sendTransactionBuilder: sendTransactionBuilder,
                                             contactsProvider: app.contactsProvider,
-                                            contactsUpdater: app.contactsChacheUpdater)
+                                            contactsUpdater: app.contactsChacheUpdater,
+                                            cryptoAddressResolver: app.cryptoAddressResolver)
         
         let presenter = ReceiverPresenter(currencyFormatter: app.currencyFormatter,
                                           converterFactory: app.currencyConverterFactory,

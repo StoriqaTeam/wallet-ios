@@ -15,15 +15,18 @@ class MyWalletInteractor {
     private let accountsProvider: AccountsProviderProtocol
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let accountsUpdater: AccountsUpdaterProtocol
+    private let txnUpdater: TransactionsUpdaterProtocol
     private var accountsUpadateChannelInput: AccountsUpdateChannel?
     
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
-         accountsUpdater: AccountsUpdaterProtocol) {
+         accountsUpdater: AccountsUpdaterProtocol,
+         txnUpdater: TransactionsUpdaterProtocol) {
         
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
         self.accountsUpdater = accountsUpdater
+        self.txnUpdater = txnUpdater
     }
     
     deinit {
@@ -56,6 +59,7 @@ class MyWalletInteractor {
 extension MyWalletInteractor: MyWalletInteractorInput {
     func refreshAccounts(for user: User) {
         accountsUpdater.update(userId: user.id)
+        txnUpdater.update(userId: user.id)
     }
     
     func getAccounts() -> [Account] {

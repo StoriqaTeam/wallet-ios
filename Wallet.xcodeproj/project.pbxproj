@@ -412,6 +412,7 @@
 		CE1E348E217F007F001B1477 /* AccountsNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E348D217F007F001B1477 /* AccountsNetworkProvider.swift */; };
 		CE1E3491217F1464001B1477 /* AccountsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E3490217F1464001B1477 /* AccountsUpdater.swift */; };
 		CE210A2A2187868600CA009A /* PopUpSendConfirmFailureVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE210A292187868600CA009A /* PopUpSendConfirmFailureVM.swift */; };
+		CE210A2C2188526300CA009A /* PopUpSendConfirmSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE210A2B2188526300CA009A /* PopUpSendConfirmSuccessVM.swift */; };
 		CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */; };
 		CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
@@ -1025,6 +1026,7 @@
 		CE1E348D217F007F001B1477 /* AccountsNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsNetworkProvider.swift; sourceTree = "<group>"; };
 		CE1E3490217F1464001B1477 /* AccountsUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsUpdater.swift; sourceTree = "<group>"; };
 		CE210A292187868600CA009A /* PopUpSendConfirmFailureVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmFailureVM.swift; sourceTree = "<group>"; };
+		CE210A2B2188526300CA009A /* PopUpSendConfirmSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmSuccessVM.swift; sourceTree = "<group>"; };
 		CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmVM.swift; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
@@ -3246,6 +3248,7 @@
 				483EA059D7E6160ECD4BA0E5 /* PaymentFeeInteractor.swift */,
 				CE23D324215E2B750016FEBD /* PopUpSendConfirmVM.swift */,
 				CE210A292187868600CA009A /* PopUpSendConfirmFailureVM.swift */,
+				CE210A2B2188526300CA009A /* PopUpSendConfirmSuccessVM.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -4953,6 +4956,7 @@
 				7934CE37D1CDACDF65C1F2DF /* ConnectPhoneModule.swift in Sources */,
 				E48F38E3F6C54C04DF13180D /* TransactionFilterViewInput.swift in Sources */,
 				F686C7139F346CD48BB88FFC /* TransactionFilterViewOutput.swift in Sources */,
+				CE210A2C2188526300CA009A /* PopUpSendConfirmSuccessVM.swift in Sources */,
 				4C9AC1E9C6D0D8C5181C95BF /* TransactionFilterViewController.swift in Sources */,
 				A7B879DB4C2E78DC60D11D96 /* TransactionFilterModulePresenter.swift in Sources */,
 				AE25E836624D8FB16AABA72B /* TransactionFilterModuleInteractorInput.swift in Sources */,

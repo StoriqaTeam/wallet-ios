@@ -11,7 +11,6 @@ import Foundation
 
 class PopUpSendConfirmFailureVM: PopUpViewModelProtocol {
     var apperance: PopUpApperance
-    weak var delegate: PopUpSendConfirmVMDelegate?
     
     init(message: String) {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "generalErrorIcon"),

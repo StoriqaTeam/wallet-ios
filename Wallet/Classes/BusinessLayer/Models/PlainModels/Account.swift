@@ -25,7 +25,7 @@ struct Account {
 extension Account: RealmMappable {
     init(_ object: RealmAccount) {
         self.id = object.id
-        self.balance = Decimal(object.balance)
+        self.balance = object.balance.decimalValue()
         self.currency = Currency.btc
         self.userId = object.userId
         self.name = object.name
@@ -55,9 +55,9 @@ extension Account: RealmMappable {
         
         switch currency {
         case .eth, .stq:
-            self.balance = Decimal(balance) / pow(10, 18)
+            self.balance = balance.decimalValue() / pow(10, 18)
         default:
-            self.balance = Decimal(balance) / pow(10, 8)
+            self.balance = balance.decimalValue() / pow(10, 8)
         }
         
         self.name = name

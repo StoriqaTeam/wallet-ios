@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol PaymentFeeInteractorInput: class {
-     func sendTransaction(completion: @escaping (Result<Transaction>) -> Void) 
+     func sendTransaction() 
     
     func getSendTransactionBuilder() -> SendProviderBuilderProtocol
     func setPaymentFee(index: Int)

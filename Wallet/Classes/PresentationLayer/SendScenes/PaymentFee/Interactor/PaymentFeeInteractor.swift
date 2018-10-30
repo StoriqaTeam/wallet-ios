@@ -18,17 +18,23 @@ class PaymentFeeInteractor {
     private let sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
+    private let accountsUpdater: AccountsUpdaterProtocol
+    private let txnUpdater: TransactionsUpdaterProtocol
     
     init(sendTransactionBuilder: SendProviderBuilderProtocol,
          sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
-         authTokenProvider: AuthTokenProviderProtocol) {
+         authTokenProvider: AuthTokenProviderProtocol,
+         accountsUpdater: AccountsUpdaterProtocol,
+         txnUpdater: TransactionsUpdaterProtocol) {
         
         self.sendTransactionBuilder = sendTransactionBuilder
         self.sendProvider = sendTransactionBuilder.build()
         self.userDataStoreService = userDataStoreService
         self.sendTransactionNetworkProvider = sendTransactionNetworkProvider
         self.authTokenProvider = authTokenProvider
+        self.accountsUpdater = accountsUpdater
+        self.txnUpdater = txnUpdater
     }
 }
 
@@ -58,7 +64,7 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         return transaction
     }
     
-    func sendTransaction(completion: @escaping (Result<Transaction>) -> Void) {
+    func sendTransaction() {
         let txToSend = sendProvider.createTransaction()
         let userId = userDataStoreService.getCurrentUser().id
         let account = sendProvider.selectedAccount
@@ -67,22 +73,25 @@ extension PaymentFeeInteractor: PaymentFeeInteractorInput {
         authTokenProvider.currentAuthToken { [weak self] (result) in
             switch result {
             case .success(let token):
-                self?.sendTransactionNetworkProvider.send(transaction: txToSend,
-                                                    userId: userId,
-                                                    fromAccount: fromAccount,
-                                                    authToken: token,
-                                                    queue: .main,
-                                                    completion: { (result) in
-                                                        switch result {
-                                                        case .success(let transaction):
-                                                            completion(.success(transaction))
-                                                        case .failure(let error):
-                                                            completion(.failure(error))
-                                                        }
-                })
+                self?.sendTransactionNetworkProvider.send(
+                    transaction: txToSend,
+                    userId: userId,
+                    fromAccount: fromAccount,
+                    authToken: token,
+                    queue: .main,
+                    completion: { [weak self] (result) in
+                        switch result {
+                        case .success:
+                            self?.accountsUpdater.update(userId: userId)
+                            self?.txnUpdater.update(userId: userId)
+                            self?.output.sendTxSucceed()
+                        case .failure(let error):
+                            self?.output.sendTxFailed(message: error.localizedDescription)
+                        }
+                    }
+                )
             case .failure(let error):
-                completion(.failure(error))
-                return
+                self?.output.sendTxFailed(message: error.localizedDescription)
             }
         }
     }

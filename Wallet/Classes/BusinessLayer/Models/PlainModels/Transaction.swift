@@ -60,8 +60,8 @@ extension Transaction: RealmMappable {
         }
         
         self.currency = Currency(string: object.currency)
-        self.cryptoAmount = Decimal(object.cryptoAmount)
-        self.fee = Decimal(object.fee)
+        self.cryptoAmount = object.cryptoAmount.decimalValue()
+        self.fee = object.fee.decimalValue()
         self.blockchainId = object.blockchainId
         self.createdAt = Date(timeIntervalSince1970: object.createdAt)
         self.updatedAt = Date(timeIntervalSince1970: object.updatedAt)
@@ -97,7 +97,6 @@ extension Transaction: RealmMappable {
             let currencyStr = json["currency"].string,
             let value = json["value"].string,
             let fee = json["fee"].string,
-            let blockchainId = json["blockchainTxId"].string,
             let statusStr = json["status"].string,
             let createdAt = json["createdAt"].double,
             let updatedAt = json["updatedAt"].double,
@@ -105,6 +104,7 @@ extension Transaction: RealmMappable {
                 return nil
         }
         
+        let blockchainId = json["blockchainTxId"].stringValue
         let to = json["to"]
         let toAccount = TransactionAccount(json: to)
         let fromAddress = from.compactMap { $0["blockchain_address"].string }
@@ -125,7 +125,7 @@ extension Transaction: RealmMappable {
         self.toAccount = toAccount
         self.fromAddress = fromAddress
         self.fromAccount = fromAccounts
-        self.cryptoAmount = Decimal(value)
-        self.fee = Decimal(fee)
+        self.cryptoAmount = value.decimalValue()
+        self.fee = fee.decimalValue()
     }
 }

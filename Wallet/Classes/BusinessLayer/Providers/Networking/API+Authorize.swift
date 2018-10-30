@@ -53,7 +53,7 @@ extension API.Authorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/users/me"
         case .getAccounts(_, let userId):
             // FIXME: разобраться с offset и limit!!!
-            return "\(Constants.Network.baseUrl)/users/\(userId)/accounts?offset=0&limit=20"
+            return "\(Constants.Network.baseUrl)/users/\(userId)/accounts?offset=0&limit=50"
         case .getTransactions(_, let userId, let offset, let limit):
             return "\(Constants.Network.baseUrl)/users/\(userId)/transactions?offset=\(offset)&limit=\(limit)"
         case .sendTransaction:

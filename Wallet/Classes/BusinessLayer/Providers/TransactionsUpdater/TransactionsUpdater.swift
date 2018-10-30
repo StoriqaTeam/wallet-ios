@@ -24,7 +24,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     private var lastTxTime: TimeInterval!
     private var userId: Int!
     private var offset = 0
-    private let limit = 2
+    private let limit = 50
     
     init(transactionsProvider: TransactionsProviderProtocol,
          transactionsNetworkProvider: TransactionsNetworkProviderProtocol,
@@ -87,7 +87,7 @@ extension TransactionsUpdater {
             completion: { [weak self] (result) in
                 switch result {
                 case .success(let txs):
-                    log.debug(txs.map { $0.id })
+                    log.debug("Txn received: \(txs.map { $0.id })")
                     self?.transactionsLoaded(txs)
                 case .failure(let error):
                     log.error(error.localizedDescription)
