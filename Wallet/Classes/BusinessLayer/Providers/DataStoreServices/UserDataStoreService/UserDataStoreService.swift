@@ -19,7 +19,7 @@ protocol UserDataStoreServiceProtocol {
 
 class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
     func delete() {
-        find().forEach { delete(primaryKey: "\($0.id)") }
+        find().forEach { delete(primaryKey: $0.id) }
     }
     
     func update(_ user: User) {
