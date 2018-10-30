@@ -52,6 +52,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
+                log.debug(json)
                 
                 if code == 200, let txnData = json.array {
                     let txn = txnData.compactMap { Transaction(json: $0) }
@@ -84,7 +85,7 @@ extension SendTransactionNetworkProvider {
     
     private func getReceiverType(transaction: Transaction) -> ReceiverType {
         guard let account = transaction.toAccount else {
-            let cryptoAddress = transaction.toAddress.lowercased()
+            let cryptoAddress = transaction.toAddress
             
             switch transaction.currency {
             case .eth, .stq:
@@ -93,7 +94,7 @@ extension SendTransactionNetworkProvider {
                     return ReceiverType.address(address: address)
                 }
                 
-                return ReceiverType.address(address: cryptoAddress)
+                return ReceiverType.address(address: cryptoAddress.lowercased())
             default:
                 return ReceiverType.address(address: cryptoAddress)
                 

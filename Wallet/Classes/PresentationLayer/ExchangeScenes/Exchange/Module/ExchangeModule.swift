@@ -14,7 +14,8 @@ class ExchangeModule {
         let accountDisplayer = AccountDisplayer(user: user,
                                                 currencyFormatter: app.currencyFormatter,
                                                 converterFactory: app.currencyConverterFactory,
-                                                accountTypeResolver: app.accountTypeResolver)
+                                                accountTypeResolver: app.accountTypeResolver,
+                                                denominationUnitsConverter: app.denominationUnitsConverter)
         
         let presenter = ExchangePresenter(converterFactory: app.currencyConverterFactory,
                                           currencyFormatter: app.currencyFormatter,

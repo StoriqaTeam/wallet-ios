@@ -17,7 +17,8 @@ class DepositModule {
         let accountDisplayer = AccountDisplayer(user: user,
                                                 currencyFormatter: app.currencyFormatter,
                                                 converterFactory: app.currencyConverterFactory,
-                                                accountTypeResolver: app.accountTypeResolver)
+                                                accountTypeResolver: app.accountTypeResolver,
+                                                denominationUnitsConverter: app.denominationUnitsConverter)
         
         let presenter = DepositPresenter(accountDisplayer: accountDisplayer)
         let interactor = DepositInteractor(qrProvider: app.qrCodeProvider,

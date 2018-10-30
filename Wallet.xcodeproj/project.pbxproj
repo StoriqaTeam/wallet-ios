@@ -482,6 +482,7 @@
 		CED822EA215BE09F00693B92 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822E9215BE09F00693B92 /* CurrencyFormatter.swift */; };
 		CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */; };
 		CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */; };
+		CEE84EF021889F0B00AB85F3 /* DenominationUnitsConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84EEF21889F0B00AB85F3 /* DenominationUnitsConverter.swift */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
@@ -1098,6 +1099,7 @@
 		CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthView.swift; sourceTree = "<group>"; };
 		CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNetworkAuthView.xib; sourceTree = "<group>"; };
 		CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Wallet-Bridging-Header.h"; path = "Wallet/Other/Wallet-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		CEE84EEF21889F0B00AB85F3 /* DenominationUnitsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenominationUnitsConverter.swift; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
@@ -2984,6 +2986,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				CEE84EEE21889EFE00AB85F3 /* DenominationUnitsConverter */,
 				A58DB4E3218346C10024E463 /* ShortPollingTimer */,
 				A5C12E7D217F007F00A7D68C /* AuthTokenProvider */,
 				CE1E348F217F1450001B1477 /* AccountsUpdater */,
@@ -3823,6 +3826,14 @@
 				CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */,
 			);
 			path = SocialNetworkAuthView;
+			sourceTree = "<group>";
+		};
+		CEE84EEE21889EFE00AB85F3 /* DenominationUnitsConverter */ = {
+			isa = PBXGroup;
+			children = (
+				CEE84EEF21889F0B00AB85F3 /* DenominationUnitsConverter.swift */,
+			);
+			path = DenominationUnitsConverter;
 			sourceTree = "<group>";
 		};
 		CEFC9C872154E57B00962356 /* Models */ = {
@@ -4726,6 +4737,7 @@
 				E2ED95B2BB076E4FB9B465A9 /* PinSetupModule.swift in Sources */,
 				3D6198BCDDE3FB1DDD35D3FF /* MainTabBarViewInput.swift in Sources */,
 				A5743543217A2D3C006B4CAE /* LoginNetworkProvider.swift in Sources */,
+				CEE84EF021889F0B00AB85F3 /* DenominationUnitsConverter.swift in Sources */,
 				A574353E2178B025006B4CAE /* SessiondateSorter.swift in Sources */,
 				EBCA36D03BBA6F52ECC7258D /* MainTabBarViewOutput.swift in Sources */,
 				CD8499CCEA4C0FBAC71AEDBD /* MainTabBarViewController.swift in Sources */,

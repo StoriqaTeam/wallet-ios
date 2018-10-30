@@ -18,7 +18,8 @@ class SendModule {
         let accountDisplayer = AccountDisplayer(user: user,
                                                 currencyFormatter: app.currencyFormatter,
                                                 converterFactory: app.currencyConverterFactory,
-                                                accountTypeResolver: app.accountTypeResolver)
+                                                accountTypeResolver: app.accountTypeResolver,
+                                                denominationUnitsConverter: app.denominationUnitsConverter)
         
         let presenter = SendPresenter(currencyFormatter: app.currencyFormatter,
                                       currencyImageProvider: app.currencyImageProvider,

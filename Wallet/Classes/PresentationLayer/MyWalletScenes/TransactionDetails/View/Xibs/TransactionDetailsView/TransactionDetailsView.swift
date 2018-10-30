@@ -10,18 +10,28 @@ import UIKit
 
 class TransactionDetailView: LoadableFromXib {
     
-    @IBOutlet weak var cryptoAmountLabel: UILabel!
-    @IBOutlet weak var fiatAmountLabel: UILabel!
-    @IBOutlet weak var timestampLabel: UILabel!
-    @IBOutlet weak var pendingLabel: UILabel!
-    @IBOutlet weak var directionImageView: UIImageView!
-    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet private var cryptoAmountLabel: UILabel!
+    @IBOutlet private var fiatAmountLabel: UILabel!
+    @IBOutlet private var timestampLabel: UILabel!
+    @IBOutlet private var pendingLabel: UILabel!
+    @IBOutlet private var directionImageView: UIImageView!
+    @IBOutlet private var backgroundView: UIView!
+    
+    private var gradientColors = [CGColor]()
     
     func configure(transaction: TransactionDisplayable) {
         cryptoAmountLabel.text = transaction.cryptoAmountString
         fiatAmountLabel.text = transaction.fiatAmountString
         timestampLabel.text = "\(transaction.timestamp)"
         configureAppearence(for: transaction)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        backgroundView.gradientView(colors: gradientColors,
+                                    frame: self.bounds,
+                                    startPoint: CGPoint(x: 1.0, y: 0.5),
+                                    endPoint: CGPoint(x: 0.0, y: 0.5))
     }
 
 }
@@ -32,18 +42,17 @@ class TransactionDetailView: LoadableFromXib {
 extension TransactionDetailView {
     private func configureAppearence(for transaction: TransactionDisplayable) {
         let direction = transaction.direction
-        let colors: [CGColor]
         let cryptoLabelColor: UIColor
         let directionImage: UIImage?
         let cryptoAmountString: String
         
         if direction == .receive {
+            gradientColors = Theme.Gradient.Details.detailsGreenGradient
             directionImage = UIImage(named: "receiveTransactionIcon")
-            colors = Theme.Gradient.Details.detailsGreenGradient
             cryptoLabelColor = Theme.Text.Color.detailsGreen
             cryptoAmountString = "+ \(transaction.cryptoAmountString)"
         } else {
-            colors = Theme.Gradient.Details.detailsRedGradient
+            gradientColors = Theme.Gradient.Details.detailsRedGradient
             cryptoLabelColor = Theme.Text.Color.detailsRed
             directionImage = UIImage(named: "sendTransactionIcon")
             cryptoAmountString = "- \(transaction.cryptoAmountString)"
@@ -52,10 +61,6 @@ extension TransactionDetailView {
         cryptoAmountLabel.textColor = cryptoLabelColor
         cryptoAmountLabel.text = cryptoAmountString
         directionImageView.image = directionImage
-        backgroundView.gradientView(colors: colors,
-                                    frame: self.bounds,
-                                    startPoint: CGPoint(x: 1.0, y: 0.5),
-                                    endPoint: CGPoint(x: 0.0, y: 0.5))
     }
 
 }

@@ -17,6 +17,8 @@ struct Account {
     let userId: Int
     let accountAddress: String
     let name: String
+    let createdAt: Date
+    let updatedAt: Date
 }
 
 
@@ -31,6 +33,8 @@ extension Account: RealmMappable {
         self.name = object.name
         self.accountAddress = object.accountAddress
         self.currency = Currency(string: object.currency)
+        self.createdAt = Date(timeIntervalSince1970: object.createdAt)
+        self.updatedAt = Date(timeIntervalSince1970: object.updatedAt)
     }
     
     init?(json: JSON) {
@@ -39,7 +43,9 @@ extension Account: RealmMappable {
             let currencyStr = json["currency"].string,
             let accountAddress = json["accountAddress"].string,
             let name = json["name"].string,
-            let balance = json["balance"].string else {
+            let balance = json["balance"].string,
+            let createdAt = json["createdAt"].double,
+            let updatedAt = json["updatedAt"].double else {
                 return nil
         }
         let currency = Currency(string: currencyStr)
@@ -49,21 +55,13 @@ extension Account: RealmMappable {
         self.currency = currency
         self.accountAddress = accountAddress
         
-        // FIXME: перенести приведение от минимальных единиц в displayer
         // FIXME: не забыть поправить в AccountTypeResolver
         
-        
-        switch currency {
-        case .eth, .stq:
-            self.balance = balance.decimalValue() / pow(10, 18)
-        default:
-            self.balance = balance.decimalValue() / pow(10, 8)
-        }
-        
+        self.balance = balance.decimalValue()
         self.name = name
 
-        // FIXME: приходит createdAt и updatedAt
-        
+        self.createdAt = Date(timeIntervalSince1970: createdAt)
+        self.updatedAt = Date(timeIntervalSince1970: updatedAt)
     }
     
     func mapToRealmObject() -> RealmAccount {
@@ -75,6 +73,12 @@ extension Account: RealmMappable {
         object.accountAddress = self.accountAddress
         object.name = self.name
         object.currency = self.currency.ISO
+        
+        let createdAt = self.createdAt.timeIntervalSince1970
+        object.createdAt = Double(createdAt)
+        
+        let updatedAt = self.updatedAt.timeIntervalSince1970
+        object.updatedAt = Double(updatedAt)
         
         return object
     }
