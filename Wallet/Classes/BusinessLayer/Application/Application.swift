@@ -56,6 +56,7 @@ class Application {
     lazy var transactionsProvider: TransactionsProviderProtocol = TransactionsProvider(transactionDataStoreService:
         self.transactionDataStoreService)
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
+    lazy var appLockerProvider: AppLockerProviderProtocol = AppLockerProvider(app: self)
     
     // MARK: - Updaters
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,
