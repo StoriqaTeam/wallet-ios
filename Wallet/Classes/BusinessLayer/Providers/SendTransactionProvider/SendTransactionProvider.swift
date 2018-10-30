@@ -78,7 +78,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     
     func getFeeAndWait() -> (fee: String, wait: String) {
         let wait = feeWaitProvider.getWait(fee: paymentFee)
-        let waitStr = wait.description + "s"
+        let waitStr = wait.description
         let feeStr = currencyFormatter.getStringFrom(amount: paymentFee, currency: selectedAccount.currency)
         return (feeStr, waitStr)
     }
