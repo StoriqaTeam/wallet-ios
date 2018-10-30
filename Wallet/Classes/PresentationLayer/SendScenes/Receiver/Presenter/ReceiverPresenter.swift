@@ -73,7 +73,8 @@ extension ReceiverPresenter: ReceiverViewOutput {
         
         //TODO: нужны проверки, валидный ли номер, чтобы активировать кнопку.
         //Пока кнопка активируется только по клику на контакт и скану
-        view.setNextButtonHidden(true)
+        let validAddress = interactor.validateAddress(input)
+        view.setNextButtonHidden(!validAddress)
         searchContact(text: input)
     }
     

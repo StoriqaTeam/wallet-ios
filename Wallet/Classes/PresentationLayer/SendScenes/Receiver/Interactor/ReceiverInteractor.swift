@@ -16,15 +16,18 @@ class ReceiverInteractor {
     private let sendProvider: SendTransactionProviderProtocol
     private let contactsProvider: ContactsProviderProtocol
     private let contactsUpdater: ContactsCacheUpdaterProtocol
+    private let cryptoAddressResolver: CryptoAddressResolverProtocol
     
     init(sendTransactionBuilder: SendProviderBuilderProtocol,
          contactsProvider: ContactsProviderProtocol,
-         contactsUpdater: ContactsCacheUpdaterProtocol) {
+         contactsUpdater: ContactsCacheUpdaterProtocol,
+         cryptoAddressResolver: CryptoAddressResolverProtocol) {
         
         self.sendTransactionBuilder = sendTransactionBuilder
         self.sendProvider = sendTransactionBuilder.build()
         self.contactsProvider = contactsProvider
         self.contactsUpdater = contactsUpdater
+        self.cryptoAddressResolver = cryptoAddressResolver
     }
     
 }
@@ -81,6 +84,26 @@ extension ReceiverInteractor: ReceiverInteractorInput {
     func getSelectedAccount() -> Account {
         return sendProvider.selectedAccount
     }
+    
+    func validateAddress(_ address: String) -> Bool {
+        let receiverCurrency = sendProvider.receiverCurrency
+        
+        guard let addressCurrency = cryptoAddressResolver.resove(address: address) else {
+            return false
+        }
+        
+        switch addressCurrency {
+        case .eth where receiverCurrency == .eth || receiverCurrency == .stq:
+            sendTransactionBuilder.setScannedAddress(address)
+            return true
+        case .btc where receiverCurrency == .btc:
+            sendTransactionBuilder.setScannedAddress(address)
+            return true
+        default:
+            return false
+        }
+    }
+    
 }
 
 extension ReceiverInteractor: ContactsProviderDelegate {

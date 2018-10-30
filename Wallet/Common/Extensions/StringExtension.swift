@@ -42,8 +42,8 @@ extension String {
         var set = CharacterSet.decimalDigits
         set.insert(charactersIn: Locale.current.decimalSeparator!)
         let cleared = self.components(separatedBy: set.inverted).joined(separator: "")
-        
-        return Decimal(string: cleared) ?? 0
+        let decimal = cleared.replacingOccurrences(of: ",", with: ".")
+        return Decimal(string: decimal) ?? 0
     }
 }
 

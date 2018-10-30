@@ -26,32 +26,16 @@ extension Decimal {
         return formatter
     }()
     
-    static func number(fromInput: String) -> Decimal {
-        for formatter in [pointFormatter, commaFormatter] {
-            if let number = formatter.number(from: fromInput) {
-                return number.decimalValue
-            }
-        }
-        
-        return Decimal(0.0)
-    }
-    
-    init(_ string: String) {
-        if let _ = Decimal(string: string) {
-            self.init(string: string)!
-            return
-        }
-        
-        self.init(string: "0")!
-    }
-    
     init(_ float: Float) {
         let dec = NSNumber(value: float)
         self = dec.decimalValue
     }
     
     var string: String {
-        return String(describing: self)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.usesGroupingSeparator = false
+        return formatter.string(from: NSNumber(value: self.double))!
     }
     
     var double: Double {
