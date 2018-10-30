@@ -241,6 +241,7 @@
 		A560C743216B57F9009F0E95 /* SettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A560C742216B57F9009F0E95 /* SettingsHeaderView.xib */; };
 		A5641E3921870361002C2ABE /* ResetPasswordNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5641E3821870361002C2ABE /* ResetPasswordNetworkProvider.swift */; };
 		A5641E3C2187618D002C2ABE /* SendTransactionNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5641E3B2187618D002C2ABE /* SendTransactionNetworkProvider.swift */; };
+		A5641E462188A409002C2ABE /* AppLockerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5641E452188A409002C2ABE /* AppLockerProvider.swift */; };
 		A5669D37C5A3E197CE60ACEB /* PasswordEmailRecoveryModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C23610EB031515F3F3FD6 /* PasswordEmailRecoveryModuleInput.swift */; };
 		A56B4C76215CD8F10017B337 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B4C75215CD8F10017B337 /* Device.swift */; };
 		A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B4C77215CE1B80017B337 /* Transactions.storyboard */; };
@@ -861,6 +862,7 @@
 		A560C742216B57F9009F0E95 /* SettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsHeaderView.xib; sourceTree = "<group>"; };
 		A5641E3821870361002C2ABE /* ResetPasswordNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordNetworkProvider.swift; sourceTree = "<group>"; };
 		A5641E3B2187618D002C2ABE /* SendTransactionNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionNetworkProvider.swift; sourceTree = "<group>"; };
+		A5641E452188A409002C2ABE /* AppLockerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLockerProvider.swift; sourceTree = "<group>"; };
 		A56B4C75215CD8F10017B337 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A56B4C77215CE1B80017B337 /* Transactions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
 		A56B4C7B215CFE080017B337 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
@@ -2547,6 +2549,14 @@
 			path = SendTransactionNetworkProvider;
 			sourceTree = "<group>";
 		};
+		A5641E442188A409002C2ABE /* AppLockerProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A5641E452188A409002C2ABE /* AppLockerProvider.swift */,
+			);
+			path = AppLockerProvider;
+			sourceTree = "<group>";
+		};
 		A56B4C74215CD8DF0017B337 /* Device */ = {
 			isa = PBXGroup;
 			children = (
@@ -2984,6 +2994,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A5641E442188A409002C2ABE /* AppLockerProvider */,
 				A58DB4E3218346C10024E463 /* ShortPollingTimer */,
 				A5C12E7D217F007F00A7D68C /* AuthTokenProvider */,
 				CE1E348F217F1450001B1477 /* AccountsUpdater */,
@@ -4497,6 +4508,7 @@
 				A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */,
 				CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */,
 				CE1A47DD212E9C5400418C11 /* PinInputView.swift in Sources */,
+				A5641E462188A409002C2ABE /* AppLockerProvider.swift in Sources */,
 				CE526C68212471CE00A2EED2 /* Constants.swift in Sources */,
 				A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */,
 				A574350321776226006B4CAE /* EditProfileViewOutput.swift in Sources */,
