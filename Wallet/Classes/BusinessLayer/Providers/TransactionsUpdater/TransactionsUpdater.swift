@@ -44,6 +44,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
         }
         
         isUpdating = true
+        offset = 0
         
         self.userId = userId
         
@@ -101,7 +102,7 @@ extension TransactionsUpdater {
         dataStore.save(txs)
         
         if txs.count < limit ||
-            isTxAlreadyLoaded(txs.first!) {
+            isTxAlreadyLoaded(txs.last!) {
             isUpdating = false
             defaults.lastTxTimastamp = nil
         } else {

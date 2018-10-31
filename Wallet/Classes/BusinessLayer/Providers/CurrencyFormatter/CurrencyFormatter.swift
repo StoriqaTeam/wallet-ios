@@ -53,7 +53,7 @@ extension CurrencyFormatter {
         formatter.maximumFractionDigits = fractionDigits
         formatter.usesGroupingSeparator = usesGroupingSeparator
         
-        let amountStr = formatter.string(from: NSNumber(value: amount.double))!
+        let amountStr = formatter.string(for: amount)!
         return amountStr
     }
 }

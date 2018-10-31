@@ -35,7 +35,8 @@ extension Decimal {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.usesGroupingSeparator = false
-        return formatter.string(from: NSNumber(value: self.double))!
+        formatter.maximumFractionDigits = 18
+        return formatter.string(for: self)!
     }
     
     var double: Double {
@@ -65,7 +66,7 @@ extension Decimal {
         currencyFormatter.numberStyle = .decimal
         currencyFormatter.maximumFractionDigits = digits
         currencyFormatter.minimumFractionDigits = 0
-        return currencyFormatter.string(from: NSDecimalNumber(decimal: self)) ?? "0"
+        return currencyFormatter.string(for: self) ?? "0"
     }
     
 }
