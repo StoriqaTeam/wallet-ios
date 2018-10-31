@@ -208,7 +208,23 @@ class TxnUpdaterTests: XCTestCase {
         XCTAssertNil(defaults.lastTxTimastamp)
         
         checkSaved()
+        
         resetState()
+        dataStore.save(doneTxn)
+        defaults.lastTxTimastamp = 3.0
+        
+        updater.update(userId: 0)
+        XCTAssertEqual(networkProvider.offsets, [0,2,4,6,8,10])
+        XCTAssertEqual(networkProvider.blocks.count, 6)
+        XCTAssertEqual(networkProvider.blocks[0], ["14","13"])
+        XCTAssertEqual(networkProvider.blocks[1], ["12","11"])
+        XCTAssertEqual(networkProvider.blocks[2], ["10","9"])
+        XCTAssertEqual(networkProvider.blocks[3], ["8","7"])
+        XCTAssertEqual(networkProvider.blocks[4], ["6","5"])
+        XCTAssertEqual(networkProvider.blocks[5], ["4","3"])
+        XCTAssertNil(defaults.lastTxTimastamp)
+        
+        checkSaved()
     }
     
     func testLoadFailure() {
