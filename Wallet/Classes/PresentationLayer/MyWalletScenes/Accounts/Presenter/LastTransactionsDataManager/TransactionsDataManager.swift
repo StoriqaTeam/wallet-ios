@@ -105,6 +105,7 @@ extension TransactionsDataManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedTransaction = transactionsByMonths[indexPath.section][indexPath.row]
         delegate?.didChooseTransaction(selectedTransaction)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

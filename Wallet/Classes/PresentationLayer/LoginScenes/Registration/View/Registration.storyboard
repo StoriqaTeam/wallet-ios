@@ -252,10 +252,10 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Enf-A8-mrG" customClass="SocialNetworkAuthView" customModule="Wallet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="623" width="362" height="175"/>
+                                                <rect key="frame" x="0.0" y="738" width="362" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="175" id="Pfg-e0-oX1"/>
+                                                    <constraint firstAttribute="height" constant="60" id="Pfg-e0-oX1"/>
                                                 </constraints>
                                             </view>
                                         </subviews>

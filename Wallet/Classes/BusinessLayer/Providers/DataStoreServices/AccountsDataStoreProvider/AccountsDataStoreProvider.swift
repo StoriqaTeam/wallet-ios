@@ -11,7 +11,7 @@ import Foundation
 
 protocol AccountsDataStoreServiceProtocol: class {
     func update(_ accounts: [Account])
-    func getAllAccounts(userId: Int) -> [Account]
+    func getAllAccounts() -> [Account]
     func observe(updateHandler: @escaping ([Account]) -> Void)
 }
 
@@ -32,12 +32,8 @@ class AccountsDataStoreService: RealmStorable<Account>, AccountsDataStoreService
         }
     }
     
-    func getAllAccounts(userId: Int) -> [Account] {
-        let allAccounts = find()
-        let usersAccounts = allAccounts.filter {
-            return $0.userId == userId
-        }
-        return usersAccounts
+    func getAllAccounts() -> [Account] {
+        return find()
     }
     
     

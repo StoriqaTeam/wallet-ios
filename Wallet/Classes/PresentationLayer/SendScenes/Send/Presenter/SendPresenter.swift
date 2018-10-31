@@ -117,6 +117,17 @@ extension SendPresenter: SendViewOutput {
         updateConvertedAmount()
         view.setReceiverCurrencyIndex(receiverCurrencyIndex)
         view.setButtonEnabled(formIsValid)
+        
+        
+        // FIXME: disabled before release
+        let selectedCurrency = interactor.getReceiverCurrency()
+        let newCurrency = interactor.getSelectedAccountCurrency()
+        
+        if selectedCurrency != newCurrency {
+            interactor.setReceiverCurrency(newCurrency)
+            let index = currencies.firstIndex(of: newCurrency)!
+            view.setReceiverCurrencyIndex(index)
+        }
     }
     
 }
