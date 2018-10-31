@@ -37,6 +37,9 @@ class SocialNetworkAuthView: LoadableFromXib {
         case register
     }
 
+    
+    // FIXME: hidden before release: remove temporary view in xib !!!
+    
     // IBOutlet
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var facebookButton: UIButton!

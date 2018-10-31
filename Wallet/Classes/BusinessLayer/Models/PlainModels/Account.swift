@@ -55,8 +55,6 @@ extension Account: RealmMappable {
         self.currency = currency
         self.accountAddress = accountAddress
         
-        // FIXME: не забыть поправить в AccountTypeResolver
-        
         self.balance = balance.decimalValue()
         self.name = name
 

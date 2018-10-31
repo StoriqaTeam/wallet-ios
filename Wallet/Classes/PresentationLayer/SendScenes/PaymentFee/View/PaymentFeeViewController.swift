@@ -57,6 +57,10 @@ class PaymentFeeViewController: UIViewController {
         super.viewDidLoad()
         configInterface()
         output.viewIsReady()
+        
+        // FIXME: hidden before release
+        
+        paymentFeeSlider.superview!.isHidden = true
     }
     
     override func willMove(toParent parent: UIViewController?) {

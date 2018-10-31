@@ -58,7 +58,7 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func getSelectedAccountCurrency() -> Currency {
-        return sendProvider.selectedAccount.currency
+        return accountWatcher.getAccount().currency
     }
     
     func getAccountIndex() -> Int {
@@ -122,6 +122,9 @@ extension SendInteractor: SendInteractorInput {
     
     func updateTransactionProvider() {
         sendProvider = sendTransactionBuilder.build()
+        
+        let account = accountWatcher.getAccount()
+        setInitialAccount(account: account)
     }
     
     func startObservers() {
