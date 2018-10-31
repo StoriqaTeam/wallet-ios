@@ -40,9 +40,10 @@ extension String {
     
     func decimalValue() -> Decimal {
         var set = CharacterSet.decimalDigits
-        set.insert(charactersIn: ",.")
+        set.insert(charactersIn: ",.-")
         let cleared = self.components(separatedBy: set.inverted).joined(separator: "")
         let decimal = cleared.replacingOccurrences(of: ",", with: ".")
+        
         return Decimal(string: decimal) ?? 0
     }
 }
