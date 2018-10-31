@@ -380,7 +380,7 @@
 		B8C5EDDE2189ADE600345B79 /* RealmRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDDD2189ADE600345B79 /* RealmRate.swift */; };
 		B8C5EDE22189B3A700345B79 /* RatesDataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDE12189B3A700345B79 /* RatesDataStoreService.swift */; };
 		B8C5EDE52189C16000345B79 /* RatesUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDE42189C16000345B79 /* RatesUpdater.swift */; };
-		B8C5EDE82189D7E200345B79 /* Ratesprovider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDE72189D7E200345B79 /* Ratesprovider.swift */; };
+		B8C5EDE82189D7E200345B79 /* RatesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDE72189D7E200345B79 /* RatesProvider.swift */; };
 		B8D4D58E13E50746B516D91C /* SettingsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD115AF70D53CBDC0F87BD /* SettingsModuleOutput.swift */; };
 		B98F7B6D236E5C7D1D3FD552 /* ExchangeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16F0648E2EB779A26C6732 /* ExchangeRouter.swift */; };
 		BC265F78A4724A6201226822 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1C3889E0ABA3DD0896A52 /* LoginRouter.swift */; };
@@ -999,7 +999,7 @@
 		B8C5EDDD2189ADE600345B79 /* RealmRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRate.swift; sourceTree = "<group>"; };
 		B8C5EDE12189B3A700345B79 /* RatesDataStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesDataStoreService.swift; sourceTree = "<group>"; };
 		B8C5EDE42189C16000345B79 /* RatesUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesUpdater.swift; sourceTree = "<group>"; };
-		B8C5EDE72189D7E200345B79 /* Ratesprovider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratesprovider.swift; sourceTree = "<group>"; };
+		B8C5EDE72189D7E200345B79 /* RatesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesProvider.swift; sourceTree = "<group>"; };
 		B8DFDAFBB213DB18269D4ACB /* PasswordRecoveryConfirmViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmViewOutput.swift; sourceTree = "<group>"; };
 		B92A70B2DE1269BAE2D165B8 /* PopUpRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpRouter.swift; sourceTree = "<group>"; };
 		BA5EBFF4CABBEDECFEEA987F /* PasswordRecoveryConfirmPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmPresenter.swift; sourceTree = "<group>"; };
@@ -3372,7 +3372,7 @@
 		B8C5EDE62189D7D300345B79 /* RatesProvider */ = {
 			isa = PBXGroup;
 			children = (
-				B8C5EDE72189D7E200345B79 /* Ratesprovider.swift */,
+				B8C5EDE72189D7E200345B79 /* RatesProvider.swift */,
 			);
 			path = RatesProvider;
 			sourceTree = "<group>";
@@ -4948,7 +4948,7 @@
 				35845AAC175D6D276692694B /* ReceiverInteractorInput.swift in Sources */,
 				A574350421776226006B4CAE /* EditProfileInteractor.swift in Sources */,
 				A56ED37B216CAE37009FA58B /* TransactionDescriptionContactView.swift in Sources */,
-				B8C5EDE82189D7E200345B79 /* Ratesprovider.swift in Sources */,
+				B8C5EDE82189D7E200345B79 /* RatesProvider.swift in Sources */,
 				A574352221777383006B4CAE /* SessionsInteractor.swift in Sources */,
 				CAA84A072868E775F87B4927 /* ReceiverInteractorOutput.swift in Sources */,
 				F04C3B3DC184DB88429D7531 /* ReceiverInteractor.swift in Sources */,
