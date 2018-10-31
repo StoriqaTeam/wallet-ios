@@ -10,5 +10,6 @@ import Foundation
 
 
 protocol PaymentFeeInteractorOutput: class {
-
+    func sendTxFailed(message: String)
+    func sendTxSucceed()
 }

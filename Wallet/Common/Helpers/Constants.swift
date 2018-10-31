@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Slog
 
-let log = Slog(level: .debug, useEmoji: true)
+let log = Slog(level: .debug, useEmoji: false)
 
 
 struct Constants {
@@ -18,6 +18,15 @@ struct Constants {
     
     struct Network {
         static let baseUrl = "https://pay-nightly.stq.cloud/v1"
+        
+        struct Rates {
+            static let ratesBaseUrl = "https://min-api.cryptocompare.com/data/pricemulti?"
+        }
+    }
+    
+    struct Currencies {
+        static let defaultFiatCurrencies =  ["USD", "EUR", "RUB"]
+        static let defaultCryptoCurrencies = ["BTC", "ETH", "STQ"]
     }
     
     struct Errors {

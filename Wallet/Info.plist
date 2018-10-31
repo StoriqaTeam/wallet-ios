@@ -21,25 +21,9 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleURLName</key>
-			<string></string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>storiqaWallet</string>
-			</array>
-		</dict>
-		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb425217154570731</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.245895770851-qlolkejdjnske28jmbdgs89969o0a7ec</string>
 			</array>
 		</dict>
 		<dict>

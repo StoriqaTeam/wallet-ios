@@ -36,15 +36,18 @@ class MyWalletViewController: UIViewController {
         return .lightContent
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        showBarButton(true)
-    }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        showBarButton(false)
-    }
+    // FIXME: hidden before release
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        showBarButton(true)
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        showBarButton(false)
+//    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -53,8 +56,11 @@ class MyWalletViewController: UIViewController {
                           startPoint: CGPoint(x: 0.0, y: 0.0),
                           endPoint: CGPoint(x: 1.0, y: 1.0),
                           insertFirst: true)
-        guard let height = navigationController?.navigationBar.frame.height else { return }
-        addNewButton.moveAndResizeImage(for: height)
+        
+        // FIXME: hidden before release
+        
+//        guard let height = navigationController?.navigationBar.frame.height else { return }
+//        addNewButton.moveAndResizeImage(for: height)
     }
     
     // MARK: Actions
@@ -89,9 +95,13 @@ extension MyWalletViewController {
     
     private func configureNavBar() {
         guard let navigationBar = self.navigationController?.navigationBar else { return }
-        navigationController?.navigationBar.barStyle = .blackTranslucent
-        addNewButton.addToNavigationBar(navigationBar)
-        addNewButton.addTarget(self, action: #selector(addNew), for: .touchUpInside)
+        navigationBar.barStyle = .blackTranslucent
+        
+        
+        // FIXME: hidden before release
+        
+//        addNewButton.addToNavigationBar(navigationBar)
+//        addNewButton.addTarget(self, action: #selector(addNew), for: .touchUpInside)
     }
     
     /// Show or hide the image from NavBar while going to next screen or back to initial screen
@@ -102,5 +112,4 @@ extension MyWalletViewController {
             self.addNewButton.alpha = show ? 1.0 : 0.0
         }
     }
-    
 }

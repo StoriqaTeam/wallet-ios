@@ -65,7 +65,7 @@ class ResizableNavigationBarButton: UIButton {
     
     func moveAndResizeImage(for height: CGFloat) {
         let coeff: CGFloat = {
-            let delta = height - BarButtonConst.NavBarHeightSmallState
+            let delta = min(BarButtonConst.NavBarHeightLargeState, height) - BarButtonConst.NavBarHeightSmallState
             let heightDifferenceBetweenStates = (BarButtonConst.NavBarHeightLargeState - BarButtonConst.NavBarHeightSmallState)
             return delta / heightDifferenceBetweenStates
         }()

@@ -16,6 +16,7 @@ class PasswordRecoveryConfirmPresenter {
     var interactor: PasswordRecoveryConfirmInteractorInput!
     var router: PasswordRecoveryConfirmRouterInput!
     
+    private var storiqaLoader: StoriqaLoader!
 }
 
 
@@ -25,9 +26,11 @@ extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmViewOutput {
 
     func viewIsReady() {
         view.setupInitialState()
+        addLoader()
     }
 
     func confirmReset(newPassword: String) {
+        storiqaLoader.startLoader()
         interactor.confirmReset(newPassword: newPassword)
     }
     
@@ -41,16 +44,23 @@ extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmViewOutput {
 // MARK: - PasswordRecoveryConfirmInteractorOutput
 
 extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmInteractorOutput {
+    func formValidationFailed(password: String?) {
+        storiqaLoader.stopLoader()
+        view.showErrorMessage(password)
+    }
+    
     
     func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?) {
         view.setFormIsValid(valid, passwordsEqualityMessage: passwordsEqualityMessage)
     }
 
     func passwordRecoverySucceed() {
+        storiqaLoader.stopLoader()
         router.showSuccess(popUpDelegate: self, from: view.viewController)
     }
     
     func passwordRecoveryFailed(message: String) {
+        storiqaLoader.stopLoader()
         router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
     }
     
@@ -88,7 +98,18 @@ extension PasswordRecoveryConfirmPresenter: PopUpPasswordRecoveryConfirmSuccessV
 extension PasswordRecoveryConfirmPresenter: PopUpPasswordRecoveryConfirmFailedVMDelegate {
     
     func retry() {
+        storiqaLoader.startLoader()
         interactor.retry()
     }
     
+}
+
+
+// MARK: - Private methods
+
+extension PasswordRecoveryConfirmPresenter {
+    private func addLoader() {
+        guard let parentView = view.viewController.view else { return }
+        storiqaLoader = StoriqaLoader(parentView: parentView)
+    }
 }

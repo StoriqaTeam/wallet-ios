@@ -14,8 +14,9 @@ class ExchangeInteractor {
     
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let accountsProvider: AccountsProviderProtocol
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private var accountsUpadteChannelInput: AccountsUpdateChannel?
     private var currencyConverter: CurrencyConverterProtocol!
     private var recepientAccount: Account? {
         didSet { updateConverter() }
@@ -26,7 +27,7 @@ class ExchangeInteractor {
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
          accountsProvider: AccountsProviderProtocol,
-         converterFactory: CurrecncyConverterFactoryProtocol,
+         converterFactory: CurrencyConverterFactoryProtocol,
          feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
         self.accountWatcher = accountWatcher
         self.accountsProvider = accountsProvider
@@ -41,7 +42,22 @@ class ExchangeInteractor {
         
         loadPaymentFees()
         updateConverter()
-        
+    }
+    
+    deinit {
+        self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
+        self.accountsUpadteChannelInput = nil
+    }
+    
+    // MARK: - Channels
+    
+    private lazy var objId: String = {
+        let identifier = "\(type(of: self)):\(String(format: "%p", unsafeBitCast(self, to: Int.self)))"
+        return identifier
+    }()
+    
+    func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
+        self.accountsUpadteChannelInput = channel
     }
 }
 
@@ -49,9 +65,6 @@ class ExchangeInteractor {
 // MARK: - ExchangeInteractorInput
 
 extension ExchangeInteractor: ExchangeInteractorInput {
-    func startObservers() {
-        accountsProvider.setObserver(self)
-    }
     
     func getAccountsCount() -> Int {
         return accountsProvider.getAllAccounts().count
@@ -132,6 +145,13 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         updateFeeCount()
         updateFeeAndWait()
         updateTotal()
+    }
+    
+    func startObservers() {
+        let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
+            self?.accountsDidUpdate(accounts)
+        }
+        self.accountsUpadteChannelInput?.addObserver(accountsObserver)
     }
     
 }
@@ -245,10 +265,10 @@ extension ExchangeInteractor {
 }
 
 
-// MARK: - AccountsProviderDelegate
+// MARK: - Private methods
 
-extension ExchangeInteractor: AccountsProviderDelegate {
-    func accountsDidUpdate(_ accounts: [Account]) {
+extension ExchangeInteractor {
+    private func accountsDidUpdate(_ accounts: [Account]) {
         let account = accountWatcher.getAccount()
         let index = accounts.index { $0 == account } ?? 0
         

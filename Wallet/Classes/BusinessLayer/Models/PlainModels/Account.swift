@@ -2,7 +2,7 @@
 //  Account.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 05/10/2018.
+//  Created by Storiqa on 05/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable identifier_name
@@ -17,6 +17,8 @@ struct Account {
     let userId: Int
     let accountAddress: String
     let name: String
+    let createdAt: Date
+    let updatedAt: Date
 }
 
 
@@ -25,12 +27,14 @@ struct Account {
 extension Account: RealmMappable {
     init(_ object: RealmAccount) {
         self.id = object.id
-        self.balance = Decimal(object.balance)
+        self.balance = object.balance.decimalValue()
         self.currency = Currency.btc
         self.userId = object.userId
         self.name = object.name
         self.accountAddress = object.accountAddress
         self.currency = Currency(string: object.currency)
+        self.createdAt = Date(timeIntervalSince1970: object.createdAt)
+        self.updatedAt = Date(timeIntervalSince1970: object.updatedAt)
     }
     
     init?(json: JSON) {
@@ -39,7 +43,9 @@ extension Account: RealmMappable {
             let currencyStr = json["currency"].string,
             let accountAddress = json["accountAddress"].string,
             let name = json["name"].string,
-            let balance = json["balance"].string else {
+            let balance = json["balance"].string,
+            let createdAt = json["createdAt"].double,
+            let updatedAt = json["updatedAt"].double else {
                 return nil
         }
         let currency = Currency(string: currencyStr)
@@ -47,19 +53,13 @@ extension Account: RealmMappable {
         self.id = id
         self.userId = userId
         self.currency = currency
+        self.accountAddress = accountAddress
         
-        switch currency {
-        case .eth, .stq:
-            self.accountAddress = "0x\(accountAddress)"
-        default:
-            self.accountAddress = accountAddress
-        }
-        
+        self.balance = balance.decimalValue()
         self.name = name
-        self.balance = Decimal(balance) / pow(10, 18)
 
-        // FIXME: приходит createdAt и updatedAt
-        
+        self.createdAt = Date(timeIntervalSince1970: createdAt)
+        self.updatedAt = Date(timeIntervalSince1970: updatedAt)
     }
     
     func mapToRealmObject() -> RealmAccount {
@@ -71,6 +71,12 @@ extension Account: RealmMappable {
         object.accountAddress = self.accountAddress
         object.name = self.name
         object.currency = self.currency.ISO
+        
+        let createdAt = self.createdAt.timeIntervalSince1970
+        object.createdAt = Double(createdAt)
+        
+        let updatedAt = self.updatedAt.timeIntervalSince1970
+        object.updatedAt = Double(updatedAt)
         
         return object
     }

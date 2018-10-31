@@ -114,6 +114,7 @@ extension ProfilePresenter: ProfileModuleInput {
 extension ProfilePresenter: PopUpSignOutVMDelegate {
     
     func signOut() {
+        interactor.deleteAppData()
         router.signOut()
     }
     

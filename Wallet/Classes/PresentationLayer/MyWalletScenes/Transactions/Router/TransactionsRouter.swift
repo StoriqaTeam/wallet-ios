@@ -10,7 +10,11 @@ import Foundation
 
 
 class TransactionsRouter {
+    private let app: Application
     
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -18,10 +22,10 @@ class TransactionsRouter {
 
 extension TransactionsRouter: TransactionsRouterInput {
     func showTransactionDetails(with transaction: TransactionDisplayable, from viewController: UIViewController) {
-        TransactionDetailsModule.create(transaction: transaction).present(from: viewController)
+        TransactionDetailsModule.create(app: app, transaction: transaction).present(from: viewController)
     }
     
     func showTransactionFilter(with transactionDateFilter: TransactionDateFilterProtocol, from viewController: UIViewController) {
-        TransactionFilterModule.create(transactionDateFilter: transactionDateFilter).present(from: viewController)
+        TransactionFilterModule.create(app: app, transactionDateFilter: transactionDateFilter).present(from: viewController)
     }
 }

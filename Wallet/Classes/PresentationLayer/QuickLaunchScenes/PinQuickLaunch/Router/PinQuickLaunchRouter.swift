@@ -10,6 +10,12 @@ import Foundation
 
 
 class PinQuickLaunchRouter {
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 
 }
 
@@ -19,15 +25,15 @@ class PinQuickLaunchRouter {
 extension PinQuickLaunchRouter: PinQuickLaunchRouterInput {
     
     func showPinSetup(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController) {
-        PinSetupModule.create(qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
+        PinSetupModule.create(app: app, qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
     }
     
     func showAuthorizedZone() {
-        MainTabBarModule.create().present()
+        MainTabBarModule.create(app: app).present()
     }
     
     func showBiometryQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController) {
-        BiometryQuickLaunchModule.create(qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
+        BiometryQuickLaunchModule.create(app: app, qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
     }
     
 }

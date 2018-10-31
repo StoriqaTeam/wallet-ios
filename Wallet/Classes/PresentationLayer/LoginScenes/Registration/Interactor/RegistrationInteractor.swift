@@ -69,6 +69,15 @@ extension RegistrationInteractor: RegistrationInteractorInput {
                 case .success:
                     strongSelf.output.registrationSucceed(email: registrationData.email)
                 case .failure(let error):
+                    if let error = error as? RegistrationProviderError {
+                        switch error {
+                        case .validationError(let email, let password):
+                            strongSelf.output.formValidationFailed(email: email, password: password)
+                            return
+                        default: break
+                        }
+                    }
+                    
                     strongSelf.output.registrationFailed(message: error.localizedDescription)
                 }
         }

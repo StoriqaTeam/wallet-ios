@@ -8,33 +8,22 @@ import UIKit
 
 class ReceiverModule {
     
-    class func create(sendTransactionBuilder: SendProviderBuilderProtocol,
+    class func create(app: Application,
+                      sendTransactionBuilder: SendProviderBuilderProtocol,
                       tabBar: UITabBarController) -> ReceiverModuleInput {
-        let router = ReceiverRouter()
         
-        //Injections
-        let contactsDataStoreService = ContactsDataStoreService()
-        let contactsAddressLinker = ContactsAddressLinker(contactsDataStoreService: contactsDataStoreService)
-        let deviceContactsFetcher = DeviceContactsFetcher()
-        let contactsNetworkProvider = FakeContactsNetworkProvider()
-        let contactsUpdater = ContactsCacheUpdater(deviceContactsFetcher: deviceContactsFetcher,
-                                                   contactsNetworkProvider: contactsNetworkProvider,
-                                                   contactsAddressLinker: contactsAddressLinker)
-        let contactsProvider = ContactsProvider(dataStoreService: contactsDataStoreService)
-        let formatter = CurrencyFormatter()
-        let converterFactory = CurrecncyConverterFactory()
-        let currencyImageProvider = CurrencyImageProvider()
-        let contactsSorter = ContactsSorter()
-        let contactsMapper = ContactsMapper()
+        let router = ReceiverRouter(app: app)
         
         let interactor = ReceiverInteractor(sendTransactionBuilder: sendTransactionBuilder,
-                                            contactsProvider: contactsProvider,
-                                            contactsUpdater: contactsUpdater)
-        let presenter = ReceiverPresenter(currencyFormatter: formatter,
-                                          converterFactory: converterFactory,
-                                          currencyImageProvider: currencyImageProvider,
-                                          contactsMapper: contactsMapper,
-                                          contactsSorter: contactsSorter)
+                                            contactsProvider: app.contactsProvider,
+                                            contactsUpdater: app.contactsChacheUpdater,
+                                            cryptoAddressResolver: app.cryptoAddressResolver)
+        
+        let presenter = ReceiverPresenter(currencyFormatter: app.currencyFormatter,
+                                          converterFactory: app.currencyConverterFactory,
+                                          currencyImageProvider: app.currencyImageProvider,
+                                          contactsMapper: app.contactsMapper,
+                                          contactsSorter: app.contactsSorter)
         presenter.mainTabBar = tabBar
         
         let accountsVC = UIStoryboard(name: "Receiver", bundle: nil)

@@ -26,7 +26,6 @@ class PopUpSendConfirmVM: PopUpViewModelProtocol {
         attrText.append(NSAttributedString(string: " " + "to" + " "))
         attrText.append(NSAttributedString(string: address, attributes: boldTextAttributes))
         
-        //TODO: image
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "barrierIcon"),
                                    title: "confirm_send".localized(),
                                    attributedText: attrText,

@@ -138,9 +138,9 @@
                                                                 </connections>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rd6-xp-3d5">
-                                                                <rect key="frame" x="337" y="7.6666666666666856" width="25" height="25"/>
+                                                                <rect key="frame" x="337" y="0.0" width="25" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="Sor-sv-cA1"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="Sor-sv-cA1"/>
                                                                     <constraint firstAttribute="width" constant="25" id="iKJ-Vk-jxX"/>
                                                                 </constraints>
                                                                 <color key="tintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -152,12 +152,12 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="Rd6-xp-3d5" firstAttribute="centerY" secondItem="st2-ay-UMs" secondAttribute="centerY" id="E3B-SO-xDW"/>
                                                             <constraint firstAttribute="bottom" secondItem="cUJ-PB-frV" secondAttribute="bottom" id="J6J-lI-1J9"/>
                                                             <constraint firstItem="cUJ-PB-frV" firstAttribute="top" secondItem="st2-ay-UMs" secondAttribute="top" id="Mx5-Qo-2N4"/>
                                                             <constraint firstAttribute="trailing" secondItem="Rd6-xp-3d5" secondAttribute="trailing" id="Oux-NG-TST"/>
                                                             <constraint firstItem="cUJ-PB-frV" firstAttribute="leading" secondItem="st2-ay-UMs" secondAttribute="leading" id="dPg-3S-q2A"/>
                                                             <constraint firstAttribute="trailing" secondItem="cUJ-PB-frV" secondAttribute="trailing" id="r2i-DT-qOn"/>
+                                                            <constraint firstItem="Rd6-xp-3d5" firstAttribute="top" secondItem="st2-ay-UMs" secondAttribute="top" id="yl0-Kj-3BK"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9D9-8B-6kz">
@@ -177,9 +177,9 @@
                                                                 </connections>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xp-Gk-DTq">
-                                                                <rect key="frame" x="337" y="7.6666666666666856" width="25" height="25"/>
+                                                                <rect key="frame" x="337" y="0.0" width="25" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="JuR-zi-UEv"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="JuR-zi-UEv"/>
                                                                     <constraint firstAttribute="width" constant="25" id="MsZ-vT-gIW"/>
                                                                 </constraints>
                                                                 <color key="tintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -193,7 +193,7 @@
                                                         <constraints>
                                                             <constraint firstItem="Ztt-A7-VQL" firstAttribute="leading" secondItem="9D9-8B-6kz" secondAttribute="leading" id="BKE-vF-mDB"/>
                                                             <constraint firstItem="Ztt-A7-VQL" firstAttribute="top" secondItem="9D9-8B-6kz" secondAttribute="top" id="N17-LV-oEx"/>
-                                                            <constraint firstItem="9Xp-Gk-DTq" firstAttribute="centerY" secondItem="9D9-8B-6kz" secondAttribute="centerY" id="YK4-z0-Auc"/>
+                                                            <constraint firstItem="9Xp-Gk-DTq" firstAttribute="top" secondItem="9D9-8B-6kz" secondAttribute="top" id="TbG-zQ-TQ8"/>
                                                             <constraint firstAttribute="bottom" secondItem="Ztt-A7-VQL" secondAttribute="bottom" id="cWO-Ua-xKH"/>
                                                             <constraint firstAttribute="trailing" secondItem="Ztt-A7-VQL" secondAttribute="trailing" id="uUH-IJ-amg"/>
                                                             <constraint firstAttribute="trailing" secondItem="9Xp-Gk-DTq" secondAttribute="trailing" id="w9D-3v-DXA"/>
@@ -252,10 +252,10 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Enf-A8-mrG" customClass="SocialNetworkAuthView" customModule="Wallet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="623" width="362" height="175"/>
+                                                <rect key="frame" x="0.0" y="738" width="362" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="175" id="Pfg-e0-oX1"/>
+                                                    <constraint firstAttribute="height" constant="60" id="Pfg-e0-oX1"/>
                                                 </constraints>
                                             </view>
                                         </subviews>

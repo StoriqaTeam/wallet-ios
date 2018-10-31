@@ -28,12 +28,12 @@ class AccountTypeResolver: AccountTypeResolverProtocol {
             return .btc
         case .eth:
             return .eth
-        case .stq where account.balance > 5000:
+        case .stq where account.balance > 5000 * pow(10, 18):
             return .stqGold
-        case .stq where account.balance <= 1000:
-            return .stq
-        default:
+        case .stq where account.balance > 1000 * pow(10, 18):
             return .stqBlack
+        default:
+            return .stq
         }
     }
     

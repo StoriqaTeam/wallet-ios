@@ -19,7 +19,8 @@ class MainTabBarPresenter {
     private lazy var myWalletModule: MyWalletModuleInput = {
         let watcher = interactor.getAccountWatcher()
         let user = interactor.getCurrentUser()
-        let module = MyWalletModule.create(tabBar: view.mainTabBar!, accountWatcher: watcher, user: user)
+        let app = interactor.getApplication()
+        let module = MyWalletModule.create(app: app, tabBar: view.mainTabBar!, accountWatcher: watcher, user: user)
         module.output = self
         return module
     }()
@@ -27,22 +28,27 @@ class MainTabBarPresenter {
     private lazy var sendModule: SendModuleInput = {
         let watcher = interactor.getAccountWatcher()
         let user = interactor.getCurrentUser()
-        return SendModule.create(accountWatcher: watcher, user: user, tabBar: view.mainTabBar!)
+        let app = interactor.getApplication()
+        return SendModule.create(app: app, accountWatcher: watcher, user: user, tabBar: view.mainTabBar!)
     }()
     
-    private lazy var exchangeModule: ExchangeModuleInput = {
-        let watcher = interactor.getAccountWatcher()
-        let user = interactor.getCurrentUser()
-        return ExchangeModule.create(accountWatcher: watcher, user: user)
-    }()
+    // FIXME: hidden before release
+    
+//    private lazy var exchangeModule: ExchangeModuleInput = {
+//        let watcher = interactor.getAccountWatcher()
+//        let user = interactor.getCurrentUser()
+//        let app = interactor.getApplication()
+//        return ExchangeModule.create(app: app, accountWatcher: watcher, user: user)
+//    }()
     
     private lazy var depositModule: DepositModuleInput = {
         let watcher = interactor.getAccountWatcher()
         let user = interactor.getCurrentUser()
-        return DepositModule.create(accountWatcher: watcher, user: user)
+        let app = interactor.getApplication()
+        return DepositModule.create(app: app, accountWatcher: watcher, user: user)
     }()
     
-    private lazy var profileModule: ProfileModuleInput = ProfileModule.create()
+    private lazy var profileModule: ProfileModuleInput = ProfileModule.create(app: interactor.getApplication())
     
 }
 
@@ -93,7 +99,9 @@ extension MainTabBarPresenter {
         view.viewControllers = [
             myWalletModule.viewController.wrapToNavigationController(),
             sendModule.viewController.wrapToNavigationController(),
-            exchangeModule.viewController.wrapToNavigationController(),
+            
+            // FIXME: hidden before release
+//            exchangeModule.viewController.wrapToNavigationController(),
             depositModule.viewController.wrapToNavigationController(),
             profileModule.viewController.wrapToNavigationController()
         ]

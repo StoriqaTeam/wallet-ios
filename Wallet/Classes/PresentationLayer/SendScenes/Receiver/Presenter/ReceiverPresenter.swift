@@ -18,7 +18,7 @@ class ReceiverPresenter {
     weak var mainTabBar: UITabBarController!
     
     private let currencyFormatter: CurrencyFormatterProtocol
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let currencyImageProvider: CurrencyImageProviderProtocol
     private let contactsMapper: ContactsMapper
     private let contactsSorter: ContactsSorterProtocol
@@ -27,7 +27,7 @@ class ReceiverPresenter {
     private var contacts: [ContactDisplayable] = []
     
     init(currencyFormatter: CurrencyFormatterProtocol,
-         converterFactory: CurrecncyConverterFactoryProtocol,
+         converterFactory: CurrencyConverterFactoryProtocol,
          currencyImageProvider: CurrencyImageProviderProtocol,
          contactsMapper: ContactsMapper,
          contactsSorter: ContactsSorterProtocol) {
@@ -73,7 +73,8 @@ extension ReceiverPresenter: ReceiverViewOutput {
         
         //TODO: нужны проверки, валидный ли номер, чтобы активировать кнопку.
         //Пока кнопка активируется только по клику на контакт и скану
-        view.setNextButtonHidden(true)
+        let validAddress = interactor.validateAddress(input)
+        view.setNextButtonHidden(!validAddress)
         searchContact(text: input)
     }
     

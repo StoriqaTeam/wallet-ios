@@ -2,7 +2,7 @@
 //  TransactionMapper.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 09/10/2018.
+//  Created by Storiqa on 09/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -12,25 +12,30 @@ import Foundation
 class TransactionMapper: Mappable {
     
     private let currencyFormatter: CurrencyFormatterProtocol
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let transactionDirectionResolver: TransactionDirectionResolverProtocol
     private let transactionOpponentResolver: TransactionOpponentResolverProtocol
+    private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
     init(currencyFormatter: CurrencyFormatterProtocol,
-         converterFactory: CurrecncyConverterFactoryProtocol,
+         converterFactory: CurrencyConverterFactoryProtocol,
          transactionDirectionResolver: TransactionDirectionResolverProtocol,
-         transactionOpponentResolver: TransactionOpponentResolverProtocol) {
+         transactionOpponentResolver: TransactionOpponentResolverProtocol,
+         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.currencyFormatter = currencyFormatter
         self.converterFactory = converterFactory
         self.transactionDirectionResolver = transactionDirectionResolver
         self.transactionOpponentResolver = transactionOpponentResolver
+        self.denominationUnitsConverter = denominationUnitsConverter
     }
     
     func map(from obj: Transaction) -> TransactionDisplayable {
-        let cryptoAmountDecimal = obj.cryptoAmount
+        
         let currency = obj.currency
-        let feeAmountDecimal = obj.fee
+        let cryptoAmountDecimal = denominationUnitsConverter.amountToMaxUnits(obj.cryptoAmount, currency: currency)
+        let feeAmountDecimal = denominationUnitsConverter.amountToMaxUnits(obj.fee, currency: currency)
+        
         let converter = converterFactory.createConverter(from: currency)
         let fiatAmoutDecimal = converter.convert(amount: cryptoAmountDecimal, to: .fiat)
         
@@ -59,7 +64,7 @@ extension TransactionMapper {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        let timestamp = transaction.timestamp
+        let timestamp = transaction.createdAt
         return dateFormatter.string(from: timestamp)
     }
 }

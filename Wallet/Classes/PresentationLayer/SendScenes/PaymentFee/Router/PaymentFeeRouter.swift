@@ -10,6 +10,12 @@ import Foundation
 
 
 class PaymentFeeRouter {
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 
 }
 
@@ -23,6 +29,18 @@ extension PaymentFeeRouter: PaymentFeeRouterInput {
                      popUpDelegate: PopUpSendConfirmVMDelegate,
                      from viewController: UIViewController) {
         let viewModel = PopUpSendConfirmVM(amount: amount, address: address)
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showConfirmFailed(message: String,
+                           from viewController: UIViewController) {
+        let viewModel = PopUpSendConfirmFailureVM(message: message)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showConfirmSucceed(popUpDelegate: PopUpSendConfirmSuccessVMDelegate, from viewController: UIViewController) {
+        let viewModel = PopUpSendConfirmSuccessVM()
         viewModel.delegate = popUpDelegate
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }

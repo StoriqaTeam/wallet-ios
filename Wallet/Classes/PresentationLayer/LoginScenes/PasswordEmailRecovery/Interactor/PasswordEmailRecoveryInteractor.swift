@@ -13,6 +13,13 @@ class PasswordEmailRecoveryInteractor {
     weak var output: PasswordEmailRecoveryInteractorOutput!
     
     private var email: String?
+    
+    private let networkProvider: ResetPasswordNetworkProviderProtocol
+    
+    init(networkProvider: ResetPasswordNetworkProviderProtocol) {
+        self.networkProvider = networkProvider
+    }
+    
 }
 
 
@@ -22,16 +29,14 @@ extension PasswordEmailRecoveryInteractor: PasswordEmailRecoveryInteractorInput 
     func resetPassword(email: String) {
         self.email = email
         
-        //TODO: implement in new provider
-        log.warn("implement resetPassword provider")
-        
-        // FIXME: - stub
-        if Bool.random() {
-            output.emailSentSuccessfully()
-        } else {
-            output.emailSendingFailed(message: Constants.Errors.userFriendly)
+        networkProvider.resetPassword(email: email, queue: .main) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.output.emailSentSuccessfully()
+            case .failure(let error):
+                self?.output.emailSendingFailed(message: error.localizedDescription)
+            }
         }
-        // ------------------------------
     }
     
     func retry() {

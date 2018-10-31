@@ -9,8 +9,8 @@ import UIKit
 
 class BiometryQuickLaunchModule {
     
-    class func create(qiuckLaunchProvider: QuickLaunchProviderProtocol) -> BiometryQuickLaunchModuleInput {
-        let router = BiometryQuickLaunchRouter()
+    class func create(app: Application, qiuckLaunchProvider: QuickLaunchProviderProtocol) -> BiometryQuickLaunchModuleInput {
+        let router = BiometryQuickLaunchRouter(app: app)
         let presenter = BiometryQuickLaunchPresenter()
         let interactor = BiometryQuickLaunchInteractor(qiuckLaunchProvider: qiuckLaunchProvider)
         

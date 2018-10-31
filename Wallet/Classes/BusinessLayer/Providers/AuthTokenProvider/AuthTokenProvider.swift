@@ -2,7 +2,7 @@
 //  AuthTokenProvider.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 23/10/2018.
+//  Created by Storiqa on 23/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -18,14 +18,14 @@ struct AuthToken {
 
 protocol AuthTokenProviderProtocol {
     func currentAuthToken(completion: @escaping (Result<String>) -> Void)
-}
+} 
 
 
 class AuthTokenProvider: AuthTokenProviderProtocol {
     
     private var authToken: AuthToken?
     private let jwtParser: JwtTokenParserProtocol
-    private let defaults: DefaultsProviderProtocol
+    private let defaults: AuthTokenDefaultsProviderProtocol
     private let keychain: KeychainProviderProtocol
     private let userDataStore: UserDataStoreServiceProtocol
     private let loginNetworkProvider: LoginNetworkProviderProtocol
@@ -34,7 +34,7 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
         return Int(Date().timeIntervalSince1970)
     }
     
-    init(defaults: DefaultsProviderProtocol,
+    init(defaults: AuthTokenDefaultsProviderProtocol,
          keychain: KeychainProviderProtocol,
          loginNetworkProvider: LoginNetworkProviderProtocol,
          userDataStoreService: UserDataStoreServiceProtocol) {

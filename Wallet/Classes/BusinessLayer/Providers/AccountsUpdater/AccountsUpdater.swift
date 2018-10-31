@@ -15,11 +15,13 @@ protocol AccountsUpdaterProtocol {
 class AccountsUpdater: AccountsUpdaterProtocol {
     
     private let accountsNetworkProvider: AccountsNetworkProviderProtocol
-    private let accountsDataStore: AccountsDataStoreProtocol
+    private let accountsDataStore: AccountsDataStoreServiceProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
     
+    private var isUpdating = false
+    
     init(accountsNetworkProvider: AccountsNetworkProviderProtocol,
-         accountsDataStore: AccountsDataStoreProtocol,
+         accountsDataStore: AccountsDataStoreServiceProtocol,
          authTokenProvider: AuthTokenProviderProtocol) {
         self.accountsNetworkProvider = accountsNetworkProvider
         self.accountsDataStore = accountsDataStore
@@ -27,6 +29,12 @@ class AccountsUpdater: AccountsUpdaterProtocol {
     }
     
     func update(userId: Int) {
+        guard !isUpdating else {
+            return
+        }
+        
+        isUpdating = true
+        
         authTokenProvider.currentAuthToken { [weak self] (result) in
             switch result {
             case .success(let token):
@@ -38,13 +46,15 @@ class AccountsUpdater: AccountsUpdaterProtocol {
                         case .success(let accounts):
                             log.debug(accounts.map { $0.id })
                             self?.accountsDataStore.update(accounts)
-                            
                         case .failure(let error):
                             log.warn(error.localizedDescription)
                         }
+                        
+                        self?.isUpdating = false
                 }
             case .failure(let error):
                 log.warn(error.localizedDescription)
+                self?.isUpdating = false
             }
         }
     }

@@ -2,7 +2,7 @@
 //  AccountsLinker.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 24.09.2018.
+//  Created by Storiqa on 24.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -10,9 +10,8 @@ import Foundation
 
 
 protocol AccountsLinkerProtocol: class {
-    func getTransactionsFor(account: Account) -> [TransactionDisplayable]?
+    func getTransactionsFor(account: Account) -> [Transaction]?
     func getAllAccounts() -> [Account]
-    func setObserver(_ observer: AccountsProviderDelegate)
 }
 
 
@@ -27,7 +26,7 @@ class AccountsLinker: AccountsLinkerProtocol {
     }
    
     // @dev returns nil if given account not found
-    func getTransactionsFor(account: Account) -> [TransactionDisplayable]? {
+    func getTransactionsFor(account: Account) -> [Transaction]? {
         let allAccounts = accountsProvider.getAllAccounts()
         
         for acc in allAccounts where acc == account {
@@ -39,10 +38,6 @@ class AccountsLinker: AccountsLinkerProtocol {
     
     func getAllAccounts() -> [Account] {
         return accountsProvider.getAllAccounts()
-    }
-    
-    func setObserver(_ observer: AccountsProviderDelegate) {
-        accountsProvider.setObserver(observer)
     }
     
 }

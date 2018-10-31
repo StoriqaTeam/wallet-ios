@@ -77,6 +77,10 @@ extension PasswordRecoveryConfirmViewController: PasswordRecoveryConfirmViewInpu
         repeatPasswordTextField.errorText = passwordsEqualityMessage
     }
     
+    func showErrorMessage(_ password: String?) {
+        passwordTextField.errorText = password
+    }
+    
 }
 
 

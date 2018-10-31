@@ -8,28 +8,23 @@ import UIKit
 
 class ExchangeModule {
     
-    class func create(accountWatcher: CurrentAccountWatcherProtocol, user: User) -> ExchangeModuleInput {
-        let router = ExchangeRouter()
+    class func create(app: Application, accountWatcher: CurrentAccountWatcherProtocol, user: User) -> ExchangeModuleInput {
+        let router = ExchangeRouter(app: app)
         
-        // Injections
-        let converterFactory = CurrecncyConverterFactory()
-        let currencyFormatter = CurrencyFormatter()
-        let feeWaitProvider = FakePaymentFeeAndWaitProvider()
-        let dataStoreService = AccountsDataStore()
-        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
-        let accountTypeResolver = AccountTypeResolver()
         let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: currencyFormatter,
-                                                converterFactory: converterFactory,
-                                                accountTypeResolver: accountTypeResolver)
+                                                currencyFormatter: app.currencyFormatter,
+                                                converterFactory: app.currencyConverterFactory,
+                                                accountTypeResolver: app.accountTypeResolver,
+                                                denominationUnitsConverter: app.denominationUnitsConverter)
         
-        let presenter = ExchangePresenter(converterFactory: converterFactory,
-                                          currencyFormatter: currencyFormatter,
+        let presenter = ExchangePresenter(converterFactory: app.currencyConverterFactory,
+                                          currencyFormatter: app.currencyFormatter,
                                           accountDisplayer: accountDisplayer)
+        
         let interactor = ExchangeInteractor(accountWatcher: accountWatcher,
-                                            accountsProvider: accountsProvider,
-                                            converterFactory: converterFactory,
-                                            feeWaitProvider: feeWaitProvider)
+                                            accountsProvider: app.accountsProvider,
+                                            converterFactory: app.currencyConverterFactory,
+                                            feeWaitProvider: app.fakePaymentFeeAndWaitProvider)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController
@@ -41,6 +36,11 @@ class ExchangeModule {
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor
+        
+        // MARK: - Channels
+        let accountsUpdateChannel = app.channelStorage.accountsUpadteChannel
+        app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
+        interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
         
         return presenter
     }

@@ -2,7 +2,7 @@
 //  SendTransactionBuilder.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 03/10/2018.
+//  Created by Storiqa on 03/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -12,17 +12,29 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     
     private var defaultSendTxProvider: SendTransactionProvider
     
-    init() {
-        let converterFactory = CurrecncyConverterFactory()
-        let formatter = CurrencyFormatter()
-        let dataStoreService = AccountsDataStore()
-        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
-        let feeWaitProvider = FakePaymentFeeAndWaitProvider()
+    private let currencyConverterFactory: CurrencyConverterFactoryProtocol
+    private let currencyFormatter: CurrencyFormatterProtocol
+    private let accountsProvider: AccountsProviderProtocol
+    private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let denominationUnitsConverter: DenominationUnitsConverterProtocol
+    
+    init(currencyConverterFactory: CurrencyConverterFactoryProtocol,
+         currencyFormatter: CurrencyFormatterProtocol,
+         accountsProvider: AccountsProviderProtocol,
+         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
+         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
-        defaultSendTxProvider = SendTransactionProvider(converterFactory: converterFactory,
-                                                        currencyFormatter: formatter,
-                                                        accountProvider: accountsProvider,
-                                                        feeWaitProvider: feeWaitProvider)
+        self.currencyConverterFactory = currencyConverterFactory
+        self.currencyFormatter = currencyFormatter
+        self.accountsProvider = accountsProvider
+        self.feeWaitProvider = feeWaitProvider
+        self.denominationUnitsConverter = denominationUnitsConverter
+        
+        defaultSendTxProvider = SendTransactionProvider(converterFactory: self.currencyConverterFactory,
+                                                        currencyFormatter: self.currencyFormatter,
+                                                        accountProvider: self.accountsProvider,
+                                                        feeWaitProvider: self.feeWaitProvider,
+                                                        denominationUnitsConverter: self.denominationUnitsConverter)
     }
     
     func set(account: Account) {
@@ -59,15 +71,10 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     }
     
     func clear() {
-        let converterFactory = CurrecncyConverterFactory()
-        let formatter = CurrencyFormatter()
-        let dataStoreService = AccountsDataStore()
-        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
-        let feeWaitProvider = FakePaymentFeeAndWaitProvider()
-        
-        defaultSendTxProvider = SendTransactionProvider(converterFactory: converterFactory,
-                                                        currencyFormatter: formatter,
-                                                        accountProvider: accountsProvider,
-                                                        feeWaitProvider: feeWaitProvider)
+        defaultSendTxProvider = SendTransactionProvider(converterFactory: self.currencyConverterFactory,
+                                                        currencyFormatter: self.currencyFormatter,
+                                                        accountProvider: self.accountsProvider,
+                                                        feeWaitProvider: self.feeWaitProvider,
+                                                        denominationUnitsConverter: self.denominationUnitsConverter)
     }
 }

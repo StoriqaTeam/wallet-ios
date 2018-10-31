@@ -2,7 +2,7 @@
 //  TransactionsDateFilter.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 16/10/2018.
+//  Created by Storiqa on 16/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -59,7 +59,7 @@ extension TransactionDateFilter {
         var filtered = [TransactionDisplayable]()
         
         for transaction in transactions {
-            let timestamp = transaction.transaction.timestamp
+            let timestamp = transaction.transaction.createdAt
             let largerThenLowerBound = timestamp >= fromDate
             let lessThenUpperBound = timestamp <= toDate
             

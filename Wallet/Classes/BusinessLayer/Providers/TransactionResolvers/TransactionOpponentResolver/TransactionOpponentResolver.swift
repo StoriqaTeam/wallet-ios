@@ -2,7 +2,7 @@
 //  TransactionOpponentResolver.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 10/10/2018.
+//  Created by Storiqa on 10/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -32,10 +32,18 @@ class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
         let fromAddress = transaction.fromAddress
         let toAddress = transaction.toAddress
         
+        // FIXME: как отображать для биткоина?
+        
         switch direction {
         case .receive:
-            return getOpponent(from: fromAddress)
+            if let txAccount = transaction.fromAccount.first {
+                return OpponentType.txAccount(account: txAccount, address: fromAddress.first!)
+            }
+            return getOpponent(from: fromAddress.first!)
         case .send:
+            if let txAccount = transaction.toAccount {
+                return OpponentType.txAccount(account: txAccount, address: toAddress)
+            }
             return getOpponent(from: toAddress)
         }
     }

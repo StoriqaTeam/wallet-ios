@@ -15,6 +15,8 @@ class RegistrationViewController: UIViewController {
 
     // MARK: - Outlets
     
+    // FIXME: SocialNetworkAuthView hidden before release: return height to 175 !!!!!
+    
     @IBOutlet private var firstNameTextField: UnderlinedTextField!
     @IBOutlet private var lastNameTextField: UnderlinedTextField!
     @IBOutlet private var emailTextField: UnderlinedTextField!
@@ -105,6 +107,10 @@ extension RegistrationViewController: RegistrationViewInput {
         repeatPasswordTextField.errorText = message
     }
     
+    func showErrorMessage(email: String?, password: String?) {
+        emailTextField.errorText = email
+        passwordTextField.errorText = password
+    }
 }
 
 

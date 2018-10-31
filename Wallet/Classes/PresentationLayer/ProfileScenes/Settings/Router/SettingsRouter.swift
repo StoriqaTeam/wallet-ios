@@ -10,6 +10,12 @@ import Foundation
 
 
 class SettingsRouter {
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 
 }
 
@@ -18,15 +24,15 @@ class SettingsRouter {
 
 extension SettingsRouter: SettingsRouterInput {
     func showEditProfile(from viewController: UIViewController) {
-        EditProfileModule.create().present(from: viewController)
+        EditProfileModule.create(app: app).present(from: viewController)
     }
     
     func showChangePhone(from viewController: UIViewController) {
-        ConnectPhoneModule.create().present(from: viewController)
+        ConnectPhoneModule.create(app: app).present(from: viewController)
     }
     
     func showSessions(from viewController: UIViewController) {
-        SessionsModule.create().present(from: viewController)
+        SessionsModule.create(app: app).present(from: viewController)
     }
     
     func showChangePassword(from viewController: UIViewController) {

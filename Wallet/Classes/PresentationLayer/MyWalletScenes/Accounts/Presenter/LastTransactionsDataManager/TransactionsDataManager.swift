@@ -2,7 +2,7 @@
 //  TransactionsDataManager.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 24.09.2018.
+//  Created by Storiqa on 24.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -18,14 +18,15 @@ class TransactionsDataManager: NSObject {
     
     weak var delegate: TransactionsDataManagerDelegate?
     private var lastTransactionsTableView: UITableView!
-    private var transactions: [TransactionDisplayable]
+    private var transactionsByMonths = [[TransactionDisplayable]]()
     private let kCellId = "transactionCell"
     private let isHiddenSections: Bool
     private var emptyViewPlaceholder: EmptyView?
     
     init(transactions: [TransactionDisplayable], isHiddenSections: Bool) {
-        self.transactions = transactions
         self.isHiddenSections = isHiddenSections
+        super.init()
+        self.transactionsByMonths = sortTransactionByDate(transactions)
     }
     
     func setTableView(_ view: UITableView) {
@@ -37,17 +38,19 @@ class TransactionsDataManager: NSObject {
     }
     
     func updateTransactions(_ transactions: [TransactionDisplayable]) {
-        self.transactions = transactions
+        if transactions.isEmpty {
+            transactionsByMonths.removeAll()
+            lastTransactionsTableView.reloadData()
+            updateEmpty(placeholderImage: UIImage(named: "noTxs")!, placeholderText: "")
+            return
+        }
+        
+        transactionsByMonths = sortTransactionByDate(transactions)
         
         if let _ = emptyViewPlaceholder {
             lastTransactionsTableView.tableFooterView = nil
             lastTransactionsTableView.backgroundView = nil
             lastTransactionsTableView.tableFooterView?.removeFromSuperview()
-        }
-        
-        if self.transactions.isEmpty {
-            updateEmpty(placeholderImage: UIImage(named: "noTxs")!, placeholderText: "")
-            return
         }
         
         UIView.transition(with: lastTransactionsTableView,
@@ -72,24 +75,21 @@ class TransactionsDataManager: NSObject {
 
 extension TransactionsDataManager: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        let sortedTransactions = sortTransactionByDate(transactions)
-        return sortedTransactions.count
+        return transactionsByMonths.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if isHiddenSections { return CGFloat.leastNormalMagnitude }
-        if transactions.isEmpty { return CGFloat.leastNormalMagnitude }
+        if transactionsByMonths.isEmpty { return CGFloat.leastNormalMagnitude }
         return 44
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sortedTransactions = sortTransactionByDate(transactions)
-        return sortedTransactions[section].count
+        return transactionsByMonths[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sortedTransactions = sortTransactionByDate(transactions)
-        let mounthTransactions = sortedTransactions[indexPath.section]
+        let mounthTransactions = transactionsByMonths[indexPath.section]
         let transaction = mounthTransactions[indexPath.row]
         let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
         cell.configureWith(transaction: transaction)
@@ -103,24 +103,23 @@ extension TransactionsDataManager: UITableViewDataSource {
 
 extension TransactionsDataManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedTransaction = transactions[indexPath.row]
+        let selectedTransaction = transactionsByMonths[indexPath.section][indexPath.row]
         delegate?.didChooseTransaction(selectedTransaction)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard !isHiddenSections else { return nil }
-        let sortedTransactions = sortTransactionByDate(transactions)
-        guard !sortedTransactions[0].isEmpty else { return nil }
-        let mounthTransactions = sortedTransactions[section]
-        return mounthTransactions[0].transaction.timestamp.getMonthName()
+        guard !transactionsByMonths[0].isEmpty else { return nil }
+        let mounthTransactions = transactionsByMonths[section]
+        return mounthTransactions[0].transaction.createdAt.getMonthName()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard !isHiddenSections else { return nil }
-        let sortedTransactions = sortTransactionByDate(transactions)
-        guard !sortedTransactions[0].isEmpty else { return nil }
-        let mounthTransactions = sortedTransactions[section]
-        let title = mounthTransactions[0].transaction.timestamp.getMonthName()
+        guard !transactionsByMonths[0].isEmpty else { return nil }
+        let mounthTransactions = transactionsByMonths[section]
+        let title = mounthTransactions[0].transaction.createdAt.getMonthName()
         return createHeaderView(with: title)
     }
 }
@@ -137,12 +136,12 @@ extension TransactionsDataManager {
     private func sortTransactionByDate(_ txs: [TransactionDisplayable]) -> [[TransactionDisplayable]] {
         guard !txs.isEmpty else { return [[]] }
         
-        let inputArray = txs.sorted { $0.transaction.timestamp < $1.transaction.timestamp }
+        let inputArray = txs.sorted { $0.transaction.createdAt > $1.transaction.createdAt }
         var resultArray = [[inputArray[0]]]
         
         let calendar = Calendar(identifier: .gregorian)
         for (prevTx, nextTx) in zip(inputArray, inputArray.dropFirst()) {
-            if !calendar.isDate(prevTx.transaction.timestamp, equalTo: nextTx.transaction.timestamp, toGranularity: .month) {
+            if !calendar.isDate(prevTx.transaction.createdAt, equalTo: nextTx.transaction.createdAt, toGranularity: .month) {
                 resultArray.append([])
             }
             

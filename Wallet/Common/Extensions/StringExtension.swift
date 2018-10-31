@@ -40,10 +40,11 @@ extension String {
     
     func decimalValue() -> Decimal {
         var set = CharacterSet.decimalDigits
-        set.insert(charactersIn: Locale.current.decimalSeparator!)
+        set.insert(charactersIn: ",.-")
         let cleared = self.components(separatedBy: set.inverted).joined(separator: "")
+        let decimal = cleared.replacingOccurrences(of: ",", with: ".")
         
-        return Decimal(string: cleared) ?? 0
+        return Decimal(string: decimal) ?? 0
     }
 }
 
@@ -79,10 +80,16 @@ extension String {
     }
     
     func isValidDecimal() -> Bool {
-        let formatter = NumberFormatter()
-        formatter.allowsFloats = true
-        formatter.locale = Locale.current
-        return formatter.number(from: self) != nil
+        var number: Decimal?
+        
+        for formatter in [Decimal.pointFormatter, Decimal.commaFormatter] {
+            if let formatted = formatter.number(from: self) {
+                number = formatted.decimalValue
+                break
+            }
+        }
+        
+        return number != nil
     }
     
     func isValidPhone(hasPlusPrefix: Bool, unfinished: Bool = false) -> Bool {

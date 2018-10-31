@@ -2,7 +2,7 @@
 //  RealmStorable.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 01/10/2018.
+//  Created by Storiqa on 01/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable force_try
@@ -73,7 +73,19 @@ class RealmStorable<PlainType: RealmMappable> {
         }
     }
     
-    func deleteAll() {
+    func delete(primaryKey: Int) {
+        let realm = try! Realm()
+        
+        guard let realmObjectPrimaryKey = PlainType.RealmType.self.primaryKey() else { return }
+        let predicateString = "\(realmObjectPrimaryKey) == \(primaryKey)"
+        let objectToDelete = realm.objects(PlainType.RealmType.self).filter(predicateString)
+        
+        try! realm.write {
+            realm.delete(objectToDelete)
+        }
+    }
+    
+    func resetAllDatabase() {
         let realm = try! Realm()
         
         try! realm.write {

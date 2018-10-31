@@ -25,7 +25,7 @@ protocol SendTransactionProviderProtocol: class {
     func getConvertedAmount() -> Decimal
     func getSubtotal() -> Decimal
     func isEnoughFunds() -> Bool
-    func createTransaction() -> Transaction?
+    func createTransaction() -> Transaction
 }
 
 class SendTransactionProvider: SendTransactionProviderProtocol {
@@ -40,21 +40,24 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         didSet { updateConverter() }
     }
     
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
     private let accountProvider: AccountsProviderProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     private var currencyConverter: CurrencyConverterProtocol!
     
-    init(converterFactory: CurrecncyConverterFactoryProtocol,
+    init(converterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
          accountProvider: AccountsProviderProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
+         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
+         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
         self.accountProvider = accountProvider
         self.feeWaitProvider = feeWaitProvider
+        self.denominationUnitsConverter = denominationUnitsConverter
         
         // default build
         self.amount = 0
@@ -77,7 +80,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     
     func getFeeAndWait() -> (fee: String, wait: String) {
         let wait = feeWaitProvider.getWait(fee: paymentFee)
-        let waitStr = wait.description + "s"
+        let waitStr = wait.description
         let feeStr = currencyFormatter.getStringFrom(amount: paymentFee, currency: selectedAccount.currency)
         return (feeStr, waitStr)
     }
@@ -96,24 +99,51 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     }
     
     func isEnoughFunds() -> Bool {
-        let converted = currencyConverter.convert(amount: amount, to: selectedAccount.currency)
+        let currency = selectedAccount.currency
+        let converted = currencyConverter.convert(amount: amount, to: currency)
         let sum = converted + paymentFee
+        let inMaxUnits = denominationUnitsConverter.amountToMinUnits(sum, currency: currency)
         let available = selectedAccount.balance
-        return sum.isLessThanOrEqualTo(available)
+        return inMaxUnits.isLessThanOrEqualTo(available)
     }
     
-    func createTransaction() -> Transaction? {
-        //TODO: timestamp?
-//        let timestamp = Date()
-//        let fiatAmount = currencyConverter.convert(amount: amount, to: .fiat)
-//        let transaction = Transaction(currency: selectedAccount.currency,
-//                                      direction: .send,
-//                                      fiatAmount: fiatAmount,
-//                                      cryptoAmount: amount,
-//                                      timestamp: timestamp,
-//                                      status: .pending,
-//                                      opponent: opponentType)
-        return nil
+    func createTransaction() -> Transaction {
+        let uuid = UUID().uuidString
+        let timestamp = Date()
+        let currency = selectedAccount.currency
+        let fromAddress = selectedAccount.accountAddress
+        let toAddress: String
+        let toAccount: TransactionAccount?
+        
+        switch opponentType {
+        case .address(let address):
+            toAddress = address
+            toAccount = nil
+        case .contact(let contact):
+            // TODO: contact would know account (но это не точно)
+            toAddress = contact.cryptoAddress!
+            toAccount = nil
+        case .txAccount(let account, let address):
+            toAddress = address
+            toAccount = account
+        }
+        
+        let cryptoAmount = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
+        let fee = denominationUnitsConverter.amountToMinUnits(paymentFee, currency: currency)
+   
+        let transaction = Transaction(id: uuid,
+                                      currency: currency,
+                                      fromAddress: [fromAddress],
+                                      fromAccount: [],
+                                      toAddress: toAddress,
+                                      toAccount: toAccount,
+                                      cryptoAmount: cryptoAmount,
+                                      fee: fee,
+                                      blockchainId: "",
+                                      createdAt: timestamp,
+                                      updatedAt: timestamp,
+                                      status: .pending)
+        return transaction
     }
     
 }

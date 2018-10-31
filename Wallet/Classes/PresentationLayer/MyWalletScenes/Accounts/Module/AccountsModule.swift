@@ -5,67 +5,28 @@
 
 import UIKit
 
-class FakeAccountLinker: AccountsLinkerProtocol {
-    
-    private let fakeAccProvider: AccountsProviderProtocol
-    private let fakeTxProvider: TransactionsProviderProtocol
-    
-    init(fakeAccProvider: AccountsProviderProtocol, fakeTxProvider: TransactionsProviderProtocol) {
-        self.fakeAccProvider = fakeAccProvider
-        self.fakeTxProvider = fakeTxProvider
-    }
-    
-    func getTransactionsFor(account: Account) -> [TransactionDisplayable]? {
-        return fakeTxProvider.transactionsFor(account: account)
-    }
-    
-    func getAllAccounts() -> [Account] {
-        return fakeAccProvider.getAllAccounts()
-    }
-    
-    func setObserver(_ observer: AccountsProviderDelegate) {
-        fakeAccProvider.setObserver(observer)
-    }
-    
-}
-
 
 class AccountsModule {
     
-    class func create(accountWatcher: CurrentAccountWatcherProtocol,
+    class func create(app: Application,
+                      accountWatcher: CurrentAccountWatcherProtocol,
                       tabBar: UITabBarController,
                       user: User) -> AccountsModuleInput {
-        let router = AccountsRouter()
         
-        // Injections
-        let dataStoreService = AccountsDataStore()
-        let accountsProvider = AccountsProvider(dataStoreService: dataStoreService)
-        let converterFactory = CurrecncyConverterFactory()
-        let currencyFormatter = CurrencyFormatter()
-        let accountTypeResolver = AccountTypeResolver()
-        let transactionDirectionResolver = TransactionDirectionResolver(accountsProvider: accountsProvider)
-        let contactsProvider = FakeContactsProvider()
-        let contactsMapper = ContactsMapper()
-        let transactionOpponentResolver = TransactionOpponentResolver(contactsProvider: contactsProvider,
-                                                                      transactionDirectionResolver: transactionDirectionResolver,
-                                                                      contactsMapper: contactsMapper)
+        let router = AccountsRouter(app: app)
         
-        let transactionMapper = TransactionMapper(currencyFormatter: currencyFormatter,
-                                                  converterFactory: converterFactory,
-                                                  transactionDirectionResolver: transactionDirectionResolver,
-                                                  transactionOpponentResolver: transactionOpponentResolver)
-        
-        let transactionsProvider = FakeTransactionsProvider(transactionMapper: transactionMapper)
-        let accountLinker = FakeAccountLinker(fakeAccProvider: accountsProvider, fakeTxProvider: transactionsProvider)
         let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: currencyFormatter,
-                                                converterFactory: converterFactory,
-                                                accountTypeResolver: accountTypeResolver)
+                                                currencyFormatter: app.currencyFormatter,
+                                                converterFactory: app.currencyConverterFactory,
+                                                accountTypeResolver: app.accountTypeResolver,
+                                                denominationUnitsConverter: app.denominationUnitsConverter)
         
-        let presenter = AccountsPresenter(accountDisplayer: accountDisplayer)
+        let presenter = AccountsPresenter(accountDisplayer: accountDisplayer,
+                                          transactionsMapper: app.transactionMapper)
         presenter.mainTabBar = tabBar
-        let interactor = AccountsInteractor(accountLinker: accountLinker,
-                                            accountWatcher: accountWatcher)
+        let interactor = AccountsInteractor(accountLinker: app.accountLinker,
+                                            accountWatcher: accountWatcher,
+                                            transactionsProvider: app.transactionsProvider)
     
         let accountsVC = UIStoryboard(name: "Accounts", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "accountsVC") as! AccountsViewController
@@ -77,6 +38,15 @@ class AccountsModule {
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor
+        
+        // MARK: - Channels
+        let txsUpdateChannel = app.channelStorage.txsUpadteChannel
+        app.transactionsProvider.setTxsUpdaterChannel(txsUpdateChannel)
+        interactor.setTxsUpdateChannelInput(txsUpdateChannel)
+        
+        let accountsUpdateChannel = app.channelStorage.accountsUpadteChannel
+        app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
+        interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
         
         return presenter
     }
