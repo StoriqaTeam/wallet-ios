@@ -2,7 +2,7 @@
 //  RatesUpdater.swift
 //  Wallet
 //
-//  Created by Даниил Мирошниченко on 31/10/2018.
+//  Created by Storiqa on 31/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 

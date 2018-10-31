@@ -2,7 +2,7 @@
 //  CurrentUserNetworkProvider.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 20/10/2018.
+//  Created by Storiqa on 20/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 

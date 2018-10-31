@@ -2,7 +2,7 @@
 //  RatesDataStoreService.swift
 //  Wallet
 //
-//  Created by Даниил Мирошниченко on 31/10/2018.
+//  Created by Storiqa on 31/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -24,6 +24,6 @@ class RatesDataStoreService: RealmStorable<Rate>, RatesDataStoreServiceProtocol 
     }
     
     func getRates(cryptoCurrency: String) -> [Rate] {
-        return find().filter { $0.criptoISO == cryptoCurrency }
+        return find().filter { $0.fromISO == cryptoCurrency }
     }
 }

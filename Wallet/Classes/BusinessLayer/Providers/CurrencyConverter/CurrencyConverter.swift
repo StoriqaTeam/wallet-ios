@@ -32,7 +32,7 @@ class BtcConverter: CurrencyConverterProtocol {
             coef = 2760872.72401590
         case .fiat:
             let rate = ratesProvider.getRate(criptoISO: "BTC", in: .USD)
-            coef = rate.fiatValue
+            coef = rate.value
         }
         
         return coef * amount
@@ -59,7 +59,7 @@ class EthConverter: CurrencyConverterProtocol {
             coef = 86504.59914677
         case .fiat:
             let rate = ratesProvider.getRate(criptoISO: "ETH", in: .USD)
-            coef = rate.fiatValue
+            coef = rate.value
         }
         
         return coef * amount
@@ -86,7 +86,7 @@ class StqConverter: CurrencyConverterProtocol {
             coef = 1
         case .fiat:
             let rate = ratesProvider.getRate(criptoISO: "STQ", in: .USD)
-            coef = rate.fiatValue
+            coef = rate.value
         }
         
         return coef * amount
@@ -107,11 +107,11 @@ class FiatConverter: CurrencyConverterProtocol {
         
         switch currency {
         case .btc:
-            coef = rate.fiatValue
+            coef = rate.value
         case .eth:
-            coef = rate.fiatValue
+            coef = rate.value
         case .stq:
-            coef = rate.fiatValue
+            coef = rate.value
         case .fiat:
             coef = 1
         }

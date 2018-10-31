@@ -2,7 +2,7 @@
 //  RatesNetworkProvider.swift
 //  Wallet
 //
-//  Created by Даниил Мирошниченко on 31/10/2018.
+//  Created by Storiqa on 31/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable line_length
@@ -49,7 +49,7 @@ class RatesNetworkProvider: NetworkLoadable, RatesNetworkProviderProtocol {
                             return
                         }
                         
-                        let newRates = rateInfo.map { Rate(criptoISO: key, toFiatISO: $0.key, fiatValue: Decimal($0.value.doubleValue)) }
+                        let newRates = rateInfo.map { Rate(fromISO: key, toISO: $0.key, value: Decimal($0.value.doubleValue)) }
                         rates.append(contentsOf: newRates)
                     }
                     

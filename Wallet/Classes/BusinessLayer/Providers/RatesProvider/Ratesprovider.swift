@@ -2,7 +2,7 @@
 //  Ratesprovider.swift
 //  Wallet
 //
-//  Created by Даниил Мирошниченко on 31/10/2018.
+//  Created by Storiqa on 31/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 //  swiftlint:disable switch_case_alignment
@@ -34,17 +34,17 @@ class RatesProvider: RatesProviderProtocol {
     private let ratesDataStoreService: RatesDataStoreServiceProtocol
     
     let defaultRates = [
-        Rate(criptoISO: "STQ", toFiatISO: "USD", fiatValue: 0.002247),
-        Rate(criptoISO: "STQ", toFiatISO: "EUR", fiatValue: 0.002002),
-        Rate(criptoISO: "STQ", toFiatISO: "RUB", fiatValue: 0.1468),
+        Rate(fromISO: "STQ", toISO: "USD", value: 0.002247),
+        Rate(fromISO: "STQ", toISO: "EUR", value: 0.002002),
+        Rate(fromISO: "STQ", toISO: "RUB", value: 0.1468),
         
-        Rate(criptoISO: "ETH", toFiatISO: "USD", fiatValue: 195.68),
-        Rate(criptoISO: "ETH", toFiatISO: "EUR", fiatValue: 173),
-        Rate(criptoISO: "ETH", toFiatISO: "RUB", fiatValue: 13158.01),
+        Rate(fromISO: "ETH", toISO: "USD", value: 195.68),
+        Rate(fromISO: "ETH", toISO: "EUR", value: 173),
+        Rate(fromISO: "ETH", toISO: "RUB", value: 13158.01),
         
-        Rate(criptoISO: "BTC", toFiatISO: "USD", fiatValue: 6310.62),
-        Rate(criptoISO: "BTC", toFiatISO: "EUR", fiatValue: 5551.09),
-        Rate(criptoISO: "BTC", toFiatISO: "RUB", fiatValue: 422951.05)
+        Rate(fromISO: "BTC", toISO: "USD", value: 6310.62),
+        Rate(fromISO: "BTC", toISO: "EUR", value: 5551.09),
+        Rate(fromISO: "BTC", toISO: "RUB", value: 422951.05)
     ]
     
     init(ratesDataStoreService: RatesDataStoreServiceProtocol) {
@@ -53,7 +53,7 @@ class RatesProvider: RatesProviderProtocol {
     
     func getRate(criptoISO: String, in fiat: FiatCurrency) -> Rate {
         let rates = currenctRates(for: criptoISO)
-        return rates.first(where: { $0.toFiatISO == fiat.rawValue })!
+        return rates.first(where: { $0.toISO == fiat.rawValue })!
     }
 }
 
@@ -64,8 +64,8 @@ extension RatesProvider {
     private func currenctRates(for criptoISO: String) -> [Rate] {
         var rates = ratesDataStoreService.getRates(cryptoCurrency: criptoISO)
         guard rates.isEmpty else { return rates }
-        rates = defaultRates.filter { $0.criptoISO == criptoISO }
-        guard !rates.isEmpty else { return defaultRates.filter { $0.criptoISO == "ETH" } }
+        rates = defaultRates.filter { $0.fromISO == criptoISO }
+        guard !rates.isEmpty else { return defaultRates.filter { $0.fromISO == "ETH" } }
         return rates
     }
 }
