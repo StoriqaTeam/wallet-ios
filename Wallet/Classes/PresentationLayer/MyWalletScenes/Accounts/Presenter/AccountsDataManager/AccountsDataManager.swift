@@ -146,12 +146,10 @@ extension AccountsDataManager: UICollectionViewDelegate {
         } else {
             let indexOfMajorCell = self.indexOfMajorCell()
             
-            if indexOfCellBeforeDragging != indexOfMajorCell {
-                // This is a much better way to scroll to a cell:
-                let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
-                accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-                delegate?.currentPageDidChange(indexPath.row)
-            }
+            // This is a much better way to scroll to a cell:
+            let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
+            accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            delegate?.currentPageDidChange(indexPath.row)
         }
     }
 }

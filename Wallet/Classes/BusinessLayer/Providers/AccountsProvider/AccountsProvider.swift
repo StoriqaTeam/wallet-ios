@@ -14,7 +14,7 @@ protocol AccountsProviderProtocol: class {
     func setAccountsUpdaterChannel(_ channel: AccountsUpdateChannel)
 }
 
-class AccountsProvider: RealmStorable<Account>, AccountsProviderProtocol {
+class AccountsProvider: AccountsProviderProtocol {
     private let dataStoreService: AccountsDataStoreServiceProtocol
     private var accountsUpadateChannelOutput: AccountsUpdateChannel?
     
@@ -42,6 +42,7 @@ class AccountsProvider: RealmStorable<Account>, AccountsProviderProtocol {
     }
     
     func getAllAccounts() -> [Account] {
-        return find()
+        let allAccounts = dataStoreService.getAllAccounts()
+        return allAccounts
     }
 }

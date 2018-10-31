@@ -99,10 +99,12 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     }
     
     func isEnoughFunds() -> Bool {
-        let converted = currencyConverter.convert(amount: amount, to: selectedAccount.currency)
+        let currency = selectedAccount.currency
+        let converted = currencyConverter.convert(amount: amount, to: currency)
         let sum = converted + paymentFee
+        let inMaxUnits = denominationUnitsConverter.amountToMinUnits(sum, currency: currency)
         let available = selectedAccount.balance
-        return sum.isLessThanOrEqualTo(available)
+        return inMaxUnits.isLessThanOrEqualTo(available)
     }
     
     func createTransaction() -> Transaction {
