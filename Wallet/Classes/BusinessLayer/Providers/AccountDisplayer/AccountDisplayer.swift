@@ -30,6 +30,7 @@ class AccountDisplayer: AccountDisplayerProtocol {
          converterFactory: CurrencyConverterFactoryProtocol,
          accountTypeResolver: AccountTypeResolverProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
+        
         self.user = user
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter

@@ -16,6 +16,7 @@ class MainTabBarModule {
                                               userDataStoreService: app.userDataStoreService,
                                               accountsUpdater: app.accountsUpdater,
                                               txsUpdater: app.transactionsUpdater,
+                                              ratesUpdater: app.ratesUpdater,
                                               app: app)
         
         let storyboard = UIStoryboard(name: "MainTabBar", bundle: nil)
