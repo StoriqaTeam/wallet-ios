@@ -2,7 +2,7 @@
 //  Transaction.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 24.09.2018.r
+//  Created by Storiqa on 24.09.2018.r
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable identifier_name

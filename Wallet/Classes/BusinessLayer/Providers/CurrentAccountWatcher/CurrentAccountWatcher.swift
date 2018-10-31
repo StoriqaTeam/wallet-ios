@@ -2,7 +2,7 @@
 //  CurrentAccountWatcher.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 02/10/2018.
+//  Created by Storiqa on 02/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 

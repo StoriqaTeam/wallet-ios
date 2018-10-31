@@ -2,7 +2,7 @@
 //  ChannelTests.swift
 //  WalletTests
 //
-//  Created by Daniil Miroshnichecko on 28/10/2018.
+//  Created by Storiqa on 28/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 

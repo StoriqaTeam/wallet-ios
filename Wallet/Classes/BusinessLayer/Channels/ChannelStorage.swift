@@ -2,8 +2,8 @@
 //  ChannelStorage.swift
 //  Channels
 //
-//  Created by Даниил Мирошниченко on 27/10/2018.
-//  Copyright © 2018 Даниил Мирошниченко. All rights reserved.
+//  Created by Storiqa on 27/10/2018.
+//  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import Foundation
