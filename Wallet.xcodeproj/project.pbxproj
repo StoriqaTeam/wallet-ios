@@ -374,6 +374,13 @@
 		B5D0A50EC37F23DE647B941B /* FirstLaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11B072A91A28352CDC5ABD9 /* FirstLaunchRouter.swift */; };
 		B634E43D645E9DBCE791CD75 /* SettingsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9D1601A483ADBA7DD0D526 /* SettingsViewOutput.swift */; };
 		B782CF02B33B1093E9AF38BB /* ExchangeInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23FC67135B58752997E5F0D /* ExchangeInteractorInput.swift */; };
+		B8C5EDD62189A2FA00345B79 /* API+Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD52189A2FA00345B79 /* API+Rates.swift */; };
+		B8C5EDDA2189AA8C00345B79 /* RatesNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */; };
+		B8C5EDDC2189ACE700345B79 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDDB2189ACE700345B79 /* Rate.swift */; };
+		B8C5EDDE2189ADE600345B79 /* RealmRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDDD2189ADE600345B79 /* RealmRate.swift */; };
+		B8C5EDE22189B3A700345B79 /* RatesDataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDE12189B3A700345B79 /* RatesDataStoreService.swift */; };
+		B8C5EDE52189C16000345B79 /* RatesUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDE42189C16000345B79 /* RatesUpdater.swift */; };
+		B8C5EDE82189D7E200345B79 /* Ratesprovider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDE72189D7E200345B79 /* Ratesprovider.swift */; };
 		B8D4D58E13E50746B516D91C /* SettingsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD115AF70D53CBDC0F87BD /* SettingsModuleOutput.swift */; };
 		B98F7B6D236E5C7D1D3FD552 /* ExchangeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16F0648E2EB779A26C6732 /* ExchangeRouter.swift */; };
 		BC265F78A4724A6201226822 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1C3889E0ABA3DD0896A52 /* LoginRouter.swift */; };
@@ -986,6 +993,13 @@
 		B56AFC99D929DF8CB39A8C4D /* AccountsModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsModule.swift; sourceTree = "<group>"; };
 		B5DB570057C07D6076058081 /* SettingsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		B7308D8FE5E082396CE5E220 /* PinQuickLaunchRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchRouter.swift; sourceTree = "<group>"; };
+		B8C5EDD52189A2FA00345B79 /* API+Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Rates.swift"; sourceTree = "<group>"; };
+		B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesNetworkProvider.swift; sourceTree = "<group>"; };
+		B8C5EDDB2189ACE700345B79 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
+		B8C5EDDD2189ADE600345B79 /* RealmRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRate.swift; sourceTree = "<group>"; };
+		B8C5EDE12189B3A700345B79 /* RatesDataStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesDataStoreService.swift; sourceTree = "<group>"; };
+		B8C5EDE42189C16000345B79 /* RatesUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesUpdater.swift; sourceTree = "<group>"; };
+		B8C5EDE72189D7E200345B79 /* Ratesprovider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratesprovider.swift; sourceTree = "<group>"; };
 		B8DFDAFBB213DB18269D4ACB /* PasswordRecoveryConfirmViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmViewOutput.swift; sourceTree = "<group>"; };
 		B92A70B2DE1269BAE2D165B8 /* PopUpRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpRouter.swift; sourceTree = "<group>"; };
 		BA5EBFF4CABBEDECFEEA987F /* PasswordRecoveryConfirmPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmPresenter.swift; sourceTree = "<group>"; };
@@ -2361,6 +2375,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B8C5EDD72189AA6E00345B79 /* RatesNetworkProvider */,
 				A5641E3A21876165002C2ABE /* SendTransactionNetworkProvider */,
 				CE41F35821873CA000070D5D /* ConfirmResetPasswordNetworkProvider */,
 				A5641E3721870332002C2ABE /* ResetPasswordNetworkProvider */,
@@ -2374,6 +2389,7 @@
 				A50086082150F95B00C47015 /* API.swift */,
 				A574353F217A1B09006B4CAE /* API+Unauthorize.swift */,
 				A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */,
+				B8C5EDD52189A2FA00345B79 /* API+Rates.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -2406,6 +2422,7 @@
 		A51CB54C2158FEA700CDC80C /* DataStoreServices */ = {
 			isa = PBXGroup;
 			children = (
+				B8C5EDDF2189B38700345B79 /* RatesDataStoreService */,
 				A574352D21778188006B4CAE /* SessionsDataStoreService */,
 				A51CB5502158FF0000CDC80C /* AccountsDataStoreProvider */,
 				A51CB54D2158FEB100CDC80C /* TransactionDataStoreService */,
@@ -2996,6 +3013,8 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				B8C5EDE62189D7D300345B79 /* RatesProvider */,
+				B8C5EDE32189C11400345B79 /* RatesUpdater */,
 				A5641E442188A409002C2ABE /* AppLockerProvider */,
 				CEE84EEE21889EFE00AB85F3 /* DenominationUnitsConverter */,
 				A58DB4E3218346C10024E463 /* ShortPollingTimer */,
@@ -3208,6 +3227,7 @@
 				CE41F3502181FC9600070D5D /* RealmTransactionAccount.swift */,
 				CE44019D2174AEC200F7C8D8 /* RealmContact.swift */,
 				A574352B217775AE006B4CAE /* RealmSession.swift */,
+				B8C5EDDD2189ADE600345B79 /* RealmRate.swift */,
 			);
 			path = RealmModels;
 			sourceTree = "<group>";
@@ -3323,6 +3343,38 @@
 				EDEA23B5D83156F44A5A3317 /* LoginModule.swift */,
 			);
 			path = Module;
+			sourceTree = "<group>";
+		};
+		B8C5EDD72189AA6E00345B79 /* RatesNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */,
+			);
+			path = RatesNetworkProvider;
+			sourceTree = "<group>";
+		};
+		B8C5EDDF2189B38700345B79 /* RatesDataStoreService */ = {
+			isa = PBXGroup;
+			children = (
+				B8C5EDE12189B3A700345B79 /* RatesDataStoreService.swift */,
+			);
+			path = RatesDataStoreService;
+			sourceTree = "<group>";
+		};
+		B8C5EDE32189C11400345B79 /* RatesUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				B8C5EDE42189C16000345B79 /* RatesUpdater.swift */,
+			);
+			path = RatesUpdater;
+			sourceTree = "<group>";
+		};
+		B8C5EDE62189D7D300345B79 /* RatesProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B8C5EDE72189D7E200345B79 /* Ratesprovider.swift */,
+			);
+			path = RatesProvider;
 			sourceTree = "<group>";
 		};
 		B90828930B61D8754E0B5BA4 /* Interactor */ = {
@@ -3867,6 +3919,7 @@
 				A52C66B22167634E0073071E /* Account.swift */,
 				CE8CC9962167B7A500EA9EED /* Currency.swift */,
 				A5743529217774E3006B4CAE /* Session.swift */,
+				B8C5EDDB2189ACE700345B79 /* Rate.swift */,
 			);
 			path = PlainModels;
 			sourceTree = "<group>";
@@ -4524,6 +4577,7 @@
 				A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */,
 				A574350321776226006B4CAE /* EditProfileViewOutput.swift in Sources */,
 				CE5FAF9F215129A6009E707E /* RegistrationFormValidatonProvider.swift in Sources */,
+				B8C5EDDC2189ACE700345B79 /* Rate.swift in Sources */,
 				CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */,
 				A574352421777383006B4CAE /* SessionsInteractorInput.swift in Sources */,
 				CEFC9C942158CF1900962356 /* PopUpViewModel.swift in Sources */,
@@ -4594,6 +4648,7 @@
 				CE41F3532183106500070D5D /* TransactionsNetworkProvider.swift in Sources */,
 				B5D0A50EC37F23DE647B941B /* FirstLaunchRouter.swift in Sources */,
 				7802FA10023A55BCB10D8538 /* FirstLaunchModuleInput.swift in Sources */,
+				B8C5EDE52189C16000345B79 /* RatesUpdater.swift in Sources */,
 				DF3822DC4DAE4101FC197A94 /* FirstLaunchModuleOutput.swift in Sources */,
 				DAD66F6925304312D772B826 /* FirstLaunchModule.swift in Sources */,
 				4B42C53D0968DE8E1FFE0BAE /* RegistrationViewInput.swift in Sources */,
@@ -4655,6 +4710,7 @@
 				655663AF844FD6B0CB44B4C4 /* PasswordRecoveryConfirmModule.swift in Sources */,
 				03B8DF45D671EB1590F32163 /* PopUpViewInput.swift in Sources */,
 				70D0185949E966619D914F17 /* PopUpViewOutput.swift in Sources */,
+				B8C5EDE22189B3A700345B79 /* RatesDataStoreService.swift in Sources */,
 				C4685D4546664167C97555E2 /* PopUpViewController.swift in Sources */,
 				88AC5EAD0F529E1EC0EE8B83 /* PopUpPresenter.swift in Sources */,
 				CE5FAFB721537DD7009E707E /* BaseQuickLaunchViewController.swift in Sources */,
@@ -4712,6 +4768,7 @@
 				42AAFB7B52547D34DE57DDA6 /* BiometryQuickLaunchViewController.swift in Sources */,
 				A5F59AB921624908005F1765 /* RealmStorable.swift in Sources */,
 				8654A9AF519CBAD05884EF9F /* BiometryQuickLaunchPresenter.swift in Sources */,
+				B8C5EDD62189A2FA00345B79 /* API+Rates.swift in Sources */,
 				3295826A5BAFB3D53D223EF6 /* BiometryQuickLaunchInteractorInput.swift in Sources */,
 				93D422C2B6717A2E6C0B2903 /* BiometryQuickLaunchInteractorOutput.swift in Sources */,
 				CEFC9CBA215A5BE400962356 /* ContactCell.swift in Sources */,
@@ -4792,6 +4849,7 @@
 				A51CB561215945A200CDC80C /* UIView+Helpers.swift in Sources */,
 				B0E5A86CA04385F2DB04472E /* SendInteractorInput.swift in Sources */,
 				5D5AB809379ECAA0157B7C0A /* SendInteractorOutput.swift in Sources */,
+				B8C5EDDA2189AA8C00345B79 /* RatesNetworkProvider.swift in Sources */,
 				A574351C21777383006B4CAE /* SessionsModuleInput.swift in Sources */,
 				3CF59DC5D81EA7FC56AE2D5E /* SendInteractor.swift in Sources */,
 				7F478B40359F79AE643EF8EC /* SendRouterInput.swift in Sources */,
@@ -4890,6 +4948,7 @@
 				35845AAC175D6D276692694B /* ReceiverInteractorInput.swift in Sources */,
 				A574350421776226006B4CAE /* EditProfileInteractor.swift in Sources */,
 				A56ED37B216CAE37009FA58B /* TransactionDescriptionContactView.swift in Sources */,
+				B8C5EDE82189D7E200345B79 /* Ratesprovider.swift in Sources */,
 				A574352221777383006B4CAE /* SessionsInteractor.swift in Sources */,
 				CAA84A072868E775F87B4927 /* ReceiverInteractorOutput.swift in Sources */,
 				F04C3B3DC184DB88429D7531 /* ReceiverInteractor.swift in Sources */,
@@ -4980,6 +5039,7 @@
 				7934CE37D1CDACDF65C1F2DF /* ConnectPhoneModule.swift in Sources */,
 				E48F38E3F6C54C04DF13180D /* TransactionFilterViewInput.swift in Sources */,
 				F686C7139F346CD48BB88FFC /* TransactionFilterViewOutput.swift in Sources */,
+				B8C5EDDE2189ADE600345B79 /* RealmRate.swift in Sources */,
 				CE210A2C2188526300CA009A /* PopUpSendConfirmSuccessVM.swift in Sources */,
 				4C9AC1E9C6D0D8C5181C95BF /* TransactionFilterViewController.swift in Sources */,
 				A7B879DB4C2E78DC60D11D96 /* TransactionFilterModulePresenter.swift in Sources */,

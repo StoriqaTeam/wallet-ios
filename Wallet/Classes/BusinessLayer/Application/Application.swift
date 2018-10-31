@@ -24,6 +24,7 @@ class Application {
     lazy var sessionsDataStoreService: SessionsDataStoreServiceProtocol = SessionsDataStoreService()
     lazy var transactionDataStoreService: TransactionDataStoreServiceProtocol = TransactionDataStoreService()
     lazy var contactsDataStoreService: ContactsDataStoreServiceProtocol = ContactsDataStoreService()
+    lazy var ratesDataStoreService: RatesDataStoreServiceProtocol = RatesDataStoreService()
     
     
     // MARK: - Network Providers
@@ -36,6 +37,7 @@ class Application {
     lazy var resetPasswordNetworkProvider: ResetPasswordNetworkProviderProtocol = ResetPasswordNetworkProvider()
     lazy var confirmResetPasswordNetworkProvider: ConfirmResetPasswordNetworkProviderProtocol = ConfirmResetPasswordNetworkProvider()
     lazy var sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol = SendTransactionNetworkProvider()
+    lazy var ratesNetworkProvider: RatesNetworkProviderProtocol = RatesNetworkProvider()
     
     
     // MARK: - Common Providers
@@ -57,6 +59,7 @@ class Application {
         self.transactionDataStoreService)
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
     lazy var appLockerProvider: AppLockerProviderProtocol = AppLockerProvider(app: self)
+    lazy var ratesProvider: RatesProviderProtocol = RatesProvider(ratesDataStoreService: self.ratesDataStoreService)
     
     // MARK: - Updaters
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,
@@ -70,6 +73,8 @@ class Application {
     lazy var contactsChacheUpdater: ContactsCacheUpdaterProtocol = ContactsCacheUpdater(deviceContactsFetcher: self.deviceContactsFetcher,
                                                                                         contactsNetworkProvider: self.fakeContactsNetworkProvider,
                                                                                         contactsAddressLinker: self.contactsAddressLinker)
+    lazy var ratesUpdater: RatesUpdaterProtocol = RatesUpdater(ratesDataSourceService: self.ratesDataStoreService,
+                                                               ratesNetworkProvider: self.ratesNetworkProvider)
     
     // MARK: - Builders
     lazy var sendTransactionBuilder: SendTransactionBuilder = SendTransactionBuilder(currencyConverterFactory: self.currencyConverterFactory,
@@ -79,7 +84,7 @@ class Application {
                                                                                      denominationUnitsConverter: self.denominationUnitsConverter)
     
     // MARK: - Converters and formattera
-    lazy var currencyConverterFactory: CurrencyConverterFactoryProtocol = CurrencyConverterFactory()
+    lazy var currencyConverterFactory: CurrencyConverterFactoryProtocol = CurrencyConverterFactory(ratesProvider: self.ratesProvider)
     lazy var currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatter()
     lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
     

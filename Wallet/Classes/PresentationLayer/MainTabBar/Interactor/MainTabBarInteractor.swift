@@ -16,18 +16,23 @@ class MainTabBarInteractor {
     private let userDataStoreService: UserDataStoreServiceProtocol
     private let accountsUpdater: AccountsUpdaterProtocol
     private let txsUpdater: TransactionsUpdaterProtocol
+    private let ratesUpdater: RatesUpdaterProtocol
     private let app: Application
+    
     private var shortPollingChannelInput: ShortPollingChannel?
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
          accountsUpdater: AccountsUpdaterProtocol,
          txsUpdater: TransactionsUpdaterProtocol,
+         ratesUpdater: RatesUpdaterProtocol,
          app: Application) {
+        
         self.accountWatcher = accountWatcher
         self.userDataStoreService = userDataStoreService
         self.accountsUpdater = accountsUpdater
         self.txsUpdater = txsUpdater
+        self.ratesUpdater = ratesUpdater
         self.app = app
         
         update()
@@ -79,6 +84,7 @@ extension MainTabBarInteractor {
         let user = getCurrentUser()
         accountsUpdater.update(userId: user.id)
         txsUpdater.update(userId: user.id)
+        ratesUpdater.update()
     }
     
     private func signalPolling() {

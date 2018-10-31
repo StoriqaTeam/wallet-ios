@@ -14,16 +14,22 @@ protocol CurrencyConverterFactoryProtocol {
 
 class CurrencyConverterFactory: CurrencyConverterFactoryProtocol {
     
+    private let ratesProvider: RatesProviderProtocol
+    
+    init(ratesProvider: RatesProviderProtocol) {
+        self.ratesProvider = ratesProvider
+    }
+    
     func createConverter(from currency: Currency) -> CurrencyConverterProtocol {
         switch currency {
         case .btc:
-            return BtcConverter()
+            return BtcConverter(ratesProvider: ratesProvider)
         case .eth:
-            return EthConverter()
+            return EthConverter(ratesProvider: ratesProvider)
         case .stq:
-            return StqConverter()
+            return StqConverter(ratesProvider: ratesProvider)
         case .fiat:
-            return FiatConverter()
+            return FiatConverter(ratesProvider: ratesProvider)
         }
     }
     
