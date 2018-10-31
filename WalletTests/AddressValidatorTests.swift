@@ -1,5 +1,5 @@
 //
-//  AddressValidator.swift
+//  AddressValidatorTests.swift
 //  WalletTests
 //
 //  Created by Daniil Miroshnichecko on 28.09.2018.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Wallet
 
-class AddressValidator: XCTestCase {
+class AddressValidatorTests: XCTestCase {
     
     // Providers
     

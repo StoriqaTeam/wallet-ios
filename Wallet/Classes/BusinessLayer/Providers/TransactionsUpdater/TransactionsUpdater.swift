@@ -24,18 +24,20 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     private var lastTxTime: TimeInterval!
     private var userId: Int!
     private var offset = 0
-    private let limit = 50
+    private let limit: Int
     
     init(transactionsProvider: TransactionsProviderProtocol,
          transactionsNetworkProvider: TransactionsNetworkProviderProtocol,
          transactionsDataStoreService: TransactionDataStoreServiceProtocol,
          defaultsProvider: DefaultsProviderProtocol,
-         authTokenProvider: AuthTokenProviderProtocol) {
+         authTokenProvider: AuthTokenProviderProtocol,
+         limit: Int = 50) {
         self.provider = transactionsProvider
         self.networkProvider = transactionsNetworkProvider
         self.dataStore = transactionsDataStoreService
         self.defaults = defaultsProvider
         self.authTokenProvider = authTokenProvider
+        self.limit = limit
     }
     
     func update(userId: Int) {
@@ -44,6 +46,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
         }
         
         isUpdating = true
+        offset = 0
         
         self.userId = userId
         
@@ -101,7 +104,7 @@ extension TransactionsUpdater {
         dataStore.save(txs)
         
         if txs.count < limit ||
-            isTxAlreadyLoaded(txs.first!) {
+            isTxAlreadyLoaded(txs.last!) {
             isUpdating = false
             defaults.lastTxTimastamp = nil
         } else {
