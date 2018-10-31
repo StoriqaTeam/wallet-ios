@@ -15,14 +15,15 @@ import XCTest
 class TxnUpdaterTests: XCTestCase {
     private var updater: TransactionsUpdaterProtocol!
     private var dataStore: TransactionDataStoreService!
+    private var provider: TransactionsProviderProtocol!
     private let defaults = FakeDefaultsProvider()
     private let networkProvider = FakeTransactionsNetworkProvider()
-    private var provider: TransactionsProviderProtocol!
+    private let authTokenProvider = FakeAuthTokenProvider()
     
     private let doneTxn: [Transaction] = {
         var result = [Transaction]()
         
-        for i in 0...14 {
+        for i in 1...14 {
             let tx = Transaction(id: "\(i)",
                 currency: .stq, fromAddress: [""],
                 fromAccount: [TransactionAccount](),
@@ -43,7 +44,7 @@ class TxnUpdaterTests: XCTestCase {
     private let pendingTxn: [Transaction] = {
         var result = [Transaction]()
         
-        for i in 0...14 {
+        for i in 1...14 {
             let status: TransactionStatus = i == 10 ? .pending : .done
             let tx = Transaction(id: "\(i)",
                 currency: .stq, fromAddress: [""],
@@ -76,7 +77,6 @@ class TxnUpdaterTests: XCTestCase {
         networkProvider.txn = doneTxn
         
         provider = TransactionsProvider(transactionDataStoreService: dataStore)
-        let authTokenProvider = FakeAuthTokenProvider()
         
         updater = TransactionsUpdater(
             transactionsProvider: provider,
@@ -105,7 +105,6 @@ class TxnUpdaterTests: XCTestCase {
         XCTAssertEqual(networkProvider.blocks[4], ["6","5"])
         XCTAssertEqual(networkProvider.blocks[5], ["4","3"])
         XCTAssertEqual(networkProvider.blocks[6], ["2","1"])
-        XCTAssertEqual(networkProvider.blocks[7], ["0"])
         XCTAssertNil(defaults.lastTxTimastamp)
         
         checkSaved()
@@ -120,6 +119,50 @@ class TxnUpdaterTests: XCTestCase {
         
         checkSaved()
         resetState()
+        
+        updater.update(userId: 0)
+        XCTAssertEqual(networkProvider.offsets, [0,2,4,6,8,10,12,14])
+        XCTAssertEqual(networkProvider.blocks.count, 8)
+        XCTAssertEqual(networkProvider.blocks[0], ["14","13"])
+        XCTAssertEqual(networkProvider.blocks[1], ["12","11"])
+        XCTAssertEqual(networkProvider.blocks[2], ["10","9"])
+        XCTAssertEqual(networkProvider.blocks[3], ["8","7"])
+        XCTAssertEqual(networkProvider.blocks[4], ["6","5"])
+        XCTAssertEqual(networkProvider.blocks[5], ["4","3"])
+        XCTAssertEqual(networkProvider.blocks[6], ["2","1"])
+        XCTAssertEqual(networkProvider.blocks[7], [])
+        XCTAssertNil(defaults.lastTxTimastamp)
+        
+        checkSaved()
+        
+        resetState()
+        updater = TransactionsUpdater(
+            transactionsProvider: provider,
+            transactionsNetworkProvider: networkProvider,
+            transactionsDataStoreService: dataStore,
+            defaultsProvider: defaults,
+            authTokenProvider: authTokenProvider,
+            limit: 3)
+        
+        updater.update(userId: 0)
+        XCTAssertEqual(networkProvider.offsets, [0,3,6,9,12])
+        XCTAssertEqual(networkProvider.blocks.count, 5)
+        XCTAssertEqual(networkProvider.blocks[0], ["14","13","12"])
+        XCTAssertEqual(networkProvider.blocks[1], ["11","10", "9"])
+        XCTAssertEqual(networkProvider.blocks[2], ["8","7","6"])
+        XCTAssertEqual(networkProvider.blocks[3], ["5","4","3"])
+        XCTAssertEqual(networkProvider.blocks[4], ["2","1"])
+        XCTAssertNil(defaults.lastTxTimastamp)
+        
+        checkSaved()
+        
+        updater = TransactionsUpdater(
+            transactionsProvider: provider,
+            transactionsNetworkProvider: networkProvider,
+            transactionsDataStoreService: dataStore,
+            defaultsProvider: defaults,
+            authTokenProvider: authTokenProvider,
+            limit: 2)
     }
     
     func testLoadWithPending() {
@@ -165,24 +208,7 @@ class TxnUpdaterTests: XCTestCase {
         XCTAssertNil(defaults.lastTxTimastamp)
         
         checkSaved()
-        
-        
         resetState()
-        dataStore.save(doneTxn)
-        defaults.lastTxTimastamp = 3.0
-        
-        updater.update(userId: 0)
-        XCTAssertEqual(networkProvider.offsets, [0,2,4,6,8,10])
-        XCTAssertEqual(networkProvider.blocks.count, 6)
-        XCTAssertEqual(networkProvider.blocks[0], ["14","13"])
-        XCTAssertEqual(networkProvider.blocks[1], ["12","11"])
-        XCTAssertEqual(networkProvider.blocks[2], ["10","9"])
-        XCTAssertEqual(networkProvider.blocks[3], ["8","7"])
-        XCTAssertEqual(networkProvider.blocks[4], ["6","5"])
-        XCTAssertEqual(networkProvider.blocks[5], ["4","3"])
-        XCTAssertNil(defaults.lastTxTimastamp)
-        
-        checkSaved()
     }
     
     func testLoadFailure() {
