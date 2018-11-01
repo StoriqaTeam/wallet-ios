@@ -28,8 +28,6 @@ class MyWalletModule {
                                             accountsUpdater: app.accountsUpdater,
                                             txnUpdater: app.transactionsUpdater)
         
-        let _ = app.btcAddressValidator
-        
         let myWalletSb = UIStoryboard(name: "MyWallet", bundle: nil)
         let viewController = myWalletSb.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController
         
