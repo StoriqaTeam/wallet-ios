@@ -5,10 +5,17 @@
 //  Created by Storiqa on 27/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable all
 
 import Foundation
 import FacebookLogin
+
+#if DEBUG
+let BITCOIN_NETWORK = Network.btcTestnet
+#else
+let BITCOIN_NETWORK = Network.btcMainnet
+#endif
+
 
 class Application {
 
@@ -89,7 +96,7 @@ class Application {
     lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
     
     // MARK: Validators
-    lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: .btcTestnet)
+    lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: BITCOIN_NETWORK)
     lazy var ethAddressValidator: AddressValidatorProtocol = EthereumAddressValidator()
     
     
