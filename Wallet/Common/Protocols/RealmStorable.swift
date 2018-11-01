@@ -16,13 +16,17 @@ class RealmStorable<PlainType: RealmMappable> {
     
     private let realm: Realm
     
-    init(realmFolder: URL? = nil) {
-        if let realmFolder = realmFolder {
-            let realm = try! Realm(fileURL: realmFolder)
-            self.realm = realm
-        } else {
-            self.realm = try! Realm()
+    init(forTests realmFolder: URL) {
+        guard NSClassFromString("XCTestCase") != nil else {
+            fatalError("This init is only for tests!")
         }
+        
+        let realm = try! Realm(fileURL: realmFolder)
+        self.realm = realm
+    }
+    
+    init() {
+        self.realm = try! Realm()
     }
     
     deinit {

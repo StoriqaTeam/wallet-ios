@@ -58,7 +58,7 @@ class ContactsDataStoreTests: XCTestCase {
             try! FileManager.default.removeItem(atPath: realmPath)
         }
         
-        contactsDataStore = ContactsDataStoreService(realmFolder: URL(string: realmPath)!)
+        contactsDataStore = ContactsDataStoreService(forTests: URL(string: realmPath)!)
         contactsDataStore.deleteAll()
         
         fakeObserver = FakeObserver(contactsDataStore: contactsDataStore)

@@ -72,7 +72,7 @@ class TxnUpdaterTests: XCTestCase {
             try! FileManager.default.removeItem(atPath: realmPath)
         }
         
-        dataStore = TransactionDataStoreService(realmFolder: URL(string: realmPath)!)
+        dataStore = TransactionDataStoreService(forTests: URL(string: realmPath)!)
         dataStore.resetAllDatabase()
         networkProvider.txn = doneTxn
         
