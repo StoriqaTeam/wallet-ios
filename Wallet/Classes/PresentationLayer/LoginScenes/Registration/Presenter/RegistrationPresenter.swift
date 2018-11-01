@@ -58,13 +58,11 @@ extension RegistrationPresenter: RegistrationViewOutput {
     
     func socialNetworkRegisterSucceed() {
         //TODO: будем ли передавать email
-        storiqaLoader.stopLoader()
         router.showSuccess(email: "", popUpDelegate: self, from: view.viewController)
     }
     
     func socialNetworkRegisterFailed() {
         //TODO: сообщение при регистрации через соц сети
-        storiqaLoader.stopLoader()
         router.showSocialNetworkFailure(message: Constants.Errors.userFriendly, from: view.viewController)
     }
     

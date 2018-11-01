@@ -28,10 +28,6 @@ extension PinQuickLaunchRouter: PinQuickLaunchRouterInput {
         PinSetupModule.create(app: app, qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
     }
     
-    func showAuthorizedZone() {
-        MainTabBarModule.create(app: app).present()
-    }
-    
     func showBiometryQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController) {
         BiometryQuickLaunchModule.create(app: app, qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
     }
