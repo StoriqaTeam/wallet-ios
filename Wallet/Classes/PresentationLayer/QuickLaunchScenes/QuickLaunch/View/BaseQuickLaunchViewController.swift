@@ -16,7 +16,7 @@ class BaseQuickLaunchViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var subtitleLabel: UILabel?
     @IBOutlet var actionButton: UIButton!
-    @IBOutlet var cancelButton: UIButton!
+    @IBOutlet var cancelButton: UIButton?
     
     // MARK: Life cycle
     
@@ -30,7 +30,7 @@ class BaseQuickLaunchViewController: UIViewController {
         titleLabel.font = Theme.Font.title
         subtitleLabel?.font = Theme.Font.subtitle
         subtitleLabel?.textColor = Theme.Color.greyishBrown
-        cancelButton.setTitle("do_not_use".localized(), for: .normal)
+        cancelButton?.setTitle("do_not_use".localized(), for: .normal)
     }
     
     private func disableBackNavigation() {

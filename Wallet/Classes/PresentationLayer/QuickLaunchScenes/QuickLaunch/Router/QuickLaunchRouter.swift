@@ -28,8 +28,4 @@ extension QuickLaunchRouter: QuickLaunchRouterInput {
         PinSetupModule.create(app: app, qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
     }
     
-    func showAuthorizedZone() {
-        MainTabBarModule.create(app: app).present()
-    }
-    
 }

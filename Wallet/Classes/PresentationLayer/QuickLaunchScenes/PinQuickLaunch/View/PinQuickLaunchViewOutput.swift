@@ -12,5 +12,4 @@ import UIKit
 protocol PinQuickLaunchViewOutput: class {
     func viewIsReady()
     func performAction()
-    func cancelSetup()
 }

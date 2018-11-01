@@ -133,6 +133,8 @@ extension LoginInteractor {
                     self?.accountsDataStore.update(accounts)
                     self?.loginSucceed(authData: authData)
                     
+                    // TODO: if no accounts avalable should we create them?
+                    
                 case .failure(let error):
                     self?.output.loginFailed(message: error.localizedDescription)
                     log.warn(error.localizedDescription)

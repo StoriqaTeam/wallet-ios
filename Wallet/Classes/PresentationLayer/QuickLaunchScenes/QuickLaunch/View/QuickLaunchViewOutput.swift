@@ -12,5 +12,4 @@ import UIKit
 protocol QuickLaunchViewOutput: class {
     func viewIsReady()
     func performAction()
-    func cancelSetup()
 }
