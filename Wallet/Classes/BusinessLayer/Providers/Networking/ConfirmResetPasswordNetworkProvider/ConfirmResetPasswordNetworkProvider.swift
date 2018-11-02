@@ -2,7 +2,7 @@
 //  ConfirmResetPasswordNetworkProvider.swift
 //  Wallet
 //
-//  Created by Tata Gri on 29/10/2018.
+//  Created by Storiqa on 29/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 

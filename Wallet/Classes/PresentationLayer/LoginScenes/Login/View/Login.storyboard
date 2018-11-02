@@ -40,7 +40,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjm-wb-IjY" userLabel="fields">
                                 <rect key="frame" x="26" y="164" width="362" height="224"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OUb-B4-Dho" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OUb-B4-Dho" customClass="SecureInputTextField" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="60" width="362" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="b37-bF-jdD"/>
@@ -50,6 +50,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
                                         <connections>
                                             <outlet property="bottomConstraint" destination="kl7-NE-5w7" id="lR7-41-mUI"/>
+                                            <outlet property="toggleVisibilityButton" destination="iek-9N-Svv" id="oKh-Lg-SUD"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iek-9N-Svv">
@@ -60,9 +61,6 @@
                                         </constraints>
                                         <color key="tintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="eyeClosed"/>
-                                        <connections>
-                                            <action selector="togglePasswordVisibility:" destination="OUb-B4-Dho" eventType="touchUpInside" id="pKD-xD-2jK"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxg-LK-ot9" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="129" width="362" height="45"/>

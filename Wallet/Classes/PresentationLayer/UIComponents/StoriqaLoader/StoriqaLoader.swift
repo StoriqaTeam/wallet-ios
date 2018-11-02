@@ -27,10 +27,14 @@ class StoriqaLoader {
     }
     
     func stopLoader() {
+        guard let loaderView = loaderView, let dimView = dimView else {
+            return
+        }
+
         loaderView.hideActivityIndicator()
         loaderView.removeFromSuperview()
         dimView.removeFromSuperview()
-        loaderView = nil
+        self.loaderView = nil
     }    
 }
 

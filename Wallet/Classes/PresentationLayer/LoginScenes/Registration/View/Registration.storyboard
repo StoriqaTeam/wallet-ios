@@ -124,7 +124,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st2-ay-UMs">
                                                         <rect key="frame" x="0.0" y="214" width="362" height="40"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUJ-PB-frV" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUJ-PB-frV" customClass="SecureInputTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="QVd-kc-88L"/>
@@ -135,6 +135,7 @@
                                                                 <connections>
                                                                     <outlet property="bottomConstraint" destination="J6J-lI-1J9" id="Tlm-nw-POe"/>
                                                                     <outlet property="delegate" destination="lxi-07-NyW" id="hNq-Ms-Lk2"/>
+                                                                    <outlet property="toggleVisibilityButton" destination="Rd6-xp-3d5" id="aSm-Dq-uou"/>
                                                                 </connections>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rd6-xp-3d5">
@@ -145,9 +146,6 @@
                                                                 </constraints>
                                                                 <color key="tintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" image="eyeClosed"/>
-                                                                <connections>
-                                                                    <action selector="togglePasswordVisibility:" destination="cUJ-PB-frV" eventType="touchUpInside" id="HBU-ZI-ZHZ"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -163,7 +161,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9D9-8B-6kz">
                                                         <rect key="frame" x="0.0" y="264" width="362" height="40"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ztt-A7-VQL" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ztt-A7-VQL" customClass="SecureInputTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="uRD-yp-fZW"/>
@@ -174,6 +172,7 @@
                                                                 <connections>
                                                                     <outlet property="bottomConstraint" destination="cWO-Ua-xKH" id="JGK-vS-Bny"/>
                                                                     <outlet property="delegate" destination="lxi-07-NyW" id="Qfv-hA-Put"/>
+                                                                    <outlet property="toggleVisibilityButton" destination="9Xp-Gk-DTq" id="Puu-Xh-gnB"/>
                                                                 </connections>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xp-Gk-DTq">
@@ -184,9 +183,6 @@
                                                                 </constraints>
                                                                 <color key="tintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" image="eyeClosed"/>
-                                                                <connections>
-                                                                    <action selector="togglePasswordVisibility:" destination="Ztt-A7-VQL" eventType="touchUpInside" id="eQs-UI-WoE"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -308,8 +304,6 @@
                         <outletCollection property="textFields" destination="jhR-J5-2og" collectionClass="NSMutableArray" id="6qT-xf-Soj"/>
                         <outletCollection property="textFields" destination="4O1-dh-iSq" collectionClass="NSMutableArray" id="Q88-nB-Wu4"/>
                         <outletCollection property="textFields" destination="lw0-HL-BH8" collectionClass="NSMutableArray" id="PMK-AB-YRu"/>
-                        <outletCollection property="passwordVisibilityButtons" destination="Rd6-xp-3d5" collectionClass="NSMutableArray" id="K7a-Fv-QQl"/>
-                        <outletCollection property="passwordVisibilityButtons" destination="9Xp-Gk-DTq" collectionClass="NSMutableArray" id="7dR-2i-wpU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xg-U2-n3f" userLabel="First Responder" sceneMemberID="firstResponder"/>

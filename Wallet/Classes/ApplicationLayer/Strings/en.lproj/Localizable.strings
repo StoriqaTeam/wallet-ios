@@ -73,7 +73,7 @@
 "sign_up_social" = "Sign up via social account";
 
 //Messages
-"passwords_nonequeal" = "Passwords are not equeal";
+"passwords_nonequal" = "Passwords are not equal";
 "email_sent" = "Email sent successfully";
 "check_email" = "Check the mail! We sent instruction how to confirm your account to your email address ";
 "smth_went_wrong" = "Oops! Something gone wrong!";

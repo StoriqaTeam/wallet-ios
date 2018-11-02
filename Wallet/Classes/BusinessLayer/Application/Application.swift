@@ -45,6 +45,7 @@ class Application {
     lazy var confirmResetPasswordNetworkProvider: ConfirmResetPasswordNetworkProviderProtocol = ConfirmResetPasswordNetworkProvider()
     lazy var sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol = SendTransactionNetworkProvider()
     lazy var ratesNetworkProvider: RatesNetworkProviderProtocol = RatesNetworkProvider()
+    lazy var changePasswordNetworkProvider: ChangePasswordNetworkProviderProtocol = ChangePasswordNetworkProvider()
     
     
     // MARK: - Common Providers

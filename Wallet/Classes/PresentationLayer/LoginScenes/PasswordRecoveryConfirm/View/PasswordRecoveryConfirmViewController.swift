@@ -13,8 +13,8 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
 
     var output: PasswordRecoveryConfirmViewOutput!
 
-    @IBOutlet private var passwordTextField: UnderlinedTextField!
-    @IBOutlet private var repeatPasswordTextField: UnderlinedTextField!
+    @IBOutlet private var passwordTextField: SecureInputTextField!
+    @IBOutlet private var repeatPasswordTextField: SecureInputTextField!
 
     // MARK: Life cycle
 
@@ -75,6 +75,8 @@ extension PasswordRecoveryConfirmViewController: PasswordRecoveryConfirmViewInpu
     func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?) {
         confirmButton.isEnabled = valid
         repeatPasswordTextField.errorText = passwordsEqualityMessage
+        passwordTextField.markValid(valid)
+        repeatPasswordTextField.markValid(valid)
     }
     
     func showErrorMessage(_ password: String?) {
@@ -98,5 +100,11 @@ extension PasswordRecoveryConfirmViewController {
         }
         
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == passwordTextField {
+            (textField as? UnderlinedTextField)?.errorText = nil
+        }
     }
 }

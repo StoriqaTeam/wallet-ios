@@ -44,9 +44,7 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     
     func validateForm(_ form: RegistrationForm) {
         let valid = formValidationProvider.formIsValid(form)
-        let passwordsEqualMessage = formValidationProvider.passwordsEqualityMessage(form)
-        
-        output.setFormIsValid(valid, passwordsEqualityMessage: passwordsEqualMessage)
+        output.setFormIsValid(valid)
     }
     
     func register(with registrationData: RegistrationData) {

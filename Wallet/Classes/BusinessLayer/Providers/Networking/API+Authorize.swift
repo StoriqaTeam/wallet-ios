@@ -30,19 +30,19 @@ extension API {
             currency: Currency,
             value: String,
             fee: String)
+        case changePassword(authToken: String, currentPassword: String, newPassword: String)
     }
 }
 
 extension API.Authorized: APIMethodProtocol {
     var method: HTTPMethod {
         switch self {
-        case .user:
+        case .user,
+             .getAccounts,
+             .getTransactions:
             return .get
-        case .getAccounts:
-            return .get
-        case .getTransactions:
-            return .get
-        case .sendTransaction:
+        case .sendTransaction,
+             .changePassword:
             return .post
         }
     }
@@ -58,6 +58,8 @@ extension API.Authorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/users/\(userId)/transactions?offset=\(offset)&limit=\(limit)"
         case .sendTransaction:
             return "\(Constants.Network.baseUrl)/transactions"
+        case .changePassword:
+            return "\(Constants.Network.baseUrl)/users/change_password"
         }
     }
     
@@ -77,15 +79,17 @@ extension API.Authorized: APIMethodProtocol {
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)"
             ]
-            
         case .sendTransaction(let authToken, _, _, _, _, _, _, _):
             return [
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)"
             ]
+        case .changePassword(let authToken, _, _):
+            return [
+                "accept": "application/json",
+                "Authorization": "Bearer \(authToken)"
+            ]
         }
-    
-        
     }
     
     var params: Params? {
@@ -118,6 +122,11 @@ extension API.Authorized: APIMethodProtocol {
                     "toCurrency": currency.ISO.lowercased(),
                     "value": value,
                     "fee": fee
+            ]
+        case .changePassword(_, let currentPassword, let newPassword):
+            return [
+                "newPassword": newPassword,
+                "oldPassword": currentPassword
             ]
         }
     }

@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     // FIXME: SocialNetworkAuthView hidden before release: return height to 175 !!!!!
     
     @IBOutlet private var emailTextField: UnderlinedTextField!
-    @IBOutlet private var passwordTextField: UnderlinedTextField!
+    @IBOutlet private var passwordTextField: SecureInputTextField!
     @IBOutlet private var signInButton: DefaultButton!
     @IBOutlet private var forgotPasswordButton: UIButton!
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
     
     @IBAction private func signIn() {
         dismissKeyboard()
-        passwordTextField.isSecureTextEntry = true
+        passwordTextField.hidePassword()
         
         guard let email = emailTextField.text,
             let password = passwordTextField.text else {
