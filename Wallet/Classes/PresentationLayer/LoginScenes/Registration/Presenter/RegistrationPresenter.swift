@@ -62,7 +62,7 @@ extension RegistrationPresenter: RegistrationViewOutput {
         if password == repeatPassword {
             view.setPasswordsEqual(onEndEditing, message: nil)
         } else {
-            view.setPasswordsEqual(false, message: "passwords_nonequeal".localized())
+            view.setPasswordsEqual(false, message: "passwords_nonequal".localized())
         }
     }
     
