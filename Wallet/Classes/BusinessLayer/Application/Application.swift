@@ -46,6 +46,7 @@ class Application {
     lazy var sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol = SendTransactionNetworkProvider()
     lazy var ratesNetworkProvider: RatesNetworkProviderProtocol = RatesNetworkProvider()
     lazy var changePasswordNetworkProvider: ChangePasswordNetworkProviderProtocol = ChangePasswordNetworkProvider()
+    lazy var createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol = CreateAccountNetworkProvider()
     
     
     // MARK: - Common Providers
@@ -68,6 +69,10 @@ class Application {
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
     lazy var appLockerProvider: AppLockerProviderProtocol = AppLockerProvider(app: self)
     lazy var ratesProvider: RatesProviderProtocol = RatesProvider(ratesDataStoreService: self.ratesDataStoreService)
+    lazy var defaultAccountsProvider: DefaultAccountsProviderProtocol = DefaultAccountsProvider(userDataStore: self.userDataStoreService,
+                                                                                                authTokenProvider: self.authTokenProvider,
+                                                                                                createAccountsNetworkProvider: self.createAccountsNetworkProvider,
+                                                                                                accountsDataStore: self.accountsDataStoreService)
     
     // MARK: - Updaters
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,

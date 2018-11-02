@@ -421,6 +421,8 @@
 		CE0C3C2C216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C3C2B216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift */; };
 		CE0E5A65212D5681003E2C5E /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A64212D5681003E2C5E /* BaseButton.swift */; };
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
+		CE135178218C8500009CB4F9 /* CreateAccountNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE135177218C8500009CB4F9 /* CreateAccountNetworkProvider.swift */; };
+		CE13517B218C9BF0009CB4F9 /* DefaultAccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13517A218C9BF0009CB4F9 /* DefaultAccountsProvider.swift */; };
 		CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */; };
 		CE185494214BE558009D1360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE185496214BE558009D1360 /* Localizable.strings */; };
 		CE1A47DB212E9C5400418C11 /* PinContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PinContainerView.swift */; };
@@ -1063,6 +1065,8 @@
 		CE0C3C2B216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFeeAndWaitProvider.swift; sourceTree = "<group>"; };
 		CE0E5A64212D5681003E2C5E /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		CE0E5A66212D569A003E2C5E /* LightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightButton.swift; sourceTree = "<group>"; };
+		CE135177218C8500009CB4F9 /* CreateAccountNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountNetworkProvider.swift; sourceTree = "<group>"; };
+		CE13517A218C9BF0009CB4F9 /* DefaultAccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAccountsProvider.swift; sourceTree = "<group>"; };
 		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
 		CE185495214BE558009D1360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinContainerView.xib; sourceTree = "<group>"; };
@@ -2465,6 +2469,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CE135176218C84CC009CB4F9 /* CreateAccountNetworkProvider */,
 				CEE84EFF218B4C8A00AB85F3 /* ChangePasswordNetworkProvider */,
 				B8C5EDD72189AA6E00345B79 /* RatesNetworkProvider */,
 				A5641E3A21876165002C2ABE /* SendTransactionNetworkProvider */,
@@ -3104,6 +3109,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				CE135179218C9BCB009CB4F9 /* DefaultAccountsProvider */,
 				B8C5EDE62189D7D300345B79 /* RatesProvider */,
 				B8C5EDE32189C11400345B79 /* RatesUpdater */,
 				A5641E442188A409002C2ABE /* AppLockerProvider */,
@@ -3595,6 +3601,22 @@
 				CE0C3C2B216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift */,
 			);
 			path = PaymentFeeAndWaitProvider;
+			sourceTree = "<group>";
+		};
+		CE135176218C84CC009CB4F9 /* CreateAccountNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE135177218C8500009CB4F9 /* CreateAccountNetworkProvider.swift */,
+			);
+			path = CreateAccountNetworkProvider;
+			sourceTree = "<group>";
+		};
+		CE135179218C9BCB009CB4F9 /* DefaultAccountsProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE13517A218C9BF0009CB4F9 /* DefaultAccountsProvider.swift */,
+			);
+			path = DefaultAccountsProvider;
 			sourceTree = "<group>";
 		};
 		CE1A47D1212E9C0200418C11 /* SmileLock */ = {
@@ -5060,6 +5082,7 @@
 				A574352121777383006B4CAE /* SessionsViewController.swift in Sources */,
 				FBC0445139685CE4088D662F /* AccountsRouterInput.swift in Sources */,
 				22613A5133717DCD88294579 /* AccountsRouter.swift in Sources */,
+				CE135178218C8500009CB4F9 /* CreateAccountNetworkProvider.swift in Sources */,
 				2A376BAA0B89B80EA83FCB82 /* AccountsModuleInput.swift in Sources */,
 				FADAF6221CEF898971879A0E /* AccountsModuleOutput.swift in Sources */,
 				E317F70565563E6720331762 /* AccountsModule.swift in Sources */,
@@ -5185,6 +5208,7 @@
 				0822C96FE27A18E633423834 /* EmailConfirmInteractor.swift in Sources */,
 				9B2CB65D1A38CBC88EB5FB67 /* EmailConfirmRouterInput.swift in Sources */,
 				26ECD67DADE404F2577D16BA /* EmailConfirmRouter.swift in Sources */,
+				CE13517B218C9BF0009CB4F9 /* DefaultAccountsProvider.swift in Sources */,
 				EB9BBB3F7CA31145810C7A5E /* EmailConfirmModuleInput.swift in Sources */,
 				2026A93121590F265E790911 /* EmailConfirmModuleOutput.swift in Sources */,
 				E07883BC4CF8529B07863B80 /* EmailConfirmModule.swift in Sources */,
