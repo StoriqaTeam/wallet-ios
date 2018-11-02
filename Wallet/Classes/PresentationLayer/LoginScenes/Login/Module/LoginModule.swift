@@ -25,7 +25,7 @@ class LoginModule {
                                          keychain: app.keychainProvider,
                                          accountsNetworkProvider: app.accountsNetworkProvider,
                                          accountsDataStore: app.accountsDataStoreService,
-                                         createAccountsNetworkProvider: app.createAccountsNetworkProvider)
+                                         defaultAccountsProvider: app.defaultAccountsProvider)
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController

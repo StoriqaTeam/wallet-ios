@@ -22,7 +22,7 @@ class LoginInteractor {
     private let keychain: KeychainProviderProtocol
     private let accountsNetworkProvider: AccountsNetworkProviderProtocol
     private let accountsDataStore: AccountsDataStoreServiceProtocol
-    private let createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol
+    private let defaultAccountsProvider: DefaultAccountsProviderProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
@@ -34,7 +34,7 @@ class LoginInteractor {
          keychain: KeychainProviderProtocol,
          accountsNetworkProvider: AccountsNetworkProviderProtocol,
          accountsDataStore: AccountsDataStoreServiceProtocol,
-         createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol) {
+         defaultAccountsProvider: DefaultAccountsProviderProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
@@ -46,7 +46,7 @@ class LoginInteractor {
         self.accountsNetworkProvider = accountsNetworkProvider
         self.accountsDataStore = accountsDataStore
         self.keychain = keychain
-        self.createAccountsNetworkProvider = createAccountsNetworkProvider
+        self.defaultAccountsProvider = defaultAccountsProvider
     }
 }
 
@@ -134,7 +134,7 @@ extension LoginInteractor {
                 case .success(let accounts):
                     guard !accounts.isEmpty else {
                         log.error("User has no accounts. Trying to create default")
-                        self?.createDefaultAccounts(authToken: authToken, authData: authData, userId: userId)
+                        self?.createDefaultAccounts(authData: authData)
                         return
                     }
                     
@@ -149,48 +149,14 @@ extension LoginInteractor {
         }
     }
     
-    private func createDefaultAccounts(authToken: String, authData: AuthData, userId: Int) {
-        
-        var loaded = 0
-        
-        func createAccount(group: DispatchGroup, authToken: String, userId: Int, uuid: String, currency: Currency) {
-            group.enter()
-            createAccountsNetworkProvider.createAccount(
-                authToken: authToken,
-                userId: userId,
-                id: uuid,
-                currency: currency,
-                name: "\(currency.ISO) Account",
-            queue: .main) { [weak self] (result) in
-                switch result {
-                case .success(let account):
-                    loaded += 1
-                    self?.accountsDataStore.save(account)
-                case .failure(let error):
-                    log.warn(error.localizedDescription)
-                }
-                group.leave()
+    private func createDefaultAccounts(authData: AuthData) {
+        defaultAccountsProvider.create { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.loginSucceed(authData: authData)
+            case .failure(let error):
+                self?.output.loginFailed(message: error.localizedDescription)
             }
-        }
-        
-        let dispatchGroup = DispatchGroup()
-        
-        let stqUUID = UUID().uuidString
-        let ethUUID = UUID().uuidString
-        let btcUUID = UUID().uuidString
-        
-        createAccount(group: dispatchGroup, authToken: authToken, userId: userId, uuid: stqUUID, currency: .stq)
-        createAccount(group: dispatchGroup, authToken: authToken, userId: userId, uuid: ethUUID, currency: .eth)
-        createAccount(group: dispatchGroup, authToken: authToken, userId: userId, uuid: btcUUID, currency: .btc)
-        
-        dispatchGroup.notify(queue: .main) { [weak self] in
-            guard loaded > 0 else {
-                self?.output.loginFailed(message: Constants.Errors.userFriendly)
-                return
-                
-            }
-            
-            self?.loginSucceed(authData: authData)
         }
         
     }
