@@ -2,7 +2,7 @@
 //  CreateAccountNetworkProvider.swift
 //  Wallet
 //
-//  Created by Tata Gri on 02/11/2018.
+//  Created by Storiqa on 02/11/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 //swiftlint:disable identifier_name
