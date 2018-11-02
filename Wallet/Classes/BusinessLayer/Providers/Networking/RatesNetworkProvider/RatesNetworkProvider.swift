@@ -5,7 +5,6 @@
 //  Created by Storiqa on 31/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -32,33 +31,35 @@ class RatesNetworkProvider: NetworkLoadable, RatesNetworkProviderProtocol {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
-            
+                
                 var rates = [Rate]()
                 
-                if code == 200 {
-                    guard let ratesDict = json.dictionary else {
+                guard code == 200 else {
+                    completion(.failure(RatesNetworkProviderError.internalServer))
+                    return
+                }
+                
+                guard let ratesDict = json.dictionary else {
+                    let apiError = RatesNetworkProviderError.parseError
+                    completion(.failure(apiError))
+                    return
+                }
+                
+                for (key, value) in ratesDict {
+                    guard let rateInfo = value.dictionary else {
                         let apiError = RatesNetworkProviderError.parseError
                         completion(.failure(apiError))
                         return
                     }
                     
-                    for (key, value) in ratesDict {
-                        guard let rateInfo = value.dictionary else {
-                            let apiError = RatesNetworkProviderError.parseError
-                            completion(.failure(apiError))
-                            return
-                        }
-                        
-                        let newRates = rateInfo.map { Rate(fromISO: key, toISO: $0.key, value: Decimal($0.value.doubleValue)) }
-                        rates.append(contentsOf: newRates)
-                    }
-                    
-                    completion(.success(rates))
+                    let newRates = rateInfo.map { Rate(fromISO: key, toISO: $0.key, value: Decimal($0.value.doubleValue)) }
+                    rates.append(contentsOf: newRates)
                 }
                 
-                completion(.failure(RatesNetworkProviderError.internalServer))
+                completion(.success(rates))
+                
             case .failure(let error):
-                log.error("Fail to load rates by reason: \(error.localizedDescription)")
+                completion(.failure(error))
             }
         }
     }

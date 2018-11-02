@@ -33,7 +33,6 @@ class ResetPasswordNetworkProvider: NetworkLoadable, ResetPasswordNetworkProvide
                 }
                 
             case .failure(let error):
-                log.debug(error)
                 completion(.failure(error))
             }
         }
