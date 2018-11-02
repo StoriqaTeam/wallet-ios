@@ -22,7 +22,7 @@ class JwtParcerTests: XCTestCase {
      
     }
     
-    func testParcer() {
+    func testParser() {
         let authToken_1 = jwtParcer.parse(jwtToken: jwtToken_1)
         XCTAssertEqual(authToken_1!.token, jwtToken_1)
         XCTAssertEqual(authToken_1!.expiredTimeStamp, 1540223698)

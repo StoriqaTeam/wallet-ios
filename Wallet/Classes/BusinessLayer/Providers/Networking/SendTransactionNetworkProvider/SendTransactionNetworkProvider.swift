@@ -52,18 +52,16 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
-                log.debug(json)
                 
                 if code == 200, let txnData = json.array {
                     let txn = txnData.compactMap { Transaction(json: $0) }
                     
                     guard !txn.isEmpty else {
+                        log.error("Failed to parse sent transaction json")
                         let apiError = SendTransactionNetworkProviderError.failToParseJson
                         completion(.failure(apiError))
                         return
                     }
-                    
-                    log.debug("Sent trn: \(txn.map { $0.id })")
                     completion(.success(txn))
                 } else {
                     let apiError = SendTransactionNetworkProviderError(code: code)

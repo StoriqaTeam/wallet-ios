@@ -36,6 +36,6 @@ extension SettingsRouter: SettingsRouterInput {
     }
     
     func showChangePassword(from viewController: UIViewController) {
-        // TODO: change password module
+        ChangePasswordModule.create(app: app).present(from: viewController)
     }
 }

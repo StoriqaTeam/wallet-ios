@@ -5,10 +5,17 @@
 //  Created by Storiqa on 27/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable all
 
 import Foundation
 import FacebookLogin
+
+#if DEBUG
+let BITCOIN_NETWORK = Network.btcTestnet
+#else
+let BITCOIN_NETWORK = Network.btcMainnet
+#endif
+
 
 class Application {
 
@@ -38,6 +45,8 @@ class Application {
     lazy var confirmResetPasswordNetworkProvider: ConfirmResetPasswordNetworkProviderProtocol = ConfirmResetPasswordNetworkProvider()
     lazy var sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol = SendTransactionNetworkProvider()
     lazy var ratesNetworkProvider: RatesNetworkProviderProtocol = RatesNetworkProvider()
+    lazy var changePasswordNetworkProvider: ChangePasswordNetworkProviderProtocol = ChangePasswordNetworkProvider()
+    lazy var createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol = CreateAccountNetworkProvider()
     
     
     // MARK: - Common Providers
@@ -60,6 +69,10 @@ class Application {
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
     lazy var appLockerProvider: AppLockerProviderProtocol = AppLockerProvider(app: self)
     lazy var ratesProvider: RatesProviderProtocol = RatesProvider(ratesDataStoreService: self.ratesDataStoreService)
+    lazy var defaultAccountsProvider: DefaultAccountsProviderProtocol = DefaultAccountsProvider(userDataStore: self.userDataStoreService,
+                                                                                                authTokenProvider: self.authTokenProvider,
+                                                                                                createAccountsNetworkProvider: self.createAccountsNetworkProvider,
+                                                                                                accountsDataStore: self.accountsDataStoreService)
     
     // MARK: - Updaters
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,
@@ -89,7 +102,7 @@ class Application {
     lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
     
     // MARK: Validators
-    lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: .btcTestnet)
+    lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: BITCOIN_NETWORK)
     lazy var ethAddressValidator: AddressValidatorProtocol = EthereumAddressValidator()
     
     

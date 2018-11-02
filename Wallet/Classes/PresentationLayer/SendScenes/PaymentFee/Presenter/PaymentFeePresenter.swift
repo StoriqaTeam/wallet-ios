@@ -171,7 +171,7 @@ extension PaymentFeePresenter {
     }
     
     private func addLoader() {
-        guard let parentView = view.viewController.view else { return }
+        guard let parentView = view.viewController.navigationController?.view else { return }
         storiqaLoader = StoriqaLoader(parentView: parentView)
     }
 }

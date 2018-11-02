@@ -2,7 +2,7 @@
 //  ConfirmResetPasswordNetworkProvider.swift
 //  Wallet
 //
-//  Created by Tata Gri on 29/10/2018.
+//  Created by Storiqa on 29/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -34,7 +34,6 @@ class ConfirmResetPasswordNetworkProvider: NetworkLoadable, ConfirmResetPassword
                 }
                 
             case .failure(let error):
-                log.debug(error)
                 completion(.failure(error))
             }
         }

@@ -52,19 +52,31 @@ extension RegistrationPresenter: RegistrationViewOutput {
         interactor.validateForm(form)
     }
     
+    func validatePasswords(onEndEditing: Bool, password: String?, repeatPassword: String?) {
+        guard let password = password, !password.isEmpty,
+            let repeatPassword = repeatPassword, !repeatPassword.isEmpty else {
+                view.setPasswordsEqual(false, message: nil)
+                return
+        }
+        
+        if password == repeatPassword {
+            view.setPasswordsEqual(onEndEditing, message: nil)
+        } else {
+            view.setPasswordsEqual(false, message: "passwords_nonequal".localized())
+        }
+    }
+    
     func showLogin() {
         router.showLogin()
     }
     
     func socialNetworkRegisterSucceed() {
         //TODO: будем ли передавать email
-        storiqaLoader.stopLoader()
         router.showSuccess(email: "", popUpDelegate: self, from: view.viewController)
     }
     
     func socialNetworkRegisterFailed() {
         //TODO: сообщение при регистрации через соц сети
-        storiqaLoader.stopLoader()
         router.showSocialNetworkFailure(message: Constants.Errors.userFriendly, from: view.viewController)
     }
     
@@ -79,9 +91,8 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
         view.showErrorMessage(email: email, password: password)
     }
     
-    func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?) {
+    func setFormIsValid(_ valid: Bool) {
         view.setButtonEnabled(valid)
-        view.showPasswordsNotEqual(message: passwordsEqualityMessage)
     }
     
     func registrationSucceed(email: String) {

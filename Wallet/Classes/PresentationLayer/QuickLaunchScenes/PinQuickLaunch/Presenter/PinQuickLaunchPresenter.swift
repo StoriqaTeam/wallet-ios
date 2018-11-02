@@ -31,10 +31,6 @@ extension PinQuickLaunchPresenter: PinQuickLaunchViewOutput {
         router.showPinSetup(qiuckLaunchProvider: interactor.getProvider(), from: view.viewController)
     }
     
-    func cancelSetup() {
-        router.showAuthorizedZone()
-    }
-    
 }
 
 

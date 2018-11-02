@@ -22,6 +22,7 @@ class LoginInteractor {
     private let keychain: KeychainProviderProtocol
     private let accountsNetworkProvider: AccountsNetworkProviderProtocol
     private let accountsDataStore: AccountsDataStoreServiceProtocol
+    private let defaultAccountsProvider: DefaultAccountsProviderProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
@@ -32,7 +33,8 @@ class LoginInteractor {
          userDataStore: UserDataStoreServiceProtocol,
          keychain: KeychainProviderProtocol,
          accountsNetworkProvider: AccountsNetworkProviderProtocol,
-         accountsDataStore: AccountsDataStoreServiceProtocol) {
+         accountsDataStore: AccountsDataStoreServiceProtocol,
+         defaultAccountsProvider: DefaultAccountsProviderProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
@@ -44,6 +46,7 @@ class LoginInteractor {
         self.accountsNetworkProvider = accountsNetworkProvider
         self.accountsDataStore = accountsDataStore
         self.keychain = keychain
+        self.defaultAccountsProvider = defaultAccountsProvider
     }
 }
 
@@ -129,6 +132,12 @@ extension LoginInteractor {
             queue: .main) { [weak self] (result) in
                 switch result {
                 case .success(let accounts):
+                    guard !accounts.isEmpty else {
+                        log.error("User has no accounts. Trying to create default")
+                        self?.createDefaultAccounts(authData: authData)
+                        return
+                    }
+                    
                     log.debug(accounts.map { $0.id })
                     self?.accountsDataStore.update(accounts)
                     self?.loginSucceed(authData: authData)
@@ -138,6 +147,18 @@ extension LoginInteractor {
                     log.warn(error.localizedDescription)
                 }
         }
+    }
+    
+    private func createDefaultAccounts(authData: AuthData) {
+        defaultAccountsProvider.create { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.loginSucceed(authData: authData)
+            case .failure(let error):
+                self?.output.loginFailed(message: error.localizedDescription)
+            }
+        }
+        
     }
     
     private func loginSucceed(authData: AuthData) {

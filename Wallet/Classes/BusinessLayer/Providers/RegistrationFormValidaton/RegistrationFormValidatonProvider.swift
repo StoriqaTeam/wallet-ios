@@ -19,7 +19,6 @@ struct RegistrationForm {
 
 protocol RegistrationFormValidatonProviderProtocol {
     func formIsValid(_ form: RegistrationForm) -> Bool
-    func passwordsEqualityMessage(_ form: RegistrationForm) -> String?
 }
 
 class RegistrationFormValidatonProvider: RegistrationFormValidatonProviderProtocol {
@@ -44,15 +43,6 @@ class RegistrationFormValidatonProvider: RegistrationFormValidatonProviderProtoc
             password == repeatPassword
         
         return formIsValid
-    }
-    
-    func passwordsEqualityMessage(_ form: RegistrationForm) -> String? {
-        guard let password = form.password, !password.isEmpty,
-            let repeatPassword = form.repeatPassword, !repeatPassword.isEmpty else {
-            return nil
-        }
-        
-        return password != repeatPassword ? "passwords_nonequeal".localized() : nil
     }
     
 }

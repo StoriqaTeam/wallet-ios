@@ -11,6 +11,7 @@ import Foundation
 
 protocol AccountsDataStoreServiceProtocol: class {
     func update(_ accounts: [Account])
+    func save(_ account: Account)
     func getAllAccounts() -> [Account]
     func observe(updateHandler: @escaping ([Account]) -> Void)
 }

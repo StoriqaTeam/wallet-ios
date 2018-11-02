@@ -2,7 +2,7 @@
 //  TransactionsUpdater.swift
 //  Wallet
 //
-//  Created by Tata Gri on 26/10/2018.
+//  Created by Storiqa on 26/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -24,18 +24,20 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     private var lastTxTime: TimeInterval!
     private var userId: Int!
     private var offset = 0
-    private let limit = 50
+    private let limit: Int
     
     init(transactionsProvider: TransactionsProviderProtocol,
          transactionsNetworkProvider: TransactionsNetworkProviderProtocol,
          transactionsDataStoreService: TransactionDataStoreServiceProtocol,
          defaultsProvider: DefaultsProviderProtocol,
-         authTokenProvider: AuthTokenProviderProtocol) {
+         authTokenProvider: AuthTokenProviderProtocol,
+         limit: Int = 50) {
         self.provider = transactionsProvider
         self.networkProvider = transactionsNetworkProvider
         self.dataStore = transactionsDataStoreService
         self.defaults = defaultsProvider
         self.authTokenProvider = authTokenProvider
+        self.limit = limit
     }
     
     func update(userId: Int) {

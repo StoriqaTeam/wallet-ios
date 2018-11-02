@@ -45,7 +45,6 @@ class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
                 }
                 
             case .failure(let error):
-                log.debug(error)
                 completion(.failure(error))
             }
         }

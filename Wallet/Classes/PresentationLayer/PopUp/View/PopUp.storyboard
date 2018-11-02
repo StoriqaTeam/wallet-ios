@@ -47,7 +47,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="bXf-dh-vgO" firstAttribute="top" secondItem="7m9-CU-XKI" secondAttribute="top" constant="20" id="1K3-Pc-kli"/>
+                                                            <constraint firstItem="bXf-dh-vgO" firstAttribute="top" secondItem="7m9-CU-XKI" secondAttribute="top" priority="750" constant="20" id="1K3-Pc-kli"/>
                                                             <constraint firstItem="bXf-dh-vgO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7m9-CU-XKI" secondAttribute="leading" id="BPk-zY-NxQ"/>
                                                             <constraint firstItem="bXf-dh-vgO" firstAttribute="centerY" secondItem="7m9-CU-XKI" secondAttribute="centerY" id="mGR-ur-ufT"/>
                                                             <constraint firstItem="bXf-dh-vgO" firstAttribute="centerX" secondItem="7m9-CU-XKI" secondAttribute="centerX" id="yJR-Rz-mSu"/>

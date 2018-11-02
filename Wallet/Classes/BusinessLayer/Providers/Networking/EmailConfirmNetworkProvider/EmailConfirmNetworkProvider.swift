@@ -2,7 +2,7 @@
 //  EmailConfirmNetworkProvider.swift
 //  Wallet
 //
-//  Created by Tata Gri on 25/10/2018.
+//  Created by Storiqa on 25/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -34,7 +34,6 @@ class EmailConfirmNetworkProvider: NetworkLoadable, EmailConfirmNetworkProviderP
                 }
                 
             case .failure(let error):
-                log.debug(error)
                 completion(.failure(error))
             }
         }

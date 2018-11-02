@@ -62,9 +62,9 @@
 "password_recovery" = "Password recovery";
 "psw_recovery_confirm_subtitle" = "Create new password and confirm it.";
 "email_for_psw_recovery" = "Enter email address where new password recovering instructions will be sent to.";
-"quick_launch_title" = "Wanna use quick launch?";
+"quick_launch_title" = "Set up quick launch";
 "quick_launch_subtitle" = "Choose the way to confirm your identity";
-"pin_quick_launch_title" = "Set up PIN code?";
+"pin_quick_launch_title" = "Set up PIN code";
 "touchId_quick_launch_title" = "Set up fingerprint launch?";
 "faceId_quick_launch_title" = "Set up Face ID launch?";
 "have_account" = "Have an account?";
@@ -73,7 +73,7 @@
 "sign_up_social" = "Sign up via social account";
 
 //Messages
-"passwords_nonequeal" = "Passwords are not equeal";
+"passwords_nonequal" = "Passwords are not equal";
 "email_sent" = "Email sent successfully";
 "check_email" = "Check the mail! We sent instruction how to confirm your account to your email address ";
 "smth_went_wrong" = "Oops! Something gone wrong!";

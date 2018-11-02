@@ -33,6 +33,10 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
+        
+        // FIXME: hidden before release
+        
+        phoneTitleLabel.superview!.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {

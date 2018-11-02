@@ -50,7 +50,6 @@ class RegistrationNetworkProvider: NetworkLoadable, RegistrationNetworkProviderP
                     completion(.failure(apiError))
                 }
             case .failure(let error):
-                log.debug(error)
                 completion(.failure(error))
             }
         }

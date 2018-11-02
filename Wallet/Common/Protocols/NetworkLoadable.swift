@@ -46,10 +46,15 @@ private struct AnyOperation<ResponseSerializer: DataResponseSerializerProtocol>:
             case .success(let value):
                 let code = response.response?.statusCode ?? 0
                 self.completion?(Result.success((code, value)))
+                
+                log.debug("Response \(self.request): \ncode: \(code) \njson: \(JSON(value))")
             case .failure(let error):
                 self.completion?(Result.failure(error))
+                
+                log.error("Response \(self.request): \nerror: \(error.localizedDescription)")
             }
+            
         }
-        print(task.debugDescription)
+        log.debug("Request: \(task.debugDescription)")
     }
 }
