@@ -46,6 +46,7 @@ class Application {
     lazy var sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol = SendTransactionNetworkProvider()
     lazy var ratesNetworkProvider: RatesNetworkProviderProtocol = RatesNetworkProvider()
     lazy var changePasswordNetworkProvider: ChangePasswordNetworkProviderProtocol = ChangePasswordNetworkProvider()
+    lazy var createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol = CreateAccountNetworkProvider()
     
     
     // MARK: - Common Providers

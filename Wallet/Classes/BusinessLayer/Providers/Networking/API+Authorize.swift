@@ -31,6 +31,7 @@ extension API {
             value: String,
             fee: String)
         case changePassword(authToken: String, currentPassword: String, newPassword: String)
+        case createAccount(authToken: String, userId: Int, id: String, currency: Currency, name: String)
     }
 }
 
@@ -42,7 +43,8 @@ extension API.Authorized: APIMethodProtocol {
              .getTransactions:
             return .get
         case .sendTransaction,
-             .changePassword:
+             .changePassword,
+             .createAccount:
             return .post
         }
     }
@@ -60,6 +62,8 @@ extension API.Authorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/transactions"
         case .changePassword:
             return "\(Constants.Network.baseUrl)/users/change_password"
+        case .createAccount(_, let userId, _, _, _):
+            return "\(Constants.Network.baseUrl)/users/\(userId)/accounts"
         }
     }
     
@@ -86,6 +90,12 @@ extension API.Authorized: APIMethodProtocol {
             ]
         case .changePassword(let authToken, _, _):
             return [
+                "accept": "application/json",
+                "Authorization": "Bearer \(authToken)"
+            ]
+        case .createAccount(let authToken, _, _, _, _):
+            return [
+                "Content-Type": "application/json",
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)"
             ]
@@ -127,6 +137,12 @@ extension API.Authorized: APIMethodProtocol {
             return [
                 "newPassword": newPassword,
                 "oldPassword": currentPassword
+            ]
+        case .createAccount(_, _, let id, let currency, let name):
+            return [
+                "id": id,
+                "currency": currency.ISO.lowercased(),
+                "name": name
             ]
         }
     }
