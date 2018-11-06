@@ -28,7 +28,7 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
     private let defaults: AuthTokenDefaultsProviderProtocol
     private let loginNetworkProvider: LoginNetworkProviderProtocol
     private let socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol
-    private let authDataFactory: AuthDataResolverProtocol
+    private let authDataResolver: AuthDataResolverProtocol
     
     private var now: Int {
         return Int(Date().timeIntervalSince1970)
@@ -37,13 +37,13 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
     init(defaults: AuthTokenDefaultsProviderProtocol,
          loginNetworkProvider: LoginNetworkProviderProtocol,
          socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol,
-         authDataFactory: AuthDataResolverProtocol) {
+         authDataResolver: AuthDataResolverProtocol) {
         
         self.defaults = defaults
         self.jwtParser = JwtTokenParser()
         self.loginNetworkProvider = loginNetworkProvider
         self.socialAuthNetworkProvider = socialAuthNetworkProvider
-        self.authDataFactory = authDataFactory
+        self.authDataResolver = authDataResolver
     }
     
     func currentAuthToken(completion: @escaping (Result<String>) -> Void) {
@@ -61,7 +61,7 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
             return
         }
         
-        guard let loginData = authDataFactory.getAuthData() else {
+        guard let loginData = authDataResolver.getAuthData() else {
             let error = AuthTokenProviderError.invalidLoginData
             log.warn(error.localizedDescription)
             completion(.failure(error))

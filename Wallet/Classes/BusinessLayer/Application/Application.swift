@@ -61,7 +61,7 @@ class Application {
     lazy var authTokenProvider: AuthTokenProviderProtocol = AuthTokenProvider(defaults: self.authTokenDefaultsProvider,
                                                                               loginNetworkProvider: self.loginNetworkProvider,
                                                                               socialAuthNetworkProvider: self.socialAuthNetworkProvider,
-                                                                              authDataFactory: self.authDataFactory)
+                                                                              authDataResolver: self.authDataResolver)
     lazy var contactsProvider: ContactsProviderProtocol = ContactsProvider(dataStoreService: self.contactsDataStoreService)
     lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService)
     lazy var accountWatcher: CurrentAccountWatcherProtocol = CurrentAccountWatcher(accountProvider: self.accountsProvider)
@@ -99,7 +99,7 @@ class Application {
                                                                accountsNetworkProvider: self.accountsNetworkProvider,
                                                                accountsDataStore: self.accountsDataStoreService,
                                                                defaultAccountsProvider: self.defaultAccountsProvider)
-    lazy var authDataFactory: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
+    lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
                                                                         keychain: self.keychainProvider,
                                                                         userDataStoreService: self.userDataStoreService)
     
