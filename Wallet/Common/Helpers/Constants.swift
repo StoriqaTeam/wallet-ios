@@ -16,8 +16,13 @@ let log = Slog(level: .debug, useEmoji: false)
 struct Constants {
     typealias Sizes = SizeConstants
     
-    struct Network {
-        static let baseUrl = "https://pay-nightly.stq.cloud/v1"
+    struct Network { 
+        #if DEBUG
+            static let baseUrl = "https://pay-nightly.stq.cloud/v1"
+        #else
+            static let baseUrl = "https://payments.storiqa.com/v1"
+        #endif
+                    
         static let ratesBaseUrl = "https://min-api.cryptocompare.com/data/pricemulti?"
     }
     
