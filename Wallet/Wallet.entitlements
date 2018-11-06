@@ -5,6 +5,7 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:beta.storiqa.com</string>
+		<string>applinks:stable.stq.cloud</string>
 	</array>
 </dict>
 </plist>
