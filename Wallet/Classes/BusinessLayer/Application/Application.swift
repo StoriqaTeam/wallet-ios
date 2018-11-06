@@ -18,7 +18,7 @@ let BITCOIN_NETWORK = Network.btcMainnet
 
 
 class Application {
-
+    
     
     // MARK: - System store
     lazy var keychainProvider: KeychainProviderProtocol = KeychainProvider()
@@ -47,6 +47,7 @@ class Application {
     lazy var ratesNetworkProvider: RatesNetworkProviderProtocol = RatesNetworkProvider()
     lazy var changePasswordNetworkProvider: ChangePasswordNetworkProviderProtocol = ChangePasswordNetworkProvider()
     lazy var createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol = CreateAccountNetworkProvider()
+    lazy var socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol = SocialAuthNetworkProvider()
     
     
     // MARK: - Common Providers
@@ -58,9 +59,9 @@ class Application {
     lazy var currencyImageProvider: CurrencyImageProviderProtocol = CurrencyImageProvider()
     lazy var authTokenDefaultsProvider: AuthTokenDefaultsProviderProtocol = AuthTokenDefaultsProvider()
     lazy var authTokenProvider: AuthTokenProviderProtocol = AuthTokenProvider(defaults: self.authTokenDefaultsProvider,
-                                                                              keychain: self.keychainProvider,
                                                                               loginNetworkProvider: self.loginNetworkProvider,
-                                                                              userDataStoreService: self.userDataStoreService)
+                                                                              socialAuthNetworkProvider: self.socialAuthNetworkProvider,
+                                                                              authDataResolver: self.authDataResolver)
     lazy var contactsProvider: ContactsProviderProtocol = ContactsProvider(dataStoreService: self.contactsDataStoreService)
     lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService)
     lazy var accountWatcher: CurrentAccountWatcherProtocol = CurrentAccountWatcher(accountProvider: self.accountsProvider)
@@ -88,6 +89,19 @@ class Application {
                                                                                         contactsAddressLinker: self.contactsAddressLinker)
     lazy var ratesUpdater: RatesUpdaterProtocol = RatesUpdater(ratesDataSourceService: self.ratesDataStoreService,
                                                                ratesNetworkProvider: self.ratesNetworkProvider)
+    lazy var loginService: LoginServiceProtocol = LoginService(authTokenDefaultsProvider: self.authTokenDefaultsProvider,
+                                                               loginNetworkProvider: self.loginNetworkProvider,
+                                                               socialAuthNetworkProvider: self.socialAuthNetworkProvider,
+                                                               userNetworkProvider: self.userNetworkProvider,
+                                                               userDataStore: self.userDataStoreService,
+                                                               keychain: self.keychainProvider,
+                                                               defaults: self.defaultsProvider,
+                                                               accountsNetworkProvider: self.accountsNetworkProvider,
+                                                               accountsDataStore: self.accountsDataStoreService,
+                                                               defaultAccountsProvider: self.defaultAccountsProvider)
+    lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
+                                                                        keychain: self.keychainProvider,
+                                                                        userDataStoreService: self.userDataStoreService)
     
     // MARK: - Builders
     lazy var sendTransactionBuilder: SendTransactionBuilder = SendTransactionBuilder(currencyConverterFactory: self.currencyConverterFactory,

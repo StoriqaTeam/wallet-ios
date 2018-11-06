@@ -15,6 +15,7 @@ import Security
 protocol KeychainProviderProtocol: class {
     var pincode: String? { get set }
     var password: String? { get set }
+    var socialAuthToken: String? { get set }
     func deleteAll()
 }
 
@@ -36,6 +37,7 @@ class KeychainProvider: KeychainProviderProtocol {
     enum KeychainKeys: String, CaseIterable {
         case pincode
         case password
+        case socialAuthToken
     }
     
     var pincode: String? {
@@ -54,6 +56,16 @@ class KeychainProvider: KeychainProviderProtocol {
         
         set {
             return setString(newValue, for: .password)
+        }
+    }
+    
+    var socialAuthToken: String? {
+        get {
+            return getString(for: .socialAuthToken)
+        }
+        
+        set {
+            return setString(newValue, for: .socialAuthToken)
         }
     }
     

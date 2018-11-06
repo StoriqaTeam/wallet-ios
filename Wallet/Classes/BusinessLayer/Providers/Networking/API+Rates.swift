@@ -32,7 +32,7 @@ extension API.Rates: APIMethodProtocol {
         case .getRates(let crypto, let fiat):
             let fsyms = crypto.joined(separator: ",")
             let tsyms = fiat.joined(separator: ",")
-            return "\(Constants.Network.Rates.ratesBaseUrl)fsyms=\(fsyms)&tsyms=\(tsyms)"
+            return "\(Constants.Network.ratesBaseUrl)fsyms=\(fsyms)&tsyms=\(tsyms)"
         }
     }
 }

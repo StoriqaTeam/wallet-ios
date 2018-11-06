@@ -421,6 +421,9 @@
 		CE0C3C2C216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C3C2B216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift */; };
 		CE0E5A65212D5681003E2C5E /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A64212D5681003E2C5E /* BaseButton.swift */; };
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
+		CE1008A32191AF0D0068010A /* SocialAuthNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1008A22191AF0D0068010A /* SocialAuthNetworkProvider.swift */; };
+		CE1008A62191B4D10068010A /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1008A52191B4D10068010A /* LoginService.swift */; };
+		CE1008A92191C8EF0068010A /* AuthDataResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1008A82191C8EF0068010A /* AuthDataResolver.swift */; };
 		CE135178218C8500009CB4F9 /* CreateAccountNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE135177218C8500009CB4F9 /* CreateAccountNetworkProvider.swift */; };
 		CE13517B218C9BF0009CB4F9 /* DefaultAccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13517A218C9BF0009CB4F9 /* DefaultAccountsProvider.swift */; };
 		CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */; };
@@ -1065,6 +1068,9 @@
 		CE0C3C2B216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFeeAndWaitProvider.swift; sourceTree = "<group>"; };
 		CE0E5A64212D5681003E2C5E /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		CE0E5A66212D569A003E2C5E /* LightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightButton.swift; sourceTree = "<group>"; };
+		CE1008A22191AF0D0068010A /* SocialAuthNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthNetworkProvider.swift; sourceTree = "<group>"; };
+		CE1008A52191B4D10068010A /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		CE1008A82191C8EF0068010A /* AuthDataResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResolver.swift; sourceTree = "<group>"; };
 		CE135177218C8500009CB4F9 /* CreateAccountNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountNetworkProvider.swift; sourceTree = "<group>"; };
 		CE13517A218C9BF0009CB4F9 /* DefaultAccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAccountsProvider.swift; sourceTree = "<group>"; };
 		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
@@ -2469,6 +2475,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CE1008A12191AEC00068010A /* SocialAuthNetworkProvider */,
 				CE135176218C84CC009CB4F9 /* CreateAccountNetworkProvider */,
 				CEE84EFF218B4C8A00AB85F3 /* ChangePasswordNetworkProvider */,
 				B8C5EDD72189AA6E00345B79 /* RatesNetworkProvider */,
@@ -3109,6 +3116,8 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				CE1008A72191C8E50068010A /* AuthDataResolver */,
+				CE1008A42191B4C10068010A /* LoginService */,
 				CE135179218C9BCB009CB4F9 /* DefaultAccountsProvider */,
 				B8C5EDE62189D7D300345B79 /* RatesProvider */,
 				B8C5EDE32189C11400345B79 /* RatesUpdater */,
@@ -3601,6 +3610,30 @@
 				CE0C3C2B216617D4002D1CBD /* PaymentFeeAndWaitProvider.swift */,
 			);
 			path = PaymentFeeAndWaitProvider;
+			sourceTree = "<group>";
+		};
+		CE1008A12191AEC00068010A /* SocialAuthNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE1008A22191AF0D0068010A /* SocialAuthNetworkProvider.swift */,
+			);
+			path = SocialAuthNetworkProvider;
+			sourceTree = "<group>";
+		};
+		CE1008A42191B4C10068010A /* LoginService */ = {
+			isa = PBXGroup;
+			children = (
+				CE1008A52191B4D10068010A /* LoginService.swift */,
+			);
+			path = LoginService;
+			sourceTree = "<group>";
+		};
+		CE1008A72191C8E50068010A /* AuthDataResolver */ = {
+			isa = PBXGroup;
+			children = (
+				CE1008A82191C8EF0068010A /* AuthDataResolver.swift */,
+			);
+			path = AuthDataResolver;
 			sourceTree = "<group>";
 		};
 		CE135176218C84CC009CB4F9 /* CreateAccountNetworkProvider */ = {
@@ -4767,6 +4800,7 @@
 				3F5CD24DFF4FE1F0033868ED /* PinInputRouter.swift in Sources */,
 				A574352321777383006B4CAE /* SessionsInteractorOutput.swift in Sources */,
 				CE1E348E217F007F001B1477 /* AccountsNetworkProvider.swift in Sources */,
+				CE1008A92191C8EF0068010A /* AuthDataResolver.swift in Sources */,
 				8DCE3EEDBEA0BC7E7957D47D /* PinInputModuleInput.swift in Sources */,
 				A5F59AB7216248C5005F1765 /* RealmMappable.swift in Sources */,
 				F724C3EE1C872FF0DF3C37D7 /* PinInputModuleOutput.swift in Sources */,
@@ -4938,6 +4972,7 @@
 				DB0167269CDCA1A26EFD340D /* PinSetupInteractorInput.swift in Sources */,
 				A52C66B821676AB70073071E /* Decimal+Helpers.swift in Sources */,
 				DBDC98669AC4320EAFC55E3F /* PinSetupInteractorOutput.swift in Sources */,
+				CE1008A32191AF0D0068010A /* SocialAuthNetworkProvider.swift in Sources */,
 				7B69B52D9D87B8566F124536 /* PinSetupInteractor.swift in Sources */,
 				A51CB55F2159431200CDC80C /* RoutrButton.swift in Sources */,
 				4F27BDC61CC80C07B40BA53D /* PinSetupRouterInput.swift in Sources */,
@@ -5058,6 +5093,7 @@
 				A51CB54B2158E80400CDC80C /* TransactionsProvider.swift in Sources */,
 				06B75F52B160C8A6E54107D2 /* SettingsInteractorOutput.swift in Sources */,
 				F5AB86357D59D1B81AC1B476 /* SettingsInteractor.swift in Sources */,
+				CE1008A62191B4D10068010A /* LoginService.swift in Sources */,
 				D1AF069A7077568DB144DE3C /* SettingsRouterInput.swift in Sources */,
 				CE23D325215E2B750016FEBD /* PopUpSendConfirmVM.swift in Sources */,
 				A94569B43B0A5C670A352940 /* SettingsRouter.swift in Sources */,

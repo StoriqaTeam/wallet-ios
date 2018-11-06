@@ -13,6 +13,6 @@ protocol LoginInteractorOutput: class {
     func loginSucceed()
     func loginFailed(message: String)
     func formValidationFailed(email: String?, password: String?)
-    func showQuickLaunch(authData: AuthData, token: String)
-    func showPinQuickLaunch(authData: AuthData, token: String)
+    func showQuickLaunch()
+    func showPinQuickLaunch()
 }

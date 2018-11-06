@@ -33,6 +33,11 @@ extension API {
         case confirmEmail(token: String)
         case resetPassword(email: String, deviceType: DeviceType)
         case confirmResetPassword(token: String, password: String)
+        case socialAuth(oauthToken: String,
+            oauthProvider: SocialNetworkTokenProvider,
+            deviceType: DeviceType,
+            deviceOs: String,
+            deviceId: String)
     }
 
 }
@@ -52,6 +57,8 @@ extension API.Unauthorized: APIMethodProtocol {
             return .post
         case .confirmResetPassword:
             return .post
+        case .socialAuth:
+            return .post
         }
     }
     
@@ -67,12 +74,14 @@ extension API.Unauthorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/users/reset_password"
         case .confirmResetPassword:
             return "\(Constants.Network.baseUrl)/users/confirm_reset_password"
+        case .socialAuth:
+            return "\(Constants.Network.baseUrl)/sessions/oauth"
         }
     }
     
     var headers: [String: String] {
         switch self {
-        case .login, .register, .confirmEmail, .resetPassword, .confirmResetPassword:
+        case .login, .register, .confirmEmail, .resetPassword, .confirmResetPassword, .socialAuth:
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json"
@@ -113,6 +122,14 @@ extension API.Unauthorized: APIMethodProtocol {
             return [
                 "token": token,
                 "password": password
+            ]
+        case .socialAuth(let oauthToken, let oauthProvider, let deviceType, let deviceOs, let deviceId):
+            return [
+                "oauthToken": oauthToken,
+                "oauthProvider": oauthProvider.name,
+                "deviceType": deviceType.rawValue,
+                "deviceOs": deviceOs,
+                "deviceId": deviceId
             ]
         }
     }

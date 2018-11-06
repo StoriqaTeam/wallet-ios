@@ -5,20 +5,14 @@
 
 import UIKit
 
-enum AuthData {
-    case email(email: String, password: String)
-    case socialProvider(provider: SocialNetworkTokenProvider, token: String)
-}
 
 class QuickLaunchModule {
     
-    class func create(app: Application, authData: AuthData, token: String) -> QuickLaunchModuleInput {
+    class func create(app: Application) -> QuickLaunchModuleInput {
         let router = QuickLaunchRouter(app: app)
         let presenter = QuickLaunchPresenter()
         
-        let quickLaunchProvider = QuickLaunchProvider(authData: authData,
-                                           token: token,
-                                           defaultsProvider: app.defaultsProvider,
+        let quickLaunchProvider = QuickLaunchProvider(defaultsProvider: app.defaultsProvider,
                                            keychainProvider: app.keychainProvider,
                                            biometricAuthProvider: app.biometricAuthProvider)
         
