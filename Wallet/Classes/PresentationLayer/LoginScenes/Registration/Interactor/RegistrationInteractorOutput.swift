@@ -14,4 +14,7 @@ protocol RegistrationInteractorOutput: class {
     func registrationFailed(message: String)
     func formValidationFailed(email: String?, password: String?)
     func setFormIsValid(_ valid: Bool)
+    func showQuickLaunch()
+    func showPinQuickLaunch()
+    func socialAuthFailed(message: String)
 }

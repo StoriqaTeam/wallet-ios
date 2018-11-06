@@ -20,6 +20,6 @@ protocol RegistrationViewOutput: class {
                         agreement: Bool)
     func validatePasswords(onEndEditing: Bool, password: String?, repeatPassword: String?)
     func showLogin()
-    func socialNetworkRegisterSucceed()
+    func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String)
     func socialNetworkRegisterFailed()
 }

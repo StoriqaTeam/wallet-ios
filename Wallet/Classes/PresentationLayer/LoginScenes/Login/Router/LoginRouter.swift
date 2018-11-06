@@ -34,12 +34,12 @@ extension LoginRouter: LoginRouterInput {
         RegistrationModule.create(app: app).present()
     }
     
-    func showQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController) {
-        QuickLaunchModule.create(app: app, authData: authData, token: token).present(from: viewController)
+    func showQuickLaunch(from viewController: UIViewController) {
+        QuickLaunchModule.create(app: app).present(from: viewController)
     }
     
-    func showPinQuickLaunch(authData: AuthData, token: String, from viewController: UIViewController) {
-        PinQuickLaunchModule.create(app: app, authData: authData, token: token).present(from: viewController)
+    func showPinQuickLaunch(from viewController: UIViewController) {
+        PinQuickLaunchModule.create(app: app).present(from: viewController)
     }
     
     func showAuthorizedZone() {

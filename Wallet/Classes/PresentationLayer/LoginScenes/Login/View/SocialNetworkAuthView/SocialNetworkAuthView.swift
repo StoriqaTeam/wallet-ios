@@ -16,9 +16,20 @@ enum SocialNetworkTokenProvider {
     var name: String {
         switch self {
         case .google:
-            return "GOOGLE"
+            return "google"
         case .facebook:
-            return "FACEBOOK"
+            return "facebook"
+        }
+    }
+
+    init?(_ string: String) {
+        switch string.lowercased() {
+        case "google":
+            self = .google
+        case "facebook":
+            self = .facebook
+        default:
+            return nil
         }
     }
 }
@@ -36,9 +47,6 @@ class SocialNetworkAuthView: LoadableFromXib {
         case login
         case register
     }
-
-    
-    // FIXME: hidden before release: remove temporary view in xib !!!
     
     // IBOutlet
     @IBOutlet private var titleLabel: UILabel!

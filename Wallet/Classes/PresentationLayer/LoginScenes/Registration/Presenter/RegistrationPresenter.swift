@@ -29,7 +29,7 @@ extension RegistrationPresenter: RegistrationViewOutput {
         view.setSocialView(viewModel: viewModel)
         addLoader()
     }
-
+    
     func register(firstName: String, lastName: String, email: String, password: String) {
         let registrationData = RegistrationData(firstName: firstName, lastName: lastName, email: email, password: password)
         storiqaLoader.startLoader()
@@ -70,13 +70,12 @@ extension RegistrationPresenter: RegistrationViewOutput {
         router.showLogin()
     }
     
-    func socialNetworkRegisterSucceed() {
-        //TODO: будем ли передавать email
-        router.showSuccess(email: "", popUpDelegate: self, from: view.viewController)
+    func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String) {
+        storiqaLoader.startLoader()
+        interactor.signIn(tokenProvider: provider, oauthToken: token)
     }
     
     func socialNetworkRegisterFailed() {
-        //TODO: сообщение при регистрации через соц сети
         router.showSocialNetworkFailure(message: Constants.Errors.userFriendly, from: view.viewController)
     }
     
@@ -103,6 +102,21 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     func registrationFailed(message: String) {
         storiqaLoader.stopLoader()
         router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
+    }
+    
+    func showQuickLaunch() {
+        storiqaLoader.stopLoader()
+        router.showQuickLaunch(from: view.viewController)
+    }
+    
+    func showPinQuickLaunch() {
+        storiqaLoader.stopLoader()
+        router.showPinQuickLaunch(from: view.viewController)
+    }
+    
+    func socialAuthFailed(message: String) {
+        storiqaLoader.stopLoader()
+        router.showSocialNetworkFailure(message: message, from: view.viewController)
     }
 }
 

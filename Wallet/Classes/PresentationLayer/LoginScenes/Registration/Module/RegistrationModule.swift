@@ -17,7 +17,9 @@ class RegistrationModule {
         
         let interactor = RegistrationInteractor(socialViewVM: socialVM,
                                                 formValidationProvider: app.registrationFormValidatonProvider,
-                                                registrationNetworkProvider: app.registrationNetworkProvider)
+                                                registrationNetworkProvider: app.registrationNetworkProvider,
+                                                loginService: app.loginService,
+                                                biometricAuthProvider: app.biometricAuthProvider)
         
         let registrationSb = UIStoryboard(name: "Registration", bundle: nil)
         let viewController = registrationSb.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationViewController

@@ -17,15 +17,10 @@ class LoginModule {
         
         let interactor = LoginInteractor(socialViewVM: socialVM,
                                          defaultProvider: app.defaultsProvider,
-                                         authTokenDefaultsProvider: app.authTokenDefaultsProvider,
                                          biometricAuthProvider: app.biometricAuthProvider,
-                                         loginNetworkProvider: app.loginNetworkProvider,
-                                         userNetworkProvider: app.userNetworkProvider,
                                          userDataStore: app.userDataStoreService,
                                          keychain: app.keychainProvider,
-                                         accountsNetworkProvider: app.accountsNetworkProvider,
-                                         accountsDataStore: app.accountsDataStoreService,
-                                         defaultAccountsProvider: app.defaultAccountsProvider)
+                                         loginService: app.loginService)
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
