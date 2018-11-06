@@ -1,8 +1,8 @@
 //
-//  AuthDataFactory.swift
+//  AuthDataResolver.swift
 //  Wallet
 //
-//  Created by Tata Gri on 06/11/2018.
+//  Created by Storiqa on 06/11/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -15,11 +15,11 @@ enum AuthData {
 }
 
 
-protocol AuthDataFactoryProtocol {
+protocol AuthDataResolverProtocol {
     func getAuthData() -> AuthData?
 }
 
-class AuthDataFactory: AuthDataFactoryProtocol {
+class AuthDataResolver: AuthDataResolverProtocol {
     
     private let keychain: KeychainProviderProtocol
     private let defaults: DefaultsProviderProtocol

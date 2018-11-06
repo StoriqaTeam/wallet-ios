@@ -423,7 +423,7 @@
 		CE0E5A67212D569A003E2C5E /* LightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E5A66212D569A003E2C5E /* LightButton.swift */; };
 		CE1008A32191AF0D0068010A /* SocialAuthNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1008A22191AF0D0068010A /* SocialAuthNetworkProvider.swift */; };
 		CE1008A62191B4D10068010A /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1008A52191B4D10068010A /* LoginService.swift */; };
-		CE1008A92191C8EF0068010A /* AuthDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1008A82191C8EF0068010A /* AuthDataFactory.swift */; };
+		CE1008A92191C8EF0068010A /* AuthDataResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1008A82191C8EF0068010A /* AuthDataResolver.swift */; };
 		CE135178218C8500009CB4F9 /* CreateAccountNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE135177218C8500009CB4F9 /* CreateAccountNetworkProvider.swift */; };
 		CE13517B218C9BF0009CB4F9 /* DefaultAccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13517A218C9BF0009CB4F9 /* DefaultAccountsProvider.swift */; };
 		CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */; };
@@ -1070,7 +1070,7 @@
 		CE0E5A66212D569A003E2C5E /* LightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightButton.swift; sourceTree = "<group>"; };
 		CE1008A22191AF0D0068010A /* SocialAuthNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthNetworkProvider.swift; sourceTree = "<group>"; };
 		CE1008A52191B4D10068010A /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
-		CE1008A82191C8EF0068010A /* AuthDataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataFactory.swift; sourceTree = "<group>"; };
+		CE1008A82191C8EF0068010A /* AuthDataResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResolver.swift; sourceTree = "<group>"; };
 		CE135177218C8500009CB4F9 /* CreateAccountNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountNetworkProvider.swift; sourceTree = "<group>"; };
 		CE13517A218C9BF0009CB4F9 /* DefaultAccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAccountsProvider.swift; sourceTree = "<group>"; };
 		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
@@ -3116,7 +3116,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				CE1008A72191C8E50068010A /* AuthDataFactory */,
+				CE1008A72191C8E50068010A /* AuthDataResolver */,
 				CE1008A42191B4C10068010A /* LoginService */,
 				CE135179218C9BCB009CB4F9 /* DefaultAccountsProvider */,
 				B8C5EDE62189D7D300345B79 /* RatesProvider */,
@@ -3628,12 +3628,12 @@
 			path = LoginService;
 			sourceTree = "<group>";
 		};
-		CE1008A72191C8E50068010A /* AuthDataFactory */ = {
+		CE1008A72191C8E50068010A /* AuthDataResolver */ = {
 			isa = PBXGroup;
 			children = (
-				CE1008A82191C8EF0068010A /* AuthDataFactory.swift */,
+				CE1008A82191C8EF0068010A /* AuthDataResolver.swift */,
 			);
-			path = AuthDataFactory;
+			path = AuthDataResolver;
 			sourceTree = "<group>";
 		};
 		CE135176218C84CC009CB4F9 /* CreateAccountNetworkProvider */ = {
@@ -4800,7 +4800,7 @@
 				3F5CD24DFF4FE1F0033868ED /* PinInputRouter.swift in Sources */,
 				A574352321777383006B4CAE /* SessionsInteractorOutput.swift in Sources */,
 				CE1E348E217F007F001B1477 /* AccountsNetworkProvider.swift in Sources */,
-				CE1008A92191C8EF0068010A /* AuthDataFactory.swift in Sources */,
+				CE1008A92191C8EF0068010A /* AuthDataResolver.swift in Sources */,
 				8DCE3EEDBEA0BC7E7957D47D /* PinInputModuleInput.swift in Sources */,
 				A5F59AB7216248C5005F1765 /* RealmMappable.swift in Sources */,
 				F724C3EE1C872FF0DF3C37D7 /* PinInputModuleOutput.swift in Sources */,

@@ -28,7 +28,7 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
     private let defaults: AuthTokenDefaultsProviderProtocol
     private let loginNetworkProvider: LoginNetworkProviderProtocol
     private let socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol
-    private let authDataFactory: AuthDataFactoryProtocol
+    private let authDataFactory: AuthDataResolverProtocol
     
     private var now: Int {
         return Int(Date().timeIntervalSince1970)
@@ -37,7 +37,7 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
     init(defaults: AuthTokenDefaultsProviderProtocol,
          loginNetworkProvider: LoginNetworkProviderProtocol,
          socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol,
-         authDataFactory: AuthDataFactoryProtocol) {
+         authDataFactory: AuthDataResolverProtocol) {
         
         self.defaults = defaults
         self.jwtParser = JwtTokenParser()

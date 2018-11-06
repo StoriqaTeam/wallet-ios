@@ -99,7 +99,7 @@ class Application {
                                                                accountsNetworkProvider: self.accountsNetworkProvider,
                                                                accountsDataStore: self.accountsDataStoreService,
                                                                defaultAccountsProvider: self.defaultAccountsProvider)
-    lazy var authDataFactory: AuthDataFactoryProtocol = AuthDataFactory(defaults: self.defaultsProvider,
+    lazy var authDataFactory: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
                                                                         keychain: self.keychainProvider,
                                                                         userDataStoreService: self.userDataStoreService)
     

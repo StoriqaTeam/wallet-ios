@@ -18,10 +18,7 @@ struct Constants {
     
     struct Network {
         static let baseUrl = "https://pay-nightly.stq.cloud/v1"
-        
-        struct Rates {
-            static let ratesBaseUrl = "https://min-api.cryptocompare.com/data/pricemulti?"
-        }
+        static let ratesBaseUrl = "https://min-api.cryptocompare.com/data/pricemulti?"
     }
     
     struct Currencies {
