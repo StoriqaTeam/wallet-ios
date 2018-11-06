@@ -17,7 +17,11 @@ struct Constants {
     typealias Sizes = SizeConstants
     
     struct Network {
-        static let baseUrl = "https://pay-nightly.stq.cloud/v1"
+        #if DEBUG
+            static let baseUrl = "https://pay-nightly.stq.cloud/v1"
+        #else
+            static let baseUrl = "https://payments.storiqa.com/v1"
+        #endif
         
         struct Rates {
             static let ratesBaseUrl = "https://min-api.cryptocompare.com/data/pricemulti?"
