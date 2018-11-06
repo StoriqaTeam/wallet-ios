@@ -61,6 +61,11 @@ extension AccountsPresenter: AccountsViewOutput {
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
+        
+        if displayable.isEmpty {
+            transactionDataManager.updateEmpty(placeholderImage: UIImage(named: "noTxs")!,
+                                               placeholderText: "")
+        }
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
