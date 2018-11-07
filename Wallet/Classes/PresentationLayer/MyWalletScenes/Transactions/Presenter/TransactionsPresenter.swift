@@ -113,6 +113,8 @@ extension TransactionsPresenter {
     }
     
     func filteredDispayable(_ txs: [Transaction]) -> [TransactionDisplayable] {
+        let account = interactor.getAccount()
+        transactionsMapper.account = account
         let displayable = txs.map { transactionsMapper.map(from: $0) }
         let dateFilteredTransactions = transactionsDateFilter.applyFilter(for: displayable)
         return dateFilteredTransactions

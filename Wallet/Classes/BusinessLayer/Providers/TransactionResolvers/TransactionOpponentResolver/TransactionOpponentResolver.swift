@@ -9,7 +9,7 @@
 import Foundation
 
 protocol TransactionOpponentResolverProtocol {
-    func resolveOpponent(for transaction: Transaction) -> OpponentType
+    func resolveOpponent(for transaction: Transaction, account: Account) -> OpponentType
 }
 
 
@@ -27,8 +27,8 @@ class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
         self.contactsMapper = contactsMapper
     }
     
-    func resolveOpponent(for transaction: Transaction) -> OpponentType {
-        let direction = transactionDirectionResolver.resolveDirection(for: transaction)
+    func resolveOpponent(for transaction: Transaction, account: Account) -> OpponentType {
+        let direction = transactionDirectionResolver.resolveDirection(for: transaction, account: account)
         let fromAddress = transaction.fromAddress
         let toAddress = transaction.toAddress
         

@@ -122,7 +122,7 @@ class Application {
     
     // MARK: - Resolvers
     lazy var accountTypeResolver: AccountTypeResolverProtocol = AccountTypeResolver()
-    lazy var transactionDirectionResolver: TransactionDirectionResolverProtocol = TransactionDirectionResolver(accountsProvider: self.accountsProvider)
+    lazy var transactionDirectionResolver: TransactionDirectionResolverProtocol = TransactionDirectionResolver()
     lazy var transactionOpponentResolver: TransactionOpponentResolverProtocol = TransactionOpponentResolver(contactsProvider: self.contactsProvider,
                                                                                                             transactionDirectionResolver: self.transactionDirectionResolver,
                                                                                                             contactsMapper: self.contactsMapper)

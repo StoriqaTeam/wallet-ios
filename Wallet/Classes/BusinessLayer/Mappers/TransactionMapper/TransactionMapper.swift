@@ -17,6 +17,8 @@ class TransactionMapper: Mappable {
     private let transactionOpponentResolver: TransactionOpponentResolverProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
+    var account: Account!
+    
     init(currencyFormatter: CurrencyFormatterProtocol,
          converterFactory: CurrencyConverterFactoryProtocol,
          transactionDirectionResolver: TransactionDirectionResolverProtocol,
@@ -42,8 +44,8 @@ class TransactionMapper: Mappable {
         let cryptoAmountString = currencyFormatter.getStringFrom(amount: cryptoAmountDecimal, currency: currency)
         let feeAmountString = currencyFormatter.getStringFrom(amount: feeAmountDecimal, currency: currency)
         let fiatAmountString = currencyFormatter.getStringFrom(amount: fiatAmoutDecimal, currency: .fiat)
-        let direction = transactionDirectionResolver.resolveDirection(for: obj)
-        let opponent = transactionOpponentResolver.resolveOpponent(for: obj)
+        let direction = transactionDirectionResolver.resolveDirection(for: obj, account: account)
+        let opponent = transactionOpponentResolver.resolveOpponent(for: obj, account: account)
         let timestamp = date(from: obj)
         
         return TransactionDisplayable(transaction: obj,

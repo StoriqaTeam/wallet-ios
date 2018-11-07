@@ -101,6 +101,9 @@ extension AccountsPresenter: AccountsInteractorOutput {
     }
     
     func transactionsDidChange(_ txs: [Transaction]) {
+        let account = interactor.getSelectedAccount()
+        transactionsMapper.account = account
+        
         let displayable = txs.map { transactionsMapper.map(from: $0) }
         transactionDataManager.updateTransactions(displayable)
     }
