@@ -11,10 +11,8 @@ import UIKit
 
 protocol SettingsViewOutput: class {
     func viewIsReady()
-    func willMoveToParentVC()
     func viewWillAppear()
-    func viewDidAppear()
-    func editProfileSelected()
+    func myProfileSelected()
     func changePhoneSelected()
     func changePasswordSelected()
     func sessionSelected()

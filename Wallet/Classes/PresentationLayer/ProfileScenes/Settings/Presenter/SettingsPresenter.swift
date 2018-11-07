@@ -33,32 +33,11 @@ extension SettingsPresenter: SettingsViewOutput {
     
     func viewWillAppear() {
         let sessionsCount = interactor.getSessionsCount()
-        view.viewController.setDarkNavigationBarButtons()
         view.setSessions(count: sessionsCount)
     }
     
-    func willMoveToParentVC() {
-        guard let navigationBar = view.viewController.navigationController?.navigationBar else {
-            return
-        }
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.backgroundColor = .clear
-    }
-    
-    func viewDidAppear() {
-        guard let navigationBar = view.viewController.navigationController?.navigationBar else {
-            return
-        }
-        
-        let rect = CGRect(x: 0, y: -80, width: Constants.Sizes.screenWith, height: 124)
-        let image = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor,
-                                                    andRect: rect)
-        navigationBar.setBackgroundImage(image, for: .default)
-        navigationBar.backgroundColor = .white
-    }
-    
-    func editProfileSelected() {
-        router.showEditProfile(from: view.viewController)
+    func myProfileSelected() {
+        router.showProfile(from: view.viewController)
     }
     
     func changePhoneSelected() {
@@ -82,6 +61,9 @@ extension SettingsPresenter: SettingsInteractorOutput {
 // MARK: - SettingsModuleInput
 
 extension SettingsPresenter: SettingsModuleInput {
+    var viewController: UIViewController {
+        return view.viewController
+    }
     
     func present(from viewController: UIViewController) {
         view.present(from: viewController)

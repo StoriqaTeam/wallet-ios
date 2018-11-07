@@ -10,6 +10,7 @@ import UIKit
 
 
 protocol SettingsModuleInput: class {
+    var viewController: UIViewController { get }
     var output: SettingsModuleOutput? { get set }
     func present(from viewController: UIViewController)
 }
