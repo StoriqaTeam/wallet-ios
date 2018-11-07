@@ -48,7 +48,7 @@ class MainTabBarPresenter {
         return DepositModule.create(app: app, accountWatcher: watcher, user: user)
     }()
     
-    private lazy var profileModule: ProfileModuleInput = ProfileModule.create(app: interactor.getApplication())
+    private lazy var settingsModule: SettingsModuleInput = SettingsModule.create(app: interactor.getApplication())
     
 }
 
@@ -103,7 +103,7 @@ extension MainTabBarPresenter {
             // FIXME: hidden before release
 //            exchangeModule.viewController.wrapToNavigationController(),
             depositModule.viewController.wrapToNavigationController(),
-            profileModule.viewController.wrapToNavigationController()
+            settingsModule.viewController.wrapToNavigationController()
         ]
     }
 }

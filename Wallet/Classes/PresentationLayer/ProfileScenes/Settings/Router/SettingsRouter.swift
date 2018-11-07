@@ -23,8 +23,8 @@ class SettingsRouter {
 // MARK: - SettingsRouterInput
 
 extension SettingsRouter: SettingsRouterInput {
-    func showEditProfile(from viewController: UIViewController) {
-        EditProfileModule.create(app: app).present(from: viewController)
+    func showProfile(from viewController: UIViewController) {
+        ProfileModule.create(app: app).present(from: viewController)
     }
     
     func showChangePhone(from viewController: UIViewController) {
