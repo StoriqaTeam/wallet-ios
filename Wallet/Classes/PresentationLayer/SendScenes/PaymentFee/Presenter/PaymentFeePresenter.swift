@@ -72,12 +72,13 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
         let accountCurrency = interactor.getSelectedAccount().currency
         let amountString = getStringFrom(amount: amount, currency: currency)
         let convertedAmount = interactor.getConvertedAmount()
-        let amountStringInTxCurrency = "≈" + getStringFrom(amount: convertedAmount, currency: accountCurrency)
+        let sameCurrency = currency == accountCurrency
+        let amountInTxCurrency = sameCurrency ? "" : "≈" + getStringFrom(amount: convertedAmount, currency: accountCurrency)
         let opponentType = interactor.getOpponent()
         let currencyImage = currencyImageProvider.mediumImage(for: currency)
         
         let header = SendingHeaderData(amount: amountString,
-                                       amountInTransactionCurrency: amountStringInTxCurrency,
+                                       amountInTransactionCurrency: amountInTxCurrency,
                                        currencyImage: currencyImage)
         
         

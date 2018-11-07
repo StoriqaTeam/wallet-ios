@@ -267,6 +267,7 @@ private class FakeDefaultsProvider: DefaultsProviderProtocol {
     var isBiometryAuthEnabled: Bool = false
     var fiatISO: String = ""
     var lastTxTimastamp: TimeInterval? = nil
+    var socialAuthProvider: SocialNetworkTokenProvider? = nil
 }
 
 private class FakeAuthTokenProvider: AuthTokenProviderProtocol {

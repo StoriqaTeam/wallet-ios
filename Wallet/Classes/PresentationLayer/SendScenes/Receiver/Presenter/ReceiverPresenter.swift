@@ -92,11 +92,12 @@ extension ReceiverPresenter: ReceiverViewOutput {
         let receiverCurrency = interactor.getReceiverCurrency()
         let accountCurrency = interactor.getSelectedAccount().currency
         let amountString = getStringFrom(amount: amount, currency: receiverCurrency)
-        let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
+        let sameCurrency = receiverCurrency == accountCurrency
+        let amountInTxCurrency = sameCurrency ? "" : getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
         let currencyImage = currencyImageProvider.mediumImage(for: receiverCurrency)
         
         let appearence = SendingHeaderData(amount: amountString,
-                                           amountInTransactionCurrency: amountStringInTxCurrency,
+                                           amountInTransactionCurrency: amountInTxCurrency,
                                            currencyImage: currencyImage)
         let canScan = receiverCurrency != .fiat
         
