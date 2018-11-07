@@ -18,12 +18,12 @@ class AccountsPresenter {
     weak var mainTabBar: UITabBarController!
     
     private let accountDisplayer: AccountDisplayerProtocol
-    private let transactionsMapper: TransactionMapper
+    private let transactionsMapper: TransactionMapperProtocol
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: TransactionsDataManager!
     
     init(accountDisplayer: AccountDisplayerProtocol,
-         transactionsMapper: TransactionMapper) {
+         transactionsMapper: TransactionMapperProtocol) {
         self.accountDisplayer = accountDisplayer
         self.transactionsMapper = transactionsMapper
     }
@@ -56,7 +56,8 @@ extension AccountsPresenter: AccountsViewOutput {
     
     func transactionTableView(_ tableView: UITableView) {
         let transactions = interactor.getTransactionForCurrentAccount()
-        let displayable = transactions.map { transactionsMapper.map(from: $0) }
+        let account = interactor.getSelectedAccount()
+        let displayable = transactions.map { transactionsMapper.map(from: $0, account: account) }
         let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
@@ -101,7 +102,8 @@ extension AccountsPresenter: AccountsInteractorOutput {
     }
     
     func transactionsDidChange(_ txs: [Transaction]) {
-        let displayable = txs.map { transactionsMapper.map(from: $0) }
+        let account = interactor.getSelectedAccount()
+        let displayable = txs.map { transactionsMapper.map(from: $0, account: account) }
         transactionDataManager.updateTransactions(displayable)
     }
     

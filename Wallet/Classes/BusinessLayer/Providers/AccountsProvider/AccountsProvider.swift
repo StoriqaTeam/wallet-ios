@@ -10,7 +10,6 @@ import Foundation
 
 protocol AccountsProviderProtocol: class {
     func getAllAccounts() -> [Account]
-    func getAddresses() -> [String]
     func setAccountsUpdaterChannel(_ channel: AccountsUpdateChannel)
 }
 
@@ -34,11 +33,6 @@ class AccountsProvider: AccountsProviderProtocol {
             
             self?.accountsUpadateChannelOutput?.send(accounts)
         }
-    }
-    
-    func getAddresses() -> [String] {
-        let allAccounts = getAllAccounts()
-        return allAccounts.map { $0.accountAddress }
     }
     
     func getAllAccounts() -> [Account] {

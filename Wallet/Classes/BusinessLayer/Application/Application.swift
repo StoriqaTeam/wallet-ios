@@ -122,7 +122,7 @@ class Application {
     
     // MARK: - Resolvers
     lazy var accountTypeResolver: AccountTypeResolverProtocol = AccountTypeResolver()
-    lazy var transactionDirectionResolver: TransactionDirectionResolverProtocol = TransactionDirectionResolver(accountsProvider: self.accountsProvider)
+    lazy var transactionDirectionResolver: TransactionDirectionResolverProtocol = TransactionDirectionResolver()
     lazy var transactionOpponentResolver: TransactionOpponentResolverProtocol = TransactionOpponentResolver(contactsProvider: self.contactsProvider,
                                                                                                             transactionDirectionResolver: self.transactionDirectionResolver,
                                                                                                             contactsMapper: self.contactsMapper)
@@ -140,7 +140,7 @@ class Application {
     
     // MARK: - Mappers
     lazy var contactsMapper: ContactsMapper = ContactsMapper()
-    lazy var transactionMapper: TransactionMapper = TransactionMapper(currencyFormatter: self.currencyFormatter,
+    lazy var transactionMapper: TransactionMapperProtocol = TransactionMapper(currencyFormatter: self.currencyFormatter,
                                                                       converterFactory: self.currencyConverterFactory,
                                                                       transactionDirectionResolver: self.transactionDirectionResolver,
                                                                       transactionOpponentResolver: self.transactionOpponentResolver,
