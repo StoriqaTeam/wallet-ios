@@ -18,12 +18,12 @@ class TransactionsPresenter: NSObject {
     
     private var transactionDataManager: TransactionsDataManager!
     private let transactionsDateFilter: TransactionDateFilterProtocol
-    private let transactionsMapper: TransactionMapper
+    private let transactionsMapper: TransactionMapperProtocol
     
     private var transactions = [TransactionDisplayable]()
     
     init(transactionsDateFilter: TransactionDateFilterProtocol,
-         transactionsMapper: TransactionMapper) {
+         transactionsMapper: TransactionMapperProtocol) {
         self.transactionsDateFilter = transactionsDateFilter
         self.transactionsMapper = transactionsMapper
     }
@@ -114,8 +114,7 @@ extension TransactionsPresenter {
     
     func filteredDispayable(_ txs: [Transaction]) -> [TransactionDisplayable] {
         let account = interactor.getAccount()
-        transactionsMapper.account = account
-        let displayable = txs.map { transactionsMapper.map(from: $0) }
+        let displayable = txs.map { transactionsMapper.map(from: $0, account: account) }
         let dateFilteredTransactions = transactionsDateFilter.applyFilter(for: displayable)
         return dateFilteredTransactions
     }

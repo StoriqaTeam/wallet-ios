@@ -9,15 +9,17 @@
 import Foundation
 
 
-class TransactionMapper: Mappable {
+protocol TransactionMapperProtocol {
+    func map(from obj: Transaction, account: Account) -> TransactionDisplayable
+}
+
+class TransactionMapper: TransactionMapperProtocol {
     
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrencyConverterFactoryProtocol
     private let transactionDirectionResolver: TransactionDirectionResolverProtocol
     private let transactionOpponentResolver: TransactionOpponentResolverProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
-    
-    var account: Account!
     
     init(currencyFormatter: CurrencyFormatterProtocol,
          converterFactory: CurrencyConverterFactoryProtocol,
@@ -32,7 +34,7 @@ class TransactionMapper: Mappable {
         self.denominationUnitsConverter = denominationUnitsConverter
     }
     
-    func map(from obj: Transaction) -> TransactionDisplayable {
+    func map(from obj: Transaction, account: Account) -> TransactionDisplayable {
         
         let currency = obj.currency
         let cryptoAmountDecimal = denominationUnitsConverter.amountToMaxUnits(obj.cryptoAmount, currency: currency)
