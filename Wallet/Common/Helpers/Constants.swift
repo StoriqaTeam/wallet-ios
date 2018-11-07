@@ -39,6 +39,10 @@ struct Constants {
         static let kFacebookAppId = "fb425217154570731"
         static let kGoogleClientId = "245895770851-qlolkejdjnske28jmbdgs89969o0a7ec.apps.googleusercontent.com"
     }
+    
+    struct DateFormats {
+        static let txDateString = "yyyy-MM-dd'T'HH:mm:ss.SS"
+    }
 }
 
 

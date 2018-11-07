@@ -93,13 +93,18 @@ extension Transaction: RealmMappable {
     }
     
     init?(json: JSON) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.DateFormats.txDateString
+        
         guard let id = json["id"].string,
             let currencyStr = json["currency"].string,
             let value = json["value"].string,
             let fee = json["fee"].string,
             let statusStr = json["status"].string,
-            let createdAt = json["createdAt"].double,
-            let updatedAt = json["updatedAt"].double,
+            let createdAtStr = json["createdAt"].string,
+            let updatedAtStr = json["updatedAt"].string,
+            let createdAt = dateFormatter.date(from: createdAtStr),
+            let updatedAt = dateFormatter.date(from: updatedAtStr),
             let from = json["from"].array else {
                 return nil
         }
@@ -119,8 +124,8 @@ extension Transaction: RealmMappable {
         self.currency = Currency(string: currencyStr)
         self.status = TransactionStatus(string: statusStr)
         self.blockchainId = blockchainId
-        self.createdAt = Date(timeIntervalSince1970: createdAt)
-        self.updatedAt = Date(timeIntervalSince1970: updatedAt)
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
         self.toAddress = toAddress
         self.toAccount = toAccount
         self.fromAddress = fromAddress
