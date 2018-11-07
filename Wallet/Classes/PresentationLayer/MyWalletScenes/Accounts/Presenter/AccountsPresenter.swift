@@ -56,6 +56,8 @@ extension AccountsPresenter: AccountsViewOutput {
     
     func transactionTableView(_ tableView: UITableView) {
         let transactions = interactor.getTransactionForCurrentAccount()
+        let account = interactor.getSelectedAccount()
+        transactionsMapper.account = account
         let displayable = transactions.map { transactionsMapper.map(from: $0) }
         let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true)
         txDataManager.setTableView(tableView)
@@ -103,7 +105,6 @@ extension AccountsPresenter: AccountsInteractorOutput {
     func transactionsDidChange(_ txs: [Transaction]) {
         let account = interactor.getSelectedAccount()
         transactionsMapper.account = account
-        
         let displayable = txs.map { transactionsMapper.map(from: $0) }
         transactionDataManager.updateTransactions(displayable)
     }
