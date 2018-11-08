@@ -107,7 +107,7 @@ extension SendViewController: SendViewInput {
         
         
         // FIXME: disabled before release
-//        receiverCurrencySegmentedControl.isUserInteractionEnabled = false
+        receiverCurrencySegmentedControl.isUserInteractionEnabled = false
     }
     
     func updatePagesCount(_ count: Int) {
