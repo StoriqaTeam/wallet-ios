@@ -19,15 +19,14 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var firstNameTextField: UnderlinedTextField!
     @IBOutlet private var lastNameTextField: UnderlinedTextField!
     @IBOutlet private var emailTextField: UnderlinedTextField!
-    @IBOutlet private var passwordTextField: UnderlinedTextField!
-    @IBOutlet private var repeatPasswordTextField: UnderlinedTextField!
+    @IBOutlet private var passwordTextField: SecureInputTextField!
+    @IBOutlet private var repeatPasswordTextField: SecureInputTextField!
     @IBOutlet private var agreementTickImageView: UIImageView!
     @IBOutlet private var agreementLabel: UILabel!
     @IBOutlet private var signUpButton: DefaultButton!
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
     @IBOutlet private var textFields: [UnderlinedTextField]!
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var passwordVisibilityButtons: [UIButton]!
     
     // MARK: - Variables
     
@@ -85,6 +84,23 @@ class RegistrationViewController: UIViewController {
     
     @objc private func textDidChange(_ notification: Notification) {
         updateContinueButton()
+        
+        guard let textField = notification.object as? SecureInputTextField,
+            textField.isFirstResponder else {
+                return
+        }
+        
+        switch textField {
+        case passwordTextField,
+             repeatPasswordTextField:
+            if passwordTextField.text?.count == repeatPasswordTextField.text?.count {
+                output.validatePasswords(onEndEditing: false,
+                                         password: passwordTextField.text,
+                                         repeatPassword: repeatPasswordTextField.text)
+            }
+        default:
+            break
+        }
     }
 }
 
@@ -102,10 +118,17 @@ extension RegistrationViewController: RegistrationViewInput {
         signUpButton.isEnabled = enabled
     }
     
-    func showPasswordsNotEqual(message: String?) {
-        repeatPasswordTextField.errorText = message
+    func showErrorMessage(email: String?, password: String?) {
+        emailTextField.errorText = email
+        passwordTextField.errorText = password
     }
     
+    func setPasswordsEqual(_ equal: Bool, message: String?) {
+        passwordTextField.markValid(equal)
+        repeatPasswordTextField.markValid(equal)
+        
+        repeatPasswordTextField.errorText = message
+    }
 }
 
 
@@ -132,7 +155,15 @@ extension RegistrationViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        (textField as? UnderlinedTextField)?.errorText = nil
+        if textField != repeatPasswordTextField {
+            (textField as? UnderlinedTextField)?.errorText = nil
+        }
+        
+        if textField is SecureInputTextField {
+            output.validatePasswords(onEndEditing: true,
+                                     password: passwordTextField.text,
+                                     repeatPassword: repeatPasswordTextField.text)
+        }
     }
 }
 
@@ -140,7 +171,7 @@ extension RegistrationViewController: UITextFieldDelegate {
 
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
     func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String) {
-        output.socialNetworkRegisterSucceed()
+        output.socialNetworkRegisterSucceed(provider: provider, token: token)
     }
     
     func socialNetworkAuthFailed() {
@@ -194,10 +225,6 @@ extension RegistrationViewController {
                               agreement: isAcceptedAgreement)
     }
     
-    private func hideAllErrors() {
-        textFields.forEach({ $0.errorText = nil })
-    }
-    
     
     private func setAgreementTintColor() {
         agreementTickImageView.image = isAcceptedAgreement ? #imageLiteral(resourceName: "checkOn") : #imageLiteral(resourceName: "checkOff")
@@ -205,13 +232,8 @@ extension RegistrationViewController {
     
     private func restoreSecureFields() {
         //hide password just in case
-        if !passwordTextField.isSecureTextEntry {
-            passwordTextField.togglePasswordVisibility(passwordVisibilityButtons[0])
-        }
-        
-        if !repeatPasswordTextField.isSecureTextEntry {
-            repeatPasswordTextField.togglePasswordVisibility(passwordVisibilityButtons[1])
-        }
+        passwordTextField.hidePassword()
+        repeatPasswordTextField.hidePassword()
     }
     
     private func showSignInViewController() {

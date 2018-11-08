@@ -2,7 +2,7 @@
 //  ContactsDataStoreService.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 15/10/2018.
+//  Created by Storiqa on 15/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable all
@@ -49,5 +49,9 @@ class ContactsDataStoreService: RealmStorable<Contact>, ContactsDataStoreService
     
     func batchUpdateContacts(with contacts: [Contact]) {
         save(contacts)
+    }
+    
+    func deleteAll() {
+        find().forEach { delete(primaryKey: $0.id) }
     }
 }

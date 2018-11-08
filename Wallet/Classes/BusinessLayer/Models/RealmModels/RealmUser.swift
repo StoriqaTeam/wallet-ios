@@ -2,7 +2,7 @@
 //  RealmUser.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 04/10/2018.
+//  Created by Storiqa on 04/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable identifier_name
@@ -12,7 +12,7 @@ import RealmSwift
 
 @objcMembers
 class RealmUser: Object {
-    dynamic var id: String = ""
+    dynamic var id: Int = 0
     dynamic var email: String = ""
     dynamic var phone: String = ""
     dynamic var firstName: String = ""

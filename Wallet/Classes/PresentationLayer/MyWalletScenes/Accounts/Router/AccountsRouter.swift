@@ -10,6 +10,12 @@ import Foundation
 
 
 class AccountsRouter {
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 
 }
 
@@ -17,12 +23,12 @@ class AccountsRouter {
 // MARK: - AccountsRouterInput
 
 extension AccountsRouter: AccountsRouterInput {
-    func showTransactions(from viewControoler: UIViewController, transactions: [TransactionDisplayable]) {
-        let moduleInput = TransactionsModule.create(transactions: transactions)
+    func showTransactions(from viewControoler: UIViewController, account: Account) {
+        let moduleInput = TransactionsModule.create(app: app, account: account)
         moduleInput.present(from: viewControoler)
     }
     
     func showTransactionDetails(with transaction: TransactionDisplayable, from viewController: UIViewController) {
-        TransactionDetailsModule.create(transaction: transaction).present(from: viewController)
+        TransactionDetailsModule.create(app: app, transaction: transaction).present(from: viewController)
     }
 }

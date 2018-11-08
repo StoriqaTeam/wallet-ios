@@ -2,7 +2,7 @@
 //  NetworkLoadable.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 18.09.2018.
+//  Created by Storiqa on 18.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 protocol NetworkLoadable {
-    typealias ResultJSONBlock = (Result<Any>) -> Void
+    typealias ResultJSONBlock = (Result<(responseStatusCode: Int, value: Any)>) -> Void
     func loadObjectJSON(request: URLRequestConvertible, queue: DispatchQueue, completion: @escaping ResultJSONBlock)
 }
 
@@ -31,24 +31,30 @@ private protocol NetworkOperationProtocol {
     
     var request: URLRequestConvertible { get }
     var responseSerializer: ResponseSerializer { get }
-    var completion: ((Result<ResponseObject>) -> Void)? { get }
+    var completion: ((Result<(responseStatusCode: Int, value: ResponseObject)>) -> Void)? { get }
 }
 
 private struct AnyOperation<ResponseSerializer: DataResponseSerializerProtocol>: NetworkOperationProtocol {
     
     var request: URLRequestConvertible
     var responseSerializer: ResponseSerializer
-    var completion: ((Result<ResponseSerializer.SerializedObject>) -> Void)?
+    var completion: ((Result<(responseStatusCode: Int, value: ResponseSerializer.SerializedObject)>) -> Void)?
     
     func execute(queue: DispatchQueue) {
         let task = Alamofire.request(request).response(queue: queue, responseSerializer: responseSerializer) { response in
             switch response.result {
             case .success(let value):
-                self.completion?(Result.success(value))
+                let code = response.response?.statusCode ?? 0
+                self.completion?(Result.success((code, value)))
+                
+                log.debug("Response \(self.request): \ncode: \(code) \njson: \(JSON(value))")
             case .failure(let error):
                 self.completion?(Result.failure(error))
+                
+                log.error("Response \(self.request): \nerror: \(error.localizedDescription)")
             }
+            
         }
-        print(task.debugDescription)
+        log.debug("Request: \(task.debugDescription)")
     }
 }

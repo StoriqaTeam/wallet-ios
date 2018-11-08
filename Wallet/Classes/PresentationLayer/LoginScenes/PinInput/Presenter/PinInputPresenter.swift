@@ -110,6 +110,11 @@ extension PinInputPresenter: PinInputModuleInput {
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
+    
+    func presentModal(from viewController: UIViewController) {
+        view.viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
+        view.presentModal(from: viewController)
+    }
 }
 
 

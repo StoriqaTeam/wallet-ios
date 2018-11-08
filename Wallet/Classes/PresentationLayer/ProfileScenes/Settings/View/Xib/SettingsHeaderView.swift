@@ -2,7 +2,7 @@
 //  SettingsHeaderView.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 08/10/2018.
+//  Created by Storiqa on 08/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -28,6 +28,8 @@ struct SettingsHeader {
 
 let headerDataSource = [
     SettingsHeader(headerTitle: "ACCOUNT", headerImage: UIImage(named: "accountProfileIcon")),
-    SettingsHeader(headerTitle: "NOTIFICATIONS", headerImage: UIImage(named: "notifProfileIcon")),
+    
+    // FIXME: hidden before release
+//    SettingsHeader(headerTitle: "NOTIFICATIONS", headerImage: UIImage(named: "notifProfileIcon")),
     SettingsHeader(headerTitle: "MORE", headerImage: UIImage(named: "moreProfileIcon"))
 ]

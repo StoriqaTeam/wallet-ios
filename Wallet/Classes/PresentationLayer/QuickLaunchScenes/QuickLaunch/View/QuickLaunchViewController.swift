@@ -30,11 +30,6 @@ class QuickLaunchViewController: BaseQuickLaunchViewController {
     
     @IBAction func performAction(_ sender: UIButton) {
         output.performAction()
-        
-    }
-    
-    @IBAction func cancelSetup(_ sender: UIButton) {
-        output.cancelSetup()
     }
 }
 

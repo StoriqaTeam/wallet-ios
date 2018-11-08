@@ -18,11 +18,14 @@ class AccountsPresenter {
     weak var mainTabBar: UITabBarController!
     
     private let accountDisplayer: AccountDisplayerProtocol
+    private let transactionsMapper: TransactionMapperProtocol
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: TransactionsDataManager!
     
-    init(accountDisplayer: AccountDisplayerProtocol) {
+    init(accountDisplayer: AccountDisplayerProtocol,
+         transactionsMapper: TransactionMapperProtocol) {
         self.accountDisplayer = accountDisplayer
+        self.transactionsMapper = transactionsMapper
     }
 }
 
@@ -31,8 +34,8 @@ class AccountsPresenter {
 
 extension AccountsPresenter: AccountsViewOutput {
     func viewAllPressed() {
-        let transactions = interactor.getTransactionForCurrentAccount()
-        router.showTransactions(from: view.viewController, transactions: transactions)
+        let account = interactor.getSelectedAccount()
+        router.showTransactions(from: view.viewController, account: account)
     }
     
     func configureCollections() {
@@ -52,11 +55,18 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func transactionTableView(_ tableView: UITableView) {
-        let transations = interactor.getTransactionForCurrentAccount()
-        let txDataManager = TransactionsDataManager(transactions: transations, isHiddenSections: true)
+        let transactions = interactor.getTransactionForCurrentAccount()
+        let account = interactor.getSelectedAccount()
+        let displayable = transactions.map { transactionsMapper.map(from: $0, account: account) }
+        let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
+        
+        if displayable.isEmpty {
+            transactionDataManager.updateEmpty(placeholderImage: UIImage(named: "noTxs")!,
+                                               placeholderText: "")
+        }
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -74,6 +84,7 @@ extension AccountsPresenter: AccountsViewOutput {
         let numberOfPages = interactor.getAccountsCount()
         view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
+        interactor.startObservers()
     }
     
     func viewWillAppear() {
@@ -90,8 +101,17 @@ extension AccountsPresenter: AccountsInteractorOutput {
          view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
     }
     
-    func transactionsDidChange(_ txs: [TransactionDisplayable]) {
-        transactionDataManager.updateTransactions(txs)
+    func transactionsDidChange(_ txs: [Transaction]) {
+        let account = interactor.getSelectedAccount()
+        let displayable = txs.map { transactionsMapper.map(from: $0, account: account) }
+        transactionDataManager.updateTransactions(displayable)
+    }
+    
+    func updateAccounts(accounts: [Account], index: Int) {
+        accountsDataManager?.updateAccounts(accounts)
+        accountsDataManager?.scrollTo(index: index)
+        view.updatePagesCount(accounts.count)
+        view.setNewPage(index)
     }
     
 }

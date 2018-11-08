@@ -2,7 +2,7 @@
 //  RealmStorable.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 01/10/2018.
+//  Created by Storiqa on 01/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable force_try
@@ -14,13 +14,27 @@ import RealmSwift
 class RealmStorable<PlainType: RealmMappable> {
     var notificationToken: NotificationToken?
     
+    private let realm: Realm
+    
+    init(forTests realmFolder: URL) {
+        guard NSClassFromString("XCTestCase") != nil else {
+            fatalError("This init is only for tests!")
+        }
+        
+        let realm = try! Realm(fileURL: realmFolder)
+        self.realm = realm
+    }
+    
+    init() {
+        self.realm = try! Realm()
+    }
+    
     deinit {
         notificationToken?.invalidate()
         notificationToken = nil
     }
     
     func observe(updateHandler: @escaping ([PlainType]) -> Void) {
-        let realm = try! Realm()
         let objects = realm.objects(PlainType.RealmType.self)
         notificationToken?.invalidate()
         notificationToken = objects.observe { _ in
@@ -29,41 +43,32 @@ class RealmStorable<PlainType: RealmMappable> {
     }
     
     func find() -> [PlainType] {
-        let realm = try! Realm()
         return realm.objects(PlainType.RealmType.self).compactMap { PlainType($0) }
     }
     
     func find(_ predicateString: String) -> [PlainType] {
-        let realm = try! Realm()
         return realm.objects(PlainType.RealmType.self)
             .filter(predicateString)
             .compactMap { PlainType($0) }
     }
     
     func findOne(_ predicateString: String) -> PlainType? {
-        let realm = try! Realm()
         return realm.objects(PlainType.RealmType.self).filter(predicateString).compactMap { PlainType($0) }.first
     }
     
     func save(_ model: PlainType) {
-        let realm = try! Realm()
-        
         try! realm.write {
             realm.add(model.mapToRealmObject(), update: true)
         }
     }
     
     func save(_ models: [PlainType]) {
-        let realm = try! Realm()
-        
         try! realm.write {
             realm.add(models.map({ $0.mapToRealmObject() }), update: true)
         }
     }
     
     func delete(primaryKey: String) {
-        let realm = try! Realm()
-
         guard let realmObjectPrimaryKey = PlainType.RealmType.self.primaryKey() else { return }
         let predicateString = "\(realmObjectPrimaryKey) == '\(primaryKey)'"
         let objectToDelete = realm.objects(PlainType.RealmType.self).filter(predicateString)
@@ -73,9 +78,17 @@ class RealmStorable<PlainType: RealmMappable> {
         }
     }
     
-    func deleteAll() {
-        let realm = try! Realm()
+    func delete(primaryKey: Int) {
+        guard let realmObjectPrimaryKey = PlainType.RealmType.self.primaryKey() else { return }
+        let predicateString = "\(realmObjectPrimaryKey) == \(primaryKey)"
+        let objectToDelete = realm.objects(PlainType.RealmType.self).filter(predicateString)
         
+        try! realm.write {
+            realm.delete(objectToDelete)
+        }
+    }
+    
+    func resetAllDatabase() {
         try! realm.write {
             realm.deleteAll()
         }

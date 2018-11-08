@@ -10,7 +10,12 @@ import Foundation
 
 
 class PasswordRecoveryConfirmRouter {
+    
+    private let app: Application
 
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -33,8 +38,8 @@ extension PasswordRecoveryConfirmRouter: PasswordRecoveryConfirmRouterInput {
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
-    func showAuthorizedZone() {
-        MainTabBarModule.create().present()
+    func showLogin() {
+        LoginModule.create(app: app).present()
     }
     
 }

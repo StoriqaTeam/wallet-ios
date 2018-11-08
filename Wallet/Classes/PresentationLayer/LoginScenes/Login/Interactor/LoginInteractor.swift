@@ -15,23 +15,26 @@ class LoginInteractor {
     private let socialViewVM: SocialNetworkAuthViewModel
     private let defaultProvider: DefaultsProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
-    private let loginNetworkProvider: LoginNetworkProviderProtocol
-    private let userNetworkProvider: CurrentUserNetworkProviderProtocol
     private let userDataStore: UserDataStoreServiceProtocol
+    private let keychain: KeychainProviderProtocol
+    private let loginService: LoginServiceProtocol
+    
+    // for Retry
+    private var authData: AuthData?
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
          biometricAuthProvider: BiometricAuthProviderProtocol,
-         loginNetworkProvider: LoginNetworkProvider,
-         userNetworkProvider: CurrentUserNetworkProviderProtocol,
-         userDataStore: UserDataStoreServiceProtocol) {
+         userDataStore: UserDataStoreServiceProtocol,
+         keychain: KeychainProviderProtocol,
+         loginService: LoginServiceProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
         self.biometricAuthProvider = biometricAuthProvider
-        self.loginNetworkProvider = loginNetworkProvider
-        self.userNetworkProvider = userNetworkProvider
         self.userDataStore = userDataStore
+        self.keychain = keychain
+        self.loginService = loginService
     }
 }
 
@@ -40,72 +43,80 @@ class LoginInteractor {
 
 extension LoginInteractor: LoginInteractorInput {
     
+    func viewIsReady() {
+        userDataStore.resetAllDatabase()
+        keychain.deleteAll()
+        defaultProvider.socialAuthProvider = nil
+        defaultProvider.lastTxTimastamp = nil
+    }
+    
     func getSocialVM() -> SocialNetworkAuthViewModel {
         return socialViewVM
     }
     
     func signIn(email: String, password: String) {
-        loginNetworkProvider.loginUser(
-            email: email,
-            password: password,
-            queue: .main) { [weak self] (result) in
-                guard let strongSelf = self else {
-                    return
+        authData = AuthData.email(email: email, password: password)
+        
+        loginService.signIn(email: email, password: password) { [weak self] (result) in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            switch result {
+            case .success:
+                strongSelf.loginSucceed()
+            case .failure(let error):
+                if let error = error as? LoginProviderError {
+                    switch error {
+                    case .validationError(let email, let password):
+                        strongSelf.output.formValidationFailed(email: email, password: password)
+                        return
+                    default: break
+                    }
                 }
                 
-                switch result {
-                case .success(let authToken):
-                    strongSelf.defaultProvider.authToken = authToken
-                    strongSelf.getUser(authToken: authToken, authData: .email(email: email, password: password))
-                case .failure(let error):
-                    strongSelf.output.failToLogin(reason: error.localizedDescription)
-                }
+                strongSelf.output.loginFailed(message: error.localizedDescription)
+            }
         }
     }
     
-    func signIn(tokenProvider: SocialNetworkTokenProvider, socialNetworkToken: String) {
-        //TODO: implement in new provider
-        log.warn("implement login provider")
+    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String) {
+        authData = AuthData.social(provider: tokenProvider, token: oauthToken)
         
-        // FIXME: - stub
-        loginSucceed(authData: .socialProvider(provider: tokenProvider, token: socialNetworkToken))
-        // ------------------------------
+        loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.loginSucceed()
+            case .failure(let error):
+                self?.output.loginFailed(message: error.localizedDescription)
+            }
+        }
     }
+    
+    func retry() {
+        guard let authData = authData else {
+            fatalError("Retrying to login without previous auth data")
+        }
+        
+        switch authData {
+        case .email(let email, let password):
+            signIn(email: email, password: password)
+        case .social(let provider, let token):
+            signIn(tokenProvider: provider, oauthToken: token)
+        }
+    }
+    
 }
 
 
 // MARK: - Private methods
 
 extension LoginInteractor {
-    private func getUser(authToken: String, authData: AuthData) {
-        userNetworkProvider.getCurrentUser(
-            authToken: authToken,
-            queue: .main) { [weak self] (result) in
-                guard let strongSelf = self else {
-                    return
-                }
-                
-                switch result {
-                case .success(let user):
-                    strongSelf.userDataStore.update(user)
-                    strongSelf.loginSucceed(authData: authData)
-                case .failure(let error):
-                    strongSelf.output.failToLogin(reason: error.localizedDescription)
-                }
-        }
-    }
-    
-    private func loginSucceed(authData: AuthData) {
-        if !defaultProvider.isQuickLaunchShown {
-            if biometricAuthProvider.canAuthWithBiometry {
-                output.showQuickLaunch(authData: authData, token: "")
-            } else {
-                output.showPinQuickLaunch(authData: authData, token: "")
-            }
-            
-            defaultProvider.isQuickLaunchShown = true
+    private func loginSucceed() {
+        if biometricAuthProvider.canAuthWithBiometry {
+            output.showQuickLaunch()
         } else {
-            output.loginSucceed()
+            output.showPinQuickLaunch()
         }
     }
 }

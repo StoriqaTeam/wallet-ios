@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PopUpRegistrationSuccessVMDelegate: class {
-    func showAuthorizedZone()
+    func okButtonPressed()
 }
 
 class PopUpRegistrationSuccessVM: PopUpViewModelProtocol {
@@ -20,11 +20,11 @@ class PopUpRegistrationSuccessVM: PopUpViewModelProtocol {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
                                    title: "email_sent".localized(),
                                    text: "check_email".localized() + email,
-                                   actionButtonTitle: "sign_in".localized(),
+                                   actionButtonTitle: "ok".localized(),
                                    hasCloseButton: false)
     }
     
     func performAction() {
-        delegate?.showAuthorizedZone()
+        delegate?.okButtonPressed()
     }
 }

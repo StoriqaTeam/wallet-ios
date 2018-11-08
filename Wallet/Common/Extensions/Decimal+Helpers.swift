@@ -2,7 +2,7 @@
 //  Decimal+Helpers.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 05/10/2018.
+//  Created by Storiqa on 05/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -26,32 +26,17 @@ extension Decimal {
         return formatter
     }()
     
-    static func number(fromInput: String) -> Decimal {
-        for formatter in [pointFormatter, commaFormatter] {
-            if let number = formatter.number(from: fromInput) {
-                return number.decimalValue
-            }
-        }
-        
-        return Decimal(0.0)
-    }
-    
-    init(_ string: String) {
-        if let _ = Decimal(string: string) {
-            self.init(string: string)!
-            return
-        }
-        
-        self.init(string: "0")!
-    }
-    
     init(_ float: Float) {
         let dec = NSNumber(value: float)
         self = dec.decimalValue
     }
     
     var string: String {
-        return String(describing: self)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.usesGroupingSeparator = false
+        formatter.maximumFractionDigits = 18
+        return formatter.string(for: self)!
     }
     
     var double: Double {
@@ -81,7 +66,7 @@ extension Decimal {
         currencyFormatter.numberStyle = .decimal
         currencyFormatter.maximumFractionDigits = digits
         currencyFormatter.minimumFractionDigits = 0
-        return currencyFormatter.string(from: NSDecimalNumber(decimal: self)) ?? "0"
+        return currencyFormatter.string(for: self) ?? "0"
     }
     
 }

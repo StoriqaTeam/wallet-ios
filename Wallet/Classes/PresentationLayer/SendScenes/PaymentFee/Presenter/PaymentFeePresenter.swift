@@ -20,6 +20,8 @@ class PaymentFeePresenter {
     private let currencyFormatter: CurrencyFormatterProtocol
     private let currencyImageProvider: CurrencyImageProviderProtocol
     
+    private var storiqaLoader: StoriqaLoader!
+    
     init(currencyFormatter: CurrencyFormatterProtocol,
          currencyImageProvider: CurrencyImageProviderProtocol) {
         self.currencyFormatter = currencyFormatter
@@ -63,64 +65,76 @@ extension PaymentFeePresenter: PaymentFeeViewOutput {
     func editButtonPressed() {
         view.popToRoot()
     }
-
+    
     func viewIsReady() {
         let amount = interactor.getAmount()
         let currency = interactor.getReceiverCurrency()
         let accountCurrency = interactor.getSelectedAccount().currency
         let amountString = getStringFrom(amount: amount, currency: currency)
         let convertedAmount = interactor.getConvertedAmount()
-        let amountStringInTxCurrency = "≈" + getStringFrom(amount: convertedAmount, currency: accountCurrency)
+        let sameCurrency = currency == accountCurrency
+        let amountInTxCurrency = sameCurrency ? "" : "≈" + getStringFrom(amount: convertedAmount, currency: accountCurrency)
         let opponentType = interactor.getOpponent()
         let currencyImage = currencyImageProvider.mediumImage(for: currency)
         
         let header = SendingHeaderData(amount: amountString,
-                                       amountInTransactionCurrency: amountStringInTxCurrency,
+                                       amountInTransactionCurrency: amountInTxCurrency,
                                        currencyImage: currencyImage)
         
         
         let apperance = paymentFeeScreen(header: header, opponentType: opponentType)
         view.setupInitialState(apperance: apperance)
         view.viewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        addLoader()
     }
     
     func willMoveToParentVC() {
         view.viewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
-
+    
 }
 
 
 // MARK: - PaymentFeeInteractorOutput
 
 extension PaymentFeePresenter: PaymentFeeInteractorOutput {
-
+    func sendTxFailed(message: String) {
+        storiqaLoader.stopLoader()
+        router.showConfirmFailed(message: message, from: view.viewController)
+    }
+    
+    func sendTxSucceed() {
+        storiqaLoader.stopLoader()
+        router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
+    }
 }
 
 
 // MARK: - PaymentFeeModuleInput
 
 extension PaymentFeePresenter: PaymentFeeModuleInput {
-    
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
-    
 }
 
 
 // MARK: - PopUpRegistrationSuccessVMDelegate
 
 extension PaymentFeePresenter: PopUpSendConfirmVMDelegate {
-    
     func confirmTransaction() {
-        //TODO: send transaction
-        _ = interactor.createTransaction()
+        storiqaLoader.startLoader()
+        interactor.sendTransaction()
+    }
+}
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension PaymentFeePresenter: PopUpSendConfirmSuccessVMDelegate {
+    func okButtonPressed() {
         interactor.clearBuilder()
         view.popToRoot()
-        mainTabBar.selectedIndex = 0
     }
-    
 }
 
 
@@ -147,11 +161,18 @@ extension PaymentFeePresenter {
         case .address(let addr):
             address = addr
             receiverName = "-"
+        case .txAccount:
+            fatalError("TransactionAccount is impossible on send")
         }
         
         return PaymentFeeScreenData(header: header,
                                     address: address,
                                     receiverName: receiverName,
                                     paymentFeeValuesCount: interactor.getFeeWaitCount())
+    }
+    
+    private func addLoader() {
+        guard let parentView = view.viewController.navigationController?.view else { return }
+        storiqaLoader = StoriqaLoader(parentView: parentView)
     }
 }

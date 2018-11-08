@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol TransactionsInteractorOutput: class {
-
+    func updateTransactions(_ txs: [Transaction])
 }

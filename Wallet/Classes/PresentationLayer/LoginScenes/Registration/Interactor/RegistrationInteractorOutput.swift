@@ -12,5 +12,9 @@ import Foundation
 protocol RegistrationInteractorOutput: class {
     func registrationSucceed(email: String)
     func registrationFailed(message: String)
-    func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?)
+    func formValidationFailed(email: String?, password: String?)
+    func setFormIsValid(_ valid: Bool)
+    func showQuickLaunch()
+    func showPinQuickLaunch()
+    func socialAuthFailed(message: String)
 }

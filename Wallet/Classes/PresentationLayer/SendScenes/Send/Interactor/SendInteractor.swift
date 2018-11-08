@@ -16,6 +16,7 @@ class SendInteractor {
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let sendTransactionBuilder: SendProviderBuilderProtocol
     private var sendProvider: SendTransactionProviderProtocol
+    private var accountsUpadteChannelInput: AccountsUpdateChannel?
     
     init(sendTransactionBuilder: SendProviderBuilderProtocol,
          accountsProvider: AccountsProviderProtocol,
@@ -29,6 +30,22 @@ class SendInteractor {
         let account = accountWatcher.getAccount()
         setInitialAccount(account: account)
     }
+    
+    deinit {
+        self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
+        self.accountsUpadteChannelInput = nil
+    }
+    
+    // MARK: - Channels
+    
+    private lazy var objId: String = {
+        let identifier = "\(type(of: self)):\(String(format: "%p", unsafeBitCast(self, to: Int.self)))"
+        return identifier
+    }()
+    
+    func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
+        self.accountsUpadteChannelInput = channel
+    }
 }
 
 
@@ -41,7 +58,7 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func getSelectedAccountCurrency() -> Currency {
-        return sendProvider.selectedAccount.currency
+        return accountWatcher.getAccount().currency
     }
     
     func getAccountIndex() -> Int {
@@ -82,7 +99,7 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func isValidAmount(_ amount: String) -> Bool {
-        return amount.isEmpty || amount == Locale.current.decimalSeparator || amount.isValidDecimal()
+        return amount.isEmpty || amount == "." || amount == "," || amount.isValidDecimal()
     }
     
     func setAmount(_ amount: String) {
@@ -105,6 +122,16 @@ extension SendInteractor: SendInteractorInput {
     
     func updateTransactionProvider() {
         sendProvider = sendTransactionBuilder.build()
+        
+        let account = accountWatcher.getAccount()
+        setInitialAccount(account: account)
+    }
+    
+    func startObservers() {
+        let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
+            self?.accountsDidUpdate(accounts)
+        }
+        self.accountsUpadteChannelInput?.addObserver(accountsObserver)
     }
     
 }
@@ -115,10 +142,18 @@ extension SendInteractor: SendInteractorInput {
 extension SendInteractor {
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
-        return allAccounts.index { $0 == account }!
+        return allAccounts.index { $0 == account } ?? 0
     }
     
     private func setInitialAccount(account: Account) {
         sendTransactionBuilder.set(account: account)
+    }
+    
+    private func accountsDidUpdate(_ accounts: [Account]) {
+        let account = accountWatcher.getAccount()
+        let index = accounts.index { $0 == account } ?? 0
+        
+        accountWatcher.setAccount(accounts[index])
+        output.updateAccounts(accounts: accounts, index: index)
     }
 }

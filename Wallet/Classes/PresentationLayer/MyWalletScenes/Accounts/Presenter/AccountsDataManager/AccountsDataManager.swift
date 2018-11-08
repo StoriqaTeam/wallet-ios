@@ -2,7 +2,7 @@
 //  AccountsDataManager.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 21.09.2018.
+//  Created by Storiqa on 21.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -58,6 +58,10 @@ class AccountsDataManager: NSObject {
     }
     
     func scrollTo(index: Int) {
+        guard index < accounts.count else {
+            return
+        }
+        
         let indexPath = IndexPath(row: index, section: 0)
         accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
         delegate?.currentPageDidChange(index)
@@ -140,8 +144,9 @@ extension AccountsDataManager: UICollectionViewDelegate {
             delegate?.currentPageDidChange(snapToIndex)
             
         } else {
-            // This is a much better way to scroll to a cell:
             let indexOfMajorCell = self.indexOfMajorCell()
+            
+            // This is a much better way to scroll to a cell:
             let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
             accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             delegate?.currentPageDidChange(indexPath.row)

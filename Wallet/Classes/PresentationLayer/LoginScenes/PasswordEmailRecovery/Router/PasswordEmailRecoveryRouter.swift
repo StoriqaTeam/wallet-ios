@@ -11,6 +11,12 @@ import Foundation
 
 class PasswordEmailRecoveryRouter {
     
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
+    
 }
 
 

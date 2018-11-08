@@ -8,30 +8,25 @@ import UIKit
 
 class SendModule {
     
-    class func create(accountWatcher: CurrentAccountWatcherProtocol,
+    class func create(app: Application,
+                      accountWatcher: CurrentAccountWatcherProtocol,
                       user: User,
                       tabBar: UITabBarController) -> SendModuleInput {
-        let router = SendRouter()
+        let router = SendRouter(app: app)
         
-        //Injections
-        let converterFactory = CurrecncyConverterFactory()
-        let formatter = CurrencyFormatter()
-        let accountProvider = FakeAccountProvider()
         
-        let sendTxBuilder = SendTransactionBuilder()
-        let currencyImageProvider = CurrencyImageProvider()
-        let accountTypeResolver = AccountTypeResolver()
         let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: formatter,
-                                                converterFactory: converterFactory,
-                                                accountTypeResolver: accountTypeResolver)
+                                                currencyFormatter: app.currencyFormatter,
+                                                converterFactory: app.currencyConverterFactory,
+                                                accountTypeResolver: app.accountTypeResolver,
+                                                denominationUnitsConverter: app.denominationUnitsConverter)
         
-        let presenter = SendPresenter(currencyFormatter: formatter,
-                                      currencyImageProvider: currencyImageProvider,
+        let presenter = SendPresenter(currencyFormatter: app.currencyFormatter,
+                                      currencyImageProvider: app.currencyImageProvider,
                                       accountDisplayer: accountDisplayer)
         presenter.mainTabBar = tabBar
-        let interactor = SendInteractor(sendTransactionBuilder: sendTxBuilder,
-                                        accountsProvider: accountProvider,
+        let interactor = SendInteractor(sendTransactionBuilder: app.sendTransactionBuilder,
+                                        accountsProvider: app.accountsProvider,
                                         accountWatcher: accountWatcher)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
@@ -43,6 +38,11 @@ class SendModule {
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor
+        
+        // MARK: - Channels
+        let accountsUpdateChannel = app.channelStorage.accountsUpadteChannel
+        app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
+        interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
         
         return presenter
     }

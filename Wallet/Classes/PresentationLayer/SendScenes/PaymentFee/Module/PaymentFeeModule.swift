@@ -8,16 +8,20 @@ import UIKit
 
 class PaymentFeeModule {
     
-    class func create(sendTransactionBuilder: SendProviderBuilderProtocol,
+    class func create(app: Application, sendTransactionBuilder: SendProviderBuilderProtocol,
                       tabBar: UITabBarController) -> PaymentFeeModuleInput {
-        let router = PaymentFeeRouter()
-        let formatter = CurrencyFormatter()
-        let currencyImageProvider = CurrencyImageProvider()
-        
-        let presenter = PaymentFeePresenter(currencyFormatter: formatter,
-                                            currencyImageProvider: currencyImageProvider)
+        let router = PaymentFeeRouter(app: app)
+
+        let presenter = PaymentFeePresenter(currencyFormatter: app.currencyFormatter,
+                                            currencyImageProvider: app.currencyImageProvider)
         presenter.mainTabBar = tabBar
-        let interactor = PaymentFeeInteractor(sendTransactionBuilder: sendTransactionBuilder)
+        
+        let interactor = PaymentFeeInteractor(sendTransactionBuilder: sendTransactionBuilder,
+                                              sendTransactionNetworkProvider: app.sendTransactionNetworkProvider,
+                                              userDataStoreService: app.userDataStoreService,
+                                              authTokenProvider: app.authTokenProvider,
+                                              accountsUpdater: app.accountsUpdater,
+                                              txnUpdater: app.transactionsUpdater)
         
         let accountsVC = UIStoryboard(name: "PaymentFee", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "PaymentFeeVC") as! PaymentFeeViewController

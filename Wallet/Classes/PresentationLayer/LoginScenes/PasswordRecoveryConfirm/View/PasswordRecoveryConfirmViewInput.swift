@@ -12,4 +12,5 @@ import UIKit
 protocol PasswordRecoveryConfirmViewInput: class, Presentable {
     func setupInitialState()
     func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?)
+    func showErrorMessage(_ password: String?)
 }

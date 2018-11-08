@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol ProfileInteractorInput: class {
+    func deleteAppData()
     func getCurrentUser() -> User
     func setNewPhoto(_ photo: UIImage)
-    func isPinLoginEnabled() -> Bool
 }

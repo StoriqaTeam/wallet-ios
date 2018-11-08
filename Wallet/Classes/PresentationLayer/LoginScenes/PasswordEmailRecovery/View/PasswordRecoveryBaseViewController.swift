@@ -101,10 +101,3 @@ private extension PasswordRecoveryBaseViewController {
             }, completion: nil)
     }
 }
-
-// MARK: - UITextFieldDelegate
-extension PasswordRecoveryBaseViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        (textField as? UnderlinedTextField)?.errorText = nil
-    }
-}

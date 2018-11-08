@@ -12,7 +12,6 @@ import UIKit
 protocol PinQuickLaunchRouterInput: class {
     
     func showPinSetup(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController)
-    func showAuthorizedZone()
     func showBiometryQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController)
 
 }

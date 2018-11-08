@@ -12,5 +12,6 @@ import UIKit
 protocol PinInputModuleInput: class {
     var output: PinInputModuleOutput? { get set }
     func present(from viewController: UIViewController)
+    func presentModal(from viewController: UIViewController)
     func present()
 }

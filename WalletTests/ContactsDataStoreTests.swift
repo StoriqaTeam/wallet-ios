@@ -2,15 +2,14 @@
 //  WalletTests.swift
 //  WalletTests
 //
-//  Created by Daniil Miroshnichecko on 28.09.2018.
+//  Created by Storiqa on 28.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import XCTest
-
 @testable import Wallet
 
-class WalletTests: XCTestCase {
+class ContactsDataStoreTests: XCTestCase {
     
     // Providers
     private var contactsDataStore: ContactsDataStoreServiceProtocol!
@@ -53,7 +52,15 @@ class WalletTests: XCTestCase {
     
     
     override func setUp() {
-        contactsDataStore = ContactsDataStoreService()
+        let realmPath = NSTemporaryDirectory().appending("ContactsDataStoreTests_realm")
+        // Delete previous Realm file
+        if FileManager.default.fileExists(atPath: realmPath) {
+            try! FileManager.default.removeItem(atPath: realmPath)
+        }
+        
+        contactsDataStore = ContactsDataStoreService(forTests: URL(string: realmPath)!)
+        contactsDataStore.deleteAll()
+        
         fakeObserver = FakeObserver(contactsDataStore: contactsDataStore)
         fakeObserver.startObserve()
     }
@@ -120,16 +127,14 @@ class WalletTests: XCTestCase {
 
 // MARK: Private methods
 
-extension WalletTests {
+extension ContactsDataStoreTests {
     private func checkRemoving() {
         let contacts = contactsDataStore.getAllContacts()
         XCTAssert(contacts.isEmpty)
     }
     
     private func removeTestContacts() {
-        contactsDataStore.deleteContact(contact_1)
-        contactsDataStore.deleteContact(contact_2)
-        contactsDataStore.deleteContact(contact_3)
+        contactsDataStore.deleteAll()
     }
 }
 

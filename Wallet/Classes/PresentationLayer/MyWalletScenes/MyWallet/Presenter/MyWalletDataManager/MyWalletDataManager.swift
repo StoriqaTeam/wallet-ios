@@ -2,7 +2,7 @@
 //  MyWalletDataManager.swift
 //  Wallet
 //
-//  Created by Tata Gri on 05/10/2018.
+//  Created by Storiqa on 05/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -35,6 +35,11 @@ class MyWalletDataManager: NSObject {
         collectionView.dataSource = self
         collectionView.delegate = self
         registerXib()
+    }
+    
+    func updateAccounts(accounts: [Account]) {
+        self.accounts = accounts
+        collectionView.reloadData()
     }
     
 }

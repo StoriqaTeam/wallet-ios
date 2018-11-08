@@ -17,6 +17,16 @@ class TransactionsPresenter: NSObject {
     var router: TransactionsRouterInput!
     
     private var transactionDataManager: TransactionsDataManager!
+    private let transactionsDateFilter: TransactionDateFilterProtocol
+    private let transactionsMapper: TransactionMapperProtocol
+    
+    private var transactions = [TransactionDisplayable]()
+    
+    init(transactionsDateFilter: TransactionDateFilterProtocol,
+         transactionsMapper: TransactionMapperProtocol) {
+        self.transactionsDateFilter = transactionsDateFilter
+        self.transactionsMapper = transactionsMapper
+    }
 }
 
 
@@ -27,11 +37,14 @@ extension TransactionsPresenter: TransactionsViewOutput {
     func viewIsReady() {
         view.setupInitialState()
         configureNavBar()
+        interactor.startObservers()
     }
     
     func transactionTableView(_ tableView: UITableView) {
         let transactions = interactor.getTransactions()
-        let txDataManager = TransactionsDataManager(transactions: transactions, isHiddenSections: false)
+        let displayable = filteredDispayable(transactions)
+        self.transactions = displayable
+        let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: false)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
@@ -46,17 +59,17 @@ extension TransactionsPresenter: TransactionsViewOutput {
     func viewWillAppear() {
         view.viewController.setDarkNavigationBarButtons()
         let transactions = interactor.getTransactions()
-        transactionDataManager.updateTransactions(transactions)
+        let displayable = filteredDispayable(transactions)
+        transactionDataManager.updateTransactions(displayable)
     }
     
     func didChooseSegment(at index: Int) {
-        let filtered = interactor.getFilteredTransacitons(index: index)
+        let filtered = getFilteredTransacitons(index: index)
         transactionDataManager.updateTransactions(filtered)
     }
     
     func filterByDateTapped() {
-        let txDateFilter = interactor.getTransactionDateFilter()
-        router.showTransactionFilter(with: txDateFilter, from: view.viewController)
+        router.showTransactionFilter(with: transactionsDateFilter, from: view.viewController)
     }
     
 }
@@ -65,14 +78,17 @@ extension TransactionsPresenter: TransactionsViewOutput {
 // MARK: - TransactionsInteractorOutput
 
 extension TransactionsPresenter: TransactionsInteractorOutput {
-
+    func updateTransactions(_ txs: [Transaction]) {
+        let displayable = filteredDispayable(txs)
+        self.transactions = displayable
+        transactionDataManager.updateTransactions(displayable)
+    }
 }
 
 
 // MARK: - TransactionsModuleInput
 
 extension TransactionsPresenter: TransactionsModuleInput {
-
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
@@ -94,5 +110,30 @@ extension TransactionsPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
         view.viewController.setDarkNavigationBar(title: "Transactions")
+    }
+    
+    func filteredDispayable(_ txs: [Transaction]) -> [TransactionDisplayable] {
+        let account = interactor.getAccount()
+        let displayable = txs.map { transactionsMapper.map(from: $0, account: account) }
+        let dateFilteredTransactions = transactionsDateFilter.applyFilter(for: displayable)
+        return dateFilteredTransactions
+    }
+    
+    func getFilteredTransacitons(index: Int) -> [TransactionDisplayable] {
+        guard let filter = DirectionFilter(rawValue: index) else { return [] }
+        let filteredTransactions = filterTransactionsByDirection(filter)
+        return filteredTransactions
+    }
+    
+    private func filterTransactionsByDirection(_ filter: DirectionFilter) -> [TransactionDisplayable] {
+        let dateFilteredTransactions = transactionsDateFilter.applyFilter(for: transactions)
+        switch filter {
+        case .all:
+            return dateFilteredTransactions
+        case .send:
+            return dateFilteredTransactions.filter { $0.direction == .send }
+        case .receive:
+            return dateFilteredTransactions.filter { $0.direction == .receive }
+        }
     }
 }

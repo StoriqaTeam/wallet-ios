@@ -9,17 +9,17 @@ import FacebookLogin
 
 class RegistrationModule {
     
-    class func create() -> RegistrationModuleInput {
-        let router = RegistrationRouter()
+    class func create(app: Application) -> RegistrationModuleInput {
+        let router = RegistrationRouter(app: app)
         let presenter = RegistrationPresenter()
         
-        //Injection
-        let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: LoginManager())
-        let validationProvider = RegistrationFormValidatonProvider()
-        let registrationNetworkProvider = RegistrationNetworkProvider()
+        let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: app.facebookLoginManager)
+        
         let interactor = RegistrationInteractor(socialViewVM: socialVM,
-                                                formValidationProvider: validationProvider,
-                                                registrationNetworkProvider: registrationNetworkProvider)
+                                                formValidationProvider: app.registrationFormValidatonProvider,
+                                                registrationNetworkProvider: app.registrationNetworkProvider,
+                                                loginService: app.loginService,
+                                                biometricAuthProvider: app.biometricAuthProvider)
         
         let registrationSb = UIStoryboard(name: "Registration", bundle: nil)
         let viewController = registrationSb.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationViewController

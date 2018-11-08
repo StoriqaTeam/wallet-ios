@@ -132,6 +132,10 @@ extension ExchangeViewController: ExchangeViewInput {
         configInterface()
     }
     
+    func updatePagesCount(_ count: Int) {
+        accountsPageControl.numberOfPages = count
+    }
+    
     func setSubtotal(_ subtotal: String) {
         subtotalLabel.text = subtotal
     }

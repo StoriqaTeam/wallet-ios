@@ -16,9 +16,20 @@ enum SocialNetworkTokenProvider {
     var name: String {
         switch self {
         case .google:
-            return "GOOGLE"
+            return "google"
         case .facebook:
-            return "FACEBOOK"
+            return "facebook"
+        }
+    }
+
+    init?(_ string: String) {
+        switch string.lowercased() {
+        case "google":
+            self = .google
+        case "facebook":
+            self = .facebook
+        default:
+            return nil
         }
     }
 }
@@ -29,7 +40,7 @@ protocol SocialNetworkAuthViewDelegate: class {
     func socialNetworkAuthFailed()
 }
 
-class SocialNetworkAuthView: UIView {
+class SocialNetworkAuthView: LoadableFromXib {
     var viewModel: SocialNetworkAuthViewModel!
     typealias Localized = Strings.SocialNetworkAuth
     
@@ -37,7 +48,7 @@ class SocialNetworkAuthView: UIView {
         case login
         case register
     }
-
+    
     // IBOutlet
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var facebookButton: UIButton!
@@ -50,11 +61,6 @@ class SocialNetworkAuthView: UIView {
     private weak var delegate: SocialNetworkAuthViewDelegate?
     private var formType: SocialNetworkAuthViewType = .login
     private var fromViewController: UIViewController!
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        loadViewFromNib()
-    }
     
     // IBActions
     @IBAction func footerButtonTapHandler(_ sender: UIButton) {
@@ -131,21 +137,5 @@ extension SocialNetworkAuthView: GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
         log.debug("signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!)")
         //TODO: signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!)
-    }
-}
-
-// MARK: - Private methods
-
-extension SocialNetworkAuthView {
-    private func loadViewFromNib() {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "SocialNetworkAuthView", bundle: bundle)
-        guard let authView = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
-            fatalError("Fail to load SocialNetworkAuthView")
-        }
-        
-        authView.frame = bounds
-        addSubview(authView)
-        contentView = authView
     }
 }

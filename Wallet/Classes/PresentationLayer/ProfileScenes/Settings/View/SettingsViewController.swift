@@ -22,20 +22,11 @@ class SettingsViewController: UITableViewController {
         output.viewIsReady()
     }
     
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        output.willMoveToParentVC()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.viewWillAppear()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        output.viewDidAppear()
-    }
 }
 
 
@@ -61,19 +52,22 @@ extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
+            // FIXME: hidden before release
             switch indexPath.row {
             case 0:
-                output.editProfileSelected()
+                output.myProfileSelected()
             case 1:
-                output.changePhoneSelected()
-            case 2:
-                output.changePasswordSelected()
+//                output.changePhoneSelected()
+//            case 2:
+            output.changePasswordSelected()
             default:
                 break
             }
         }
         
-        if indexPath.section == 2 {
+        // FIXME: hidden before release
+//        if indexPath.section == 2 {
+        if indexPath.section == 1 {
             switch indexPath.row {
             case 1:
                 output.sessionSelected()

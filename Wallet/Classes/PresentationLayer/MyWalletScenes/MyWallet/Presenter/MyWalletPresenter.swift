@@ -22,6 +22,7 @@ class MyWalletPresenter {
     private let user: User
     private let accountDisplayer: AccountDisplayerProtocol
     private var dataManager: MyWalletDataManager!
+    private var pullToRefresh: UIRefreshControl!
     
     init(user: User,
          accountDisplayer: AccountDisplayerProtocol) {
@@ -46,6 +47,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
         let allAccounts = interactor.getAccounts()
         let accountsManager = MyWalletDataManager(accounts: allAccounts,
                                                   accountDisplayer: accountDisplayer)
+        addPullToRefresh(collectionView: collectionView)
         accountsManager.setCollectionView(collectionView)
         dataManager = accountsManager
         dataManager.delegate = self
@@ -62,7 +64,9 @@ extension MyWalletPresenter: MyWalletViewOutput {
 // MARK: - MyWalletInteractorOutput
 
 extension MyWalletPresenter: MyWalletInteractorOutput {
-
+    func updateAccounts(accounts: [Account]) {
+        dataManager?.updateAccounts(accounts: accounts)
+    }
 }
 
 
@@ -125,5 +129,20 @@ extension MyWalletPresenter {
         titleTextAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
         navBar.titleTextAttributes = titleTextAttributes
         navBar.largeTitleTextAttributes = titleTextAttributes
+    }
+    
+    private func addPullToRefresh(collectionView: UICollectionView) {
+        pullToRefresh = UIRefreshControl()
+        collectionView.alwaysBounceVertical = true
+        pullToRefresh.tintColor = .white
+        pullToRefresh.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        collectionView.addSubview(pullToRefresh)
+    }
+    
+    @objc private func loadData() {
+        interactor.refreshAccounts(for: user)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.pullToRefresh.endRefreshing()
+        }
     }
 }

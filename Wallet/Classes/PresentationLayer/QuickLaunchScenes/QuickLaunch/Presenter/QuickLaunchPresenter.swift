@@ -31,10 +31,6 @@ extension QuickLaunchPresenter: QuickLaunchViewOutput {
         router.showPinQuickLaunch(qiuckLaunchProvider: interactor.getProvider(), from: view.viewController)
     }
     
-    func cancelSetup() {
-        router.showAuthorizedZone()
-    }
-    
 }
 
 

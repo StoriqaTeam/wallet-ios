@@ -12,13 +12,16 @@ import Foundation
 class ProfileInteractor {
     weak var output: ProfileInteractorOutput!
     
+    private let defaultsProvider: DefaultsProviderProtocol
     private let keychainProvider: KeychainProviderProtocol
     private let userStoreService: UserDataStoreServiceProtocol
     
-    init(userStoreService: UserDataStoreServiceProtocol,
-         keychainProvider: KeychainProviderProtocol) {
+    init(defaults: DefaultsProviderProtocol,
+         keychain: KeychainProviderProtocol,
+         userStoreService: UserDataStoreServiceProtocol) {
+        self.defaultsProvider = defaults
+        self.keychainProvider = keychain
         self.userStoreService = userStoreService
-        self.keychainProvider = keychainProvider
     }
 }
 
@@ -40,8 +43,9 @@ extension ProfileInteractor: ProfileInteractorInput {
         }
     }
     
-    func isPinLoginEnabled() -> Bool {
-        return keychainProvider.pincode != nil
+    func deleteAppData() {
+        userStoreService.resetAllDatabase()
+        keychainProvider.deleteAll()
+        defaultsProvider.isFirstLaunch = true
     }
-    
 }

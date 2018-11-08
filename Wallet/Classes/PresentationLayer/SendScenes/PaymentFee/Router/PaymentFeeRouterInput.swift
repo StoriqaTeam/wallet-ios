@@ -14,4 +14,10 @@ protocol PaymentFeeRouterInput: class {
                      address: String,
                      popUpDelegate: PopUpSendConfirmVMDelegate,
                      from viewController: UIViewController)
+    
+    func showConfirmFailed(message: String,
+                           from viewController: UIViewController)
+    func showConfirmSucceed(popUpDelegate: PopUpSendConfirmSuccessVMDelegate,
+                            from viewController: UIViewController)
+    
 }

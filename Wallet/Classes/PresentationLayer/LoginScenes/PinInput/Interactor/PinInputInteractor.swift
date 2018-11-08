@@ -50,7 +50,6 @@ extension PinInputInteractor: PinInputInteractorInput {
     }
     
     func resetPin() {
-        defaultsProvider.isQuickLaunchShown = false
         pinValidator.resetPin()
         userStoreService.delete()
     }
