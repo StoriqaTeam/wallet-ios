@@ -38,9 +38,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
         // TODO: - Now fee is fix and equals zero because of server!!!
         // let fee = transaction.fee.string
         let feeString = "0"
-        let exchangeId = ""
-        let exchangeRate = Decimal(1)
         
+        // TODO: - exchangeId, exchangeRate
         let request = API.Authorized.sendTransaction(authToken: authToken,
                                                      transactionId: txId,
                                                      userId: userId,
@@ -50,8 +49,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      value: value,
                                                      valueCurrency: valueCurrency,
                                                      fee: feeString,
-                                                     exchangeId: exchangeId,
-                                                     exchangeRate: exchangeRate)
+                                                     exchangeId: nil,
+                                                     exchangeRate: nil)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {

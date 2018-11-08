@@ -32,8 +32,8 @@ extension API {
             value: String,
             valueCurrency: Currency,
             fee: String,
-            exchangeId: String,
-            exchangeRate: Decimal)
+            exchangeId: String?,
+            exchangeRate: Decimal?)
         case changePassword(authToken: String, currentPassword: String, newPassword: String)
         case createAccount(authToken: String, userId: Int, id: String, currency: Currency, name: String)
     }
@@ -137,19 +137,25 @@ extension API.Authorized: APIMethodProtocol {
                 type = "account"
             }
             
-            return [
-                    "id": transactionId,
-                    "userId": userId,
-                    "from": fromAccount,
-                    "to": receiverAddress,
-                    "toType": type,
-                    "toCurrency": toCurrency.ISO.lowercased(),
-                    "value": value,
-                    "valueCurrency": valueCurrency.ISO.lowercased(),
-                    "fee": fee,
-                    "exchangeId": exchangeId,
-                    "exchangeRate": exchangeRate
-            ]
+            var params: [String: Any] = [
+                "id": transactionId,
+                "userId": userId,
+                "from": fromAccount,
+                "to": receiverAddress,
+                "toType": type,
+                "toCurrency": toCurrency.ISO.lowercased(),
+                "value": value,
+                "valueCurrency": valueCurrency.ISO.lowercased(),
+                "fee": fee
+                ]
+            
+            if let exchangeId = exchangeId,
+                let exchangeRate = exchangeRate {
+                params["exchangeId"] = exchangeId
+                params["exchangeRate"] = exchangeRate
+            }
+            
+            return params
         case .changePassword(_, let currentPassword, let newPassword):
             return [
                 "newPassword": newPassword,
