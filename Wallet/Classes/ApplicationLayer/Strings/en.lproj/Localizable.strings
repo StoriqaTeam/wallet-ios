@@ -29,10 +29,10 @@
 //"register" = "Register";
 "sign_in" = "Sign in";
 "add_new" = "Add new";
-"ok" = "Ok";
-"set_up_quick_launch" = "Set up quick launch";
-"do_not_use" = "Do not use";
-"scan_QR" = "Scan QR-code";
+//"ok" = "Ok";
+//"set_up_quick_launch" = "Set up quick launch";
+//"do_not_use" = "Do not use";
+//"scan_QR" = "Scan QR-code";
 "next" = "Next";
 "send" = "Send";
 "confirm_transaction" = "Confirm transaction";
@@ -62,8 +62,8 @@
 "password_recovery" = "Password recovery";
 "psw_recovery_confirm_subtitle" = "Create new password and confirm it.";
 "email_for_psw_recovery" = "Enter email address where new password recovering instructions will be sent to.";
-"quick_launch_title" = "Set up quick launch";
-"quick_launch_subtitle" = "Choose the way to confirm your identity";
+//"quick_launch_title" = "Set up quick launch";
+//"quick_launch_subtitle" = "Choose the way to confirm your identity";
 "pin_quick_launch_title" = "Set up PIN code";
 "touchId_quick_launch_title" = "Set up fingerprint launch?";
 "faceId_quick_launch_title" = "Set up Face ID launch?";
@@ -86,7 +86,7 @@
 "change_photo" = "Change profile photo";
 "sign_out_title" = "Sure to sign out?";
 "sign_out_text" = "After signing out you won’t be able to receive notifications from Wallet app";
-"qr_code_hint" = "Place QR-code inside white frame. Try not to shake your phone.";
+//"qr_code_hint" = "Place QR-code inside white frame. Try not to shake your phone.";
 
 
 //Error constants
@@ -94,5 +94,5 @@
 "unknown_error" = "Unknown error";
 "user_friendly_error" = "Aliens have stolen some of our servers. Chasing them, but haven’t catch them yet. Please try again or come back later!";
 //"pins_not_match_alert" = "Codes do not match. Try again.";
-"qr_code_currency_does_not_match" = "Currency of scanned address doesn't match previously selected receiver currency.";
+//"qr_code_currency_does_not_match" = "Currency of scanned address doesn't match previously selected receiver currency.";
 

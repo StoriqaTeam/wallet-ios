@@ -49,10 +49,10 @@ extension String {
 }
 
 extension String {
-    func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
-        //If the string is not found, we show **<key>** for debugging.
-        return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
-    }
+//    func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
+//        //If the string is not found, we show **<key>** for debugging.
+//        return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
+//    }
 }
 
 extension NSAttributedString {

@@ -346,6 +346,7 @@
 		A5C12E4B217DE8CC00A7D68C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E4A217DE8CC00A7D68C /* Strings.swift */; };
 		A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E5F217DF65300A7D68C /* MyWallet.strings */; };
 		A5C12E67217DFEBA00A7D68C /* Strings+MyWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E66217DFEBA00A7D68C /* Strings+MyWallet.swift */; };
+<<<<<<< HEAD
 		A5C12E69217E04F700A7D68C /* Strings+SocialNetworkAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E68217E04F700A7D68C /* Strings+SocialNetworkAuth.swift */; };
 		A5C12E6B217E0ADA00A7D68C /* SocialNetworkAuth.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E6A217E0ADA00A7D68C /* SocialNetworkAuth.strings */; };
 		A5C12E6E217E0B3B00A7D68C /* Strings+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E6D217E0B3B00A7D68C /* Strings+Login.swift */; };
@@ -356,9 +357,11 @@
 		A5C12E78217E137700A7D68C /* Registration.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E77217E137700A7D68C /* Registration.strings */; };
 		A5C12E7A217E16AC00A7D68C /* Strings+PinSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E79217E16AC00A7D68C /* Strings+PinSetup.swift */; };
 		A5C12E7C217E16DB00A7D68C /* PinSetup.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C12E7B217E16DB00A7D68C /* PinSetup.strings */; };
+=======
 		A5C12E7F217F009D00A7D68C /* AuthTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E7E217F009D00A7D68C /* AuthTokenProvider.swift */; };
 		A5C12E82217F211200A7D68C /* JwtTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E81217F211200A7D68C /* JwtTokenParser.swift */; };
 		A5C12E84217F261C00A7D68C /* JwtParcerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */; };
+>>>>>>> dev
 		A5D5BB7C217B57D4008BEB74 /* API+Authorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */; };
 		A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */; };
 		A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */; };
@@ -394,10 +397,6 @@
 		B5D0A50EC37F23DE647B941B /* FirstLaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11B072A91A28352CDC5ABD9 /* FirstLaunchRouter.swift */; };
 		B634E43D645E9DBCE791CD75 /* SettingsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9D1601A483ADBA7DD0D526 /* SettingsViewOutput.swift */; };
 		B782CF02B33B1093E9AF38BB /* ExchangeInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23FC67135B58752997E5F0D /* ExchangeInteractorInput.swift */; };
-		B88BDF1321943D3400C81022 /* Strings+QuickLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88BDF1221943D3400C81022 /* Strings+QuickLaunch.swift */; };
-		B88BDF1521943DF500C81022 /* QuickLaunch.strings in Resources */ = {isa = PBXBuildFile; fileRef = B88BDF1421943DF500C81022 /* QuickLaunch.strings */; };
-		B88BDF172194416800C81022 /* Strings+QRScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88BDF162194416800C81022 /* Strings+QRScanner.swift */; };
-		B88BDF192194419F00C81022 /* QRScanner.strings in Resources */ = {isa = PBXBuildFile; fileRef = B88BDF182194419F00C81022 /* QRScanner.strings */; };
 		B8C5EDD62189A2FA00345B79 /* API+Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD52189A2FA00345B79 /* API+Rates.swift */; };
 		B8C5EDDA2189AA8C00345B79 /* RatesNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */; };
 		B8C5EDDC2189ACE700345B79 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDDB2189ACE700345B79 /* Rate.swift */; };
@@ -1007,6 +1006,7 @@
 		A5C12E53217DF38C00A7D68C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5C12E5E217DF65300A7D68C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MyWallet.strings; sourceTree = "<group>"; };
 		A5C12E66217DFEBA00A7D68C /* Strings+MyWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+MyWallet.swift"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		A5C12E68217E04F700A7D68C /* Strings+SocialNetworkAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+SocialNetworkAuth.swift"; sourceTree = "<group>"; };
 		A5C12E6A217E0ADA00A7D68C /* SocialNetworkAuth.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SocialNetworkAuth.strings; sourceTree = "<group>"; };
 		A5C12E6D217E0B3B00A7D68C /* Strings+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Login.swift"; sourceTree = "<group>"; };
@@ -1017,10 +1017,12 @@
 		A5C12E77217E137700A7D68C /* Registration.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Registration.strings; sourceTree = "<group>"; };
 		A5C12E79217E16AC00A7D68C /* Strings+PinSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PinSetup.swift"; sourceTree = "<group>"; };
 		A5C12E7B217E16DB00A7D68C /* PinSetup.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PinSetup.strings; sourceTree = "<group>"; };
+=======
 		A5C12E7E217F009D00A7D68C /* AuthTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenProvider.swift; sourceTree = "<group>"; };
 		A5C12E81217F211200A7D68C /* JwtTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtTokenParser.swift; sourceTree = "<group>"; };
 		A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtParcerTests.swift; sourceTree = "<group>"; };
 		A5C12E872180B6D500A7D68C /* Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wallet.entitlements; sourceTree = "<group>"; };
+>>>>>>> dev
 		A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Authorize.swift"; sourceTree = "<group>"; };
 		A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserNetworkProvider.swift; sourceTree = "<group>"; };
 		A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyWallet.storyboard; sourceTree = "<group>"; };
@@ -1052,10 +1054,6 @@
 		B56AFC99D929DF8CB39A8C4D /* AccountsModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsModule.swift; sourceTree = "<group>"; };
 		B5DB570057C07D6076058081 /* SettingsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		B7308D8FE5E082396CE5E220 /* PinQuickLaunchRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchRouter.swift; sourceTree = "<group>"; };
-		B88BDF1221943D3400C81022 /* Strings+QuickLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+QuickLaunch.swift"; sourceTree = "<group>"; };
-		B88BDF1421943DF500C81022 /* QuickLaunch.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = QuickLaunch.strings; sourceTree = "<group>"; };
-		B88BDF162194416800C81022 /* Strings+QRScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+QRScanner.swift"; sourceTree = "<group>"; };
-		B88BDF182194419F00C81022 /* QRScanner.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = QRScanner.strings; sourceTree = "<group>"; };
 		B8C5EDD52189A2FA00345B79 /* API+Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Rates.swift"; sourceTree = "<group>"; };
 		B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesNetworkProvider.swift; sourceTree = "<group>"; };
 		B8C5EDDB2189ACE700345B79 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
@@ -1408,8 +1406,6 @@
 				3544DD6D94942645B2A2EC18 /* Interactor */,
 				92F1C8E8168E335BFD1E9A05 /* Router */,
 				9D5AF64084126D486E02A6D8 /* Module */,
-				B88BDF162194416800C81022 /* Strings+QRScanner.swift */,
-				B88BDF182194419F00C81022 /* QRScanner.strings */,
 			);
 			path = QRScanner;
 			sourceTree = "<group>";
@@ -4252,8 +4248,6 @@
 				53B84FE569B5BD85BE1FDBB5 /* Interactor */,
 				14D926461E093F954A57515F /* Router */,
 				6958715DECA6DCB6DC67676A /* Module */,
-				B88BDF1221943D3400C81022 /* Strings+QuickLaunch.swift */,
-				B88BDF1421943DF500C81022 /* QuickLaunch.strings */,
 			);
 			path = QuickLaunch;
 			sourceTree = "<group>";
@@ -4634,12 +4628,10 @@
 				A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */,
 				A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */,
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
-				B88BDF192194419F00C81022 /* QRScanner.strings in Resources */,
 				A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */,
 				A51CB55D215942F400CDC80C /* RouteButton.xib in Resources */,
 				CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */,
 				A5C12E7C217E16DB00A7D68C /* PinSetup.strings in Resources */,
-				B88BDF1521943DF500C81022 /* QuickLaunch.strings in Resources */,
 				A58EE3C62150379E0096C155 /* Login.storyboard in Resources */,
 				A560C743216B57F9009F0E95 /* SettingsHeaderView.xib in Resources */,
 				A5C12E70217E0D6700A7D68C /* Login.strings in Resources */,
@@ -5011,7 +5003,6 @@
 				A57434D721764159006B4CAE /* TransactionsDateFilter.swift in Sources */,
 				1D29389B7211768F5C82EF1B /* BiometryQuickLaunchModuleInput.swift in Sources */,
 				A57434FD21776226006B4CAE /* EditProfileModuleOutput.swift in Sources */,
-				B88BDF1321943D3400C81022 /* Strings+QuickLaunch.swift in Sources */,
 				A3AC2118172F25D9C46E786B /* BiometryQuickLaunchModuleOutput.swift in Sources */,
 				4FD0957C495AB450B60609F7 /* BiometryQuickLaunchModule.swift in Sources */,
 				A52FE2A321847ACC00100E21 /* Application.swift in Sources */,
@@ -5060,7 +5051,6 @@
 				CEE84F03218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift in Sources */,
 				1ABB8F5652BD323E32D4A38E /* MyWalletPresenter.swift in Sources */,
 				6214E91B27DC987F18161F2F /* MyWalletInteractorInput.swift in Sources */,
-				B88BDF172194416800C81022 /* Strings+QRScanner.swift in Sources */,
 				F65CB8AA94F7350D95BCC3B4 /* MyWalletInteractorOutput.swift in Sources */,
 				CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */,
 				A5C12E6E217E0B3B00A7D68C /* Strings+Login.swift in Sources */,

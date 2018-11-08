@@ -9,6 +9,8 @@
 import UIKit
 
 class QuickLaunchViewController: BaseQuickLaunchViewController {
+    
+    typealias Localized = Strings.QuickLaunch
 
     var output: QuickLaunchViewOutput!
     
@@ -21,9 +23,9 @@ class QuickLaunchViewController: BaseQuickLaunchViewController {
     }
     
     private func configureInterface() {
-        titleLabel.text = "quick_launch_title".localized()
-        subtitleLabel?.text = "quick_launch_subtitle".localized()
-        actionButton.setTitle("set_up_quick_launch".localized(), for: .normal)
+        titleLabel.text = Localized.quickLaunchTitle
+        subtitleLabel?.text = Localized.quickLaunchSubtitle
+        actionButton.setTitle(Localized.setUpButtonTitle, for: .normal)
     }
     
     // MARK: Actions

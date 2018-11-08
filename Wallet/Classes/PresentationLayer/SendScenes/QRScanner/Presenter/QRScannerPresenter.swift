@@ -12,6 +12,8 @@ import AVFoundation
 
 class QRScannerPresenter: NSObject {
     
+    typealias Localized = Strings.QRScanner
+    
     weak var view: QRScannerViewInput!
     weak var output: QRScannerModuleOutput?
     var interactor: QRScannerInteractorInput!
@@ -19,7 +21,7 @@ class QRScannerPresenter: NSObject {
     
     private var captureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer!
-    private let defaultHintMessage = "qr_code_hint".localized()
+    private let defaultHintMessage = Localized.qrCodeHintMessageTitle
     
 }
 
@@ -88,7 +90,7 @@ extension QRScannerPresenter: AVCaptureMetadataOutputObjectsDelegate {
                 view.changeMessage("")
             case .wrongCurrency:
                 view.changeAimColor(.red)
-                view.changeMessage("qr_code_currency_does_not_match".localized())
+                view.changeMessage(Localized.wrongQrMessageTitle)
             }
         }
     }
@@ -101,7 +103,7 @@ extension QRScannerPresenter {
     
     private func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: "scan_QR".localized())
+        view.viewController.setWhiteNavigationBar(title: Localized.navigationBarTitle)
     }
     
     private func createCaptureSession() {
@@ -158,7 +160,7 @@ extension QRScannerPresenter {
         let alertVC = UIAlertController(title: "Scanning not supported",
                                    message: "Your device does not support scanning a code from an item.",
                                    preferredStyle: .alert)
-        let action = UIAlertAction(title: "ok".localized(), style: .default) { [weak self] _ in
+        let action = UIAlertAction(title: Localized.okMessage, style: .default) { [weak self] _ in
             self?.view.dismiss()
         }
         alertVC.addAction(action)
