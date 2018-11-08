@@ -10,6 +10,12 @@ import Foundation
 
 
 class TransactionDetailsRouter {
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 
 }
 

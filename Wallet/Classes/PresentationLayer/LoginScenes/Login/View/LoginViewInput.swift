@@ -12,5 +12,5 @@ import UIKit
 protocol LoginViewInput: class, Presentable {
     func setupInitialState()
     func setSocialView(viewModel: SocialNetworkAuthViewModel)
-    func relogin()
+    func showErrorMessage(email: String?, password: String?)
 }

@@ -29,7 +29,7 @@ extension RegistrationPresenter: RegistrationViewOutput {
         view.setSocialView(viewModel: viewModel)
         addLoader()
     }
-
+    
     func register(firstName: String, lastName: String, email: String, password: String) {
         let registrationData = RegistrationData(firstName: firstName, lastName: lastName, email: email, password: password)
         storiqaLoader.startLoader()
@@ -52,19 +52,30 @@ extension RegistrationPresenter: RegistrationViewOutput {
         interactor.validateForm(form)
     }
     
+    func validatePasswords(onEndEditing: Bool, password: String?, repeatPassword: String?) {
+        guard let password = password, !password.isEmpty,
+            let repeatPassword = repeatPassword, !repeatPassword.isEmpty else {
+                view.setPasswordsEqual(false, message: nil)
+                return
+        }
+        
+        if password == repeatPassword {
+            view.setPasswordsEqual(onEndEditing, message: nil)
+        } else {
+            view.setPasswordsEqual(false, message: "passwords_nonequal".localized())
+        }
+    }
+    
     func showLogin() {
         router.showLogin()
     }
     
-    func socialNetworkRegisterSucceed() {
-        //TODO: будем ли передавать email
-        storiqaLoader.stopLoader()
-        router.showSuccess(email: "", popUpDelegate: self, from: view.viewController)
+    func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String) {
+        storiqaLoader.startLoader()
+        interactor.signIn(tokenProvider: provider, oauthToken: token)
     }
     
     func socialNetworkRegisterFailed() {
-        //TODO: сообщение при регистрации через соц сети
-        storiqaLoader.stopLoader()
         router.showSocialNetworkFailure(message: Constants.Errors.userFriendly, from: view.viewController)
     }
     
@@ -74,9 +85,13 @@ extension RegistrationPresenter: RegistrationViewOutput {
 // MARK: - RegistrationInteractorOutput
 
 extension RegistrationPresenter: RegistrationInteractorOutput {
-    func setFormIsValid(_ valid: Bool, passwordsEqualityMessage: String?) {
+    func formValidationFailed(email: String?, password: String?) {
+        storiqaLoader.stopLoader()
+        view.showErrorMessage(email: email, password: password)
+    }
+    
+    func setFormIsValid(_ valid: Bool) {
         view.setButtonEnabled(valid)
-        view.showPasswordsNotEqual(message: passwordsEqualityMessage)
     }
     
     func registrationSucceed(email: String) {
@@ -87,6 +102,21 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     func registrationFailed(message: String) {
         storiqaLoader.stopLoader()
         router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
+    }
+    
+    func showQuickLaunch() {
+        storiqaLoader.stopLoader()
+        router.showQuickLaunch(from: view.viewController)
+    }
+    
+    func showPinQuickLaunch() {
+        storiqaLoader.stopLoader()
+        router.showPinQuickLaunch(from: view.viewController)
+    }
+    
+    func socialAuthFailed(message: String) {
+        storiqaLoader.stopLoader()
+        router.showSocialNetworkFailure(message: message, from: view.viewController)
     }
 }
 
@@ -107,8 +137,8 @@ extension RegistrationPresenter: RegistrationModuleInput {
 // MARK: - PopUpRegistrationSuccessVMDelegate
 
 extension RegistrationPresenter: PopUpRegistrationSuccessVMDelegate {
-    func showAuthorizedZone() {
-        router.showAuthorizedZone()
+    func okButtonPressed() {
+        router.showLogin()
     }
 }
 

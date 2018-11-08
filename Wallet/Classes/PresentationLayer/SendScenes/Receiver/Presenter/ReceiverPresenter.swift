@@ -20,7 +20,7 @@ class ReceiverPresenter {
     weak var mainTabBar: UITabBarController!
     
     private let currencyFormatter: CurrencyFormatterProtocol
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let currencyImageProvider: CurrencyImageProviderProtocol
     private let contactsMapper: ContactsMapper
     private let contactsSorter: ContactsSorterProtocol
@@ -29,7 +29,7 @@ class ReceiverPresenter {
     private var contacts: [ContactDisplayable] = []
     
     init(currencyFormatter: CurrencyFormatterProtocol,
-         converterFactory: CurrecncyConverterFactoryProtocol,
+         converterFactory: CurrencyConverterFactoryProtocol,
          currencyImageProvider: CurrencyImageProviderProtocol,
          contactsMapper: ContactsMapper,
          contactsSorter: ContactsSorterProtocol) {
@@ -75,7 +75,8 @@ extension ReceiverPresenter: ReceiverViewOutput {
         
         //TODO: нужны проверки, валидный ли номер, чтобы активировать кнопку.
         //Пока кнопка активируется только по клику на контакт и скану
-        view.setNextButtonHidden(true)
+        let validAddress = interactor.validateAddress(input)
+        view.setNextButtonHidden(!validAddress)
         searchContact(text: input)
     }
     
@@ -93,11 +94,12 @@ extension ReceiverPresenter: ReceiverViewOutput {
         let receiverCurrency = interactor.getReceiverCurrency()
         let accountCurrency = interactor.getSelectedAccount().currency
         let amountString = getStringFrom(amount: amount, currency: receiverCurrency)
-        let amountStringInTxCurrency = getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
+        let sameCurrency = receiverCurrency == accountCurrency
+        let amountInTxCurrency = sameCurrency ? "" : getStringInTransactionCurrency(amount: amount, accountCurrency: accountCurrency)
         let currencyImage = currencyImageProvider.mediumImage(for: receiverCurrency)
         
         let appearence = SendingHeaderData(amount: amountString,
-                                           amountInTransactionCurrency: amountStringInTxCurrency,
+                                           amountInTransactionCurrency: amountInTxCurrency,
                                            currencyImage: currencyImage)
         let canScan = receiverCurrency != .fiat
         

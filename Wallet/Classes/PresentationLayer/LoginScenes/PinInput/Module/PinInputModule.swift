@@ -8,20 +8,14 @@ import UIKit
 
 class PinInputModule {
     
-    class func create() -> PinInputModuleInput {
-        let router = PinInputRouter()
+    class func create(app: Application) -> PinInputModuleInput {
+        let router = PinInputRouter(app: app)
         let presenter = PinInputPresenter()
         
-        // Injection
-        let keychainProvider = KeychainProvider()
-        let defaultsProvider = DefaultsProvider()
-        let biometricAuthProvider = BiometricAuthProvider(errorParser: BiometricAuthErrorParser())
-        let pinValidator = PinValidationProvider(keychainProvider: keychainProvider)
-        let userStoreService = UserDataStoreService()
-        let interactor = PinInputInteractor(defaultsProvider: defaultsProvider,
-                                            pinValidator: pinValidator,
-                                            biometricAuthProvider: biometricAuthProvider,
-                                            userStoreService: userStoreService)
+        let interactor = PinInputInteractor(defaultsProvider: app.defaultsProvider,
+                                            pinValidator: app.pinValidationProvider,
+                                            biometricAuthProvider: app.biometricAuthProvider,
+                                            userStoreService: app.userDataStoreService)
         
         let pinInputSb = UIStoryboard(name: "PinInput", bundle: nil)
         let viewController = pinInputSb.instantiateViewController(withIdentifier: "PinLoginVC") as! PinInputViewController

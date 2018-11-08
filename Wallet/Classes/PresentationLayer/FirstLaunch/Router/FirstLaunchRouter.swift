@@ -10,7 +10,11 @@ import Foundation
 
 
 class FirstLaunchRouter {
-
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -18,10 +22,10 @@ class FirstLaunchRouter {
 
 extension FirstLaunchRouter: FirstLaunchRouterInput {
     func showLogin() {
-        LoginModule.create().present()
+        LoginModule.create(app: app).present()
     }
     
     func showRegistration() {
-        RegistrationModule.create().present()
+        RegistrationModule.create(app: app).present()
     }
 }

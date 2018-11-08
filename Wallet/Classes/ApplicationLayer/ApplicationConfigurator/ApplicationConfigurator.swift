@@ -2,7 +2,7 @@
 //  ApplicationConfigurator.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 17.09.2018.
+//  Created by Storiqa on 17.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -13,15 +13,20 @@ class ApplicationConfigurator: Configurable {
     
     private let keychain: KeychainProviderProtocol
     private let defaults: DefaultsProviderProtocol
+    private let shortPollingTimer: ShortPollingTimerProtocol
+    let app: Application
     
-    init(keychain: KeychainProviderProtocol, defaults: DefaultsProviderProtocol) {
-        self.keychain = keychain
-        self.defaults = defaults
+    init(app: Application) {
+        self.keychain = app.keychainProvider
+        self.defaults = app.defaultsProvider
+        self.shortPollingTimer = app.shortPollingTimer
+        self.app = app
     }
     
     func configure() {
         setInitialVC()
         setGID()
+        setupChannel()
     }    
 }
 
@@ -32,14 +37,15 @@ extension ApplicationConfigurator {
     private func setInitialVC() {
         if defaults.isFirstLaunch {
             defaults.isFirstLaunch = false
-            FirstLaunchModule.create().present()
+            keychain.deleteAll()
+            FirstLaunchModule.create(app: app).present()
         } else if isPinSet() {
-            PinInputModule.create().present()
+            PinInputModule.create(app: app).present()
         } else {
-            LoginModule.create().present()
+            LoginModule.create(app: app).present()
         }
     }
-    
+
     private func isPinSet() -> Bool {
         return keychain.pincode != nil
     }
@@ -47,5 +53,11 @@ extension ApplicationConfigurator {
     private func setGID() {
         NetworkActivityIndicatorManager.shared.isEnabled = true
         GIDSignIn.sharedInstance().clientID = Constants.NetworkAuth.kGoogleClientId
+    }
+    
+    private func setupChannel() {
+        let shortPollingChannel = app.channelStorage.shortPollingChannel
+        self.shortPollingTimer.setOutputChannel(shortPollingChannel)
+        self.shortPollingTimer.startPolling()
     }
 }

@@ -17,11 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    private var configurators: [Configurable] = {
+    private let app = Application()
+    
+    private lazy var configurators: [Configurable] = {
         return [
-            ApplicationConfigurator(keychain: KeychainProvider(), defaults: DefaultsProvider()),
+            ApplicationConfigurator(app: app),
             CrashTrackerConfigurator(),
-            SessionsConfigurator(sessionsDataStore: SessionsDataStoreService())
+            SessionsConfigurator(app: app)
         ]
     }()
     
@@ -37,9 +39,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+         app.appLockerProvider.autolock()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        app.appLockerProvider.setLock()
+    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        
-        let appSchemeName = "storiqaWallet://"
         
         let urlStr = url.absoluteString
         if urlStr.contains(Constants.NetworkAuth.kFacebookAppId) {
@@ -49,26 +58,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                      sourceApplication: options[.sourceApplication] as? String,
                                                      annotation: options[.annotation])
             
-        } else if urlStr.hasPrefix(appSchemeName) {
-            log.debug(urlStr)
-            
-            let token = String(urlStr.dropFirst(appSchemeName.count))
-            
-            if let window = self.window, let rootViewController = window.rootViewController {
-                var currentController = rootViewController
-                
-                while let presentedController = currentController.presentedViewController {
-                    currentController = presentedController
-                }
-                
-                if let root = (currentController as? UINavigationController)?.viewControllers.last,
-                    root is PasswordRecoveryConfirmViewController {
-                    // PasswordRecoveryConfirmViewController is already opened
-                    return true
-                }
-                
-                PasswordRecoveryConfirmModule.create(token: token).present()
-            }
+        }
+        
+        return true
+    }
+    
+    
+    // MARK: - Handle universal links
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        guard let link = UniversalLinkParser().parse(link: userActivity.webpageURL) else {
+            return false
+        }
+        
+        switch link {
+        case .verifyEmail(let token):
+            EmailConfirmModule.create(app: app, token: token).present()
+        case .resetPassword(let token):
+            PasswordRecoveryConfirmModule.create(app: app, token: token).present()
         }
         
         return true

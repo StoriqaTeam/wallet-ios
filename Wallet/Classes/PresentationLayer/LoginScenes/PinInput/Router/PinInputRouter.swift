@@ -10,7 +10,11 @@ import Foundation
 
 
 class PinInputRouter {
-
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -18,10 +22,10 @@ class PinInputRouter {
 
 extension PinInputRouter: PinInputRouterInput {
     func showLogin() {
-        LoginModule.create().present()
+        LoginModule.create(app: app).present()
     }
     
     func showMainTabBar() {
-        MainTabBarModule.create().present()
+        MainTabBarModule.create(app: app).present()
     }
 }

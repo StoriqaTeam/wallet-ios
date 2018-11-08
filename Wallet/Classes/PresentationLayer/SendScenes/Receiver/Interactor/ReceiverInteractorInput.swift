@@ -16,9 +16,8 @@ protocol ReceiverInteractorInput: class {
     func setScannedDelegate(_ delegate: QRScannerDelegate)
     func setContact(_ contact: ContactDisplayable)
     func getContact() -> ContactDisplayable?
-
     func getAmount() -> Decimal?
     func getReceiverCurrency() -> Currency
     func getSelectedAccount() -> Account
-    
+    func validateAddress(_ address: String) -> Bool
 }

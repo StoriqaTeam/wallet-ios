@@ -2,7 +2,7 @@
 //  KeychainProvider.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 18.09.2018.
+//  Created by Storiqa on 18.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable all
@@ -14,6 +14,8 @@ import Security
 
 protocol KeychainProviderProtocol: class {
     var pincode: String? { get set }
+    var password: String? { get set }
+    var socialAuthToken: String? { get set }
     func deleteAll()
 }
 
@@ -34,9 +36,9 @@ class KeychainProvider: KeychainProviderProtocol {
     // swiftlint:disable trailing_whitespace
     enum KeychainKeys: String, CaseIterable {
         case pincode
+        case password
+        case socialAuthToken
     }
-
-    
     
     var pincode: String? {
         get {
@@ -44,6 +46,26 @@ class KeychainProvider: KeychainProviderProtocol {
         }
         set {
             setString(newValue, for: .pincode)
+        }
+    }
+    
+    var password: String? {
+        get {
+            return getString(for: .password)
+        }
+        
+        set {
+            return setString(newValue, for: .password)
+        }
+    }
+    
+    var socialAuthToken: String? {
+        get {
+            return getString(for: .socialAuthToken)
+        }
+        
+        set {
+            return setString(newValue, for: .socialAuthToken)
         }
     }
     

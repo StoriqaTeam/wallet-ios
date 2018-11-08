@@ -34,6 +34,10 @@ extension EditProfilePresenter: EditProfileViewOutput {
         view.dismiss()
     }
     
+    func viewWillAppear() {
+        view.viewController.setDarkNavigationBarButtons()
+    }
+    
     func valuesChanged(firstName: String?, lastName: String?) {
         guard let firstName = firstName,
             let lastName = lastName else {

@@ -8,8 +8,8 @@ import UIKit
 
 class PinSetupModule {
     
-    class func create(qiuckLaunchProvider: QuickLaunchProviderProtocol) -> PinSetupModuleInput {
-        let router = PinSetupRouter()
+    class func create(app: Application, qiuckLaunchProvider: QuickLaunchProviderProtocol) -> PinSetupModuleInput {
+        let router = PinSetupRouter(app: app)
         let presenter = PinSetupPresenter()
         let interactor = PinSetupInteractor(qiuckLaunchProvider: qiuckLaunchProvider)
         

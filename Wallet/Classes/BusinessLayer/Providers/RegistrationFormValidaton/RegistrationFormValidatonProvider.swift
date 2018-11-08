@@ -19,7 +19,6 @@ struct RegistrationForm {
 
 protocol RegistrationFormValidatonProviderProtocol {
     func formIsValid(_ form: RegistrationForm) -> Bool
-    func passwordsEqualityMessage(_ form: RegistrationForm) -> String?
 }
 
 class RegistrationFormValidatonProvider: RegistrationFormValidatonProviderProtocol {

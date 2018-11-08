@@ -67,7 +67,8 @@ extension SendPresenter: SendViewOutput {
     
     func amountDidBeginEditing() {
         let amount = interactor.getAmount()
-        let formatted = getStringAmountWithoutCurrency(amount: amount)
+        let currency = interactor.getReceiverCurrency()
+        let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
         view.setAmount(formatted)
     }
     
@@ -86,6 +87,7 @@ extension SendPresenter: SendViewOutput {
         configureNavBar()
         view.setButtonEnabled(false)
         view.setupInitialState(currencyImages: currencyImages, numberOfPages: numberOfPages)
+        interactor.startObservers()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -117,6 +119,17 @@ extension SendPresenter: SendViewOutput {
         updateConvertedAmount()
         view.setReceiverCurrencyIndex(receiverCurrencyIndex)
         view.setButtonEnabled(formIsValid)
+        
+        
+        // FIXME: disabled before release
+        let selectedCurrency = interactor.getReceiverCurrency()
+        let newCurrency = interactor.getSelectedAccountCurrency()
+        
+        if selectedCurrency != newCurrency {
+            interactor.setReceiverCurrency(newCurrency)
+            let index = currencies.firstIndex(of: newCurrency)!
+            view.setReceiverCurrencyIndex(index)
+        }
     }
     
 }
@@ -125,7 +138,6 @@ extension SendPresenter: SendViewOutput {
 // MARK: - SendInteractorOutput
 
 extension SendPresenter: SendInteractorOutput {
-    
     func updateAmount() {
         let amount = interactor.getAmount()
         let currency = interactor.getReceiverCurrency()
@@ -135,16 +147,24 @@ extension SendPresenter: SendInteractorOutput {
     
     func updateConvertedAmount() {
         let amount = interactor.getConvertedAmount()
+        let receiverCurrency = interactor.getReceiverCurrency()
+        let currency = interactor.getSelectedAccountCurrency()
+        let sameCurrency = receiverCurrency == currency
         
-        if amount.isZero {
+        if amount.isZero || sameCurrency {
             view.setConvertedAmount("")
         } else {
-            let currency = interactor.getSelectedAccountCurrency()
             let amountString = "≈" + getStringFrom(amount: amount, currency: currency)
             view.setConvertedAmount(amountString)
         }
     }
     
+    func updateAccounts(accounts: [Account], index: Int) {
+        accountsDataManager?.updateAccounts(accounts)
+        accountsDataManager?.scrollTo(index: index)
+        view.updatePagesCount(accounts.count)
+        view.setNewPage(index)
+    }
 }
 
 
@@ -172,6 +192,17 @@ extension SendPresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccountWith(index: newIndex)
         view.setNewPage(newIndex)
+        
+        
+        // FIXME: disabled before release
+        let selectedCurrency = interactor.getReceiverCurrency()
+        let newCurrency = interactor.getSelectedAccountCurrency()
+        
+        if selectedCurrency != newCurrency {
+            interactor.setReceiverCurrency(newCurrency)
+            let index = currencies.firstIndex(of: newCurrency)!
+            view.setReceiverCurrencyIndex(index)
+        }
     }
 }
 
@@ -208,12 +239,13 @@ extension SendPresenter {
         return formatted
     }
     
-    private func getStringAmountWithoutCurrency(amount: Decimal?) -> String {
+    private func getStringAmountWithoutCurrency(amount: Decimal?, currency: Currency) -> String {
         guard let amount = amount, !amount.isZero else {
             return ""
         }
         
-        return amount.string
+        let formatted = currencyFormatter.getStringWithoutCurrencyFrom(amount: amount, currency: currency)
+        return formatted
     }
     
 }

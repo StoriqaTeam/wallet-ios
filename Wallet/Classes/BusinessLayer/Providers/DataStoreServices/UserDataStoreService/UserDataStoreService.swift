@@ -2,7 +2,7 @@
 //  UserDataStoreService.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 05/10/2018.
+//  Created by Storiqa on 05/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -14,21 +14,23 @@ protocol UserDataStoreServiceProtocol {
     func update(_ user: User)
     func delete()
     func getCurrentUser() -> User
+    func resetAllDatabase()
 }
 
 class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
     func delete() {
-        deleteAll()
+        find().forEach { delete(primaryKey: $0.id) }
     }
     
     func update(_ user: User) {
         var user = user
-        let current = getCurrentUser()
+        let current = find().first
         
-        if current.id != user.id {
-            deleteAll()
+        if let current = current,
+            current.id != user.id {
+            delete()
         } else if user.photo == nil {
-            user.photo = current.photo
+            user.photo = current?.photo
         }
         
         save(user)

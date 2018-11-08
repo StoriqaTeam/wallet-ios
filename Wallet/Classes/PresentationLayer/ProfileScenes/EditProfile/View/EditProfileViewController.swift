@@ -20,10 +20,15 @@ class EditProfileViewController: UIViewController {
     
     
     // MARK: Life cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
     }
 
     @IBAction func saveButtonTapped(_ sender: UIButton) {

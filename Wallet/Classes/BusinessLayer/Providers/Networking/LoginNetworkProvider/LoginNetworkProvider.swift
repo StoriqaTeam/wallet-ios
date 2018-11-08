@@ -35,17 +35,16 @@ class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
-                let json = JSON(response)
+                let json = JSON(response.value)
                 
                 if let token = json["token"].string {
                     completion(.success(token))
                 } else {
-                    let apiError = LoginProviderError(json: json)
+                    let apiError = LoginProviderError(code: response.responseStatusCode, json: json)
                     completion(.failure(apiError))
                 }
                 
             case .failure(let error):
-                log.debug(error)
                 completion(.failure(error))
             }
         }
@@ -57,14 +56,38 @@ enum LoginProviderError: LocalizedError, Error {
     case badRequest
     case unauthorized
     case unknownError
+    case internalServer
+    case validationError(email: String?, password: String?)
     
-    init(json: JSON) {
-        let description = json["description"].stringValue
-        
-        switch description {
-        case "Bad request": self = .badRequest
-        case "Unauthorized": self = .unauthorized
-        default: self = .unknownError
+    init(code: Int, json: JSON) {
+        switch code {
+        case 400:
+            self = .badRequest
+        case 401:
+            self = .unauthorized
+        case 422:
+            var emailMessage: String?
+            var passwordMessage: String?
+            
+            if let emailErrors = json["email"].array {
+                emailMessage = emailErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
+            }
+            if let passwordErrors = json["password"].array {
+                passwordMessage = passwordErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
+            }
+            
+            let hasEmailError = emailMessage != nil && !emailMessage!.isEmpty
+            let hasPasswordError = passwordMessage != nil && !passwordMessage!.isEmpty
+            
+            if hasEmailError || hasPasswordError {
+                self = .validationError(email: emailMessage, password: passwordMessage)
+            } else {
+                self = .unknownError
+            }
+        case 500:
+            self = .internalServer
+        default:
+            self = .unknownError
         }
     }
     
@@ -74,8 +97,18 @@ enum LoginProviderError: LocalizedError, Error {
             return "Bad request"
         case .unauthorized:
             return "User unauthorized"
-        case .unknownError:
-            return "Unknown error"
+        case .unknownError, .internalServer:
+            return Constants.Errors.userFriendly
+        case .validationError(let email, let password):
+            var result = email ?? ""
+            if let password = password {
+                if !result.isEmpty {
+                    result += "\n"
+                }
+                result += password
+            }
+            
+            return result.trim()
         }
     }
 }

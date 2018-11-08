@@ -2,7 +2,7 @@
 //  Account.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 05/10/2018.
+//  Created by Storiqa on 05/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable identifier_name
@@ -14,9 +14,11 @@ struct Account {
     let id: String
     let balance: Decimal
     var currency: Currency
-    let userId: String
+    let userId: Int
     let accountAddress: String
     let name: String
+    let createdAt: Date
+    let updatedAt: Date
 }
 
 
@@ -25,12 +27,44 @@ struct Account {
 extension Account: RealmMappable {
     init(_ object: RealmAccount) {
         self.id = object.id
-        self.balance = Decimal(object.balance)
+        self.balance = object.balance.decimalValue()
         self.currency = Currency.btc
         self.userId = object.userId
         self.name = object.name
         self.accountAddress = object.accountAddress
         self.currency = Currency(string: object.currency)
+        self.createdAt = Date(timeIntervalSince1970: object.createdAt)
+        self.updatedAt = Date(timeIntervalSince1970: object.updatedAt)
+    }
+    
+    init?(json: JSON) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.DateFormats.txDateString
+        
+        guard let id = json["id"].string,
+            let userId = json["userId"].int,
+            let currencyStr = json["currency"].string,
+            let accountAddress = json["accountAddress"].string,
+            let name = json["name"].string,
+            let balance = json["balance"].string,
+            let createdAtStr = json["createdAt"].string,
+            let updatedAtStr = json["updatedAt"].string,
+            let createdAt = dateFormatter.date(from: createdAtStr),
+            let updatedAt = dateFormatter.date(from: updatedAtStr) else {
+                return nil
+        }
+        let currency = Currency(string: currencyStr)
+        
+        self.id = id
+        self.userId = userId
+        self.currency = currency
+        self.accountAddress = accountAddress
+        
+        self.balance = balance.decimalValue()
+        self.name = name
+
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
     
     func mapToRealmObject() -> RealmAccount {
@@ -43,11 +77,19 @@ extension Account: RealmMappable {
         object.name = self.name
         object.currency = self.currency.ISO
         
+        let createdAt = self.createdAt.timeIntervalSince1970
+        object.createdAt = Double(createdAt)
+        
+        let updatedAt = self.updatedAt.timeIntervalSince1970
+        object.updatedAt = Double(updatedAt)
+        
         return object
     }
 }
 
 
 extension Account: Equatable {
-    
+    public static func == (lhs: Account, rhs: Account) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

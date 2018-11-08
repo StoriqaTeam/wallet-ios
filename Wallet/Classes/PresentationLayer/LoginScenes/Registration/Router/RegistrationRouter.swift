@@ -10,7 +10,12 @@ import Foundation
 
 
 class RegistrationRouter {
-
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
 }
 
 
@@ -38,13 +43,16 @@ extension RegistrationRouter: RegistrationRouterInput {
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
-    func showAuthorizedZone() {
-        MainTabBarModule.create().present()
+    func showLogin() {
+        LoginModule.create(app: app).present()
     }
     
+    func showQuickLaunch(from viewController: UIViewController) {
+        QuickLaunchModule.create(app: app).present(from: viewController)
+    }
     
-    func showLogin() {
-        LoginModule.create().present()
+    func showPinQuickLaunch(from viewController: UIViewController) {
+        PinQuickLaunchModule.create(app: app).present(from: viewController)
     }
     
 }

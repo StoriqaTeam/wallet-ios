@@ -11,7 +11,7 @@ import UIKit
 
 protocol ExchangeViewInput: class, Presentable {
     func setupInitialState(numberOfPages: Int)
-    
+    func updatePagesCount(_ count: Int)
     func setRecepientAccount(_ recepient: String)
     func setAmount(_ amount: String)
     func setConvertedAmount(_ amount: String)

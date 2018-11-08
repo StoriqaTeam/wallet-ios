@@ -16,4 +16,5 @@ protocol DepositInteractorInput: class {
     func setCurrentAccountWith(index: Int)
     func getAddress() -> String
     func getQrCodeImage() -> UIImage
+    func startObservers()
 }

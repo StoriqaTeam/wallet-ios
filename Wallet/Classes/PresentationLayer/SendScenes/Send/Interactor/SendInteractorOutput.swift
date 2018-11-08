@@ -12,4 +12,5 @@ import Foundation
 protocol SendInteractorOutput: class {
     func updateConvertedAmount()
     func updateAmount()
+    func updateAccounts(accounts: [Account], index: Int)
 }

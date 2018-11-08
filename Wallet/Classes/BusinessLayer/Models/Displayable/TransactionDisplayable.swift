@@ -2,7 +2,7 @@
 //  TransactionDisplayable.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 09/10/2018.
+//  Created by Storiqa on 09/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -16,6 +16,7 @@ enum Direction {
 
 enum OpponentType {
     case contact(contact: ContactDisplayable)
+    case txAccount(account: TransactionAccount, address: String)
     case address(address: String)
 }
 

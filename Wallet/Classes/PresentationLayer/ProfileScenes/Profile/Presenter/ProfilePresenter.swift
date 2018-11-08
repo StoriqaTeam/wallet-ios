@@ -116,8 +116,8 @@ extension ProfilePresenter: ProfileModuleInput {
 extension ProfilePresenter: PopUpSignOutVMDelegate {
     
     func signOut() {
-        let isPinEnabled = interactor.isPinLoginEnabled()
-        router.signOut(isPinEnabled: isPinEnabled)
+        interactor.deleteAppData()
+        router.signOut()
     }
     
 }
@@ -147,6 +147,13 @@ extension ProfilePresenter {
     private func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
         view.viewController.setWhiteNavigationBar(title: "Profile")
+        
+        guard let navigationBar = view.viewController.navigationController?.navigationBar else {
+            return
+        }
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.backgroundColor = .clear
     }
     
     private func showAlertVC(_ alert: UIAlertController) {

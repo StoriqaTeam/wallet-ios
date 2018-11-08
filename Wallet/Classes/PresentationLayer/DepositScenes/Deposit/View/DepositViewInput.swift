@@ -11,6 +11,7 @@ import UIKit
 
 protocol DepositViewInput: class, Presentable {
     func setupInitialState(numberOfPages: Int)
+    func updatePagesCount(_ count: Int)
     func setNewPage(_ index: Int)
     func setAddress(_ address: String)
     func setQrCode(_ qrCode: UIImage)

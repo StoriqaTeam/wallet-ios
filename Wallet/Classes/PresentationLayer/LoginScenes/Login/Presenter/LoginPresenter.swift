@@ -47,7 +47,7 @@ extension LoginPresenter: LoginViewOutput {
     
     func signIn(tokenProvider: SocialNetworkTokenProvider, token: String) {
         storiqaLoader.startLoader()
-        interactor.signIn(tokenProvider: tokenProvider, socialNetworkToken: token)
+        interactor.signIn(tokenProvider: tokenProvider, oauthToken: token)
     }
     
 }
@@ -56,33 +56,28 @@ extension LoginPresenter: LoginViewOutput {
 // MARK: - LoginInteractorOutput
 
 extension LoginPresenter: LoginInteractorOutput {
-    func failToLogin(reason: String) {
-        storiqaLoader.stopLoader()
-        router.showFailurePopup(message: reason, popUpDelegate: self, from: view.viewController)
-    }
     
     func loginSucceed() {
         storiqaLoader.stopLoader()
         router.showAuthorizedZone()
     }
     
-    func showQuickLaunch(authData: AuthData, token: String) {
-        router.showQuickLaunch(authData: authData, token: token, from: view.viewController)
+    func showQuickLaunch() {
+        router.showQuickLaunch(from: view.viewController)
     }
     
-    func showPinQuickLaunch(authData: AuthData, token: String) {
-        router.showPinQuickLaunch(authData: authData, token: token, from: view.viewController)
+    func showPinQuickLaunch() {
+        router.showPinQuickLaunch(from: view.viewController)
     }
     
     func loginFailed(message: String) {
-        //TODO: display login failure
-        
-        
-        // FIXME: - stub
-        
-        view.viewController.showAlert(title: "", message: message)
-        
-        //-----------------------------------------
+        storiqaLoader.stopLoader()
+        router.showFailurePopup(message: message, popUpDelegate: self, from: view.viewController)
+    }
+    
+    func formValidationFailed(email: String?, password: String?) {
+        storiqaLoader.stopLoader()
+        view.showErrorMessage(email: email, password: password)
     }
     
 }
@@ -106,7 +101,8 @@ extension LoginPresenter: LoginModuleInput {
 
 extension LoginPresenter: PopUpRegistrationFailedVMDelegate {
     func retry() {
-        view.relogin()
+        storiqaLoader.startLoader()
+        interactor.retry()
     }
 }
 

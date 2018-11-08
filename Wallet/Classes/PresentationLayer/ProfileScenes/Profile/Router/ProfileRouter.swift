@@ -10,7 +10,13 @@ import Foundation
 
 
 class ProfileRouter {
-
+    
+    private let app: Application
+    
+    init(app: Application) {
+        self.app = app
+    }
+    
 }
 
 
@@ -24,19 +30,15 @@ extension ProfileRouter: ProfileRouterInput {
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
-    func signOut(isPinEnabled: Bool) {
-        if isPinEnabled {
-            PinInputModule.create().present()
-        } else {
-            LoginModule.create().present()
-        }
+    func signOut() {
+        LoginModule.create(app: app).present()
     }
     
     func showSettings(from viewController: UIViewController) {
-        SettingsModule.create().present(from: viewController)
+        EditProfileModule.create(app: app).present(from: viewController)
     }
     
     func showConnectPhone(from viewController: UIViewController) {
-        ConnectPhoneModule.create().present(from: viewController)
+        ConnectPhoneModule.create(app: app).present(from: viewController)
     }
 }

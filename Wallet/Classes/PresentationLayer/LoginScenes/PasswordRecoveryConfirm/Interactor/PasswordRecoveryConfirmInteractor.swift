@@ -16,10 +16,14 @@ class PasswordRecoveryConfirmInteractor {
     
     private let token: String
     private let formValidator: PasswordRecoveryConfirmFormValidatorProtocol
+    private let networkProvider: ConfirmResetPasswordNetworkProviderProtocol
     
-    init(token: String, formValidator: PasswordRecoveryConfirmFormValidatorProtocol) {
+    init(token: String,
+         formValidator: PasswordRecoveryConfirmFormValidatorProtocol,
+         networkProvider: ConfirmResetPasswordNetworkProviderProtocol) {
         self.token = token
         self.formValidator = formValidator
+        self.networkProvider = networkProvider
     }
     
 }
@@ -39,17 +43,22 @@ extension PasswordRecoveryConfirmInteractor: PasswordRecoveryConfirmInteractorIn
     func confirmReset(newPassword: String) {
         self.password = newPassword
         
-        //TODO: implement in new provider
-        log.warn("implement resetPassword provider")
-        
-        // FIXME: - stub
-        if Bool.random() {
-            output.passwordRecoverySucceed()
-        } else {
-            output.passwordRecoveryFailed(message: Constants.Errors.userFriendly)
+        networkProvider.confirmResetPassword(token: token, password: newPassword, queue: .main) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.output.passwordRecoverySucceed()
+            case .failure(let error):
+                if let error = error as? ConfirmResetPasswordNetworkProviderError {
+                    switch error {
+                    case .validationError(let password):
+                        self?.output.formValidationFailed(password: password)
+                        return
+                    default: break
+                    }
+                }
+                self?.output.passwordRecoveryFailed(message: error.localizedDescription)
+            }
         }
-        // ------------------------------
-        
     }
 
     func retry() {

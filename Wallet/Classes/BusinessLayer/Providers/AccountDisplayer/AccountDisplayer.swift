@@ -2,7 +2,7 @@
 //  AccountDisplayer.swift
 //  Wallet
 //
-//  Created by Tata Gri on 05/10/2018.
+//  Created by Storiqa on 05/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -21,29 +21,33 @@ class AccountDisplayer: AccountDisplayerProtocol {
     
     private let user: User
     private let currencyFormatter: CurrencyFormatterProtocol
-    private let converterFactory: CurrecncyConverterFactoryProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
     private let accountTypeResolver: AccountTypeResolverProtocol
+    private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
     init(user: User,
          currencyFormatter: CurrencyFormatterProtocol,
-         converterFactory: CurrecncyConverterFactoryProtocol,
-         accountTypeResolver: AccountTypeResolverProtocol) {
+         converterFactory: CurrencyConverterFactoryProtocol,
+         accountTypeResolver: AccountTypeResolverProtocol,
+         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
+        
         self.user = user
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
         self.accountTypeResolver = accountTypeResolver
+        self.denominationUnitsConverter = denominationUnitsConverter
     }
     
     func cryptoAmount(for account: Account) -> String {
-        let balance = account.balance
         let currency = account.currency
+        let balance = denominationUnitsConverter.amountToMaxUnits(account.balance, currency: currency)
         let formatted = currencyFormatter.getStringFrom(amount: balance, currency: currency)
         return formatted
     }
     
     func fiatAmount(for account: Account) -> String {
-        let balance = account.balance
         let currency = account.currency
+        let balance = denominationUnitsConverter.amountToMaxUnits(account.balance, currency: currency)
         let converter = converterFactory.createConverter(from: currency)
         let fiat = converter.convert(amount: balance, to: .fiat)
         let formatted = currencyFormatter.getStringFrom(amount: fiat, currency: .fiat)
@@ -99,5 +103,4 @@ class AccountDisplayer: AccountDisplayerProtocol {
             return UIColor.black
         }
     }
-    
 }

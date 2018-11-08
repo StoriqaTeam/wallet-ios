@@ -8,14 +8,13 @@ import UIKit
 
 class ProfileModule {
     
-    class func create() -> ProfileModuleInput {
-        let router = ProfileRouter()
+    class func create(app: Application) -> ProfileModuleInput {
+        let router = ProfileRouter(app: app)
         let presenter = ProfilePresenter()
         
-        let userStoreService = UserDataStoreService()
-        let keychainProvider = KeychainProvider()
-        let interactor = ProfileInteractor(userStoreService: userStoreService,
-                                           keychainProvider: keychainProvider)
+        let interactor = ProfileInteractor(defaults: app.defaultsProvider,
+                                           keychain: app.keychainProvider,
+                                           userStoreService: app.userDataStoreService)
         
         let accountsVC = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = accountsVC.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController

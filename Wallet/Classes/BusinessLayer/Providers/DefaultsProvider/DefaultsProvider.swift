@@ -2,7 +2,7 @@
 //  DefaultsProvider.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 18.09.2018.
+//  Created by Storiqa on 18.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 protocol DefaultsProviderProtocol: class {
     var isFirstLaunch: Bool { get set }
-    var isQuickLaunchShown: Bool { get set }
     var isBiometryAuthEnabled: Bool { get set }
-    var authToken: String? { get set }
     var fiatISO: String { get set }
+    var lastTxTimastamp: TimeInterval? { get set }
+    var socialAuthProvider: SocialNetworkTokenProvider? { get set }
 }
 
 class DefaultsProvider: DefaultsProviderProtocol {
@@ -22,17 +22,9 @@ class DefaultsProvider: DefaultsProviderProtocol {
         case isFirstLaunch
         case isQuickLaunchShown
         case isBiometryAuthEnabled
-        case authToken
         case fiatISO
-    }
-    
-    var authToken: String? {
-        get {
-            return getString(.authToken)
-        }
-        set {
-            setString(newValue, key: .authToken)
-        }
+        case lastTxTimastamp
+        case socialAuthProvider
     }
     
     var isFirstLaunch: Bool {
@@ -42,16 +34,6 @@ class DefaultsProvider: DefaultsProviderProtocol {
         }
         set {
             setBool(newValue, key: .isFirstLaunch)
-        }
-    }
-    
-    var isQuickLaunchShown: Bool {
-        get {
-            guard let shown = getBool(.isQuickLaunchShown) else { return false }
-            return shown
-        }
-        set {
-            setBool(newValue, key: .isQuickLaunchShown)
         }
     }
     
@@ -80,6 +62,29 @@ class DefaultsProvider: DefaultsProviderProtocol {
         }
     }
     
+    var lastTxTimastamp: TimeInterval? {
+        get {
+            return getDouble(.lastTxTimastamp)
+        }
+        set {
+            setDouble(newValue, key: .lastTxTimastamp)
+        }
+    }
+    
+    var socialAuthProvider: SocialNetworkTokenProvider? {
+        get {
+            guard let strValue = getString(.socialAuthProvider),
+                let provider = SocialNetworkTokenProvider(strValue) else {
+                    return nil
+            }
+            
+            return provider
+        }
+        set {
+            setString(newValue?.name, key: .socialAuthProvider)
+        }
+    }
+    
 }
 
 
@@ -91,6 +96,18 @@ extension DefaultsProvider {
     }
     
     private func setString(_ value: String?, key: DefaultsKey) {
+        UserDefaults.standard.set(value, forKey: key.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+    
+    private func getDouble(_ key: DefaultsKey) -> Double? {
+        guard isKeyPresentInUserDefaults(key: key) else {
+            return nil
+        }
+        return UserDefaults.standard.double(forKey: key.rawValue)
+    }
+    
+    private func setDouble(_ value: Double?, key: DefaultsKey) {
         UserDefaults.standard.set(value, forKey: key.rawValue)
         UserDefaults.standard.synchronize()
     }

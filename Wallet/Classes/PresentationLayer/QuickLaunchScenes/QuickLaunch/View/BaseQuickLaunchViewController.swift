@@ -16,7 +16,7 @@ class BaseQuickLaunchViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var subtitleLabel: UILabel?
     @IBOutlet var actionButton: UIButton!
-    @IBOutlet var cancelButton: UIButton!
+    @IBOutlet var cancelButton: UIButton?
     
     // MARK: Life cycle
     

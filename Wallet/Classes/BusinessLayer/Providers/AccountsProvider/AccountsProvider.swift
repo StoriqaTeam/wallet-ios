@@ -2,7 +2,7 @@
 //  AccountsProvider.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 21.09.2018.
+//  Created by Storiqa on 21.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -10,22 +10,33 @@ import Foundation
 
 protocol AccountsProviderProtocol: class {
     func getAllAccounts() -> [Account]
-    func getEthereumAddress() -> String
-    func getBitcoinAddress() -> String
+    func setAccountsUpdaterChannel(_ channel: AccountsUpdateChannel)
 }
 
-
 class AccountsProvider: AccountsProviderProtocol {
-    func getEthereumAddress() -> String {
-        fatalError("Need to implement")
+    private let dataStoreService: AccountsDataStoreServiceProtocol
+    private var accountsUpadateChannelOutput: AccountsUpdateChannel?
+    
+    init(dataStoreService: AccountsDataStoreServiceProtocol) {
+        self.dataStoreService = dataStoreService
     }
     
-    func getBitcoinAddress() -> String {
-        fatalError("Need to implement")
+    func setAccountsUpdaterChannel(_ channel: AccountsUpdateChannel) {
+        guard accountsUpadateChannelOutput == nil else {
+            return
+        }
+        
+        self.accountsUpadateChannelOutput = channel
+        
+        dataStoreService.observe { [weak self] (accounts) in
+            log.debug("Accounts updated: \(accounts.map { $0.id })", "count: \(accounts.count)")
+            
+            self?.accountsUpadateChannelOutput?.send(accounts)
+        }
     }
-    
     
     func getAllAccounts() -> [Account] {
-        fatalError("Need to implement")
+        let allAccounts = dataStoreService.getAllAccounts()
+        return allAccounts
     }
 }
