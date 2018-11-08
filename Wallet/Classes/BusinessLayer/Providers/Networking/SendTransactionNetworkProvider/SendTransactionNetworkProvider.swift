@@ -15,7 +15,7 @@ protocol SendTransactionNetworkProviderProtocol {
               fromAccount: String,
               authToken: String,
               queue: DispatchQueue,
-              completion: @escaping (Result<[Transaction]>) -> Void)
+              completion: @escaping (Result<Transaction>) -> Void)
 }
 
 class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkProviderProtocol {
@@ -25,7 +25,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
               fromAccount: String,
               authToken: String,
               queue: DispatchQueue,
-              completion: @escaping (Result<[Transaction]>) -> Void) {
+              completion: @escaping (Result<Transaction>) -> Void) {
         
         let txId = transaction.id
         let userId = userId
@@ -58,10 +58,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                if code == 200, let txnData = json.array {
-                    let txn = txnData.compactMap { Transaction(json: $0) }
-                    
-                    guard !txn.isEmpty else {
+                if code == 200 {
+                    guard let txn = Transaction(json: json) else {
                         log.error("Failed to parse sent transaction json")
                         let apiError = SendTransactionNetworkProviderError.failToParseJson
                         completion(.failure(apiError))
