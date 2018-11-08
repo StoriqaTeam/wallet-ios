@@ -41,7 +41,7 @@ class UserDataStoreService: RealmStorable<User>, UserDataStoreServiceProtocol {
         if let saved = find().first {
             return saved
         } else {
-            let user = User(id: "0",
+            let user = User(id: 0,
                             email: "email@email.com",
                             phone: "",
                             firstName: "Dmitrii",

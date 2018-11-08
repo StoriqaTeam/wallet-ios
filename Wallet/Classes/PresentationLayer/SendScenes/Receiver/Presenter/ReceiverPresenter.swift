@@ -127,7 +127,7 @@ extension ReceiverPresenter: ReceiverInteractorOutput {
         // TODO: empty contact list message
         if sorted.isEmpty {
             updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
-                        placeholderText: Localizations.emptyListPlaceholder)
+                        placeholderText: Localization.emptyListPlaceholder)
         } else {
             contactsDataManager.updateContacts(sorted)
         }
@@ -186,7 +186,7 @@ extension ReceiverPresenter: QRScannerDelegate {
 extension ReceiverPresenter {
     private func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: Localizations.screenTitle)
+        view.viewController.setDarkNavigationBar(title: Localization.screenTitle)
     }
     
     private func getStringFrom(amount: Decimal?, currency: Currency) -> String {
@@ -215,7 +215,7 @@ extension ReceiverPresenter {
         
         if filteredSections.isEmpty {
             updateEmpty(placeholderImage: #imageLiteral(resourceName: "empty_phone_search"),
-                        placeholderText: Localizations.noSuchNumberPlaceholder)
+                        placeholderText: Localization.noSuchNumberPlaceholder)
         } else {
             contactsDataManager.updateContacts(filteredSections)
         }

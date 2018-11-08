@@ -392,7 +392,7 @@ extension ExchangeViewController {
         exchangeButton.isHidden = false
         
         //TODO: локализации
-        amountTitleLabel.text = Localizations.amountTitle
-        amountTextField.placeholder = Localizations.amountPlaceholder
+        amountTitleLabel.text = Localization.amountTitle
+        amountTextField.placeholder = Localization.amountPlaceholder
     }
 }
