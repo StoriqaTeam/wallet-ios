@@ -30,22 +30,28 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
         let txId = transaction.id
         let userId = userId
         let fromAccount = fromAccount
-        let currency = transaction.currency
+        let toCurrency = transaction.toCurrency
+        let valueCurrency = transaction.fromCurrency
         let receiverType = getReceiverType(transaction: transaction)
-        let value = transaction.cryptoAmount.string
+        let value = transaction.fromValue.string
         
         // TODO: - Now fee is fix and equals zero because of server!!!
         // let fee = transaction.fee.string
         let feeString = "0"
+        let exchangeId = ""
+        let exchangeRate = Decimal(1)
         
         let request = API.Authorized.sendTransaction(authToken: authToken,
                                                      transactionId: txId,
                                                      userId: userId,
                                                      fromAccount: fromAccount,
                                                      receiverType: receiverType,
-                                                     currency: currency,
+                                                     toCurrency: toCurrency,
                                                      value: value,
-                                                     fee: feeString)
+                                                     valueCurrency: valueCurrency,
+                                                     fee: feeString,
+                                                     exchangeId: exchangeId,
+                                                     exchangeRate: exchangeRate)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
@@ -85,7 +91,7 @@ extension SendTransactionNetworkProvider {
         guard let account = transaction.toAccount else {
             let cryptoAddress = transaction.toAddress
             
-            switch transaction.currency {
+            switch transaction.toCurrency {
             case .eth, .stq:
                 if cryptoAddress.count == 42 {
                     let address = String(cryptoAddress.suffix(40)).lowercased()
