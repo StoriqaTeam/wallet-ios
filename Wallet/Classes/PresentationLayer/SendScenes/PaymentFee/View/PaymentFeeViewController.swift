@@ -61,6 +61,7 @@ class PaymentFeeViewController: UIViewController {
         // FIXME: hidden before release
         
         paymentFeeSlider.superview!.isHidden = true
+        medianWaitLabel.superview!.isHidden = true
     }
     
     override func willMove(toParent parent: UIViewController?) {

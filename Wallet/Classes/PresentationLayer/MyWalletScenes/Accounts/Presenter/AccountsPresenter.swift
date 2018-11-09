@@ -46,9 +46,12 @@ extension AccountsPresenter: AccountsViewOutput {
     func handleCustomButton(type: RouteButtonType) {
         switch type {
         case .change:
-            mainTabBar.selectedIndex = 2
+            // FIXME: exchange hidden before release
+//            mainTabBar.selectedIndex = 2
+            view.viewController.showAlert(message: "Exchange module is not ready yet")
         case .deposit:
-            mainTabBar.selectedIndex = 3
+            // FIXME: exchange hidden before release
+            mainTabBar.selectedIndex = 2 // 3
         case .send:
             mainTabBar.selectedIndex = 1
         }

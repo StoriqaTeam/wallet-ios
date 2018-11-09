@@ -41,7 +41,7 @@ protocol SocialNetworkAuthViewDelegate: class {
 }
 
 class SocialNetworkAuthView: LoadableFromXib {
-    var viewModel: SocialNetworkAuthViewModel!
+    private weak var viewModel: SocialNetworkAuthViewModel!
     
     enum SocialNetworkAuthViewType {
         case login
@@ -59,7 +59,7 @@ class SocialNetworkAuthView: LoadableFromXib {
     private var contentView: UIView?
     private weak var delegate: SocialNetworkAuthViewDelegate?
     private var formType: SocialNetworkAuthViewType = .login
-    private var fromViewController: UIViewController!
+    private weak var fromViewController: UIViewController!
     
     // IBActions
     @IBAction func footerButtonTapHandler(_ sender: UIButton) {

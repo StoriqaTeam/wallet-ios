@@ -110,7 +110,8 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     func createTransaction() -> Transaction {
         let uuid = UUID().uuidString
         let timestamp = Date()
-        let currency = selectedAccount.currency
+        let fromCurrency = selectedAccount.currency
+        let toCurrency = receiverCurrency
         let fromAddress = selectedAccount.accountAddress
         let toAddress: String
         let toAccount: TransactionAccount?
@@ -128,16 +129,18 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
             toAccount = account
         }
         
-        let cryptoAmount = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
-        let fee = denominationUnitsConverter.amountToMinUnits(paymentFee, currency: currency)
+        let toValue = denominationUnitsConverter.amountToMinUnits(amount, currency: toCurrency)
+        let fee = denominationUnitsConverter.amountToMinUnits(paymentFee, currency: fromCurrency)
    
         let transaction = Transaction(id: uuid,
-                                      currency: currency,
                                       fromAddress: [fromAddress],
                                       fromAccount: [],
                                       toAddress: toAddress,
                                       toAccount: toAccount,
-                                      cryptoAmount: cryptoAmount,
+                                      fromValue: 0, // не используется
+                                      fromCurrency: fromCurrency,
+                                      toValue: toValue,
+                                      toCurrency: toCurrency,
                                       fee: fee,
                                       blockchainId: "",
                                       createdAt: timestamp,

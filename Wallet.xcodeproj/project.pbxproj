@@ -495,6 +495,8 @@
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE976482216252B9000E9336 /* SmallAccountCell.xib */; };
 		CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976487216263C0000E9336 /* QRCodeProvider.swift */; };
+		CEAC67782195AAD100C98675 /* CurrentAccountWatcherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC67772195AAD100C98675 /* CurrentAccountWatcherFactory.swift */; };
+		CEAC677A2195AB9A00C98675 /* SendTransactionBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC67792195AB9A00C98675 /* SendTransactionBuilderFactory.swift */; };
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CED822D4215A796500693B92 /* QRScanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED822D3215A796500693B92 /* QRScanner.storyboard */; };
 		CED822DA215B5C0A00693B92 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED822D9215B5C0A00693B92 /* ErrorView.xib */; };
@@ -1143,6 +1145,8 @@
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CE976482216252B9000E9336 /* SmallAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallAccountCell.xib; sourceTree = "<group>"; };
 		CE976487216263C0000E9336 /* QRCodeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeProvider.swift; sourceTree = "<group>"; };
+		CEAC67772195AAD100C98675 /* CurrentAccountWatcherFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAccountWatcherFactory.swift; sourceTree = "<group>"; };
+		CEAC67792195AB9A00C98675 /* SendTransactionBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionBuilderFactory.swift; sourceTree = "<group>"; };
 		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CED822D3215A796500693B92 /* QRScanner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRScanner.storyboard; sourceTree = "<group>"; };
 		CED822D9215B5C0A00693B92 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
@@ -2581,6 +2585,7 @@
 			isa = PBXGroup;
 			children = (
 				A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */,
+				CEAC67772195AAD100C98675 /* CurrentAccountWatcherFactory.swift */,
 			);
 			path = CurrentAccountWatcher;
 			sourceTree = "<group>";
@@ -2590,6 +2595,7 @@
 			children = (
 				A52C66A02163C90B0073071E /* SendProviderBuilderProtocol.swift */,
 				A52C66A62164C1450073071E /* SendTransactionBuilder.swift */,
+				CEAC67792195AB9A00C98675 /* SendTransactionBuilderFactory.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -5162,8 +5168,10 @@
 				2F665A1E2688D3229C38F7B2 /* PaymentFeeViewController.swift in Sources */,
 				A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */,
 				A52C66BD216786930073071E /* Mappable.swift in Sources */,
+				CEAC677A2195AB9A00C98675 /* SendTransactionBuilderFactory.swift in Sources */,
 				F5680734F20F3B633F33DD1B /* PaymentFeePresenter.swift in Sources */,
 				A7CE669CEF8C840A16382864 /* PaymentFeeInteractorInput.swift in Sources */,
+				CEAC67782195AAD100C98675 /* CurrentAccountWatcherFactory.swift in Sources */,
 				22192DA41BD15AD968C7ACD2 /* PaymentFeeInteractorOutput.swift in Sources */,
 				82FD617641F645A9CF453898 /* PaymentFeeInteractor.swift in Sources */,
 				CE81AD69218080CB0033F75D /* AuthTokenDefaultsProvider.swift in Sources */,

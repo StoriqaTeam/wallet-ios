@@ -19,6 +19,15 @@ let BITCOIN_NETWORK = Network.btcMainnet
 
 class Application {
     
+    // MARK: - Factories
+    
+    lazy var accountWatcherFactory: CurrentAccountWatcherFactoryProtocol = CurrentAccountWatcherFactory(accountProvider: self.accountsProvider)
+    
+    lazy var sendTransactionBuilderFactory: SendTransactionBuilderFactoryProtocol = SendTransactionBuilderFactory(currencyConverterFactory: self.currencyConverterFactory,
+                                                                                                                  currencyFormatter: self.currencyFormatter,
+                                                                                                                  accountsProvider: self.accountsProvider,
+                                                                                                                  feeWaitProvider: self.fakePaymentFeeAndWaitProvider,
+                                                                                                                  denominationUnitsConverter: self.denominationUnitsConverter)
     
     // MARK: - System store
     lazy var keychainProvider: KeychainProviderProtocol = KeychainProvider()
@@ -64,7 +73,6 @@ class Application {
                                                                               authDataResolver: self.authDataResolver)
     lazy var contactsProvider: ContactsProviderProtocol = ContactsProvider(dataStoreService: self.contactsDataStoreService)
     lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService)
-    lazy var accountWatcher: CurrentAccountWatcherProtocol = CurrentAccountWatcher(accountProvider: self.accountsProvider)
     lazy var transactionsProvider: TransactionsProviderProtocol = TransactionsProvider(transactionDataStoreService:
         self.transactionDataStoreService)
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
@@ -100,15 +108,8 @@ class Application {
                                                                accountsDataStore: self.accountsDataStoreService,
                                                                defaultAccountsProvider: self.defaultAccountsProvider)
     lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
-                                                                        keychain: self.keychainProvider,
-                                                                        userDataStoreService: self.userDataStoreService)
-    
-    // MARK: - Builders
-    lazy var sendTransactionBuilder: SendTransactionBuilder = SendTransactionBuilder(currencyConverterFactory: self.currencyConverterFactory,
-                                                                                     currencyFormatter: self.currencyFormatter,
-                                                                                     accountsProvider: self.accountsProvider,
-                                                                                     feeWaitProvider: self.fakePaymentFeeAndWaitProvider,
-                                                                                     denominationUnitsConverter: self.denominationUnitsConverter)
+                                                                           keychain: self.keychainProvider,
+                                                                           userDataStoreService: self.userDataStoreService)
     
     // MARK: - Converters and formattera
     lazy var currencyConverterFactory: CurrencyConverterFactoryProtocol = CurrencyConverterFactory(ratesProvider: self.ratesProvider)
@@ -141,13 +142,13 @@ class Application {
     // MARK: - Mappers
     lazy var contactsMapper: ContactsMapper = ContactsMapper()
     lazy var transactionMapper: TransactionMapperProtocol = TransactionMapper(currencyFormatter: self.currencyFormatter,
-                                                                      converterFactory: self.currencyConverterFactory,
-                                                                      transactionDirectionResolver: self.transactionDirectionResolver,
-                                                                      transactionOpponentResolver: self.transactionOpponentResolver,
-                                                                      denominationUnitsConverter: self.denominationUnitsConverter)
+                                                                              converterFactory: self.currencyConverterFactory,
+                                                                              transactionDirectionResolver: self.transactionDirectionResolver,
+                                                                              transactionOpponentResolver: self.transactionOpponentResolver,
+                                                                              denominationUnitsConverter: self.denominationUnitsConverter)
     
     // MARK: - Social Networks
-    lazy var  facebookLoginManager: LoginManager = LoginManager()
+    lazy var facebookLoginManager: LoginManager = LoginManager()
     
     
     // MARK: - Parsers

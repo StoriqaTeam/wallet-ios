@@ -26,12 +26,14 @@ enum TransactionStatus: String {
 
 struct Transaction {
     let id: String
-    let currency: Currency
     let fromAddress: [String]
     let fromAccount: [TransactionAccount]
     let toAddress: String
     let toAccount: TransactionAccount?
-    let cryptoAmount: Decimal
+    let fromValue: Decimal
+    let fromCurrency: Currency
+    let toValue: Decimal
+    let toCurrency: Currency
     let fee: Decimal
     let blockchainId: String
     let createdAt: Date
@@ -59,8 +61,10 @@ extension Transaction: RealmMappable {
             self.toAccount = nil
         }
         
-        self.currency = Currency(string: object.currency)
-        self.cryptoAmount = object.cryptoAmount.decimalValue()
+        self.fromCurrency = Currency(string: object.fromCurrency)
+        self.fromValue = object.fromValue.decimalValue()
+        self.toCurrency = Currency(string: object.toCurrency)
+        self.toValue = object.toValue.decimalValue()
         self.fee = object.fee.decimalValue()
         self.blockchainId = object.blockchainId
         self.createdAt = Date(timeIntervalSince1970: object.createdAt)
@@ -76,8 +80,10 @@ extension Transaction: RealmMappable {
         object.fromAccount.append(objectsIn: self.fromAccount.map { RealmTransactionAccountObject(value: $0.mapToRealmObject()) })
         object.toAddress = self.toAddress
         object.toAccount = self.toAccount?.mapToRealmObject()
-        object.currency = self.currency.ISO
-        object.cryptoAmount = self.cryptoAmount.string
+        object.toValue = self.toValue.string
+        object.toCurrency = self.toCurrency.ISO
+        object.fromValue = self.fromValue.string
+        object.fromCurrency = self.fromCurrency.ISO
         object.fee = self.fee.string
         object.blockchainId = self.blockchainId
         
@@ -97,8 +103,10 @@ extension Transaction: RealmMappable {
         dateFormatter.dateFormat = Constants.DateFormats.txDateString
         
         guard let id = json["id"].string,
-            let currencyStr = json["currency"].string,
-            let value = json["value"].string,
+            let toCurrencyStr = json["toCurrency"].string,
+            let fromCurrencyStr = json["fromCurrency"].string,
+            let toValue = json["toValue"].string,
+            let fromValue = json["fromValue"].string,
             let fee = json["fee"].string,
             let statusStr = json["status"].string,
             let createdAtStr = json["createdAt"].string,
@@ -121,7 +129,6 @@ extension Transaction: RealmMappable {
         }
         
         self.id = id
-        self.currency = Currency(string: currencyStr)
         self.status = TransactionStatus(string: statusStr)
         self.blockchainId = blockchainId
         self.createdAt = createdAt
@@ -130,7 +137,10 @@ extension Transaction: RealmMappable {
         self.toAccount = toAccount
         self.fromAddress = fromAddress
         self.fromAccount = fromAccounts
-        self.cryptoAmount = value.decimalValue()
+        self.toValue = toValue.decimalValue()
+        self.fromValue = fromValue.decimalValue()
+        self.toCurrency = Currency(string: toCurrencyStr)
+        self.fromCurrency = Currency(string: fromCurrencyStr)
         self.fee = fee.decimalValue()
     }
 }
