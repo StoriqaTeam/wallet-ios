@@ -141,10 +141,10 @@ class Application {
     // MARK: - Mappers
     lazy var contactsMapper: ContactsMapper = ContactsMapper()
     lazy var transactionMapper: TransactionMapperProtocol = TransactionMapper(currencyFormatter: self.currencyFormatter,
-                                                                      converterFactory: self.currencyConverterFactory,
-                                                                      transactionDirectionResolver: self.transactionDirectionResolver,
-                                                                      transactionOpponentResolver: self.transactionOpponentResolver,
-                                                                      denominationUnitsConverter: self.denominationUnitsConverter)
+                                                                              converterFactory: self.currencyConverterFactory,
+                                                                              transactionDirectionResolver: self.transactionDirectionResolver,
+                                                                              transactionOpponentResolver: self.transactionOpponentResolver,
+                                                                              denominationUnitsConverter: self.denominationUnitsConverter)
     
     // MARK: - Social Networks
     lazy var  facebookLoginManager: LoginManager = LoginManager()
@@ -164,4 +164,5 @@ class Application {
     // MARK: - FakeProviders -
     lazy var fakeContactsNetworkProvider: ContactsNetworkProviderProtocol = FakeContactsNetworkProvider()
     lazy var fakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol = FakePaymentFeeAndWaitProvider()
+    
 }

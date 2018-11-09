@@ -60,7 +60,6 @@ class ResizableNavigationBarButton: UIButton {
             self.heightAnchor.constraint(equalToConstant: BarButtonConst.ButtonHeight),
             self.widthAnchor.constraint(equalToConstant: BarButtonConst.ButtonWidth)
             ])
-        
     }
     
     func moveAndResizeImage(for height: CGFloat) {

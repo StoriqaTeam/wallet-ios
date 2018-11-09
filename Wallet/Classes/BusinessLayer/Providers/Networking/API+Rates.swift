@@ -13,6 +13,7 @@ import Alamofire
 extension API {
     enum Rates {
         case getRates(crypto: [String], fiat: [String])
+        case getExchangeRate(authToken: String, id: String, from: Currency, to: Currency, amountCurrency: Currency, amountInMinUnits: Decimal)
     }
 }
 
@@ -23,6 +24,9 @@ extension API.Rates: APIMethodProtocol {
         switch self {
         case .getRates:
             return .get
+        case .getExchangeRate:
+            return .post
+            
         }
     }
     
@@ -33,6 +37,36 @@ extension API.Rates: APIMethodProtocol {
             let fsyms = crypto.joined(separator: ",")
             let tsyms = fiat.joined(separator: ",")
             return "\(Constants.Network.ratesBaseUrl)fsyms=\(fsyms)&tsyms=\(tsyms)"
+        case .getExchangeRate:
+            return "\(Constants.Network.baseUrl)/rate"
+            
+        }
+    }
+    
+    var headers: [String : String] {
+        switch self {
+        case .getRates:
+            return [:]
+        case .getExchangeRate(let authToken, _, _, _, _, _):
+            return [
+                "accept": "application/json",
+                "Authorization": "Bearer \(authToken)"
+            ]
+        }
+    }
+    
+    var params: Params? {
+        switch self {
+        case .getRates:
+            return nil
+        case .getExchangeRate(_, let id, let from, let to, let amountCurrency, let amountInMinUnits):
+            return [
+                    "id": id,
+                    "from": from.rawValue,
+                    "to": to.rawValue,
+                    "amountCurrency": amountCurrency.rawValue,
+                    "amount": amountInMinUnits
+            ]
         }
     }
 }

@@ -384,6 +384,8 @@
 		B5D0A50EC37F23DE647B941B /* FirstLaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11B072A91A28352CDC5ABD9 /* FirstLaunchRouter.swift */; };
 		B634E43D645E9DBCE791CD75 /* SettingsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9D1601A483ADBA7DD0D526 /* SettingsViewOutput.swift */; };
 		B782CF02B33B1093E9AF38BB /* ExchangeInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23FC67135B58752997E5F0D /* ExchangeInteractorInput.swift */; };
+		B88BDF1C2195BC8100C81022 /* ExchangeRateNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88BDF1B2195BC8100C81022 /* ExchangeRateNetworkProvider.swift */; };
+		B88BDF1E2195DAFF00C81022 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88BDF1D2195DAFF00C81022 /* ExchangeRate.swift */; };
 		B8C5EDD62189A2FA00345B79 /* API+Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD52189A2FA00345B79 /* API+Rates.swift */; };
 		B8C5EDDA2189AA8C00345B79 /* RatesNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */; };
 		B8C5EDDC2189ACE700345B79 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDDB2189ACE700345B79 /* Rate.swift */; };
@@ -1028,6 +1030,8 @@
 		B56AFC99D929DF8CB39A8C4D /* AccountsModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsModule.swift; sourceTree = "<group>"; };
 		B5DB570057C07D6076058081 /* SettingsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		B7308D8FE5E082396CE5E220 /* PinQuickLaunchRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchRouter.swift; sourceTree = "<group>"; };
+		B88BDF1B2195BC8100C81022 /* ExchangeRateNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateNetworkProvider.swift; sourceTree = "<group>"; };
+		B88BDF1D2195DAFF00C81022 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		B8C5EDD52189A2FA00345B79 /* API+Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Rates.swift"; sourceTree = "<group>"; };
 		B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesNetworkProvider.swift; sourceTree = "<group>"; };
 		B8C5EDDB2189ACE700345B79 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
@@ -2475,6 +2479,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B88BDF1A2195BC3F00C81022 /* ExchangeRateNetworkProvider */,
 				CE1008A12191AEC00068010A /* SocialAuthNetworkProvider */,
 				CE135176218C84CC009CB4F9 /* CreateAccountNetworkProvider */,
 				CEE84EFF218B4C8A00AB85F3 /* ChangePasswordNetworkProvider */,
@@ -3455,6 +3460,14 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		B88BDF1A2195BC3F00C81022 /* ExchangeRateNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B88BDF1B2195BC8100C81022 /* ExchangeRateNetworkProvider.swift */,
+			);
+			path = ExchangeRateNetworkProvider;
+			sourceTree = "<group>";
+		};
 		B8C5EDD72189AA6E00345B79 /* RatesNetworkProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -4091,6 +4104,7 @@
 				CE8CC9962167B7A500EA9EED /* Currency.swift */,
 				A5743529217774E3006B4CAE /* Session.swift */,
 				B8C5EDDB2189ACE700345B79 /* Rate.swift */,
+				B88BDF1D2195DAFF00C81022 /* ExchangeRate.swift */,
 			);
 			path = PlainModels;
 			sourceTree = "<group>";
@@ -4909,6 +4923,7 @@
 				3E4A7DC8C6C37F13F5714565 /* QuickLaunchPresenter.swift in Sources */,
 				6CF496C0626DE43C8B12A28C /* QuickLaunchInteractorInput.swift in Sources */,
 				DFBA3637496010C727B6DA1D /* QuickLaunchInteractorOutput.swift in Sources */,
+				B88BDF1C2195BC8100C81022 /* ExchangeRateNetworkProvider.swift in Sources */,
 				CEFC9CB3215A182E00962356 /* ContactsDataManager.swift in Sources */,
 				3E9218F42D39892DE0FA26C8 /* QuickLaunchInteractor.swift in Sources */,
 				A5743546217A309D006B4CAE /* SwiftyJSON.swift in Sources */,
@@ -5247,6 +5262,7 @@
 				CE13517B218C9BF0009CB4F9 /* DefaultAccountsProvider.swift in Sources */,
 				EB9BBB3F7CA31145810C7A5E /* EmailConfirmModuleInput.swift in Sources */,
 				2026A93121590F265E790911 /* EmailConfirmModuleOutput.swift in Sources */,
+				B88BDF1E2195DAFF00C81022 /* ExchangeRate.swift in Sources */,
 				E07883BC4CF8529B07863B80 /* EmailConfirmModule.swift in Sources */,
 				0C33FE79843743235E4E05BB /* ChangePasswordViewInput.swift in Sources */,
 				71FF662EEEFE8E5EFA4097B6 /* ChangePasswordViewOutput.swift in Sources */,

@@ -36,6 +36,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configurator.configure()
         }
         
+//        let authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VyX2lkIjo4OCwiZXhwIjoxNTQxODU3NzQ5LCJwcm92aWRlciI6IkVtYWlsIn0.dyn2XrTv2mnWE_JsgkKGYrDkiu_caA_W8fWZZNuDTNewOgOhTRZlrlH9fBKVs5T-neemv-RTj3iKWY7mkACV4RrjN7aIIpquRcu3rr0wgHmRch24pKDIulP5eoGl-JIcAwVrGlyM6M0zSwNB830__ZGqO8fuffw-7aUdRK14Q_fxAwUtjAJsnhL7Y6tUzp1EYVCdiBoWDmu1RTM441Hpb4rPAhQ7zp0dhCkWFcl6Aco95Jb-(1PkDQeHnMEBuGWD-syDU9S_aZ5e0_khc2kf0xQkULbVvMfm4y9woG6baibsyKsL1xi90yXISyNXDwC9mrsq0A36TZ1l0s0oephOI3Q"
+//        
+//        let exchangRateService = ExchangeRateNetworkProvider()
+//        exchangRateService.getExchangeRate(authToken: authToken,
+//                                           from: .btc,
+//                                           to: .eth,
+//                                           amountCurrency: .btc,
+//                                           amountInMinUnits: 100000000,
+//                                           queue: .main) { (result) in
+//                                            switch result {
+//                                            case .success(let exchangeRate):
+//                                                print(exchangeRate)
+//                                            case .failure(let error):
+//                                                print(error)
+//                                            }
+//        }
+        
         return true
     }
     
