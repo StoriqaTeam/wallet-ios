@@ -28,12 +28,9 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
               completion: @escaping (Result<Transaction>) -> Void) {
         
         let txId = transaction.id
-        let userId = userId
-        let fromAccount = fromAccount
         let toCurrency = transaction.toCurrency
-        let valueCurrency = transaction.fromCurrency
+        let value = transaction.toValue.string
         let receiverType = getReceiverType(transaction: transaction)
-        let value = transaction.fromValue.string
         
         // TODO: - Now fee is fix and equals zero because of server!!!
         // let fee = transaction.fee.string
@@ -47,7 +44,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      receiverType: receiverType,
                                                      toCurrency: toCurrency,
                                                      value: value,
-                                                     valueCurrency: valueCurrency,
+                                                     valueCurrency: toCurrency,
                                                      fee: feeString,
                                                      exchangeId: nil,
                                                      exchangeRate: nil)
