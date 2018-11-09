@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    private let app = Application()
+    private var app = Application()
     
     private lazy var configurators: [Configurable] = {
         return [

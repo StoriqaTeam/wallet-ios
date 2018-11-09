@@ -12,7 +12,8 @@ class MainTabBarModule {
         let router = MainTabBarRouter(app: app)
         let presenter = MainTabBarPresenter()
         
-        let interactor = MainTabBarInteractor(accountWatcher: app.accountWatcher,
+        let accountWatcher = app.accountWatcherFactory.create()
+        let interactor = MainTabBarInteractor(accountWatcher: accountWatcher,
                                               userDataStoreService: app.userDataStoreService,
                                               accountsUpdater: app.accountsUpdater,
                                               txsUpdater: app.transactionsUpdater,

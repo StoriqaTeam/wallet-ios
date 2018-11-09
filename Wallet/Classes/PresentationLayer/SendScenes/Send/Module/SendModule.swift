@@ -20,12 +20,14 @@ class SendModule {
                                                 converterFactory: app.currencyConverterFactory,
                                                 accountTypeResolver: app.accountTypeResolver,
                                                 denominationUnitsConverter: app.denominationUnitsConverter)
+        let sendTransactionBuilder = app.sendTransactionBuilderFactory.create()
+        
         
         let presenter = SendPresenter(currencyFormatter: app.currencyFormatter,
                                       currencyImageProvider: app.currencyImageProvider,
                                       accountDisplayer: accountDisplayer)
         presenter.mainTabBar = tabBar
-        let interactor = SendInteractor(sendTransactionBuilder: app.sendTransactionBuilder,
+        let interactor = SendInteractor(sendTransactionBuilder: sendTransactionBuilder,
                                         accountsProvider: app.accountsProvider,
                                         accountWatcher: accountWatcher)
         
