@@ -47,7 +47,13 @@ private struct AnyOperation<ResponseSerializer: DataResponseSerializerProtocol>:
                 let code = response.response?.statusCode ?? 0
                 self.completion?(Result.success((code, value)))
                 
-                log.debug("Response \(self.request): \ncode: \(code) \njson: \(JSON(value))")
+                let responseStr = "Response \(self.request): \ncode: \(code) \njson: \(JSON(value))"
+                switch code {
+                case 200:
+                    log.debug(responseStr)
+                default:
+                    log.warn(responseStr)
+                }
             case .failure(let error):
                 self.completion?(Result.failure(error))
                 
