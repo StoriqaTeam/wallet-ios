@@ -122,7 +122,7 @@ extension SendPresenter: SendViewOutput {
         // FIXME: disabled before release
         let selectedCurrency = interactor.getReceiverCurrency()
         let newCurrency = interactor.getSelectedAccountCurrency()
-        
+
         if selectedCurrency != newCurrency {
             interactor.setReceiverCurrency(newCurrency)
             let index = currencies.firstIndex(of: newCurrency)!
