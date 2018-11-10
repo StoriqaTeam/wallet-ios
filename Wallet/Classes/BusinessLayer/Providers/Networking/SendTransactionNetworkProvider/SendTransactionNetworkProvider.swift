@@ -131,7 +131,7 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
         case .unknownError:
             return Constants.Errors.userFriendly
         case .failToParseJson:
-            return "Fail to parse JSON"
+            return "Failed to parse JSON"
         }
     }
 }

@@ -14,13 +14,14 @@ protocol DefaultsProviderProtocol: class {
     var fiatISO: String { get set }
     var lastTxTimastamp: TimeInterval? { get set }
     var socialAuthProvider: SocialNetworkTokenProvider? { get set }
+    
+    func clear()
 }
 
 class DefaultsProvider: DefaultsProviderProtocol {
     
     enum DefaultsKey: String, CaseIterable {
         case isFirstLaunch
-        case isQuickLaunchShown
         case isBiometryAuthEnabled
         case fiatISO
         case lastTxTimastamp
@@ -83,6 +84,12 @@ class DefaultsProvider: DefaultsProviderProtocol {
         set {
             setString(newValue?.name, key: .socialAuthProvider)
         }
+    }
+    
+    func clear() {
+        isBiometryAuthEnabled = false
+        socialAuthProvider = nil
+        lastTxTimastamp = nil
     }
     
 }

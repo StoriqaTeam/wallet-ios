@@ -34,6 +34,7 @@ extension LoginPresenter: LoginViewOutput {
         let viewModel = interactor.getSocialVM()
         view.setSocialView(viewModel: viewModel)
         addLoader()
+        interactor.viewIsReady()
     }
 
     func showRegistration() {

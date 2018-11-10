@@ -40,12 +40,18 @@ class CreateAccountNetworkProvider: NetworkLoadable, CreateAccountNetworkProvide
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                guard code == 200,
-                    let account = Account(json: json) else {
-                        let apiError = CreateAccountNetworkProviderError.failToParseJson
-                        completion(.failure(apiError))
-                        return
+                guard code == 200 else {
+                    let apiError = CreateAccountNetworkProviderError(code: code)
+                    completion(.failure(apiError))
+                    return
                 }
+                
+                guard let account = Account(json: json) else {
+                    let apiError = CreateAccountNetworkProviderError.failToParseJson
+                    completion(.failure(apiError))
+                    return
+                }
+                
                 completion(.success(account))
                 
             case .failure(let error):
@@ -82,7 +88,7 @@ enum CreateAccountNetworkProviderError: LocalizedError, Error {
         case .unknownError:
             return Constants.Errors.userFriendly
         case .failToParseJson:
-            return "Fail to parse JSON"
+            return "Failed to parse JSON"
         }
     }
 }

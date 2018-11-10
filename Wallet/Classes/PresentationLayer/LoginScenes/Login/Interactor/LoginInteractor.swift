@@ -46,8 +46,7 @@ extension LoginInteractor: LoginInteractorInput {
     func viewIsReady() {
         userDataStore.resetAllDatabase()
         keychain.deleteAll()
-        defaultProvider.socialAuthProvider = nil
-        defaultProvider.lastTxTimastamp = nil
+        defaultProvider.clear()
     }
     
     func getSocialVM() -> SocialNetworkAuthViewModel {
