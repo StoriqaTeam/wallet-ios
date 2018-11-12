@@ -18,6 +18,7 @@ class PinInputPresenter {
     var router: PinInputRouterInput!
     
     private let kPasswordDigits = 4
+    private var isPresentedModally = false
     
 }
 
@@ -73,7 +74,12 @@ extension PinInputPresenter: PinInputInteractorOutput {
     
     func passwordIsCorrect() {
         view.inputSucceed()
-        router.showMainTabBar()
+        
+        if isPresentedModally {
+            view.dismissModal()
+        } else {
+            router.showMainTabBar()
+        }
     }
     
     func passwordIsWrong() {
@@ -83,7 +89,12 @@ extension PinInputPresenter: PinInputInteractorOutput {
     
     func touchAuthenticationSucceed() {
         view.inputSucceed()
-        router.showMainTabBar()
+        
+        if isPresentedModally {
+            view.dismissModal()
+        } else {
+            router.showMainTabBar()
+        }
     }
     
     func touchAuthenticationFailed(error: String?) {
@@ -104,14 +115,17 @@ extension PinInputPresenter: PinInputInteractorOutput {
 
 extension PinInputPresenter: PinInputModuleInput {
     func present() {
+        isPresentedModally = false
         view.present()
     }
 
     func present(from viewController: UIViewController) {
+        isPresentedModally = false
         view.present(from: viewController)
     }
     
     func presentModal(from viewController: UIViewController) {
+        isPresentedModally = true
         view.viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         view.presentModal(from: viewController)
     }
