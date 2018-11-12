@@ -40,6 +40,7 @@ extension Account: RealmMappable {
     init?(json: JSON) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.DateFormats.txDateString
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         
         guard let id = json["id"].string,
             let userId = json["userId"].int,
