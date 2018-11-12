@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,16 +26,29 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNG-L0-HhK">
-                                <rect key="frame" x="19" y="133" width="336" height="64"/>
+                                <rect key="frame" x="19" y="123" width="336" height="74"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND TO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h80-M0-VzR">
-                                        <rect key="frame" x="0.0" y="0.0" width="57" height="16"/>
+                                        <rect key="frame" x="0.0" y="10" width="57" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Wallet address or phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ojn-a9-3Yt" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="34" width="336" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ZPV-LA-m9e"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textDidChange:" destination="5ZZ-Yd-9ln" eventType="editingChanged" id="pKK-Fz-xfu"/>
+                                        </connections>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBo-gF-WZ2">
-                                        <rect key="frame" x="221" y="-12" width="115" height="40"/>
+                                        <rect key="frame" x="221" y="-2" width="115" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="6a4-hD-jab"/>
                                         </constraints>
@@ -48,23 +61,11 @@
                                             <action selector="scanButtonPressed" destination="5ZZ-Yd-9ln" eventType="touchUpInside" id="GPJ-0L-b1h"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Wallet address or phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ojn-a9-3Yt" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24" width="336" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="ZPV-LA-m9e"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="textDidChange:" destination="5ZZ-Yd-9ln" eventType="editingChanged" id="pKK-Fz-xfu"/>
-                                        </connections>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Ojn-a9-3Yt" secondAttribute="trailing" id="89e-RN-gjw"/>
-                                    <constraint firstItem="h80-M0-VzR" firstAttribute="top" secondItem="BNG-L0-HhK" secondAttribute="top" id="AIS-A2-w4O"/>
+                                    <constraint firstItem="h80-M0-VzR" firstAttribute="top" secondItem="BNG-L0-HhK" secondAttribute="top" constant="10" id="AIS-A2-w4O"/>
                                     <constraint firstItem="h80-M0-VzR" firstAttribute="leading" secondItem="BNG-L0-HhK" secondAttribute="leading" id="PhY-i5-2sh"/>
                                     <constraint firstItem="Ojn-a9-3Yt" firstAttribute="leading" secondItem="BNG-L0-HhK" secondAttribute="leading" id="U8C-XQ-PzR"/>
                                     <constraint firstAttribute="trailing" secondItem="tBo-gF-WZ2" secondAttribute="trailing" id="U9J-ka-eHV"/>
@@ -94,7 +95,7 @@
                             <constraint firstItem="5XF-LS-HhL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lfK-8d-PY9" secondAttribute="leading" constant="20" id="1gl-bO-PFi"/>
                             <constraint firstItem="5XF-LS-HhL" firstAttribute="centerX" secondItem="JH1-ia-RAY" secondAttribute="centerX" id="26C-qQ-ZM2"/>
                             <constraint firstItem="lfK-8d-PY9" firstAttribute="trailing" secondItem="MlY-ES-cfd" secondAttribute="trailing" constant="20" id="2vQ-NU-z55"/>
-                            <constraint firstItem="BNG-L0-HhK" firstAttribute="top" secondItem="MlY-ES-cfd" secondAttribute="bottom" constant="20" id="EJN-8u-HuG"/>
+                            <constraint firstItem="BNG-L0-HhK" firstAttribute="top" secondItem="MlY-ES-cfd" secondAttribute="bottom" constant="10" id="EJN-8u-HuG"/>
                             <constraint firstItem="lfK-8d-PY9" firstAttribute="trailing" secondItem="BNG-L0-HhK" secondAttribute="trailing" constant="20" id="FK6-6j-q4w"/>
                             <constraint firstItem="Rej-TM-je3" firstAttribute="top" secondItem="BNG-L0-HhK" secondAttribute="bottom" id="TmY-hd-edK"/>
                             <constraint firstItem="Rej-TM-je3" firstAttribute="leading" secondItem="lfK-8d-PY9" secondAttribute="leading" id="WF3-Mn-diz"/>
