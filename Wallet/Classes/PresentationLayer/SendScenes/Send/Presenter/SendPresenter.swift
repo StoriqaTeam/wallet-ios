@@ -143,10 +143,6 @@ extension SendPresenter: SendInteractorOutput {
         let currency = interactor.getReceiverCurrency()
         let amountString = getStringFrom(amount: amount, currency: currency)
         view.setAmount(amountString)
-        
-        let formIsValid = interactor.isFormValid()
-        let errorHidden = interactor.isEnoughFunds()
-        view.setButtonEnabled(formIsValid, errorHidden: errorHidden)
     }
     
     func updateConvertedAmount() {
@@ -197,6 +193,9 @@ extension SendPresenter: AccountsDataManagerDelegate {
         interactor.setCurrentAccountWith(index: newIndex)
         view.setNewPage(newIndex)
         
+        let formIsValid = interactor.isFormValid()
+        let errorHidden = interactor.isEnoughFunds()
+        view.setButtonEnabled(formIsValid, errorHidden: errorHidden)
         
         // FIXME: disabled before release
         let selectedCurrency = interactor.getReceiverCurrency()

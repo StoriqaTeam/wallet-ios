@@ -141,38 +141,43 @@ extension SendViewController: SendViewInput {
     
     func setButtonEnabled(_ enabled: Bool, errorHidden: Bool) {
         
-        nextButton.layer.removeAllAnimations()
-        errorLabel.layer.removeAllAnimations()
-        
         if enabled {
             nextButton.isHidden = false
             
-            UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
                 self.nextButton.alpha = 1
-            }, completion: { _ in
-                self.nextButton.isHidden = false
+            }, completion: { finished in
+                if finished {
+                    self.nextButton.isHidden = false
+                }
             })
         } else {
-            UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
                 self.nextButton.alpha = 0
-            }, completion: { _ in
-                self.nextButton.isHidden = true
+            }, completion: { finished in
+                if finished {
+                    self.nextButton.isHidden = true
+                }
             })
         }
         
         if errorHidden {
-            UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
                 self.errorLabel.alpha = 0
-            }, completion: { _ in
-                self.errorLabel.isHidden = true
+            }, completion: { finished in
+                if finished {
+                    self.errorLabel.isHidden = true
+                }
             })
         } else {
             self.errorLabel.isHidden = false
             
-            UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
                 self.errorLabel.alpha = 1
-            }, completion: { _ in
-                self.errorLabel.isHidden = false
+            }, completion: { finished in
+                if finished {
+                    self.errorLabel.isHidden = false
+                }
             })
         }
     }
