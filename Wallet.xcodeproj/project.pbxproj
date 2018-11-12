@@ -228,6 +228,9 @@
 		A51CB561215945A200CDC80C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB560215945A200CDC80C /* UIView+Helpers.swift */; };
 		A51CB56321594E4A00CDC80C /* LoadableFromXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */; };
 		A521D4702163716900E5D51C /* CurrentAccountWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */; };
+		A522AADF21997DE400C39826 /* PinSetupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A522AADE21997DE400C39826 /* PinSetupCell.xib */; };
+		A522AAE121997ED600C39826 /* PinSetupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522AAE021997ED600C39826 /* PinSetupCollectionViewCell.swift */; };
+		A522AAE4219980BB00C39826 /* PinSetupDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522AAE3219980BB00C39826 /* PinSetupDataManager.swift */; };
 		A52C66A12163C90B0073071E /* SendProviderBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66A02163C90B0073071E /* SendProviderBuilderProtocol.swift */; };
 		A52C66A72164C1450073071E /* SendTransactionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66A62164C1450073071E /* SendTransactionBuilder.swift */; };
 		A52C66AA21666ECC0073071E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C66A921666ECC0073071E /* User.swift */; };
@@ -885,6 +888,9 @@
 		A51CB560215945A200CDC80C /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableFromXib.swift; sourceTree = "<group>"; };
 		A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAccountWatcher.swift; sourceTree = "<group>"; };
+		A522AADE21997DE400C39826 /* PinSetupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinSetupCell.xib; sourceTree = "<group>"; };
+		A522AAE021997ED600C39826 /* PinSetupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupCollectionViewCell.swift; sourceTree = "<group>"; };
+		A522AAE3219980BB00C39826 /* PinSetupDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupDataManager.swift; sourceTree = "<group>"; };
 		A52C66A02163C90B0073071E /* SendProviderBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendProviderBuilderProtocol.swift; sourceTree = "<group>"; };
 		A52C66A62164C1450073071E /* SendTransactionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionBuilder.swift; sourceTree = "<group>"; };
 		A52C66A921666ECC0073071E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -2590,6 +2596,23 @@
 			path = CurrentAccountWatcher;
 			sourceTree = "<group>";
 		};
+		A522AADD21997DCB00C39826 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				A522AADE21997DE400C39826 /* PinSetupCell.xib */,
+				A522AAE021997ED600C39826 /* PinSetupCollectionViewCell.swift */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		A522AAE2219980A500C39826 /* PinSetupDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				A522AAE3219980BB00C39826 /* PinSetupDataManager.swift */,
+			);
+			path = PinSetupDataManager;
+			sourceTree = "<group>";
+		};
 		A52C66A82164C16C0073071E /* Builder */ = {
 			isa = PBXGroup;
 			children = (
@@ -4186,6 +4209,7 @@
 		CF7728B4F1EEE795D6F82F7B /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A522AAE2219980A500C39826 /* PinSetupDataManager */,
 				85E90039309C4346C217E120 /* PinSetupPresenter.swift */,
 			);
 			path = Presenter;
@@ -4194,6 +4218,7 @@
 		CFD5FC04F18BBDD59AE29874 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A522AADD21997DCB00C39826 /* Xib */,
 				1840C4C35D8B6DF585C991F2 /* PinSetupViewInput.swift */,
 				12A9A2D92E74B7C610DD3FE3 /* PinSetupViewOutput.swift */,
 				326A8299B31FE823B00820F8 /* PinSetupViewController.swift */,
@@ -4590,6 +4615,7 @@
 				CE6A0974216CE3AE004A96A8 /* ConnectPhone.storyboard in Resources */,
 				CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */,
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
+				A522AADF21997DE400C39826 /* PinSetupCell.xib in Resources */,
 				A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */,
 				A574353921789BB3006B4CAE /* SessionCell.xib in Resources */,
 				A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */,
@@ -4737,6 +4763,7 @@
 				CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */,
 				CE8CC99A2167D9C300EA9EED /* MyWalletDataManager.swift in Sources */,
 				CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */,
+				A522AAE121997ED600C39826 /* PinSetupCollectionViewCell.swift in Sources */,
 				A56ED392216CD825009FA58B /* TransactionDetailsRouter.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PinDotView.swift in Sources */,
 				CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */,
@@ -5226,6 +5253,7 @@
 				46338A8E78AF151F358EA4EF /* ConnectPhoneRouterInput.swift in Sources */,
 				4A716DCE68EFC893326C5B35 /* ConnectPhoneRouter.swift in Sources */,
 				41BE6CD39AB51A11D33C65CC /* ConnectPhoneModuleInput.swift in Sources */,
+				A522AAE4219980BB00C39826 /* PinSetupDataManager.swift in Sources */,
 				D1E2319F1277268F069541E3 /* ConnectPhoneModuleOutput.swift in Sources */,
 				7934CE37D1CDACDF65C1F2DF /* ConnectPhoneModule.swift in Sources */,
 				E48F38E3F6C54C04DF13180D /* TransactionFilterViewInput.swift in Sources */,

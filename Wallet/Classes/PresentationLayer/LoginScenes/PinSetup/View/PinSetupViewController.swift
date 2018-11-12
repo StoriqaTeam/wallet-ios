@@ -12,15 +12,16 @@ import UIKit
 class PinSetupViewController: UIViewController {
     var output: PinSetupViewOutput!
 
-    @IBOutlet private var pinContainerView: PinContainerView!
-
+//    @IBOutlet private var pinContainerView: PinContainerView!
+    @IBOutlet weak var pinSetupCollectionView: UICollectionView!
+    
     // MARK: Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
         disableBackNavigation()
-        output.pinContainer(pinContainerView)
+        output.pinSetupCollectionView(pinSetupCollectionView)
     }
     
     private func disableBackNavigation() {
@@ -41,13 +42,4 @@ extension PinSetupViewController: PinSetupViewInput {
     func setTitle(title: String) {
         self.title = title
     }
-    
-    func clearInput() {
-        pinContainerView.clearInput()
-    }
-    
-    func wrongInput() {
-        pinContainerView.wrongPassword()
-    }
-    
 }

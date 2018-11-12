@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pinSetupCell" id="8AO-Eb-Hmg" customClass="PinSetupCollectionViewCell" customModule="Wallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWi-85-b7J" customClass="PinContainerView" customModule="Wallet" customModuleProvider="target">
+                        <rect key="frame" x="57" y="0.0" width="261" height="667"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="261" id="jXp-A4-dAf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="qWi-85-b7J" firstAttribute="centerX" secondItem="8AO-Eb-Hmg" secondAttribute="centerX" id="Bua-Wf-JOf"/>
+                <constraint firstItem="qWi-85-b7J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8AO-Eb-Hmg" secondAttribute="leading" id="EOT-X4-Rap"/>
+                <constraint firstItem="qWi-85-b7J" firstAttribute="centerY" secondItem="8AO-Eb-Hmg" secondAttribute="centerY" id="MRz-o1-AsD"/>
+                <constraint firstItem="qWi-85-b7J" firstAttribute="top" secondItem="8AO-Eb-Hmg" secondAttribute="top" id="TRi-Qm-iQv"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="p9t-5B-Wqj"/>
+            <size key="customSize" width="375" height="667"/>
+            <connections>
+                <outlet property="pinSetupContainerView" destination="qWi-85-b7J" id="5h7-9A-Kmt"/>
+            </connections>
+            <point key="canvasLocation" x="-92" y="91"/>
+        </collectionViewCell>
+    </objects>
+</document>
