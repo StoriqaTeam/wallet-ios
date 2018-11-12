@@ -17,7 +17,8 @@ class PinSetupPresenter {
     var interactor: PinSetupInteractorInput!
     var router: PinSetupRouterInput!
     
-    private let kPasswordDigits = 4
+    private var pinSetupDataManager: PinSetupDataManager!
+    
     private let firstInputTitle = "enter_pin".localized()
     private let confirmInputTitle = "confirm_pin".localized()
 }
@@ -26,18 +27,17 @@ class PinSetupPresenter {
 // MARK: - PinSetupViewOutput
 
 extension PinSetupPresenter: PinSetupViewOutput {
+    func pinSetupCollectionView(_ view: UICollectionView) {
+        let dataManager = PinSetupDataManager()
+        dataManager.setCollectionView(view)
+        pinSetupDataManager = dataManager
+        pinSetupDataManager.delegate = self
+    }
+    
 
     func viewIsReady() {
         view.setupInitialState()
         view.setTitle(title: firstInputTitle)
-    }
-    
-    func pinContainer(_ pinContainer: PinContainerView) {
-        pinContainer.delegate = self
-        pinContainer.totalDotCount = kPasswordDigits
-        pinContainer.touchAuthenticationEnabled = false
-        pinContainer.tintColor = Theme.Color.brightSkyBlue
-        pinContainer.highlightedColor = Theme.Color.brightSkyBlue
     }
 
 }
@@ -57,17 +57,26 @@ extension PinSetupPresenter: PinSetupInteractorOutput {
     
     func enterConfirmationPin() {
         view.setTitle(title: confirmInputTitle)
-        view.clearInput()
+        pinSetupDataManager.scrollTo(state: .confirmPin)
     }
     
     func enterPinAgain() {
         view.viewController.showAlert(message: "pins_not_match_alert".localized())
         
         view.setTitle(title: firstInputTitle)
-        view.wrongInput()
+        pinSetupDataManager.scrollTo(state: .setPin)
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
     
+}
+
+
+// MARK: PinSetupdataManagerDelegate
+
+extension PinSetupPresenter: PinSetupDataManagerDelegate {
+    func pinSet(input: String) {
+        interactor.pinInputCompleted(input)
+    }
 }
 
 
@@ -77,18 +86,5 @@ extension PinSetupPresenter: PinSetupModuleInput {
 
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
-    }
-    
-}
-
-
-// MARK: - PinInputCompleteProtocol
-extension PinSetupPresenter: PinInputCompleteProtocol {
-    func authWithBiometryTapped() {
-        // No biometry auth in setup
-    }
-    
-    func pinInputComplete(input: String) {
-        interactor.pinInputCompleted(input)
     }
 }

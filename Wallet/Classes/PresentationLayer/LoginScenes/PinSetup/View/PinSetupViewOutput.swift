@@ -11,5 +11,5 @@ import UIKit
 
 protocol PinSetupViewOutput: class {
     func viewIsReady()
-    func pinContainer(_ pinContainer: PinContainerView)
+    func pinSetupCollectionView(_ view: UICollectionView)
 }

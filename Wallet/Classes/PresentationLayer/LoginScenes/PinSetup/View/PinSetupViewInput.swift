@@ -12,6 +12,4 @@ import UIKit
 protocol PinSetupViewInput: class, Presentable {
     func setupInitialState()
     func setTitle(title: String)
-    func clearInput()
-    func wrongInput()
 }
