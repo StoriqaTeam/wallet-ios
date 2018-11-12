@@ -237,7 +237,7 @@
         </view>
     </objects>
     <resources>
-        <image name="backArrowDelete" width="32" height="23"/>
+        <image name="backArrowDelete" width="21" height="15"/>
         <image name="touchId" width="32" height="40"/>
     </resources>
 </document>
