@@ -95,7 +95,11 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func isFormValid() -> Bool {
-        return !sendProvider.amount.isZero
+        return !sendProvider.amount.isZero && isEnoughFunds()
+    }
+    
+    func isEnoughFunds() -> Bool {
+        return sendProvider.isEnoughFunds()
     }
     
     func isValidAmount(_ amount: String) -> Bool {

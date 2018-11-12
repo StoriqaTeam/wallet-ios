@@ -24,6 +24,7 @@ class SendViewController: UIViewController {
     @IBOutlet private var nextButton: DefaultButton!
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var gradientView: HeaderGradientView!
+    @IBOutlet private var errorLabel: UILabel!
     
     
     // MARK: Variables
@@ -138,6 +139,37 @@ extension SendViewController: SendViewInput {
         receiverCurrencySegmentedControl.setSelectedSegmentIndex(index)
     }
     
+    func setButtonEnabled(_ enabled: Bool, errorHidden: Bool) {
+        
+        if enabled {
+            nextButton.isHidden = false
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.nextButton.alpha = 1
+            })
+        } else {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.nextButton.alpha = 0
+            }, completion: { _ in
+                self.nextButton.isHidden = true
+            })
+        }
+        
+        if errorHidden {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.errorLabel.alpha = 0
+            }, completion: { _ in
+                self.errorLabel.isHidden = enabled
+            })
+        } else {
+            self.errorLabel.isHidden = false
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.errorLabel.alpha = 1
+            })
+        }
+    }
+    
 }
 
 
@@ -198,6 +230,11 @@ extension SendViewController {
         amountTitleLabel.text = "amount".localized()
         receiverCurrencyTitleLabel.text = "receiver_currency".localized()
         amountTextField.placeholder = "enter_amount".localized()
+        
+        errorLabel.font = Theme.Font.smallText
+        errorLabel.textColor = Theme.Text.Color.errorRed
+        errorLabel.isHidden = true
+        errorLabel.alpha = 0
     }
     
     private func configureGradientView() {

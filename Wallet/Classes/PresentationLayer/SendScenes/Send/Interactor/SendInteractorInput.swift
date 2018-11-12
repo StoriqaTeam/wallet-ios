@@ -24,6 +24,7 @@ protocol SendInteractorInput: class {
     func setReceiverCurrency(_ currency: Currency)
     func setCurrentAccountWith(index: Int)
     func isFormValid() -> Bool
+    func isEnoughFunds() -> Bool
     
     func updateTransactionProvider()
     func getTransactionBuilder() -> SendProviderBuilderProtocol
