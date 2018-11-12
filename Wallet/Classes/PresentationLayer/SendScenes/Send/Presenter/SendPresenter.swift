@@ -60,7 +60,8 @@ extension SendPresenter: SendViewOutput {
         interactor.setAmount(amount)
         
         let formIsValid = interactor.isFormValid()
-        view.setButtonEnabled(formIsValid)
+        let errorHidden = interactor.isEnoughFunds()
+        view.setButtonEnabled(formIsValid, errorHidden: errorHidden)
     }
     
     func amountDidBeginEditing() {
@@ -83,7 +84,7 @@ extension SendPresenter: SendViewOutput {
         })
         let numberOfPages = interactor.getAccountsCount()
         configureNavBar()
-        view.setButtonEnabled(false)
+        view.setButtonEnabled(false, errorHidden: true)
         view.setupInitialState(currencyImages: currencyImages, numberOfPages: numberOfPages)
         interactor.startObservers()
     }
@@ -112,11 +113,12 @@ extension SendPresenter: SendViewOutput {
         let selectedReceiverCurrency = interactor.getReceiverCurrency()
         let receiverCurrencyIndex = currencies.firstIndex(of: selectedReceiverCurrency)!
         let formIsValid = interactor.isFormValid()
+        let errorHidden = interactor.isEnoughFunds()
         
         updateAmount()
         updateConvertedAmount()
         view.setReceiverCurrencyIndex(receiverCurrencyIndex)
-        view.setButtonEnabled(formIsValid)
+        view.setButtonEnabled(formIsValid, errorHidden: errorHidden)
         
         
         // FIXME: disabled before release
