@@ -62,7 +62,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Enter Pin" id="hJ9-Re-AeR"/>
                     <connections>
-                        <outlet property="pinSetupCollectionView" destination="sGT-so-ypb" id="Lpt-kc-0uQ"/>
+                        <outlet property="pinSetupCollectionView" destination="sGT-so-ypb" id="Qeu-qn-kzr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tu1-fd-iaX" userLabel="First Responder" sceneMemberID="firstResponder"/>

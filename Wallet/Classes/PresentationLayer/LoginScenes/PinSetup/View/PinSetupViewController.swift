@@ -12,8 +12,7 @@ import UIKit
 class PinSetupViewController: UIViewController {
     var output: PinSetupViewOutput!
 
-//    @IBOutlet private var pinContainerView: PinContainerView!
-    @IBOutlet weak var pinSetupCollectionView: UICollectionView!
+    @IBOutlet private var pinSetupCollectionView: UICollectionView!
     
     // MARK: Life cycle
 

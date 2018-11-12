@@ -32,9 +32,7 @@ class PinSetupDataManager: NSObject {
     func scrollTo(state: PinSetupStep) {
         let row: Int
         switch state {
-        case .setPin:
-            row = 0
-            
+        case .setPin: row = 0
         case .confirmPin: row = 1
         }
         

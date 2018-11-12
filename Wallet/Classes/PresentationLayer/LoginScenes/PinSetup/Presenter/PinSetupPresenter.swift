@@ -19,8 +19,6 @@ class PinSetupPresenter {
     
     private var pinSetupDataManager: PinSetupDataManager!
     
-    private var pinSetupStep: PinSetupStep  = .setPin
-    
     private let firstInputTitle = "enter_pin".localized()
     private let confirmInputTitle = "confirm_pin".localized()
 }
