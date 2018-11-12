@@ -63,6 +63,10 @@ extension ChangePasswordPresenter: ChangePasswordViewOutput {
         view.setupInitialState()
         addLoader()
     }
+    
+    func viewWillAppear() {
+        view.viewController.setDarkNavigationBarButtons()
+    }
 
 }
 
