@@ -61,7 +61,7 @@ extension AccountsPresenter: AccountsViewOutput {
         let transactions = interactor.getTransactionForCurrentAccount()
         let account = interactor.getSelectedAccount()
         let displayable = transactions.map { transactionsMapper.map(from: $0, account: account) }
-        let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true)
+        let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true, maxCount: 10)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
