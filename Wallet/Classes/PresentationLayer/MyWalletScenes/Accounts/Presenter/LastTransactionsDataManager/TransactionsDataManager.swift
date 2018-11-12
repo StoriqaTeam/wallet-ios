@@ -18,15 +18,18 @@ class TransactionsDataManager: NSObject {
     
     weak var delegate: TransactionsDataManagerDelegate?
     private var lastTransactionsTableView: UITableView!
-    private var transactionsByMonths = [[TransactionDisplayable]]()
+    private var transactionsSections = [[TransactionDisplayable]]()
     private let kCellId = "transactionCell"
     private let isHiddenSections: Bool
+    private let maxCount: Int?
     private var emptyViewPlaceholder: EmptyView?
     
-    init(transactions: [TransactionDisplayable], isHiddenSections: Bool) {
+    init(transactions: [TransactionDisplayable], isHiddenSections: Bool, maxCount: Int? = nil) {
         self.isHiddenSections = isHiddenSections
+        self.maxCount = maxCount
         super.init()
-        self.transactionsByMonths = sortTransactionByDate(transactions)
+        
+        createSections(transactions)
     }
     
     func setTableView(_ view: UITableView) {
@@ -39,13 +42,13 @@ class TransactionsDataManager: NSObject {
     
     func updateTransactions(_ transactions: [TransactionDisplayable]) {
         if transactions.isEmpty {
-            transactionsByMonths.removeAll()
+            transactionsSections.removeAll()
             lastTransactionsTableView.reloadData()
             updateEmpty(placeholderImage: UIImage(named: "noTxs")!, placeholderText: "")
             return
         }
         
-        transactionsByMonths = sortTransactionByDate(transactions)
+        createSections(transactions)
         
         if let _ = emptyViewPlaceholder {
             lastTransactionsTableView.tableFooterView = nil
@@ -75,21 +78,21 @@ class TransactionsDataManager: NSObject {
 
 extension TransactionsDataManager: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return transactionsByMonths.count
+        return transactionsSections.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if isHiddenSections { return CGFloat.leastNormalMagnitude }
-        if transactionsByMonths.isEmpty { return CGFloat.leastNormalMagnitude }
+        if transactionsSections.isEmpty { return CGFloat.leastNormalMagnitude }
         return 44
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactionsByMonths[section].count
+        return transactionsSections[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let mounthTransactions = transactionsByMonths[indexPath.section]
+        let mounthTransactions = transactionsSections[indexPath.section]
         let transaction = mounthTransactions[indexPath.row]
         let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
         cell.configureWith(transaction: transaction)
@@ -103,22 +106,22 @@ extension TransactionsDataManager: UITableViewDataSource {
 
 extension TransactionsDataManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedTransaction = transactionsByMonths[indexPath.section][indexPath.row]
+        let selectedTransaction = transactionsSections[indexPath.section][indexPath.row]
         delegate?.didChooseTransaction(selectedTransaction)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard !isHiddenSections else { return nil }
-        guard !transactionsByMonths[0].isEmpty else { return nil }
-        let mounthTransactions = transactionsByMonths[section]
+        guard !transactionsSections[0].isEmpty else { return nil }
+        let mounthTransactions = transactionsSections[section]
         return mounthTransactions[0].transaction.createdAt.getMonthName()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard !isHiddenSections else { return nil }
-        guard !transactionsByMonths[0].isEmpty else { return nil }
-        let mounthTransactions = transactionsByMonths[section]
+        guard !transactionsSections[0].isEmpty else { return nil }
+        let mounthTransactions = transactionsSections[section]
         let title = mounthTransactions[0].transaction.createdAt.getMonthName()
         return createHeaderView(with: title)
     }
@@ -131,6 +134,14 @@ extension TransactionsDataManager {
     private func registerXib() {
         let nib = UINib(nibName: "TransactionCell", bundle: nil)
         lastTransactionsTableView.register(nib, forCellReuseIdentifier: kCellId)
+    }
+    
+    private func createSections(_ txs: [TransactionDisplayable]) {
+        if let maxCount = maxCount {
+            self.transactionsSections = getLastTransactions(txs, count: maxCount)
+        } else {
+            self.transactionsSections = sortTransactionByDate(txs)
+        }
     }
     
     private func sortTransactionByDate(_ txs: [TransactionDisplayable]) -> [[TransactionDisplayable]] {
@@ -150,6 +161,14 @@ extension TransactionsDataManager {
         }
         
         return resultArray
+    }
+    
+    private func getLastTransactions(_ txs: [TransactionDisplayable], count: Int) -> [[TransactionDisplayable]] {
+        guard !txs.isEmpty else { return [[]] }
+        
+        let inputArray = txs.sorted { $0.transaction.createdAt > $1.transaction.createdAt }
+        let lastTxsArray = Array(inputArray.prefix(10))
+        return [lastTxsArray]
     }
     
     
