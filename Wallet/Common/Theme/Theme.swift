@@ -83,6 +83,8 @@ struct Theme {
         static let navigationBarTitle = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
         /** 13px medium */
         static let smallMediumWeightText = UIFont.systemFont(ofSize: 13, weight: .medium)
+        /** 12px regular */
+        static let errorMessage = UIFont.systemFont(ofSize: 12)
     }
     
     
