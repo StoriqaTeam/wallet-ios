@@ -12,10 +12,16 @@ import Foundation
 class SettingsInteractor {
     weak var output: SettingsInteractorOutput!
     
-    private let sessionsDataStore: SessionsDataStoreServiceProtocol
+    private let defaultsProvider: DefaultsProviderProtocol
+    private let keychainProvider: KeychainProviderProtocol
+    private let userStoreService: UserDataStoreServiceProtocol
     
-    init(sessionsDataStore: SessionsDataStoreServiceProtocol) {
-        self.sessionsDataStore = sessionsDataStore
+    init(defaults: DefaultsProviderProtocol,
+         keychain: KeychainProviderProtocol,
+         userStoreService: UserDataStoreServiceProtocol) {
+        self.defaultsProvider = defaults
+        self.keychainProvider = keychain
+        self.userStoreService = userStoreService
     }
 }
 
@@ -23,9 +29,9 @@ class SettingsInteractor {
 // MARK: - SettingsInteractorInput
 
 extension SettingsInteractor: SettingsInteractorInput {
-  
-    func getSessionsCount() -> Int {
-        let sessions = sessionsDataStore.getAllSessions()
-        return sessions.count
+    func deleteAppData() {
+        userStoreService.resetAllDatabase()
+        keychainProvider.deleteAll()
+        defaultsProvider.isFirstLaunch = true
     }
 }

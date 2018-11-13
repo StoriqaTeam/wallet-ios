@@ -11,9 +11,7 @@ import UIKit
 
 protocol SettingsViewOutput: class {
     func viewIsReady()
-    func viewWillAppear()
-    func myProfileSelected()
-    func changePhoneSelected()
+    func editProfileSelected()
     func changePasswordSelected()
-    func sessionSelected()
+    func signOutButtonTapped()
 }

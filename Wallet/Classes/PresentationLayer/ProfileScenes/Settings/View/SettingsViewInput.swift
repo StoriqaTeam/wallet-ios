@@ -11,5 +11,4 @@ import UIKit
 
 protocol SettingsViewInput: class, Presentable {
     func setupInitialState()
-    func setSessions(count: Int)
 }
