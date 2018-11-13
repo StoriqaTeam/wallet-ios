@@ -12,7 +12,9 @@ class SettingsModule {
         let router = SettingsRouter(app: app)
         let presenter = SettingsPresenter()
         
-        let interactor = SettingsInteractor(sessionsDataStore: app.sessionsDataStoreService)
+        let interactor = SettingsInteractor(defaults: app.defaultsProvider,
+                                            keychain: app.keychainProvider,
+                                            userStoreService: app.userDataStoreService)
         
         let settingsSb = UIStoryboard(name: "Settings", bundle: nil)
         let viewController = settingsSb.instantiateViewController(withIdentifier: "settingsVC") as! SettingsViewController

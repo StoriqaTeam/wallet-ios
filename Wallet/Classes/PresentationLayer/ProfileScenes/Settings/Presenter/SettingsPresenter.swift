@@ -22,30 +22,23 @@ class SettingsPresenter {
 // MARK: - SettingsViewOutput
 
 extension SettingsPresenter: SettingsViewOutput {
-    func sessionSelected() {
-        router.showSessions(from: view.viewController)
-    }
     
     func viewIsReady() {
         view.setupInitialState()
         configureNavigationBar()
     }
     
-    func viewWillAppear() {
-        let sessionsCount = interactor.getSessionsCount()
-        view.setSessions(count: sessionsCount)
-    }
     
-    func myProfileSelected() {
-        router.showProfile(from: view.viewController)
-    }
-    
-    func changePhoneSelected() {
-        router.showChangePhone(from: view.viewController)
+    func editProfileSelected() {
+        router.showEditProfile(from: view.viewController)
     }
     
     func changePasswordSelected() {
         router.showChangePassword(from: view.viewController)
+    }
+    
+    func signOutButtonTapped() {
+        router.signOutConfirmPopUp(popUpDelegate: self, from: view.viewController)
     }
     
 }
@@ -67,6 +60,16 @@ extension SettingsPresenter: SettingsModuleInput {
     
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
+    }
+}
+
+
+// MARK: - PopUpSignOutVMDelegate
+
+extension SettingsPresenter: PopUpSignOutVMDelegate {
+    func signOut() {
+        interactor.deleteAppData()
+        router.signOut()
     }
 }
 

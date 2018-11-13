@@ -10,8 +10,8 @@ import UIKit
 
 
 protocol SettingsRouterInput: class {
-    func showProfile(from viewController: UIViewController)
-    func showChangePhone(from viewController: UIViewController)
+    func showEditProfile(from viewController: UIViewController)
     func showChangePassword(from viewController: UIViewController)
-    func showSessions(from viewController: UIViewController)
+    func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate, from viewController: UIViewController)
+    func signOut()
 }
