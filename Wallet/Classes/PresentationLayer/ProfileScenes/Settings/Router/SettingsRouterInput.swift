@@ -12,5 +12,6 @@ import UIKit
 protocol SettingsRouterInput: class {
     func showEditProfile(from viewController: UIViewController)
     func showChangePassword(from viewController: UIViewController)
+    func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate, from viewController: UIViewController)
     func signOut()
 }

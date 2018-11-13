@@ -38,8 +38,7 @@ extension SettingsPresenter: SettingsViewOutput {
     }
     
     func signOutButtonTapped() {
-        interactor.deleteAppData()
-        router.signOut()
+        router.signOutConfirmPopUp(popUpDelegate: self, from: view.viewController)
     }
     
 }
@@ -61,6 +60,16 @@ extension SettingsPresenter: SettingsModuleInput {
     
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
+    }
+}
+
+
+// MARK: - PopUpSignOutVMDelegate
+
+extension SettingsPresenter: PopUpSignOutVMDelegate {
+    func signOut() {
+        interactor.deleteAppData()
+        router.signOut()
     }
 }
 

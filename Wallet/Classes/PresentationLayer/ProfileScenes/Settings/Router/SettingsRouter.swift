@@ -34,4 +34,10 @@ extension SettingsRouter: SettingsRouterInput {
     func signOut() {
         LoginModule.create(app: app).present()
     }
+    
+    func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate, from viewController: UIViewController) {
+        let viewModel = PopUpSignOutVM()
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
 }
