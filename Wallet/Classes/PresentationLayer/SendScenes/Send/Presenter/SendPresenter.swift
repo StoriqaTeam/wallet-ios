@@ -21,11 +21,9 @@ class SendPresenter {
     private let currencyImageProvider: CurrencyImageProviderProtocol
     private let accountDisplayer: AccountDisplayerProtocol
     private var accountsDataManager: AccountsDataManager!
-    private let currencies = [
-        Currency.stq,
-        Currency.btc,
-        Currency.eth,
-        Currency.fiat ]
+    
+    private var storiqaLoader: StoriqaLoader!
+    private var address: String = ""
     
     init(currencyFormatter: CurrencyFormatterProtocol,
          currencyImageProvider: CurrencyImageProviderProtocol,
@@ -41,52 +39,18 @@ class SendPresenter {
 
 extension SendPresenter: SendViewOutput {
     
-    func nextButtonPressed() {
-        let builder = interactor.getTransactionBuilder()
-        router.showReceiver(sendTransactionBuilder: builder,
-                            from: view.viewController,
-                            mainTabBar: mainTabBar)
-    }
-    
-    func receiverCurrencyChanged(_ index: Int) {
-        interactor.setReceiverCurrency(currencies[index])
-    }
-    
-    func isValidAmount(_ amount: String) -> Bool {
-        return interactor.isValidAmount(amount)
-    }
-    
-    func amountChanged(_ amount: String) {
-        interactor.setAmount(amount)
-        
-        let formIsValid = interactor.isFormValid()
-        let errorHidden = interactor.isEnoughFunds()
-        view.setButtonEnabled(formIsValid, errorHidden: errorHidden)
-    }
-    
-    func amountDidBeginEditing() {
-        let amount = interactor.getAmount()
-        let currency = interactor.getReceiverCurrency()
-        let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
-        view.setAmount(formatted)
-    }
-    
-    func amountDidEndEditing() {
-        let amount = interactor.getAmount()
-        let currency = interactor.getReceiverCurrency()
-        let formatted = getStringFrom(amount: amount, currency: currency)
-        view.setAmount(formatted)
-    }
-    
     func viewIsReady() {
-        let currencyImages = currencies.map({
-            return currencyImageProvider.smallImage(for: $0)
-        })
         let numberOfPages = interactor.getAccountsCount()
         configureNavBar()
-        view.setButtonEnabled(false, errorHidden: true)
-        view.setupInitialState(currencyImages: currencyImages, numberOfPages: numberOfPages)
+        view.setupInitialState(numberOfPages: numberOfPages)
         interactor.startObservers()
+        addLoader()
+    }
+    
+    func viewWillAppear() {
+        view.viewController.setWhiteNavigationBarButtons()
+        interactor.updateState()
+        interactor.setAddress(address)
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -105,31 +69,53 @@ extension SendPresenter: SendViewOutput {
         accountsDataManager.scrollTo(index: index)
     }
     
-    func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
+    func isValidAmount(_ amount: String) -> Bool {
+        return interactor.isValidAmount(amount)
+    }
+    
+    func amountChanged(_ amount: String) {
+        interactor.setAmount(amount)
+    }
+    
+    func amountDidBeginEditing() {
+        let amount = interactor.getAmount()
+        let currency = interactor.getCurrency()
+        let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
+        view.setAmount(formatted)
+    }
+    
+    func amountDidEndEditing() {
+        let amount = interactor.getAmount()
+        let currency = interactor.getCurrency()
+        let formatted = getStringFrom(amount: amount, currency: currency)
+        view.setAmount(formatted)
+    }
+    
+    func receiverAddressDidChange(_ address: String) {
+        self.address = address
+        interactor.setAddress(address)
+    }
+    
+    func newFeeSelected(_ index: Int) {
+        interactor.setPaymentFee(index: index)
+    }
+    
+    func scanButtonPressed() {
+        let builder = interactor.getTransactionBuilder()
+        interactor.setScannedDelegate(self)
+        router.showScanner(sendTransactionBuilder: builder, from: view.viewController)
+    }
+    
+    func sendButtonPressed() {
+        let amount = interactor.getAmount()
+        let currency = interactor.getCurrency()
+        let amountString = getStringFrom(amount: amount, currency: currency)
+        let address = interactor.getAddress()
         
-        interactor.updateTransactionProvider()
-        
-        let selectedReceiverCurrency = interactor.getReceiverCurrency()
-        let receiverCurrencyIndex = currencies.firstIndex(of: selectedReceiverCurrency)!
-        let formIsValid = interactor.isFormValid()
-        let errorHidden = interactor.isEnoughFunds()
-        
-        updateAmount()
-        updateConvertedAmount()
-        view.setReceiverCurrencyIndex(receiverCurrencyIndex)
-        view.setButtonEnabled(formIsValid, errorHidden: errorHidden)
-        
-        
-        // FIXME: disabled before release
-        let selectedCurrency = interactor.getReceiverCurrency()
-        let newCurrency = interactor.getSelectedAccountCurrency()
-
-        if selectedCurrency != newCurrency {
-            interactor.setReceiverCurrency(newCurrency)
-            let index = currencies.firstIndex(of: newCurrency)!
-            view.setReceiverCurrencyIndex(index)
-        }
+        router.showConfirm(amount: amountString,
+                           address: address,
+                           popUpDelegate: self,
+                           from: view.viewController)
     }
     
 }
@@ -138,25 +124,8 @@ extension SendPresenter: SendViewOutput {
 // MARK: - SendInteractorOutput
 
 extension SendPresenter: SendInteractorOutput {
-    func updateAmount() {
-        let amount = interactor.getAmount()
-        let currency = interactor.getReceiverCurrency()
-        let amountString = getStringFrom(amount: amount, currency: currency)
-        view.setAmount(amountString)
-    }
-    
-    func updateConvertedAmount() {
-        let amount = interactor.getConvertedAmount()
-        let receiverCurrency = interactor.getReceiverCurrency()
-        let currency = interactor.getSelectedAccountCurrency()
-        let sameCurrency = receiverCurrency == currency
-        
-        if amount.isZero || sameCurrency {
-            view.setConvertedAmount("")
-        } else {
-            let amountString = "≈" + getStringFrom(amount: amount, currency: currency)
-            view.setConvertedAmount(amountString)
-        }
+    func updateAddressIsValid(_ valid: Bool) {
+        view.setAddressError(valid ? nil : "Addres is invalid")
     }
     
     func updateAccounts(accounts: [Account], index: Int) {
@@ -164,6 +133,48 @@ extension SendPresenter: SendInteractorOutput {
         accountsDataManager?.scrollTo(index: index)
         view.updatePagesCount(accounts.count)
         view.setNewPage(index)
+    }
+    
+    func updateAmount(_ amount: Decimal, currency: Currency) {
+        let amountString = getStringFrom(amount: amount, currency: currency)
+        view.setAmount(amountString)
+    }
+    
+    func updatePaymentFee(_ fee: Decimal) {
+        let currency = interactor.getCurrency()
+        let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency)
+        view.setPaymentFee(formatted)
+    }
+    
+    func updatePaymentFees(count: Int, selected: Int) {
+        view.setPaymentFee(count: count, value: selected)
+    }
+    
+    func updateMedianWait(_ wait: String) {
+        view.setMedianWait(wait)
+    }
+    
+    func updateTotal(_ total: Decimal, currency: Currency) {
+        let totalAmountString = getStringFrom(amount: total, currency: currency)
+        view.setSubtotal(totalAmountString)
+    }
+    
+    func updateIsEnoughFunds(_ enough: Bool) {
+        view.setEnoughFundsErrorHidden(enough)
+    }
+    
+    func updateFormIsValid(_ valid: Bool) {
+        view.setButtonEnabled(valid)
+    }
+    
+    func sendTxFailed(message: String) {
+        storiqaLoader.stopLoader()
+        router.showConfirmFailed(message: message, from: view.viewController)
+    }
+    
+    func sendTxSucceed() {
+        storiqaLoader.stopLoader()
+        router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
     }
 }
 
@@ -186,26 +197,47 @@ extension SendPresenter: SendModuleInput {
     }
 }
 
+
+// MARK: - QRScannerDelegate
+
+extension SendPresenter: QRScannerDelegate {
+    
+    func didScanAddress(_ address: String) {
+        self.address = address
+        interactor.setAddress(address)
+        view.setScannedAddress(address)
+    }
+    
+}
+
 // MARK: - AccountsDataManagerDelegate
 
 extension SendPresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
-        interactor.setCurrentAccountWith(index: newIndex)
+        interactor.setCurrentAccount(index: newIndex)
+        interactor.setAddress(address)
         view.setNewPage(newIndex)
-        
-        let formIsValid = interactor.isFormValid()
-        let errorHidden = interactor.isEnoughFunds()
-        view.setButtonEnabled(formIsValid, errorHidden: errorHidden)
-        
-        // FIXME: disabled before release
-        let selectedCurrency = interactor.getReceiverCurrency()
-        let newCurrency = interactor.getSelectedAccountCurrency()
-        
-        if selectedCurrency != newCurrency {
-            interactor.setReceiverCurrency(newCurrency)
-            let index = currencies.firstIndex(of: newCurrency)!
-            view.setReceiverCurrencyIndex(index)
-        }
+    }
+}
+
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension SendPresenter: PopUpSendConfirmVMDelegate {
+    func confirmTransaction() {
+        storiqaLoader.startLoader()
+        interactor.sendTransaction()
+    }
+}
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension SendPresenter: PopUpSendConfirmSuccessVMDelegate {
+    func okButtonPressed() {
+        interactor.clearBuilder()
+        interactor.updateState()
+        address = ""
+        view.setScannedAddress("")
     }
 }
 
@@ -249,6 +281,11 @@ extension SendPresenter {
         
         let formatted = currencyFormatter.getStringWithoutCurrencyFrom(amount: amount, currency: currency)
         return formatted
+    }
+    
+    private func addLoader() {
+        guard let parentView = view.viewController.navigationController?.view else { return }
+        storiqaLoader = StoriqaLoader(parentView: parentView)
     }
     
 }

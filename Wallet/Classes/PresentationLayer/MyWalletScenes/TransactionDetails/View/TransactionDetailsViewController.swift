@@ -60,14 +60,6 @@ extension TransactionDetailsViewController {
                            feeAmount: transaction.feeAmountString)
             descriptionView = view
             
-        case .contact(let contact):
-            let view = TransactionDescriptionContactView()
-            view.configure(address: contact.cryptoAddress ?? "",
-                           accountType: transaction.currency.ISO,
-                           contact: "\(contact.givenName) \(contact.familyName)",
-                           feeAmount: transaction.feeAmountString)
-            descriptionView = view
-            
         case .txAccount(let account, let address):
             let view = TransactionDescriptionContactView()
             view.configure(address: address,
