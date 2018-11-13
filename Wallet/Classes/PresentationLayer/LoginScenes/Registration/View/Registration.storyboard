@@ -56,7 +56,7 @@
                                                                 </constraints>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
                                                                 <connections>
                                                                     <outlet property="bottomConstraint" destination="3vT-Mu-aJ3" id="j4c-af-eaO"/>
                                                                     <outlet property="delegate" destination="lxi-07-NyW" id="ztn-t1-oZ8"/>
@@ -81,7 +81,7 @@
                                                                 </constraints>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
                                                                 <connections>
                                                                     <outlet property="bottomConstraint" destination="qyc-7l-d2L" id="UaN-KH-8nj"/>
                                                                     <outlet property="delegate" destination="lxi-07-NyW" id="OSo-OT-NAw"/>
