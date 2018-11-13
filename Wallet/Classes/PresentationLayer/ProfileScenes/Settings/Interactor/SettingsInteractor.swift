@@ -32,6 +32,6 @@ extension SettingsInteractor: SettingsInteractorInput {
     func deleteAppData() {
         userStoreService.resetAllDatabase()
         keychainProvider.deleteAll()
-        defaultsProvider.isFirstLaunch = true
+        defaultsProvider.clear()
     }
 }
