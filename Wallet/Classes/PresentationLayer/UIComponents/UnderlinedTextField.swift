@@ -18,8 +18,9 @@ class UnderlinedTextField: UITextField {
         }
     }
 
-    var lineView: UIView?
+    var lineView: UIView!
     private let underlineColor = UIColor.lightGray
+    private let focusedColor = Theme.Color.brightSkyBlue
     
     private var errorLabel: UILabel?
     private let errorLabelVerticalMargin: CGFloat = 4
@@ -45,7 +46,7 @@ class UnderlinedTextField: UITextField {
         
         lineView = underlineView(color: underlineColor)
         backgroundColor = .clear
-        font = UIFont.systemFont(ofSize: 17)
+        font = Theme.Font.generalText
         
         if isSecureTextEntry {
             clearButtonMode = .never
@@ -53,6 +54,30 @@ class UnderlinedTextField: UITextField {
             clearButtonMode = .whileEditing
         }
     }
+    
+    override func becomeFirstResponder() -> Bool {
+        guard super.becomeFirstResponder() else {
+            return false
+        }
+        
+        resolveUnderlineColor()
+        return true
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        guard super.resignFirstResponder() else {
+            return false
+        }
+        
+        resolveUnderlineColor()
+        return true
+    }
+}
+
+
+// MARK: Private methods
+
+extension UnderlinedTextField {
     
     private func showError() {
         let width = self.frame.width - errorLabelHorizontalMargin * 2
@@ -62,53 +87,52 @@ class UnderlinedTextField: UITextField {
                                                y: self.frame.height + errorLabelVerticalMargin,
                                                width: width,
                                                height: 20))
-            errorLabel!.font = UIFont.systemFont(ofSize: 12)
-            errorLabel?.numberOfLines = 0
+            errorLabel!.font = Theme.Font.errorMessage
+            errorLabel!.numberOfLines = 0
+            self.addSubview(errorLabel!)
         }
-
-        lineView?.backgroundColor = errorColor
+        
+        guard let errorLabel = errorLabel, let errorText = errorText else { return }
+        
         self.clipsToBounds = false
-
-        if let errorLabel = errorLabel {
-            errorLabel.isHidden = false
-            errorLabel.textColor = errorColor
-            errorLabel.text = errorText
-
-            if let height = errorText?.height(withConstrainedWidth: width, font: errorLabel.font) {
-                let frame = CGRect(origin: errorLabel.frame.origin, size: CGSize(width: errorLabel.frame.width, height: height))
-                errorLabel.frame = frame
+        
+        errorLabel.isHidden = false
+        errorLabel.textColor = errorColor
+        errorLabel.text = errorText
+        
+        let height = errorText.height(withConstrainedWidth: width, font: errorLabel.font)
+        let frame = CGRect(origin: errorLabel.frame.origin, size: CGSize(width: errorLabel.frame.width, height: height))
+        errorLabel.frame = frame
+        
+        if let bottomConstraint = bottomConstraint {
+            bottomConstraintBackup = bottomConstraint.constant
+            
+            // resize if not enough space
+            let delta = height + errorLabelVerticalMargin - bottomConstraintBackup
+            if delta > 0 {
+                let newValue = bottomConstraintBackup + delta
                 
-                if let bottomConstraint = bottomConstraint {
-                    bottomConstraintBackup = bottomConstraint.constant
-                    
-                    // resize if not enough space
-                    let delta = height + errorLabelVerticalMargin - bottomConstraintBackup
-                    if delta > 0 {
-                        let newValue = bottomConstraintBackup + delta
-                        
-                        if newValue != bottomConstraintBackup {
-                            bottomConstraint.constant = newValue
-                            animateConstraintChange()
-                        }
-                    }
+                if newValue != bottomConstraintBackup {
+                    bottomConstraint.constant = newValue
+                    animateConstraintChange()
                 }
             }
-
-            self.addSubview(errorLabel)
-            animationLabel()
         }
+        
+        resolveUnderlineColor()
+        animateErrorLabel()
     }
-
+    
     private func hideError() {
         errorLabel?.isHidden = true
-        lineView?.backgroundColor = underlineColor
-
+        
         if let bottomConstraint = bottomConstraint {
             bottomConstraint.constant = bottomConstraintBackup
             animateConstraintChange()
         }
-
-        animationLabel()
+        
+        resolveUnderlineColor()
+        animateErrorLabel()
     }
     
     private func animateConstraintChange() {
@@ -117,8 +141,7 @@ class UnderlinedTextField: UITextField {
         }
     }
     
-    private func animationLabel() {
-
+    private func animateErrorLabel() {
         if errorLabel != nil {
             UIView.animate(withDuration: 0.2, animations: { () -> Void in
                 self.errorLabel?.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
@@ -129,4 +152,24 @@ class UnderlinedTextField: UITextField {
             })
         }
     }
+    
+    private func resolveUnderlineColor() {
+        let height: CGFloat
+        
+        if !(errorLabel?.isHidden ?? true) {
+            lineView.backgroundColor = errorColor
+            height = 1.5
+        } else if isFirstResponder {
+            lineView.backgroundColor = focusedColor
+            height = 1.5
+        } else {
+            lineView.backgroundColor = underlineColor
+            height = Constants.Sizes.lineWidth
+        }
+        
+        if let constraint = lineView.constraints.first(where: { $0.firstAttribute == .height }) {
+            constraint.constant = height
+        }
+    }
+    
 }
