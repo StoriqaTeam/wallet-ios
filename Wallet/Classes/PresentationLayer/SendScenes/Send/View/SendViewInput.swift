@@ -10,11 +10,16 @@ import UIKit
 
 
 protocol SendViewInput: class, Presentable {
-    func setupInitialState(currencyImages: [UIImage], numberOfPages: Int)
+    func setupInitialState(numberOfPages: Int)
     func updatePagesCount(_ count: Int)
+    func setScannedAddress(_ address: String)
     func setAmount(_ amount: String)
-    func setConvertedAmount(_ amount: String)
     func setNewPage(_ index: Int)
-    func setReceiverCurrencyIndex(_ index: Int)
-    func setButtonEnabled(_ enabled: Bool, errorHidden: Bool)
+    func setMedianWait(_ wait: String)
+    func setPaymentFee(_ fee: String)
+    func setPaymentFee(count: Int, value: Int)
+    func setSubtotal(_ subtotal: String)
+    func setAddressError(_ message: String?)
+    func setButtonEnabled(_ enabled: Bool)
+    func setEnoughFundsErrorHidden(_ errorHidden: Bool)
 }

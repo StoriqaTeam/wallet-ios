@@ -73,22 +73,18 @@ class FakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol {
     }
     
     func getIndex(fee: Decimal) -> Int {
-        return 0
-//        let paymentFeeValues = Array(selected.keys).sorted()
-//        let index = paymentFeeValues.firstIndex(of: fee)!
-//        return index
+        let paymentFeeValues = Array(selected.keys).sorted()
+        let index = paymentFeeValues.firstIndex(of: fee)!
+        return index
     }
     
     func getFee(index: Int) -> Decimal {
-//        let paymentFeeValues = Array(selected.keys).sorted()
-//        return paymentFeeValues[index]
-        return 0
+        let paymentFeeValues = Array(selected.keys).sorted()
+        return paymentFeeValues[index]
     }
     
     func getWait(fee: Decimal) -> String {
-        return ""
-        
-//        return selected[fee]!
+        return selected[fee]!
     }
     
 }

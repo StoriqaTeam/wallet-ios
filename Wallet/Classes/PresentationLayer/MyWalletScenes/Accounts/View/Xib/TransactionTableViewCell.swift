@@ -37,8 +37,6 @@ extension TransactionTableViewCell {
         switch transaction.opponent {
         case .address(let address):
             opponentLabel.text = address
-        case .contact(let contact):
-            opponentLabel.text = contact.name
         case .txAccount(let account, _):
             opponentLabel.text = account.ownerName
         }

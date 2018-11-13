@@ -19,8 +19,9 @@ protocol SendViewOutput: class {
     func amountChanged(_ amount: String)
     func amountDidBeginEditing()
     func amountDidEndEditing()
+    func receiverAddressDidChange(_ address: String)
+    func newFeeSelected(_ index: Int)
     
-    func receiverCurrencyChanged(_ index: Int)
-    
-    func nextButtonPressed()
+    func scanButtonPressed()
+    func sendButtonPressed()
 }

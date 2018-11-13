@@ -31,7 +31,7 @@ class QRScannerInteractor {
 extension QRScannerInteractor: QRScannerInteractorInput {
     
     func validateAddress(_ address: String) -> QRCodeAddressValidationResult {
-        let selectedCurrency = sendProvider.receiverCurrency
+        let selectedCurrency = sendProvider.selectedAccount.currency
         
         guard let scannedCurrency = addressResolver.resove(address: address) else {
             return .failed

@@ -29,7 +29,13 @@ class SendModule {
         presenter.mainTabBar = tabBar
         let interactor = SendInteractor(sendTransactionBuilder: sendTransactionBuilder,
                                         accountsProvider: app.accountsProvider,
-                                        accountWatcher: accountWatcher)
+                                        accountWatcher: accountWatcher,
+                                        cryptoAddressResolver: app.cryptoAddressResolver,
+                                        sendTransactionNetworkProvider: app.sendTransactionNetworkProvider,
+                                        userDataStoreService: app.userDataStoreService,
+                                        authTokenProvider: app.authTokenProvider,
+                                        accountsUpdater: app.accountsUpdater,
+                                        txnUpdater: app.transactionsUpdater)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
         let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController
