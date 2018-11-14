@@ -11,6 +11,7 @@ import UIKit
 import AlamofireNetworkActivityIndicator
 import FBSDKLoginKit
 import GoogleSignIn
+import CryptoSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,6 +36,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for configurator in configurators {
             configurator.configure()
         }
+        
+//        let hash = "hui".sha512().bytes
+//        print(hash)
+//      
+//        let key = "1234567".bytes
+//        let authentificator = try? HMAC(key: key, variant: .sha512).authenticate("HUI Ivanich".bytes)
+//        print(authentificator ?? "fail")
+//        
+//        for _ in 0...10 {
+//            let deviceID = UIDevice.current.identifierForVendor?.uuidString
+//            print("Device id is: \(deviceID!)")
+//        }
         
         return true
     }
@@ -65,7 +78,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     // MARK: - Handle universal links
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard let link = UniversalLinkParser().parse(link: userActivity.webpageURL) else {
             return false
         }

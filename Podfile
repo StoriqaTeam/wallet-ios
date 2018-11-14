@@ -11,7 +11,7 @@ target 'Wallet' do
   pod 'Slog'
   pod 'RealmSwift'
   pod 'SwiftLint'
-  
+
   # social networks
   pod 'FacebookCore'
   pod 'FacebookLogin'
@@ -20,5 +20,8 @@ target 'Wallet' do
   # crash analitics
   pod 'Fabric'
   pod 'Crashlytics'
-  
+
+  # crypto
+  pod 'CryptoSwift'
+
 end
