@@ -92,9 +92,9 @@ extension PasswordRecoveryConfirmViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case passwordTextField:
-            repeatPasswordTextField.becomeFirstResponder()
+            _ = repeatPasswordTextField.becomeFirstResponder()
         case repeatPasswordTextField:
-            repeatPasswordTextField.resignFirstResponder()
+            _ = repeatPasswordTextField.resignFirstResponder()
         default:
             break
         }

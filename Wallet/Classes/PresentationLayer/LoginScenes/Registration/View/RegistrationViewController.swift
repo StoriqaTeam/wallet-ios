@@ -137,15 +137,15 @@ extension RegistrationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case firstNameTextField:
-            lastNameTextField.becomeFirstResponder()
+            _ = lastNameTextField.becomeFirstResponder()
         case lastNameTextField:
-            emailTextField.becomeFirstResponder()
+            _ = emailTextField.becomeFirstResponder()
         case emailTextField:
-            passwordTextField.becomeFirstResponder()
+            _ = passwordTextField.becomeFirstResponder()
         case passwordTextField:
-            repeatPasswordTextField.becomeFirstResponder()
+            _ = repeatPasswordTextField.becomeFirstResponder()
         case repeatPasswordTextField:
-            repeatPasswordTextField.resignFirstResponder()
+            _ = repeatPasswordTextField.resignFirstResponder()
         default:
             break
         }
