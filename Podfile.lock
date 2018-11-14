@@ -10,6 +10,7 @@ PODS:
   - Bolts/Tasks (1.9.0)
   - Crashlytics (3.10.8):
     - Fabric (~> 1.7.12)
+  - CryptoSwift (0.12.0)
   - Fabric (1.7.12)
   - FacebookCore (0.4.0):
     - Bolts (~> 1.9)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.7)
   - AlamofireNetworkActivityIndicator (~> 2.2)
   - Crashlytics
+  - CryptoSwift
   - Fabric
   - FacebookCore
   - FacebookLogin
@@ -71,6 +73,7 @@ SPEC REPOS:
     - AlamofireNetworkActivityIndicator
     - Bolts
     - Crashlytics
+    - CryptoSwift
     - Fabric
     - FacebookCore
     - FacebookLogin
@@ -90,6 +93,7 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityIndicator: 18346ff6d770d9513d0ac6f2d99706f40f93dbaa
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Crashlytics: 058dc1ba579f6c100bc60a6878703779bff383c4
+  CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
   Fabric: d7387db9a31aadff63b147a4b91d982c53afaa4f
   FacebookCore: 770e57cfe250a4de4458b682191c0ff062dee247
   FacebookLogin: eb0f2251aca835a94d70a5f7e580edc46d1e1603
@@ -104,6 +108,6 @@ SPEC CHECKSUMS:
   Slog: 4b978d716d8984c67c2703127afc7287b1b26fd2
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: d5f882946297a4ec68129f9911169356f8c90329
+PODFILE CHECKSUM: 2494c953cb0f8a89aa24ceb833deed62fb177b9a
 
 COCOAPODS: 1.5.3
