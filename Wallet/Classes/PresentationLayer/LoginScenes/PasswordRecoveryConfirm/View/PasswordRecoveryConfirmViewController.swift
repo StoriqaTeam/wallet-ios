@@ -39,6 +39,9 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
         
         repeatPasswordTextField.placeholder = "repeat_password".localized()
         repeatPasswordTextField.layoutBlock = layoutBlock
+        
+        passwordTextField.delegate = self
+        repeatPasswordTextField.delegate = self
     }
     
     // MARK: - Actions
@@ -88,11 +91,14 @@ extension PasswordRecoveryConfirmViewController: PasswordRecoveryConfirmViewInpu
 
 // MARK: - UITextFieldDelegate
 
-extension PasswordRecoveryConfirmViewController {
+extension PasswordRecoveryConfirmViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         switch textField {
         case passwordTextField:
+            keyboardAnimationEnabled = false
             _ = repeatPasswordTextField.becomeFirstResponder()
+            keyboardAnimationEnabled = true
         case repeatPasswordTextField:
             _ = repeatPasswordTextField.resignFirstResponder()
         default:

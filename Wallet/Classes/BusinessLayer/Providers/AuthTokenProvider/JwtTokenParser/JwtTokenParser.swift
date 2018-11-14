@@ -35,6 +35,7 @@ class JwtTokenParser: JwtTokenParserProtocol {
 
 extension JwtTokenParser {
     private func paddedBase64(encodedString: String) -> String {
+        guard !(encodedString.count % 4 == 0) else { return encodedString }
         let encodedStringLength = encodedString.count
         let paddedLength = encodedStringLength + (4 - (encodedStringLength % 4))
         let paddedBase64String = encodedString.padding(toLength: paddedLength, withPad: "=", startingAt: 0)
