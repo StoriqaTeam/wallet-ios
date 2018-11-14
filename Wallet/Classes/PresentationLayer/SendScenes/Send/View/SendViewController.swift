@@ -327,13 +327,17 @@ extension SendViewController {
             setNavigationBarAlpha(alpha)
         }
     }
+}
+
+
+// MARK: Keyboard notifications
+
+extension SendViewController {
     
     @objc private func keyboardWillShow(_ notification: Notification) {
         guard let scrollView = scrollView, amountTextField.isFirstResponder else {
             return
         }
-        
-        // FIXME: keyboard does not make scroll to make amountTextField visible
         
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             
@@ -370,5 +374,4 @@ extension SendViewController {
             self?.isKeyboardAnimating = false
         }
     }
-    
 }

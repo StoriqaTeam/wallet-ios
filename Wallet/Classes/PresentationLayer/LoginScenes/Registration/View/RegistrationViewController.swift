@@ -29,6 +29,7 @@ class RegistrationViewController: UIViewController {
     
     // MARK: - Variables
     
+    private var activeTextField: UITextField?
     private var isAcceptedAgreement = false
     private let acceptedAgreementColor = Theme.Color.brightSkyBlue
     private let nonAcceptedAgreementColor = UIColor.lightGray
@@ -50,6 +51,12 @@ class RegistrationViewController: UIViewController {
                                                selector: #selector(textDidChange(_:)),
                                                name: UITextField.textDidChangeNotification,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     deinit {
@@ -134,18 +141,28 @@ extension RegistrationViewController: RegistrationViewInput {
 // MARK: - UITextFieldDelegate
 
 extension RegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        activeTextField = textField
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        activeTextField = nil
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case firstNameTextField:
-            lastNameTextField.becomeFirstResponder()
+            _ = lastNameTextField.becomeFirstResponder()
         case lastNameTextField:
-            emailTextField.becomeFirstResponder()
+            _ = emailTextField.becomeFirstResponder()
         case emailTextField:
-            passwordTextField.becomeFirstResponder()
+            _ = passwordTextField.becomeFirstResponder()
         case passwordTextField:
-            repeatPasswordTextField.becomeFirstResponder()
+            _ = repeatPasswordTextField.becomeFirstResponder()
         case repeatPasswordTextField:
-            repeatPasswordTextField.resignFirstResponder()
+            _ = repeatPasswordTextField.resignFirstResponder()
         default:
             break
         }
@@ -241,5 +258,41 @@ extension RegistrationViewController {
     
     private func setSocialView() {
         socialNetworkAuthView.setUp(from: self, delegate: self, type: .register)
+    }
+}
+
+
+// MARK: Keyboard notifications
+
+extension RegistrationViewController {
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard let scrollView = scrollView, let activeTextField = activeTextField else {
+            return
+        }
+        
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            
+            let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
+            let textFieldOrigin = activeTextField.convert(activeTextField.bounds, to: view).maxY
+            var delta = textFieldOrigin - keyboardOrigin + 8
+            
+            guard delta > 0 else { return }
+            
+            if scrollView.contentSize.height < view.frame.height {
+                delta += view.frame.height - scrollView.contentSize.height
+            }
+            
+            scrollView.contentOffset = CGPoint(x: 0, y: delta)
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
+        }
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        guard let scrollView = scrollView else {
+            return
+        }
+        
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.contentOffset = CGPoint.zero
     }
 }
