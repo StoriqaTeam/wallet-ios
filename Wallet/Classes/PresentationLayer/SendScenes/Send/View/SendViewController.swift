@@ -335,20 +335,22 @@ extension SendViewController {
         
         // FIXME: keyboard does not make scroll to make amountTextField visible
         
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardOrigin = view.frame.height - keyboardFrame.cgRectValue.height
-            let textFieldOrigin = amountTextField.superview!.convert(amountTextField.frame, to: view).maxY
-            var delta = textFieldOrigin - keyboardOrigin + 16
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            
+            isKeyboardAnimating = true
+            
+            let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
+            let textFieldOrigin = amountTextField.convert(amountTextField.bounds, to: view).maxY
+            var delta = textFieldOrigin - keyboardOrigin + 8
+            
+            guard delta > 0 else { return }
             
             if scrollView.contentSize.height < view.frame.height {
                 delta += view.frame.height - scrollView.contentSize.height
             }
             
-            isKeyboardAnimating = true
-            
-            var contentInset = self.scrollView.contentInset
-            contentInset.bottom = delta
-            scrollView.contentInset = contentInset
+            scrollView.contentOffset = CGPoint(x: 0, y: delta)
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
         }
     }
     
@@ -359,9 +361,8 @@ extension SendViewController {
         
         isKeyboardAnimating = true
         
-        let contentInset = UIEdgeInsets.zero
-        scrollView.contentInset = contentInset
-        
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.contentOffset = CGPoint.zero
     }
     
     @objc private func keyboardFinishedAnimating(_ notification: Notification) {
