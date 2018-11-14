@@ -26,13 +26,14 @@ extension SendRouter: SendRouterInput {
         QRScannerModule.create(app: app, sendTransactionBuilder: sendTransactionBuilder).present(from: viewController)
     }
     
-    func showConfirm(amount: String,
-                     address: String,
-                     popUpDelegate: PopUpSendConfirmVMDelegate,
+    func showConfirm(address: String,
+                     amount: String,
+                     fee: String,
+                     confirmTxBlock: @escaping (() -> Void),
                      from viewController: UIViewController) {
-        let viewModel = PopUpSendConfirmVM(amount: amount, address: address)
-        viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        SendConfirmPopUpModule
+            .create(address: address, amount: amount, fee: fee, confirmTxBlock: confirmTxBlock)
+            .present(from: viewController)
     }
     
     func showConfirmFailed(message: String,
