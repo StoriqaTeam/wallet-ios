@@ -327,31 +327,34 @@ extension SendViewController {
             setNavigationBarAlpha(alpha)
         }
     }
+}
+
+
+// MARK: Keyboard notifications
+
+extension SendViewController {
     
     @objc private func keyboardWillShow(_ notification: Notification) {
-        guard let scrollView = scrollView, amountTextField.isFirstResponder else {
-            return
+        guard amountTextField.isFirstResponder,
+            let scrollView = scrollView, 
+            let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+                return
         }
         
-        // FIXME: keyboard does not make scroll to make amountTextField visible
+        isKeyboardAnimating = true
         
-        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            
-            isKeyboardAnimating = true
-            
-            let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
-            let textFieldOrigin = amountTextField.convert(amountTextField.bounds, to: view).maxY
-            var delta = textFieldOrigin - keyboardOrigin + 8
-            
-            guard delta > 0 else { return }
-            
-            if scrollView.contentSize.height < view.frame.height {
-                delta += view.frame.height - scrollView.contentSize.height
-            }
-            
-            scrollView.contentOffset = CGPoint(x: 0, y: delta)
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
+        let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
+        let textFieldOrigin = amountTextField.convert(amountTextField.bounds, to: view).maxY
+        var delta = textFieldOrigin - keyboardOrigin + 8
+        
+        guard delta > 0 else { return }
+        
+        if scrollView.contentSize.height < view.frame.height {
+            delta += view.frame.height - scrollView.contentSize.height
         }
+        
+        scrollView.contentOffset = CGPoint(x: 0, y: delta)
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
@@ -370,5 +373,4 @@ extension SendViewController {
             self?.isKeyboardAnimating = false
         }
     }
-    
 }
