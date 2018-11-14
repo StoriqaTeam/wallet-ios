@@ -285,9 +285,10 @@ extension SendInteractor {
         let total = sendProvider.getSubtotal()
         let formIsValid = isFormValid()
         let isEnough = sendProvider.isEnoughFunds()
+        let hasAmount = !sendProvider.amount.isZero
         
         output.updateTotal(total, currency: accountCurrency)
-        output.updateIsEnoughFunds(isEnough)
+        output.updateIsEnoughFunds(!hasAmount || isEnough)
         output.updateFormIsValid(formIsValid)
     }
     
