@@ -54,7 +54,6 @@ class SendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configInterface()
-        addHideKeyboardGuesture()
         output.accountsCollectionView(accountsCollectionView)
         output.viewIsReady()
     }
@@ -133,6 +132,13 @@ extension SendViewController: SendViewInput {
     
     func setSubtotal(_ subtotal: String) {
         subtotalLabel.text = subtotal
+        
+        if self.subtotalLabel.superview!.isHidden != subtotal.isEmpty {
+            UIView.performWithoutAnimation {
+                self.subtotalLabel.superview?.isHidden = subtotal.isEmpty
+            }
+        }
+        
     }
     
     func setMedianWait(_ wait: String) {
