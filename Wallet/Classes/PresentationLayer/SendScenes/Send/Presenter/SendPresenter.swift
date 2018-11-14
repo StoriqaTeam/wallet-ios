@@ -108,13 +108,20 @@ extension SendPresenter: SendViewOutput {
     
     func sendButtonPressed() {
         let amount = interactor.getAmount()
+        let fee = interactor.getFee()
         let currency = interactor.getCurrency()
         let amountString = getStringFrom(amount: amount, currency: currency)
+        let feeString = getStringFrom(amount: fee, currency: currency)
         let address = interactor.getAddress()
+        let confirmTxBlock = { [weak self] in
+            self?.storiqaLoader.startLoader()
+            self?.interactor.sendTransaction()
+        }
         
-        router.showConfirm(amount: amountString,
-                           address: address,
-                           popUpDelegate: self,
+        router.showConfirm(address: address,
+                           amount: amountString,
+                           fee: feeString,
+                           confirmTxBlock: confirmTxBlock,
                            from: view.viewController)
     }
     
@@ -220,15 +227,6 @@ extension SendPresenter: AccountsDataManagerDelegate {
     }
 }
 
-
-// MARK: - PopUpRegistrationSuccessVMDelegate
-
-extension SendPresenter: PopUpSendConfirmVMDelegate {
-    func confirmTransaction() {
-        storiqaLoader.startLoader()
-        interactor.sendTransaction()
-    }
-}
 
 // MARK: - PopUpRegistrationSuccessVMDelegate
 

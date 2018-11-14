@@ -117,11 +117,11 @@ extension ChangePasswordViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case currentPassword:
-            newPassword.becomeFirstResponder()
+            _ = newPassword.becomeFirstResponder()
         case newPassword:
-            repeatPassword.becomeFirstResponder()
+            _ = repeatPassword.becomeFirstResponder()
         case repeatPassword:
-            repeatPassword.resignFirstResponder()
+            _ = repeatPassword.resignFirstResponder()
         default:
             break
         }

@@ -110,9 +110,9 @@ extension LoginViewController: SocialNetworkAuthViewDelegate {
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTextField {
-            passwordTextField.becomeFirstResponder()
+            _ = passwordTextField.becomeFirstResponder()
         } else {
-            passwordTextField.resignFirstResponder()
+            _ = passwordTextField.resignFirstResponder()
         }
         
         return true

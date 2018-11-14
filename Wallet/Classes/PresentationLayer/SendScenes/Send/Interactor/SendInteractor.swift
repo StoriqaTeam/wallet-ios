@@ -79,7 +79,6 @@ extension SendInteractor: SendInteractorInput {
         return accountsProvider.getAllAccounts()
     }
     
-    
     func getAccountsCount() -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.count
@@ -93,6 +92,10 @@ extension SendInteractor: SendInteractorInput {
     
     func getAmount() -> Decimal? {
         return sendProvider.amount
+    }
+    
+    func getFee() -> Decimal {
+        return sendProvider.paymentFee
     }
     
     func getCurrency() -> Currency {

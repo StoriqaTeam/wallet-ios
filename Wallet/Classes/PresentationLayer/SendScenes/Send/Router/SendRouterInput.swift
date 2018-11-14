@@ -12,9 +12,10 @@ import UIKit
 protocol SendRouterInput: class {
     func showScanner(sendTransactionBuilder: SendProviderBuilderProtocol,
                      from viewController: UIViewController)
-    func showConfirm(amount: String,
-                     address: String,
-                     popUpDelegate: PopUpSendConfirmVMDelegate,
+    func showConfirm(address: String,
+                     amount: String,
+                     fee: String,
+                     confirmTxBlock: @escaping (() -> Void),
                      from viewController: UIViewController)
     func showConfirmFailed(message: String,
                            from viewController: UIViewController)

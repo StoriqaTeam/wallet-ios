@@ -184,8 +184,8 @@ extension TransactionFilterViewController {
     }
     
     private func clearUI() {
-        fromTextField.resignFirstResponder()
-        toTextField.resignFirstResponder()
+        _ = fromTextField.resignFirstResponder()
+        _ = toTextField.resignFirstResponder()
         fromTextField.text = ""
         toTextField.text = ""
     }

@@ -84,7 +84,7 @@ extension PinSetupDataManager: UICollectionViewDelegateFlowLayout, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let pinInputCell = cell as? PinSetupCollectionViewCell else  {
+        guard let pinInputCell = cell as? PinSetupCollectionViewCell else {
             fatalError("Fail to cast to PinSetupCollectionViewCell")
         }
         
