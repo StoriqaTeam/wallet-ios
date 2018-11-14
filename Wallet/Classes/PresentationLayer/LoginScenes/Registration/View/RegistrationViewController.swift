@@ -10,9 +10,9 @@ import UIKit
 
 
 class RegistrationViewController: UIViewController {
-
+    
     var output: RegistrationViewOutput!
-
+    
     // MARK: - Outlets
     
     @IBOutlet private var firstNameTextField: UnderlinedTextField!
@@ -33,9 +33,9 @@ class RegistrationViewController: UIViewController {
     private var isAcceptedAgreement = false
     private let acceptedAgreementColor = Theme.Color.brightSkyBlue
     private let nonAcceptedAgreementColor = UIColor.lightGray
-
+    
     // MARK: - Life cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
@@ -64,7 +64,7 @@ class RegistrationViewController: UIViewController {
     }
     
     // MARK: - Actions
-
+    
     @IBAction private func signUp() {
         dismissKeyboard()
         restoreSecureFields()
@@ -204,7 +204,7 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
 
 extension RegistrationViewController {
     private func configFields() {
-    
+        
         let layoutBlock: (() -> Void) = {[weak self] in
             self?.view.layoutIfNeeded()
         }
@@ -228,7 +228,7 @@ extension RegistrationViewController {
         
         agreementLabel.textColor = Theme.Color.primaryGrey
         agreementLabel.text = "accept_agreement".localized()
-
+        
         signUpButton.title = "sign_up".localized()
     }
     
@@ -266,25 +266,24 @@ extension RegistrationViewController {
 
 extension RegistrationViewController {
     @objc private func keyboardWillShow(_ notification: Notification) {
-        guard let scrollView = scrollView, let activeTextField = activeTextField else {
-            return
+        guard let scrollView = scrollView,
+            let activeTextField = activeTextField,
+            let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+                return
         }
         
-        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            
-            let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
-            let textFieldOrigin = activeTextField.convert(activeTextField.bounds, to: view).maxY
-            var delta = textFieldOrigin - keyboardOrigin + 8
-            
-            guard delta > 0 else { return }
-            
-            if scrollView.contentSize.height < view.frame.height {
-                delta += view.frame.height - scrollView.contentSize.height
-            }
-            
-            scrollView.contentOffset = CGPoint(x: 0, y: delta)
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
+        let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
+        let textFieldOrigin = activeTextField.convert(activeTextField.bounds, to: view).maxY
+        var delta = textFieldOrigin - keyboardOrigin + 8
+        
+        guard delta > 0 else { return }
+        
+        if scrollView.contentSize.height < view.frame.height {
+            delta += view.frame.height - scrollView.contentSize.height
         }
+        
+        scrollView.contentOffset = CGPoint(x: 0, y: delta)
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
