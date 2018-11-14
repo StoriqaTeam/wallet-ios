@@ -23,7 +23,7 @@ class JwtParcerTests: XCTestCase {
     let jwtToken_4 = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VyX2lkIjoxMDIsImV4cCI6MTU0MjI3OTYzOCwicHJvdmlkZXIiOiJFbWFpbCJ9.bS6XWOauIqfvJbrUlhhK4wp4f75gsIbnYnpB_MYrO-Aa6FdqKALRIUyG9k4SmDZvQjkUZmXnsOa-fG8vi84nej4RwOkw28gQf0hpaKw93NhdreKZRMHBeEY3PSIol3yrd0QiU_EEJWp3CcRfSM1Vm6K7_TfEXlB6zai7nTSXV0xPDcrOHoL6dc7lC9Ev9Bwqnhvjxy1N6J814oEgcvf8kLw1_ADhg56psQ-MVAZsOZYmS-865caOlD-gEfJVDmY24YN1KCN5vZvRVROg9M6xQulhUAmu3VzXA-LTxb2uaqimlMU4znApoEJSSSCcIf2nDsLqA1Ccq5gcUsWrfJPw8A"
     
     override func setUp() {
-     
+        
     }
     
     func testParser() {
