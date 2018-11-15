@@ -14,10 +14,11 @@ class LoginModule {
         let presenter = LoginPresenter()
         
         let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: app.facebookLoginManager)
+        let biometricAuthProvider = app.biometricAuthProviderFactory.create()
         
         let interactor = LoginInteractor(socialViewVM: socialVM,
                                          defaultProvider: app.defaultsProvider,
-                                         biometricAuthProvider: app.biometricAuthProvider,
+                                         biometricAuthProvider: biometricAuthProvider,
                                          userDataStore: app.userDataStoreService,
                                          keychain: app.keychainProvider,
                                          loginService: app.loginService)

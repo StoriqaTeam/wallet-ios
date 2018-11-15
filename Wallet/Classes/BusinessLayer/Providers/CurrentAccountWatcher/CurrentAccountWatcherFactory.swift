@@ -9,7 +9,7 @@
 import Foundation
 
 protocol CurrentAccountWatcherFactoryProtocol {
-    func create() -> CurrentAccountWatcher
+    func create() -> CurrentAccountWatcherProtocol
 }
 
 class CurrentAccountWatcherFactory: CurrentAccountWatcherFactoryProtocol {
@@ -20,7 +20,7 @@ class CurrentAccountWatcherFactory: CurrentAccountWatcherFactoryProtocol {
         self.accountProvider = accountProvider
     }
     
-    func create() -> CurrentAccountWatcher {
+    func create() -> CurrentAccountWatcherProtocol {
         return CurrentAccountWatcher(accountProvider: accountProvider)
     }
 }
