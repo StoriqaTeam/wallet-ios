@@ -8,3 +8,4 @@
 
 
 #import "GoogleSignIn/GoogleSignIn.h"
+#import "Internal.h"
