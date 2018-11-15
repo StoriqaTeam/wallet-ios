@@ -43,6 +43,13 @@ struct Constants {
     struct DateFormats {
         static let txDateString = "yyyy-MM-dd'T'HH:mm:ss.SS"
     }
+    
+    struct Crypto {
+        struct PBKDF2 {
+            static let password: Array<UInt8> = Array("storiqa".utf8)
+            static let salt: Array<UInt8> = Array("iOS".utf8) 
+        }
+    }
 }
 
 

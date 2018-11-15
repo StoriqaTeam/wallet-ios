@@ -44,6 +44,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.0)
   - GTMSessionFetcher/Full (1.2.0):
     - GTMSessionFetcher/Core (= 1.2.0)
+  - OpenSSL-Universal (1.0.2.13)
   - Realm (3.10.0):
     - Realm/Headers (= 3.10.0)
   - Realm/Headers (3.10.0)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - GoogleSignIn
+  - OpenSSL-Universal
   - RealmSwift
   - secp256k1.swift
   - Slog
@@ -85,6 +87,7 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GTMOAuth2
     - GTMSessionFetcher
+    - OpenSSL-Universal
     - Realm
     - RealmSwift
     - secp256k1.swift
@@ -106,12 +109,13 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  OpenSSL-Universal: 401888162f11c33ebbd46f782d9229da35c61327
   Realm: 85ab9e4f779d66f6e9ffeb118dc25b7f130c96ac
   RealmSwift: 69121c8b86d0ae005fb779efdb10e606732e1c74
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   Slog: 4b978d716d8984c67c2703127afc7287b1b26fd2
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: a4456768e6cf910f67a95ffc4dde5ee91dd19d3d
+PODFILE CHECKSUM: ecfdc9a11d214768843f6cd45e4f470608bc2f04
 
 COCOAPODS: 1.5.3

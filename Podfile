@@ -24,5 +24,6 @@ target 'Wallet' do
   # crypto
   pod 'CryptoSwift'
   pod 'secp256k1.swift'
+  pod 'OpenSSL-Universal'
 
 end

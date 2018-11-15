@@ -82,7 +82,7 @@ public final class EllipticCurveEncrypterSecp256k1 {
         let status = secp256k1_ecdsa_recover(context, &outPubKey, &signature, hash)
         return status == 1 ? outPubKey : nil
     }
-    
+
     /// Converts public key from library's data structure to bytes
     ///
     /// - Parameters:

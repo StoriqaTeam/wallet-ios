@@ -327,6 +327,8 @@
 		A58EE3C12150042E0096C155 /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */; };
 		A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3C32150215B0096C155 /* BiometricAuthProvider.swift */; };
 		A58EE3C62150379E0096C155 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58EE3C52150379E0096C155 /* Login.storyboard */; };
+		A5933D39219DAB910080C8C7 /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5933D38219DAB910080C8C7 /* KeyGenerator.swift */; };
+		A5933D3C219DBE230080C8C7 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5933D3B219DBE230080C8C7 /* Signer.swift */; };
 		A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */; };
 		A5A52854216B940200DB03B6 /* TransactionDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */; };
 		A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */; };
@@ -960,6 +962,8 @@
 		A58EE3C02150042E0096C155 /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
 		A58EE3C32150215B0096C155 /* BiometricAuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthProvider.swift; sourceTree = "<group>"; };
 		A58EE3C52150379E0096C155 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		A5933D38219DAB910080C8C7 /* KeyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGenerator.swift; sourceTree = "<group>"; };
+		A5933D3B219DBE230080C8C7 /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashTrackerConfigurator.swift; sourceTree = "<group>"; };
 		A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TransactionDetails.storyboard; sourceTree = "<group>"; };
 		A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDetailView.xib; sourceTree = "<group>"; };
@@ -3164,6 +3168,28 @@
 			path = ApplicationConfigurator;
 			sourceTree = "<group>";
 		};
+		A5933D37219DAB600080C8C7 /* CryptoSupport */ = {
+			isa = PBXGroup;
+			children = (
+				A5933D3A219DBA280080C8C7 /* Keys */,
+				B8241852219D497D009000D4 /* Signature.swift */,
+				B8241858219D563B009000D4 /* Crypto.swift */,
+				B824185A219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift */,
+				B824185D219D57FA009000D4 /* Internal.h */,
+				B824185E219D57FB009000D4 /* Internal.m */,
+			);
+			path = CryptoSupport;
+			sourceTree = "<group>";
+		};
+		A5933D3A219DBA280080C8C7 /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				B8241854219D49FD009000D4 /* PrivateKey.swift */,
+				B8241856219D55EC009000D4 /* PublicKey.swift */,
+			);
+			path = Keys;
+			sourceTree = "<group>";
+		};
 		A5A20BB5215E77CB00001340 /* CrashAnaliticConfigurator */ = {
 			isa = PBXGroup;
 			children = (
@@ -3426,13 +3452,9 @@
 		B8241851219D495D009000D4 /* ECDSA */ = {
 			isa = PBXGroup;
 			children = (
-				B8241852219D497D009000D4 /* Signature.swift */,
-				B8241854219D49FD009000D4 /* PrivateKey.swift */,
-				B8241856219D55EC009000D4 /* PublicKey.swift */,
-				B8241858219D563B009000D4 /* Crypto.swift */,
-				B824185A219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift */,
-				B824185D219D57FA009000D4 /* Internal.h */,
-				B824185E219D57FB009000D4 /* Internal.m */,
+				A5933D37219DAB600080C8C7 /* CryptoSupport */,
+				A5933D38219DAB910080C8C7 /* KeyGenerator.swift */,
+				A5933D3B219DBE230080C8C7 /* Signer.swift */,
 			);
 			path = ECDSA;
 			sourceTree = "<group>";
@@ -4854,6 +4876,7 @@
 				A56B4C76215CD8F10017B337 /* Device.swift in Sources */,
 				A56ED383216CD70B009FA58B /* TransactionDetailsInteractorOutput.swift in Sources */,
 				21C9A25E63FE311BA5837841 /* PinQuickLaunchViewInput.swift in Sources */,
+				A5933D39219DAB910080C8C7 /* KeyGenerator.swift in Sources */,
 				A50BF8AC215409B500FB0DA2 /* Theme.swift in Sources */,
 				840E0ADCB367221C2EB81EA6 /* PinQuickLaunchViewOutput.swift in Sources */,
 				4D12ADD2691133DFA814DD26 /* PinQuickLaunchViewController.swift in Sources */,
@@ -5071,6 +5094,7 @@
 				E0AD72DCFDB861B1D4DEF6CC /* QRScannerViewController.swift in Sources */,
 				D1165EF7AF3D95C268460D43 /* QRScannerPresenter.swift in Sources */,
 				0F5C6FA888352D3BCF88000F /* QRScannerInteractorInput.swift in Sources */,
+				A5933D3C219DBE230080C8C7 /* Signer.swift in Sources */,
 				BC5B1AC1C08666ED0D21E500 /* QRScannerInteractorOutput.swift in Sources */,
 				A57434E221774B6A006B4CAE /* ContactsNetworkProvider.swift in Sources */,
 				A56ED386216CD712009FA58B /* TransactionDetailsViewOutput.swift in Sources */,
