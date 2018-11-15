@@ -53,7 +53,6 @@ class SendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configInterface()
         output.accountsCollectionView(accountsCollectionView)
         output.viewIsReady()
     }
@@ -107,7 +106,10 @@ extension SendViewController: SendViewInput {
     func setupInitialState(numberOfPages: Int) {
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
+        
         addNotificationObservers()
+        configInterface()
+        addHideKeyboardGuesture()
     }
     
     func setScannedAddress(_ address: String) {
