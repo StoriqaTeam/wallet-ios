@@ -12,4 +12,5 @@ import Foundation
 protocol TransactionsInteractorInput: class {
     func getTransactions() -> [Transaction]
     func startObservers()
+    func getAccount() -> Account
 }

@@ -9,7 +9,11 @@
 import Foundation
 
 
-class TransactionMapper: Mappable {
+protocol TransactionMapperProtocol {
+    func map(from obj: Transaction, account: Account) -> TransactionDisplayable
+}
+
+class TransactionMapper: TransactionMapperProtocol {
     
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrencyConverterFactoryProtocol
@@ -30,24 +34,37 @@ class TransactionMapper: Mappable {
         self.denominationUnitsConverter = denominationUnitsConverter
     }
     
-    func map(from obj: Transaction) -> TransactionDisplayable {
+    func map(from obj: Transaction, account: Account) -> TransactionDisplayable {
         
-        let currency = obj.currency
-        let cryptoAmountDecimal = denominationUnitsConverter.amountToMaxUnits(obj.cryptoAmount, currency: currency)
-        let feeAmountDecimal = denominationUnitsConverter.amountToMaxUnits(obj.fee, currency: currency)
+        let direction = transactionDirectionResolver.resolveDirection(for: obj, account: account)
+        let opponent = transactionOpponentResolver.resolveOpponent(for: obj, account: account)
+        let timestamp = date(from: obj)
         
+        let currency: Currency
+        let amountInMinUnits: Decimal
+        
+        switch direction {
+        case .send:
+            currency = obj.fromCurrency
+            amountInMinUnits = obj.fromValue
+        case .receive:
+            currency = obj.toCurrency
+            amountInMinUnits = obj.toValue
+        }
+        
+        let cryptoAmountDecimal = denominationUnitsConverter.amountToMaxUnits(amountInMinUnits, currency: currency)
+        let feeAmountDecimal = denominationUnitsConverter.amountToMaxUnits(obj.fee, currency: obj.fromCurrency)
         let converter = converterFactory.createConverter(from: currency)
         let fiatAmoutDecimal = converter.convert(amount: cryptoAmountDecimal, to: .fiat)
         
         let cryptoAmountString = currencyFormatter.getStringFrom(amount: cryptoAmountDecimal, currency: currency)
         let feeAmountString = currencyFormatter.getStringFrom(amount: feeAmountDecimal, currency: currency)
         let fiatAmountString = currencyFormatter.getStringFrom(amount: fiatAmoutDecimal, currency: .fiat)
-        let direction = transactionDirectionResolver.resolveDirection(for: obj)
-        let opponent = transactionOpponentResolver.resolveOpponent(for: obj)
-        let timestamp = date(from: obj)
+        
         
         return TransactionDisplayable(transaction: obj,
                                       cryptoAmountString: cryptoAmountString,
+                                      currency: currency,
                                       fiatAmountString: fiatAmountString,
                                       direction: direction,
                                       opponent: opponent,

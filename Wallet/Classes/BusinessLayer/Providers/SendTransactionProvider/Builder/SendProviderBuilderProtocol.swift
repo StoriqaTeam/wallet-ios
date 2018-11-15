@@ -11,10 +11,9 @@ import Foundation
 protocol SendProviderBuilderProtocol: class {
     func set(account: Account)
     func set(cryptoAmount: Decimal)
+    func setAddress(_ address: String)
     func setScannedAddress(_ address: String)
-    func setContact(_ contact: ContactDisplayable)
     func setPaymentFee(index: Int)
-    func setReceiverCurrency(_ currency: Currency)
     func setScannedDelegate(_ delegate: QRScannerDelegate)
     func build() -> SendTransactionProvider
     func clear()

@@ -69,13 +69,6 @@
                                     <constraint firstItem="Kca-x7-kZw" firstAttribute="centerX" secondItem="gWh-H4-gYQ" secondAttribute="centerX" id="y6N-yF-T8i"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwG-hO-0ot" customClass="PinContainerView" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="57" y="199.5" width="261" height="413.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="261" id="OpC-k3-NJa"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7R-O3-ykX">
                                 <rect key="frame" x="127.5" y="607" width="120" height="40"/>
                                 <constraints>
@@ -88,6 +81,13 @@
                                     <action selector="iForgotPinPressed:" destination="ZkR-hi-kCc" eventType="touchUpInside" id="tTi-cr-XDO"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwG-hO-0ot" customClass="PinContainerView" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="57" y="199" width="261" height="413.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="261" id="OpC-k3-NJa"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

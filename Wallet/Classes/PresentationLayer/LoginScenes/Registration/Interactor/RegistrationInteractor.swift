@@ -23,13 +23,19 @@ class RegistrationInteractor {
     private let socialViewVM: SocialNetworkAuthViewModel
     private let formValidationProvider: RegistrationFormValidatonProviderProtocol
     private let registrationNetworkProvider: RegistrationNetworkProviderProtocol
+    private let loginService: LoginServiceProtocol
+    private let biometricAuthProvider: BiometricAuthProviderProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          formValidationProvider: RegistrationFormValidatonProviderProtocol,
-         registrationNetworkProvider: RegistrationNetworkProviderProtocol) {
+         registrationNetworkProvider: RegistrationNetworkProviderProtocol,
+         loginService: LoginServiceProtocol,
+         biometricAuthProvider: BiometricAuthProviderProtocol) {
         self.socialViewVM = socialViewVM
         self.formValidationProvider = formValidationProvider
         self.registrationNetworkProvider = registrationNetworkProvider
+        self.loginService = loginService
+        self.biometricAuthProvider = biometricAuthProvider
     }
     
 }
@@ -38,6 +44,7 @@ class RegistrationInteractor {
 // MARK: - RegistrationInteractorInput
 
 extension RegistrationInteractor: RegistrationInteractorInput {
+    
     func getSocialVM() -> SocialNetworkAuthViewModel {
         return socialViewVM
     }
@@ -49,9 +56,6 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     
     func register(with registrationData: RegistrationData) {
         self.registrationData = registrationData
-        
-        // TODO: - implement new provider
-        log.warn("implement registration provider")
         
         registrationNetworkProvider.register(
             email: registrationData.email,
@@ -81,10 +85,34 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         }
     }
     
+    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String) {
+        loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.socialAuthSucceed()
+            case .failure(let error):
+                self?.output.socialAuthFailed(message: error.localizedDescription)
+            }
+        }
+    }
+    
     func retryRegistration() {
         guard let registrationData = registrationData else {
             fatalError("trying to retry registration without registrationData")
         }
         register(with: registrationData)
+    }
+}
+
+
+// MARK: - Private methods
+
+extension RegistrationInteractor {
+    private func socialAuthSucceed() {
+        if biometricAuthProvider.canAuthWithBiometry {
+            output.showQuickLaunch()
+        } else {
+            output.showPinQuickLaunch()
+        }
     }
 }

@@ -45,13 +45,20 @@ private struct AnyOperation<ResponseSerializer: DataResponseSerializerProtocol>:
             switch response.result {
             case .success(let value):
                 let code = response.response?.statusCode ?? 0
+                
+                let responseStr = "Response \(self.request): \ncode: \(code) \njson: \(JSON(value))"
+                switch code {
+                case 200:
+                    log.debug(responseStr)
+                default:
+                    log.warn(responseStr)
+                }
+                
                 self.completion?(Result.success((code, value)))
-                
-                log.debug("Response \(self.request): \ncode: \(code) \njson: \(JSON(value))")
             case .failure(let error):
-                self.completion?(Result.failure(error))
-                
                 log.error("Response \(self.request): \nerror: \(error.localizedDescription)")
+                
+                self.completion?(Result.failure(error))
             }
             
         }

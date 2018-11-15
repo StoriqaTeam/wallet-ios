@@ -45,6 +45,7 @@ struct Theme {
             static let detailsGreen = UIColor(red: 11/255, green: 231/255, blue: 160/255, alpha: 1)
             static let detailsRed = UIColor(red: 238/255, green: 113/255, blue: 113/255, alpha: 1)
             static let errorRed = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
+            static let lightGrey = UIColor(white: 191.0 / 255.0, alpha: 1.0)
         }
     }
     
@@ -83,6 +84,8 @@ struct Theme {
         static let navigationBarTitle = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
         /** 13px medium */
         static let smallMediumWeightText = UIFont.systemFont(ofSize: 13, weight: .medium)
+        /** 12px regular */
+        static let errorMessage = UIFont.systemFont(ofSize: 12)
     }
     
     

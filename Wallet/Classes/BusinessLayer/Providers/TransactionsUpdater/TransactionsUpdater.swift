@@ -90,6 +90,7 @@ extension TransactionsUpdater {
             completion: { [weak self] (result) in
                 switch result {
                 case .success(let txs):
+                    log.debug("Txn count: \(txs.count)")
                     log.debug("Txn received: \(txs.map { $0.id })")
                     self?.transactionsLoaded(txs)
                 case .failure(let error):

@@ -15,7 +15,7 @@ protocol SendTransactionNetworkProviderProtocol {
               fromAccount: String,
               authToken: String,
               queue: DispatchQueue,
-              completion: @escaping (Result<[Transaction]>) -> Void)
+              completion: @escaping (Result<Transaction>) -> Void)
 }
 
 class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkProviderProtocol {
@@ -25,27 +25,29 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
               fromAccount: String,
               authToken: String,
               queue: DispatchQueue,
-              completion: @escaping (Result<[Transaction]>) -> Void) {
+              completion: @escaping (Result<Transaction>) -> Void) {
         
         let txId = transaction.id
-        let userId = userId
-        let fromAccount = fromAccount
-        let currency = transaction.currency
+        let toCurrency = transaction.toCurrency
+        let value = transaction.toValue.string
         let receiverType = getReceiverType(transaction: transaction)
-        let value = transaction.cryptoAmount.string
         
         // TODO: - Now fee is fix and equals zero because of server!!!
         // let fee = transaction.fee.string
         let feeString = "0"
         
+        // TODO: - exchangeId, exchangeRate
         let request = API.Authorized.sendTransaction(authToken: authToken,
                                                      transactionId: txId,
                                                      userId: userId,
                                                      fromAccount: fromAccount,
                                                      receiverType: receiverType,
-                                                     currency: currency,
+                                                     toCurrency: toCurrency,
                                                      value: value,
-                                                     fee: feeString)
+                                                     valueCurrency: toCurrency,
+                                                     fee: feeString,
+                                                     exchangeId: nil,
+                                                     exchangeRate: nil)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
@@ -53,10 +55,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                if code == 200, let txnData = json.array {
-                    let txn = txnData.compactMap { Transaction(json: $0) }
-                    
-                    guard !txn.isEmpty else {
+                if code == 200 {
+                    guard let txn = Transaction(json: json) else {
                         log.error("Failed to parse sent transaction json")
                         let apiError = SendTransactionNetworkProviderError.failToParseJson
                         completion(.failure(apiError))
@@ -85,7 +85,7 @@ extension SendTransactionNetworkProvider {
         guard let account = transaction.toAccount else {
             let cryptoAddress = transaction.toAddress
             
-            switch transaction.currency {
+            switch transaction.toCurrency {
             case .eth, .stq:
                 if cryptoAddress.count == 42 {
                     let address = String(cryptoAddress.suffix(40)).lowercased()
@@ -131,7 +131,7 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
         case .unknownError:
             return Constants.Errors.userFriendly
         case .failToParseJson:
-            return "Fail to parse JSON"
+            return "Failed to parse JSON"
         }
     }
 }

@@ -5,6 +5,7 @@
 //  Created by Storiqa on 20/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+//swiftlint:disable identifier_name
 
 
 import Foundation
@@ -27,9 +28,12 @@ extension API {
             userId: Int,
             fromAccount: String,
             receiverType: ReceiverType,
-            currency: Currency,
+            toCurrency: Currency,
             value: String,
-            fee: String)
+            valueCurrency: Currency,
+            fee: String,
+            exchangeId: String?,
+            exchangeRate: Decimal?)
         case changePassword(authToken: String, currentPassword: String, newPassword: String)
         case createAccount(authToken: String, userId: Int, id: String, currency: Currency, name: String)
     }
@@ -83,7 +87,7 @@ extension API.Authorized: APIMethodProtocol {
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)"
             ]
-        case .sendTransaction(let authToken, _, _, _, _, _, _, _):
+        case .sendTransaction(let authToken, _, _, _, _, _, _, _, _, _, _):
             return [
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)"
@@ -110,7 +114,17 @@ extension API.Authorized: APIMethodProtocol {
             return nil
         case .getTransactions:
             return nil
-        case .sendTransaction(_, let transactionId, let userId, let fromAccount, let receiverType, let currency, let value, let fee):
+        case .sendTransaction(_,
+                              let transactionId,
+                              let userId,
+                              let fromAccount,
+                              let receiverType,
+                              let toCurrency,
+                              let value,
+                              let valueCurrency,
+                              let fee,
+                              let exchangeId,
+                              let exchangeRate):
             let receiverAddress: String
             let type: String
             
@@ -123,16 +137,25 @@ extension API.Authorized: APIMethodProtocol {
                 type = "account"
             }
             
-            return [
-                    "id": transactionId,
-                    "userId": userId,
-                    "from": fromAccount,
-                    "to": receiverAddress,
-                    "toType": type,
-                    "toCurrency": currency.ISO.lowercased(),
-                    "value": value,
-                    "fee": fee
-            ]
+            var params: [String: Any] = [
+                "id": transactionId,
+                "userId": userId,
+                "from": fromAccount,
+                "to": receiverAddress,
+                "toType": type,
+                "toCurrency": toCurrency.ISO.lowercased(),
+                "value": value,
+                "valueCurrency": valueCurrency.ISO.lowercased(),
+                "fee": fee
+                ]
+            
+            if let exchangeId = exchangeId,
+                let exchangeRate = exchangeRate {
+                params["exchangeId"] = exchangeId
+                params["exchangeRate"] = exchangeRate
+            }
+            
+            return params
         case .changePassword(_, let currentPassword, let newPassword):
             return [
                 "newPassword": newPassword,

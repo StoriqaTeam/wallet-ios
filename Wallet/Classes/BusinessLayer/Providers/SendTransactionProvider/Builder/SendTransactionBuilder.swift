@@ -12,8 +12,6 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     
     private var defaultSendTxProvider: SendTransactionProvider
     
-    private let currencyConverterFactory: CurrencyConverterFactoryProtocol
-    private let currencyFormatter: CurrencyFormatterProtocol
     private let accountsProvider: AccountsProviderProtocol
     private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
@@ -24,15 +22,11 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
          feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
-        self.currencyConverterFactory = currencyConverterFactory
-        self.currencyFormatter = currencyFormatter
         self.accountsProvider = accountsProvider
         self.feeWaitProvider = feeWaitProvider
         self.denominationUnitsConverter = denominationUnitsConverter
         
-        defaultSendTxProvider = SendTransactionProvider(converterFactory: self.currencyConverterFactory,
-                                                        currencyFormatter: self.currencyFormatter,
-                                                        accountProvider: self.accountsProvider,
+        defaultSendTxProvider = SendTransactionProvider(accountProvider: self.accountsProvider,
                                                         feeWaitProvider: self.feeWaitProvider,
                                                         denominationUnitsConverter: self.denominationUnitsConverter)
     }
@@ -45,21 +39,17 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
         defaultSendTxProvider.amount = cryptoAmount
     }
     
-    func setScannedAddress(_ address: String) {
-        defaultSendTxProvider.opponentType = OpponentType.address(address: address)
-        defaultSendTxProvider.scanDelegate?.didScanAddress(address)
+    func setAddress(_ address: String) {
+        defaultSendTxProvider.receiverAddress = address
     }
     
-    func setContact(_ contact: ContactDisplayable) {
-        defaultSendTxProvider.opponentType = OpponentType.contact(contact: contact)
+    func setScannedAddress(_ address: String) {
+        defaultSendTxProvider.receiverAddress = address
+        defaultSendTxProvider.scanDelegate?.didScanAddress(address)
     }
     
     func setPaymentFee(index: Int) {
         defaultSendTxProvider.setPaymentFee(index: index)
-    }
-    
-    func setReceiverCurrency(_ currency: Currency) {
-        defaultSendTxProvider.receiverCurrency = currency
     }
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
@@ -71,9 +61,7 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     }
     
     func clear() {
-        defaultSendTxProvider = SendTransactionProvider(converterFactory: self.currencyConverterFactory,
-                                                        currencyFormatter: self.currencyFormatter,
-                                                        accountProvider: self.accountsProvider,
+        defaultSendTxProvider = SendTransactionProvider(accountProvider: self.accountsProvider,
                                                         feeWaitProvider: self.feeWaitProvider,
                                                         denominationUnitsConverter: self.denominationUnitsConverter)
     }

@@ -28,7 +28,7 @@ class AccountViewCell: UICollectionViewCell {
                        textColor: UIColor,
                        backgroundImage: UIImage) {
         cryptoAmountLabel.text = cryptoAmount
-        fiatAmountLabel.text = fiatAmount
+        fiatAmountLabel.text = "≈" + fiatAmount
         holderNameLabel?.text = holderName
         backgroundImageView.image = backgroundImage
         

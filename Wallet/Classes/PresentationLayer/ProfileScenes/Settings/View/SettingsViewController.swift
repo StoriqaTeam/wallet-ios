@@ -9,80 +9,64 @@
 import UIKit
 
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UIViewController {
 
     var output: SettingsViewOutput!
     
-    @IBOutlet private var sessionsCountLabel: UILabel!
-
+    @IBOutlet private var settingsTableView: UITableView!
+    @IBOutlet private var signOutButton: LightButton!
+    
+    
     // MARK: Life cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
     }
     
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        output.willMoveToParentVC()
+    
+    @IBAction func signOutButtonTapped(_ sender: UIButton) {
+        output.signOutButtonTapped()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        output.viewWillAppear()
-    }
+}
+
+
+// MARK: - UITableViewDataSource
+
+extension SettingsViewController: UITableViewDataSource {
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        output.viewDidAppear()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let info = indexPath.row == 0 ? "Edit profile" : "Change password"
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
+        guard let settingsCell = cell as? SettingsTableViewCell else { fatalError("Fail to cast cell") }
+        settingsCell.configure(info: info)
+        return settingsCell
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
     }
 }
 
 
-// MARK: - Table View methods
+// MARK: - UITableViewDelegate
 
-extension SettingsViewController {
+extension SettingsViewController: UITableViewDelegate {
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SettingsHeaderView")
-        let headerView = cell as! SettingsHeaderView
-        headerView.configure(with: headerDataSource[section])
-        return headerView
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
-        
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 74
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            // FIXME: hidden before release
-//            switch indexPath.row {
-//            case 0:
-//                output.editProfileSelected()
-//            case 1:
-//                output.changePhoneSelected()
-//            case 2:
-            output.changePasswordSelected()
-//            default:
-//                break
-//            }
-        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // FIXME: hidden before release
-//        if indexPath.section == 2 {
-        if indexPath.section == 1 {
-            switch indexPath.row {
-            case 1:
-                output.sessionSelected()
-            default:
-                break
-            }
+        switch indexPath.row {
+        case 0: output.editProfileSelected()
+        case 1: output.changePasswordSelected()
+        default:
+            break
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -94,13 +78,10 @@ extension SettingsViewController {
 
 extension SettingsViewController: SettingsViewInput {
     func setupInitialState() {
-        loadNib()
-        view.backgroundColor = .white
-        tableView.alwaysBounceVertical = false
-    }
-    
-    func setSessions(count: Int) {
-        sessionsCountLabel.text = "\(count)"
+        setDelegates()
+        registerCell()
+        configureTableView()
+        configureInterface()
     }
 }
 
@@ -108,8 +89,23 @@ extension SettingsViewController: SettingsViewInput {
 // MARK: - Private methods
 
 extension SettingsViewController {
-    private func loadNib() {
-        let headerNib = UINib(nibName: "SettingsHeaderView", bundle: Bundle.main)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "SettingsHeaderView")
+    private func registerCell() {
+        let nib = UINib(nibName: "SettingsCell", bundle: nil)
+        settingsTableView.register(nib, forCellReuseIdentifier: "settingsCell")
+    }
+    
+    private func setDelegates() {
+        settingsTableView.delegate = self
+        settingsTableView.dataSource = self
+    }
+    
+    private func configureTableView() {
+        settingsTableView.tableFooterView = UIView()
+        settingsTableView.separatorStyle = .none
+        settingsTableView.isScrollEnabled = false
+    }
+    
+    func configureInterface() {
+        signOutButton.setup(color: Theme.Button.Color.red, borderAlpha: 0.1)
     }
 }

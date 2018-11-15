@@ -27,15 +27,17 @@ extension SettingsRouter: SettingsRouterInput {
         EditProfileModule.create(app: app).present(from: viewController)
     }
     
-    func showChangePhone(from viewController: UIViewController) {
-        ConnectPhoneModule.create(app: app).present(from: viewController)
-    }
-    
-    func showSessions(from viewController: UIViewController) {
-        SessionsModule.create(app: app).present(from: viewController)
-    }
-    
     func showChangePassword(from viewController: UIViewController) {
         ChangePasswordModule.create(app: app).present(from: viewController)
+    }
+    
+    func signOut() {
+        LoginModule.create(app: app).present()
+    }
+    
+    func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate, from viewController: UIViewController) {
+        let viewModel = PopUpSignOutVM()
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
 }

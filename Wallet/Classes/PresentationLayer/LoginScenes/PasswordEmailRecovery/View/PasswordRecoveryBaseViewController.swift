@@ -17,30 +17,14 @@ class PasswordRecoveryBaseViewController: UIViewController {
     @IBOutlet private var headerVerticalSpaceConstraint: NSLayoutConstraint!
     @IBOutlet private var subtitleTopSpaceConstraint: NSLayoutConstraint!
     
+    var keyboardAnimationEnabled = true
     private let buttonBottomSpace: CGFloat = Device.model == .iPhoneSE ? 24 : 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addHideKeyboardGuesture()
         configureInterface()
-        
-        confirmButton.isEnabled = false
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(textDidChange(_:)),
-                                               name: UITextField.textDidChangeNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        addNotificationObservers()
     }
     
     deinit {
@@ -63,30 +47,53 @@ class PasswordRecoveryBaseViewController: UIViewController {
             headerVerticalSpaceConstraint.constant = 16
             subtitleTopSpaceConstraint.constant = 16
         }
+        confirmButton.isEnabled = false
     }
 }
 
-private extension PasswordRecoveryBaseViewController {
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            
-            let keyboardHeight = keyboardFrame.cgRectValue.height
-            let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
-            
-            var animationOptions = UIView.AnimationOptions()
-            if let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
-                animationOptions.insert(UIView.AnimationOptions(rawValue: curve))
-            }
-            
-            resetPasswordButtonBottomConstraint.constant = keyboardHeight + buttonBottomSpace
-            
-            UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: {[weak self] in
-                self?.view.layoutIfNeeded()
-                }, completion: nil)
-        }
+extension PasswordRecoveryBaseViewController {
+    
+    private func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard keyboardAnimationEnabled,
+            let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+                return
+        }
+        
+        let keyboardHeight = keyboardFrame.cgRectValue.height
+        let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
+        
+        var animationOptions = UIView.AnimationOptions()
+        if let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
+            animationOptions.insert(UIView.AnimationOptions(rawValue: curve))
+        }
+        
+        resetPasswordButtonBottomConstraint.constant = keyboardHeight + buttonBottomSpace
+        
+        UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: {[weak self] in
+            self?.view.layoutIfNeeded()
+            }, completion: nil)
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        guard keyboardAnimationEnabled else {
+            return
+        }
+        
         let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
         
         var animationOptions = UIView.AnimationOptions()

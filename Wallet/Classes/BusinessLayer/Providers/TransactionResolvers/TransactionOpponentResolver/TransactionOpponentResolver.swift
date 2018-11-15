@@ -9,7 +9,7 @@
 import Foundation
 
 protocol TransactionOpponentResolverProtocol {
-    func resolveOpponent(for transaction: Transaction) -> OpponentType
+    func resolveOpponent(for transaction: Transaction, account: Account) -> OpponentType
 }
 
 
@@ -27,8 +27,8 @@ class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
         self.contactsMapper = contactsMapper
     }
     
-    func resolveOpponent(for transaction: Transaction) -> OpponentType {
-        let direction = transactionDirectionResolver.resolveDirection(for: transaction)
+    func resolveOpponent(for transaction: Transaction, account: Account) -> OpponentType {
+        let direction = transactionDirectionResolver.resolveDirection(for: transaction, account: account)
         let fromAddress = transaction.fromAddress
         let toAddress = transaction.toAddress
         
@@ -39,26 +39,12 @@ class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
             if let txAccount = transaction.fromAccount.first {
                 return OpponentType.txAccount(account: txAccount, address: fromAddress.first!)
             }
-            return getOpponent(from: fromAddress.first!)
+            return OpponentType.address(address: fromAddress.first!)
         case .send:
             if let txAccount = transaction.toAccount {
                 return OpponentType.txAccount(account: txAccount, address: toAddress)
             }
-            return getOpponent(from: toAddress)
+            return OpponentType.address(address: toAddress)
         }
-    }
-}
-
-
-// MARK: - Private methods
-
-extension TransactionOpponentResolver {
-    private func getOpponent(from address: String) -> OpponentType {
-        guard let contact = contactsProvider.getContact(address: address) else {
-            return OpponentType.address(address: address)
-        }
-        
-        let displayable = contactsMapper.map(from: contact)
-        return OpponentType.contact(contact: displayable)
     }
 }

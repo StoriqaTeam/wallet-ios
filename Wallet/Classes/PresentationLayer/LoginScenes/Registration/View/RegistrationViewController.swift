@@ -10,12 +10,10 @@ import UIKit
 
 
 class RegistrationViewController: UIViewController {
-
-    var output: RegistrationViewOutput!
-
-    // MARK: - Outlets
     
-    // FIXME: SocialNetworkAuthView hidden before release: return height to 175 !!!!!
+    var output: RegistrationViewOutput!
+    
+    // MARK: - Outlets
     
     @IBOutlet private var firstNameTextField: UnderlinedTextField!
     @IBOutlet private var lastNameTextField: UnderlinedTextField!
@@ -31,12 +29,13 @@ class RegistrationViewController: UIViewController {
     
     // MARK: - Variables
     
+    private var activeTextField: UITextField?
     private var isAcceptedAgreement = false
     private let acceptedAgreementColor = Theme.Color.brightSkyBlue
     private let nonAcceptedAgreementColor = UIColor.lightGray
-
+    
     // MARK: - Life cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
@@ -46,20 +45,12 @@ class RegistrationViewController: UIViewController {
         setSocialView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(textDidChange(_:)),
-                                               name: UITextField.textDidChangeNotification,
-                                               object: nil)
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Actions
-
+    
     @IBAction private func signUp() {
         dismissKeyboard()
         restoreSecureFields()
@@ -109,7 +100,9 @@ class RegistrationViewController: UIViewController {
 // MARK: - RegistrationViewInput
 
 extension RegistrationViewController: RegistrationViewInput {
-    func setupInitialState() { }
+    func setupInitialState() {
+        addNotificationObservers()
+    }
     
     func setSocialView(viewModel: SocialNetworkAuthViewModel) {
         socialNetworkAuthView.bindViewModel(viewModel)
@@ -136,18 +129,30 @@ extension RegistrationViewController: RegistrationViewInput {
 // MARK: - UITextFieldDelegate
 
 extension RegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        activeTextField = textField
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if activeTextField == textField {
+            activeTextField = nil
+        }
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case firstNameTextField:
-            lastNameTextField.becomeFirstResponder()
+            _ = lastNameTextField.becomeFirstResponder()
         case lastNameTextField:
-            emailTextField.becomeFirstResponder()
+            _ = emailTextField.becomeFirstResponder()
         case emailTextField:
-            passwordTextField.becomeFirstResponder()
+            _ = passwordTextField.becomeFirstResponder()
         case passwordTextField:
-            repeatPasswordTextField.becomeFirstResponder()
+            _ = repeatPasswordTextField.becomeFirstResponder()
         case repeatPasswordTextField:
-            repeatPasswordTextField.resignFirstResponder()
+            _ = repeatPasswordTextField.resignFirstResponder()
         default:
             break
         }
@@ -172,7 +177,7 @@ extension RegistrationViewController: UITextFieldDelegate {
 
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
     func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String) {
-        output.socialNetworkRegisterSucceed()
+        output.socialNetworkRegisterSucceed(provider: provider, token: token)
     }
     
     func socialNetworkAuthFailed() {
@@ -189,7 +194,7 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
 
 extension RegistrationViewController {
     private func configFields() {
-    
+        
         let layoutBlock: (() -> Void) = {[weak self] in
             self?.view.layoutIfNeeded()
         }
@@ -213,7 +218,7 @@ extension RegistrationViewController {
         
         agreementLabel.textColor = Theme.Color.primaryGrey
         agreementLabel.text = "accept_agreement".localized()
-
+        
         signUpButton.title = "sign_up".localized()
     }
     
@@ -243,5 +248,53 @@ extension RegistrationViewController {
     
     private func setSocialView() {
         socialNetworkAuthView.setUp(from: self, delegate: self, type: .register)
+    }
+}
+
+
+// MARK: Keyboard notifications
+
+extension RegistrationViewController {
+    private func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard let scrollView = scrollView,
+            let activeTextField = activeTextField,
+            let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+                return
+        }
+        
+        let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
+        let textFieldOrigin = activeTextField.convert(activeTextField.bounds, to: view).maxY
+        var delta = textFieldOrigin - keyboardOrigin + 8
+        
+        guard delta > 0 else { return }
+        
+        if scrollView.contentSize.height < view.frame.height {
+            delta += view.frame.height - scrollView.contentSize.height
+        }
+        
+        scrollView.contentOffset = CGPoint(x: 0, y: delta)
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        guard let scrollView = scrollView else {
+            return
+        }
+        
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.contentOffset = CGPoint.zero
     }
 }

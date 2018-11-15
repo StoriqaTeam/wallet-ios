@@ -18,12 +18,12 @@ class AccountsPresenter {
     weak var mainTabBar: UITabBarController!
     
     private let accountDisplayer: AccountDisplayerProtocol
-    private let transactionsMapper: TransactionMapper
+    private let transactionsMapper: TransactionMapperProtocol
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: TransactionsDataManager!
     
     init(accountDisplayer: AccountDisplayerProtocol,
-         transactionsMapper: TransactionMapper) {
+         transactionsMapper: TransactionMapperProtocol) {
         self.accountDisplayer = accountDisplayer
         self.transactionsMapper = transactionsMapper
     }
@@ -46,9 +46,12 @@ extension AccountsPresenter: AccountsViewOutput {
     func handleCustomButton(type: RouteButtonType) {
         switch type {
         case .change:
-            mainTabBar.selectedIndex = 2
+            // FIXME: exchange hidden before release
+//            mainTabBar.selectedIndex = 2
+            view.viewController.showAlert(message: "Exchange module is not ready yet")
         case .deposit:
-            mainTabBar.selectedIndex = 3
+            // FIXME: exchange hidden before release
+            mainTabBar.selectedIndex = 2 // 3
         case .send:
             mainTabBar.selectedIndex = 1
         }
@@ -56,11 +59,17 @@ extension AccountsPresenter: AccountsViewOutput {
     
     func transactionTableView(_ tableView: UITableView) {
         let transactions = interactor.getTransactionForCurrentAccount()
-        let displayable = transactions.map { transactionsMapper.map(from: $0) }
-        let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true)
+        let account = interactor.getSelectedAccount()
+        let displayable = transactions.map { transactionsMapper.map(from: $0, account: account) }
+        let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true, maxCount: 10)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
+        
+        if displayable.isEmpty {
+            transactionDataManager.updateEmpty(placeholderImage: UIImage(named: "noTxs")!,
+                                               placeholderText: "")
+        }
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -96,7 +105,8 @@ extension AccountsPresenter: AccountsInteractorOutput {
     }
     
     func transactionsDidChange(_ txs: [Transaction]) {
-        let displayable = txs.map { transactionsMapper.map(from: $0) }
+        let account = interactor.getSelectedAccount()
+        let displayable = txs.map { transactionsMapper.map(from: $0, account: account) }
         transactionDataManager.updateTransactions(displayable)
     }
     

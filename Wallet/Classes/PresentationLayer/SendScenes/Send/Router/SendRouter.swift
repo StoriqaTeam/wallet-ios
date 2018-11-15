@@ -22,12 +22,29 @@ class SendRouter {
 // MARK: - SendRouterInput
 
 extension SendRouter: SendRouterInput {
-    func showReceiver(sendTransactionBuilder: SendProviderBuilderProtocol,
-                      from viewController: UIViewController,
-                      mainTabBar: UITabBarController) {
-        
-        ReceiverModule.create(app: app,
-                              sendTransactionBuilder: sendTransactionBuilder,
-                              tabBar: mainTabBar).present(from: viewController)
+    func showScanner(sendTransactionBuilder: SendProviderBuilderProtocol, from viewController: UIViewController) {
+        QRScannerModule.create(app: app, sendTransactionBuilder: sendTransactionBuilder).present(from: viewController)
+    }
+    
+    func showConfirm(address: String,
+                     amount: String,
+                     fee: String,
+                     confirmTxBlock: @escaping (() -> Void),
+                     from viewController: UIViewController) {
+        SendConfirmPopUpModule
+            .create(address: address, amount: amount, fee: fee, confirmTxBlock: confirmTxBlock)
+            .present(from: viewController)
+    }
+    
+    func showConfirmFailed(message: String,
+                           from viewController: UIViewController) {
+        let viewModel = PopUpSendConfirmFailureVM(message: message)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showConfirmSucceed(popUpDelegate: PopUpSendConfirmSuccessVMDelegate, from viewController: UIViewController) {
+        let viewModel = PopUpSendConfirmSuccessVM()
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
 }

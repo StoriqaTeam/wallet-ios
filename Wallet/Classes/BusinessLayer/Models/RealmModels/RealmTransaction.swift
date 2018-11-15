@@ -14,12 +14,14 @@ import RealmSwift
 @objcMembers
 class RealmTransaction: Object {
     dynamic var id: String = ""
-    dynamic var currency: String = ""
     dynamic var fromAddress = List<StringObject>()
     dynamic var fromAccount = List<RealmTransactionAccountObject>()
     dynamic var toAddress: String = ""
     dynamic var toAccount: RealmTransactionAccount?
-    dynamic var cryptoAmount: String = ""
+    dynamic var fromValue: String = ""
+    dynamic var fromCurrency: String = ""
+    dynamic var toValue: String = ""
+    dynamic var toCurrency: String = ""
     dynamic var fee: String = ""
     dynamic var blockchainId: String = ""
     dynamic var createdAt: Double = 0

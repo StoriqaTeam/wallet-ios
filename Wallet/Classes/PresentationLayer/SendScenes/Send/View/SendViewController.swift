@@ -16,27 +16,43 @@ class SendViewController: UIViewController {
     
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
-    @IBOutlet private var receiverCurrencyTitleLabel: UILabel!
-    @IBOutlet private var receiverCurrencySegmentedControl: CustomSegmentedControl!
-    @IBOutlet private var amountTitleLabel: UILabel!
-    @IBOutlet private var amountTextField: UITextField!
-    @IBOutlet private var convertedAmountLabel: UILabel!
-    @IBOutlet private var nextButton: DefaultButton!
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var gradientView: HeaderGradientView!
+    @IBOutlet private var receiverTitleLabel: UILabel!
+    @IBOutlet private var scanQRButton: UIButton!
+    @IBOutlet private var receiverTextField: UnderlinedTextField!
+    @IBOutlet private var amountTitleLabel: UILabel!
+    @IBOutlet private var amountTextField: UITextField!
+    @IBOutlet private var paymentFeeTitleLabel: UILabel!
+    @IBOutlet private var paymentFeeLabel: UILabel!
+    @IBOutlet private var paymentFeeSlider: StepSlider!
+    @IBOutlet private var paymentFeeLowLabel: UILabel!
+    @IBOutlet private var paymentFeeMediumLabel: UILabel!
+    @IBOutlet private var paymentFeeHighLabel: UILabel!
+    @IBOutlet private var medianWaitTitleLabel: UILabel!
+    @IBOutlet private var medianWaitLabel: UILabel!
+    @IBOutlet private var subtotalTitleLabel: UILabel!
+    @IBOutlet private var subtotalLabel: UILabel!
+    @IBOutlet private var errorLabel: UILabel!
+    @IBOutlet private var sendButton: DefaultButton!
     
     
     // MARK: Variables
     
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
+    private var currentSliderStep = 0 {
+        didSet {
+            if oldValue != currentSliderStep {
+                output.newFeeSelected(currentSliderStep)
+            }
+        }
+    }
     
     // MARK: Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configInterface()
-        addHideKeyboardGuesture()
         output.accountsCollectionView(accountsCollectionView)
         output.viewIsReady()
     }
@@ -54,23 +70,6 @@ class SendViewController: UIViewController {
         configureGradientView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardFinishedAnimating),
-                                               name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardFinishedAnimating),
-                                               name: UIResponder.keyboardDidHideNotification, object: nil)
-        
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -82,16 +81,20 @@ class SendViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction private func textDidChange(_ sender: UITextField) {
+    @IBAction private func amountDidChange(_ sender: UITextField) {
         output.amountChanged(sender.text ?? "")
     }
     
-    @IBAction private func receiverCurrencyChanged(_ sender: CustomSegmentedControl) {
-        output.receiverCurrencyChanged(sender.selectedSegmentIndex)
+    @IBAction func sendButtonTapped(_ sender: UIButton) {
+        output.sendButtonPressed()
     }
     
-    @IBAction private func nextButtonPressed(_ sender: UIButton) {
-        output.nextButtonPressed()
+    @IBAction func scanButtonTapped(_ sender: UIButton) {
+        output.scanButtonPressed()
+    }
+    
+    @IBAction private func sliderMoved(_ sender: StepSlider) {
+        currentSliderStep = sender.currentSliderStep
     }
 }
 
@@ -99,15 +102,43 @@ class SendViewController: UIViewController {
 // MARK: - SendViewInput
 
 extension SendViewController: SendViewInput {
-    func setupInitialState(currencyImages: [UIImage], numberOfPages: Int) {
-        receiverCurrencySegmentedControl.buttonImages = currencyImages
-        output.receiverCurrencyChanged(receiverCurrencySegmentedControl.selectedSegmentIndex)
+    
+    func setupInitialState(numberOfPages: Int) {
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
         
+        addNotificationObservers()
+        configInterface()
+        addHideKeyboardGuesture()
+    }
+    
+    func setScannedAddress(_ address: String) {
+        receiverTextField.text = address
+    }
+    
+    func setSubtotal(_ subtotal: String) {
+        subtotalLabel.text = subtotal
         
-        // FIXME: disabled before release
-        receiverCurrencySegmentedControl.isUserInteractionEnabled = false
+        if self.subtotalLabel.superview!.isHidden != subtotal.isEmpty {
+            UIView.performWithoutAnimation {
+                self.subtotalLabel.superview?.isHidden = subtotal.isEmpty
+            }
+        }
+        
+    }
+    
+    func setMedianWait(_ wait: String) {
+        medianWaitLabel.text = wait
+    }
+    
+    func setPaymentFee(_ fee: String) {
+        paymentFeeLabel.text = fee
+    }
+    
+    func setPaymentFee(count: Int, value: Int) {
+        paymentFeeSlider.paymentFeeValuesCount = count
+        paymentFeeSlider.updateCurrentValue(step: value)
+        currentSliderStep = value
     }
     
     func updatePagesCount(_ count: Int) {
@@ -118,26 +149,43 @@ extension SendViewController: SendViewInput {
         amountTextField.text = amount
     }
     
-    func setConvertedAmount(_ amount: String) {
-        convertedAmountLabel.text = amount
-    }
-    
     func setNewPage(_ index: Int) {
         accountsPageControl.currentPage = index
     }
     
+    func setAddressError(_ message: String?) {
+        receiverTextField.errorText = message
+    }
+    
     func setButtonEnabled(_ enabled: Bool) {
-        nextButton.isHidden = !enabled
+        sendButton.isEnabled = enabled
     }
     
-    func setReceiverCurrencyIndex(_ index: Int) {
-        guard receiverCurrencySegmentedControl.selectedSegmentIndex != index else {
-            return
+    func setEnoughFundsErrorHidden(_ errorHidden: Bool) {
+        if errorHidden {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.errorLabel.alpha = 0
+            }, completion: { finished in
+                if finished {
+                    self.errorLabel.isHidden = true
+                    self.errorLabel.text = ""
+                    self.view.layoutSubviews()
+                }
+            })
+        } else {
+            self.errorLabel.isHidden = false
+            self.errorLabel.text = "You haven’t got enough funds to send. Try to set another count."
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.layoutSubviews()
+                self.errorLabel.alpha = 1
+            }, completion: { finished in
+                if finished {
+                    self.errorLabel.isHidden = false
+                }
+            })
         }
-        
-        receiverCurrencySegmentedControl.setSelectedSegmentIndex(index)
     }
-    
 }
 
 
@@ -146,14 +194,31 @@ extension SendViewController: SendViewInput {
 extension SendViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        output.amountDidBeginEditing()
+        switch textField {
+        case amountTextField:
+            output.amountDidBeginEditing()
+        default:
+            break
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        output.amountDidEndEditing()
+        switch textField {
+        case amountTextField:
+            output.amountDidEndEditing()
+        case receiverTextField:
+            output.receiverAddressDidChange(textField.text ?? "")
+        default:
+            break
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard textField == amountTextField else {
+            return true
+        }
+        
         if let text = textField.text as NSString? {
             let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
             
@@ -161,6 +226,17 @@ extension SendViewController: UITextFieldDelegate {
         }
         
         return false
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        switch textField {
+        case receiverTextField:
+            output.receiverAddressDidChange("")
+        default:
+            break
+        }
+        
+        return true
     }
     
 }
@@ -187,17 +263,42 @@ extension SendViewController {
     
     private func configInterface() {
         amountTextField.delegate = self
-        amountTextField.clearButtonMode = .never
+        receiverTextField.delegate = self
         scrollView.delegate = self
         
-        receiverCurrencyTitleLabel.font = Theme.Font.caption
-        amountTitleLabel.font = Theme.Font.caption
-        receiverCurrencyTitleLabel.textColor = Theme.Text.Color.captionGrey
-        amountTitleLabel.textColor = Theme.Text.Color.captionGrey
-        
+        receiverTitleLabel.text = "receiver_address".localized()
         amountTitleLabel.text = "amount".localized()
-        receiverCurrencyTitleLabel.text = "receiver_currency".localized()
         amountTextField.placeholder = "enter_amount".localized()
+        
+        receiverTextField.placeholder = "receiver_input_placeholder".localized()
+        receiverTextField.autocorrectionType = .no
+        scanQRButton.setTitle("scan_QR".localized() + "   ", for: .normal)
+        sendButton.setTitle("send".localized(), for: .normal)
+        
+        receiverTitleLabel.font = Theme.Font.caption
+        amountTitleLabel.font = Theme.Font.caption
+        paymentFeeTitleLabel.font = Theme.Font.caption
+        medianWaitTitleLabel.font = Theme.Font.caption
+        subtotalTitleLabel.font = Theme.Font.caption
+        paymentFeeLowLabel.font = Theme.Font.smallText
+        paymentFeeMediumLabel.font = Theme.Font.smallText
+        paymentFeeHighLabel.font = Theme.Font.smallText
+        
+        receiverTitleLabel.textColor = Theme.Text.Color.captionGrey
+        amountTitleLabel.textColor = Theme.Text.Color.captionGrey
+        paymentFeeTitleLabel.textColor = Theme.Text.Color.captionGrey
+        medianWaitTitleLabel.textColor = Theme.Text.Color.captionGrey
+        subtotalTitleLabel.textColor = Theme.Text.Color.captionGrey
+        paymentFeeLowLabel.textColor = Theme.Text.Color.captionGrey
+        paymentFeeMediumLabel.textColor = Theme.Text.Color.captionGrey
+        paymentFeeHighLabel.textColor = Theme.Text.Color.captionGrey
+        
+        errorLabel.font = Theme.Font.smallText
+        errorLabel.textColor = Theme.Text.Color.errorRed
+        errorLabel.isHidden = true
+        errorLabel.alpha = 0
+        
+        sendButton.isEnabled = false
     }
     
     private func configureGradientView() {
@@ -218,27 +319,49 @@ extension SendViewController {
             setNavigationBarAlpha(alpha)
         }
     }
+}
+
+
+// MARK: Keyboard notifications
+
+extension SendViewController {
+    
+    private func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
-        guard let scrollView = scrollView else {
-            return
+        guard amountTextField.isFirstResponder,
+            let scrollView = scrollView, 
+            let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+                return
         }
         
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardOrigin = view.frame.height - keyboardFrame.cgRectValue.height
-            let textFieldOrigin = amountTextField.superview!.convert(amountTextField.frame, to: view).maxY
-            var delta = textFieldOrigin - keyboardOrigin + 16
-            
-            if scrollView.contentSize.height < view.frame.height {
-                delta += view.frame.height - scrollView.contentSize.height
-            }
-            
-            isKeyboardAnimating = true
-            
-            var contentInset = self.scrollView.contentInset
-            contentInset.bottom = delta
-            scrollView.contentInset = contentInset
+        isKeyboardAnimating = true
+        
+        let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
+        let textFieldOrigin = amountTextField.convert(amountTextField.bounds, to: view).maxY
+        var delta = textFieldOrigin - keyboardOrigin + 8
+        
+        guard delta > 0 else { return }
+        
+        if scrollView.contentSize.height < view.frame.height {
+            delta += view.frame.height - scrollView.contentSize.height
         }
+        
+        scrollView.contentOffset = CGPoint(x: 0, y: delta)
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
@@ -248,9 +371,8 @@ extension SendViewController {
         
         isKeyboardAnimating = true
         
-        let contentInset = UIEdgeInsets.zero
-        scrollView.contentInset = contentInset
-        
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.contentOffset = CGPoint.zero
     }
     
     @objc private func keyboardFinishedAnimating(_ notification: Notification) {
@@ -258,5 +380,4 @@ extension SendViewController {
             self?.isKeyboardAnimating = false
         }
     }
-    
 }

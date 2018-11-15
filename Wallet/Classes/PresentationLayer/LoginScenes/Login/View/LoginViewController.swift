@@ -14,8 +14,6 @@ class LoginViewController: UIViewController {
     
     // MARK: - Outlets
     
-    // FIXME: SocialNetworkAuthView hidden before release: return height to 175 !!!!!
-    
     @IBOutlet private var emailTextField: UnderlinedTextField!
     @IBOutlet private var passwordTextField: SecureInputTextField!
     @IBOutlet private var signInButton: DefaultButton!
@@ -82,10 +80,6 @@ extension LoginViewController: LoginViewInput {
         socialNetworkAuthView.bindViewModel(viewModel)
     }
     
-    func relogin() {
-        signIn()
-    }
-    
     func showErrorMessage(email: String?, password: String?) {
         emailTextField.errorText = email
         passwordTextField.errorText = password
@@ -116,9 +110,9 @@ extension LoginViewController: SocialNetworkAuthViewDelegate {
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTextField {
-            passwordTextField.becomeFirstResponder()
+            _ = passwordTextField.becomeFirstResponder()
         } else {
-            passwordTextField.resignFirstResponder()
+            _ = passwordTextField.resignFirstResponder()
         }
         
         return true

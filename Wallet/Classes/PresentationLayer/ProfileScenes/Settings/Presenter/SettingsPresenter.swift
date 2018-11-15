@@ -22,51 +22,23 @@ class SettingsPresenter {
 // MARK: - SettingsViewOutput
 
 extension SettingsPresenter: SettingsViewOutput {
-    func sessionSelected() {
-        router.showSessions(from: view.viewController)
-    }
     
     func viewIsReady() {
         view.setupInitialState()
         configureNavigationBar()
     }
     
-    func viewWillAppear() {
-        let sessionsCount = interactor.getSessionsCount()
-        view.viewController.setDarkNavigationBarButtons()
-        view.setSessions(count: sessionsCount)
-    }
-    
-    func willMoveToParentVC() {
-        guard let navigationBar = view.viewController.navigationController?.navigationBar else {
-            return
-        }
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.backgroundColor = .clear
-    }
-    
-    func viewDidAppear() {
-        guard let navigationBar = view.viewController.navigationController?.navigationBar else {
-            return
-        }
-        
-        let rect = CGRect(x: 0, y: -80, width: Constants.Sizes.screenWith, height: 124)
-        let image = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor,
-                                                    andRect: rect)
-        navigationBar.setBackgroundImage(image, for: .default)
-        navigationBar.backgroundColor = .white
-    }
     
     func editProfileSelected() {
         router.showEditProfile(from: view.viewController)
     }
     
-    func changePhoneSelected() {
-        router.showChangePhone(from: view.viewController)
-    }
-    
     func changePasswordSelected() {
         router.showChangePassword(from: view.viewController)
+    }
+    
+    func signOutButtonTapped() {
+        router.signOutConfirmPopUp(popUpDelegate: self, from: view.viewController)
     }
     
 }
@@ -82,9 +54,22 @@ extension SettingsPresenter: SettingsInteractorOutput {
 // MARK: - SettingsModuleInput
 
 extension SettingsPresenter: SettingsModuleInput {
+    var viewController: UIViewController {
+        return view.viewController
+    }
     
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
+    }
+}
+
+
+// MARK: - PopUpSignOutVMDelegate
+
+extension SettingsPresenter: PopUpSignOutVMDelegate {
+    func signOut() {
+        interactor.deleteAppData()
+        router.signOut()
     }
 }
 

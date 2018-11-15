@@ -5,32 +5,26 @@
 
 import UIKit
 
-enum AuthData {
-    case email(email: String, password: String)
-    case socialProvider(provider: SocialNetworkTokenProvider, token: String)
-}
 
 class QuickLaunchModule {
     
-    class func create(app: Application, authData: AuthData, token: String) -> QuickLaunchModuleInput {
+    class func create(app: Application) -> QuickLaunchModuleInput {
         let router = QuickLaunchRouter(app: app)
         let presenter = QuickLaunchPresenter()
         
-        let quickLaunchProvider = QuickLaunchProvider(authData: authData,
-                                           token: token,
-                                           defaultsProvider: app.defaultsProvider,
-                                           keychainProvider: app.keychainProvider,
-                                           biometricAuthProvider: app.biometricAuthProvider)
+        let quickLaunchProvider = QuickLaunchProvider(defaultsProvider: app.defaultsProvider,
+                                                      keychainProvider: app.keychainProvider,
+                                                      biometricAuthProvider: app.biometricAuthProvider)
         
         let interactor = QuickLaunchInteractor(qiuckLaunchProvider: quickLaunchProvider)
         
         let storyboard = UIStoryboard(name: "QuickLaunch", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "QuickLaunchVC") as! QuickLaunchViewController
-
+        
         interactor.output = presenter
-
+        
         viewController.output = presenter
-
+        
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor

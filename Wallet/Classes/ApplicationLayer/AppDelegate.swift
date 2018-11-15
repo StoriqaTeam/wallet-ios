@@ -11,6 +11,7 @@ import UIKit
 import AlamofireNetworkActivityIndicator
 import FBSDKLoginKit
 import GoogleSignIn
+import CryptoSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -65,7 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     // MARK: - Handle universal links
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard let link = UniversalLinkParser().parse(link: userActivity.webpageURL) else {
             return false
         }

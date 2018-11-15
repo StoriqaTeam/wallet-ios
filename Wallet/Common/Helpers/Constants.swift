@@ -16,12 +16,14 @@ let log = Slog(level: .debug, useEmoji: false)
 struct Constants {
     typealias Sizes = SizeConstants
     
-    struct Network {
-        static let baseUrl = "https://pay-nightly.stq.cloud/v1"
-        
-        struct Rates {
-            static let ratesBaseUrl = "https://min-api.cryptocompare.com/data/pricemulti?"
-        }
+    struct Network { 
+        #if DEBUG
+            static let baseUrl = "https://pay-nightly.stq.cloud/v1"
+        #else
+            static let baseUrl = "https://payments.storiqa.com/v1"
+        #endif
+                    
+        static let ratesBaseUrl = "https://min-api.cryptocompare.com/data/pricemulti?"
     }
     
     struct Currencies {
@@ -36,6 +38,10 @@ struct Constants {
     struct NetworkAuth {
         static let kFacebookAppId = "fb425217154570731"
         static let kGoogleClientId = "245895770851-qlolkejdjnske28jmbdgs89969o0a7ec.apps.googleusercontent.com"
+    }
+    
+    struct DateFormats {
+        static let txDateString = "yyyy-MM-dd'T'HH:mm:ss.SS"
     }
 }
 

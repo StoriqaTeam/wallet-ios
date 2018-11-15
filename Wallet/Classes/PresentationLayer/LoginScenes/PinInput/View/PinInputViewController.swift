@@ -66,9 +66,7 @@ extension PinInputViewController: PinInputViewInput {
     }
     
     func inputFailed() {
-        log.debug("*️⃣ failure!")
         pinContainerView.wrongPassword()
-        showAlert(message: "Wrong password")
     }
     
     func clearInput() {

@@ -10,20 +10,22 @@ import Foundation
 
 protocol DefaultsProviderProtocol: class {
     var isFirstLaunch: Bool { get set }
-    var isQuickLaunchShown: Bool { get set }
     var isBiometryAuthEnabled: Bool { get set }
     var fiatISO: String { get set }
     var lastTxTimastamp: TimeInterval? { get set }
+    var socialAuthProvider: SocialNetworkTokenProvider? { get set }
+    
+    func clear()
 }
 
 class DefaultsProvider: DefaultsProviderProtocol {
     
     enum DefaultsKey: String, CaseIterable {
         case isFirstLaunch
-        case isQuickLaunchShown
         case isBiometryAuthEnabled
         case fiatISO
         case lastTxTimastamp
+        case socialAuthProvider
     }
     
     var isFirstLaunch: Bool {
@@ -33,16 +35,6 @@ class DefaultsProvider: DefaultsProviderProtocol {
         }
         set {
             setBool(newValue, key: .isFirstLaunch)
-        }
-    }
-    
-    var isQuickLaunchShown: Bool {
-        get {
-            guard let shown = getBool(.isQuickLaunchShown) else { return false }
-            return shown
-        }
-        set {
-            setBool(newValue, key: .isQuickLaunchShown)
         }
     }
     
@@ -78,6 +70,26 @@ class DefaultsProvider: DefaultsProviderProtocol {
         set {
             setDouble(newValue, key: .lastTxTimastamp)
         }
+    }
+    
+    var socialAuthProvider: SocialNetworkTokenProvider? {
+        get {
+            guard let strValue = getString(.socialAuthProvider),
+                let provider = SocialNetworkTokenProvider(strValue) else {
+                    return nil
+            }
+            
+            return provider
+        }
+        set {
+            setString(newValue?.name, key: .socialAuthProvider)
+        }
+    }
+    
+    func clear() {
+        isBiometryAuthEnabled = false
+        socialAuthProvider = nil
+        lastTxTimastamp = nil
     }
     
 }

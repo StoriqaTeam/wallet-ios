@@ -16,9 +16,20 @@ enum SocialNetworkTokenProvider {
     var name: String {
         switch self {
         case .google:
-            return "GOOGLE"
+            return "google"
         case .facebook:
-            return "FACEBOOK"
+            return "facebook"
+        }
+    }
+
+    init?(_ string: String) {
+        switch string.lowercased() {
+        case "google":
+            self = .google
+        case "facebook":
+            self = .facebook
+        default:
+            return nil
         }
     }
 }
@@ -30,15 +41,12 @@ protocol SocialNetworkAuthViewDelegate: class {
 }
 
 class SocialNetworkAuthView: LoadableFromXib {
-    var viewModel: SocialNetworkAuthViewModel!
+    private weak var viewModel: SocialNetworkAuthViewModel!
     
     enum SocialNetworkAuthViewType {
         case login
         case register
     }
-
-    
-    // FIXME: hidden before release: remove temporary view in xib !!!
     
     // IBOutlet
     @IBOutlet private var titleLabel: UILabel!
@@ -51,7 +59,7 @@ class SocialNetworkAuthView: LoadableFromXib {
     private var contentView: UIView?
     private weak var delegate: SocialNetworkAuthViewDelegate?
     private var formType: SocialNetworkAuthViewType = .login
-    private var fromViewController: UIViewController!
+    private weak var fromViewController: UIViewController!
     
     // IBActions
     @IBAction func footerButtonTapHandler(_ sender: UIButton) {

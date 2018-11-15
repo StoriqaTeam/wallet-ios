@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol SettingsInteractorInput: class {
-    func getSessionsCount() -> Int
+    func deleteAppData()
 }

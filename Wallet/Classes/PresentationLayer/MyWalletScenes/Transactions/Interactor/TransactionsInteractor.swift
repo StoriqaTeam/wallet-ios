@@ -49,6 +49,10 @@ class TransactionsInteractor {
 
 extension TransactionsInteractor: TransactionsInteractorInput {
     
+    func getAccount() -> Account {
+        return account
+    }
+    
     func getTransactions() -> [Transaction] {
         let transactions = transactionsProvider.transactionsFor(account: account)
         return transactions

@@ -47,6 +47,5 @@ extension ProfileInteractor: ProfileInteractorInput {
         userStoreService.resetAllDatabase()
         keychainProvider.deleteAll()
         defaultsProvider.isFirstLaunch = true
-        defaultsProvider.isQuickLaunchShown = false
     }
 }

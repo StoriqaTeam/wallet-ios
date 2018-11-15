@@ -28,6 +28,11 @@ class ChangePasswordViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self,
@@ -112,11 +117,11 @@ extension ChangePasswordViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case currentPassword:
-            newPassword.becomeFirstResponder()
+            _ = newPassword.becomeFirstResponder()
         case newPassword:
-            repeatPassword.becomeFirstResponder()
+            _ = repeatPassword.becomeFirstResponder()
         case repeatPassword:
-            repeatPassword.resignFirstResponder()
+            _ = repeatPassword.resignFirstResponder()
         default:
             break
         }

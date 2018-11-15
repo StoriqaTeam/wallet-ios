@@ -32,6 +32,8 @@ class PasswordEmailRecoveryViewController: PasswordRecoveryBaseViewController {
         emailTextField.layoutBlock = {[weak self] in
             self?.view.layoutIfNeeded()
         }
+        
+        emailTextField.delegate = self
     }
     
     // MARK: - Actions
@@ -75,7 +77,7 @@ extension PasswordEmailRecoveryViewController: PasswordEmailRecoveryViewInput {
 
 // MARK: - UITextFieldDelegate
 
-extension PasswordEmailRecoveryViewController {
+extension PasswordEmailRecoveryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dismissKeyboard()
         return true

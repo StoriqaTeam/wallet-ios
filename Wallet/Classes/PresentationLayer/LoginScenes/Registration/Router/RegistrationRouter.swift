@@ -47,4 +47,12 @@ extension RegistrationRouter: RegistrationRouterInput {
         LoginModule.create(app: app).present()
     }
     
+    func showQuickLaunch(from viewController: UIViewController) {
+        QuickLaunchModule.create(app: app).present(from: viewController)
+    }
+    
+    func showPinQuickLaunch(from viewController: UIViewController) {
+        PinQuickLaunchModule.create(app: app).present(from: viewController)
+    }
+    
 }

@@ -38,14 +38,20 @@ extension Account: RealmMappable {
     }
     
     init?(json: JSON) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.DateFormats.txDateString
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        
         guard let id = json["id"].string,
             let userId = json["userId"].int,
             let currencyStr = json["currency"].string,
             let accountAddress = json["accountAddress"].string,
             let name = json["name"].string,
             let balance = json["balance"].string,
-            let createdAt = json["createdAt"].double,
-            let updatedAt = json["updatedAt"].double else {
+            let createdAtStr = json["createdAt"].string,
+            let updatedAtStr = json["updatedAt"].string,
+            let createdAt = dateFormatter.date(from: createdAtStr),
+            let updatedAt = dateFormatter.date(from: updatedAtStr) else {
                 return nil
         }
         let currency = Currency(string: currencyStr)
@@ -58,8 +64,8 @@ extension Account: RealmMappable {
         self.balance = balance.decimalValue()
         self.name = name
 
-        self.createdAt = Date(timeIntervalSince1970: createdAt)
-        self.updatedAt = Date(timeIntervalSince1970: updatedAt)
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
     
     func mapToRealmObject() -> RealmAccount {

@@ -15,7 +15,6 @@ enum Direction {
 }
 
 enum OpponentType {
-    case contact(contact: ContactDisplayable)
     case txAccount(account: TransactionAccount, address: String)
     case address(address: String)
 }
@@ -33,6 +32,7 @@ class TransactionDisplayable {
     
     init(transaction: Transaction,
          cryptoAmountString: String,
+         currency: Currency,
          fiatAmountString: String,
          direction: Direction,
          opponent: OpponentType,
@@ -40,7 +40,7 @@ class TransactionDisplayable {
          timestamp: String) {
         
         self.transaction = transaction
-        self.currency = transaction.currency
+        self.currency = currency
         self.cryptoAmountString = cryptoAmountString
         self.fiatAmountString = fiatAmountString
         self.direction = direction

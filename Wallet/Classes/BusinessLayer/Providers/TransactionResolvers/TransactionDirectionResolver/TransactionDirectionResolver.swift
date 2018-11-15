@@ -10,23 +10,16 @@ import Foundation
 
 
 protocol TransactionDirectionResolverProtocol {
-    func resolveDirection(for transaction: Transaction) -> Direction
+    func resolveDirection(for transaction: Transaction, account: Account) -> Direction
 }
 
 
 class TransactionDirectionResolver: TransactionDirectionResolverProtocol {
-    
-    private let accountsProvider: AccountsProviderProtocol
-    
-    init(accountsProvider: AccountsProviderProtocol) {
-        self.accountsProvider = accountsProvider
-    }
-    
-    func resolveDirection(for transaction: Transaction) -> Direction {
-        let addresses = accountsProvider.getAddresses()
+    func resolveDirection(for transaction: Transaction, account: Account) -> Direction {
+        let address = account.accountAddress
         let toAddress = transaction.toAddress
         
-        if addresses.contains(where: { $0 == toAddress }) {
+        if address == toAddress {
             return Direction.receive
         } else {
             return Direction.send

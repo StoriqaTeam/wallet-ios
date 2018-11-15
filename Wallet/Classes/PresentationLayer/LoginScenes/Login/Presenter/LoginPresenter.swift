@@ -34,6 +34,7 @@ extension LoginPresenter: LoginViewOutput {
         let viewModel = interactor.getSocialVM()
         view.setSocialView(viewModel: viewModel)
         addLoader()
+        interactor.viewIsReady()
     }
 
     func showRegistration() {
@@ -47,7 +48,7 @@ extension LoginPresenter: LoginViewOutput {
     
     func signIn(tokenProvider: SocialNetworkTokenProvider, token: String) {
         storiqaLoader.startLoader()
-        interactor.signIn(tokenProvider: tokenProvider, socialNetworkToken: token)
+        interactor.signIn(tokenProvider: tokenProvider, oauthToken: token)
     }
     
 }
@@ -62,12 +63,12 @@ extension LoginPresenter: LoginInteractorOutput {
         router.showAuthorizedZone()
     }
     
-    func showQuickLaunch(authData: AuthData, token: String) {
-        router.showQuickLaunch(authData: authData, token: token, from: view.viewController)
+    func showQuickLaunch() {
+        router.showQuickLaunch(from: view.viewController)
     }
     
-    func showPinQuickLaunch(authData: AuthData, token: String) {
-        router.showPinQuickLaunch(authData: authData, token: token, from: view.viewController)
+    func showPinQuickLaunch() {
+        router.showPinQuickLaunch(from: view.viewController)
     }
     
     func loginFailed(message: String) {
@@ -101,7 +102,8 @@ extension LoginPresenter: LoginModuleInput {
 
 extension LoginPresenter: PopUpRegistrationFailedVMDelegate {
     func retry() {
-        view.relogin()
+        storiqaLoader.startLoader()
+        interactor.retry()
     }
 }
 
