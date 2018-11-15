@@ -52,7 +52,8 @@ extension UIView {
         NSLayoutConstraint.activate([
             lineView.heightAnchor.constraint(equalToConstant: Constants.Sizes.lineWidth),
             lineView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
-            lineView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            lineView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            lineView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
         
         return lineView
