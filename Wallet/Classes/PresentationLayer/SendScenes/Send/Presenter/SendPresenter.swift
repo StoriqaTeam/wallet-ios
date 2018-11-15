@@ -24,6 +24,7 @@ class SendPresenter {
     
     private var storiqaLoader: StoriqaLoader!
     private var address: String = ""
+    private var isEditingAmount = false
     
     init(currencyFormatter: CurrencyFormatterProtocol,
          currencyImageProvider: CurrencyImageProviderProtocol,
@@ -59,7 +60,7 @@ extension SendPresenter: SendViewOutput {
         let allAccounts = interactor.getAccounts()
         let accountsManager = AccountsDataManager(accounts: allAccounts,
                                                   accountDisplayer: accountDisplayer)
-        accountsManager.setCollectionView(collectionView)
+        accountsManager.setCollectionView(collectionView, cellType: .small)
         accountsDataManager = accountsManager
         accountsDataManager.delegate = self
     }
@@ -78,6 +79,7 @@ extension SendPresenter: SendViewOutput {
     }
     
     func amountDidBeginEditing() {
+        isEditingAmount = true
         let amount = interactor.getAmount()
         let currency = interactor.getCurrency()
         let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
@@ -85,6 +87,7 @@ extension SendPresenter: SendViewOutput {
     }
     
     func amountDidEndEditing() {
+        isEditingAmount = false
         let amount = interactor.getAmount()
         let currency = interactor.getCurrency()
         let formatted = getStringFrom(amount: amount, currency: currency)
@@ -143,7 +146,13 @@ extension SendPresenter: SendInteractorOutput {
     }
     
     func updateAmount(_ amount: Decimal, currency: Currency) {
-        let amountString = getStringFrom(amount: amount, currency: currency)
+        let amountString: String = {
+            if isEditingAmount {
+                return getStringAmountWithoutCurrency(amount: amount, currency: currency)
+            } else {
+                return getStringFrom(amount: amount, currency: currency)
+            }
+        }()
         view.setAmount(amountString)
     }
     
@@ -249,7 +258,7 @@ extension SendPresenter {
     }
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.accountsCollectionFlowLayout
+        let deviceLayout = Device.model.accountsCollectionSmallFlowLayout
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing
