@@ -30,9 +30,10 @@ class PinQuickLaunchModule {
     
     class func create(app: Application) -> PinQuickLaunchModuleInput {
 
+        let biometricAuthProvider = app.biometricAuthProviderFactory.create()
         let provider = QuickLaunchProvider(defaultsProvider: app.defaultsProvider,
                                            keychainProvider: app.keychainProvider,
-                                           biometricAuthProvider: app.biometricAuthProvider)
+                                           biometricAuthProvider: biometricAuthProvider)
 
         return create(app: app, qiuckLaunchProvider: provider)
     }

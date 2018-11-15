@@ -9,7 +9,7 @@
 import Foundation
 
 protocol SendTransactionBuilderFactoryProtocol {
-    func create() -> SendTransactionBuilder
+    func create() -> SendProviderBuilderProtocol
 }
 
 class SendTransactionBuilderFactory: SendTransactionBuilderFactoryProtocol {
@@ -33,7 +33,7 @@ class SendTransactionBuilderFactory: SendTransactionBuilderFactoryProtocol {
         self.denominationUnitsConverter = denominationUnitsConverter
     }
     
-    func create() -> SendTransactionBuilder {
+    func create() -> SendProviderBuilderProtocol {
         return SendTransactionBuilder(currencyConverterFactory: currencyConverterFactory,
                                       currencyFormatter: currencyFormatter,
                                       accountsProvider: accountsProvider,

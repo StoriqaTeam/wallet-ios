@@ -22,12 +22,13 @@ class Application {
     // MARK: - Factories
     
     lazy var accountWatcherFactory: CurrentAccountWatcherFactoryProtocol = CurrentAccountWatcherFactory(accountProvider: self.accountsProvider)
-    
     lazy var sendTransactionBuilderFactory: SendTransactionBuilderFactoryProtocol = SendTransactionBuilderFactory(currencyConverterFactory: self.currencyConverterFactory,
                                                                                                                   currencyFormatter: self.currencyFormatter,
                                                                                                                   accountsProvider: self.accountsProvider,
                                                                                                                   feeWaitProvider: self.fakePaymentFeeAndWaitProvider,
                                                                                                                   denominationUnitsConverter: self.denominationUnitsConverter)
+    lazy var biometricAuthProviderFactory: BiometricAuthProviderFactory = BiometricAuthProviderFactory(errorParser: self.biometricErrorParser)
+    
     
     // MARK: - System store
     lazy var keychainProvider: KeychainProviderProtocol = KeychainProvider()
@@ -63,7 +64,6 @@ class Application {
     lazy var pinValidationProvider: PinValidationProviderProtocol = PinValidationProvider(keychainProvider: self.keychainProvider)
     lazy var passwordRecoveryConfirmFormValidator: PasswordRecoveryConfirmFormValidatorProtocol = PasswordRecoveryConfirmFormValidator()
     lazy var registrationFormValidatonProvider: RegistrationFormValidatonProviderProtocol = RegistrationFormValidatonProvider()
-    lazy var biometricAuthProvider: BiometricAuthProviderProtocol = BiometricAuthProvider(errorParser: biometricErrorParser)
     lazy var deviceContactsFetcher: DeviceContactsFetcherProtocol = DeviceContactsFetcher()
     lazy var currencyImageProvider: CurrencyImageProviderProtocol = CurrencyImageProvider()
     lazy var authTokenDefaultsProvider: AuthTokenDefaultsProviderProtocol = AuthTokenDefaultsProvider()

@@ -458,6 +458,7 @@
 		CE57C6962165F76100696FF7 /* AccountsTableDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57C6952165F76100696FF7 /* AccountsTableDataManager.swift */; };
 		CE57C6992165F83400696FF7 /* AccountTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57C6982165F83400696FF7 /* AccountTableCell.xib */; };
 		CE57C69B2165F83D00696FF7 /* AccountTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */; };
+		CE5F8302219DB98600A18324 /* BiometricAuthProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F8301219DB98600A18324 /* BiometricAuthProviderFactory.swift */; };
 		CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */; };
 		CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAF97215104B4009E707E /* Registration.storyboard */; };
 		CE5FAF9F215129A6009E707E /* RegistrationFormValidatonProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF9E215129A6009E707E /* RegistrationFormValidatonProvider.swift */; };
@@ -1094,6 +1095,7 @@
 		CE57C6952165F76100696FF7 /* AccountsTableDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTableDataManager.swift; sourceTree = "<group>"; };
 		CE57C6982165F83400696FF7 /* AccountTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableCell.xib; sourceTree = "<group>"; };
 		CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableCell.swift; sourceTree = "<group>"; };
+		CE5F8301219DB98600A18324 /* BiometricAuthProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthProviderFactory.swift; sourceTree = "<group>"; };
 		CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinValidationProvider.swift; sourceTree = "<group>"; };
 		CE5FAF97215104B4009E707E /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		CE5FAF9E215129A6009E707E /* RegistrationFormValidatonProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormValidatonProvider.swift; sourceTree = "<group>"; };
@@ -2398,6 +2400,7 @@
 			isa = PBXGroup;
 			children = (
 				A58EE3C32150215B0096C155 /* BiometricAuthProvider.swift */,
+				CE5F8301219DB98600A18324 /* BiometricAuthProviderFactory.swift */,
 			);
 			path = BiometricAuthProvider;
 			sourceTree = "<group>";
@@ -4915,6 +4918,7 @@
 				CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */,
 				CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */,
 				A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */,
+				CE5F8302219DB98600A18324 /* BiometricAuthProviderFactory.swift in Sources */,
 				4A8416E8E79E93524467F707 /* MyWalletInteractor.swift in Sources */,
 				BF550A4D541C2E921C542231 /* MyWalletRouterInput.swift in Sources */,
 				CE41F3482181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift in Sources */,
