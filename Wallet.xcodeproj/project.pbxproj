@@ -380,6 +380,12 @@
 		B5D0A50EC37F23DE647B941B /* FirstLaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11B072A91A28352CDC5ABD9 /* FirstLaunchRouter.swift */; };
 		B634E43D645E9DBCE791CD75 /* SettingsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9D1601A483ADBA7DD0D526 /* SettingsViewOutput.swift */; };
 		B782CF02B33B1093E9AF38BB /* ExchangeInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23FC67135B58752997E5F0D /* ExchangeInteractorInput.swift */; };
+		B8241853219D497D009000D4 /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8241852219D497D009000D4 /* Signature.swift */; };
+		B8241855219D49FD009000D4 /* PrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8241854219D49FD009000D4 /* PrivateKey.swift */; };
+		B8241857219D55EC009000D4 /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8241856219D55EC009000D4 /* PublicKey.swift */; };
+		B8241859219D563B009000D4 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8241858219D563B009000D4 /* Crypto.swift */; };
+		B824185B219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B824185A219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift */; };
+		B824185F219D57FB009000D4 /* Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = B824185E219D57FB009000D4 /* Internal.m */; };
 		B8C5EDD62189A2FA00345B79 /* API+Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD52189A2FA00345B79 /* API+Rates.swift */; };
 		B8C5EDDA2189AA8C00345B79 /* RatesNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */; };
 		B8C5EDDC2189ACE700345B79 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDDB2189ACE700345B79 /* Rate.swift */; };
@@ -1010,6 +1016,13 @@
 		B56AFC99D929DF8CB39A8C4D /* AccountsModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsModule.swift; sourceTree = "<group>"; };
 		B5DB570057C07D6076058081 /* SettingsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		B7308D8FE5E082396CE5E220 /* PinQuickLaunchRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchRouter.swift; sourceTree = "<group>"; };
+		B8241852219D497D009000D4 /* Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
+		B8241854219D49FD009000D4 /* PrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKey.swift; sourceTree = "<group>"; };
+		B8241856219D55EC009000D4 /* PublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
+		B8241858219D563B009000D4 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		B824185A219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticCurveEncrypterSecp256k1.swift; sourceTree = "<group>"; };
+		B824185D219D57FA009000D4 /* Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internal.h; sourceTree = "<group>"; };
+		B824185E219D57FB009000D4 /* Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Internal.m; sourceTree = "<group>"; };
 		B8C5EDD52189A2FA00345B79 /* API+Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Rates.swift"; sourceTree = "<group>"; };
 		B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesNetworkProvider.swift; sourceTree = "<group>"; };
 		B8C5EDDB2189ACE700345B79 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
@@ -3189,6 +3202,7 @@
 		A5B78206215E22AE00EFD1A5 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
+				B8241851219D495D009000D4 /* ECDSA */,
 				A5B7820B215E232200EFD1A5 /* BlockchainNetwork */,
 				A5B78207215E22BD00EFD1A5 /* Base58 */,
 			);
@@ -3407,6 +3421,20 @@
 				EDEA23B5D83156F44A5A3317 /* LoginModule.swift */,
 			);
 			path = Module;
+			sourceTree = "<group>";
+		};
+		B8241851219D495D009000D4 /* ECDSA */ = {
+			isa = PBXGroup;
+			children = (
+				B8241852219D497D009000D4 /* Signature.swift */,
+				B8241854219D49FD009000D4 /* PrivateKey.swift */,
+				B8241856219D55EC009000D4 /* PublicKey.swift */,
+				B8241858219D563B009000D4 /* Crypto.swift */,
+				B824185A219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift */,
+				B824185D219D57FA009000D4 /* Internal.h */,
+				B824185E219D57FB009000D4 /* Internal.m */,
+			);
+			path = ECDSA;
 			sourceTree = "<group>";
 		};
 		B8C5EDD72189AA6E00345B79 /* RatesNetworkProvider */ = {
@@ -4573,6 +4601,7 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Slog/Slog.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -4590,6 +4619,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Slog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4683,11 +4713,13 @@
 				A51CB56321594E4A00CDC80C /* LoadableFromXib.swift in Sources */,
 				A56ED37F216CD6F1009FA58B /* TransactionDetailsModule.swift in Sources */,
 				A5C12E82217F211200A7D68C /* JwtTokenParser.swift in Sources */,
+				B8241855219D49FD009000D4 /* PrivateKey.swift in Sources */,
 				00EAF6788F8B93E22E1921A7 /* LoginModuleInput.swift in Sources */,
 				85DE84599B70A7C4900FE60F /* LoginModuleOutput.swift in Sources */,
 				A574350521776226006B4CAE /* EditProfileInteractorInput.swift in Sources */,
 				A50086162151237B00C47015 /* Data+Helpers.swift in Sources */,
 				DCF2945472E263853448156F /* LoginModule.swift in Sources */,
+				B8241857219D55EC009000D4 /* PublicKey.swift in Sources */,
 				E454D06D1C3D8744B3F666F2 /* PinInputViewInput.swift in Sources */,
 				1C7D0973BE0C18FFA5224647 /* PinInputViewOutput.swift in Sources */,
 				CF065C7C011BD01324225AAD /* PinInputViewController.swift in Sources */,
@@ -4801,6 +4833,7 @@
 				A56ED380216CD6F4009FA58B /* TransactionDetailsModuleOutput.swift in Sources */,
 				C32DC8982A704FBA2BBDB5C9 /* PopUpModuleInput.swift in Sources */,
 				20221229492A0723B97F1D4D /* PopUpModuleOutput.swift in Sources */,
+				B824185F219D57FB009000D4 /* Internal.m in Sources */,
 				A56ED393216CD825009FA58B /* TransactionDetailsRouterInput.swift in Sources */,
 				CED822E3215BC33000693B92 /* CurrencyConverter.swift in Sources */,
 				29640821A6A627670C90FB72 /* PopUpModule.swift in Sources */,
@@ -4916,6 +4949,7 @@
 				CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */,
 				A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */,
 				4A8416E8E79E93524467F707 /* MyWalletInteractor.swift in Sources */,
+				B824185B219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift in Sources */,
 				BF550A4D541C2E921C542231 /* MyWalletRouterInput.swift in Sources */,
 				CE41F3482181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift in Sources */,
 				7CA5701D87FA184CFCC87D46 /* MyWalletRouter.swift in Sources */,
@@ -4954,6 +4988,7 @@
 				B782CF02B33B1093E9AF38BB /* ExchangeInteractorInput.swift in Sources */,
 				849FF2B75F4BABC44B17ACE0 /* ExchangeInteractorOutput.swift in Sources */,
 				2BF62C8E1BD9FDB1E68E4AA9 /* ExchangeInteractor.swift in Sources */,
+				B8241859219D563B009000D4 /* Crypto.swift in Sources */,
 				734C581B32C15CF05D4481B4 /* ExchangeRouterInput.swift in Sources */,
 				B98F7B6D236E5C7D1D3FD552 /* ExchangeRouter.swift in Sources */,
 				A574353B21789E3C006B4CAE /* SessionTableViewCell.swift in Sources */,
@@ -5027,6 +5062,7 @@
 				A56ED37B216CAE37009FA58B /* TransactionDescriptionContactView.swift in Sources */,
 				B8C5EDE82189D7E200345B79 /* RatesProvider.swift in Sources */,
 				A574352221777383006B4CAE /* SessionsInteractor.swift in Sources */,
+				B8241853219D497D009000D4 /* Signature.swift in Sources */,
 				CE57C6962165F76100696FF7 /* AccountsTableDataManager.swift in Sources */,
 				A574353321788110006B4CAE /* SessionsConfigurator.swift in Sources */,
 				A574350721776226006B4CAE /* EditProfileRouterInput.swift in Sources */,
