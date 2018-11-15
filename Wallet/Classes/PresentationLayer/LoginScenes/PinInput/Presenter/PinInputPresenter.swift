@@ -52,8 +52,18 @@ extension PinInputPresenter: PinInputViewOutput {
         let alertController = UIAlertController(title: nil, message: "Do you want to reset your pin?", preferredStyle: .actionSheet)
         
         let resetPin = UIAlertAction(title: "Reset pin", style: .default, handler: { [weak self] _ -> Void in
-            self?.interactor.resetPin()
-            self?.router.showLogin()
+            guard let strongSelf = self else { return }
+            
+            if strongSelf.isPresentedModally {
+                strongSelf.view.dismissModal { [weak strongSelf] in
+                    
+                    strongSelf?.interactor.resetPin()
+                    strongSelf?.router.showLogin()
+                }
+            } else {
+                strongSelf.interactor.resetPin()
+                strongSelf.router.showLogin()
+            }
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

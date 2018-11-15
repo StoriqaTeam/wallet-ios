@@ -45,20 +45,6 @@ class RegistrationViewController: UIViewController {
         setSocialView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(textDidChange(_:)),
-                                               name: UITextField.textDidChangeNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -114,7 +100,9 @@ class RegistrationViewController: UIViewController {
 // MARK: - RegistrationViewInput
 
 extension RegistrationViewController: RegistrationViewInput {
-    func setupInitialState() { }
+    func setupInitialState() {
+        addNotificationObservers()
+    }
     
     func setSocialView(viewModel: SocialNetworkAuthViewModel) {
         socialNetworkAuthView.bindViewModel(viewModel)
@@ -265,6 +253,19 @@ extension RegistrationViewController {
 // MARK: Keyboard notifications
 
 extension RegistrationViewController {
+    private func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     @objc private func keyboardWillShow(_ notification: Notification) {
         guard let scrollView = scrollView,
             let activeTextField = activeTextField,

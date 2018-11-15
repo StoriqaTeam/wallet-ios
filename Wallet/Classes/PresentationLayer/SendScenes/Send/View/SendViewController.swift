@@ -71,23 +71,6 @@ class SendViewController: UIViewController {
         configureGradientView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardFinishedAnimating),
-                                               name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardFinishedAnimating),
-                                               name: UIResponder.keyboardDidHideNotification, object: nil)
-        
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -124,6 +107,7 @@ extension SendViewController: SendViewInput {
     func setupInitialState(numberOfPages: Int) {
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
+        addNotificationObservers()
     }
     
     func setScannedAddress(_ address: String) {
@@ -339,6 +323,21 @@ extension SendViewController {
 // MARK: Keyboard notifications
 
 extension SendViewController {
+    
+    private func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
         guard amountTextField.isFirstResponder,
