@@ -24,24 +24,7 @@ class PasswordRecoveryBaseViewController: UIViewController {
         super.viewDidLoad()
         addHideKeyboardGuesture()
         configureInterface()
-        
-        confirmButton.isEnabled = false
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(textDidChange(_:)),
-                                               name: UITextField.textDidChangeNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        addNotificationObservers()
     }
     
     deinit {
@@ -64,11 +47,28 @@ class PasswordRecoveryBaseViewController: UIViewController {
             headerVerticalSpaceConstraint.constant = 16
             subtitleTopSpaceConstraint.constant = 16
         }
+        confirmButton.isEnabled = false
     }
 }
 
-private extension PasswordRecoveryBaseViewController {
-    @objc func keyboardWillShow(_ notification: Notification) {
+extension PasswordRecoveryBaseViewController {
+    
+    private func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
         guard keyboardAnimationEnabled,
             let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
                 return
@@ -89,7 +89,7 @@ private extension PasswordRecoveryBaseViewController {
             }, completion: nil)
     }
     
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc private func keyboardWillHide(_ notification: Notification) {
         guard keyboardAnimationEnabled else {
             return
         }
