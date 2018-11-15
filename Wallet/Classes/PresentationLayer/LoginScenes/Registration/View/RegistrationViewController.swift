@@ -147,7 +147,9 @@ extension RegistrationViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        activeTextField = nil
+        if activeTextField == textField {
+            activeTextField = nil
+        }
         return true
     }
     
