@@ -2,14 +2,13 @@
 //  PublicKey.swift
 //  Wallet
 //
-//  Created by Даниил Мирошниченко on 15/11/2018.
+//  Created by Storiqa on 15/11/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
 import Foundation
 
-
-public struct PublicKey {
+struct PublicKey {
     
     public let raw: Data
     public let hex: String

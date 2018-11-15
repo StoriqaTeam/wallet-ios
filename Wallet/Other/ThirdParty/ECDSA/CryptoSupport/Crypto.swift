@@ -2,7 +2,7 @@
 //  Crypto.swift
 //  Wallet
 //
-//  Created by Даниил Мирошниченко on 15/11/2018.
+//  Created by Storiqa on 15/11/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -11,12 +11,12 @@ import Foundation
 import CryptoSwift
 import secp256k1
 
-public enum CryptoError: Error {
+enum CryptoError: Error {
     case failedToSign
 }
 
 /// Helper class for cryptographic algorithms.
-public final class Crypto {
+class Crypto {
     
     /// Generates public key from private key using secp256k1 elliptic curve math
     ///
@@ -24,7 +24,7 @@ public final class Crypto {
     ///   - data: private key
     ///   - compressed: whether public key should be compressed
     /// - Returns: 65-byte key if not compressed, otherwise 33-byte public key.
-    public static func generatePublicKey(data: Data, compressed: Bool) -> Data {
+    static func generatePublicKey(data: Data, compressed: Bool) -> Data {
         return Secp256k1.generatePublicKey(withPrivateKey: data, compression: compressed)
     }
     
@@ -35,7 +35,7 @@ public final class Crypto {
     ///   - privateKey: serialized private key based on secp256k1 algorithm
     /// - Returns: 65-byte signature of the hash data
     /// - Throws: EthereumKitError.failedToSign in case private key was invalid
-    public static func sign(_ hash: Data, privateKey: Data) throws -> Data {
+    static func sign(_ hash: Data, privateKey: Data) throws -> Data {
         let encrypter = EllipticCurveEncrypterSecp256k1()
         guard var signatureInInternalFormat = encrypter.sign(hash: hash, privateKey: privateKey) else {
             throw CryptoError.failedToSign
@@ -52,7 +52,7 @@ public final class Crypto {
     ///   - publicKey: public key data in either compressed (then it is 33 bytes) or uncompressed (65 bytes) form
     ///   - compressed: whether public key is compressed
     /// - Returns: True, if signature is valid for the hash and public key, false otherwise.
-    public static func isValid(signature: Data, of hash: Data, publicKey: Data, compressed: Bool) -> Bool {
+    static func isValid(signature: Data, of hash: Data, publicKey: Data, compressed: Bool) -> Bool {
         guard let recoveredPublicKey = self.publicKey(signature: signature, of: hash, compressed: compressed) else { return false }
         return recoveredPublicKey == publicKey
     }
@@ -64,7 +64,7 @@ public final class Crypto {
     ///   - hash: 32-byte (256-bit) hash of a message
     ///   - compressed: whether public key is compressed
     /// - Returns: 65-byte key if not compressed, otherwise 33-byte public key.
-    public static func publicKey(signature: Data, of hash: Data, compressed: Bool) -> Data? {
+    static func publicKey(signature: Data, of hash: Data, compressed: Bool) -> Data? {
         let encrypter = EllipticCurveEncrypterSecp256k1()
         var signatureInInternalFormat = encrypter.import(signature: signature)
         guard var publicKeyInInternalFormat = encrypter.publicKey(signature: &signatureInInternalFormat, hash: hash) else { return nil }

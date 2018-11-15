@@ -2,7 +2,7 @@
 //  KeyGenerator.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 15/11/2018.
+//  Created by Storiqa on 15/11/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -21,7 +21,8 @@ class KeyGenerator: KeyGeneratorProtocol {
         let salt = Constants.Crypto.PBKDF2.salt
         
         guard let privKeyBytes = try? PKCS5.PBKDF2(password: password,
-                                                   salt: salt, iterations: 4096,
+                                                   salt: salt,
+                                                   iterations: 4096,
                                                    variant: .sha256).calculate() else {
             throw KeyGeneratorError.failToGeneratePrivKey
         }

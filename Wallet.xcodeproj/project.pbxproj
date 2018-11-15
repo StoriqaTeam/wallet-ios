@@ -3090,6 +3090,7 @@
 		A58EE3B6214FFDBC0096C155 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				B8241851219D495D009000D4 /* ECDSA */,
 				A5743544217A307A006B4CAE /* SwiftyJSON */,
 				CE23D321215CB9DB0016FEBD /* CustomSegmentedControl */,
 				CE1A47D1212E9C0200418C11 /* SmileLock */,
@@ -3228,7 +3229,8 @@
 		A5B78206215E22AE00EFD1A5 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
-				B8241851219D495D009000D4 /* ECDSA */,
+				A5933D3B219DBE230080C8C7 /* Signer.swift */,
+				A5933D38219DAB910080C8C7 /* KeyGenerator.swift */,
 				A5B7820B215E232200EFD1A5 /* BlockchainNetwork */,
 				A5B78207215E22BD00EFD1A5 /* Base58 */,
 			);
@@ -3453,8 +3455,6 @@
 			isa = PBXGroup;
 			children = (
 				A5933D37219DAB600080C8C7 /* CryptoSupport */,
-				A5933D38219DAB910080C8C7 /* KeyGenerator.swift */,
-				A5933D3B219DBE230080C8C7 /* Signer.swift */,
 			);
 			path = ECDSA;
 			sourceTree = "<group>";

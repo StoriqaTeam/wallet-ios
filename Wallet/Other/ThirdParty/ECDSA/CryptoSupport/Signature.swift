@@ -2,7 +2,7 @@
 //  Signature.swift
 //  UniversaWallet
 //
-//  Created by Даниил Мирошниченко on 05.07.2018.
+//  Created by Storiqa on 05.07.2018.
 //  Copyright © 2018 Universa. All rights reserved.
 //
 
