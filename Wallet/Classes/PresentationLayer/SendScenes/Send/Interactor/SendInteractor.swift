@@ -23,6 +23,7 @@ class SendInteractor {
     private let txnUpdater: TransactionsUpdaterProtocol
     private var sendProvider: SendTransactionProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
+    private var feeUpadteChannelInput: FeeUpdateChannel?
     
     init(sendTransactionBuilder: SendProviderBuilderProtocol,
          accountsProvider: AccountsProviderProtocol,
@@ -52,6 +53,8 @@ class SendInteractor {
     deinit {
         self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
         self.accountsUpadteChannelInput = nil
+        self.feeUpadteChannelInput?.removeObserver(withId: self.objId)
+        self.feeUpadteChannelInput = nil
     }
     
     // MARK: - Channels
@@ -63,6 +66,10 @@ class SendInteractor {
     
     func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
         self.accountsUpadteChannelInput = channel
+    }
+    
+    func setFeeUpdateChannelInput(_ channel: FeeUpdateChannel) {
+        self.feeUpadteChannelInput = channel
     }
 }
 
@@ -94,7 +101,7 @@ extension SendInteractor: SendInteractorInput {
         return sendProvider.amount
     }
     
-    func getFee() -> Decimal {
+    func getFee() -> Decimal? {
         return sendProvider.paymentFee
     }
     
@@ -183,6 +190,11 @@ extension SendInteractor: SendInteractorInput {
             self?.accountsDidUpdate(accounts)
         }
         self.accountsUpadteChannelInput?.addObserver(accountsObserver)
+        
+        let feeObserver = Observer<[Fee]>(id: self.objId) { [weak self] _ in
+            self?.feeDidUpdate()
+        }
+        self.feeUpadteChannelInput?.addObserver(feeObserver)
     }
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
@@ -232,6 +244,14 @@ extension SendInteractor: SendInteractorInput {
 // MARK: - Private methods
 
 extension SendInteractor {
+    private func feeDidUpdate() {
+        sendProvider.updateFees()
+        
+        updateFeeCount()
+        updateFeeAndWait()
+        updateTotal()
+    }
+    
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index { $0 == account } ?? 0
@@ -248,8 +268,9 @@ extension SendInteractor {
     private func isFormValid() -> Bool {
         let isZeroAmount = sendProvider.amount.isZero
         let isEmptyAddress = sendProvider.receiverAddress.isEmpty
+        let hasFee = sendProvider.paymentFee != nil
         
-        return !isZeroAmount && !isEmptyAddress && sendProvider.isEnoughFunds()
+        return !isZeroAmount && !isEmptyAddress && hasFee && sendProvider.isEnoughFunds()
     }
     
     private func updateAddressValidity() {
@@ -269,7 +290,6 @@ extension SendInteractor {
     
     private func updateFeeAndWait() {
         let feeWait = sendProvider.getFeeAndWait()
-        
         output.updatePaymentFee(feeWait.fee)
         output.updateMedianWait(feeWait.wait)
     }

@@ -440,6 +440,16 @@
 		CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */; };
 		CE25B72D2125A2E10097230A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B7292125A2E00097230A /* DefaultButton.swift */; };
 		CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74D2126BEDB0097230A /* UserInfo.swift */; };
+		CE288A04219E9D840010FA3B /* FeeUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A03219E9D840010FA3B /* FeeUpdater.swift */; };
+		CE288A07219E9E2A0010FA3B /* FeeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A06219E9E2A0010FA3B /* FeeProvider.swift */; };
+		CE288A0A219EA1040010FA3B /* FeeDataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A09219EA1040010FA3B /* FeeDataStoreService.swift */; };
+		CE288A0C219EA1EA0010FA3B /* Fee.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A0B219EA1EA0010FA3B /* Fee.swift */; };
+		CE288A0E219EA2940010FA3B /* RealmFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A0D219EA2940010FA3B /* RealmFee.swift */; };
+		CE288A10219EA6A40010FA3B /* FeeAndWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A0F219EA6A40010FA3B /* FeeAndWait.swift */; };
+		CE288A13219EACF30010FA3B /* MedianWaitFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A12219EACF30010FA3B /* MedianWaitFormatter.swift */; };
+		CE288A16219EAFCF0010FA3B /* FeeNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A15219EAFCF0010FA3B /* FeeNetworkProvider.swift */; };
+		CE288A18219EB02B0010FA3B /* API+Fees.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A17219EB02B0010FA3B /* API+Fees.swift */; };
+		CE288A1A219EEA920010FA3B /* RealmFeeAndWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A19219EEA920010FA3B /* RealmFeeAndWait.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
 		CE41F3432181A8EB00070D5D /* UniversalLinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */; };
 		CE41F3462181AAF900070D5D /* EmailConfirm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */; };
@@ -1084,6 +1094,16 @@
 		CE23D322215CB9F30016FEBD /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		CE25B7292125A2E00097230A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		CE288A03219E9D840010FA3B /* FeeUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeUpdater.swift; sourceTree = "<group>"; };
+		CE288A06219E9E2A0010FA3B /* FeeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeProvider.swift; sourceTree = "<group>"; };
+		CE288A09219EA1040010FA3B /* FeeDataStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeDataStoreService.swift; sourceTree = "<group>"; };
+		CE288A0B219EA1EA0010FA3B /* Fee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fee.swift; sourceTree = "<group>"; };
+		CE288A0D219EA2940010FA3B /* RealmFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFee.swift; sourceTree = "<group>"; };
+		CE288A0F219EA6A40010FA3B /* FeeAndWait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeAndWait.swift; sourceTree = "<group>"; };
+		CE288A12219EACF30010FA3B /* MedianWaitFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedianWaitFormatter.swift; sourceTree = "<group>"; };
+		CE288A15219EAFCF0010FA3B /* FeeNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeNetworkProvider.swift; sourceTree = "<group>"; };
+		CE288A17219EB02B0010FA3B /* API+Fees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Fees.swift"; sourceTree = "<group>"; };
+		CE288A19219EEA920010FA3B /* RealmFeeAndWait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeeAndWait.swift; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLinkParser.swift; sourceTree = "<group>"; };
 		CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailConfirm.storyboard; sourceTree = "<group>"; };
@@ -2423,6 +2443,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CE288A14219EAFB90010FA3B /* FeeNetworkProvider */,
 				CE1008A12191AEC00068010A /* SocialAuthNetworkProvider */,
 				CE135176218C84CC009CB4F9 /* CreateAccountNetworkProvider */,
 				CEE84EFF218B4C8A00AB85F3 /* ChangePasswordNetworkProvider */,
@@ -2441,6 +2462,7 @@
 				A574353F217A1B09006B4CAE /* API+Unauthorize.swift */,
 				A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */,
 				B8C5EDD52189A2FA00345B79 /* API+Rates.swift */,
+				CE288A17219EB02B0010FA3B /* API+Fees.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -2473,6 +2495,7 @@
 		A51CB54C2158FEA700CDC80C /* DataStoreServices */ = {
 			isa = PBXGroup;
 			children = (
+				CE288A08219EA0F10010FA3B /* FeeDataStoreService */,
 				B8C5EDDF2189B38700345B79 /* RatesDataStoreService */,
 				A574352D21778188006B4CAE /* SessionsDataStoreService */,
 				A51CB5502158FF0000CDC80C /* AccountsDataStoreProvider */,
@@ -3102,6 +3125,9 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				CE288A11219EACE50010FA3B /* MedianWaitFormatter */,
+				CE288A05219E9E0E0010FA3B /* FeeProvider */,
+				CE288A02219E9D6D0010FA3B /* FeeUpdater */,
 				CE1008A72191C8E50068010A /* AuthDataResolver */,
 				CE1008A42191B4C10068010A /* LoginService */,
 				CE135179218C9BCB009CB4F9 /* DefaultAccountsProvider */,
@@ -3348,6 +3374,8 @@
 				CE44019D2174AEC200F7C8D8 /* RealmContact.swift */,
 				A574352B217775AE006B4CAE /* RealmSession.swift */,
 				B8C5EDDD2189ADE600345B79 /* RealmRate.swift */,
+				CE288A0D219EA2940010FA3B /* RealmFee.swift */,
+				CE288A19219EEA920010FA3B /* RealmFeeAndWait.swift */,
 			);
 			path = RealmModels;
 			sourceTree = "<group>";
@@ -3776,6 +3804,46 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		CE288A02219E9D6D0010FA3B /* FeeUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				CE288A03219E9D840010FA3B /* FeeUpdater.swift */,
+			);
+			path = FeeUpdater;
+			sourceTree = "<group>";
+		};
+		CE288A05219E9E0E0010FA3B /* FeeProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE288A06219E9E2A0010FA3B /* FeeProvider.swift */,
+			);
+			path = FeeProvider;
+			sourceTree = "<group>";
+		};
+		CE288A08219EA0F10010FA3B /* FeeDataStoreService */ = {
+			isa = PBXGroup;
+			children = (
+				CE288A09219EA1040010FA3B /* FeeDataStoreService.swift */,
+			);
+			path = FeeDataStoreService;
+			sourceTree = "<group>";
+		};
+		CE288A11219EACE50010FA3B /* MedianWaitFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				CE288A12219EACF30010FA3B /* MedianWaitFormatter.swift */,
+			);
+			path = MedianWaitFormatter;
+			sourceTree = "<group>";
+		};
+		CE288A14219EAFB90010FA3B /* FeeNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE288A15219EAFCF0010FA3B /* FeeNetworkProvider.swift */,
+			);
+			path = FeeNetworkProvider;
+			sourceTree = "<group>";
+		};
 		CE41F3442181A8F100070D5D /* UniversalLinkParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -4068,6 +4136,8 @@
 				CE8CC9962167B7A500EA9EED /* Currency.swift */,
 				A5743529217774E3006B4CAE /* Session.swift */,
 				B8C5EDDB2189ACE700345B79 /* Rate.swift */,
+				CE288A0B219EA1EA0010FA3B /* Fee.swift */,
+				CE288A0F219EA6A40010FA3B /* FeeAndWait.swift */,
 			);
 			path = PlainModels;
 			sourceTree = "<group>";
@@ -4750,6 +4820,7 @@
 				4E5BC89F50726A6F7AA8256E /* PinInputnteractorInput.swift in Sources */,
 				A5B78211215E24B600EFD1A5 /* EthereumAddressValidator.swift in Sources */,
 				CE41F35621831C5900070D5D /* TransactionsUpdater.swift in Sources */,
+				CE288A07219E9E2A0010FA3B /* FeeProvider.swift in Sources */,
 				A522AAE9219AF7BB00C39826 /* SettingsTableViewCell.swift in Sources */,
 				0087C8EE381913F94BBF1F79 /* PinInputInteractorOutput.swift in Sources */,
 				E75BA378AB9872B3E84F37B8 /* PinInputInteractor.swift in Sources */,
@@ -4777,6 +4848,7 @@
 				D38A8FA13AAF73DEB072ECF1 /* FirstLaunchInteractorInput.swift in Sources */,
 				7A80EBB895B1151398C2D79F /* FirstLaunchInteractorOutput.swift in Sources */,
 				EBA3144E74DD09EC8832E45F /* FirstLaunchInteractor.swift in Sources */,
+				CE288A1A219EEA920010FA3B /* RealmFeeAndWait.swift in Sources */,
 				ED225EB78E206616574BF490 /* FirstLaunchRouterInput.swift in Sources */,
 				CE6A0972216CD1B3004A96A8 /* PopUpSignOutVM.swift in Sources */,
 				CE41F3532183106500070D5D /* TransactionsNetworkProvider.swift in Sources */,
@@ -4799,6 +4871,7 @@
 				A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */,
 				A56B4C7E215D00DC0017B337 /* EmptyView.swift in Sources */,
 				D673BB210C0EE94821BDEFFA /* RegistrationInteractorInput.swift in Sources */,
+				CE288A04219E9D840010FA3B /* FeeUpdater.swift in Sources */,
 				165DB5F5FAA826D2789B39B1 /* RegistrationInteractorOutput.swift in Sources */,
 				2F361EA29F03389EB9F35B20 /* RegistrationInteractor.swift in Sources */,
 				CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */,
@@ -4861,6 +4934,7 @@
 				29640821A6A627670C90FB72 /* PopUpModule.swift in Sources */,
 				A56ED385216CD710009FA58B /* TransactionDetailsViewInput.swift in Sources */,
 				CD2529EF44F08CF6C8BDE01E /* QuickLaunchViewInput.swift in Sources */,
+				CE288A16219EAFCF0010FA3B /* FeeNetworkProvider.swift in Sources */,
 				45FACDCCDC36DDB4D6F0E6BC /* QuickLaunchViewOutput.swift in Sources */,
 				CEFC9CA221590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift in Sources */,
 				7BB2AD26A425C207E35F2F71 /* QuickLaunchViewController.swift in Sources */,
@@ -4913,6 +4987,7 @@
 				F84105BB46F917B0AB9317C9 /* BiometryQuickLaunchRouterInput.swift in Sources */,
 				5A19DCEBA97EFA317880745E /* BiometryQuickLaunchRouter.swift in Sources */,
 				A51CB5492158E60500CDC80C /* Transaction.swift in Sources */,
+				CE288A0C219EA1EA0010FA3B /* Fee.swift in Sources */,
 				A52C66B6216767EA0073071E /* RealmAccount.swift in Sources */,
 				A57434D721764159006B4CAE /* TransactionsDateFilter.swift in Sources */,
 				1D29389B7211768F5C82EF1B /* BiometryQuickLaunchModuleInput.swift in Sources */,
@@ -4928,6 +5003,7 @@
 				D8725E388DDC6EC37245C900 /* PinSetupPresenter.swift in Sources */,
 				DB0167269CDCA1A26EFD340D /* PinSetupInteractorInput.swift in Sources */,
 				A52C66B821676AB70073071E /* Decimal+Helpers.swift in Sources */,
+				CE288A13219EACF30010FA3B /* MedianWaitFormatter.swift in Sources */,
 				DBDC98669AC4320EAFC55E3F /* PinSetupInteractorOutput.swift in Sources */,
 				CE1008A32191AF0D0068010A /* SocialAuthNetworkProvider.swift in Sources */,
 				7B69B52D9D87B8566F124536 /* PinSetupInteractor.swift in Sources */,
@@ -4946,6 +5022,7 @@
 				EBCA36D03BBA6F52ECC7258D /* MainTabBarViewOutput.swift in Sources */,
 				CD8499CCEA4C0FBAC71AEDBD /* MainTabBarViewController.swift in Sources */,
 				CEFC9CAE215A140800962356 /* DeviceContactsFetcher.swift in Sources */,
+				CE288A0A219EA1040010FA3B /* FeeDataStoreService.swift in Sources */,
 				75BC72D950AA357E03897FF1 /* MainTabBarPresenter.swift in Sources */,
 				33BDB5A5300B26E466BE8AA9 /* MainTabBarInteractorInput.swift in Sources */,
 				CE7297A9219B352200A765B1 /* PopUpSendConfirmFailureVM.swift in Sources */,
@@ -4975,6 +5052,7 @@
 				4A8416E8E79E93524467F707 /* MyWalletInteractor.swift in Sources */,
 				B824185B219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift in Sources */,
 				BF550A4D541C2E921C542231 /* MyWalletRouterInput.swift in Sources */,
+				CE288A18219EB02B0010FA3B /* API+Fees.swift in Sources */,
 				CE41F3482181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift in Sources */,
 				7CA5701D87FA184CFCC87D46 /* MyWalletRouter.swift in Sources */,
 				A36F15E016B8AA17388F5F6F /* MyWalletModuleInput.swift in Sources */,
@@ -5046,6 +5124,7 @@
 				D412B0E68A6387EFF7083DD5 /* SettingsViewController.swift in Sources */,
 				79A2AC994D7556E90171E7E5 /* SettingsPresenter.swift in Sources */,
 				BFD84DFE006F12E4358D8FB4 /* SettingsInteractorInput.swift in Sources */,
+				CE288A0E219EA2940010FA3B /* RealmFee.swift in Sources */,
 				A56ED3A6216E2D36009FA58B /* TransactionOpponentResolver.swift in Sources */,
 				A57434FE21776226006B4CAE /* EditProfileModule.swift in Sources */,
 				A574351F21777383006B4CAE /* SessionsViewOutput.swift in Sources */,
@@ -5164,6 +5243,7 @@
 				4C9AC1E9C6D0D8C5181C95BF /* TransactionFilterViewController.swift in Sources */,
 				A7B879DB4C2E78DC60D11D96 /* TransactionFilterModulePresenter.swift in Sources */,
 				AE25E836624D8FB16AABA72B /* TransactionFilterModuleInteractorInput.swift in Sources */,
+				CE288A10219EA6A40010FA3B /* FeeAndWait.swift in Sources */,
 				6FC1A3D461CBFECC89185438 /* TransactionFilterModuleInteractorOutput.swift in Sources */,
 				BE9590E0480343163111D6DB /* TransactionFilterModuleInteractor.swift in Sources */,
 				DAFD2DF5B826F36BA9EF420C /* TransactionFilterModuleRouterInput.swift in Sources */,

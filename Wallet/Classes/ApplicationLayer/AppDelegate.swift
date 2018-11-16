@@ -37,8 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configurator.configure()
         }
         
-        let hash = "hello world".sha256()
-        
         return true
     }
     
