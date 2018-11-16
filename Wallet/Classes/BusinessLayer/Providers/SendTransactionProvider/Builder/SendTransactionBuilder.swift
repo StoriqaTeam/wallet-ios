@@ -13,21 +13,21 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     private var defaultSendTxProvider: SendTransactionProvider
     
     private let accountsProvider: AccountsProviderProtocol
-    private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let feeProvider: FeeProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
     init(currencyConverterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
          accountsProvider: AccountsProviderProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
+         feeProvider: FeeProviderProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.accountsProvider = accountsProvider
-        self.feeWaitProvider = feeWaitProvider
+        self.feeProvider = feeProvider
         self.denominationUnitsConverter = denominationUnitsConverter
         
         defaultSendTxProvider = SendTransactionProvider(accountProvider: self.accountsProvider,
-                                                        feeWaitProvider: self.feeWaitProvider,
+                                                        feeProvider: self.feeProvider,
                                                         denominationUnitsConverter: self.denominationUnitsConverter)
     }
     
@@ -62,7 +62,7 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     
     func clear() {
         defaultSendTxProvider = SendTransactionProvider(accountProvider: self.accountsProvider,
-                                                        feeWaitProvider: self.feeWaitProvider,
+                                                        feeProvider: self.feeProvider,
                                                         denominationUnitsConverter: self.denominationUnitsConverter)
     }
 }

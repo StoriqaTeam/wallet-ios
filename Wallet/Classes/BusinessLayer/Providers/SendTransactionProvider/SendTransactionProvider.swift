@@ -15,16 +15,17 @@ protocol QRScannerDelegate: class {
 protocol SendTransactionProviderProtocol: class {
     
     var amount: Decimal { get }
-    var paymentFee: Decimal { get }
+    var paymentFee: Decimal? { get }
     var receiverAddress: String { get }
     var selectedAccount: Account { get }
 
     func getFeeWaitCount() -> Int
     func getFeeIndex() -> Int
-    func getFeeAndWait() -> (fee: Decimal, wait: String)
+    func getFeeAndWait() -> (fee: Decimal?, wait: String)
     func getSubtotal() -> Decimal
     func isEnoughFunds() -> Bool
     func createTransaction() -> Transaction
+    func updateFees()
 }
 
 class SendTransactionProvider: SendTransactionProviderProtocol {
@@ -33,23 +34,24 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     
     var selectedAccount: Account {
         didSet {
-            loadPaymentFees()
+            updateFees()
         }
     }
     var amount: Decimal
-    var paymentFee: Decimal
+    var paymentFee: Decimal?
     var receiverAddress: String
+    private var feeIndex: Int?
     
     private let accountProvider: AccountsProviderProtocol
-    private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let feeProvider: FeeProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
     init(accountProvider: AccountsProviderProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
+         feeProvider: FeeProviderProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.accountProvider = accountProvider
-        self.feeWaitProvider = feeWaitProvider
+        self.feeProvider = feeProvider
         self.denominationUnitsConverter = denominationUnitsConverter
         
         // default build
@@ -58,41 +60,62 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         self.receiverAddress = ""
         self.selectedAccount = accountProvider.getAllAccounts().first!
         
-        loadPaymentFees()
+        updateFees()
     }
     
+    
+    // MARK: SendTransactionProviderProtocol
+    
     func setPaymentFee(index: Int) {
-        paymentFee = feeWaitProvider.getFee(index: index)
+        guard let fee = feeProvider.getFee(index: index) else {
+            feeIndex = nil
+            paymentFee = nil
+            return
+        }
+        feeIndex = index
+        paymentFee = fee
     }
     
     func getFeeIndex() -> Int {
-        return feeWaitProvider.getIndex(fee: paymentFee)
+        return feeIndex ?? 0
     }
     
     func getFeeWaitCount() -> Int {
-        return feeWaitProvider.getValuesCount()
+        return feeProvider.getValuesCount()
     }
     
-    func getFeeAndWait() -> (fee: Decimal, wait: String) {
-        let wait = feeWaitProvider.getWait(fee: paymentFee)
-        return (paymentFee, wait)
+    func getFeeAndWait() -> (fee: Decimal?, wait: String) {
+        guard let paymentFee = paymentFee else {
+            return (nil, "-")
+        }
+        
+        let currency = selectedAccount.currency
+        let wait = feeProvider.getWait(fee: paymentFee)
+        let fee = denominationUnitsConverter.amountToMaxUnits(paymentFee, currency: currency)
+        return (fee, wait)
     }
     
     func getSubtotal() -> Decimal {
-        guard !amount.isZero else {
-            return amount
+        guard !amount.isZero, let paymentFee = paymentFee else {
+            return 0
         }
         
-        let sum = amount + paymentFee
+        let currency = selectedAccount.currency
+        let fee = denominationUnitsConverter.amountToMaxUnits(paymentFee, currency: currency)
+        let sum = amount + fee
         return sum
     }
     
     func isEnoughFunds() -> Bool {
+        guard let paymentFee = paymentFee else {
+            return true
+        }
+        
         let currency = selectedAccount.currency
-        let sum = amount + paymentFee
-        let inMaxUnits = denominationUnitsConverter.amountToMinUnits(sum, currency: currency)
+        let inMinUnits = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
+        let sum = inMinUnits + paymentFee
         let available = selectedAccount.balance
-        return inMaxUnits.isLessThanOrEqualTo(available)
+        return sum.isLessThanOrEqualTo(available)
     }
     
     func createTransaction() -> Transaction {
@@ -101,9 +124,9 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         let currency = selectedAccount.currency
         let fromAddress = selectedAccount.accountAddress
         let toAddress = receiverAddress
+        let fee = paymentFee!
         
         let toValue = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
-        let fee = denominationUnitsConverter.amountToMinUnits(paymentFee, currency: currency)
    
         let transaction = Transaction(id: uuid,
                                       fromAddress: [fromAddress],
@@ -122,20 +145,21 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         return transaction
     }
     
-}
-
-
-// MARK: - Private methods
-
-extension SendTransactionProvider {
-    
-    private func loadPaymentFees() {
+    func updateFees() {
         let currency = selectedAccount.currency
-        feeWaitProvider.updateSelectedForCurrency(currency)
+        feeProvider.updateSelected(fromCurrency: currency, toCurrency: currency)
         
-        let count = feeWaitProvider.getValuesCount()
-        let medium = count / 2
-        paymentFee = feeWaitProvider.getFee(index: medium)
+        let count = feeProvider.getValuesCount()
+        let index: Int = {
+            if let feeIndex = feeIndex, count > feeIndex {
+                return feeIndex
+            } else {
+                return count / 2
+            }
+        }()
+        
+        feeIndex = index
+        paymentFee = feeProvider.getFee(index: index)
     }
     
 }

@@ -165,7 +165,12 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setConvertedAmount("≈" + formatted)
     }
     
-    func updatePaymentFee(_ fee: Decimal) {
+    func updatePaymentFee(_ fee: Decimal?) {
+        guard let fee = fee else {
+            view.setPaymentFee("-")
+            return
+        }
+        
         let currency = interactor.getAccountCurrency()
         let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency)
         view.setPaymentFee(formatted)

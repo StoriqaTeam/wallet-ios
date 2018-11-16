@@ -17,19 +17,19 @@ class SendTransactionBuilderFactory: SendTransactionBuilderFactoryProtocol {
     private let currencyConverterFactory: CurrencyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
     private let accountsProvider: AccountsProviderProtocol
-    private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let feeProvider: FeeProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
     init(currencyConverterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
          accountsProvider: AccountsProviderProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
+         feeProvider: FeeProviderProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.currencyConverterFactory = currencyConverterFactory
         self.currencyFormatter = currencyFormatter
         self.accountsProvider = accountsProvider
-        self.feeWaitProvider = feeWaitProvider
+        self.feeProvider = feeProvider
         self.denominationUnitsConverter = denominationUnitsConverter
     }
     
@@ -37,7 +37,7 @@ class SendTransactionBuilderFactory: SendTransactionBuilderFactoryProtocol {
         return SendTransactionBuilder(currencyConverterFactory: currencyConverterFactory,
                                       currencyFormatter: currencyFormatter,
                                       accountsProvider: accountsProvider,
-                                      feeWaitProvider: feeWaitProvider,
+                                      feeProvider: feeProvider,
                                       denominationUnitsConverter: denominationUnitsConverter)
     }
 }

@@ -25,7 +25,7 @@ class Application {
     lazy var sendTransactionBuilderFactory: SendTransactionBuilderFactoryProtocol = SendTransactionBuilderFactory(currencyConverterFactory: self.currencyConverterFactory,
                                                                                                                   currencyFormatter: self.currencyFormatter,
                                                                                                                   accountsProvider: self.accountsProvider,
-                                                                                                                  feeWaitProvider: self.fakePaymentFeeAndWaitProvider,
+                                                                                                                  feeProvider: self.feeProvider,
                                                                                                                   denominationUnitsConverter: self.denominationUnitsConverter)
     lazy var biometricAuthProviderFactory: BiometricAuthProviderFactory = BiometricAuthProviderFactory(errorParser: self.biometricErrorParser)
     
@@ -42,6 +42,7 @@ class Application {
     lazy var transactionDataStoreService: TransactionDataStoreServiceProtocol = TransactionDataStoreService()
     lazy var contactsDataStoreService: ContactsDataStoreServiceProtocol = ContactsDataStoreService()
     lazy var ratesDataStoreService: RatesDataStoreServiceProtocol = RatesDataStoreService()
+    lazy var feeDataStore: FeeDataStoreServiceProtocol = FeeDataStoreService()
     
     
     // MARK: - Network Providers
@@ -58,6 +59,7 @@ class Application {
     lazy var changePasswordNetworkProvider: ChangePasswordNetworkProviderProtocol = ChangePasswordNetworkProvider()
     lazy var createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol = CreateAccountNetworkProvider()
     lazy var socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol = SocialAuthNetworkProvider()
+    lazy var feeNetworkProvider: FeeNetworkProviderProtocol = FeeNetworkProvider()
     
     
     // MARK: - Common Providers
@@ -78,6 +80,8 @@ class Application {
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
     lazy var appLockerProvider: AppLockerProviderProtocol = AppLockerProvider(app: self)
     lazy var ratesProvider: RatesProviderProtocol = RatesProvider(ratesDataStoreService: self.ratesDataStoreService)
+    lazy var feeProvider: FeeProviderProtocol = FeeProvider(feeDataStoreService: self.feeDataStore,
+                                                            medianWaitFormatter: medianWaitFormatter)
     lazy var defaultAccountsProvider: DefaultAccountsProviderProtocol = DefaultAccountsProvider(userDataStore: self.userDataStoreService,
                                                                                                 authTokenProvider: self.authTokenProvider,
                                                                                                 createAccountsNetworkProvider: self.createAccountsNetworkProvider,
@@ -97,6 +101,9 @@ class Application {
                                                                                         contactsAddressLinker: self.contactsAddressLinker)
     lazy var ratesUpdater: RatesUpdaterProtocol = RatesUpdater(ratesDataSourceService: self.ratesDataStoreService,
                                                                ratesNetworkProvider: self.ratesNetworkProvider)
+    lazy var feeUpdater: FeeUpdaterProtocol = FeeUpdater(feeNetworkProvider: self.feeNetworkProvider,
+                                                         feeDataStore: self.feeDataStore,
+                                                         authTokenProvider: self.authTokenProvider)
     lazy var loginService: LoginServiceProtocol = LoginService(authTokenDefaultsProvider: self.authTokenDefaultsProvider,
                                                                loginNetworkProvider: self.loginNetworkProvider,
                                                                socialAuthNetworkProvider: self.socialAuthNetworkProvider,
@@ -115,6 +122,7 @@ class Application {
     lazy var currencyConverterFactory: CurrencyConverterFactoryProtocol = CurrencyConverterFactory(ratesProvider: self.ratesProvider)
     lazy var currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatter()
     lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
+    lazy var medianWaitFormatter: MedianWaitFormatterProtocol = MedianWaitFormatter()
     
     // MARK: Validators
     lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: BITCOIN_NETWORK)
@@ -156,7 +164,7 @@ class Application {
     
     
     // MARK: - Global services
-    lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 90)
+    lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 10)
     
     // MARK: - Channels
     lazy var channelStorage: ChannelStorage = ChannelStorage()
@@ -164,5 +172,5 @@ class Application {
     
     // MARK: - FakeProviders -
     lazy var fakeContactsNetworkProvider: ContactsNetworkProviderProtocol = FakeContactsNetworkProvider()
-    lazy var fakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol = FakePaymentFeeAndWaitProvider()
+    lazy var fakeFeeProvider: FeeProviderProtocol = FakeFeeProvider()
 }

@@ -24,7 +24,7 @@ class ExchangeModule {
         let interactor = ExchangeInteractor(accountWatcher: accountWatcher,
                                             accountsProvider: app.accountsProvider,
                                             converterFactory: app.currencyConverterFactory,
-                                            feeWaitProvider: app.fakePaymentFeeAndWaitProvider)
+                                            feeProvider: app.fakeFeeProvider)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController

@@ -15,28 +15,27 @@ class ExchangeInteractor {
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let accountsProvider: AccountsProviderProtocol
     private let converterFactory: CurrencyConverterFactoryProtocol
-    private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let feeProvider: FeeProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
     private var currencyConverter: CurrencyConverterProtocol!
     private var recepientAccount: Account? {
         didSet { updateConverter() }
     }
     private var amount: Decimal
-    private var paymentFee: Decimal
+    private var paymentFee: Decimal?
     private var recepientAccounts: [Account]!
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
          accountsProvider: AccountsProviderProtocol,
          converterFactory: CurrencyConverterFactoryProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol) {
+         feeProvider: FeeProviderProtocol) {
         self.accountWatcher = accountWatcher
         self.accountsProvider = accountsProvider
         self.converterFactory = converterFactory
-        self.feeWaitProvider = feeWaitProvider
+        self.feeProvider = feeProvider
         
         // Default values
         amount = 0
-        paymentFee = 0
         recepientAccounts = updateRecepientAccounts()
         recepientAccount = recepientAccounts.first
         
@@ -132,7 +131,7 @@ extension ExchangeInteractor: ExchangeInteractorInput {
     }
     
     func setPaymentFee(index: Int) {
-        paymentFee = feeWaitProvider.getFee(index: index)
+        paymentFee = feeProvider.getFee(index: index)
         
         updateFeeAndWait()
         updateTotal()
@@ -175,24 +174,27 @@ extension ExchangeInteractor {
     }
     
     private func loadPaymentFees() {
-        let currency = accountWatcher.getAccount().currency
-        feeWaitProvider.updateSelectedForCurrency(currency)
+        guard let recepientAccount = recepientAccount else {
+            return
+        }
         
-        let count = feeWaitProvider.getValuesCount()
+        let currency = accountWatcher.getAccount().currency
+        feeProvider.updateSelected(fromCurrency: currency, toCurrency: recepientAccount.currency)
+        
+        let count = feeProvider.getValuesCount()
         let medium = count / 2
-        paymentFee = feeWaitProvider.getFee(index: medium)
+        paymentFee = feeProvider.getFee(index: medium)
     }
     
     private func calculateTotalAmount() -> Decimal {
-        let accountCurrency = accountWatcher.getAccount().currency
-        let total: Decimal
-        
-        if !amount.isZero {
-            let converted = currencyConverter.convert(amount: amount, to: accountCurrency)
-            total = converted + paymentFee
-        } else {
-            total = 0
+        guard let paymentFee = paymentFee,
+            !amount.isZero else {
+                return 0
         }
+        
+        let accountCurrency = accountWatcher.getAccount().currency
+        let converted = currencyConverter.convert(amount: amount, to: accountCurrency)
+        let total = converted + paymentFee
         
         return total
     }
@@ -239,16 +241,27 @@ extension ExchangeInteractor {
     }
     
     private func updateFeeAndWait() {
-        let wait = feeWaitProvider.getWait(fee: paymentFee)
-        
         output.updatePaymentFee(paymentFee)
+        
+        guard let paymentFee = paymentFee else {
+            output.updateMedianWait("-")
+            return
+        }
+        
+        let wait = feeProvider.getWait(fee: paymentFee)
         output.updateMedianWait(wait)
     }
     
     private func updateFeeCount() {
-        let count = feeWaitProvider.getValuesCount()
-        let index = feeWaitProvider.getIndex(fee: paymentFee)
-        output.updatePaymentFees(count: count, selected: index)
+        let valuesCount = feeProvider.getValuesCount()
+        
+        guard valuesCount > 0, let paymentFee = paymentFee else {
+            output.updatePaymentFees(count: valuesCount, selected: 0)
+            return
+        }
+        
+        let index = feeProvider.getIndex(fee: paymentFee)
+        output.updatePaymentFees(count: valuesCount, selected: index)
     }
     
     private func updateTotal() {

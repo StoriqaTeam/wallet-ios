@@ -18,6 +18,7 @@ class MainTabBarModule {
                                               accountsUpdater: app.accountsUpdater,
                                               txsUpdater: app.transactionsUpdater,
                                               ratesUpdater: app.ratesUpdater,
+                                              feeUpdater: app.feeUpdater,
                                               app: app)
         
         let storyboard = UIStoryboard(name: "MainTabBar", bundle: nil)

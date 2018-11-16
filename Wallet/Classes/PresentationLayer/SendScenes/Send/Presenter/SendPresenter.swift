@@ -156,7 +156,12 @@ extension SendPresenter: SendInteractorOutput {
         view.setAmount(amountString)
     }
     
-    func updatePaymentFee(_ fee: Decimal) {
+    func updatePaymentFee(_ fee: Decimal?) {
+        guard let fee = fee else {
+            view.setPaymentFee("-")
+            return
+        }
+        
         let currency = interactor.getCurrency()
         let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency)
         view.setPaymentFee(formatted)

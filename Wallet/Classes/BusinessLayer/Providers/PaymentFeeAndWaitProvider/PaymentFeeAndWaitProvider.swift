@@ -8,15 +8,7 @@
 
 import Foundation
 
-protocol PaymentFeeAndWaitProviderProtocol {
-    func updateSelectedForCurrency(_ currency: Currency)
-    func getValuesCount() -> Int
-    func getIndex(fee: Decimal) -> Int
-    func getFee(index: Int) -> Decimal
-    func getWait(fee: Decimal) -> String
-}
-
-class FakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol {
+class FakeFeeProvider: FeeProviderProtocol {
     
     private let satoshi = 0.000_000_01
     private let aproxBlockBytes = 220.0
@@ -55,8 +47,10 @@ class FakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol {
     
     private var selected = [Decimal: String]()
     
-    func updateSelectedForCurrency(_ currency: Currency) {
-        switch currency {
+    func setFeeUpdaterChannel(_ channel: FeeUpdateChannel) {}
+    
+    func updateSelected(fromCurrency: Currency, toCurrency: Currency) {
+        switch fromCurrency {
         case .stq:
             selected = stqFeeWait
         case .btc:
@@ -78,7 +72,7 @@ class FakePaymentFeeAndWaitProvider: PaymentFeeAndWaitProviderProtocol {
         return index
     }
     
-    func getFee(index: Int) -> Decimal {
+    func getFee(index: Int) -> Decimal? {
         let paymentFeeValues = Array(selected.keys).sorted()
         return paymentFeeValues[index]
     }

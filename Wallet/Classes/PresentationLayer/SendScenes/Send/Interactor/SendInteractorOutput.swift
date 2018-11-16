@@ -12,7 +12,7 @@ import Foundation
 protocol SendInteractorOutput: class {
     func updateAccounts(accounts: [Account], index: Int)
     func updateAmount(_ amount: Decimal, currency: Currency)
-    func updatePaymentFee(_ fee: Decimal)
+    func updatePaymentFee(_ fee: Decimal?)
     func updatePaymentFees(count: Int, selected: Int)
     func updateMedianWait(_ wait: String)
     func updateTotal(_ total: Decimal, currency: Currency)

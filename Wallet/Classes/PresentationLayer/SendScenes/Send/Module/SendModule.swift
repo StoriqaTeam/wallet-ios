@@ -52,6 +52,10 @@ class SendModule {
         app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
         interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
         
+        let feeUpdateChannel = app.channelStorage.feeUpadteChannel
+        interactor.setFeeUpdateChannelInput(feeUpdateChannel)
+        app.feeProvider.setFeeUpdaterChannel(feeUpdateChannel)
+        
         return presenter
     }
     
