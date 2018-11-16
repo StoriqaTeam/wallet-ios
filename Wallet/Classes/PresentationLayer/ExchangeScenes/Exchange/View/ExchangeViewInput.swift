@@ -13,8 +13,8 @@ protocol ExchangeViewInput: class, Presentable {
     func setupInitialState(numberOfPages: Int)
     func updatePagesCount(_ count: Int)
     func setRecepientAccount(_ recepient: String)
+    func setRecepientBalance(_ balance: String)
     func setAmount(_ amount: String)
-    func setConvertedAmount(_ amount: String)
     func setNewPage(_ index: Int)
     func setMedianWait(_ wait: String)
     func setPaymentFee(_ fee: String)
@@ -22,6 +22,4 @@ protocol ExchangeViewInput: class, Presentable {
     func setSubtotal(_ subtotal: String)
     func setErrorHidden(_ hidden: Bool)
     func setButtonEnabled(_ enabled: Bool)
-    func showAccountsActionSheet(height: CGFloat)
-    func hideAccountsActionSheet()
 }

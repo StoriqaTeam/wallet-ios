@@ -71,11 +71,11 @@ extension SendPresenter: SendViewOutput {
     }
     
     func isValidAmount(_ amount: String) -> Bool {
-        return interactor.isValidAmount(amount)
+        return amount.isEmpty || amount == "." || amount == "," || amount.isValidDecimal()
     }
     
     func amountChanged(_ amount: String) {
-        interactor.setAmount(amount)
+        interactor.setAmount(amount.decimalValue())
     }
     
     func amountDidBeginEditing() {

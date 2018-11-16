@@ -36,7 +36,7 @@ class ExchangeInteractor {
         
         // Default values
         amount = 0
-        recepientAccounts = updateRecepientAccounts()
+        updateRecepientAccounts()
         recepientAccount = recepientAccounts.first
         
         loadPaymentFees()
@@ -105,11 +105,10 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         
         let allAccounts = accountsProvider.getAllAccounts()
         accountWatcher.setAccount(allAccounts[index])
-        recepientAccounts = updateRecepientAccounts()
+        updateRecepientAccounts()
+        updateRecepientAccount()
         loadPaymentFees()
         updateFeeCount()
-        updateRecepientAccount()
-        updateConvertedAmount()
         updateFeeAndWait()
         updateTotal()
     }
@@ -119,14 +118,12 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         
         updateRecepientAccount()
         updateAmount()
-        updateConvertedAmount()
         updateTotal()
     }
     
     func setAmount(_ amount: Decimal) {
         self.amount = amount
         
-        updateConvertedAmount()
         updateTotal()
     }
     
@@ -137,10 +134,11 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         updateTotal()
     }
     
-    func updateInitialState() {
+    func updateState() {
+        loadPaymentFees()
+        updateRecepientAccounts()
         updateRecepientAccount()
         updateAmount()
-        updateConvertedAmount()
         updateFeeCount()
         updateFeeAndWait()
         updateTotal()
@@ -163,14 +161,6 @@ extension ExchangeInteractor {
     private func resolveAccountIndex(account: Account) -> Int {
         let allAccounts = accountsProvider.getAllAccounts()
         return allAccounts.index { $0 == account } ?? 0
-    }
-    
-    private func updateRecepientAccounts() -> [Account] {
-        let allAccounts = accountsProvider.getAllAccounts()
-        let filtered = allAccounts.filter {
-            $0 != accountWatcher.getAccount()
-        }
-        return filtered
     }
     
     private func loadPaymentFees() {
@@ -218,6 +208,15 @@ extension ExchangeInteractor {
 
 extension ExchangeInteractor {
     
+    private func updateRecepientAccounts() {
+        let allAccounts = accountsProvider.getAllAccounts()
+        let selected = accountWatcher.getAccount()
+        let filtered = allAccounts.filter {
+            $0.currency != selected.currency
+        }
+        recepientAccounts = filtered
+    }
+    
     private func updateRecepientAccount() {
         if !recepientAccounts.contains(where: { $0 == recepientAccount }) {
             recepientAccount = recepientAccounts.first
@@ -233,11 +232,6 @@ extension ExchangeInteractor {
         
         let currency = recepientAccount.currency
         output.updateAmount(amount, currency: currency)
-    }
-    
-    private func updateConvertedAmount() {
-        let account = accountWatcher.getAccount()
-        output.convertAmount(amount, to: account.currency)
     }
     
     private func updateFeeAndWait() {

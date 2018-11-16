@@ -473,7 +473,6 @@
 		CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */; };
 		CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */; };
 		CE526C68212471CE00A2EED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C67212471CE00A2EED2 /* Constants.swift */; };
-		CE57C6962165F76100696FF7 /* AccountsTableDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57C6952165F76100696FF7 /* AccountsTableDataManager.swift */; };
 		CE57C6992165F83400696FF7 /* AccountTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57C6982165F83400696FF7 /* AccountTableCell.xib */; };
 		CE57C69B2165F83D00696FF7 /* AccountTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */; };
 		CE5F8302219DB98600A18324 /* BiometricAuthProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F8301219DB98600A18324 /* BiometricAuthProviderFactory.swift */; };
@@ -1129,7 +1128,6 @@
 		CE526C3F212465A900A2EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE526C6521246B8B00A2EED2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CE526C67212471CE00A2EED2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CE57C6952165F76100696FF7 /* AccountsTableDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTableDataManager.swift; sourceTree = "<group>"; };
 		CE57C6982165F83400696FF7 /* AccountTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableCell.xib; sourceTree = "<group>"; };
 		CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableCell.swift; sourceTree = "<group>"; };
 		CE5F8301219DB98600A18324 /* BiometricAuthProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthProviderFactory.swift; sourceTree = "<group>"; };
@@ -2186,7 +2184,6 @@
 		7F6ABC95483217EF42A7791F /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				CE57C6942165F73A00696FF7 /* AccountsTableDataManager */,
 				C234B947F0B3F129CC45D8DB /* ExchangePresenter.swift */,
 			);
 			path = Presenter;
@@ -3962,14 +3959,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		CE57C6942165F73A00696FF7 /* AccountsTableDataManager */ = {
-			isa = PBXGroup;
-			children = (
-				CE57C6952165F76100696FF7 /* AccountsTableDataManager.swift */,
-			);
-			path = AccountsTableDataManager;
-			sourceTree = "<group>";
-		};
 		CE57C6972165F82200696FF7 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -5169,7 +5158,6 @@
 				B8C5EDE82189D7E200345B79 /* RatesProvider.swift in Sources */,
 				A574352221777383006B4CAE /* SessionsInteractor.swift in Sources */,
 				B8241853219D497D009000D4 /* Signature.swift in Sources */,
-				CE57C6962165F76100696FF7 /* AccountsTableDataManager.swift in Sources */,
 				A574353321788110006B4CAE /* SessionsConfigurator.swift in Sources */,
 				A574350721776226006B4CAE /* EditProfileRouterInput.swift in Sources */,
 				E5A30170E901FC7507851349 /* QRScannerViewInput.swift in Sources */,

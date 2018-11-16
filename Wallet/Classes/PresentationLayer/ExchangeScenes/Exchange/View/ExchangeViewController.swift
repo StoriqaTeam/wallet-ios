@@ -5,6 +5,7 @@
 //  Created by Storiqa on 20/09/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+//swiftlint:disable empty_count
 
 import UIKit
 
@@ -18,11 +19,15 @@ class ExchangeViewController: UIViewController {
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var gradientView: HeaderGradientView!
     @IBOutlet private var recepientAccountTitleLabel: UILabel!
     @IBOutlet private var recepientAccountLabel: UILabel!
+    @IBOutlet private var recepientBalanceLabel: UILabel!
     @IBOutlet private var amountTitleLabel: UILabel!
     @IBOutlet private var amountTextField: UITextField!
-    @IBOutlet private var convertedAmountLabel: UILabel!
+    @IBOutlet private var rateLabel: UILabel!
+    @IBOutlet private var rateTimerLabel: UILabel!
+    @IBOutlet private var rateBackgroundView: UIView!
     @IBOutlet private var paymentFeeTitleLabel: UILabel!
     @IBOutlet private var paymentFeeLabel: UILabel!
     @IBOutlet private var paymentFeeSlider: StepSlider!
@@ -40,13 +45,10 @@ class ExchangeViewController: UIViewController {
 
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
-    private let dimmingBackground = UIButton()
-    private let accountsActionSheet = UITableView()
-    private let animationDuration = 0.3
-    private var currentSliderStep = 0 {
+     private var currentSliderStep = 0 {
         didSet {
             if oldValue != currentSliderStep {
-                updateSelectedFee()
+                output.newFeeSelected(currentSliderStep)
             }
         }
     }
@@ -56,7 +58,6 @@ class ExchangeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output.accountsCollectionView(accountsCollectionView)
-        output.accountsActionSheet(accountsActionSheet)
         output.viewIsReady()
     }
     
@@ -70,8 +71,8 @@ class ExchangeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         output.configureCollections()
+        configureGradientView()
     }
-    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -95,10 +96,6 @@ class ExchangeViewController: UIViewController {
         output.recepientAccountPressed()
     }
     
-    @IBAction private func dimmingBackgroundTapped(_ sender: UIButton) {
-        hideAccountsActionSheet()
-    }
-    
 }
 
 
@@ -111,7 +108,6 @@ extension ExchangeViewController: ExchangeViewInput {
         accountsPageControl.numberOfPages = numberOfPages
         
         addNotificationObservers()
-        setupInitialActionSheet()
         addHideKeyboardGuesture()
         configInterface()
     }
@@ -136,30 +132,33 @@ extension ExchangeViewController: ExchangeViewInput {
         paymentFeeSlider.paymentFeeValuesCount = count
         paymentFeeSlider.updateCurrentValue(step: value)
         currentSliderStep = value
+        
+        paymentFeeSlider.isUserInteractionEnabled = count != 0
     }
     
     func setErrorHidden(_ hidden: Bool) {
-        
         if hidden {
-            exchangeButton.isHidden = false
-            
             UIView.animate(withDuration: 0.25, animations: {
                 self.errorLabel.alpha = 0
-                self.exchangeButton.alpha = 1
-            }, completion: { _ in
-                self.errorLabel.isHidden = true
+            }, completion: { finished in
+                if finished {
+                    self.errorLabel.isHidden = true
+                    self.errorLabel.text = ""
+                    self.view.layoutSubviews()
+                }
             })
         } else {
             self.errorLabel.isHidden = false
+            self.errorLabel.text = "You haven’t got enough funds to send. Try to set another count."
             
             UIView.animate(withDuration: 0.25, animations: {
+                self.view.layoutSubviews()
                 self.errorLabel.alpha = 1
-                self.exchangeButton.alpha = 0
-            }, completion: { _ in
-                self.exchangeButton.isHidden = true
+            }, completion: { finished in
+                if finished {
+                    self.errorLabel.isHidden = false
+                }
             })
-            
-            scrollToBottom()
         }
         
     }
@@ -172,40 +171,17 @@ extension ExchangeViewController: ExchangeViewInput {
         amountTextField.text = amount
     }
     
-    func setConvertedAmount(_ amount: String) {
-        convertedAmountLabel.text = amount
-    }
-    
     func setRecepientAccount(_ recepient: String) {
         recepientAccountLabel.text = recepient
     }
     
+    func setRecepientBalance(_ balance: String) {
+        recepientBalanceLabel.text = balance
+    }
+    
     func setButtonEnabled(_ enabled: Bool) {
-        exchangeButton.isHidden = !enabled
+        exchangeButton.isEnabled = enabled
     }
-    
-    func showAccountsActionSheet(height: CGFloat) {
-        let yPosition = Constants.Sizes.screenHeight - height - 10
-        self.setAccountsActionSheet(height: height)
-        
-        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
-            self.setAccountsActionSheet(yPosition: yPosition)
-            self.dimmingBackground.alpha = 1
-        })
-    }
-    
-    func hideAccountsActionSheet() {
-        let yPosition = Constants.Sizes.screenHeight + 100
-        
-        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
-            self.setAccountsActionSheet(yPosition: yPosition)
-        })
-        
-        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseIn], animations: {
-            self.dimmingBackground.alpha = 0
-        })
-    }
-    
 }
 
 
@@ -242,7 +218,9 @@ extension ExchangeViewController: UIScrollViewDelegate {
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        dismissKeyboard()
+        if !isKeyboardAnimating {
+            dismissKeyboard()
+        }
     }
 }
 
@@ -250,32 +228,13 @@ extension ExchangeViewController: UIScrollViewDelegate {
 // MARK: - Private methods
 
 extension ExchangeViewController {
-    
-    private func addNotificationObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardFinishedAnimating),
-                                               name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardFinishedAnimating),
-                                               name: UIResponder.keyboardDidHideNotification, object: nil)
-    }
-    
-    private func scrollToBottom() {
-        let bottomOffset = CGPoint(x: 0,
-                                   y: scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom)
-        if bottomOffset.y > 0 {
-            scrollView.setContentOffset(bottomOffset, animated: true)
-        }
-    }
-    
-    private func updateSelectedFee() {
-        output.newFeeSelected(currentSliderStep)
+    private func configureGradientView() {
+        let height = accountsCollectionView.frame.height +
+            accountsPageControl.frame.height +
+            (navigationController?.navigationBar.frame.size.height ?? 44) +
+            UIApplication.shared.statusBarFrame.height
+        
+        gradientView.setHeight(height: height)
     }
     
     private func setNavBarTransparency() {
@@ -285,72 +244,6 @@ extension ExchangeViewController {
             let alpha = 1 - (max(0, min(0.999, delta / 12)))
             
             setNavigationBarAlpha(alpha)
-        }
-    }
-    
-    private func setupInitialActionSheet() {
-        let screenWidth = Constants.Sizes.screenWith
-        let screenHeight = Constants.Sizes.screenHeight
-        
-        accountsActionSheet.frame = CGRect(x: 8, y: screenHeight + 100, width: screenWidth - 16, height: 0)
-        accountsActionSheet.roundCorners(radius: 12)
-        
-        dimmingBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        dimmingBackground.backgroundColor = UIColor(red: 4/255, green: 4/255, blue: 15/255, alpha: 0.4)
-        dimmingBackground.setTitleColor(.clear, for: .normal)
-        dimmingBackground.addTarget(self, action: #selector(dimmingBackgroundTapped(_:)), for: .touchUpInside)
-        dimmingBackground.alpha = 0
-        
-        UIApplication.shared.keyWindow!.addSubview(dimmingBackground)
-        UIApplication.shared.keyWindow!.addSubview(accountsActionSheet)
-    }
-    
-    private func setAccountsActionSheet(yPosition: CGFloat) {
-        var frame = accountsActionSheet.frame
-        frame.origin.y = yPosition
-        accountsActionSheet.frame = frame
-    }
-    
-    private func setAccountsActionSheet(height: CGFloat) {
-        var frame = accountsActionSheet.frame
-        frame.size.height = height
-        accountsActionSheet.frame = frame
-    }
-    
-    @objc private func keyboardWillShow(_ notification: Notification) {
-        guard let scrollView = scrollView else {
-            return
-        }
-        
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardHeight = keyboardFrame.cgRectValue.height
-            let textFieldOrigin = amountTextField.convert(amountTextField.frame.origin, to: view).y
-            let delta = textFieldOrigin - keyboardHeight + 16
-            
-            isKeyboardAnimating = true
-            
-            var contentInset = self.scrollView.contentInset
-            contentInset.bottom = delta
-            scrollView.contentInset = contentInset
-            
-        }
-    }
-    
-    @objc private func keyboardWillHide(_ notification: Notification) {
-        guard let scrollView = scrollView else {
-            return
-        }
-        
-        isKeyboardAnimating = true
-        
-        let contentInset = UIEdgeInsets.zero
-        scrollView.contentInset = contentInset
-        
-    }
-    
-    @objc private func keyboardFinishedAnimating(_ notification: Notification) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + keyboardAnimationDelay) { [weak self] in
-            self?.isKeyboardAnimating = false
         }
     }
     
@@ -369,6 +262,9 @@ extension ExchangeViewController {
         paymentFeeMediumLabel.font = Theme.Font.smallText
         paymentFeeHighLabel.font = Theme.Font.smallText
         errorLabel.font = Theme.Font.smallText
+        recepientBalanceLabel.font = Theme.Font.smallText
+        rateLabel.font = Theme.Font.smallText
+        rateTimerLabel.font = Theme.Font.smallMediumWeightText
         
         recepientAccountLabel.font = Theme.Font.generalText
         amountTextField.font = Theme.Font.generalText
@@ -382,14 +278,80 @@ extension ExchangeViewController {
         paymentFeeLowLabel.textColor = Theme.Text.Color.captionGrey
         paymentFeeMediumLabel.textColor = Theme.Text.Color.captionGrey
         paymentFeeHighLabel.textColor = Theme.Text.Color.captionGrey
+        recepientBalanceLabel.textColor = Theme.Text.Color.captionGrey
+        rateLabel.textColor = Theme.Text.Color.captionGrey
+        rateTimerLabel.textColor = Theme.Text.Color.captionGrey
         
         errorLabel.textColor = Theme.Text.Color.errorRed
         
         errorLabel.isHidden = true
-        exchangeButton.isHidden = false
+        exchangeButton.isEnabled = false
         
         //TODO: локализации
         amountTitleLabel.text = "amount".localized()
         amountTextField.placeholder = "enter_amount".localized()
+        
+        rateBackgroundView.roundCorners(radius: 10)
+    }
+}
+
+
+// MARK: Keyboard notifications
+
+extension ExchangeViewController {
+    
+    private func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardFinishedAnimating),
+                                               name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard amountTextField.isFirstResponder,
+            let scrollView = scrollView,
+            let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+                return
+        }
+        
+        isKeyboardAnimating = true
+        
+        let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
+        let textFieldOrigin = amountTextField.convert(amountTextField.bounds, to: view).maxY
+        var delta = textFieldOrigin - keyboardOrigin + 8
+        
+        guard delta > 0 else { return }
+        
+        if scrollView.contentSize.height < view.frame.height {
+            delta += view.frame.height - scrollView.contentSize.height
+        }
+        
+        scrollView.contentOffset = CGPoint(x: 0, y: delta)
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        guard let scrollView = scrollView else {
+            return
+        }
+        
+        isKeyboardAnimating = true
+        
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.contentOffset = CGPoint.zero
+    }
+    
+    @objc private func keyboardFinishedAnimating(_ notification: Notification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + keyboardAnimationDelay) { [weak self] in
+            self?.isKeyboardAnimating = false
+        }
     }
 }

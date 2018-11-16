@@ -19,10 +19,9 @@ protocol ExchangeInteractorInput: class {
     func getRecepientCurrency() -> Currency
     
     func setCurrentAccount(index: Int)
-    func setRecepientAccount(index: Int)
     func setAmount(_ amount: Decimal)
     func setPaymentFee(index: Int)
     
-    func updateInitialState()
+    func updateState()
     func startObservers()
 }

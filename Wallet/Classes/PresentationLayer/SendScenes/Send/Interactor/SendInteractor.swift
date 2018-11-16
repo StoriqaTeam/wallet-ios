@@ -109,9 +109,8 @@ extension SendInteractor: SendInteractorInput {
         return accountWatcher.getAccount().currency
     }
     
-    func setAmount(_ amount: String) {
-        let decimal = amount.decimalValue()
-        sendTransactionBuilder.set(cryptoAmount: decimal)
+    func setAmount(_ amount: Decimal) {
+        sendTransactionBuilder.set(cryptoAmount: amount)
         
         updateTotal()
     }
@@ -165,10 +164,6 @@ extension SendInteractor: SendInteractorInput {
         }
         
         updateAddressValidity()
-    }
-    
-    func isValidAmount(_ amount: String) -> Bool {
-        return amount.isEmpty || amount == "." || amount == "," || amount.isValidDecimal()
     }
     
     func getTransactionBuilder() -> SendProviderBuilderProtocol {
