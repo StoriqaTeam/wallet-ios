@@ -18,20 +18,15 @@ protocol BiometricAuthProviderProtocol {
     var canAuthWithBiometry: Bool { get }
     var biometricAuthType: BiometricAuthType { get }
     var biometricAuthImage: UIImage? { get }
-    func authWithBiometry(completion: @escaping ((Bool, String?) -> Void))
+    func authWithBiometry(completion: @escaping (Result<String?>) -> Void)
 }
 
 class BiometricAuthProvider: BiometricAuthProviderProtocol {
     
-    private let errorParser: BiometricAuthErrorParserProtocol
     private let context = LAContext()
     
     //FIXME: - localization
     private let touchAuthenticationReason = "Authentication is needed to access your account"//.localized()
-    
-    init(errorParser: BiometricAuthErrorParserProtocol) {
-        self.errorParser = errorParser
-    }
     
     var canAuthWithBiometry: Bool {
         return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
@@ -67,14 +62,65 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
         }
     }
     
-    func authWithBiometry(completion: @escaping ((Bool, String?) -> Void)) {
+    func authWithBiometry(completion: @escaping (Result<String?>) -> Void) {
         // Hide "Enter Password" button
         context.localizedFallbackTitle = ""
         
         // show the authentication UI
         context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
-                               localizedReason: touchAuthenticationReason) {[weak self] (success, error) in
-            completion(success, self?.errorParser.errorMessageForLAErrorCode(error: error))
+                               localizedReason: touchAuthenticationReason) { (success, error) in
+                                if success {
+                                    completion(.success(nil))
+                                } else {
+                                    let error = BiometricAuthProviderError(error: error)
+                                    completion(.failure(error))
+                                }
+        }
+    }
+}
+
+enum BiometricAuthProviderError: LocalizedError, Error {
+    
+    case laError(error: LAError)
+    case general
+    
+    init(error: Error?) {
+        guard let error = error as? LAError else {
+            self = .general
+            return
+        }
+        
+        self = .laError(error: error)
+    }
+    
+    var errorDescription: String? {
+        switch self {
+        case .laError(let error):
+            let errorCode = error.code
+            
+            //TODO: тексты сообщений
+            
+            switch errorCode {
+            case .appCancel:
+                return "Authentication was cancelled"
+            case .authenticationFailed:
+                return "The user failed to provide valid credentials"
+            case .passcodeNotSet:
+                return "Passcode is not set on the device"
+            case .systemCancel:
+                return "Authentication was cancelled by the system"
+            case .biometryLockout:
+                return "Biometry is not available on the device"
+            case .biometryNotAvailable:
+                 return "TouchID is not available on the device"
+            case LAError.invalidContext:
+                log.error("The context is invalid: LAContext passed to this call has been previously invalidated.")
+                return ""
+            default:
+                return ""
+            }
+        default:
+            return ""
         }
     }
 }
