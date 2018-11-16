@@ -176,7 +176,7 @@ extension SendPresenter: SendInteractorOutput {
     }
     
     func updateTotal(_ total: Decimal, currency: Currency) {
-        let totalAmountString = getStringFrom(amount: total, currency: currency)
+        let totalAmountString = currencyFormatter.getStringFrom(amount: total, currency: currency)
         view.setSubtotal(totalAmountString)
     }
     
