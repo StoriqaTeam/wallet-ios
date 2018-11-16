@@ -205,7 +205,6 @@
 		A50086162151237B00C47015 /* Data+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086152151237B00C47015 /* Data+Helpers.swift */; };
 		A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50086182151242B00C47015 /* DefaultsProvider.swift */; };
 		A50BF8AC215409B500FB0DA2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BF8AB215409B500FB0DA2 /* Theme.swift */; };
-		A50BF8AE215410CC00FB0DA2 /* BiometricAuthErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BF8AD215410CB00FB0DA2 /* BiometricAuthErrorParser.swift */; };
 		A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */; };
 		A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A512020B2153D68A00D44A22 /* MainTabBar.storyboard */; };
 		A51CB5472158E0DB00CDC80C /* TransactionsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */; };
@@ -852,7 +851,6 @@
 		A50086182151242B00C47015 /* DefaultsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsProvider.swift; sourceTree = "<group>"; };
 		A505DDF3372D1175B1A18BE1 /* TransactionDetailsInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionDetailsInteractorInput.swift; sourceTree = "<group>"; };
 		A50BF8AB215409B500FB0DA2 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		A50BF8AD215410CB00FB0DA2 /* BiometricAuthErrorParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricAuthErrorParser.swift; sourceTree = "<group>"; };
 		A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthViewModel.swift; sourceTree = "<group>"; };
 		A512020B2153D68A00D44A22 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDataManager.swift; sourceTree = "<group>"; };
@@ -3771,7 +3769,6 @@
 		CE25B7462126B4F80097230A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A50BF8AD215410CB00FB0DA2 /* BiometricAuthErrorParser.swift */,
 				CE526C67212471CE00A2EED2 /* Constants.swift */,
 				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
 				A500860C2150FA1600C47015 /* Result.swift */,
@@ -5041,7 +5038,6 @@
 				1499BCCDEF796FDA812A7DBC /* DepositRouter.swift in Sources */,
 				CEE84F01218B4CA500AB85F3 /* ChangePasswordNetworkProvider.swift in Sources */,
 				BCA4BFC5046C983A17062737 /* DepositModuleInput.swift in Sources */,
-				A50BF8AE215410CC00FB0DA2 /* BiometricAuthErrorParser.swift in Sources */,
 				DA6B0429F75C1AA3AFBCE034 /* DepositModuleOutput.swift in Sources */,
 				A574351B21777383006B4CAE /* SessionsModuleOutput.swift in Sources */,
 				B5A1F3DA30062BA22A89D136 /* DepositModule.swift in Sources */,
