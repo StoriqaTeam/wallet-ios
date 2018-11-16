@@ -37,10 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configurator.configure()
         }
         
-        for conf in 1...10 {
-            print(conf)
-        }
-        
         return true
         
     }
