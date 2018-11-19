@@ -37,9 +37,9 @@ class SighnerTests: XCTestCase {
         
         let isVerified = signer.verify(signature: signature, publicKey: pubKey, message: _messageToSign)
         
-        XCTAssert(_pubKeyHex == pubKey.hex, "Fail to derive public key from string")
-        XCTAssert(_signatureWithEncodeByteHex == signature.hex, "Fail to sign message with given private key")
-        XCTAssert(signature.count == 65, "Signature lenght != 65 byte")
+        XCTAssertEqual(_pubKeyHex, pubKey.hex)
+        XCTAssertEqual(_signatureWithEncodeByteHex, signature.hex)
+        XCTAssertEqual(signature.count, 65)
         XCTAssert(isVerified, "Fail to verify signature");
     }
     
@@ -52,9 +52,9 @@ class SighnerTests: XCTestCase {
             return
         }
         
-        XCTAssert(_pubKeyHex == pubKey.hex, "Fail to derive public key from string")
-        XCTAssert(_signatureNoEncodeByteHex == signature.hex, "Fail to sign message with given private key")
-        XCTAssert(signature.count == 64, "Signature lenght != 65 byte")
+        XCTAssertEqual(_pubKeyHex, pubKey.hex)
+        XCTAssertEqual(_signatureNoEncodeByteHex, signature.hex)
+        XCTAssertEqual(signature.count, 64)
     }
     
     func testChangeMessage() {
@@ -66,8 +66,8 @@ class SighnerTests: XCTestCase {
             return
         }
         
-        XCTAssert(_pubKeyHex == pubKey.hex, "Fail to derive public key from string")
-        XCTAssert(_signatureNoEncodeByteHex == signature.hex, "Fail to sign message with given private key")
+        XCTAssertEqual(_pubKeyHex, pubKey.hex)
+        XCTAssertEqual(_signatureNoEncodeByteHex, signature.hex)
     }
     
     func testSignHeader() {
@@ -77,13 +77,20 @@ class SighnerTests: XCTestCase {
         
         let privKeyData = Data(hexString: _privKeyHex)
         let privKey = PrivateKey(raw: privKeyData)
+        let pubKey = privKey.publicKey()
         
         guard let signature = signer.sign(message: message, privateKey: privKey, useEncodeByte: false) else {
             XCTFail("Fail to sign message with given private key")
             return
         }
         
-        XCTAssert(signature.count == 64, "Signature lenght != 64 byte")
+        print("\nMessage to sign: \(message)")
+        print("Private key: \(privKey.hex)")
+        print("Public key: \(pubKey.hex)")
+        print("Sinature: \(signature.hex)\n")
+        
+        XCTAssertEqual(signature.count, 64)
     }
     
 }
+
