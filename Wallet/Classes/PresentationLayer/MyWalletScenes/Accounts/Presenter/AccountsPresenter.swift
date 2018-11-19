@@ -153,7 +153,7 @@ extension AccountsPresenter: TransactionsDataManagerDelegate {
 
 extension AccountsPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.accountsCollectionFlowLayout
+        let deviceLayout = Device.model.flowLayout(type: .horizontal)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing

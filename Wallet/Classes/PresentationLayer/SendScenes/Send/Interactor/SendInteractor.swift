@@ -16,11 +16,7 @@ class SendInteractor {
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let sendTransactionBuilder: SendProviderBuilderProtocol
     private let cryptoAddressResolver: CryptoAddressResolverProtocol
-    private let sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol
-    private let userDataStoreService: UserDataStoreServiceProtocol
-    private let authTokenProvider: AuthTokenProviderProtocol
-    private let accountsUpdater: AccountsUpdaterProtocol
-    private let txnUpdater: TransactionsUpdaterProtocol
+    private let sendTransactionService: SendTransactionServiceProtocol
     private var sendProvider: SendTransactionProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
     private var feeUpadteChannelInput: FeeUpdateChannel?
@@ -29,22 +25,14 @@ class SendInteractor {
          accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
          cryptoAddressResolver: CryptoAddressResolverProtocol,
-         sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol,
-         userDataStoreService: UserDataStoreServiceProtocol,
-         authTokenProvider: AuthTokenProviderProtocol,
-         accountsUpdater: AccountsUpdaterProtocol,
-         txnUpdater: TransactionsUpdaterProtocol) {
+         sendTransactionService: SendTransactionServiceProtocol) {
         
         self.accountsProvider = accountsProvider
         self.sendTransactionBuilder = sendTransactionBuilder
         self.accountWatcher = accountWatcher
         self.cryptoAddressResolver = cryptoAddressResolver
         self.sendProvider = sendTransactionBuilder.build()
-        self.userDataStoreService = userDataStoreService
-        self.sendTransactionNetworkProvider = sendTransactionNetworkProvider
-        self.authTokenProvider = authTokenProvider
-        self.accountsUpdater = accountsUpdater
-        self.txnUpdater = txnUpdater
+        self.sendTransactionService = sendTransactionService
         
         let account = accountWatcher.getAccount()
         sendTransactionBuilder.set(account: account)
@@ -109,9 +97,8 @@ extension SendInteractor: SendInteractorInput {
         return accountWatcher.getAccount().currency
     }
     
-    func setAmount(_ amount: String) {
-        let decimal = amount.decimalValue()
-        sendTransactionBuilder.set(cryptoAmount: decimal)
+    func setAmount(_ amount: Decimal) {
+        sendTransactionBuilder.set(cryptoAmount: amount)
         
         updateTotal()
     }
@@ -167,10 +154,6 @@ extension SendInteractor: SendInteractorInput {
         updateAddressValidity()
     }
     
-    func isValidAmount(_ amount: String) -> Bool {
-        return amount.isEmpty || amount == "." || amount == "," || amount.isValidDecimal()
-    }
-    
     func getTransactionBuilder() -> SendProviderBuilderProtocol {
         return sendTransactionBuilder
     }
@@ -203,33 +186,18 @@ extension SendInteractor: SendInteractorInput {
     
     func sendTransaction() {
         let txToSend = sendProvider.createTransaction()
-        let userId = userDataStoreService.getCurrentUser().id
         let account = sendProvider.selectedAccount
         let fromAccount = account.id.lowercased()
         
-        authTokenProvider.currentAuthToken { [weak self] (result) in
-            switch result {
-            case .success(let token):
-                self?.sendTransactionNetworkProvider.send(
-                    transaction: txToSend,
-                    userId: userId,
-                    fromAccount: fromAccount,
-                    authToken: token,
-                    queue: .main,
-                    completion: { [weak self] (result) in
-                        switch result {
-                        case .success:
-                            self?.accountsUpdater.update(userId: userId)
-                            self?.txnUpdater.update(userId: userId)
-                            self?.output.sendTxSucceed()
-                        case .failure(let error):
-                            self?.output.sendTxFailed(message: error.localizedDescription)
-                        }
-                    }
-                )
-            case .failure(let error):
-                self?.output.sendTxFailed(message: error.localizedDescription)
-            }
+        sendTransactionService.sendTransaction(
+            transaction: txToSend,
+            fromAccount: fromAccount) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.output.sendTxSucceed()
+                case .failure(let error):
+                    self?.output.sendTxFailed(message: error.localizedDescription)
+                }
         }
     }
     

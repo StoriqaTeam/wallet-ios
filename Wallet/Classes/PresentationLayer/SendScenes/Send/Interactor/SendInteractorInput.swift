@@ -19,12 +19,10 @@ protocol SendInteractorInput: class {
     func getCurrency() -> Currency
     func getAddress() -> String
     
-    func setAmount(_ amount: String)
+    func setAmount(_ amount: Decimal)
     func setCurrentAccount(index: Int)
     func setPaymentFee(index: Int)
     func setAddress(_ address: String)
-    
-    func isValidAmount(_ amount: String) -> Bool
     
     func getTransactionBuilder() -> SendProviderBuilderProtocol
     func updateState()

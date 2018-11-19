@@ -28,6 +28,10 @@ class Application {
                                                                                                                   feeProvider: self.feeProvider,
                                                                                                                   denominationUnitsConverter: self.denominationUnitsConverter)
     lazy var biometricAuthProviderFactory: BiometricAuthProviderFactory = BiometricAuthProviderFactory()
+    lazy var exchangeProviderBuilderFactory: ExchangeProviderBuilderFactoryProtocol = ExchangeProviderBuilderFactory(accountsProvider: self.accountsProvider,
+                                                                                                                     feeProvider: self.feeProvider,
+                                                                                                                     converterFactory: self.currencyConverterFactory,
+                                                                                                                     denominationUnitsConverter: self.denominationUnitsConverter)
     
     
     // MARK: - System store
@@ -117,6 +121,12 @@ class Application {
     lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
                                                                            keychain: self.keychainProvider,
                                                                            userDataStoreService: self.userDataStoreService)
+    lazy var sendTransactionService: SendTransactionServiceProtocol = SendTransactionService(sendNetworkProvider: self.sendTransactionNetworkProvider,
+                                                                                             userDataStoreService: self.userDataStoreService,
+                                                                                             authTokenProvider: self.authTokenProvider,
+                                                                                             accountsUpdater: self.accountsUpdater,
+                                                                                             txnUpdater: self.transactionsUpdater)
+    
     
     // MARK: - Converters and formattera
     lazy var currencyConverterFactory: CurrencyConverterFactoryProtocol = CurrencyConverterFactory(ratesProvider: self.ratesProvider)

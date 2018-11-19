@@ -32,14 +32,12 @@ class MainTabBarPresenter {
         return SendModule.create(app: app, accountWatcher: watcher, user: user, tabBar: view.mainTabBar!)
     }()
     
-    // FIXME: hidden before release
-    
-//    private lazy var exchangeModule: ExchangeModuleInput = {
-//        let watcher = interactor.getAccountWatcher()
-//        let user = interactor.getCurrentUser()
-//        let app = interactor.getApplication()
-//        return ExchangeModule.create(app: app, accountWatcher: watcher, user: user)
-//    }()
+    private lazy var exchangeModule: ExchangeModuleInput = {
+        let watcher = interactor.getAccountWatcher()
+        let user = interactor.getCurrentUser()
+        let app = interactor.getApplication()
+        return ExchangeModule.create(app: app, accountWatcher: watcher, user: user)
+    }()
     
     private lazy var depositModule: DepositModuleInput = {
         let watcher = interactor.getAccountWatcher()
@@ -99,9 +97,7 @@ extension MainTabBarPresenter {
         view.viewControllers = [
             myWalletModule.viewController.wrapToNavigationController(),
             sendModule.viewController.wrapToNavigationController(),
-            
-            // FIXME: hidden before release
-//            exchangeModule.viewController.wrapToNavigationController(),
+            exchangeModule.viewController.wrapToNavigationController(),
             depositModule.viewController.wrapToNavigationController(),
             settingsModule.viewController.wrapToNavigationController()
         ]
