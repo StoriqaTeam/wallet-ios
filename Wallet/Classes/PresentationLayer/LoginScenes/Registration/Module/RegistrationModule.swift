@@ -20,7 +20,9 @@ class RegistrationModule {
                                                 formValidationProvider: app.registrationFormValidatonProvider,
                                                 registrationNetworkProvider: app.registrationNetworkProvider,
                                                 loginService: app.loginService,
-                                                biometricAuthProvider: biometricAuthProvider)
+                                                biometricAuthProvider: biometricAuthProvider,
+                                                signHeaderFactory: app.signHeaderFactory,
+                                                userKeyManager: app.userKeyManager)
         
         let registrationSb = UIStoryboard(name: "Registration", bundle: nil)
         let viewController = registrationSb.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationViewController

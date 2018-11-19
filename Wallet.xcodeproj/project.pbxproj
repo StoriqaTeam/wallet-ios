@@ -388,6 +388,10 @@
 		B8241859219D563B009000D4 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8241858219D563B009000D4 /* Crypto.swift */; };
 		B824185B219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B824185A219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift */; };
 		B824185F219D57FB009000D4 /* Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = B824185E219D57FB009000D4 /* Internal.m */; };
+		B870F1CF21A2FAC000BC53BE /* SignHeaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870F1CE21A2FAC000BC53BE /* SignHeaderFactory.swift */; };
+		B870F1D221A31C7500BC53BE /* AddDeviceNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870F1D121A31C7500BC53BE /* AddDeviceNetworkProvider.swift */; };
+		B870F1D521A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870F1D421A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift */; };
+		B870F1D921A324AA00BC53BE /* UserKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870F1D821A324AA00BC53BE /* UserKeyManager.swift */; };
 		B8C5EDD62189A2FA00345B79 /* API+Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD52189A2FA00345B79 /* API+Rates.swift */; };
 		B8C5EDDA2189AA8C00345B79 /* RatesNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */; };
 		B8C5EDDC2189ACE700345B79 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDDB2189ACE700345B79 /* Rate.swift */; };
@@ -1038,6 +1042,10 @@
 		B824185A219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticCurveEncrypterSecp256k1.swift; sourceTree = "<group>"; };
 		B824185D219D57FA009000D4 /* Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internal.h; sourceTree = "<group>"; };
 		B824185E219D57FB009000D4 /* Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Internal.m; sourceTree = "<group>"; };
+		B870F1CE21A2FAC000BC53BE /* SignHeaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignHeaderFactory.swift; sourceTree = "<group>"; };
+		B870F1D121A31C7500BC53BE /* AddDeviceNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceNetworkProvider.swift; sourceTree = "<group>"; };
+		B870F1D421A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAddDeviceNetworkProvider.swift; sourceTree = "<group>"; };
+		B870F1D821A324AA00BC53BE /* UserKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeyManager.swift; sourceTree = "<group>"; };
 		B8C5EDD52189A2FA00345B79 /* API+Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Rates.swift"; sourceTree = "<group>"; };
 		B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesNetworkProvider.swift; sourceTree = "<group>"; };
 		B8C5EDDB2189ACE700345B79 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
@@ -2445,6 +2453,8 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B870F1D321A31F8200BC53BE /* ConfirmAddDeviceNetworkProvider */,
+				B870F1D021A31C5B00BC53BE /* AddDeviceNetworkProvider */,
 				CE288A14219EAFB90010FA3B /* FeeNetworkProvider */,
 				CE1008A12191AEC00068010A /* SocialAuthNetworkProvider */,
 				CE135176218C84CC009CB4F9 /* CreateAccountNetworkProvider */,
@@ -3127,6 +3137,8 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				B870F1D621A3248F00BC53BE /* UserKeyManager */,
+				B870F1CD21A2FAA700BC53BE /* SignHeaderFactory */,
 				CE288A11219EACE50010FA3B /* MedianWaitFormatter */,
 				CE288A05219E9E0E0010FA3B /* FeeProvider */,
 				CE288A02219E9D6D0010FA3B /* FeeUpdater */,
@@ -3489,6 +3501,38 @@
 				A5933D37219DAB600080C8C7 /* CryptoSupport */,
 			);
 			path = ECDSA;
+			sourceTree = "<group>";
+		};
+		B870F1CD21A2FAA700BC53BE /* SignHeaderFactory */ = {
+			isa = PBXGroup;
+			children = (
+				B870F1CE21A2FAC000BC53BE /* SignHeaderFactory.swift */,
+			);
+			path = SignHeaderFactory;
+			sourceTree = "<group>";
+		};
+		B870F1D021A31C5B00BC53BE /* AddDeviceNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B870F1D121A31C7500BC53BE /* AddDeviceNetworkProvider.swift */,
+			);
+			path = AddDeviceNetworkProvider;
+			sourceTree = "<group>";
+		};
+		B870F1D321A31F8200BC53BE /* ConfirmAddDeviceNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B870F1D421A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift */,
+			);
+			path = ConfirmAddDeviceNetworkProvider;
+			sourceTree = "<group>";
+		};
+		B870F1D621A3248F00BC53BE /* UserKeyManager */ = {
+			isa = PBXGroup;
+			children = (
+				B870F1D821A324AA00BC53BE /* UserKeyManager.swift */,
+			);
+			path = UserKeyManager;
 			sourceTree = "<group>";
 		};
 		B8C5EDD72189AA6E00345B79 /* RatesNetworkProvider */ = {
@@ -4771,6 +4815,7 @@
 				CE41F3512181FC9600070D5D /* RealmTransactionAccount.swift in Sources */,
 				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEFC9C9821590D1200962356 /* PopUpRegistrationSuccessVM.swift in Sources */,
+				B870F1D221A31C7500BC53BE /* AddDeviceNetworkProvider.swift in Sources */,
 				A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */,
 				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
 				A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */,
@@ -4820,6 +4865,7 @@
 				1C7D0973BE0C18FFA5224647 /* PinInputViewOutput.swift in Sources */,
 				CF065C7C011BD01324225AAD /* PinInputViewController.swift in Sources */,
 				A56ED3A9216E3214009FA58B /* ContactsProvider.swift in Sources */,
+				B870F1D521A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift in Sources */,
 				DF86683226807C4513BF70C6 /* PinInputPresenter.swift in Sources */,
 				4E5BC89F50726A6F7AA8256E /* PinInputnteractorInput.swift in Sources */,
 				A5B78211215E24B600EFD1A5 /* EthereumAddressValidator.swift in Sources */,
@@ -4877,6 +4923,7 @@
 				D673BB210C0EE94821BDEFFA /* RegistrationInteractorInput.swift in Sources */,
 				CE288A04219E9D840010FA3B /* FeeUpdater.swift in Sources */,
 				165DB5F5FAA826D2789B39B1 /* RegistrationInteractorOutput.swift in Sources */,
+				B870F1CF21A2FAC000BC53BE /* SignHeaderFactory.swift in Sources */,
 				2F361EA29F03389EB9F35B20 /* RegistrationInteractor.swift in Sources */,
 				CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */,
 				CE4401A22174B2C500F7C8D8 /* UIImageExtension.swift in Sources */,
@@ -5089,6 +5136,7 @@
 				A5C12E7F217F009D00A7D68C /* AuthTokenProvider.swift in Sources */,
 				8AD5E3C4C55B5557FCDFC2AD /* ExchangeViewOutput.swift in Sources */,
 				F3EB762CF50BA3699D0CB2AA /* ExchangeViewController.swift in Sources */,
+				B870F1D921A324AA00BC53BE /* UserKeyManager.swift in Sources */,
 				CE41F34A2181B03300070D5D /* PopUpEmailConfirmFailedVM.swift in Sources */,
 				A2BF7A83622A583455A9055F /* ExchangePresenter.swift in Sources */,
 				B782CF02B33B1093E9AF38BB /* ExchangeInteractorInput.swift in Sources */,

@@ -17,7 +17,8 @@ class EmailConfirmModule {
         
         let interactor = EmailConfirmInteractor(token: token,
                                                 emailConfirmProvider: app.emailConfirmNetworkProvider,
-                                                authTokenDefaults: app.authTokenDefaultsProvider)
+                                                authTokenDefaults: app.authTokenDefaultsProvider,
+                                                signHeaderFactory: app.signHeaderFactory)
 
         interactor.output = presenter
 

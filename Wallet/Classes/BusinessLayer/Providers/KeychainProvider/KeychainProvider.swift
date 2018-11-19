@@ -16,7 +16,13 @@ protocol KeychainProviderProtocol: class {
     var pincode: String? { get set }
     var password: String? { get set }
     var socialAuthToken: String? { get set }
+    var privateKey: String? { get set }
+    var email: String? { get set }
+    
+    // FIXME: - cleans all except email and private key
     func deleteAll()
+    
+    func deleteUserKeys()
 }
 
 class KeychainProvider: KeychainProviderProtocol {
@@ -69,10 +75,48 @@ class KeychainProvider: KeychainProviderProtocol {
         }
     }
     
+    var privateKey: String? {
+        get {
+            guard let data = get(for: "privateKey"),
+                let value = String(data: data, encoding: .utf8) else {
+                    return nil
+            }
+            
+            return value
+        }
+        
+        set {
+            let data = newValue?.data(using: .utf8)
+            set(data, for: "privateKey")
+        }
+    }
+    
+    var email: String? {
+        get {
+            guard let data = get(for: "email"),
+                let value = String(data: data, encoding: .utf8) else {
+                    return nil
+            }
+            
+            return value
+        }
+        
+        set {
+            let data = newValue?.data(using: .utf8)
+            set(data, for: "email")
+        }
+    }
+    
+    // FIXME: - cleans all except email and private key
     func deleteAll() {
         for key in KeychainKeys.allCases {
             delete(for: key.rawValue)
         }
+    }
+    
+    func deleteUserKeys() {
+        delete(for: "email")
+        delete(for: "privateKey")
     }
     
 }

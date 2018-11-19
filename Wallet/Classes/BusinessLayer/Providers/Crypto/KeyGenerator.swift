@@ -18,7 +18,12 @@ class KeyGenerator: KeyGeneratorProtocol {
     
     func generatePrivKey() throws -> PrivateKey {
         let password = Constants.Crypto.PBKDF2.password
-        let salt = Constants.Crypto.PBKDF2.salt
+        
+        let randomFloat = Float.random(in: 1...10000)
+        let random = Array("\(randomFloat)".utf8)
+        let randomData = Data(bytes: random)
+        var salt = Constants.Crypto.PBKDF2.salt
+        salt.append(contentsOf: randomData.bytes)
         
         guard let privKeyBytes = try? PKCS5.PBKDF2(password: password,
                                                    salt: salt,

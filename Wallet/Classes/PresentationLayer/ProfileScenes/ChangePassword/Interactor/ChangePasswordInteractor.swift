@@ -15,13 +15,16 @@ class ChangePasswordInteractor {
     private let authTokenProvider: AuthTokenProviderProtocol
     private let networkProvider: ChangePasswordNetworkProviderProtocol
     private let keychain: KeychainProviderProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
     
     init(authTokenProvider: AuthTokenProviderProtocol,
          networkProvider: ChangePasswordNetworkProviderProtocol,
-         keychain: KeychainProviderProtocol) {
+         keychain: KeychainProviderProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol) {
         self.authTokenProvider = authTokenProvider
         self.networkProvider = networkProvider
         self.keychain = keychain
+        self.signHeaderFactory = signHeaderFactory
     }
 }
 
@@ -46,11 +49,21 @@ extension ChangePasswordInteractor: ChangePasswordInteractorInput {
 
 extension ChangePasswordInteractor {
     private func changePassword(authToken: String, currentPassword: String, newPassword: String) {
+        
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader()
+        } catch {
+            log.error(error.localizedDescription)
+            return
+        }
+        
         networkProvider.changePassword(
             authToken: authToken,
             currentPassword: currentPassword,
             newPassword: newPassword,
-            queue: .main) { [weak self] (result) in
+            queue: .main,
+            signHeader: signHeader) { [weak self] (result) in
                 switch result {
                 case .success:
                     self?.output.changePasswordSucceed()

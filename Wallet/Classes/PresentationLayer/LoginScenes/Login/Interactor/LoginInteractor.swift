@@ -18,6 +18,7 @@ class LoginInteractor {
     private let userDataStore: UserDataStoreServiceProtocol
     private let keychain: KeychainProviderProtocol
     private let loginService: LoginServiceProtocol
+    private let userKeyManager: UserKeyManagerProtocol
     
     // for Retry
     private var authData: AuthData?
@@ -27,7 +28,9 @@ class LoginInteractor {
          biometricAuthProvider: BiometricAuthProviderProtocol,
          userDataStore: UserDataStoreServiceProtocol,
          keychain: KeychainProviderProtocol,
-         loginService: LoginServiceProtocol) {
+         loginService: LoginServiceProtocol,
+         keyGenerator: KeyGeneratorProtocol,
+         userKeyManager: UserKeyManagerProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
@@ -35,6 +38,7 @@ class LoginInteractor {
         self.userDataStore = userDataStore
         self.keychain = keychain
         self.loginService = loginService
+        self.userKeyManager = userKeyManager
     }
 }
 
@@ -55,6 +59,7 @@ extension LoginInteractor: LoginInteractorInput {
     
     func signIn(email: String, password: String) {
         authData = AuthData.email(email: email, password: password)
+        setNewPrivateKeyIfNeeded(with: email)
         
         loginService.signIn(email: email, password: password) { [weak self] (result) in
             guard let strongSelf = self else {
@@ -81,6 +86,7 @@ extension LoginInteractor: LoginInteractorInput {
     
     func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String) {
         authData = AuthData.social(provider: tokenProvider, token: oauthToken)
+        fatalError("Implement with userKeyManager. Need pass email")
         
         loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken) { [weak self] (result) in
             switch result {
@@ -99,8 +105,10 @@ extension LoginInteractor: LoginInteractorInput {
         
         switch authData {
         case .email(let email, let password):
+            setNewPrivateKeyIfNeeded(with: email)
             signIn(email: email, password: password)
         case .social(let provider, let token):
+            fatalError("Implement with userKeyManager. Need pass email")
             signIn(tokenProvider: provider, oauthToken: token)
         }
     }
@@ -117,5 +125,10 @@ extension LoginInteractor {
         } else {
             output.showPinQuickLaunch()
         }
+    }
+    
+    private func setNewPrivateKeyIfNeeded(with email: String) {
+        guard userKeyManager.getPrivateKeyFor(email: email) == nil else { return }
+        let _ = userKeyManager.setNewPrivateKey(email: email)
     }
 }

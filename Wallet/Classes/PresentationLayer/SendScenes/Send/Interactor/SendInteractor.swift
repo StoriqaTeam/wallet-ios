@@ -24,6 +24,7 @@ class SendInteractor {
     private var sendProvider: SendTransactionProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
     private var feeUpadteChannelInput: FeeUpdateChannel?
+    private let signHeaderFactory: SignHeaderFactoryProtocol
     
     init(sendTransactionBuilder: SendProviderBuilderProtocol,
          accountsProvider: AccountsProviderProtocol,
@@ -33,7 +34,8 @@ class SendInteractor {
          userDataStoreService: UserDataStoreServiceProtocol,
          authTokenProvider: AuthTokenProviderProtocol,
          accountsUpdater: AccountsUpdaterProtocol,
-         txnUpdater: TransactionsUpdaterProtocol) {
+         txnUpdater: TransactionsUpdaterProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol) {
         
         self.accountsProvider = accountsProvider
         self.sendTransactionBuilder = sendTransactionBuilder
@@ -45,6 +47,7 @@ class SendInteractor {
         self.authTokenProvider = authTokenProvider
         self.accountsUpdater = accountsUpdater
         self.txnUpdater = txnUpdater
+        self.signHeaderFactory = signHeaderFactory
         
         let account = accountWatcher.getAccount()
         sendTransactionBuilder.set(account: account)
@@ -202,6 +205,15 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func sendTransaction() {
+        
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader()
+        } catch {
+            log.error(error.localizedDescription)
+            return
+        }
+        
         let txToSend = sendProvider.createTransaction()
         let userId = userDataStoreService.getCurrentUser().id
         let account = sendProvider.selectedAccount
@@ -216,6 +228,8 @@ extension SendInteractor: SendInteractorInput {
                     fromAccount: fromAccount,
                     authToken: token,
                     queue: .main,
+                    signHeader: signHeader,
+                    
                     completion: { [weak self] (result) in
                         switch result {
                         case .success:

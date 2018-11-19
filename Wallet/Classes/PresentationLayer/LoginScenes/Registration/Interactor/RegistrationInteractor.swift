@@ -25,17 +25,25 @@ class RegistrationInteractor {
     private let registrationNetworkProvider: RegistrationNetworkProviderProtocol
     private let loginService: LoginServiceProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let userKeyManager: UserKeyManagerProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          formValidationProvider: RegistrationFormValidatonProviderProtocol,
          registrationNetworkProvider: RegistrationNetworkProviderProtocol,
          loginService: LoginServiceProtocol,
-         biometricAuthProvider: BiometricAuthProviderProtocol) {
+         biometricAuthProvider: BiometricAuthProviderProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol,
+         userKeyManager: UserKeyManagerProtocol) {
+        
         self.socialViewVM = socialViewVM
         self.formValidationProvider = formValidationProvider
         self.registrationNetworkProvider = registrationNetworkProvider
         self.loginService = loginService
         self.biometricAuthProvider = biometricAuthProvider
+        self.signHeaderFactory = signHeaderFactory
+        self.userKeyManager = userKeyManager
+        
     }
     
 }
@@ -56,13 +64,26 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     
     func register(with registrationData: RegistrationData) {
         self.registrationData = registrationData
+        guard let _ = userKeyManager.setNewPrivateKey(email: registrationData.email) else {
+            log.error("Fail To create and save new private key")
+            return
+        }
+        
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader()
+        } catch {
+            log.error(error.localizedDescription)
+            return
+        }
         
         registrationNetworkProvider.register(
             email: registrationData.email,
             password: registrationData.password,
             firstName: registrationData.firstName,
             lastName: registrationData.lastName,
-            queue: .main) { [weak self] (result) in
+            queue: .main,
+            signHeader: signHeader) { [weak self] (result) in
                 guard let strongSelf = self else {
                     return
                 }
@@ -86,6 +107,7 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     }
     
     func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String) {
+        fatalError("Implement with userKeyManager. Need pass email")
         loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken) { [weak self] (result) in
             switch result {
             case .success:

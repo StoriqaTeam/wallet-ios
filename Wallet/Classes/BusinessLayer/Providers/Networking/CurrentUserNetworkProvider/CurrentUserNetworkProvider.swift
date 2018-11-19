@@ -11,6 +11,7 @@ import Foundation
 protocol CurrentUserNetworkProviderProtocol {
     func getCurrentUser(authToken: String,
                         queue: DispatchQueue,
+                        signHeader: SignHeader,
                         completion: @escaping (Result<User>) -> Void)
 }
 
@@ -19,9 +20,10 @@ class CurrentUserNetworkProvider: NetworkLoadable, CurrentUserNetworkProviderPro
     
     func getCurrentUser(authToken: String,
                         queue: DispatchQueue,
+                        signHeader: SignHeader,
                         completion: @escaping (Result<User>) -> Void) {
         
-        let request = API.Authorized.user(authToken: authToken)
+        let request = API.Authorized.user(authToken: authToken, signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {

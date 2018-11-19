@@ -14,6 +14,7 @@ protocol RegistrationNetworkProviderProtocol {
                   firstName: String,
                   lastName: String,
                   queue: DispatchQueue,
+                  signHeader: SignHeader,
                   completion: @escaping (Result<User>) -> Void)
 }
 
@@ -24,9 +25,9 @@ class RegistrationNetworkProvider: NetworkLoadable, RegistrationNetworkProviderP
                   firstName: String,
                   lastName: String,
                   queue: DispatchQueue,
+                  signHeader: SignHeader,
                   completion: @escaping (Result<User>) -> Void) {
         
-        let deviceId = UIDevice.current.identifierForVendor!.uuidString
         let deviceOs = UIDevice.current.systemVersion
         let deviceType = DeviceType.ios
         
@@ -36,7 +37,7 @@ class RegistrationNetworkProvider: NetworkLoadable, RegistrationNetworkProviderP
                                                 lastName: lastName,
                                                 deviceType: deviceType,
                                                 deviceOs: deviceOs,
-                                                deviceId: deviceId)
+                                                signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {

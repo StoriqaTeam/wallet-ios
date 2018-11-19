@@ -15,6 +15,7 @@ protocol SendTransactionNetworkProviderProtocol {
               fromAccount: String,
               authToken: String,
               queue: DispatchQueue,
+              signHeader: SignHeader,
               completion: @escaping (Result<Transaction>) -> Void)
 }
 
@@ -25,6 +26,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
               fromAccount: String,
               authToken: String,
               queue: DispatchQueue,
+              signHeader: SignHeader,
               completion: @escaping (Result<Transaction>) -> Void) {
         
         let txId = transaction.id
@@ -47,7 +49,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      valueCurrency: toCurrency,
                                                      fee: feeString,
                                                      exchangeId: nil,
-                                                     exchangeRate: nil)
+                                                     exchangeRate: nil,
+                                                     signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {

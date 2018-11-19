@@ -13,6 +13,7 @@ protocol LoginNetworkProviderProtocol: class {
     func loginUser(email: String,
                    password: String,
                    queue: DispatchQueue,
+                   signHeader: SignHeader,
                    completion: @escaping (Result<String>) -> Void)
 }
 
@@ -21,17 +22,18 @@ class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
     func loginUser(email: String,
                    password: String,
                    queue: DispatchQueue,
+                   signHeader: SignHeader,
                    completion: @escaping (Result<String>) -> Void) {
         
-        let deviceId = UIDevice.current.identifierForVendor!.uuidString
         let deviceOs = UIDevice.current.systemVersion
         let deviceType = DeviceType.ios
-        
+    
         let request = API.Unauthorized.login(email: email,
                                              password: password,
                                              deviceType: deviceType,
                                              deviceOs: deviceOs,
-                                             deviceId: deviceId)
+                                             signHeader: signHeader)
+        
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):

@@ -39,6 +39,7 @@ extension ApplicationConfigurator {
             defaults.isFirstLaunch = false
             keychain.deleteAll()
             FirstLaunchModule.create(app: app).present()
+            
         } else if isPinSet() {
             PinInputModule.create(app: app).present()
         } else {

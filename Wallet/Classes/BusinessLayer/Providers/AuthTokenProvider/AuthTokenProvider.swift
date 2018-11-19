@@ -29,6 +29,7 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
     private let loginNetworkProvider: LoginNetworkProviderProtocol
     private let socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol
     private let authDataResolver: AuthDataResolverProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
     
     private var now: Int {
         return Int(Date().timeIntervalSince1970)
@@ -37,13 +38,15 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
     init(defaults: AuthTokenDefaultsProviderProtocol,
          loginNetworkProvider: LoginNetworkProviderProtocol,
          socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol,
-         authDataResolver: AuthDataResolverProtocol) {
+         authDataResolver: AuthDataResolverProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol) {
         
         self.defaults = defaults
         self.jwtParser = JwtTokenParser()
         self.loginNetworkProvider = loginNetworkProvider
         self.socialAuthNetworkProvider = socialAuthNetworkProvider
         self.authDataResolver = authDataResolver
+        self.signHeaderFactory = signHeaderFactory
     }
     
     func currentAuthToken(completion: @escaping (Result<String>) -> Void) {
@@ -91,9 +94,19 @@ extension AuthTokenProvider {
     }
     
     private func login(authData: AuthData, completion: @escaping (Result<String>) -> Void) {
+        
+        let signHeader: SignHeader
+        
+        do {
+            signHeader = try signHeaderFactory.createSignHeader()
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
         switch authData {
         case .email(let email, let password):
-            loginNetworkProvider.loginUser(email: email, password: password, queue: .main) {[weak self] (result) in
+            loginNetworkProvider.loginUser(email: email, password: password, queue: .main, signHeader: signHeader) {[weak self] (result) in
                 guard let strongSelf = self else {
                     let error = AuthTokenProviderError.failToGetTokenFromDefaults
                     log.error("Auth Token provider release")
@@ -111,7 +124,7 @@ extension AuthTokenProvider {
                 }
             }
         case .social(let provider, let token):
-            socialAuthNetworkProvider.socialAuth(oauthToken: token, oauthProvider: provider, queue: .main) { [weak self] (result) in
+            socialAuthNetworkProvider.socialAuth(oauthToken: token, oauthProvider: provider, queue: .main, signHeader: signHeader) { [weak self] (result) in
                 guard let strongSelf = self else {
                     let error = AuthTokenProviderError.failToGetTokenFromDefaults
                     log.error("Auth Token provider release")

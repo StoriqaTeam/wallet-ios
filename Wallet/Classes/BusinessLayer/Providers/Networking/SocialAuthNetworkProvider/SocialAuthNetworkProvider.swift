@@ -12,6 +12,7 @@ protocol SocialAuthNetworkProviderProtocol {
     func socialAuth(oauthToken: String,
                     oauthProvider: SocialNetworkTokenProvider,
                     queue: DispatchQueue,
+                    signHeader: SignHeader,
                     completion: @escaping (Result<String>) -> Void)
 }
 
@@ -19,8 +20,10 @@ class SocialAuthNetworkProvider: NetworkLoadable, SocialAuthNetworkProviderProto
     func socialAuth(oauthToken: String,
                     oauthProvider: SocialNetworkTokenProvider,
                     queue: DispatchQueue,
+                    signHeader: SignHeader,
                     completion: @escaping (Result<String>) -> Void) {
-        let deviceId = UIDevice.current.identifierForVendor!.uuidString
+        
+
         let deviceOs = UIDevice.current.systemVersion
         let deviceType = DeviceType.ios
         
@@ -28,7 +31,7 @@ class SocialAuthNetworkProvider: NetworkLoadable, SocialAuthNetworkProviderProto
                                                   oauthProvider: oauthProvider,
                                                   deviceType: deviceType,
                                                   deviceOs: deviceOs,
-                                                  deviceId: deviceId)
+                                                  signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) {(result) in
             switch result {

@@ -17,15 +17,19 @@ class AccountsUpdater: AccountsUpdaterProtocol {
     private let accountsNetworkProvider: AccountsNetworkProviderProtocol
     private let accountsDataStore: AccountsDataStoreServiceProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
     
     private var isUpdating = false
     
     init(accountsNetworkProvider: AccountsNetworkProviderProtocol,
          accountsDataStore: AccountsDataStoreServiceProtocol,
-         authTokenProvider: AuthTokenProviderProtocol) {
+         authTokenProvider: AuthTokenProviderProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol) {
+        
         self.accountsNetworkProvider = accountsNetworkProvider
         self.accountsDataStore = accountsDataStore
         self.authTokenProvider = authTokenProvider
+        self.signHeaderFactory = signHeaderFactory
     }
     
     func update(userId: Int) {
@@ -35,13 +39,22 @@ class AccountsUpdater: AccountsUpdaterProtocol {
         
         isUpdating = true
         
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader()
+        } catch {
+            log.error(error.localizedDescription)
+            return
+        }
+        
         authTokenProvider.currentAuthToken { [weak self] (result) in
             switch result {
             case .success(let token):
                 self?.accountsNetworkProvider.getAccounts(
                     authToken: token,
                     userId: userId,
-                    queue: .main) { [weak self] (result) in
+                    queue: .main,
+                    signHeader: signHeader) { [weak self] (result) in
                         switch result {
                         case .success(let accounts):
                             log.debug(accounts.map { $0.id })
