@@ -19,7 +19,6 @@ class ExchangeViewController: UIViewController {
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var gradientView: HeaderGradientView!
     @IBOutlet private var recepientAccountTitleLabel: UILabel!
     @IBOutlet private var recepientAccountLabel: UILabel!
     @IBOutlet private var recepientBalanceLabel: UILabel!
@@ -71,7 +70,6 @@ class ExchangeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         output.configureCollections()
-        configureGradientView()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -228,14 +226,6 @@ extension ExchangeViewController: UIScrollViewDelegate {
 // MARK: - Private methods
 
 extension ExchangeViewController {
-    private func configureGradientView() {
-        let height = accountsCollectionView.frame.height +
-            accountsPageControl.frame.height +
-            (navigationController?.navigationBar.frame.size.height ?? 44) +
-            UIApplication.shared.statusBarFrame.height
-        
-        gradientView.setHeight(height: height)
-    }
     
     private func setNavBarTransparency() {
         if let cellY = accountsCollectionView.layoutAttributesForItem(at: IndexPath(row: 0, section: 0))?.frame.origin.y {

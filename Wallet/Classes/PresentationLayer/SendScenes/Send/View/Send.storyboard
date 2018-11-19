@@ -19,19 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uGO-W6-VcG" customClass="HeaderGradientView" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phc-Kq-QlM">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-ci-a1k">
+                                <rect key="frame" x="0.0" y="167" width="375" height="833"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phc-Kq-QlM">
                                 <rect key="frame" x="0.0" y="20" width="375" height="931"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6O-Yz-1YI">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="931"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-ci-a1k">
-                                                <rect key="frame" x="0.0" y="147" width="375" height="784"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eOu-o2-Ycl">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -323,18 +323,14 @@
                                         <constraints>
                                             <constraint firstItem="cGN-Qa-IfG" firstAttribute="centerX" secondItem="d6O-Yz-1YI" secondAttribute="centerX" id="4SK-ba-ieb"/>
                                             <constraint firstItem="cGN-Qa-IfG" firstAttribute="leading" secondItem="d6O-Yz-1YI" secondAttribute="leading" constant="18" id="6Fl-1Z-Ia1"/>
-                                            <constraint firstItem="Ac0-ci-a1k" firstAttribute="top" secondItem="pHg-dA-GeU" secondAttribute="bottom" id="9ei-EN-Do1"/>
                                             <constraint firstItem="eOu-o2-Ycl" firstAttribute="top" secondItem="d6O-Yz-1YI" secondAttribute="top" id="Azf-Xn-f2f"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cGN-Qa-IfG" secondAttribute="bottom" constant="28" id="Cgv-GB-5oV"/>
                                             <constraint firstItem="cGN-Qa-IfG" firstAttribute="top" secondItem="pHg-dA-GeU" secondAttribute="bottom" constant="12" id="JuJ-J4-tts"/>
                                             <constraint firstItem="pHg-dA-GeU" firstAttribute="leading" secondItem="d6O-Yz-1YI" secondAttribute="leading" id="LEP-Dy-jqD"/>
                                             <constraint firstAttribute="trailing" secondItem="eOu-o2-Ycl" secondAttribute="trailing" id="Rhx-Kc-DHR"/>
-                                            <constraint firstAttribute="bottom" secondItem="Ac0-ci-a1k" secondAttribute="bottom" id="bpN-aT-rs7"/>
                                             <constraint firstItem="pHg-dA-GeU" firstAttribute="top" secondItem="eOu-o2-Ycl" secondAttribute="bottom" id="fD6-7x-uoh"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ac0-ci-a1k" secondAttribute="trailing" id="jGw-VL-SIq"/>
                                             <constraint firstAttribute="trailing" secondItem="pHg-dA-GeU" secondAttribute="trailing" id="sau-8O-cC4"/>
                                             <constraint firstItem="eOu-o2-Ycl" firstAttribute="leading" secondItem="d6O-Yz-1YI" secondAttribute="leading" id="uao-07-nvL"/>
-                                            <constraint firstItem="Ac0-ci-a1k" firstAttribute="leading" secondItem="d6O-Yz-1YI" secondAttribute="leading" id="uzY-8M-4Jv"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -349,8 +345,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uGO-W6-VcG" firstAttribute="height" secondItem="eOu-o2-Ycl" secondAttribute="height" constant="130" id="7zH-Sz-o39"/>
+                            <constraint firstItem="Ac0-ci-a1k" firstAttribute="top" secondItem="pHg-dA-GeU" secondAttribute="bottom" id="9cK-78-TEj"/>
                             <constraint firstItem="uGO-W6-VcG" firstAttribute="leading" secondItem="wUO-IZ-s0R" secondAttribute="leading" id="Ffz-0c-hHX"/>
+                            <constraint firstAttribute="bottom" secondItem="uGO-W6-VcG" secondAttribute="bottom" id="Hl0-Q8-1pc"/>
+                            <constraint firstAttribute="bottom" secondItem="Ac0-ci-a1k" secondAttribute="bottom" priority="999" id="IT9-jz-nJF"/>
+                            <constraint firstItem="Ac0-ci-a1k" firstAttribute="leading" secondItem="wUO-IZ-s0R" secondAttribute="leading" id="Psx-mh-IfT"/>
                             <constraint firstItem="MjC-hx-34g" firstAttribute="bottom" secondItem="Phc-Kq-QlM" secondAttribute="bottom" id="R7F-yn-P4t"/>
                             <constraint firstItem="d6O-Yz-1YI" firstAttribute="height" relation="greaterThanOrEqual" secondItem="Phc-Kq-QlM" secondAttribute="height" id="RpF-8K-vjK"/>
                             <constraint firstItem="MjC-hx-34g" firstAttribute="trailing" secondItem="Phc-Kq-QlM" secondAttribute="trailing" id="S8a-nO-Ihb"/>
@@ -358,6 +357,7 @@
                             <constraint firstItem="Phc-Kq-QlM" firstAttribute="top" secondItem="MjC-hx-34g" secondAttribute="top" id="g6k-Fv-rJU"/>
                             <constraint firstItem="d6O-Yz-1YI" firstAttribute="height" secondItem="Phc-Kq-QlM" secondAttribute="height" priority="250" id="h70-Ta-nAE"/>
                             <constraint firstItem="uGO-W6-VcG" firstAttribute="top" secondItem="wUO-IZ-s0R" secondAttribute="top" id="jJ3-NF-Dg7"/>
+                            <constraint firstAttribute="trailing" secondItem="Ac0-ci-a1k" secondAttribute="trailing" id="jTG-As-pCk"/>
                             <constraint firstAttribute="trailing" secondItem="uGO-W6-VcG" secondAttribute="trailing" id="wJp-cG-DCV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MjC-hx-34g"/>
@@ -374,7 +374,6 @@
                         <outlet property="amountTextField" destination="W2m-iJ-38i" id="T5J-ee-Bjd"/>
                         <outlet property="amountTitleLabel" destination="0AF-lB-Bis" id="a3H-gL-9rH"/>
                         <outlet property="errorLabel" destination="ghi-D2-tYq" id="IM4-WU-uXk"/>
-                        <outlet property="gradientView" destination="uGO-W6-VcG" id="OE2-Qy-4YC"/>
                         <outlet property="medianWaitLabel" destination="i0o-nu-tyy" id="7UD-sV-wSu"/>
                         <outlet property="medianWaitTitleLabel" destination="B0d-3j-T5L" id="eCf-7X-8Hu"/>
                         <outlet property="paymentFeeHighLabel" destination="smN-rR-A60" id="HIf-tz-N7U"/>

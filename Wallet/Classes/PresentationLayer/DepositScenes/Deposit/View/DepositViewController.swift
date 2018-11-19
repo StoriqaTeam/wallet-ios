@@ -17,7 +17,6 @@ class DepositViewController: UIViewController {
     
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
-    @IBOutlet private var gradientView: HeaderGradientView!
     @IBOutlet private var addressTitleLabel: UILabel!
     @IBOutlet private var qrCodeTitleLabel: UILabel!
     @IBOutlet private var addressLabel: UILabel!
@@ -45,7 +44,6 @@ class DepositViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         output.configureCollections()
-        configureGradientView()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -128,15 +126,6 @@ extension DepositViewController {
         copyButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
         shareButton.titleLabel?.font = Theme.Font.smallText
         shareButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
-    }
-    
-    private func configureGradientView() {
-        let height = accountsCollectionView.frame.height +
-            accountsPageControl.frame.height +
-            (navigationController?.navigationBar.frame.size.height ?? 44) +
-            UIApplication.shared.statusBarFrame.height
-        
-        gradientView.setHeight(height: height)
     }
     
     private func setNavBarTransparency() {

@@ -18,7 +18,6 @@ class SendViewController: UIViewController {
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var gradientView: HeaderGradientView!
     @IBOutlet private var receiverTitleLabel: UILabel!
     @IBOutlet private var scanQRButton: UIButton!
     @IBOutlet private var receiverTextField: UnderlinedTextField!
@@ -68,7 +67,6 @@ class SendViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         output.configureCollections()
-        configureGradientView()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -295,15 +293,6 @@ extension SendViewController {
         errorLabel.alpha = 0
         
         sendButton.isEnabled = false
-    }
-    
-    private func configureGradientView() {
-        let height = accountsCollectionView.frame.height +
-            accountsPageControl.frame.height +
-            (navigationController?.navigationBar.frame.size.height ?? 44) +
-            UIApplication.shared.statusBarFrame.height
-        
-        gradientView.setHeight(height: height)
     }
     
     private func setNavBarTransparency() {

@@ -19,19 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1K-Yw-3AZ" customClass="HeaderGradientView" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An9-VE-Mk7">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itz-N7-ic4">
+                                <rect key="frame" x="0.0" y="167" width="375" height="500"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An9-VE-Mk7">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AzJ-B5-TdA">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="706.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itz-N7-ic4">
-                                                <rect key="frame" x="0.0" y="147" width="375" height="559.5"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7dc-p0-Ijd">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -383,14 +383,10 @@
                                             <constraint firstItem="7dc-p0-Ijd" firstAttribute="top" secondItem="AzJ-B5-TdA" secondAttribute="top" id="EGa-cn-H1c"/>
                                             <constraint firstItem="56Y-h1-Ndh" firstAttribute="leading" secondItem="AzJ-B5-TdA" secondAttribute="leading" constant="18" id="Eo9-7S-v3w"/>
                                             <constraint firstItem="HVb-uQ-Pi1" firstAttribute="top" secondItem="7dc-p0-Ijd" secondAttribute="bottom" id="H71-MR-XW4"/>
-                                            <constraint firstAttribute="trailing" secondItem="itz-N7-ic4" secondAttribute="trailing" id="Jaq-6P-vvi"/>
                                             <constraint firstAttribute="trailing" secondItem="56Y-h1-Ndh" secondAttribute="trailing" constant="20" id="QSA-ga-QFI"/>
-                                            <constraint firstAttribute="bottom" secondItem="itz-N7-ic4" secondAttribute="bottom" id="bcT-13-VF8"/>
                                             <constraint firstItem="56Y-h1-Ndh" firstAttribute="top" secondItem="HVb-uQ-Pi1" secondAttribute="bottom" constant="20" id="d4I-og-KyQ"/>
                                             <constraint firstAttribute="trailing" secondItem="7dc-p0-Ijd" secondAttribute="trailing" id="mMz-Nj-R2u"/>
                                             <constraint firstAttribute="trailing" secondItem="HVb-uQ-Pi1" secondAttribute="trailing" id="q2n-Ig-cJg"/>
-                                            <constraint firstItem="itz-N7-ic4" firstAttribute="leading" secondItem="AzJ-B5-TdA" secondAttribute="leading" id="r4j-h4-Ty2"/>
-                                            <constraint firstItem="itz-N7-ic4" firstAttribute="top" secondItem="HVb-uQ-Pi1" secondAttribute="bottom" id="umy-TZ-iS8"/>
                                             <constraint firstItem="7dc-p0-Ijd" firstAttribute="leading" secondItem="AzJ-B5-TdA" secondAttribute="leading" id="yG3-Aw-5ds"/>
                                             <constraint firstItem="HVb-uQ-Pi1" firstAttribute="leading" secondItem="AzJ-B5-TdA" secondAttribute="leading" id="ygM-Ha-yeF"/>
                                         </constraints>
@@ -409,10 +405,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="b1K-Yw-3AZ" firstAttribute="top" secondItem="Sqc-Et-whS" secondAttribute="top" id="4tj-OI-sQf"/>
+                            <constraint firstAttribute="bottom" secondItem="itz-N7-ic4" secondAttribute="bottom" priority="999" id="B8w-Xf-551"/>
+                            <constraint firstItem="itz-N7-ic4" firstAttribute="leading" secondItem="Sqc-Et-whS" secondAttribute="leading" id="DRh-63-reH"/>
+                            <constraint firstItem="b1K-Yw-3AZ" firstAttribute="bottom" secondItem="Sqc-Et-whS" secondAttribute="bottom" id="Dz8-Le-oMu"/>
+                            <constraint firstAttribute="trailing" secondItem="itz-N7-ic4" secondAttribute="trailing" id="GZi-ap-5bi"/>
                             <constraint firstItem="An9-VE-Mk7" firstAttribute="trailing" secondItem="21V-aD-ozi" secondAttribute="trailing" id="UQm-k4-clv"/>
                             <constraint firstItem="b1K-Yw-3AZ" firstAttribute="leading" secondItem="Sqc-Et-whS" secondAttribute="leading" id="azd-BU-6Nh"/>
-                            <constraint firstItem="b1K-Yw-3AZ" firstAttribute="height" secondItem="7dc-p0-Ijd" secondAttribute="height" constant="130" id="bl9-gc-gSm"/>
+                            <constraint firstAttribute="top" secondItem="b1K-Yw-3AZ" secondAttribute="top" id="izC-6x-gVA"/>
+                            <constraint firstItem="itz-N7-ic4" firstAttribute="top" secondItem="HVb-uQ-Pi1" secondAttribute="bottom" id="nep-Zz-45s"/>
                             <constraint firstItem="An9-VE-Mk7" firstAttribute="leading" secondItem="21V-aD-ozi" secondAttribute="leading" id="tyu-RS-LRf"/>
                             <constraint firstItem="21V-aD-ozi" firstAttribute="bottom" secondItem="An9-VE-Mk7" secondAttribute="bottom" id="wyb-VT-DLL"/>
                             <constraint firstItem="An9-VE-Mk7" firstAttribute="top" secondItem="21V-aD-ozi" secondAttribute="top" id="xeb-SH-sOA"/>
@@ -431,7 +431,6 @@
                         <outlet property="amountTitleLabel" destination="KhJ-DL-2Be" id="FsQ-se-JGg"/>
                         <outlet property="errorLabel" destination="i6w-Ir-eix" id="acL-RU-skd"/>
                         <outlet property="exchangeButton" destination="yVT-bQ-Teq" id="NFe-zP-pL7"/>
-                        <outlet property="gradientView" destination="b1K-Yw-3AZ" id="cMc-bs-W48"/>
                         <outlet property="medianWaitLabel" destination="SGN-u8-Apx" id="sru-h5-IBO"/>
                         <outlet property="medianWaitTitleLabel" destination="4hA-30-jLY" id="IPQ-aX-ext"/>
                         <outlet property="paymentFeeHighLabel" destination="0Aw-vE-aPE" id="qqa-ca-3kB"/>
