@@ -59,12 +59,13 @@ extension PinInputInteractor: PinInputInteractorInput {
     }
     
     func authWithBiometry() {
-        biometricAuthProvider.authWithBiometry { [weak self] (success, errorMessage) in
+        biometricAuthProvider.authWithBiometry { [weak self] (result) in
             DispatchQueue.main.async {
-                if success {
+                switch result {
+                case .success:
                     self?.output.touchAuthenticationSucceed()
-                } else {
-                    self?.output.touchAuthenticationFailed(error: errorMessage)
+                case .failure(let error):
+                    self?.output.touchAuthenticationFailed(error: error.localizedDescription)
                 }
             }
         }

@@ -27,7 +27,7 @@ class Application {
                                                                                                                   accountsProvider: self.accountsProvider,
                                                                                                                   feeProvider: self.feeProvider,
                                                                                                                   denominationUnitsConverter: self.denominationUnitsConverter)
-    lazy var biometricAuthProviderFactory: BiometricAuthProviderFactory = BiometricAuthProviderFactory(errorParser: self.biometricErrorParser)
+    lazy var biometricAuthProviderFactory: BiometricAuthProviderFactory = BiometricAuthProviderFactory()
     
     
     // MARK: - System store
@@ -157,10 +157,6 @@ class Application {
     
     // MARK: - Social Networks
     lazy var facebookLoginManager: LoginManager = LoginManager()
-    
-    
-    // MARK: - Parsers
-    lazy var biometricErrorParser: BiometricAuthErrorParserProtocol = BiometricAuthErrorParser()
     
     
     // MARK: - Global services

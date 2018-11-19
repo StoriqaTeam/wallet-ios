@@ -15,13 +15,7 @@ protocol BiometricAuthProviderFactoryProtocol {
 
 class BiometricAuthProviderFactory: BiometricAuthProviderFactoryProtocol {
     
-    private let errorParser: BiometricAuthErrorParserProtocol
-    
-    init(errorParser: BiometricAuthErrorParserProtocol) {
-        self.errorParser = errorParser
-    }
-    
     func create() -> BiometricAuthProviderProtocol {
-        return BiometricAuthProvider(errorParser: errorParser)
+        return BiometricAuthProvider()
     }
 }

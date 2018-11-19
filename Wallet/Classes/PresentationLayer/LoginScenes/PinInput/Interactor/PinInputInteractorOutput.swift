@@ -13,5 +13,5 @@ protocol PinInputInteractorOutput: class {
     func passwordIsCorrect()
     func passwordIsWrong()
     func touchAuthenticationSucceed()
-    func touchAuthenticationFailed(error: String?)
+    func touchAuthenticationFailed(error: String)
 }
