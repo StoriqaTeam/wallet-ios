@@ -56,7 +56,7 @@ struct Constants {
 
 
 struct SizeConstants {
-    static let screenWith = UIScreen.main.bounds.size.width
+    static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
     
     /** For separators. Depends on screen scale */

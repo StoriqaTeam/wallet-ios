@@ -5,6 +5,7 @@
 //  Created by Storiqa on 27.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+//swiftlint:disable cyclomatic_complexity
 
 import Foundation
 
@@ -50,7 +51,7 @@ enum Device: CGFloat {
                 size = CGSize(width: 336, height: 198)
             }
             
-            let spacing = (Constants.Sizes.screenWith - size.width) / 4
+            let spacing = (Constants.Sizes.screenWidth - size.width) / 4
             return (size, spacing)
         case .horizontalSmall:
             let size: CGSize
@@ -62,7 +63,7 @@ enum Device: CGFloat {
                 size = CGSize(width: 336, height: 102)
             }
             
-            let spacing = (Constants.Sizes.screenWith - size.width) / 4
+            let spacing = (Constants.Sizes.screenWidth - size.width) / 4
             return (size, spacing)
         case .vertical:
             switch self {

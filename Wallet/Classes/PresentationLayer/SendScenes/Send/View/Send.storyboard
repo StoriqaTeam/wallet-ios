@@ -70,14 +70,14 @@
                                                                 <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Receiver's address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2c8-DT-4xd" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Receiver's address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2c8-DT-4xd" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="72" width="339" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="vZB-vL-ybY"/>
                                                                 </constraints>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                                 <connections>
                                                                     <outlet property="bottomConstraint" destination="6aG-tu-1tf" id="RB7-Ls-E5B"/>
                                                                 </connections>

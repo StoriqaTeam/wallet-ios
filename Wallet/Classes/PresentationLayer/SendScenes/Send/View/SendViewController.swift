@@ -187,6 +187,16 @@ extension SendViewController: SendViewInput {
 
 extension SendViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case receiverTextField:
+            amountTextField.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
         case amountTextField:
