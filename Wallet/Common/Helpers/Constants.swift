@@ -5,6 +5,7 @@
 //  Created by Storiqa on 15.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable all
 
 import Foundation
 import UIKit
@@ -33,6 +34,7 @@ struct Constants {
     
     struct Errors {
         static let userFriendly = "user_friendly_error".localized()
+        
     }
     
     struct NetworkAuth {

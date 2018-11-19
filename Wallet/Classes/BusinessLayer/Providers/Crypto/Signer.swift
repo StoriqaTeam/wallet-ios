@@ -9,13 +9,14 @@
 import Foundation
 
 protocol SignerProtocol {
-    func sign(message: String, privateKey: PrivateKey) -> Data?
+    func sign(message: String, privateKey: PrivateKey, useEncodeByte: Bool) -> Data?
     func verify(signature: Data, publicKey: PublicKey, message: String) -> Bool
 }
 
 class Signer: SignerProtocol {
     
-    func sign(message: String, privateKey: PrivateKey) -> Data? {
+    /// Use encodeByte = FALSE, if send sign to server
+    func sign(message: String, privateKey: PrivateKey, useEncodeByte: Bool) -> Data? {
         let hashedMessage = message.sha256()
         let hashedData = Data(hex: hashedMessage)
         let privKeyRaw = privateKey.raw
@@ -25,7 +26,7 @@ class Signer: SignerProtocol {
             return nil
         }
         
-        return signature
+        return useEncodeByte ? signature : signature.prefix(64)
     }
     
     
