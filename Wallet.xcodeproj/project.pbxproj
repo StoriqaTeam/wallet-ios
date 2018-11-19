@@ -348,6 +348,7 @@
 		A5C12E7F217F009D00A7D68C /* AuthTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E7E217F009D00A7D68C /* AuthTokenProvider.swift */; };
 		A5C12E82217F211200A7D68C /* JwtTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E81217F211200A7D68C /* JwtTokenParser.swift */; };
 		A5C12E84217F261C00A7D68C /* JwtParcerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */; };
+		A5D4CE28219EE4B800317326 /* SignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D4CE27219EE4B800317326 /* SignerTests.swift */; };
 		A5D5BB7C217B57D4008BEB74 /* API+Authorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */; };
 		A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */; };
 		A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */; };
@@ -997,6 +998,7 @@
 		A5C12E81217F211200A7D68C /* JwtTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtTokenParser.swift; sourceTree = "<group>"; };
 		A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtParcerTests.swift; sourceTree = "<group>"; };
 		A5C12E872180B6D500A7D68C /* Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wallet.entitlements; sourceTree = "<group>"; };
+		A5D4CE27219EE4B800317326 /* SignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerTests.swift; sourceTree = "<group>"; };
 		A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Authorize.swift"; sourceTree = "<group>"; };
 		A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserNetworkProvider.swift; sourceTree = "<group>"; };
 		A5E8D9A32153E91A00AC6A7E /* MyWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyWallet.storyboard; sourceTree = "<group>"; };
@@ -3293,6 +3295,7 @@
 				CEE84EF32189CACA00AB85F3 /* DecimalToStringTests.swift */,
 				CEE84EF52189D36C00AB85F3 /* DenominationUnitsConverterTests.swift */,
 				CEE84EF72189D4E000AB85F3 /* TxnUpdaterTests.swift */,
+				A5D4CE27219EE4B800317326 /* SignerTests.swift */,
 			);
 			path = WalletTests;
 			sourceTree = "<group>";
@@ -4728,6 +4731,7 @@
 				A5C12E84217F261C00A7D68C /* JwtParcerTests.swift in Sources */,
 				A52FE2B221860D2300100E21 /* ChannelTests.swift in Sources */,
 				CEE84EF42189CACA00AB85F3 /* DecimalToStringTests.swift in Sources */,
+				A5D4CE28219EE4B800317326 /* SignerTests.swift in Sources */,
 				CEE84EF62189D36C00AB85F3 /* DenominationUnitsConverterTests.swift in Sources */,
 				CE4401A72174DD5B00F7C8D8 /* ContactsSorterTests.swift in Sources */,
 				A5B78233215E2A7400EFD1A5 /* ContactsDataStoreTests.swift in Sources */,

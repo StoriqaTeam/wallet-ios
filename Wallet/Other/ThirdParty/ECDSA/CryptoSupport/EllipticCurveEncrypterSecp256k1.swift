@@ -65,6 +65,8 @@ class EllipticCurveEncrypterSecp256k1 {
         signature.withUnsafeBytes { (input: UnsafePointer<UInt8>) -> Void in
             secp256k1_ecdsa_recoverable_signature_parse_compact(context, &sig, input, recid)
         }
+        
+        
         return sig
     }
     

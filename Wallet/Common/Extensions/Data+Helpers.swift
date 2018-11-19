@@ -42,8 +42,8 @@ extension Data {
 }
 
 extension Data {
-    public init(hex: String) {
-        self.init(bytes: [UInt8](hex: hex))
+    public init(hexString: String) {
+        self.init(bytes: [UInt8](hex: hexString))
     }
     
 }
