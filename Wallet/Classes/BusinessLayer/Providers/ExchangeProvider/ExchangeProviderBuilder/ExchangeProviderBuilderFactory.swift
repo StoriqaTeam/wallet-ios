@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ExchangeProviderBuilderFactoryProtocol {
-    func create() -> ExchangeProviderBuilder
+    func create() -> ExchangeProviderBuilderProtocol
 }
 
 class ExchangeProviderBuilderFactory: ExchangeProviderBuilderFactoryProtocol {
@@ -29,7 +29,7 @@ class ExchangeProviderBuilderFactory: ExchangeProviderBuilderFactoryProtocol {
         self.converterFactory = converterFactory
     }
     
-    func create() -> ExchangeProviderBuilder {
+    func create() -> ExchangeProviderBuilderProtocol {
         return ExchangeProviderBuilder(accountsProvider: accountsProvider,
                                        feeProvider: feeProvider,
                                        converterFactory: converterFactory,
