@@ -103,8 +103,8 @@ extension ExchangePresenter: ExchangeViewOutput {
             return
         }
         
-        //TODO: recepientAccountPressed
-        
+        let builder = interactor.getTransactionBuilder()
+        router.showRecepientAccountSelection(exchangeProviderBuilder: builder, from: view.viewController)
     }
     
     func exchangeButtonPressed() {
@@ -227,7 +227,7 @@ extension ExchangePresenter: AccountsDataManagerDelegate {
 extension ExchangePresenter {
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.accountsCollectionSmallFlowLayout
+        let deviceLayout = Device.model.flowLayout(type: .horizontalSmall)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing

@@ -263,7 +263,7 @@ extension SendPresenter {
     }
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.accountsCollectionSmallFlowLayout
+        let deviceLayout = Device.model.flowLayout(type: .horizontalSmall)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing

@@ -102,7 +102,7 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
 
 extension MyWalletPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.myWalletCollectionFlowLayout
+        let deviceLayout = Device.model.flowLayout(type: .vertical)
         let flowLayout = UICollectionViewFlowLayout()
         
         flowLayout.minimumLineSpacing = deviceLayout.spacing
