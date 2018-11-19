@@ -54,6 +54,10 @@
                                                 <color key="pageIndicatorTintColor" white="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k58-k1-Wyg">
+                                                <rect key="frame" x="0.0" y="147" width="375" height="606"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="cGN-Qa-IfG">
                                                 <rect key="frame" x="18" y="159" width="339" height="594"/>
                                                 <subviews>
@@ -321,6 +325,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="k58-k1-Wyg" secondAttribute="trailing" id="0BR-J1-vkG"/>
                                             <constraint firstItem="cGN-Qa-IfG" firstAttribute="centerX" secondItem="d6O-Yz-1YI" secondAttribute="centerX" id="4SK-ba-ieb"/>
                                             <constraint firstItem="cGN-Qa-IfG" firstAttribute="leading" secondItem="d6O-Yz-1YI" secondAttribute="leading" constant="18" id="6Fl-1Z-Ia1"/>
                                             <constraint firstItem="eOu-o2-Ycl" firstAttribute="top" secondItem="d6O-Yz-1YI" secondAttribute="top" id="Azf-Xn-f2f"/>
@@ -329,8 +334,11 @@
                                             <constraint firstItem="pHg-dA-GeU" firstAttribute="leading" secondItem="d6O-Yz-1YI" secondAttribute="leading" id="LEP-Dy-jqD"/>
                                             <constraint firstAttribute="trailing" secondItem="eOu-o2-Ycl" secondAttribute="trailing" id="Rhx-Kc-DHR"/>
                                             <constraint firstItem="pHg-dA-GeU" firstAttribute="top" secondItem="eOu-o2-Ycl" secondAttribute="bottom" id="fD6-7x-uoh"/>
+                                            <constraint firstItem="k58-k1-Wyg" firstAttribute="top" secondItem="pHg-dA-GeU" secondAttribute="bottom" id="kC8-P9-EMa"/>
+                                            <constraint firstItem="k58-k1-Wyg" firstAttribute="leading" secondItem="d6O-Yz-1YI" secondAttribute="leading" id="s9c-Yi-XVX"/>
                                             <constraint firstAttribute="trailing" secondItem="pHg-dA-GeU" secondAttribute="trailing" id="sau-8O-cC4"/>
                                             <constraint firstItem="eOu-o2-Ycl" firstAttribute="leading" secondItem="d6O-Yz-1YI" secondAttribute="leading" id="uao-07-nvL"/>
+                                            <constraint firstItem="k58-k1-Wyg" firstAttribute="bottom" secondItem="cGN-Qa-IfG" secondAttribute="bottom" id="v57-fk-uNn"/>
                                         </constraints>
                                     </view>
                                 </subviews>

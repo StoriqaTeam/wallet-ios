@@ -168,8 +168,8 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setMedianWait(wait)
     }
     
-    func updateTotal(_ total: Decimal, accountCurrency: Currency) {
-        let totalAmountString = getStringFrom(amount: total, currency: accountCurrency)
+    func updateTotal(_ total: Decimal, currency: Currency) {
+        let totalAmountString = currencyFormatter.getStringFrom(amount: total, currency: currency)
         view.setSubtotal(totalAmountString)
     }
     
@@ -180,6 +180,17 @@ extension ExchangePresenter: ExchangeInteractorOutput {
     func updateFormIsValid(_ valid: Bool) {
         view.setButtonEnabled(valid)
     }
+    
+    func exchangeTxFailed(message: String) {
+        // TODO: exchangeTxFailed
+        print("exchangeTxFailed")
+    }
+    
+    func exchangeTxSucceed() {
+        // TODO: exchangeTxSucceed
+        print("exchangeTxSucceed")
+    }
+    
 
 }
 

@@ -15,6 +15,7 @@ protocol ExchangeInteractorInput: class {
     func getAccountIndex() -> Int
     func getAccountsCount() -> Int
     func getAmount() -> Decimal
+    func getFee() -> Decimal?
     func getAccountCurrency() -> Currency
     func getRecepientCurrency() -> Currency
     
@@ -22,6 +23,10 @@ protocol ExchangeInteractorInput: class {
     func setAmount(_ amount: Decimal)
     func setPaymentFee(index: Int)
     
+    func getTransactionBuilder() -> ExchangeProviderBuilderProtocol
     func updateState()
     func startObservers()
+    
+    func sendTransaction()
+    func clearBuilder()
 }

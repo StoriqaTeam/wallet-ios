@@ -54,14 +54,18 @@
                                                 <color key="pageIndicatorTintColor" white="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFU-OP-v0v">
+                                                <rect key="frame" x="0.0" y="147" width="375" height="531.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="56Y-h1-Ndh">
                                                 <rect key="frame" x="18" y="167" width="337" height="511.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wrQ-uq-GAV">
                                                         <rect key="frame" x="0.0" y="0.0" width="337" height="84"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECEPIENT ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d91-7e-WfO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="22"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d91-7e-WfO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="XV1-Sg-1pm"/>
                                                                 </constraints>
@@ -380,13 +384,17 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="56Y-h1-Ndh" secondAttribute="bottom" constant="28" id="2cZ-Lq-wfh"/>
+                                            <constraint firstItem="wFU-OP-v0v" firstAttribute="top" secondItem="HVb-uQ-Pi1" secondAttribute="bottom" id="AWA-J1-Spv"/>
                                             <constraint firstItem="7dc-p0-Ijd" firstAttribute="top" secondItem="AzJ-B5-TdA" secondAttribute="top" id="EGa-cn-H1c"/>
                                             <constraint firstItem="56Y-h1-Ndh" firstAttribute="leading" secondItem="AzJ-B5-TdA" secondAttribute="leading" constant="18" id="Eo9-7S-v3w"/>
                                             <constraint firstItem="HVb-uQ-Pi1" firstAttribute="top" secondItem="7dc-p0-Ijd" secondAttribute="bottom" id="H71-MR-XW4"/>
                                             <constraint firstAttribute="trailing" secondItem="56Y-h1-Ndh" secondAttribute="trailing" constant="20" id="QSA-ga-QFI"/>
+                                            <constraint firstItem="wFU-OP-v0v" firstAttribute="leading" secondItem="AzJ-B5-TdA" secondAttribute="leading" id="cpi-G7-9Dw"/>
                                             <constraint firstItem="56Y-h1-Ndh" firstAttribute="top" secondItem="HVb-uQ-Pi1" secondAttribute="bottom" constant="20" id="d4I-og-KyQ"/>
+                                            <constraint firstItem="wFU-OP-v0v" firstAttribute="bottom" secondItem="56Y-h1-Ndh" secondAttribute="bottom" id="fAw-PC-Z8r"/>
                                             <constraint firstAttribute="trailing" secondItem="7dc-p0-Ijd" secondAttribute="trailing" id="mMz-Nj-R2u"/>
                                             <constraint firstAttribute="trailing" secondItem="HVb-uQ-Pi1" secondAttribute="trailing" id="q2n-Ig-cJg"/>
+                                            <constraint firstAttribute="trailing" secondItem="wFU-OP-v0v" secondAttribute="trailing" id="udj-1a-A6a"/>
                                             <constraint firstItem="7dc-p0-Ijd" firstAttribute="leading" secondItem="AzJ-B5-TdA" secondAttribute="leading" id="yG3-Aw-5ds"/>
                                             <constraint firstItem="HVb-uQ-Pi1" firstAttribute="leading" secondItem="AzJ-B5-TdA" secondAttribute="leading" id="ygM-Ha-yeF"/>
                                         </constraints>

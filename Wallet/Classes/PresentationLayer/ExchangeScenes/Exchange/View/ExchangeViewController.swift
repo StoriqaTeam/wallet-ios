@@ -240,7 +240,6 @@ extension ExchangeViewController {
     private func configInterface() {
         scrollView.delegate = self
         amountTextField.delegate = self
-        amountTextField.clearButtonMode = .never
         
         recepientAccountTitleLabel.font = Theme.Font.caption
         amountTitleLabel.font = Theme.Font.caption
