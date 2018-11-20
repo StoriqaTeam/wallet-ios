@@ -129,6 +129,9 @@ extension LoginInteractor {
     
     private func setNewPrivateKeyIfNeeded(with email: String) {
         guard userKeyManager.getPrivateKeyFor(email: email) == nil else { return }
-        let _ = userKeyManager.setNewPrivateKey(email: email)
+        guard let _ = userKeyManager.addPrivateKey(email: email) else {
+            log.error("Fail to add pair email and private key")
+            return
+        }
     }
 }

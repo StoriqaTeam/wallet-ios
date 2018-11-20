@@ -58,7 +58,7 @@ class LoginService: LoginServiceProtocol {
         let signHeader: SignHeader
         
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: email)
         } catch {
             completion(.failure(error))
             return
@@ -89,10 +89,12 @@ class LoginService: LoginServiceProtocol {
     }
     
     func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, completion: @escaping (Result<String?>) -> Void) {
-        let signHeader: SignHeader
         
+        fatalError("Needs email")
+        
+        let signHeader: SignHeader
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: "STUBBBBBB")
         } catch {
             completion(.failure(error))
             return
@@ -129,9 +131,11 @@ class LoginService: LoginServiceProtocol {
 extension LoginService {
     private func getUser(authToken: String, authData: AuthData, completion: @escaping (Result<String?>) -> Void) {
         
+        let currentEmail = userDataStore.getCurrentUser().email
+    
         let signHeader: SignHeader 
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
             completion(.failure(error))
             return
@@ -158,9 +162,11 @@ extension LoginService {
     
     private func getAccounts(authToken: String, authData: AuthData, userId: Int, completion: @escaping (Result<String?>) -> Void) {
         
+        let currentEmail = userDataStore.getCurrentUser().email
+        
         let signHeader: SignHeader
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
             completion(.failure(error))
             return

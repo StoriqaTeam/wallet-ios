@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol SignHeaderFactoryProtocol {
-    func createSignHeader() throws -> SignHeader
+    func createSignHeader(email: String) throws -> SignHeader
 }
 
 
@@ -25,16 +25,14 @@ class SignHeaderFactory: SignHeaderFactoryProtocol {
         self.signer = signer
     }
     
-    func createSignHeader() throws -> SignHeader {
+    func createSignHeader(email: String) throws -> SignHeader {
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
         let timestamp = Int(Date().timeIntervalSince1970)
         
-        guard let privKeyHex = keychain.privateKey else {
+        guard let privateKey = getPrivateKey(email: email) else {
             throw SignHeaderFactoryError.keychainEmpty
         }
         
-        let privKeyRaw = Data(hexString: privKeyHex)
-        let privateKey = PrivateKey(raw: privKeyRaw)
         let publicKey = privateKey.publicKey()
         let message = "\(timestamp)"+deviceId
         
@@ -46,6 +44,18 @@ class SignHeaderFactory: SignHeaderFactoryProtocol {
                           timestamp: "\(timestamp)",
                           signature: signature.hex,
                           pubKeyHex: publicKey.hex)
+    }
+}
+
+
+// MARK: - Private methods
+
+extension SignHeaderFactory {
+    
+    private func getPrivateKey(email: String) -> PrivateKey? {
+        guard let pairs = keychain.privKeyEmail else { return nil }
+        guard let privKeyHex = pairs[email] else { return nil }
+        return PrivateKey(raw: Data(hexString: privKeyHex))
     }
 }
 
@@ -63,5 +73,3 @@ enum SignHeaderFactoryError: Error, LocalizedError {
         }
     }
 }
-
-

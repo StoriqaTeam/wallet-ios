@@ -206,9 +206,11 @@ extension SendInteractor: SendInteractorInput {
     
     func sendTransaction() {
         
+        let currentEmail = userDataStoreService.getCurrentUser().email
+        
         let signHeader: SignHeader
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
             log.error(error.localizedDescription)
             return

@@ -14,7 +14,8 @@ class ChangePasswordModule {
         let interactor = ChangePasswordInteractor(authTokenProvider: app.authTokenProvider,
                                                   networkProvider: app.changePasswordNetworkProvider,
                                                   keychain: app.keychainProvider,
-                                                  signHeaderFactory: app.signHeaderFactory)
+                                                  signHeaderFactory: app.signHeaderFactory,
+                                                  userDataStoreService: app.userDataStoreService)
         
         let changePasswordSb = UIStoryboard(name: "ChangePassword", bundle: nil)
         let viewController = changePasswordSb.instantiateViewController(withIdentifier: "ChangePasswordVC")

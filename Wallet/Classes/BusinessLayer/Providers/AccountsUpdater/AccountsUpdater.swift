@@ -18,18 +18,21 @@ class AccountsUpdater: AccountsUpdaterProtocol {
     private let accountsDataStore: AccountsDataStoreServiceProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
     
     private var isUpdating = false
     
     init(accountsNetworkProvider: AccountsNetworkProviderProtocol,
          accountsDataStore: AccountsDataStoreServiceProtocol,
          authTokenProvider: AuthTokenProviderProtocol,
-         signHeaderFactory: SignHeaderFactoryProtocol) {
+         signHeaderFactory: SignHeaderFactoryProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol) {
         
         self.accountsNetworkProvider = accountsNetworkProvider
         self.accountsDataStore = accountsDataStore
         self.authTokenProvider = authTokenProvider
         self.signHeaderFactory = signHeaderFactory
+        self.userDataStoreService = userDataStoreService
     }
     
     func update(userId: Int) {
@@ -39,9 +42,10 @@ class AccountsUpdater: AccountsUpdaterProtocol {
         
         isUpdating = true
         
+        let currentEmail = userDataStoreService.getCurrentUser().email
         let signHeader: SignHeader
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
             log.error(error.localizedDescription)
             return

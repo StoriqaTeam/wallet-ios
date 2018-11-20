@@ -64,14 +64,14 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     
     func register(with registrationData: RegistrationData) {
         self.registrationData = registrationData
-        guard let _ = userKeyManager.setNewPrivateKey(email: registrationData.email) else {
+        guard let _ = userKeyManager.addPrivateKey(email: registrationData.email) else {
             log.error("Fail To create and save new private key")
             return
         }
         
         let signHeader: SignHeader
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: registrationData.email)
         } catch {
             log.error(error.localizedDescription)
             return

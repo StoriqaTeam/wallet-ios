@@ -14,12 +14,14 @@ class ApplicationConfigurator: Configurable {
     private let keychain: KeychainProviderProtocol
     private let defaults: DefaultsProviderProtocol
     private let shortPollingTimer: ShortPollingTimerProtocol
+    private let userKeyManager: UserKeyManagerProtocol
     let app: Application
     
     init(app: Application) {
         self.keychain = app.keychainProvider
         self.defaults = app.defaultsProvider
         self.shortPollingTimer = app.shortPollingTimer
+        self.userKeyManager = app.userKeyManager
         self.app = app
     }
     
@@ -27,7 +29,7 @@ class ApplicationConfigurator: Configurable {
         setInitialVC()
         setGID()
         setupChannel()
-    }    
+    }
 }
 
 
@@ -36,8 +38,10 @@ extension ApplicationConfigurator {
     
     private func setInitialVC() {
         if defaults.isFirstLaunch {
+            
             defaults.isFirstLaunch = false
             keychain.deleteAll()
+            userKeyManager.clearUserKeyData()
             FirstLaunchModule.create(app: app).present()
             
         } else if isPinSet() {

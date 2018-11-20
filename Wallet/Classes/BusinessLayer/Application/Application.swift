@@ -97,13 +97,16 @@ class Application {
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,
                                                                         accountsDataStore: self.accountsDataStoreService,
                                                                         authTokenProvider: self.authTokenProvider,
-                                                                        signHeaderFactory: self.signHeaderFactory)
+                                                                        signHeaderFactory: self.signHeaderFactory,
+                                                                        userDataStoreService: self.userDataStoreService)
     lazy var transactionsUpdater: TransactionsUpdaterProtocol = TransactionsUpdater(transactionsProvider: self.transactionsProvider,
                                                                                     transactionsNetworkProvider: self.transactionsNetworkProvider,
                                                                                     transactionsDataStoreService: self.transactionDataStoreService,
                                                                                     signHeaderFactory: self.signHeaderFactory,
                                                                                     defaultsProvider: self.defaultsProvider,
-                                                                                    authTokenProvider: self.authTokenProvider)
+                                                                                    authTokenProvider: self.authTokenProvider,
+                                                                                    userDataStoreService: self.userDataStoreService)
+
     lazy var contactsChacheUpdater: ContactsCacheUpdaterProtocol = ContactsCacheUpdater(deviceContactsFetcher: self.deviceContactsFetcher,
                                                                                         contactsNetworkProvider: self.fakeContactsNetworkProvider,
                                                                                         contactsAddressLinker: self.contactsAddressLinker)

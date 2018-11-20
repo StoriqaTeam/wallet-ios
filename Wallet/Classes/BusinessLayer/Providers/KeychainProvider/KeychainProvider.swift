@@ -16,8 +16,7 @@ protocol KeychainProviderProtocol: class {
     var pincode: String? { get set }
     var password: String? { get set }
     var socialAuthToken: String? { get set }
-    var privateKey: String? { get set }
-    var email: String? { get set }
+    var privKeyEmail: [String: String]? { get set }
     
     // FIXME: - cleans all except email and private key
     func deleteAll()
@@ -39,7 +38,6 @@ class KeychainProvider: KeychainProviderProtocol {
     private let kSecAttrAccountValue = String(format: kSecAttrAccount as String)
     private let kSecAttrAccessibleValue = String(format: kSecAttrAccessible as String)
     
-    // swiftlint:disable trailing_whitespace
     enum KeychainKeys: String, CaseIterable {
         case pincode
         case password
@@ -75,35 +73,19 @@ class KeychainProvider: KeychainProviderProtocol {
         }
     }
     
-    var privateKey: String? {
+    var privKeyEmail: [String: String]? {
         get {
-            guard let data = get(for: "privateKey"),
-                let value = String(data: data, encoding: .utf8) else {
-                    return nil
+            guard let data = get(for: "privKeyEmail") else {
+                return nil
             }
             
-            return value
+            let object = try? JSONDecoder().decode([String:String].self, from: data)
+            return object
         }
         
         set {
-            let data = newValue?.data(using: .utf8)
-            set(data, for: "privateKey")
-        }
-    }
-    
-    var email: String? {
-        get {
-            guard let data = get(for: "email"),
-                let value = String(data: data, encoding: .utf8) else {
-                    return nil
-            }
-            
-            return value
-        }
-        
-        set {
-            let data = newValue?.data(using: .utf8)
-            set(data, for: "email")
+            let data = try? JSONEncoder().encode(newValue)
+            set(data, for: "privKeyEmail")
         }
     }
     
@@ -115,12 +97,12 @@ class KeychainProvider: KeychainProviderProtocol {
     }
     
     func deleteUserKeys() {
-        delete(for: "email")
-        delete(for: "privateKey")
+        delete(for: "privKeyEmail")
     }
     
 }
-// swiftlint:enable trailing_whitespace
+
+
 // MARK: Fileprivate extension
 fileprivate extension KeychainProvider {
     func set(_ data: Data?, for key: String) {

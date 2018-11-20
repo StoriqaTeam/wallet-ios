@@ -10,7 +10,7 @@ import Foundation
 
 protocol UserKeyManagerProtocol {
     func getPrivateKeyFor(email: String) -> PrivateKey?
-    func setNewPrivateKey(email: String) -> PrivateKey?
+    func addPrivateKey(email: String) -> PrivateKey?
     func clearUserKeyData()
 }
 
@@ -32,43 +32,33 @@ class UserKeyManager: UserKeyManagerProtocol {
     ///            or no private key in keychain returns nil.
     
     func getPrivateKeyFor(email: String) -> PrivateKey? {
-        if let oldEmail = keychain.email {
-            guard oldEmail == email else { return nil }
-            return getPrivateKeyFromKeychain()
-        }
-        
-        return nil
+        guard let pairs = keychain.privKeyEmail else { return nil }
+        guard let privKeyHex = pairs[email] else { return nil }
+        return PrivateKey(raw: Data(hexString: privKeyHex))
     }
     
     
-    /// Creates new private key. Save private key and email to keychan.
+    /// Creates new private key. Save pair of private key and email to keychan.
     ///
     /// - Parameters:
     ///   - email: user email.
     /// - Returns: return generated private key, otherwise nil.
     
-    func setNewPrivateKey(email: String) -> PrivateKey? {
-        self.clearUserKeyData()
-        
+    func addPrivateKey(email: String) -> PrivateKey? {
         guard let privateKey = try? keyGenerator.generatePrivKey() else { return nil }
-        keychain.email = email
-        keychain.privateKey = privateKey.hex
         
+        if let pairs = keychain.privKeyEmail {
+            var newPairs = pairs
+            newPairs[email] = privateKey.hex
+            keychain.privKeyEmail = newPairs
+            return privateKey
+        }
+        
+        keychain.privKeyEmail = [email: privateKey.hex]
         return privateKey
     }
     
     func clearUserKeyData() {
         keychain.deleteUserKeys()
-    }
-}
-
-
-// MARK: - Private methods
-
-extension UserKeyManager {
-    private func getPrivateKeyFromKeychain() -> PrivateKey? {
-        guard let privKeyHex = keychain.privateKey else { return nil }
-        let privKeyRaw = Data(hexString: privKeyHex)
-        return PrivateKey(raw: privKeyRaw)
     }
 }

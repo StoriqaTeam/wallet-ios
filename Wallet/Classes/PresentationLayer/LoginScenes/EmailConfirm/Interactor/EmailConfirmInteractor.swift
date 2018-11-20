@@ -16,16 +16,19 @@ class EmailConfirmInteractor {
     private let emailConfirmProvider: EmailConfirmNetworkProviderProtocol
     private let authTokenDefaults: AuthTokenDefaultsProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
     
     init(token: String,
          emailConfirmProvider: EmailConfirmNetworkProviderProtocol,
          authTokenDefaults: AuthTokenDefaultsProviderProtocol,
-         signHeaderFactory: SignHeaderFactoryProtocol) {
+         signHeaderFactory: SignHeaderFactoryProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol) {
         
         self.token = token
         self.authTokenDefaults = authTokenDefaults
         self.emailConfirmProvider = emailConfirmProvider
         self.signHeaderFactory = signHeaderFactory
+        self.userDataStoreService = userDataStoreService
     }
 }
 
@@ -35,10 +38,11 @@ class EmailConfirmInteractor {
 extension EmailConfirmInteractor: EmailConfirmInteractorInput {
     func confirmEmail() {
         
+        let currentEmail = userDataStoreService.getCurrentUser().email
         let signHeader: SignHeader
         
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
             log.error(error.localizedDescription)
             return

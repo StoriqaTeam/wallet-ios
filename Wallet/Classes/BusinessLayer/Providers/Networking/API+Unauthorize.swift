@@ -16,10 +16,6 @@ enum DeviceType: String {
     case other
 }
 
-//"deviceOs": "string",
-//"deviceId": 1237987834798375400,
-//"publicKey": 1237987834798375400
-
 extension API {
     enum Unauthorized {
         case login(email: String,

@@ -20,6 +20,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     private let defaults: DefaultsProviderProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
     
     private var isUpdating = false
     private var lastTxTime: TimeInterval!
@@ -33,6 +34,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
          signHeaderFactory: SignHeaderFactoryProtocol,
          defaultsProvider: DefaultsProviderProtocol,
          authTokenProvider: AuthTokenProviderProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol,
          limit: Int = 50) {
         self.provider = transactionsProvider
         self.networkProvider = transactionsNetworkProvider
@@ -40,6 +42,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
         self.defaults = defaultsProvider
         self.authTokenProvider = authTokenProvider
         self.signHeaderFactory = signHeaderFactory
+        self.userDataStoreService = userDataStoreService
         self.limit = limit
     }
     
@@ -84,10 +87,12 @@ extension TransactionsUpdater {
     }
     
     private func getTransactions(token: String) {
-        let signHeader: SignHeader
         
+        let currentEmail = userDataStoreService.getCurrentUser().email
+        
+        let signHeader: SignHeader
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
             log.error(error.localizedDescription)
             return

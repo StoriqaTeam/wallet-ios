@@ -77,10 +77,11 @@ extension DefaultAccountsProvider {
     private func createAccount(group: DispatchGroup, authToken: String, userId: Int, uuid: String, currency: Currency) {
         group.enter()
         
+        let currentEmail = userDataStore.getCurrentUser().email
         let signHeader: SignHeader
         
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
             log.error(error.localizedDescription)
             group.leave()
