@@ -88,7 +88,7 @@ extension MainTabBarInteractor {
         accountsUpdater.update(userId: user.id)
         txsUpdater.update(userId: user.id)
         ratesUpdater.update()
-        feeUpdater.update()
+//        feeUpdater.update()
     }
     
     private func signalPolling() {
