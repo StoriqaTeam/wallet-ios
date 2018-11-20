@@ -10,21 +10,27 @@ import Foundation
 
 
 protocol ConfirmAddDeviceNetworkProviderProtocol {
-    func confirmAddDevice(signHeader: SignHeader, queue: DispatchQueue, completion: @escaping (Result<String>) -> Void )
+    func confirmAddDevice(deviceConfirmToken: String,
+                          signHeader: SignHeader,
+                          queue: DispatchQueue,
+                          completion: @escaping (Result<String?>) -> Void)
     
 }
 
 class ConfirmAddDeviceNetworkProvider: NetworkLoadable, ConfirmAddDeviceNetworkProviderProtocol {
     
-    func confirmAddDevice(signHeader: SignHeader, queue: DispatchQueue, completion: @escaping (Result<String>) -> Void ) {
+    func confirmAddDevice(deviceConfirmToken: String,
+                          signHeader: SignHeader,
+                          queue: DispatchQueue,
+                          completion: @escaping (Result<String?>) -> Void) {
         
-        let request = API.Unauthorized.confirmAddDevice(signHeader: signHeader)
+        let request = API.Unauthorized.confirmAddDevice(deviceConfirmToken: deviceConfirmToken,
+                                                        signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
-                let json = JSON(response.responseStatusCode)
                 
                 guard code == 200 else {
                     let error = ConfirmAddDeviceNetworkProviderError(code: code)
@@ -32,13 +38,7 @@ class ConfirmAddDeviceNetworkProvider: NetworkLoadable, ConfirmAddDeviceNetworkP
                     return
                 }
                 
-                guard let deviceToken = json["deviceConfirmToken"].string else {
-                    let error = ConfirmAddDeviceNetworkProviderError.parceError
-                    completion(.failure(error))
-                    return
-                }
-                
-                completion(.success(deviceToken))
+                completion(.success(nil))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -51,7 +51,6 @@ enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
     case unauthorized
     case unknownError
     case internalServer
-    case parceError
     
     init(code: Int) {
         switch code {
@@ -68,8 +67,6 @@ enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
             return "Bad request"
         case .unauthorized:
             return "User unauthorized"
-        case .parceError:
-            return "Fail to parse response from server"
         case .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }

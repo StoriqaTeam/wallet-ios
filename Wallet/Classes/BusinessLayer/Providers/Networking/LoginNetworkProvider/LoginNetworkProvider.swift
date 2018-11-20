@@ -60,6 +60,7 @@ enum LoginProviderError: LocalizedError, Error {
     case unknownError
     case internalServer
     case validationError(email: String?, password: String?)
+    case deviceNotRegistered(userId: Int)
     
     init(code: Int, json: JSON) {
         switch code {
@@ -83,9 +84,16 @@ enum LoginProviderError: LocalizedError, Error {
             
             if hasEmailError || hasPasswordError {
                 self = .validationError(email: emailMessage, password: passwordMessage)
+            } else if let deviceErrors = json["device"].array,
+                let existsError = deviceErrors.first(where: { $0["code"] == "exists" }),
+                let params = existsError["params"].dictionary,
+                let userIdStr = params["user_id"]?.string,
+                let userId = Int(userIdStr) {
+                self = .deviceNotRegistered(userId: userId)
             } else {
                 self = .unknownError
             }
+            
         case 500:
             self = .internalServer
         default:
@@ -111,6 +119,8 @@ enum LoginProviderError: LocalizedError, Error {
             }
             
             return result.trim()
+        case .deviceNotRegistered:
+            return "Device is not registered"
         }
     }
 }

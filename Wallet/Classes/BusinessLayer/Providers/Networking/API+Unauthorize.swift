@@ -42,8 +42,8 @@ extension API {
             deviceType: DeviceType,
             deviceOs: String,
             signHeader: SignHeader)
-        case addDevice(email: String, password: String, deviceOs: DeviceType, signHeader: SignHeader)
-        case confirmAddDevice(signHeader: SignHeader)
+        case addDevice(userId: Int, deviceOs: String, signHeader: SignHeader)
+        case confirmAddDevice(deviceConfirmToken: String, signHeader: SignHeader)
     }
     
 }
@@ -132,7 +132,7 @@ extension API.Unauthorized: APIMethodProtocol {
                 "Content-Type": "application/json",
                 "accept": "application/json"
             ]
-        case .addDevice(_, _, _, let signHeader):
+        case .addDevice(_, _, let signHeader):
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json",
@@ -140,7 +140,7 @@ extension API.Unauthorized: APIMethodProtocol {
                 "Device-id": signHeader.deviceId,
                 "Sign": signHeader.signature
             ]
-        case .confirmAddDevice(let signHeader):
+        case .confirmAddDevice(_, let signHeader):
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json",
@@ -194,16 +194,17 @@ extension API.Unauthorized: APIMethodProtocol {
                 "deviceOs": deviceOs,
                 "deviceId": signerHeader.deviceId
             ]
-        case .addDevice(let email, let password, let deviceOs, let signHeader):
+        case .addDevice(let userId, let deviceOs, let signHeader):
             return [
-                "email": email,
-                "password": password,
+                "userId": userId,
                 "deviceOs": deviceOs,
                 "deviceId": signHeader.deviceId,
                 "publicKey": signHeader.pubKeyHex
             ]
-        case .confirmAddDevice:
-            return nil
+        case .confirmAddDevice(let deviceConfirmToken, _):
+            return [
+                "deviceConfirmToken": deviceConfirmToken
+            ]
         }
     }
 }

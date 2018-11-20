@@ -41,7 +41,7 @@ class SocialAuthNetworkProvider: NetworkLoadable, SocialAuthNetworkProviderProto
                 if let token = json["token"].string {
                     completion(.success(token))
                 } else {
-                    let apiError = SocialAuthNetworkProviderError(code: response.responseStatusCode)
+                    let apiError = SocialAuthNetworkProviderError(code: response.responseStatusCode, json: json)
                     completion(.failure(apiError))
                 }
                 
@@ -60,13 +60,23 @@ enum SocialAuthNetworkProviderError: LocalizedError, Error {
     case unauthorized
     case unknownError
     case internalServer
+    case deviceNotRegistered(userId: Int)
     
-    init(code: Int) {
+    init(code: Int, json: JSON) {
         switch code {
         case 400:
             self = .badRequest
         case 401:
             self = .unauthorized
+        case 422:
+            guard let deviceErrors = json["device"].array,
+                let existsError = deviceErrors.first(where: { $0["code"] == "exists" }),
+                let params = existsError["params"].dictionary,
+                let userId = params["user_id"]?.int else {
+                    self = .unknownError
+                    return
+            }
+            self = .deviceNotRegistered(userId: userId)
         case 500:
             self = .internalServer
         default:
@@ -82,7 +92,8 @@ enum SocialAuthNetworkProviderError: LocalizedError, Error {
             return "User unauthorized"
         case .unknownError, .internalServer:
             return Constants.Errors.userFriendly
-            
+        case .deviceNotRegistered:
+            return "Device is not registered"
         }
     }
 }

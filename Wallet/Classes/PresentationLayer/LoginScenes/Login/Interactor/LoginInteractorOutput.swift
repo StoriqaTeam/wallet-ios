@@ -15,4 +15,7 @@ protocol LoginInteractorOutput: class {
     func formValidationFailed(email: String?, password: String?)
     func showQuickLaunch()
     func showPinQuickLaunch()
+    func deviceNotRegistered()
+    func deviceRegisterEmailSent()
+    func failedSendDeviceRegisterEmail(message: String)
 }

@@ -57,7 +57,6 @@ extension LoginPresenter: LoginViewOutput {
 // MARK: - LoginInteractorOutput
 
 extension LoginPresenter: LoginInteractorOutput {
-    
     func loginSucceed() {
         storiqaLoader.stopLoader()
         router.showAuthorizedZone()
@@ -81,13 +80,26 @@ extension LoginPresenter: LoginInteractorOutput {
         view.showErrorMessage(email: email, password: password)
     }
     
+    func deviceNotRegistered() {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegister(popUpDelegate: self, from: view.viewController)
+    }
+    
+    func deviceRegisterEmailSent() {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegisterEmailSent(from: view.viewController)
+    }
+    
+    func failedSendDeviceRegisterEmail(message: String) {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegisterFailedSendEmail(message: message, popUpDelegate: self, from: view.viewController)
+    }
 }
 
 
 // MARK: - LoginModuleInput
 
 extension LoginPresenter: LoginModuleInput {
-    
     func present() {
         view.presentAsNavController()
     }
@@ -104,6 +116,26 @@ extension LoginPresenter: PopUpRegistrationFailedVMDelegate {
     func retry() {
         storiqaLoader.startLoader()
         interactor.retry()
+    }
+}
+
+
+// MARK: - PopUpDeviceRegisterVMDelegate
+
+extension LoginPresenter: PopUpDeviceRegisterVMDelegate {
+    func okButtonPressed() {
+        storiqaLoader.startLoader()
+        interactor.registerDevice()
+    }
+}
+
+
+// MARK: - PopUpDeviceRegisterFailedSendEmailVMDelegate
+
+extension LoginPresenter: PopUpDeviceRegisterFailedSendEmailVMDelegate {
+    func retryDeviceRegister() {
+        storiqaLoader.startLoader()
+        interactor.registerDevice()
     }
 }
 
