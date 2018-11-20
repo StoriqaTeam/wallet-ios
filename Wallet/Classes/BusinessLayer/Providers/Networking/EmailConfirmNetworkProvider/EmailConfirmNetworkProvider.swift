@@ -12,16 +12,15 @@ import Foundation
 protocol EmailConfirmNetworkProviderProtocol {
     func confirm(token: String,
                  queue: DispatchQueue,
-                 signHeader: SignHeader,
                  completion: @escaping (Result<String>) -> Void)
 }
 
 class EmailConfirmNetworkProvider: NetworkLoadable, EmailConfirmNetworkProviderProtocol {
     func confirm(token: String,
                  queue: DispatchQueue,
-                 signHeader: SignHeader,
                  completion: @escaping (Result<String>) -> Void) {
-        let request = API.Unauthorized.confirmEmail(token: token, signHeader: signHeader)
+        
+        let request = API.Unauthorized.confirmEmail(token: token)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {

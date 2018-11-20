@@ -131,8 +131,13 @@ class LoginService: LoginServiceProtocol {
 extension LoginService {
     private func getUser(authToken: String, authData: AuthData, completion: @escaping (Result<String?>) -> Void) {
         
-        let currentEmail = userDataStore.getCurrentUser().email
-    
+        let currentEmail: String
+        
+        switch authData {
+        case .email(let email, _): currentEmail = email
+        case .social: fatalError("Needs email")
+        }
+        
         let signHeader: SignHeader 
         do {
             signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)

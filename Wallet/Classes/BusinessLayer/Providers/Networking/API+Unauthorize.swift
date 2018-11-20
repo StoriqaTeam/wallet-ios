@@ -30,7 +30,7 @@ extension API {
             deviceType: DeviceType,
             deviceOs: String,
             signHeader: SignHeader)
-        case confirmEmail(token: String, signHeader: SignHeader)
+        case confirmEmail(token: String)
         case resetPassword(email: String, deviceType: DeviceType)
         case confirmResetPassword(token: String, password: String)
         case socialAuth(oauthToken: String,
@@ -39,7 +39,7 @@ extension API {
             deviceOs: String,
             signHeader: SignHeader)
         case addDevice(userId: Int, deviceOs: String, signHeader: SignHeader)
-        case confirmAddDevice(deviceConfirmToken: String, signHeader: SignHeader)
+        case confirmAddDevice(deviceConfirmToken: String)
     }
     
 }
@@ -107,13 +107,10 @@ extension API.Unauthorized: APIMethodProtocol {
                 "Device-id": signHeader.deviceId,
                 "Sign": signHeader.signature
             ]
-        case .confirmEmail(_, let signHeader):
+        case .confirmEmail:
             return [
                 "Content-Type": "application/json",
-                "accept": "application/json",
-                "Timestamp": signHeader.timestamp,
-                "Device-id": signHeader.deviceId,
-                "Sign": signHeader.signature
+                "accept": "application/json"
             ]
         case .socialAuth(_, _, _, _, let signHeader):
             return [
@@ -136,13 +133,10 @@ extension API.Unauthorized: APIMethodProtocol {
                 "Device-id": signHeader.deviceId,
                 "Sign": signHeader.signature
             ]
-        case .confirmAddDevice(_, let signHeader):
+        case .confirmAddDevice:
             return [
                 "Content-Type": "application/json",
-                "accept": "application/json",
-                "Timestamp": signHeader.timestamp,
-                "Device-id": signHeader.deviceId,
-                "Sign": signHeader.signature
+                "accept": "application/json"
             ]
         }
     }
@@ -168,7 +162,7 @@ extension API.Unauthorized: APIMethodProtocol {
                 "deviceId": signHeader.deviceId,
                 "publicKey": signHeader.pubKeyHex
             ]
-        case .confirmEmail(let token, _):
+        case .confirmEmail(let token):
             return [
                 "emailConfirmToken": token
             ]
@@ -197,7 +191,7 @@ extension API.Unauthorized: APIMethodProtocol {
                 "deviceId": signHeader.deviceId,
                 "publicKey": signHeader.pubKeyHex
             ]
-        case .confirmAddDevice(let deviceConfirmToken, _):
+        case .confirmAddDevice(let deviceConfirmToken):
             return [
                 "deviceConfirmToken": deviceConfirmToken
             ]
