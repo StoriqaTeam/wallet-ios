@@ -45,15 +45,22 @@ class FeeProvider: FeeProviderProtocol {
     }
     
     func updateSelected(fromCurrency: Currency, toCurrency: Currency) {
-        let fees = feeDataStoreService.getFees()
-        let selected = fees.first {
-            $0.fromCurrency == fromCurrency && $0.toCurrency == toCurrency
-        }
-        let sorted = selected?.fees.sorted(by: {
-            $0.value < $1.value
-        })
         
-        selectedFees = sorted ?? []
+        // FIXME: delete this
+        
+        selectedFees = [FeeAndWait(value: 0, estimatedTime: 0)]
+        
+        // -----------------
+        
+//        let fees = feeDataStoreService.getFees()
+//        let selected = fees.first {
+//            $0.fromCurrency == fromCurrency && $0.toCurrency == toCurrency
+//        }
+//        let sorted = selected?.fees.sorted(by: {
+//            $0.value < $1.value
+//        })
+//
+//        selectedFees = sorted ?? []
     }
     
     func getValuesCount() -> Int {
