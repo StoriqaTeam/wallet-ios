@@ -19,9 +19,12 @@ class LoginInteractor {
     private let keychain: KeychainProviderProtocol
     private let loginService: LoginServiceProtocol
     private let userKeyManager: UserKeyManagerProtocol
+    private let addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
     
     // for Retry
     private var authData: AuthData?
+    private var deviceRegisterUserId: Int?
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
@@ -30,7 +33,9 @@ class LoginInteractor {
          keychain: KeychainProviderProtocol,
          loginService: LoginServiceProtocol,
          keyGenerator: KeyGeneratorProtocol,
-         userKeyManager: UserKeyManagerProtocol) {
+         userKeyManager: UserKeyManagerProtocol,
+         addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
@@ -39,6 +44,8 @@ class LoginInteractor {
         self.keychain = keychain
         self.loginService = loginService
         self.userKeyManager = userKeyManager
+        self.addDeviceNetworkProvider = addDeviceNetworkProvider
+        self.signHeaderFactory = signHeaderFactory
     }
 }
 
@@ -62,24 +69,24 @@ extension LoginInteractor: LoginInteractorInput {
         setNewPrivateKeyIfNeeded(with: email)
         
         loginService.signIn(email: email, password: password) { [weak self] (result) in
-            guard let strongSelf = self else {
-                return
-            }
-            
             switch result {
             case .success:
-                strongSelf.loginSucceed()
+                self?.loginSucceed()
             case .failure(let error):
                 if let error = error as? LoginProviderError {
                     switch error {
                     case .validationError(let email, let password):
-                        strongSelf.output.formValidationFailed(email: email, password: password)
+                        self?.output.formValidationFailed(email: email, password: password)
+                        return
+                    case .deviceNotRegistered(let userId):
+                        self?.deviceRegisterUserId = userId
+                        self?.output.deviceNotRegistered()
                         return
                     default: break
                     }
                 }
                 
-                strongSelf.output.loginFailed(message: error.localizedDescription)
+                self?.output.loginFailed(message: error.localizedDescription)
             }
         }
     }
@@ -93,6 +100,15 @@ extension LoginInteractor: LoginInteractorInput {
             case .success:
                 self?.loginSucceed()
             case .failure(let error):
+                if let error = error as? SocialAuthNetworkProviderError {
+                    switch error {
+                    case .deviceNotRegistered(let userId):
+                        self?.deviceRegisterUserId = userId
+                        self?.output.deviceNotRegistered()
+                        return
+                    default: break
+                    }
+                }
                 self?.output.loginFailed(message: error.localizedDescription)
             }
         }
@@ -108,11 +124,37 @@ extension LoginInteractor: LoginInteractorInput {
             setNewPrivateKeyIfNeeded(with: email)
             signIn(email: email, password: password)
         case .social(let provider, let token):
-            fatalError("Implement with userKeyManager. Need pass email")
             signIn(tokenProvider: provider, oauthToken: token)
         }
     }
     
+    func registerDevice() {
+        guard let userId = deviceRegisterUserId else {
+            fatalError("Registring device with no user id")
+        }
+        
+        let signHeader: SignHeader
+        
+        do {
+            signHeader = try signHeaderFactory.createSignHeader()
+        } catch {
+            log.error(error.localizedDescription)
+            output.loginFailed(message: error.localizedDescription)
+            return
+        }
+        
+        addDeviceNetworkProvider.addDevice(
+            userId: userId,
+            signHeader: signHeader,
+            queue: .main) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.output.deviceRegisterEmailSent()
+                case .failure(let error):
+                    self?.output.failedSendDeviceRegisterEmail(message: error.localizedDescription)
+                }
+        }
+    }
 }
 
 

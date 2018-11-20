@@ -12,6 +12,7 @@ import Foundation
 enum UniversalLink {
     case verifyEmail(token: String)
     case resetPassword(token: String)
+    case registerDevice(token: String)
 }
 
 protocol UniversalLinkParserProtocol {
@@ -34,6 +35,8 @@ class UniversalLinkParser: UniversalLinkParserProtocol {
             return .verifyEmail(token: token)
         case "password_reset":
             return .resetPassword(token: token)
+        case "register_device":
+            return .registerDevice(token: token)
         default:
             log.warn("Invalid Universal Link: \(link)")
             return nil

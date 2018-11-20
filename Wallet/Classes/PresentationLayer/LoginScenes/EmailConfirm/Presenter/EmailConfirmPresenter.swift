@@ -27,6 +27,7 @@ extension EmailConfirmPresenter: EmailConfirmViewOutput {
     func viewIsReady() {
         view.setupInitialState()
         addLoader()
+        configureNavBar()
         confirmEmail()
     }
 

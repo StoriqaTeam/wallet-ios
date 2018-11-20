@@ -60,6 +60,8 @@ class Application {
     lazy var createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol = CreateAccountNetworkProvider()
     lazy var socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol = SocialAuthNetworkProvider()
     lazy var feeNetworkProvider: FeeNetworkProviderProtocol = FeeNetworkProvider()
+    lazy var addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol = AddDeviceNetworkProvider()
+    lazy var confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol = ConfirmAddDeviceNetworkProvider()
     
     
     // MARK: - Common Providers

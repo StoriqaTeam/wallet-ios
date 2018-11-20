@@ -15,4 +15,5 @@ protocol LoginInteractorInput: class {
     func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String)
     func viewIsReady()
     func retry()
+    func registerDevice()
 }

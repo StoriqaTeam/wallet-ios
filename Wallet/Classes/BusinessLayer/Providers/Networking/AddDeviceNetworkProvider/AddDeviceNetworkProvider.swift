@@ -10,8 +10,7 @@ import Foundation
 
 
 protocol AddDeviceNetworkProviderProtocol {
-    func addDevice(email: String,
-                   password: String,
+    func addDevice(userId: Int,
                    signHeader: SignHeader,
                    queue: DispatchQueue,
                    completion: @escaping (Result<String>) -> Void)
@@ -19,13 +18,13 @@ protocol AddDeviceNetworkProviderProtocol {
 
 
 class AddDeviceNetworkProvider: NetworkLoadable, AddDeviceNetworkProviderProtocol {
-    func addDevice(email: String,
-                   password: String,
+    func addDevice(userId: Int,
                    signHeader: SignHeader,
                    queue: DispatchQueue,
                    completion: @escaping (Result<String>) -> Void) {
         
-        let request = API.Unauthorized.addDevice(email: email, password: password, deviceOs: .ios, signHeader: signHeader)
+        let deviceOs = UIDevice.current.systemVersion
+        let request = API.Unauthorized.addDevice(userId: userId, deviceOs: deviceOs, signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
