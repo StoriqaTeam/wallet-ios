@@ -23,7 +23,7 @@ class RealmTransaction: Object {
     dynamic var toValue: String = ""
     dynamic var toCurrency: String = ""
     dynamic var fee: String = ""
-    dynamic var blockchainId: String = ""
+    dynamic var blockchainIds = List<StringObject>()
     dynamic var createdAt: Double = 0
     dynamic var updatedAt: Double = 0
     dynamic var status: String = ""

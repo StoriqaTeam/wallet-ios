@@ -138,7 +138,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
                                       toValue: toValue,
                                       toCurrency: currency,
                                       fee: fee,
-                                      blockchainId: "",
+                                      blockchainIds: [],
                                       createdAt: timestamp,
                                       updatedAt: timestamp,
                                       status: .pending)
