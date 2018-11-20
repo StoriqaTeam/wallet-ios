@@ -103,7 +103,7 @@ class SocialNetworkAuthView: LoadableFromXib {
 // MARK: - SocialNetworkAuthViewModelProtocol
 
 extension SocialNetworkAuthView: SocialNetworkAuthViewModelProtocol {
-    func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String)>) {
+    func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String, email: String)>) {
         switch result {
         case .failure(let error):
             delegate?.socialNetworkAuthFailed()

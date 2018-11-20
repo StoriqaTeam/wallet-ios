@@ -11,12 +11,12 @@ import FacebookLogin
 
 
 protocol SocialNetworkAuthViewModelProtocol: class {
-    func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String)>)
+    func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String, email: String)>)
 }
 
 
 class SocialNetworkAuthViewModel: NSObject {
-    typealias Token = (provider: SocialNetworkTokenProvider, token: String)
+    typealias Token = (provider: SocialNetworkTokenProvider, token: String, email: String)
     
     weak var delegate: SocialNetworkAuthViewModelProtocol!
     
@@ -48,7 +48,7 @@ class SocialNetworkAuthViewModel: NSObject {
                     log.debug(error)
                     let err = SocialNetworkViewModelError.failToSign(error: error)
                     let result: Result<Token> = .failure(err)
-                    self?.delegate.signInWithResult(result)
+//                    self?.delegate.signInWithResult(result)
                 case .cancelled:
                     log.debug("User cancelled login.")
                 case .success(let grantedPermissions, let declinedPermissions, let accessToken):
@@ -56,8 +56,8 @@ class SocialNetworkAuthViewModel: NSObject {
                     log.debug("grantedPermissions: \(grantedPermissions)")
                     log.debug("declinedPermissions: \(declinedPermissions)")
                     log.debug("accessToken: \(accessToken)")
-                    let result: Result<Token> = .success((SocialNetworkTokenProvider.facebook, accessToken.authenticationToken))
-                    self?.delegate.signInWithResult(result)
+//                    let result: Result<Token> = .success((SocialNetworkTokenProvider.facebook, accessToken.authenticationToken))
+//                    self?.delegate.signInWithResult(result)
                 }
             })
     }
@@ -76,7 +76,15 @@ extension SocialNetworkAuthViewModel: GIDSignInDelegate {
             let err = SocialNetworkViewModelError.failToSign(error: error)
             result = .failure(err)
         } else if let token = user?.authentication?.accessToken {
-            result = .success((SocialNetworkTokenProvider.google, token))
+            
+            guard let userEmail = user.profile.email else  {
+                let error = SocialNetworkViewModelError.emptyUserEmail
+                result = .failure(error)
+                delegate.signInWithResult(result)
+                return
+            }
+            
+            result = .success((SocialNetworkTokenProvider.google, token, userEmail))
         } else {
             log.debug("Falied signIn with google account: user token empty")
             let err = SocialNetworkViewModelError.userTokenIsEmpty
@@ -91,6 +99,7 @@ extension SocialNetworkAuthViewModel: GIDSignInDelegate {
 enum SocialNetworkViewModelError: LocalizedError {
     case failToSign(error: Error)
     case userTokenIsEmpty
+    case emptyUserEmail
     
     var localizedDescription: String {
         switch self {
@@ -98,6 +107,8 @@ enum SocialNetworkViewModelError: LocalizedError {
             return "Failied signIn with account \(error.localizedDescription)"
         case .userTokenIsEmpty:
             return "Failed signIn with account: user token empty"
+        case .emptyUserEmail:
+            return "Failed signIn with account: user email empty"
         }
     }
 }
