@@ -14,7 +14,8 @@ class DeviceRegisterConfirmModule {
         let interactor = DeviceRegisterConfirmInteractor(
             token: token,
             confirmAddDeviceNetworkProvider: app.confirmAddDeviceNetworkProvider,
-            signHeaderFactory: app.signHeaderFactory)
+            signHeaderFactory: app.signHeaderFactory,
+            userDataStoreService: app.userDataStoreService)
         let viewController = DeviceRegisterConfirmViewController()
 
         interactor.output = presenter

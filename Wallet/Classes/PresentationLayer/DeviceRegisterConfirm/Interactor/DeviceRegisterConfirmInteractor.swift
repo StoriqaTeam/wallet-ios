@@ -15,13 +15,16 @@ class DeviceRegisterConfirmInteractor {
     private let token: String
     private let confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
     
     init(token: String,
          confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol,
-         signHeaderFactory: SignHeaderFactoryProtocol) {
+         signHeaderFactory: SignHeaderFactoryProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol) {
         self.token = token
         self.confirmAddDeviceNetworkProvider = confirmAddDeviceNetworkProvider
         self.signHeaderFactory = signHeaderFactory
+        self.userDataStoreService = userDataStoreService
     }
 }
 
@@ -30,10 +33,11 @@ class DeviceRegisterConfirmInteractor {
 
 extension DeviceRegisterConfirmInteractor: DeviceRegisterConfirmInteractorInput {
     func registerDevice() {
+        let currentEmail = userDataStoreService.getCurrentUser().email
         let signHeader: SignHeader
         
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
             log.error(error.localizedDescription)
             return

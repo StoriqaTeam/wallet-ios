@@ -53,11 +53,9 @@ extension ChangePasswordInteractor: ChangePasswordInteractorInput {
 
 extension ChangePasswordInteractor {
     private func changePassword(authToken: String, currentPassword: String, newPassword: String) {
-        
         let currentEmail = userDataStoreService.getCurrentUser().email
-        
-        
         let signHeader: SignHeader
+        
         do {
             signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {

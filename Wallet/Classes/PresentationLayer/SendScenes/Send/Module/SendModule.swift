@@ -31,12 +31,7 @@ class SendModule {
                                         accountsProvider: app.accountsProvider,
                                         accountWatcher: accountWatcher,
                                         cryptoAddressResolver: app.cryptoAddressResolver,
-                                        sendTransactionNetworkProvider: app.sendTransactionNetworkProvider,
-                                        userDataStoreService: app.userDataStoreService,
-                                        authTokenProvider: app.authTokenProvider,
-                                        accountsUpdater: app.accountsUpdater,
-                                        txnUpdater: app.transactionsUpdater,
-                                        signHeaderFactory: app.signHeaderFactory)
+                                        sendTransactionService: app.sendTransactionService)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
         let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController

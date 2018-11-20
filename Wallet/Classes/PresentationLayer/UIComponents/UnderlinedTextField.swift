@@ -41,6 +41,17 @@ class UnderlinedTextField: UITextField {
         }
     }
     
+    override var keyboardType: UIKeyboardType {
+        didSet {
+            switch keyboardType {
+            case .numberPad, .phonePad, .decimalPad, .asciiCapableNumberPad:
+                addDoneButtonOnKeyboard()
+            default:
+                break
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -170,6 +181,26 @@ extension UnderlinedTextField {
         if let constraint = lineView.constraints.first(where: { $0.firstAttribute == .height }) {
             constraint.constant = height
         }
+    }
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: Constants.Sizes.screenWidth, height: 50))
+        doneToolbar.barStyle = UIBarStyle.default
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.inputAccessoryView = doneToolbar
+    }
+    
+    @objc private func doneButtonAction() {
+        _ = resignFirstResponder()
     }
     
 }

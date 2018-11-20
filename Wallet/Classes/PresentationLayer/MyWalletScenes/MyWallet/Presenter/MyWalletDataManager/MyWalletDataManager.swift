@@ -21,6 +21,7 @@ class MyWalletDataManager: NSObject {
     weak var delegate: MyWalletDataManagerDelegate?
     
     private var collectionView: UICollectionView!
+    private var cellType: CellType = .regular
     private let kAccountCellIdentifier = "AccountViewCell"
     private var accounts: [Account]
     private let accountDisplayer: AccountDisplayerProtocol
@@ -30,11 +31,20 @@ class MyWalletDataManager: NSObject {
         self.accountDisplayer = accountDisplayer
     }
     
-    func setCollectionView(_ view: UICollectionView) {
+    func setCollectionView(_ view: UICollectionView, cellType: CellType = .regular) {
+        self.cellType = cellType
         collectionView = view
         collectionView.dataSource = self
         collectionView.delegate = self
-        registerXib()
+        
+        let cellIdentifier: String
+        switch cellType {
+        case .small:
+            cellIdentifier = "SmallAccountCell"
+        case .regular:
+            cellIdentifier = "AccountViewCell"
+        }
+        registerXib(identifier: cellIdentifier)
     }
     
     func updateAccounts(accounts: [Account]) {
@@ -60,7 +70,15 @@ extension MyWalletDataManager: UICollectionViewDataSource {
         let fiatAmount = accountDisplayer.fiatAmount(for: account)
         let holderName = accountDisplayer.holderName()
         let textColor = accountDisplayer.textColor(for: account)
-        let backgroundImage = accountDisplayer.image(for: account)
+        let backgroundImage: UIImage
+        
+        switch cellType {
+        case .small:
+            backgroundImage = accountDisplayer.smallImage(for: account)
+        case .regular:
+            backgroundImage = accountDisplayer.image(for: account)
+        }
+        
         
         cell.configureWith(cryptoAmount: cryptoAmount,
                            fiatAmount: fiatAmount,
@@ -89,8 +107,9 @@ extension MyWalletDataManager: UICollectionViewDelegate {
 
 extension MyWalletDataManager {
     
-    private func registerXib() {
-        collectionView.register(UINib(nibName: kAccountCellIdentifier, bundle: nil), forCellWithReuseIdentifier: kAccountCellIdentifier)
+    private func registerXib(identifier: String) {
+        let nib = UINib(nibName: identifier, bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: kAccountCellIdentifier)
     }
     
 }

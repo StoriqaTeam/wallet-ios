@@ -129,14 +129,24 @@ extension LoginInteractor: LoginInteractorInput {
     }
     
     func registerDevice() {
-        guard let userId = deviceRegisterUserId else {
+        guard let userId = deviceRegisterUserId,
+            let authData = authData else {
             fatalError("Registring device with no user id")
+        }
+        
+        let currentEmail: String
+        
+        switch authData {
+        case .email(let email, _):
+            currentEmail = email
+        case .social:
+            fatalError("Implement with userKeyManager. Need pass email")
         }
         
         let signHeader: SignHeader
         
         do {
-            signHeader = try signHeaderFactory.createSignHeader()
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
             log.error(error.localizedDescription)
             output.loginFailed(message: error.localizedDescription)
