@@ -35,7 +35,7 @@ struct Transaction {
     let toValue: Decimal
     let toCurrency: Currency
     let fee: Decimal
-    let blockchainId: String
+    let blockchainIds: [String]
     let createdAt: Date
     let updatedAt: Date
     let status: TransactionStatus
@@ -66,7 +66,7 @@ extension Transaction: RealmMappable {
         self.toCurrency = Currency(string: object.toCurrency)
         self.toValue = object.toValue.decimalValue()
         self.fee = object.fee.decimalValue()
-        self.blockchainId = object.blockchainId
+        self.blockchainIds = object.blockchainIds.map { $0.value }
         self.createdAt = Date(timeIntervalSince1970: object.createdAt)
         self.updatedAt = Date(timeIntervalSince1970: object.updatedAt)
         self.status = TransactionStatus(string: object.status)
@@ -85,7 +85,7 @@ extension Transaction: RealmMappable {
         object.fromValue = self.fromValue.string
         object.fromCurrency = self.fromCurrency.ISO
         object.fee = self.fee.string
-        object.blockchainId = self.blockchainId
+        object.blockchainIds.append(objectsIn: self.blockchainIds.map { StringObject(value: $0) })
         
         let createdAt = self.createdAt.timeIntervalSince1970
         object.createdAt = Double(createdAt)
@@ -118,7 +118,7 @@ extension Transaction: RealmMappable {
                 return nil
         }
         
-        let blockchainId = json["blockchainTxId"].stringValue
+        let blockchainIds = json["blockchain_tx_ids"].arrayValue
         let to = json["to"]
         let toAccount = TransactionAccount(json: to)
         let fromAddress = from.compactMap { $0["blockchain_address"].string }
@@ -131,7 +131,7 @@ extension Transaction: RealmMappable {
         
         self.id = id
         self.status = TransactionStatus(string: statusStr)
-        self.blockchainId = blockchainId
+        self.blockchainIds = blockchainIds.compactMap { $0.string }
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.toAddress = toAddress
