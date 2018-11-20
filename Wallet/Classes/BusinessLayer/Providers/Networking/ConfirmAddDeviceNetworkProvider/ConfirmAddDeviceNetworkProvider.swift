@@ -11,7 +11,6 @@ import Foundation
 
 protocol ConfirmAddDeviceNetworkProviderProtocol {
     func confirmAddDevice(deviceConfirmToken: String,
-                          signHeader: SignHeader,
                           queue: DispatchQueue,
                           completion: @escaping (Result<String?>) -> Void)
     
@@ -20,12 +19,10 @@ protocol ConfirmAddDeviceNetworkProviderProtocol {
 class ConfirmAddDeviceNetworkProvider: NetworkLoadable, ConfirmAddDeviceNetworkProviderProtocol {
     
     func confirmAddDevice(deviceConfirmToken: String,
-                          signHeader: SignHeader,
                           queue: DispatchQueue,
                           completion: @escaping (Result<String?>) -> Void) {
         
-        let request = API.Unauthorized.confirmAddDevice(deviceConfirmToken: deviceConfirmToken,
-                                                        signHeader: signHeader)
+        let request = API.Unauthorized.confirmAddDevice(deviceConfirmToken: deviceConfirmToken)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
