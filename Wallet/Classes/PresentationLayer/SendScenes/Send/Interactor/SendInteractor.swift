@@ -185,6 +185,7 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func sendTransaction() {
+        
         let txToSend = sendProvider.createTransaction()
         let account = sendProvider.selectedAccount
         let fromAccount = account.id.lowercased()

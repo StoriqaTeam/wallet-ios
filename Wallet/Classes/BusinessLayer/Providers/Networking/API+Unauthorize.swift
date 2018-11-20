@@ -22,24 +22,26 @@ extension API {
             password: String,
             deviceType: DeviceType,
             deviceOs: String,
-            deviceId: String)
+            signHeader: SignHeader)
         case register(email: String,
             password: String,
             firstName: String,
             lastName: String,
             deviceType: DeviceType,
             deviceOs: String,
-            deviceId: String)
-        case confirmEmail(token: String)
+            signHeader: SignHeader)
+        case confirmEmail(token: String, signHeader: SignHeader)
         case resetPassword(email: String, deviceType: DeviceType)
         case confirmResetPassword(token: String, password: String)
         case socialAuth(oauthToken: String,
             oauthProvider: SocialNetworkTokenProvider,
             deviceType: DeviceType,
             deviceOs: String,
-            deviceId: String)
+            signHeader: SignHeader)
+        case addDevice(userId: Int, deviceOs: String, signHeader: SignHeader)
+        case confirmAddDevice(deviceConfirmToken: String, signHeader: SignHeader)
     }
-
+    
 }
 
 
@@ -59,6 +61,10 @@ extension API.Unauthorized: APIMethodProtocol {
             return .post
         case .socialAuth:
             return .post
+        case .addDevice:
+            return .post
+        case .confirmAddDevice:
+            return .post
         }
     }
     
@@ -76,30 +82,82 @@ extension API.Unauthorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/users/confirm_reset_password"
         case .socialAuth:
             return "\(Constants.Network.baseUrl)/sessions/oauth"
+        case .addDevice:
+            return "\(Constants.Network.baseUrl)/users/add_device"
+        case .confirmAddDevice:
+            return "\(Constants.Network.baseUrl)/users/confirm_add_device"
         }
     }
     
     var headers: [String: String] {
         switch self {
-        case .login, .register, .confirmEmail, .resetPassword, .confirmResetPassword, .socialAuth:
+        case .login(_, _, _, _, let signHeader):
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
+            ]
+        case .register(_, _, _, _, _, _, let signHeader):
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
+            ]
+        case .confirmEmail(_, let signHeader):
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
+            ]
+        case .socialAuth(_, _, _, _, let signHeader):
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
+            ]
+        case .resetPassword, .confirmResetPassword:
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json"
+            ]
+        case .addDevice(_, _, let signHeader):
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
+            ]
+        case .confirmAddDevice(_, let signHeader):
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
             ]
         }
     }
     
     var params: Params? {
         switch self {
-        case .login(let email, let password, let deviceType, let deviceOs, let deviceId):
+        case .login(let email, let password, let deviceType, let deviceOs, let signHeader):
             return [
                 "email": email,
                 "password": password,
                 "deviceType": deviceType.rawValue,
                 "deviceOs": deviceOs,
-                "deviceId": deviceId
+                "deviceId": signHeader.deviceId
             ]
-        case .register(let email, let password, let firstName, let lastName, let deviceType, let deviceOs, let deviceId):
+        case .register(let email, let password, let firstName, let lastName, let deviceType, let deviceOs, let signHeader):
             return [
                 "email": email,
                 "password": password,
@@ -107,9 +165,10 @@ extension API.Unauthorized: APIMethodProtocol {
                 "lastName": lastName,
                 "deviceType": deviceType.rawValue,
                 "deviceOs": deviceOs,
-                "deviceId": deviceId
+                "deviceId": signHeader.deviceId,
+                "publicKey": signHeader.pubKeyHex
             ]
-        case .confirmEmail(let token):
+        case .confirmEmail(let token, _):
             return [
                 "emailConfirmToken": token
             ]
@@ -123,13 +182,24 @@ extension API.Unauthorized: APIMethodProtocol {
                 "token": token,
                 "password": password
             ]
-        case .socialAuth(let oauthToken, let oauthProvider, let deviceType, let deviceOs, let deviceId):
+        case .socialAuth(let oauthToken, let oauthProvider, let deviceType, let deviceOs, let signerHeader):
             return [
                 "oauthToken": oauthToken,
                 "oauthProvider": oauthProvider.name,
                 "deviceType": deviceType.rawValue,
                 "deviceOs": deviceOs,
-                "deviceId": deviceId
+                "deviceId": signerHeader.deviceId
+            ]
+        case .addDevice(let userId, let deviceOs, let signHeader):
+            return [
+                "userId": userId,
+                "deviceOs": deviceOs,
+                "deviceId": signHeader.deviceId,
+                "publicKey": signHeader.pubKeyHex
+            ]
+        case .confirmAddDevice(let deviceConfirmToken, _):
+            return [
+                "deviceConfirmToken": deviceConfirmToken
             ]
         }
     }

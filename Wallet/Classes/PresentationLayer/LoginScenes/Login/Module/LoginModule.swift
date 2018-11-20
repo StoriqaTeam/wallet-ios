@@ -21,7 +21,11 @@ class LoginModule {
                                          biometricAuthProvider: biometricAuthProvider,
                                          userDataStore: app.userDataStoreService,
                                          keychain: app.keychainProvider,
-                                         loginService: app.loginService)
+                                         loginService: app.loginService,
+                                         keyGenerator: app.keyGenerator,
+                                         userKeyManager: app.userKeyManager,
+                                         addDeviceNetworkProvider: app.addDeviceNetworkProvider,
+                                         signHeaderFactory: app.signHeaderFactory)
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController

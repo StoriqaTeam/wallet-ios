@@ -11,15 +11,21 @@ import Foundation
 protocol TransactionsNetworkProviderProtocol {
     func getTransactions(authToken: String, userId: Int, offset: Int, limit: Int,
                          queue: DispatchQueue,
+                         signHeader: SignHeader,
                          completion: @escaping (Result<[Transaction]>) -> Void)
 }
 
 class TransactionsNetworkProvider: NetworkLoadable, TransactionsNetworkProviderProtocol {
     func getTransactions(authToken: String, userId: Int, offset: Int, limit: Int,
                          queue: DispatchQueue,
+                         signHeader: SignHeader,
                          completion: @escaping (Result<[Transaction]>) -> Void) {
         
-        let request = API.Authorized.getTransactions(authToken: authToken, userId: userId, offset: offset, limit: limit)
+        let request = API.Authorized.getTransactions(authToken: authToken,
+                                                     userId: userId,
+                                                     offset: offset,
+                                                     limit: limit,
+                                                     signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {

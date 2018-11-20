@@ -20,23 +20,36 @@ class SendTransactionService: SendTransactionServiceProtocol {
     private let authTokenProvider: AuthTokenProviderProtocol
     private let accountsUpdater: AccountsUpdaterProtocol
     private let txnUpdater: TransactionsUpdaterProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
     
     init(sendNetworkProvider: SendTransactionNetworkProviderProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
          authTokenProvider: AuthTokenProviderProtocol,
          accountsUpdater: AccountsUpdaterProtocol,
-         txnUpdater: TransactionsUpdaterProtocol) {
+         txnUpdater: TransactionsUpdaterProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol) {
         self.userDataStoreService = userDataStoreService
         self.sendNetworkProvider = sendNetworkProvider
         self.authTokenProvider = authTokenProvider
         self.accountsUpdater = accountsUpdater
         self.txnUpdater = txnUpdater
+        self.signHeaderFactory = signHeaderFactory
     }
     
     func sendTransaction(transaction: Transaction,
                          fromAccount: String,
                          completion: @escaping (Result<String?>) -> Void) {
-        let userId = userDataStoreService.getCurrentUser().id
+        let user = userDataStoreService.getCurrentUser()
+        let userId = user.id
+        let currentEmail = user.email
+        
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
+        } catch {
+            log.error(error.localizedDescription)
+            return
+        }
         
         authTokenProvider.currentAuthToken { [weak self] (result) in
             switch result {
@@ -47,6 +60,7 @@ class SendTransactionService: SendTransactionServiceProtocol {
                     fromAccount: fromAccount,
                     authToken: token,
                     queue: .main,
+                    signHeader: signHeader,
                     completion: { [weak self] (result) in
                         switch result {
                         case .success:

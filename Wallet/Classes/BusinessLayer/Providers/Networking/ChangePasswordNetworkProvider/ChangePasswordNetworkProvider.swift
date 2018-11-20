@@ -14,6 +14,7 @@ protocol ChangePasswordNetworkProviderProtocol {
                         currentPassword: String,
                         newPassword: String,
                         queue: DispatchQueue,
+                        signHeader: SignHeader,
                         completion: @escaping (Result<String?>) -> Void)
 }
 
@@ -22,11 +23,13 @@ class ChangePasswordNetworkProvider: NetworkLoadable, ChangePasswordNetworkProvi
                         currentPassword: String,
                         newPassword: String,
                         queue: DispatchQueue,
+                        signHeader: SignHeader,
                         completion: @escaping (Result<String?>) -> Void) {
         
         let request = API.Authorized.changePassword(authToken: authToken,
                                                     currentPassword: currentPassword,
-                                                    newPassword: newPassword)
+                                                    newPassword: newPassword,
+                                                    signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {

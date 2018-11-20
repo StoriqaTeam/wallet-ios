@@ -65,6 +65,7 @@
 		2BF62C8E1BD9FDB1E68E4AA9 /* ExchangeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CA2E638264F4628E48B2E /* ExchangeInteractor.swift */; };
 		2C2605E9EBCF195BDD25DF7F /* PinQuickLaunchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975BD0D3F70E223C9AB39665 /* PinQuickLaunchModule.swift */; };
 		2DCC590F1683AF50B1B15403 /* ProfileRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D5F88CFD2768C75EF81927 /* ProfileRouterInput.swift */; };
+		2F333C2C16D30A2FF5CB5320 /* DeviceRegisterConfirmPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1C1477808F2C082F9C206 /* DeviceRegisterConfirmPresenter.swift */; };
 		2F361EA29F03389EB9F35B20 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF729F909A27BAAB3F2603 /* RegistrationInteractor.swift */; };
 		2FEA8584021E0A7A53B742A5 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF653C039652FA72987CA361 /* LoginInteractor.swift */; };
 		3000F328272A309F1310DA78 /* DepositInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3FAB049ED5EA88438DF37C /* DepositInteractorInput.swift */; };
@@ -76,6 +77,7 @@
 		3560EFC2F72358E0759F3690 /* FirstLaunchViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2D969173F88223BDCD2469 /* FirstLaunchViewOutput.swift */; };
 		3584DA8F2458080F95E4CCBD /* PasswordEmailRecoveryModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16F8223B1C0D2204A8D9AE /* PasswordEmailRecoveryModuleOutput.swift */; };
 		3727497C01772AE9E9AF08B1 /* ChangePasswordInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382A000FA7D500FEBEABD1CA /* ChangePasswordInteractorInput.swift */; };
+		37764CF0928FD1FE3203A060 /* DeviceRegisterConfirmModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBE162E04BE185B2E10718C /* DeviceRegisterConfirmModuleInput.swift */; };
 		379E5F35733C71C6321BCF66 /* TransactionsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7575797D050FAD0E39A12757 /* TransactionsInteractorInput.swift */; };
 		387049FD4CBF2A4D85926766 /* AccountsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAED5A6A5235BF41ED806F7 /* AccountsInteractor.swift */; };
 		39D7E17D89D8B4417C0931DE /* PasswordRecoveryConfirmPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5EBFF4CABBEDECFEEA987F /* PasswordRecoveryConfirmPresenter.swift */; };
@@ -124,6 +126,7 @@
 		5D5AB809379ECAA0157B7C0A /* SendInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CB543678E8ABAD4E04851B /* SendInteractorOutput.swift */; };
 		5DD81EF717C591E4F8D0D515 /* PasswordEmailRecoveryInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBF2A22248EF5C4AF19A2F8 /* PasswordEmailRecoveryInteractorInput.swift */; };
 		5DE6ED8A9BE6136BA743C454 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F6A4E3FA81EB71FE408EAC /* LoginPresenter.swift */; };
+		5FD248576FAB6CA904A62310 /* DeviceRegisterConfirmViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3D4477AD54322BDA8D93E /* DeviceRegisterConfirmViewOutput.swift */; };
 		60AC208DB93701555B9756D2 /* Pods_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */; };
 		6198B66322F837450B616ECF /* PinQuickLaunchInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AF32F0B960F8792570D3E /* PinQuickLaunchInteractorInput.swift */; };
 		6214E91B27DC987F18161F2F /* MyWalletInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3208FF935CC66779A7912 /* MyWalletInteractorInput.swift */; };
@@ -169,6 +172,7 @@
 		7F478B40359F79AE643EF8EC /* SendRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1AA2A6115C09EE2EBBB4 /* SendRouterInput.swift */; };
 		806176EA94EC87C0F56391B6 /* PasswordEmailRecoveryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9382E17D9F1AE337DF105E81 /* PasswordEmailRecoveryRouter.swift */; };
 		808AA9FAC10B0D3D3CB59FC4 /* SendViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A5FB436718CE11763D266 /* SendViewOutput.swift */; };
+		81CF806732A0FB3967B8B297 /* DeviceRegisterConfirmRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0733ED48131F84879D2EACB3 /* DeviceRegisterConfirmRouterInput.swift */; };
 		8317737E0B57F6F338C5DE9D /* ChangePasswordModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BDFA424764FAFD61C7CF37 /* ChangePasswordModuleInput.swift */; };
 		836A0F971469672F08324F42 /* PinInputModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72281BFA29D45AEE30F5DBB5 /* PinInputModule.swift */; };
 		83AFFB2DDED752D79D48DD23 /* TransactionsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F09457884B3F910E35FDDB /* TransactionsRouterInput.swift */; };
@@ -179,10 +183,12 @@
 		85DE84599B70A7C4900FE60F /* LoginModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2F52A00FAE31274E1D336 /* LoginModuleOutput.swift */; };
 		860E97FA0D267899D0A69A75 /* BiometryQuickLaunchViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B08554CD8BCEDCB6E671D /* BiometryQuickLaunchViewOutput.swift */; };
 		8654A9AF519CBAD05884EF9F /* BiometryQuickLaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF7B40D3A60AB3A135372B4 /* BiometryQuickLaunchPresenter.swift */; };
+		8682E1B3ED20AF23E0A152EB /* DeviceRegisterConfirmModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC48DCDF5B30D17271AEC5 /* DeviceRegisterConfirmModuleOutput.swift */; };
 		8766665A802F01EF3B6DA3B3 /* TransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09F895E4A56157DD0CC0F3 /* TransactionsPresenter.swift */; };
 		88AC5EAD0F529E1EC0EE8B83 /* PopUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F65B7DB590634BF2BA5EC1C /* PopUpPresenter.swift */; };
 		88D70C010879BC6604910455 /* EmailConfirmViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5D2EE257F311B538D89D4C /* EmailConfirmViewInput.swift */; };
 		8AD5E3C4C55B5557FCDFC2AD /* ExchangeViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04617CEE34362F8864083DE /* ExchangeViewOutput.swift */; };
+		8B014A5CD79EF60C16866656 /* DeviceRegisterConfirmViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E8CDAC65594B3A80D9372 /* DeviceRegisterConfirmViewInput.swift */; };
 		8DCE3EEDBEA0BC7E7957D47D /* PinInputModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B43F6C7017C03C18BCB6DF /* PinInputModuleInput.swift */; };
 		91222D27E9ACA0B31B779533 /* SendRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5938DC427C7E8743582935 /* SendRouter.swift */; };
 		921543973BAF200DE587430F /* RecepientAccountsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47A2E9D8F7B0491EC86237F /* RecepientAccountsViewInput.swift */; };
@@ -201,10 +207,12 @@
 		A10997FA546EB63EEDF766AD /* MyWalletModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024725FA293788FBB11E05AA /* MyWalletModule.swift */; };
 		A1895A9521B8A57EA1BC3561 /* PasswordEmailRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48103454DCB87F4930BCC86F /* PasswordEmailRecoveryViewController.swift */; };
 		A2BF7A83622A583455A9055F /* ExchangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C234B947F0B3F129CC45D8DB /* ExchangePresenter.swift */; };
+		A322751EEA14E86AD51FCE56 /* DeviceRegisterConfirmModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB37AE0C2BE36A6993205B /* DeviceRegisterConfirmModule.swift */; };
 		A35080A95A411AAFFCADC2F4 /* PasswordRecoveryConfirmViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1A26B2D9F5AAEC2BD7BC9 /* PasswordRecoveryConfirmViewInput.swift */; };
 		A36F15E016B8AA17388F5F6F /* MyWalletModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49A00F40C41EE9967464D42 /* MyWalletModuleInput.swift */; };
 		A3AC2118172F25D9C46E786B /* BiometryQuickLaunchModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5A824C395BB830146A296 /* BiometryQuickLaunchModuleOutput.swift */; };
 		A40E2F8BB4E10D0E0A388DCF /* QuickLaunchModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D7991BF974085777B0BB7 /* QuickLaunchModuleInput.swift */; };
+		A4586E72708D9B6D4660DA3E /* DeviceRegisterConfirmRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31F8BFB1EED98BC42482BEE /* DeviceRegisterConfirmRouter.swift */; };
 		A46ED52D7D6FB1332671B806 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD00DD04D35E33227747A4 /* AccountsViewController.swift */; };
 		A50086012150BD2B00C47015 /* PinInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A50086002150BD2B00C47015 /* PinInput.storyboard */; };
 		A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A50086042150D5D600C47015 /* FirstLaunch.storyboard */; };
@@ -400,6 +408,10 @@
 		B8241859219D563B009000D4 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8241858219D563B009000D4 /* Crypto.swift */; };
 		B824185B219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B824185A219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift */; };
 		B824185F219D57FB009000D4 /* Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = B824185E219D57FB009000D4 /* Internal.m */; };
+		B870F1CF21A2FAC000BC53BE /* SignHeaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870F1CE21A2FAC000BC53BE /* SignHeaderFactory.swift */; };
+		B870F1D221A31C7500BC53BE /* AddDeviceNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870F1D121A31C7500BC53BE /* AddDeviceNetworkProvider.swift */; };
+		B870F1D521A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870F1D421A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift */; };
+		B870F1D921A324AA00BC53BE /* UserKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870F1D821A324AA00BC53BE /* UserKeyManager.swift */; };
 		B8C5EDD62189A2FA00345B79 /* API+Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD52189A2FA00345B79 /* API+Rates.swift */; };
 		B8C5EDDA2189AA8C00345B79 /* RatesNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */; };
 		B8C5EDDC2189ACE700345B79 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDDB2189ACE700345B79 /* Rate.swift */; };
@@ -426,6 +438,7 @@
 		C479078B225F756B4A8BD97E /* LoginViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E7D90E600F2A8F3F1D9300 /* LoginViewOutput.swift */; };
 		C4A238A1D91E3EAB1A09CB08 /* TransactionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6096D6763E2E99032C4001 /* TransactionsInteractor.swift */; };
 		C6DE89D0E5755BA05866C1DD /* PopUpInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BE08D431D523C941B8A2CA /* PopUpInteractorOutput.swift */; };
+		C869AF886C63B5DE00965A14 /* DeviceRegisterConfirmInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27620998BC14338F44F7281D /* DeviceRegisterConfirmInteractorOutput.swift */; };
 		C8892A41B012C2FF8E244933 /* ChangePasswordModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708CDAE57CE222CE53E9344B /* ChangePasswordModule.swift */; };
 		C8D9A40E5B96755FB71A7946 /* QRScannerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2024533363B829AF033E25DA /* QRScannerModule.swift */; };
 		CA8E74EF79BDA2F910D844D7 /* ProfileViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339BC030F1795B969B0F6B4A /* ProfileViewInput.swift */; };
@@ -522,6 +535,7 @@
 		CEAC67782195AAD100C98675 /* CurrentAccountWatcherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC67772195AAD100C98675 /* CurrentAccountWatcherFactory.swift */; };
 		CEAC677A2195AB9A00C98675 /* SendTransactionBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC67792195AB9A00C98675 /* SendTransactionBuilderFactory.swift */; };
 		CEAD96BC219C37CD00924102 /* SendConfirmPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAD96BB219C37CD00924102 /* SendConfirmPopUp.storyboard */; };
+		CEB640B173F28C940EFB194F /* DeviceRegisterConfirmInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E1C99DE8C5C39CE3BA5DCA /* DeviceRegisterConfirmInteractor.swift */; };
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CED822D4215A796500693B92 /* QRScanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED822D3215A796500693B92 /* QRScanner.storyboard */; };
 		CED822E0215BB8CE00693B92 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822DF215BB8CE00693B92 /* Contact.swift */; };
@@ -535,6 +549,10 @@
 		CEE6730521A2AEF3008FAC09 /* ExchangeProviderBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730421A2AEF3008FAC09 /* ExchangeProviderBuilderFactory.swift */; };
 		CEE6730821A2B768008FAC09 /* SendTransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730721A2B768008FAC09 /* SendTransactionService.swift */; };
 		CEE6730A21A2E8B2008FAC09 /* RecepientAccounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE6730921A2E8B2008FAC09 /* RecepientAccounts.storyboard */; };
+		CEE6730C21A3E94C008FAC09 /* PopUpDeviceRegisterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730B21A3E94C008FAC09 /* PopUpDeviceRegisterVM.swift */; };
+		CEE6730E21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730D21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift */; };
+		CEE6731021A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730F21A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift */; };
+		CEE6731221A40EAA008FAC09 /* PopUpConfirmDeviceRegisterSucceedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6731121A40EAA008FAC09 /* PopUpConfirmDeviceRegisterSucceedVM.swift */; };
 		CEE84EF021889F0B00AB85F3 /* DenominationUnitsConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84EEF21889F0B00AB85F3 /* DenominationUnitsConverter.swift */; };
 		CEE84EF22189C11200AB85F3 /* CurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84EF12189C11200AB85F3 /* CurrencyFormatterTests.swift */; };
 		CEE84EF42189CACA00AB85F3 /* DecimalToStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84EF32189CACA00AB85F3 /* DecimalToStringTests.swift */; };
@@ -567,6 +585,7 @@
 		D1E2319F1277268F069541E3 /* ConnectPhoneModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25352910F27F313FF2B792 /* ConnectPhoneModuleOutput.swift */; };
 		D38A8FA13AAF73DEB072ECF1 /* FirstLaunchInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE751DD4EE8019385CAB39 /* FirstLaunchInteractorInput.swift */; };
 		D412B0E68A6387EFF7083DD5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB5916346292541051F9F17 /* SettingsViewController.swift */; };
+		D4AC6C331DAC82C09EC001E3 /* DeviceRegisterConfirmInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB9877B8CAD0734BFE41564 /* DeviceRegisterConfirmInteractorInput.swift */; };
 		D5483A7FE6757D0655D72ADE /* DepositViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C732EBE19CE3E7EE51024672 /* DepositViewInput.swift */; };
 		D673BB210C0EE94821BDEFFA /* RegistrationInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0E3A857DFE2A14FC37739D /* RegistrationInteractorInput.swift */; };
 		D69842DA885486CC31EC62BD /* MainTabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A2F9F12E3C59B458280F2 /* MainTabBarInteractor.swift */; };
@@ -611,6 +630,7 @@
 		EBCA36D03BBA6F52ECC7258D /* MainTabBarViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E523E81B6C7956E0629857F1 /* MainTabBarViewOutput.swift */; };
 		EC91C88F82722139B3F1C7CB /* ConnectPhoneInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A7DB7FCB9E33101C800989 /* ConnectPhoneInteractorOutput.swift */; };
 		ED225EB78E206616574BF490 /* FirstLaunchRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D51FC7D64513BC6DC4B967 /* FirstLaunchRouterInput.swift */; };
+		EE23FBAB65FD97C4E132C71A /* DeviceRegisterConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E579AF9AC826846ECB976C /* DeviceRegisterConfirmViewController.swift */; };
 		EEBC7D498DBC9640AB73FCA3 /* QRScannerRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10C5705E61285B1FCA84148 /* QRScannerRouterInput.swift */; };
 		F0860FFB36B83A22321647FC /* PasswordRecoveryConfirmRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6A8BFFDED60CFD82E34C1 /* PasswordRecoveryConfirmRouter.swift */; };
 		F0868C4BC96F8724DDDD2386 /* RegistrationViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E8C721E669CD10C070F89 /* RegistrationViewOutput.swift */; };
@@ -651,6 +671,7 @@
 		021BB3F5F89F8F320497E32D /* TransactionsViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsViewInput.swift; sourceTree = "<group>"; };
 		024725FA293788FBB11E05AA /* MyWalletModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyWalletModule.swift; sourceTree = "<group>"; };
 		05B43F6C7017C03C18BCB6DF /* PinInputModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputModuleInput.swift; sourceTree = "<group>"; };
+		0733ED48131F84879D2EACB3 /* DeviceRegisterConfirmRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmRouterInput.swift; sourceTree = "<group>"; };
 		073D57C3CCC26A47302EA263 /* PasswordEmailRecoveryRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryRouterInput.swift; sourceTree = "<group>"; };
 		0849B2AAA3A871FDF9AB9401 /* ExchangeModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeModuleInput.swift; sourceTree = "<group>"; };
 		094E8352B5D4F1AB97BD4A91 /* EmailConfirmInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmInteractorOutput.swift; sourceTree = "<group>"; };
@@ -680,8 +701,10 @@
 		18EBB7DBFE3EEED9E2FC3F14 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
 		190E8C721E669CD10C070F89 /* RegistrationViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationViewOutput.swift; sourceTree = "<group>"; };
 		195309C3D81AD247A97EB03F /* SendConfirmPopUpModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendConfirmPopUpModule.swift; sourceTree = "<group>"; };
+		198E8CDAC65594B3A80D9372 /* DeviceRegisterConfirmViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmViewInput.swift; sourceTree = "<group>"; };
 		1A6CB2066C94CEB7062DF230 /* DepositModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositModule.swift; sourceTree = "<group>"; };
 		1B04F53F9D75BC74DFD477AD /* DepositModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositModuleInput.swift; sourceTree = "<group>"; };
+		1BB9877B8CAD0734BFE41564 /* DeviceRegisterConfirmInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmInteractorInput.swift; sourceTree = "<group>"; };
 		1C064C548F004CDB35356A47 /* TransactionsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsViewOutput.swift; sourceTree = "<group>"; };
 		1C9D7991BF974085777B0BB7 /* QuickLaunchModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchModuleInput.swift; sourceTree = "<group>"; };
 		1C9E69FFB569A65F72ABE037 /* ProfileRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
@@ -701,6 +724,7 @@
 		270D614C3F339D50C93566CA /* PinSetupModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupModuleInput.swift; sourceTree = "<group>"; };
 		2748A328CCEEFA624296C51A /* RecepientAccountsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecepientAccountsPresenter.swift; sourceTree = "<group>"; };
 		274E2295B92E67A9F1F0870B /* QRScannerPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerPresenter.swift; sourceTree = "<group>"; };
+		27620998BC14338F44F7281D /* DeviceRegisterConfirmInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmInteractorOutput.swift; sourceTree = "<group>"; };
 		27AE43219401A4A1B0EA609C /* AccountsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsRouter.swift; sourceTree = "<group>"; };
 		27DBFDB112FCFAF70104F362 /* ConnectPhoneModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectPhoneModule.swift; sourceTree = "<group>"; };
 		291063D3A2F662B60F3551DB /* SendConfirmPopUpRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendConfirmPopUpRouterInput.swift; sourceTree = "<group>"; };
@@ -708,6 +732,7 @@
 		2BCEC7F1413473D2F053BF17 /* TransactionFilterModuleInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleInteractorOutput.swift; sourceTree = "<group>"; };
 		2C09F895E4A56157DD0CC0F3 /* TransactionsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsPresenter.swift; sourceTree = "<group>"; };
 		2CA0CFE0C26BABE1E53AC29F /* SendConfirmPopUpInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendConfirmPopUpInteractor.swift; sourceTree = "<group>"; };
+		2CB3D4477AD54322BDA8D93E /* DeviceRegisterConfirmViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmViewOutput.swift; sourceTree = "<group>"; };
 		2DBF2A22248EF5C4AF19A2F8 /* PasswordEmailRecoveryInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryInteractorInput.swift; sourceTree = "<group>"; };
 		2E27E24CE03DA7F24E9C3F22 /* ProfilePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		300F99D5865FABBF97BEF7AD /* MyWalletViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyWalletViewController.swift; sourceTree = "<group>"; };
@@ -776,6 +801,7 @@
 		645AA16961B16438A2B53C92 /* DepositViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositViewOutput.swift; sourceTree = "<group>"; };
 		646123339EE8F4258E518E08 /* TransactionsModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsModule.swift; sourceTree = "<group>"; };
 		648C3EBE8D921191A1CC3820 /* LoginInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorInput.swift; sourceTree = "<group>"; };
+		64F1C1477808F2C082F9C206 /* DeviceRegisterConfirmPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmPresenter.swift; sourceTree = "<group>"; };
 		6560AA3BA970648A76953C88 /* PopUpModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpModuleOutput.swift; sourceTree = "<group>"; };
 		65BBFA214E2A54357CCFF2C8 /* SendConfirmPopUpPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendConfirmPopUpPresenter.swift; sourceTree = "<group>"; };
 		65BFFCB0BB675B1ACFA6B3DB /* BiometryQuickLaunchModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchModuleInput.swift; sourceTree = "<group>"; };
@@ -858,6 +884,7 @@
 		976B40A786A61A1F2C083835 /* PinInputInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputInteractorOutput.swift; sourceTree = "<group>"; };
 		984F93D4B12D95B9833F9D4A /* SendInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendInteractor.swift; sourceTree = "<group>"; };
 		98B5D21CB0AFC9B873659326 /* ConnectPhoneRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectPhoneRouterInput.swift; sourceTree = "<group>"; };
+		98E1C99DE8C5C39CE3BA5DCA /* DeviceRegisterConfirmInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmInteractor.swift; sourceTree = "<group>"; };
 		98EDBF5F5648660EDE35636A /* EmailConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmViewController.swift; sourceTree = "<group>"; };
 		9AA0B4EBFD1C925C15BC8DAD /* PasswordRecoveryConfirmModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmModule.swift; sourceTree = "<group>"; };
 		9B13AC37B269DC3A228F6961 /* ChangePasswordRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChangePasswordRouterInput.swift; sourceTree = "<group>"; };
@@ -1063,6 +1090,10 @@
 		B824185A219D569F009000D4 /* EllipticCurveEncrypterSecp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticCurveEncrypterSecp256k1.swift; sourceTree = "<group>"; };
 		B824185D219D57FA009000D4 /* Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internal.h; sourceTree = "<group>"; };
 		B824185E219D57FB009000D4 /* Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Internal.m; sourceTree = "<group>"; };
+		B870F1CE21A2FAC000BC53BE /* SignHeaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignHeaderFactory.swift; sourceTree = "<group>"; };
+		B870F1D121A31C7500BC53BE /* AddDeviceNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceNetworkProvider.swift; sourceTree = "<group>"; };
+		B870F1D421A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAddDeviceNetworkProvider.swift; sourceTree = "<group>"; };
+		B870F1D821A324AA00BC53BE /* UserKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeyManager.swift; sourceTree = "<group>"; };
 		B8C5EDD52189A2FA00345B79 /* API+Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Rates.swift"; sourceTree = "<group>"; };
 		B8C5EDD92189AA8C00345B79 /* RatesNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesNetworkProvider.swift; sourceTree = "<group>"; };
 		B8C5EDDB2189ACE700345B79 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
@@ -1076,6 +1107,7 @@
 		BA5EBFF4CABBEDECFEEA987F /* PasswordRecoveryConfirmPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmPresenter.swift; sourceTree = "<group>"; };
 		BABCA1BD63695156C7C53148 /* PinSetupRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupRouter.swift; sourceTree = "<group>"; };
 		BB45E31EF868864653304364 /* AccountsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsViewOutput.swift; sourceTree = "<group>"; };
+		BBBE162E04BE185B2E10718C /* DeviceRegisterConfirmModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmModuleInput.swift; sourceTree = "<group>"; };
 		BC4DE7AF801525F566BD53C3 /* Pods-WalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletTests/Pods-WalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC8627BDF0C5D57632E5C188 /* ExchangeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		BC9D1601A483ADBA7DD0D526 /* SettingsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsViewOutput.swift; sourceTree = "<group>"; };
@@ -1089,6 +1121,7 @@
 		C21A24D3A19D2AAD73DEEA15 /* RegistrationViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationViewInput.swift; sourceTree = "<group>"; };
 		C21D6D273BC444BAEE497DFC /* TransactionDetailsInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionDetailsInteractorOutput.swift; sourceTree = "<group>"; };
 		C234B947F0B3F129CC45D8DB /* ExchangePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangePresenter.swift; sourceTree = "<group>"; };
+		C31F8BFB1EED98BC42482BEE /* DeviceRegisterConfirmRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmRouter.swift; sourceTree = "<group>"; };
 		C3E7D90E600F2A8F3F1D9300 /* LoginViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewOutput.swift; sourceTree = "<group>"; };
 		C3EE751DD4EE8019385CAB39 /* FirstLaunchInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchInteractorInput.swift; sourceTree = "<group>"; };
 		C4D2F13364BE6B168335FE8E /* PopUpViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
@@ -1206,6 +1239,10 @@
 		CEE6730421A2AEF3008FAC09 /* ExchangeProviderBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeProviderBuilderFactory.swift; sourceTree = "<group>"; };
 		CEE6730721A2B768008FAC09 /* SendTransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionService.swift; sourceTree = "<group>"; };
 		CEE6730921A2E8B2008FAC09 /* RecepientAccounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecepientAccounts.storyboard; sourceTree = "<group>"; };
+		CEE6730B21A3E94C008FAC09 /* PopUpDeviceRegisterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDeviceRegisterVM.swift; sourceTree = "<group>"; };
+		CEE6730D21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDeviceRegisterEmailSentVM.swift; sourceTree = "<group>"; };
+		CEE6730F21A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDeviceRegisterFailedSendEmailVM.swift; sourceTree = "<group>"; };
+		CEE6731121A40EAA008FAC09 /* PopUpConfirmDeviceRegisterSucceedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpConfirmDeviceRegisterSucceedVM.swift; sourceTree = "<group>"; };
 		CEE84EEF21889F0B00AB85F3 /* DenominationUnitsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenominationUnitsConverter.swift; sourceTree = "<group>"; };
 		CEE84EF12189C11200AB85F3 /* CurrencyFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatterTests.swift; sourceTree = "<group>"; };
 		CEE84EF32189CACA00AB85F3 /* DecimalToStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalToStringTests.swift; sourceTree = "<group>"; };
@@ -1251,6 +1288,7 @@
 		DE93E747B51EE5CC2684785C /* SettingsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		DF653C039652FA72987CA361 /* LoginInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		E23FC67135B58752997E5F0D /* ExchangeInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeInteractorInput.swift; sourceTree = "<group>"; };
+		E3E579AF9AC826846ECB976C /* DeviceRegisterConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmViewController.swift; sourceTree = "<group>"; };
 		E523E81B6C7956E0629857F1 /* MainTabBarViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarViewOutput.swift; sourceTree = "<group>"; };
 		E54A17C419475A62BBD16C45 /* PinQuickLaunchModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchModuleInput.swift; sourceTree = "<group>"; };
 		E6892BDCE8C4B88F2177183A /* RecepientAccountsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecepientAccountsInteractor.swift; sourceTree = "<group>"; };
@@ -1263,6 +1301,7 @@
 		EED3208FF935CC66779A7912 /* MyWalletInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyWalletInteractorInput.swift; sourceTree = "<group>"; };
 		EF16F8223B1C0D2204A8D9AE /* PasswordEmailRecoveryModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryModuleOutput.swift; sourceTree = "<group>"; };
 		F102CE15CBE076997898FA67 /* RegistrationInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationInteractorOutput.swift; sourceTree = "<group>"; };
+		F1EC48DCDF5B30D17271AEC5 /* DeviceRegisterConfirmModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmModuleOutput.swift; sourceTree = "<group>"; };
 		F20EA5F8EF5BC6EE2DC02E22 /* EmailConfirmModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmModuleInput.swift; sourceTree = "<group>"; };
 		F2407DA6D79A3208812DC6CB /* Pods_WalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FFE41EA7548E0436872528 /* TransactionsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsRouter.swift; sourceTree = "<group>"; };
@@ -1274,6 +1313,7 @@
 		F6E02B43649E0ECD2535CDF0 /* QuickLaunchViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchViewController.swift; sourceTree = "<group>"; };
 		F872C7313AF63F3069E80827 /* PinQuickLaunchViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchViewInput.swift; sourceTree = "<group>"; };
 		F945069D7FE2645D21FEC36C /* PasswordEmailRecoveryInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryInteractor.swift; sourceTree = "<group>"; };
+		FACB37AE0C2BE36A6993205B /* DeviceRegisterConfirmModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceRegisterConfirmModule.swift; sourceTree = "<group>"; };
 		FAD2DCB4149BE822377AC58E /* AccountsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsModuleInput.swift; sourceTree = "<group>"; };
 		FADD43CD709F6675284FE1BF /* DepositRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositRouterInput.swift; sourceTree = "<group>"; };
 		FAE747400FE4DC94F9A757B4 /* Pods-WalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletTests/Pods-WalletTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1566,6 +1606,15 @@
 				635FD9F8E978B3274FBF2056 /* Module */,
 			);
 			path = FirstLaunch;
+			sourceTree = "<group>";
+		};
+		1FA2452F8F6189E16D96CE81 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				0733ED48131F84879D2EACB3 /* DeviceRegisterConfirmRouterInput.swift */,
+				C31F8BFB1EED98BC42482BEE /* DeviceRegisterConfirmRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		20AF74ED816A9420367EB18E /* EmailConfirm */ = {
@@ -2031,6 +2080,17 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		5A0C137B6720A9A3323C5BA0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				1BB9877B8CAD0734BFE41564 /* DeviceRegisterConfirmInteractorInput.swift */,
+				27620998BC14338F44F7281D /* DeviceRegisterConfirmInteractorOutput.swift */,
+				98E1C99DE8C5C39CE3BA5DCA /* DeviceRegisterConfirmInteractor.swift */,
+				CEE6731121A40EAA008FAC09 /* PopUpConfirmDeviceRegisterSucceedVM.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
 		5C77DE802363AA80F9795E84 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -2243,6 +2303,16 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		7C00413761E8BDB331710E05 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				BBBE162E04BE185B2E10718C /* DeviceRegisterConfirmModuleInput.swift */,
+				F1EC48DCDF5B30D17271AEC5 /* DeviceRegisterConfirmModuleOutput.swift */,
+				FACB37AE0C2BE36A6993205B /* DeviceRegisterConfirmModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
 		7C3BA4968353AE0FB00EA5A2 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -2383,6 +2453,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		89FB6BAAF8B2889DDA16FC25 /* DeviceRegisterConfirm */ = {
+			isa = PBXGroup;
+			children = (
+				A55BB5A956984BDBA71D18E3 /* View */,
+				D870AE9EC698FF2EE591A428 /* Presenter */,
+				5A0C137B6720A9A3323C5BA0 /* Interactor */,
+				1FA2452F8F6189E16D96CE81 /* Router */,
+				7C00413761E8BDB331710E05 /* Module */,
+			);
+			path = DeviceRegisterConfirm;
+			sourceTree = "<group>";
+		};
 		8ABF9049A5EEBCA184B07CE3 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2410,6 +2492,9 @@
 				648C3EBE8D921191A1CC3820 /* LoginInteractorInput.swift */,
 				8BF1D54551EE7E6F7D7E705B /* LoginInteractorOutput.swift */,
 				DF653C039652FA72987CA361 /* LoginInteractor.swift */,
+				CEE6730B21A3E94C008FAC09 /* PopUpDeviceRegisterVM.swift */,
+				CEE6730D21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift */,
+				CEE6730F21A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2536,6 +2621,8 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B870F1D321A31F8200BC53BE /* ConfirmAddDeviceNetworkProvider */,
+				B870F1D021A31C5B00BC53BE /* AddDeviceNetworkProvider */,
 				CE288A14219EAFB90010FA3B /* FeeNetworkProvider */,
 				CE1008A12191AEC00068010A /* SocialAuthNetworkProvider */,
 				CE135176218C84CC009CB4F9 /* CreateAccountNetworkProvider */,
@@ -2745,6 +2832,16 @@
 				A55A197521554BF600330EB8 /* AccountsDataManager.swift */,
 			);
 			path = AccountsDataManager;
+			sourceTree = "<group>";
+		};
+		A55BB5A956984BDBA71D18E3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				198E8CDAC65594B3A80D9372 /* DeviceRegisterConfirmViewInput.swift */,
+				2CB3D4477AD54322BDA8D93E /* DeviceRegisterConfirmViewOutput.swift */,
+				E3E579AF9AC826846ECB976C /* DeviceRegisterConfirmViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A560C73F216B578C009F0E95 /* Xib */ = {
@@ -3152,6 +3249,7 @@
 				1F5CC2762745A1888809B71C /* FirstLaunch */,
 				7C3BA4968353AE0FB00EA5A2 /* PopUp */,
 				CE1E3460217DC8DD001B1477 /* QuickLaunchScenes */,
+				89FB6BAAF8B2889DDA16FC25 /* DeviceRegisterConfirm */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -3220,6 +3318,8 @@
 			children = (
 				CEE6730621A2B755008FAC09 /* SendTransactionService */,
 				CEE672FE21A2AEB3008FAC09 /* ExchangeProvider */,
+				B870F1D621A3248F00BC53BE /* UserKeyManager */,
+				B870F1CD21A2FAA700BC53BE /* SignHeaderFactory */,
 				CE288A11219EACE50010FA3B /* MedianWaitFormatter */,
 				CE288A05219E9E0E0010FA3B /* FeeProvider */,
 				CE288A02219E9D6D0010FA3B /* FeeUpdater */,
@@ -3582,6 +3682,38 @@
 				A5933D37219DAB600080C8C7 /* CryptoSupport */,
 			);
 			path = ECDSA;
+			sourceTree = "<group>";
+		};
+		B870F1CD21A2FAA700BC53BE /* SignHeaderFactory */ = {
+			isa = PBXGroup;
+			children = (
+				B870F1CE21A2FAC000BC53BE /* SignHeaderFactory.swift */,
+			);
+			path = SignHeaderFactory;
+			sourceTree = "<group>";
+		};
+		B870F1D021A31C5B00BC53BE /* AddDeviceNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B870F1D121A31C7500BC53BE /* AddDeviceNetworkProvider.swift */,
+			);
+			path = AddDeviceNetworkProvider;
+			sourceTree = "<group>";
+		};
+		B870F1D321A31F8200BC53BE /* ConfirmAddDeviceNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B870F1D421A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift */,
+			);
+			path = ConfirmAddDeviceNetworkProvider;
+			sourceTree = "<group>";
+		};
+		B870F1D621A3248F00BC53BE /* UserKeyManager */ = {
+			isa = PBXGroup;
+			children = (
+				B870F1D821A324AA00BC53BE /* UserKeyManager.swift */,
+			);
+			path = UserKeyManager;
 			sourceTree = "<group>";
 		};
 		B8C5EDD72189AA6E00345B79 /* RatesNetworkProvider */ = {
@@ -4356,6 +4488,14 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		D870AE9EC698FF2EE591A428 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				64F1C1477808F2C082F9C206 /* DeviceRegisterConfirmPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		DD657DCCD102B7A418ED657A /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -4884,6 +5024,7 @@
 				CE41F3512181FC9600070D5D /* RealmTransactionAccount.swift in Sources */,
 				A50086092150F95B00C47015 /* API.swift in Sources */,
 				CEFC9C9821590D1200962356 /* PopUpRegistrationSuccessVM.swift in Sources */,
+				B870F1D221A31C7500BC53BE /* AddDeviceNetworkProvider.swift in Sources */,
 				A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */,
 				CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */,
 				A50086192151242B00C47015 /* DefaultsProvider.swift in Sources */,
@@ -4934,6 +5075,7 @@
 				1C7D0973BE0C18FFA5224647 /* PinInputViewOutput.swift in Sources */,
 				CF065C7C011BD01324225AAD /* PinInputViewController.swift in Sources */,
 				A56ED3A9216E3214009FA58B /* ContactsProvider.swift in Sources */,
+				B870F1D521A31F9F00BC53BE /* ConfirmAddDeviceNetworkProvider.swift in Sources */,
 				DF86683226807C4513BF70C6 /* PinInputPresenter.swift in Sources */,
 				4E5BC89F50726A6F7AA8256E /* PinInputnteractorInput.swift in Sources */,
 				A5B78211215E24B600EFD1A5 /* EthereumAddressValidator.swift in Sources */,
@@ -4957,6 +5099,7 @@
 				A5EACC1621750AF2007A38A6 /* ContactsDataStoreService.swift in Sources */,
 				A574350621776226006B4CAE /* EditProfileInteractorOutput.swift in Sources */,
 				A52C66AA21666ECC0073071E /* User.swift in Sources */,
+				CEE6730C21A3E94C008FAC09 /* PopUpDeviceRegisterVM.swift in Sources */,
 				A560C741216B57A3009F0E95 /* SettingsHeaderView.swift in Sources */,
 				CE41F34C2181B91700070D5D /* EmailConfirmNetworkProvider.swift in Sources */,
 				3560EFC2F72358E0759F3690 /* FirstLaunchViewOutput.swift in Sources */,
@@ -4991,6 +5134,7 @@
 				D673BB210C0EE94821BDEFFA /* RegistrationInteractorInput.swift in Sources */,
 				CE288A04219E9D840010FA3B /* FeeUpdater.swift in Sources */,
 				165DB5F5FAA826D2789B39B1 /* RegistrationInteractorOutput.swift in Sources */,
+				B870F1CF21A2FAC000BC53BE /* SignHeaderFactory.swift in Sources */,
 				2F361EA29F03389EB9F35B20 /* RegistrationInteractor.swift in Sources */,
 				CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */,
 				CE4401A22174B2C500F7C8D8 /* UIImageExtension.swift in Sources */,
@@ -5081,8 +5225,10 @@
 				A52C66AC21666F610073071E /* RealmUser.swift in Sources */,
 				19012E8AA68C9F3F63547FF4 /* PinQuickLaunchRouterInput.swift in Sources */,
 				3EB4EB7F0A93536634E1688B /* PinQuickLaunchRouter.swift in Sources */,
+				CEE6731021A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift in Sources */,
 				5CB377C30BE6A3E3A6A71B8D /* PinQuickLaunchModuleInput.swift in Sources */,
 				A57434E521774B85006B4CAE /* ContactsCacheUpdater.swift in Sources */,
+				CEE6730E21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift in Sources */,
 				25F219D759BBDCBB79AC76A8 /* PinQuickLaunchModuleOutput.swift in Sources */,
 				2C2605E9EBCF195BDD25DF7F /* PinQuickLaunchModule.swift in Sources */,
 				CE8CC9922167A90D00EA9EED /* AccountDisplayer.swift in Sources */,
@@ -5205,6 +5351,7 @@
 				A5C12E7F217F009D00A7D68C /* AuthTokenProvider.swift in Sources */,
 				8AD5E3C4C55B5557FCDFC2AD /* ExchangeViewOutput.swift in Sources */,
 				F3EB762CF50BA3699D0CB2AA /* ExchangeViewController.swift in Sources */,
+				B870F1D921A324AA00BC53BE /* UserKeyManager.swift in Sources */,
 				CE41F34A2181B03300070D5D /* PopUpEmailConfirmFailedVM.swift in Sources */,
 				A2BF7A83622A583455A9055F /* ExchangePresenter.swift in Sources */,
 				B782CF02B33B1093E9AF38BB /* ExchangeInteractorInput.swift in Sources */,
@@ -5257,6 +5404,7 @@
 				028B7BF74591C0783429D6F3 /* SettingsModuleInput.swift in Sources */,
 				A52C66A72164C1450073071E /* SendTransactionBuilder.swift in Sources */,
 				B8D4D58E13E50746B516D91C /* SettingsModuleOutput.swift in Sources */,
+				CEE6731221A40EAA008FAC09 /* PopUpConfirmDeviceRegisterSucceedVM.swift in Sources */,
 				CEFC9CB6215A59E700962356 /* SendTransactionProvider.swift in Sources */,
 				A51CB5552158FF6300CDC80C /* AccountsLinker.swift in Sources */,
 				FD150ED3C6B8A12165E57D93 /* SettingsModule.swift in Sources */,
@@ -5422,6 +5570,18 @@
 				6C43917246FA54B4F5B61CB6 /* RecepientAccountsModuleInput.swift in Sources */,
 				0121B935C5DEF1F781CB4941 /* RecepientAccountsModuleOutput.swift in Sources */,
 				6FB5B6F3059C7E2548A5F42C /* RecepientAccountsModule.swift in Sources */,
+				8B014A5CD79EF60C16866656 /* DeviceRegisterConfirmViewInput.swift in Sources */,
+				5FD248576FAB6CA904A62310 /* DeviceRegisterConfirmViewOutput.swift in Sources */,
+				EE23FBAB65FD97C4E132C71A /* DeviceRegisterConfirmViewController.swift in Sources */,
+				2F333C2C16D30A2FF5CB5320 /* DeviceRegisterConfirmPresenter.swift in Sources */,
+				D4AC6C331DAC82C09EC001E3 /* DeviceRegisterConfirmInteractorInput.swift in Sources */,
+				C869AF886C63B5DE00965A14 /* DeviceRegisterConfirmInteractorOutput.swift in Sources */,
+				CEB640B173F28C940EFB194F /* DeviceRegisterConfirmInteractor.swift in Sources */,
+				81CF806732A0FB3967B8B297 /* DeviceRegisterConfirmRouterInput.swift in Sources */,
+				A4586E72708D9B6D4660DA3E /* DeviceRegisterConfirmRouter.swift in Sources */,
+				37764CF0928FD1FE3203A060 /* DeviceRegisterConfirmModuleInput.swift in Sources */,
+				8682E1B3ED20AF23E0A152EB /* DeviceRegisterConfirmModuleOutput.swift in Sources */,
+				A322751EEA14E86AD51FCE56 /* DeviceRegisterConfirmModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

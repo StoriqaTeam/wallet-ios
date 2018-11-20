@@ -16,6 +16,7 @@ protocol CreateAccountNetworkProviderProtocol {
                        currency: Currency,
                        name: String,
                        queue: DispatchQueue,
+                       signHeader: SignHeader,
                        completion: @escaping (Result<Account>) -> Void)
 }
 
@@ -26,13 +27,14 @@ class CreateAccountNetworkProvider: NetworkLoadable, CreateAccountNetworkProvide
                        currency: Currency,
                        name: String,
                        queue: DispatchQueue,
+                       signHeader: SignHeader,
                        completion: @escaping (Result<Account>) -> Void) {
         let request = API.Authorized.createAccount(
             authToken: authToken,
             userId: userId,
             id: id,
             currency: currency,
-            name: name)
+            name: name, signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {

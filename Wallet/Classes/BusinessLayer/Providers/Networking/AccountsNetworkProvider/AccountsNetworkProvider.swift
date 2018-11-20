@@ -12,6 +12,7 @@ protocol AccountsNetworkProviderProtocol {
     func getAccounts(authToken: String,
                      userId: Int,
                      queue: DispatchQueue,
+                     signHeader: SignHeader,
                      completion: @escaping (Result<[Account]>) -> Void)
 }
 
@@ -20,9 +21,10 @@ class AccountsNetworkProvider: NetworkLoadable, AccountsNetworkProviderProtocol 
     func getAccounts(authToken: String,
                      userId: Int,
                      queue: DispatchQueue,
+                     signHeader: SignHeader,
                      completion: @escaping (Result<[Account]>) -> Void) {
         
-        let request = API.Authorized.getAccounts(authToken: authToken, userId: userId)
+        let request = API.Authorized.getAccounts(authToken: authToken, userId: userId, signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {

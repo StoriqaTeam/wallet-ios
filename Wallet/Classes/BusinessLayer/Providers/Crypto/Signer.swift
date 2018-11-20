@@ -8,6 +8,13 @@
 
 import Foundation
 
+struct SignHeader {
+    let deviceId: String
+    let timestamp: String
+    let signature: String
+    let pubKeyHex: String
+}
+
 protocol SignerProtocol {
     func sign(message: String, privateKey: PrivateKey, useEncodeByte: Bool) -> Data?
     func verify(signature: Data, publicKey: PublicKey, message: String) -> Bool

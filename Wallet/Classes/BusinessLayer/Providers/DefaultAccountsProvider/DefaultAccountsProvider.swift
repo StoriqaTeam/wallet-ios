@@ -18,15 +18,19 @@ class DefaultAccountsProvider: DefaultAccountsProviderProtocol {
     private let authTokenProvider: AuthTokenProviderProtocol
     private let createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol
     private let accountsDataStore: AccountsDataStoreServiceProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
     
     init(userDataStore: UserDataStoreServiceProtocol,
          authTokenProvider: AuthTokenProviderProtocol,
          createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol,
-         accountsDataStore: AccountsDataStoreServiceProtocol) {
+         accountsDataStore: AccountsDataStoreServiceProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol) {
+        
         self.userDataStore = userDataStore
         self.authTokenProvider = authTokenProvider
         self.createAccountsNetworkProvider = createAccountsNetworkProvider
         self.accountsDataStore = accountsDataStore
+        self.signHeaderFactory = signHeaderFactory
     }
     
     func create(completion: @escaping (Result<String?>) -> Void) {
@@ -72,13 +76,26 @@ extension DefaultAccountsProvider {
     
     private func createAccount(group: DispatchGroup, authToken: String, userId: Int, uuid: String, currency: Currency) {
         group.enter()
+        
+        let currentEmail = userDataStore.getCurrentUser().email
+        let signHeader: SignHeader
+        
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
+        } catch {
+            log.error(error.localizedDescription)
+            group.leave()
+            return
+        }
+        
         createAccountsNetworkProvider.createAccount(
             authToken: authToken,
             userId: userId,
             id: uuid,
             currency: currency,
             name: "\(currency.ISO) Account",
-            queue: .main) { [weak self] (result) in
+            queue: .main,
+            signHeader: signHeader) { [weak self] (result) in
                 switch result {
                 case .success(let account):
                     self?.accountsDataStore.save(account)

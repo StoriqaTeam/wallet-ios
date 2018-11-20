@@ -64,6 +64,8 @@ class Application {
     lazy var createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol = CreateAccountNetworkProvider()
     lazy var socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol = SocialAuthNetworkProvider()
     lazy var feeNetworkProvider: FeeNetworkProviderProtocol = FeeNetworkProvider()
+    lazy var addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol = AddDeviceNetworkProvider()
+    lazy var confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol = ConfirmAddDeviceNetworkProvider()
     
     
     // MARK: - Common Providers
@@ -76,7 +78,8 @@ class Application {
     lazy var authTokenProvider: AuthTokenProviderProtocol = AuthTokenProvider(defaults: self.authTokenDefaultsProvider,
                                                                               loginNetworkProvider: self.loginNetworkProvider,
                                                                               socialAuthNetworkProvider: self.socialAuthNetworkProvider,
-                                                                              authDataResolver: self.authDataResolver)
+                                                                              authDataResolver: self.authDataResolver,
+                                                                              signHeaderFactory: self.signHeaderFactory)
     lazy var contactsProvider: ContactsProviderProtocol = ContactsProvider(dataStoreService: self.contactsDataStoreService)
     lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService)
     lazy var transactionsProvider: TransactionsProviderProtocol = TransactionsProvider(transactionDataStoreService:
@@ -89,17 +92,27 @@ class Application {
     lazy var defaultAccountsProvider: DefaultAccountsProviderProtocol = DefaultAccountsProvider(userDataStore: self.userDataStoreService,
                                                                                                 authTokenProvider: self.authTokenProvider,
                                                                                                 createAccountsNetworkProvider: self.createAccountsNetworkProvider,
-                                                                                                accountsDataStore: self.accountsDataStoreService)
+                                                                                                accountsDataStore: self.accountsDataStoreService,
+                                                                                                signHeaderFactory: self.signHeaderFactory)
+    lazy var signer: SignerProtocol = Signer()
+    lazy var keyGenerator: KeyGeneratorProtocol = KeyGenerator()
+    lazy var signHeaderFactory: SignHeaderFactoryProtocol = SignHeaderFactory(keychain: self.keychainProvider, signer: self.signer)
+    lazy var userKeyManager: UserKeyManagerProtocol = UserKeyManager(keychainProvider: self.keychainProvider, keyGenerator: self.keyGenerator)
     
     // MARK: - Updaters
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,
                                                                         accountsDataStore: self.accountsDataStoreService,
-                                                                        authTokenProvider: self.authTokenProvider)
+                                                                        authTokenProvider: self.authTokenProvider,
+                                                                        signHeaderFactory: self.signHeaderFactory,
+                                                                        userDataStoreService: self.userDataStoreService)
     lazy var transactionsUpdater: TransactionsUpdaterProtocol = TransactionsUpdater(transactionsProvider: self.transactionsProvider,
                                                                                     transactionsNetworkProvider: self.transactionsNetworkProvider,
                                                                                     transactionsDataStoreService: self.transactionDataStoreService,
+                                                                                    signHeaderFactory: self.signHeaderFactory,
                                                                                     defaultsProvider: self.defaultsProvider,
-                                                                                    authTokenProvider: self.authTokenProvider)
+                                                                                    authTokenProvider: self.authTokenProvider,
+                                                                                    userDataStoreService: self.userDataStoreService)
+
     lazy var contactsChacheUpdater: ContactsCacheUpdaterProtocol = ContactsCacheUpdater(deviceContactsFetcher: self.deviceContactsFetcher,
                                                                                         contactsNetworkProvider: self.fakeContactsNetworkProvider,
                                                                                         contactsAddressLinker: self.contactsAddressLinker)
@@ -117,7 +130,9 @@ class Application {
                                                                defaults: self.defaultsProvider,
                                                                accountsNetworkProvider: self.accountsNetworkProvider,
                                                                accountsDataStore: self.accountsDataStoreService,
-                                                               defaultAccountsProvider: self.defaultAccountsProvider)
+                                                               defaultAccountsProvider: self.defaultAccountsProvider,
+                                                               signHeaderFactory: self.signHeaderFactory)
+    
     lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
                                                                            keychain: self.keychainProvider,
                                                                            userDataStoreService: self.userDataStoreService)
@@ -125,7 +140,8 @@ class Application {
                                                                                              userDataStoreService: self.userDataStoreService,
                                                                                              authTokenProvider: self.authTokenProvider,
                                                                                              accountsUpdater: self.accountsUpdater,
-                                                                                             txnUpdater: self.transactionsUpdater)
+                                                                                             txnUpdater: self.transactionsUpdater,
+                                                                                             signHeaderFactory: self.signHeaderFactory)
     
     
     // MARK: - Converters and formattera

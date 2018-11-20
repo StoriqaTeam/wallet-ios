@@ -19,6 +19,8 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     private let dataStore: TransactionDataStoreServiceProtocol
     private let defaults: DefaultsProviderProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
     
     private var isUpdating = false
     private var lastTxTime: TimeInterval!
@@ -29,14 +31,18 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     init(transactionsProvider: TransactionsProviderProtocol,
          transactionsNetworkProvider: TransactionsNetworkProviderProtocol,
          transactionsDataStoreService: TransactionDataStoreServiceProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol,
          defaultsProvider: DefaultsProviderProtocol,
          authTokenProvider: AuthTokenProviderProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol,
          limit: Int = 50) {
         self.provider = transactionsProvider
         self.networkProvider = transactionsNetworkProvider
         self.dataStore = transactionsDataStoreService
         self.defaults = defaultsProvider
         self.authTokenProvider = authTokenProvider
+        self.signHeaderFactory = signHeaderFactory
+        self.userDataStoreService = userDataStoreService
         self.limit = limit
     }
     
@@ -81,12 +87,25 @@ extension TransactionsUpdater {
     }
     
     private func getTransactions(token: String) {
+        
+        let currentEmail = userDataStoreService.getCurrentUser().email
+        
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
+        } catch {
+            log.error(error.localizedDescription)
+            return
+        }
+        
+        
         networkProvider.getTransactions(
             authToken: token,
             userId: userId,
             offset: offset,
             limit: limit,
             queue: .main,
+            signHeader: signHeader,
             completion: { [weak self] (result) in
                 switch result {
                 case .success(let txs):

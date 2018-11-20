@@ -20,9 +20,9 @@ enum ReceiverType {
 
 extension API {
     enum Authorized {
-        case user(authToken: String)
-        case getAccounts(authToken: String, userId: Int)
-        case getTransactions(authToken: String, userId: Int, offset: Int, limit: Int)
+        case user(authToken: String, signHeader: SignHeader)
+        case getAccounts(authToken: String, userId: Int, signHeader: SignHeader)
+        case getTransactions(authToken: String, userId: Int, offset: Int, limit: Int, signHeader: SignHeader)
         case sendTransaction(authToken: String,
             transactionId: String,
             userId: Int,
@@ -33,9 +33,10 @@ extension API {
             valueCurrency: Currency,
             fee: String,
             exchangeId: String?,
-            exchangeRate: Decimal?)
-        case changePassword(authToken: String, currentPassword: String, newPassword: String)
-        case createAccount(authToken: String, userId: Int, id: String, currency: Currency, name: String)
+            exchangeRate: Decimal?,
+            signHeader: SignHeader)
+        case changePassword(authToken: String, currentPassword: String, newPassword: String, signHeader: SignHeader)
+        case createAccount(authToken: String, userId: Int, id: String, currency: Currency, name: String, signHeader: SignHeader)
     }
 }
 
@@ -57,51 +58,69 @@ extension API.Authorized: APIMethodProtocol {
         switch self {
         case .user:
             return "\(Constants.Network.baseUrl)/users/me"
-        case .getAccounts(_, let userId):
+        case .getAccounts(_, let userId, _):
             // FIXME: разобраться с offset и limit!!!
             return "\(Constants.Network.baseUrl)/users/\(userId)/accounts?offset=0&limit=50"
-        case .getTransactions(_, let userId, let offset, let limit):
+        case .getTransactions(_, let userId, let offset, let limit, _):
             return "\(Constants.Network.baseUrl)/users/\(userId)/transactions?offset=\(offset)&limit=\(limit)"
         case .sendTransaction:
             return "\(Constants.Network.baseUrl)/transactions"
         case .changePassword:
             return "\(Constants.Network.baseUrl)/users/change_password"
-        case .createAccount(_, let userId, _, _, _):
+        case .createAccount(_, let userId, _, _, _, _):
             return "\(Constants.Network.baseUrl)/users/\(userId)/accounts"
         }
     }
     
     var headers: [String: String] {
         switch self {
-        case .user(let authToken):
+        case .user(let authToken, let signHeader):
             return [
-                "Authorization": "Bearer \(authToken)"
+                "Authorization": "Bearer \(authToken)",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
             ]
-        case .getAccounts(let authToken, _):
-            return [
-                "accept": "application/json",
-                "Authorization": "Bearer \(authToken)"
-            ]
-        case .getTransactions(let authToken, _, _, _):
+        case .getAccounts(let authToken, _, let signHeader):
             return [
                 "accept": "application/json",
-                "Authorization": "Bearer \(authToken)"
+                "Authorization": "Bearer \(authToken)",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
             ]
-        case .sendTransaction(let authToken, _, _, _, _, _, _, _, _, _, _):
+        case .getTransactions(let authToken, _, _, _, let signHeader):
             return [
                 "accept": "application/json",
-                "Authorization": "Bearer \(authToken)"
+                "Authorization": "Bearer \(authToken)",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
             ]
-        case .changePassword(let authToken, _, _):
+        case .sendTransaction(let authToken, _, _, _, _, _, _, _, _, _, _, let signHeader):
             return [
                 "accept": "application/json",
-                "Authorization": "Bearer \(authToken)"
+                "Authorization": "Bearer \(authToken)",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
             ]
-        case .createAccount(let authToken, _, _, _, _):
+        case .changePassword(let authToken, _, _, let signHeader):
+            return [
+                "accept": "application/json",
+                "Authorization": "Bearer \(authToken)",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
+            ]
+        case .createAccount(let authToken, _, _, _, _, let signHeader):
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json",
-                "Authorization": "Bearer \(authToken)"
+                "Authorization": "Bearer \(authToken)",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
             ]
         }
     }
@@ -124,7 +143,8 @@ extension API.Authorized: APIMethodProtocol {
                               let valueCurrency,
                               let fee,
                               let exchangeId,
-                              let exchangeRate):
+                              let exchangeRate,
+                              _):
             let receiverAddress: String
             let type: String
             
@@ -156,12 +176,12 @@ extension API.Authorized: APIMethodProtocol {
             }
             
             return params
-        case .changePassword(_, let currentPassword, let newPassword):
+        case .changePassword(_, let currentPassword, let newPassword, _):
             return [
                 "newPassword": newPassword,
                 "oldPassword": currentPassword
             ]
-        case .createAccount(_, _, let id, let currency, let name):
+        case .createAccount(_, _, let id, let currency, let name, _):
             return [
                 "id": id,
                 "currency": currency.ISO.lowercased(),
