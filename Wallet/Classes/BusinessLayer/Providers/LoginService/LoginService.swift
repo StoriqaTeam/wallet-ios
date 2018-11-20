@@ -10,7 +10,10 @@ import Foundation
 
 protocol LoginServiceProtocol {
     func signIn(email: String, password: String, completion: @escaping (Result<String?>) -> Void)
-    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, completion: @escaping (Result<String?>) -> Void)
+    func signIn(tokenProvider: SocialNetworkTokenProvider,
+                oauthToken: String,
+                email: String,
+                completion: @escaping (Result<String?>) -> Void)
 }
 
 
@@ -88,13 +91,14 @@ class LoginService: LoginServiceProtocol {
         }
     }
     
-    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, completion: @escaping (Result<String?>) -> Void) {
-        
-        fatalError("Needs email")
+    func signIn(tokenProvider: SocialNetworkTokenProvider,
+                oauthToken: String,
+                email: String,
+                completion: @escaping (Result<String?>) -> Void) {
         
         let signHeader: SignHeader
         do {
-            signHeader = try signHeaderFactory.createSignHeader(email: "STUBBBBBB")
+            signHeader = try signHeaderFactory.createSignHeader(email: email)
         } catch {
             completion(.failure(error))
             return
@@ -116,7 +120,7 @@ class LoginService: LoginServiceProtocol {
                     strongSelf.keychain.socialAuthToken = oauthToken
                     strongSelf.keychain.password = nil
                     strongSelf.getUser(authToken: authToken,
-                                       authData: AuthData.social(provider: tokenProvider, token: oauthToken),
+                                       authData: AuthData.social(provider: tokenProvider, token: oauthToken, email: email),
                                        completion: completion)
                 case .failure(let error):
                     completion(Result.failure(error))

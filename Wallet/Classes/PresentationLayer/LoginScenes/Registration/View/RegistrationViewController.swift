@@ -176,8 +176,8 @@ extension RegistrationViewController: UITextFieldDelegate {
 // MARK: - SocialNetworkAuthViewDelegate
 
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
-    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String) {
-        output.socialNetworkRegisterSucceed(provider: provider, token: token)
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
+        output.socialNetworkRegisterSucceed(provider: provider, token: token, email: email)
     }
     
     func socialNetworkAuthFailed() {

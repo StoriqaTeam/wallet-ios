@@ -8,6 +8,7 @@
 
 import UIKit
 import FacebookLogin
+import FBSDKCoreKit
 
 
 protocol SocialNetworkAuthViewModelProtocol: class {
@@ -48,7 +49,7 @@ class SocialNetworkAuthViewModel: NSObject {
                     log.debug(error)
                     let err = SocialNetworkViewModelError.failToSign(error: error)
                     let result: Result<Token> = .failure(err)
-//                    self?.delegate.signInWithResult(result)
+                    self?.delegate.signInWithResult(result)
                 case .cancelled:
                     log.debug("User cancelled login.")
                 case .success(let grantedPermissions, let declinedPermissions, let accessToken):
@@ -56,8 +57,32 @@ class SocialNetworkAuthViewModel: NSObject {
                     log.debug("grantedPermissions: \(grantedPermissions)")
                     log.debug("declinedPermissions: \(declinedPermissions)")
                     log.debug("accessToken: \(accessToken)")
-//                    let result: Result<Token> = .success((SocialNetworkTokenProvider.facebook, accessToken.authenticationToken))
-//                    self?.delegate.signInWithResult(result)
+                    let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email"])
+                    request?.start(completionHandler: { (_, result, error) in
+                        
+                        if let error = error {
+                            let result: Result<Token> = .failure(error)
+                            self?.delegate.signInWithResult(result)
+                            return
+                        }
+                        
+                        guard let userInfo = result as? [String: String] else {
+                            let error = SocialNetworkViewModelError.emptyUserEmail
+                            let result: Result<Token> = .failure(error)
+                            self?.delegate.signInWithResult(result)
+                            return
+                        }
+                        
+                        guard let email = userInfo["email"] else {
+                            let error = SocialNetworkViewModelError.emptyUserEmail
+                            let result: Result<Token> = .failure(error)
+                            self?.delegate.signInWithResult(result)
+                            return
+                        }
+                        
+                        let result: Result<Token> = .success((SocialNetworkTokenProvider.facebook, accessToken.authenticationToken, email: email))
+                        self?.delegate.signInWithResult(result)
+                    })
                 }
             })
     }
@@ -77,7 +102,7 @@ extension SocialNetworkAuthViewModel: GIDSignInDelegate {
             result = .failure(err)
         } else if let token = user?.authentication?.accessToken {
             
-            guard let userEmail = user.profile.email else  {
+            guard let userEmail = user.profile.email else {
                 let error = SocialNetworkViewModelError.emptyUserEmail
                 result = .failure(error)
                 delegate.signInWithResult(result)

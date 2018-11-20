@@ -106,9 +106,14 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         }
     }
     
-    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String) {
-        fatalError("Implement with userKeyManager. Need pass email")
-        loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken) { [weak self] (result) in
+    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, email: String) {
+        
+        guard let _ = userKeyManager.addPrivateKey(email: email) else {
+            log.error("Fail To create and save new private key")
+            return
+        }
+    
+        loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken, email: email) { [weak self] (result) in
             switch result {
             case .success:
                 self?.socialAuthSucceed()

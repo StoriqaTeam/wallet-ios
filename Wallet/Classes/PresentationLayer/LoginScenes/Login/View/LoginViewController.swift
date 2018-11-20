@@ -90,8 +90,8 @@ extension LoginViewController: LoginViewInput {
 // MARK: - SocialNetworkAuthViewDelegate
 
 extension LoginViewController: SocialNetworkAuthViewDelegate {
-    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String) {
-        output.signIn(tokenProvider: provider, token: token)
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
+        output.signIn(tokenProvider: provider, token: token, email: email)
     }
 
     func socialNetworkAuthFailed() {

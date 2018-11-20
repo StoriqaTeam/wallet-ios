@@ -72,7 +72,8 @@ enum SocialAuthNetworkProviderError: LocalizedError, Error {
             guard let deviceErrors = json["device"].array,
                 let existsError = deviceErrors.first(where: { $0["code"] == "exists" }),
                 let params = existsError["params"].dictionary,
-                let userId = params["user_id"]?.int else {
+                let userIdStr = params["user_id"]?.string,
+                let userId = Int(userIdStr) else {
                     self = .unknownError
                     return
             }

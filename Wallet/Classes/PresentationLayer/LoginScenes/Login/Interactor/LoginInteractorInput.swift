@@ -12,7 +12,7 @@ import Foundation
 protocol LoginInteractorInput: class {
     func getSocialVM() -> SocialNetworkAuthViewModel
     func signIn(email: String, password: String)
-    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String)
+    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, email: String)
     func viewIsReady()
     func retry()
     func registerDevice()

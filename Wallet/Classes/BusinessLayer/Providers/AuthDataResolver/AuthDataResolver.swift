@@ -11,7 +11,7 @@ import Foundation
 
 enum AuthData {
     case email(email: String, password: String)
-    case social(provider: SocialNetworkTokenProvider, token: String)
+    case social(provider: SocialNetworkTokenProvider, token: String, email: String)
 }
 
 
@@ -34,13 +34,14 @@ class AuthDataResolver: AuthDataResolverProtocol {
     }
     
     func getAuthData() -> AuthData? {
+        let user = userDataStore.getCurrentUser()
+        let email = user.email
+
         if let socialProvider = defaults.socialAuthProvider,
             let socialToken = keychain.socialAuthToken {
-            let authData = AuthData.social(provider: socialProvider, token: socialToken)
+            let authData = AuthData.social(provider: socialProvider, token: socialToken, email: email)
             return authData
         } else if let password = keychain.password {
-            let user = userDataStore.getCurrentUser()
-            let email = user.email
             let authData = AuthData.email(email: email, password: password)
             return authData
         } else {

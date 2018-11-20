@@ -91,11 +91,10 @@ extension LoginInteractor: LoginInteractorInput {
         }
     }
     
-    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String) {
-        authData = AuthData.social(provider: tokenProvider, token: oauthToken)
-        fatalError("Implement with userKeyManager. Need pass email")
-        
-        loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken) { [weak self] (result) in
+    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, email: String) {
+        authData = AuthData.social(provider: tokenProvider, token: oauthToken, email: email)
+        setNewPrivateKeyIfNeeded(with: email)
+        loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken, email: email) { [weak self] (result) in
             switch result {
             case .success:
                 self?.loginSucceed()
@@ -123,8 +122,8 @@ extension LoginInteractor: LoginInteractorInput {
         case .email(let email, let password):
             setNewPrivateKeyIfNeeded(with: email)
             signIn(email: email, password: password)
-        case .social(let provider, let token):
-            signIn(tokenProvider: provider, oauthToken: token)
+        case .social(let provider, let token, let email):
+            signIn(tokenProvider: provider, oauthToken: token, email: email)
         }
     }
     
@@ -139,8 +138,8 @@ extension LoginInteractor: LoginInteractorInput {
         switch authData {
         case .email(let email, _):
             currentEmail = email
-        case .social:
-            fatalError("Implement with userKeyManager. Need pass email")
+        case .social(_, _, let email):
+            currentEmail = email
         }
         
         let signHeader: SignHeader
