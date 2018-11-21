@@ -5,7 +5,6 @@
 //  Created by Storiqa on 20/09/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-//swiftlint:disable empty_count
 
 import UIKit
 
@@ -27,14 +26,6 @@ class ExchangeViewController: UIViewController {
     @IBOutlet private var rateLabel: UILabel!
     @IBOutlet private var rateTimerLabel: UILabel!
     @IBOutlet private var rateBackgroundView: UIView!
-    @IBOutlet private var paymentFeeTitleLabel: UILabel!
-    @IBOutlet private var paymentFeeLabel: UILabel!
-    @IBOutlet private var paymentFeeSlider: StepSlider!
-    @IBOutlet private var paymentFeeLowLabel: UILabel!
-    @IBOutlet private var paymentFeeMediumLabel: UILabel!
-    @IBOutlet private var paymentFeeHighLabel: UILabel!
-    @IBOutlet private var medianWaitTitleLabel: UILabel!
-    @IBOutlet private var medianWaitLabel: UILabel!
     @IBOutlet private var subtotalTitleLabel: UILabel!
     @IBOutlet private var subtotalLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
@@ -44,13 +35,7 @@ class ExchangeViewController: UIViewController {
 
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
-     private var currentSliderStep = 0 {
-        didSet {
-            if oldValue != currentSliderStep {
-                output.newFeeSelected(currentSliderStep)
-            }
-        }
-    }
+    
     
     // MARK: Life cycle
 
@@ -86,10 +71,6 @@ class ExchangeViewController: UIViewController {
         output.amountChanged(sender.text ?? "")
     }
     
-    @IBAction private func sliderMoved(_ sender: StepSlider) {
-        currentSliderStep = sender.currentSliderStep
-    }
-    
     @IBAction private func recepientAccountPressed(_ sender: UIButton) {
         output.recepientAccountPressed()
     }
@@ -116,22 +97,6 @@ extension ExchangeViewController: ExchangeViewInput {
     
     func setSubtotal(_ subtotal: String) {
         subtotalLabel.text = subtotal
-    }
-    
-    func setMedianWait(_ wait: String) {
-        medianWaitLabel.text = wait
-    }
-    
-    func setPaymentFee(_ fee: String) {
-        paymentFeeLabel.text = fee
-    }
-    
-    func setPaymentFee(count: Int, value: Int) {
-        paymentFeeSlider.paymentFeeValuesCount = count
-        paymentFeeSlider.updateCurrentValue(step: value)
-        currentSliderStep = value
-        
-        paymentFeeSlider.isUserInteractionEnabled = count != 0
     }
     
     func setErrorHidden(_ hidden: Bool) {
@@ -243,13 +208,8 @@ extension ExchangeViewController {
         
         recepientAccountTitleLabel.font = Theme.Font.caption
         amountTitleLabel.font = Theme.Font.caption
-        paymentFeeTitleLabel.font = Theme.Font.caption
-        medianWaitTitleLabel.font = Theme.Font.caption
         subtotalTitleLabel.font = Theme.Font.caption
         
-        paymentFeeLowLabel.font = Theme.Font.smallText
-        paymentFeeMediumLabel.font = Theme.Font.smallText
-        paymentFeeHighLabel.font = Theme.Font.smallText
         errorLabel.font = Theme.Font.smallText
         recepientBalanceLabel.font = Theme.Font.smallText
         rateLabel.font = Theme.Font.smallText
@@ -260,13 +220,8 @@ extension ExchangeViewController {
         
         recepientAccountTitleLabel.textColor = Theme.Color.bluegrey
         amountTitleLabel.textColor = Theme.Color.bluegrey
-        paymentFeeTitleLabel.textColor = Theme.Color.bluegrey
-        medianWaitTitleLabel.textColor = Theme.Color.bluegrey
         subtotalTitleLabel.textColor = Theme.Color.bluegrey
         
-        paymentFeeLowLabel.textColor = Theme.Text.Color.captionGrey
-        paymentFeeMediumLabel.textColor = Theme.Text.Color.captionGrey
-        paymentFeeHighLabel.textColor = Theme.Text.Color.captionGrey
         recepientBalanceLabel.textColor = Theme.Text.Color.captionGrey
         rateLabel.textColor = Theme.Text.Color.captionGrey
         rateTimerLabel.textColor = Theme.Text.Color.captionGrey

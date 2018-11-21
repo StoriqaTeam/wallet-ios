@@ -19,7 +19,6 @@ class ExchangeInteractor {
     
     private var exchangeProvider: ExchangeProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
-    private var feeUpadteChannelInput: FeeUpdateChannel?
     
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
@@ -38,8 +37,6 @@ class ExchangeInteractor {
     deinit {
         self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
         self.accountsUpadteChannelInput = nil
-        self.feeUpadteChannelInput?.removeObserver(withId: self.objId)
-        self.feeUpadteChannelInput = nil
     }
     
     // MARK: - Channels
@@ -51,10 +48,6 @@ class ExchangeInteractor {
     
     func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
         self.accountsUpadteChannelInput = channel
-    }
-    
-    func setFeeUpdateChannelInput(_ channel: FeeUpdateChannel) {
-        self.feeUpadteChannelInput = channel
     }
 }
 
@@ -85,10 +78,6 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         return exchangeProvider.amount
     }
     
-    func getFee() -> Decimal? {
-        return exchangeProvider.paymentFee
-    }
-    
     func getAccountCurrency() -> Currency {
         let account = exchangeProvider.selectedAccount
         let currency = account.currency
@@ -115,8 +104,6 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         
         updateRecepientAccount()
         updateAmount()
-        updateFeeCount()
-        updateFeeAndWait()
         updateTotal()
     }
     
@@ -124,14 +111,6 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         exchangeProviderBuilder.set(cryptoAmount: amount)
         updateTotal()
     }
-    
-    func setPaymentFee(index: Int) {
-        exchangeProviderBuilder.setPaymentFee(index: index)
-        
-        updateFeeAndWait()
-        updateTotal()
-    }
-    
     
     func getTransactionBuilder() -> ExchangeProviderBuilderProtocol {
         return exchangeProviderBuilder
@@ -143,22 +122,14 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         
         updateRecepientAccount()
         updateAmount()
-        updateFeeCount()
-        updateFeeAndWait()
         updateTotal()
     }
-    
     
     func startObservers() {
         let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
             self?.accountsDidUpdate(accounts)
         }
         self.accountsUpadteChannelInput?.addObserver(accountsObserver)
-        
-        let feeObserver = Observer<[Fee]>(id: self.objId) { [weak self] _ in
-            self?.feeDidUpdate()
-        }
-        self.feeUpadteChannelInput?.addObserver(feeObserver)
     }
     
     func sendTransaction() {
@@ -188,14 +159,6 @@ extension ExchangeInteractor: ExchangeInteractorInput {
 // MARK: - Private methods
 
 extension ExchangeInteractor {
-    private func feeDidUpdate() {
-        exchangeProvider.updateFees()
-        
-        updateFeeCount()
-        updateFeeAndWait()
-        updateTotal()
-    }
-    
     private func accountsDidUpdate(_ accounts: [Account]) {
         let account = accountWatcher.getAccount()
         let index = accounts.index { $0 == account } ?? 0
@@ -231,18 +194,6 @@ extension ExchangeInteractor {
         output.updateAmount(amount, currency: currency)
     }
     
-    private func updateFeeAndWait() {
-        let feeWait = exchangeProvider.getFeeAndWait()
-        output.updatePaymentFee(feeWait.fee)
-        output.updateMedianWait(feeWait.wait)
-    }
-    
-    private func updateFeeCount() {
-        let count = exchangeProvider.getFeeWaitCount()
-        let index = exchangeProvider.getFeeIndex()
-        output.updatePaymentFees(count: count, selected: index)
-    }
-    
     private func updateTotal() {
         let accountCurrency = accountWatcher.getAccount().currency
         let total = exchangeProvider.getSubtotal()
@@ -258,9 +209,8 @@ extension ExchangeInteractor {
     private func isFormValid() -> Bool {
         let isZeroAmount = exchangeProvider.amount.isZero
         let hasRecepient = exchangeProvider.recepientAccount != nil
-        let hasFee = exchangeProvider.paymentFee != nil
         
-        return !isZeroAmount && hasRecepient && hasFee && exchangeProvider.isEnoughFunds()
+        return !isZeroAmount && hasRecepient && exchangeProvider.isEnoughFunds()
     }
     
 }

@@ -92,10 +92,6 @@ extension ExchangePresenter: ExchangeViewOutput {
         view.setAmount(formatted)
     }
     
-    func newFeeSelected(_ index: Int) {
-        interactor.setPaymentFee(index: index)
-    }
-    
     func recepientAccountPressed() {
         let accounts = interactor.getRecepientAccounts()
         
@@ -147,25 +143,6 @@ extension ExchangePresenter: ExchangeInteractorOutput {
             }
         }()
         view.setAmount(amountString)
-    }
-    
-    func updatePaymentFee(_ fee: Decimal?) {
-        guard let fee = fee else {
-            view.setPaymentFee("-")
-            return
-        }
-        
-        let currency = interactor.getAccountCurrency()
-        let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency)
-        view.setPaymentFee(formatted)
-    }
-    
-    func updatePaymentFees(count: Int, selected: Int) {
-        view.setPaymentFee(count: count, value: selected)
-    }
-    
-    func updateMedianWait(_ wait: String) {
-        view.setMedianWait(wait)
     }
     
     func updateTotal(_ total: Decimal, currency: Currency) {
