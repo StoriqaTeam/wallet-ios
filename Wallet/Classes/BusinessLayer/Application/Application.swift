@@ -29,7 +29,6 @@ class Application {
                                                                                                                   denominationUnitsConverter: self.denominationUnitsConverter)
     lazy var biometricAuthProviderFactory: BiometricAuthProviderFactory = BiometricAuthProviderFactory()
     lazy var exchangeProviderBuilderFactory: ExchangeProviderBuilderFactoryProtocol = ExchangeProviderBuilderFactory(accountsProvider: self.accountsProvider,
-                                                                                                                     feeProvider: self.feeProvider,
                                                                                                                      converterFactory: self.currencyConverterFactory,
                                                                                                                      denominationUnitsConverter: self.denominationUnitsConverter)
     
