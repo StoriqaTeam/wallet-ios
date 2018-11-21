@@ -21,7 +21,6 @@ class EmailConfirmNetworkProvider: NetworkLoadable, EmailConfirmNetworkProviderP
                  completion: @escaping (Result<String>) -> Void) {
         
         let request = API.Unauthorized.confirmEmail(token: token)
-        
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):

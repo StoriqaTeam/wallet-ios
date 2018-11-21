@@ -33,7 +33,7 @@ class UniversalLinkParser: UniversalLinkParserProtocol {
         switch type {
         case "verify_email":
             return .verifyEmail(token: token)
-        case "password_reset":
+        case "reset_password":
             return .resetPassword(token: token)
         case "register_device":
             return .registerDevice(token: token)

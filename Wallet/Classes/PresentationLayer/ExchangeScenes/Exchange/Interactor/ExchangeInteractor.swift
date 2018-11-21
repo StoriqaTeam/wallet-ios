@@ -16,6 +16,10 @@ class ExchangeInteractor {
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let exchangeProviderBuilder: ExchangeProviderBuilderProtocol
     private let sendTransactionService: SendTransactionServiceProtocol
+    private let exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let authTokenprovider: AuthTokenProviderProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
     
     private var exchangeProvider: ExchangeProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
@@ -23,12 +27,21 @@ class ExchangeInteractor {
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
          exchangeProviderBuilder: ExchangeProviderBuilderProtocol,
-         sendTransactionService: SendTransactionServiceProtocol) {
+         sendTransactionService: SendTransactionServiceProtocol,
+         exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol,
+         authTokenprovider: AuthTokenProviderProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol) {
+        
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
         self.exchangeProviderBuilder = exchangeProviderBuilder
         self.exchangeProvider = exchangeProviderBuilder.build()
         self.sendTransactionService = sendTransactionService
+        self.signHeaderFactory = signHeaderFactory
+        self.exchangeRateNetworkProvider = exchangeRateNetworkProvider
+        self.authTokenprovider = authTokenprovider
+        self.userDataStoreService = userDataStoreService
         
         let account = accountWatcher.getAccount()
         exchangeProviderBuilder.set(account: account)

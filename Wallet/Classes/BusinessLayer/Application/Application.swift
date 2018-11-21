@@ -65,6 +65,7 @@ class Application {
     lazy var feeNetworkProvider: FeeNetworkProviderProtocol = FeeNetworkProvider()
     lazy var addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol = AddDeviceNetworkProvider()
     lazy var confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol = ConfirmAddDeviceNetworkProvider()
+    lazy var exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol = ExchangeRateNetworkProvider()
     
     
     // MARK: - Common Providers
