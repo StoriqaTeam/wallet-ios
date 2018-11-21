@@ -79,6 +79,7 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                                 <connections>
+                                                                    <action selector="addressDidChange:" destination="Bkl-J1-fPG" eventType="editingChanged" id="PGG-Qn-qlG"/>
                                                                     <outlet property="bottomConstraint" destination="6aG-tu-1tf" id="RB7-Ls-E5B"/>
                                                                 </connections>
                                                             </textField>
@@ -160,6 +161,14 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmH-Af-S9A" customClass="ActivityIndicatorView" customModule="Wallet" customModuleProvider="target">
+                                                                        <rect key="frame" x="103" y="-0.5" width="17" height="17"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="17" id="ITl-i0-LRs"/>
+                                                                            <constraint firstAttribute="height" constant="17" id="wX2-xi-ydw"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -167,6 +176,8 @@
                                                                     <constraint firstItem="HRE-CB-v2A" firstAttribute="leading" secondItem="1IC-2X-yXK" secondAttribute="leading" id="52A-OY-L6H"/>
                                                                     <constraint firstAttribute="bottom" secondItem="cjQ-Mu-TwB" secondAttribute="bottom" id="CuL-xl-xJh"/>
                                                                     <constraint firstItem="cjQ-Mu-TwB" firstAttribute="leading" secondItem="HRE-CB-v2A" secondAttribute="trailing" constant="4" id="Dhz-Th-vhg"/>
+                                                                    <constraint firstItem="nmH-Af-S9A" firstAttribute="centerY" secondItem="HRE-CB-v2A" secondAttribute="centerY" id="J9p-yD-WS5"/>
+                                                                    <constraint firstItem="nmH-Af-S9A" firstAttribute="leading" secondItem="HRE-CB-v2A" secondAttribute="trailing" constant="12" id="Pyd-m4-urv"/>
                                                                     <constraint firstAttribute="trailing" secondItem="cjQ-Mu-TwB" secondAttribute="trailing" id="VDY-aa-psd"/>
                                                                     <constraint firstItem="HRE-CB-v2A" firstAttribute="top" secondItem="1IC-2X-yXK" secondAttribute="top" id="nFL-J9-Bby"/>
                                                                     <constraint firstAttribute="bottom" secondItem="HRE-CB-v2A" secondAttribute="bottom" id="vsK-td-rYM"/>
@@ -382,6 +393,7 @@
                         <outlet property="amountTextField" destination="W2m-iJ-38i" id="T5J-ee-Bjd"/>
                         <outlet property="amountTitleLabel" destination="0AF-lB-Bis" id="a3H-gL-9rH"/>
                         <outlet property="errorLabel" destination="ghi-D2-tYq" id="IM4-WU-uXk"/>
+                        <outlet property="loaderView" destination="nmH-Af-S9A" id="yhv-30-HBS"/>
                         <outlet property="medianWaitLabel" destination="i0o-nu-tyy" id="7UD-sV-wSu"/>
                         <outlet property="medianWaitTitleLabel" destination="B0d-3j-T5L" id="eCf-7X-8Hu"/>
                         <outlet property="paymentFeeHighLabel" destination="smN-rR-A60" id="HIf-tz-N7U"/>

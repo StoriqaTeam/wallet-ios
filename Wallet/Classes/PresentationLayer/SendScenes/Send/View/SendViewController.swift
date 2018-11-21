@@ -5,7 +5,6 @@
 //  Created by Storiqa on 20/09/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-//swiftlint:disable empty_count
 
 import UIKit
 
@@ -35,6 +34,7 @@ class SendViewController: UIViewController {
     @IBOutlet private var subtotalLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var sendButton: DefaultButton!
+    @IBOutlet private var loaderView: ActivityIndicatorView!
     
     
     // MARK: Variables
@@ -82,6 +82,10 @@ class SendViewController: UIViewController {
     
     @IBAction private func amountDidChange(_ sender: UITextField) {
         output.amountChanged(sender.text ?? "")
+    }
+    
+    @IBAction func addressDidChange(_ sender: UITextField) {
+        output.receiverAddressDidChange(sender.text ?? "")
     }
     
     @IBAction func sendButtonTapped(_ sender: UIButton) {
@@ -132,7 +136,17 @@ extension SendViewController: SendViewInput {
         paymentFeeSlider.updateCurrentValue(step: value)
         currentSliderStep = value
         
-        paymentFeeSlider.isUserInteractionEnabled = count != 0
+        paymentFeeSlider.isUserInteractionEnabled = count > 1
+    }
+    
+    func setFeeUpdateIndicator(hidden: Bool) {
+        loaderView.isHidden = hidden
+        
+        if hidden {
+            loaderView.hideActivityIndicator()
+        } else {
+            loaderView.showActivityIndicator(linewidth: 2, color: Theme.Text.Color.captionGrey)
+        }
     }
     
     func updatePagesCount(_ count: Int) {
@@ -303,6 +317,7 @@ extension SendViewController {
         errorLabel.alpha = 0
         
         sendButton.isEnabled = false
+        loaderView.isUserInteractionEnabled = false
     }
     
     private func setNavBarTransparency() {

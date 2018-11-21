@@ -25,18 +25,13 @@ protocol SendTransactionProviderProtocol: class {
     func getSubtotal() -> Decimal
     func isEnoughFunds() -> Bool
     func createTransaction() -> Transaction
-    func updateFees()
 }
 
 class SendTransactionProvider: SendTransactionProviderProtocol {
     
     weak var scanDelegate: QRScannerDelegate?
     
-    var selectedAccount: Account {
-        didSet {
-            updateFees()
-        }
-    }
+    var selectedAccount: Account
     var amount: Decimal
     var paymentFee: Decimal?
     var receiverAddress: String
@@ -59,8 +54,6 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         self.paymentFee = 0
         self.receiverAddress = ""
         self.selectedAccount = accountProvider.getAllAccounts().first!
-        
-        updateFees()
     }
     
     
@@ -74,6 +67,22 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         }
         feeIndex = index
         paymentFee = fee
+    }
+    
+    func setFees(_ fees: [EstimatedFee]?) {
+        feeProvider.updateFees(fees: fees)
+        
+        let count = fees?.count ?? 0
+        let index: Int = {
+            if let feeIndex = feeIndex, count > feeIndex {
+                return feeIndex
+            } else {
+                return count / 2
+            }
+        }()
+        
+        feeIndex = index
+        paymentFee = feeProvider.getFee(index: index)
     }
     
     func getFeeIndex() -> Int {
@@ -143,23 +152,6 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
                                       updatedAt: timestamp,
                                       status: .pending)
         return transaction
-    }
-    
-    func updateFees() {
-        let currency = selectedAccount.currency
-        feeProvider.updateSelected(fromCurrency: currency, toCurrency: currency)
-        
-        let count = feeProvider.getValuesCount()
-        let index: Int = {
-            if let feeIndex = feeIndex, count > feeIndex {
-                return feeIndex
-            } else {
-                return count / 2
-            }
-        }()
-        
-        feeIndex = index
-        paymentFee = feeProvider.getFee(index: index)
     }
     
 }

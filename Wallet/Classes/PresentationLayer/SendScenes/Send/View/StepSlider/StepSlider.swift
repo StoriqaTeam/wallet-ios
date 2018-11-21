@@ -18,6 +18,7 @@ class StepSlider: UISlider {
                 stepLength = 1.0 / Float(paymentFeeValuesCount - 1)
             } else {
                 stepLength = 1
+                setValue(0, animated: false)
             }
         }
     }

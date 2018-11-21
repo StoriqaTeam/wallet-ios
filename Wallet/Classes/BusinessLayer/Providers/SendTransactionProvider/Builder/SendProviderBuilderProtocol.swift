@@ -15,6 +15,7 @@ protocol SendProviderBuilderProtocol: class {
     func setScannedAddress(_ address: String)
     func setPaymentFee(index: Int)
     func setScannedDelegate(_ delegate: QRScannerDelegate)
+    func setFees(_ fees: [EstimatedFee]?)
     func build() -> SendTransactionProvider
     func clear()
 }

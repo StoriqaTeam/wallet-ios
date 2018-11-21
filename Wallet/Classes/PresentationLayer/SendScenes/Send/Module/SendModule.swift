@@ -31,7 +31,8 @@ class SendModule {
                                         accountsProvider: app.accountsProvider,
                                         accountWatcher: accountWatcher,
                                         cryptoAddressResolver: app.cryptoAddressResolver,
-                                        sendTransactionService: app.sendTransactionService)
+                                        sendTransactionService: app.sendTransactionService,
+                                        feeLoader: app.feeLoader)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
         let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController
@@ -47,10 +48,6 @@ class SendModule {
         let accountsUpdateChannel = app.channelStorage.accountsUpadteChannel
         app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
         interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
-        
-        let feeUpdateChannel = app.channelStorage.feeUpadteChannel
-        interactor.setFeeUpdateChannelInput(feeUpdateChannel)
-        app.feeProvider.setFeeUpdaterChannel(feeUpdateChannel)
         
         return presenter
     }
