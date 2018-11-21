@@ -46,9 +46,9 @@ extension LoginPresenter: LoginViewOutput {
         interactor.signIn(email: email, password: password)
     }
     
-    func signIn(tokenProvider: SocialNetworkTokenProvider, token: String) {
+    func signIn(tokenProvider: SocialNetworkTokenProvider, token: String, email: String) {
         storiqaLoader.startLoader()
-        interactor.signIn(tokenProvider: tokenProvider, oauthToken: token)
+        interactor.signIn(tokenProvider: tokenProvider, oauthToken: token, email: email)
     }
     
 }

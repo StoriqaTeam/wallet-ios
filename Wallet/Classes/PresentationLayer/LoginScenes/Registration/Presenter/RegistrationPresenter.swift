@@ -70,9 +70,9 @@ extension RegistrationPresenter: RegistrationViewOutput {
         router.showLogin()
     }
     
-    func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String) {
+    func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
         storiqaLoader.startLoader()
-        interactor.signIn(tokenProvider: provider, oauthToken: token)
+        interactor.signIn(tokenProvider: provider, oauthToken: token, email: email)
     }
     
     func socialNetworkRegisterFailed() {

@@ -71,8 +71,8 @@ class SighnerTests: XCTestCase {
     }
     
     func testSignHeader() {
-        let ts = "1542399150"
-        let vendorId = "62231b8c-9ae7-4f6f-b18b-4b4836670e1a"
+        let ts = "1542629842"
+        let vendorId = "56a81d5d-c89c-4971-8bc1-a6101270d2ce"
         let message = ts+vendorId
         
         let privKeyData = Data(hexString: _privKeyHex)
@@ -90,13 +90,6 @@ class SighnerTests: XCTestCase {
         print("Sinature: \(signature.hex)\n")
         
         XCTAssertEqual(signature.count, 64)
-    }
-    
-    func testPrivate() {
-        for i in 1...10 {
-            let privKey = try! KeyGenerator.init().generatePrivKey()
-            print("Private key is: \(privKey.hex)")
-        }
     }
     
 }

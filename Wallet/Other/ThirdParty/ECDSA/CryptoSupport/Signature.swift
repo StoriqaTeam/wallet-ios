@@ -6,6 +6,8 @@
 //  Copyright © 2018 Universa. All rights reserved.
 //
 
+//swiftlint:disable line_length
+
 import Foundation
 import secp256k1
 
