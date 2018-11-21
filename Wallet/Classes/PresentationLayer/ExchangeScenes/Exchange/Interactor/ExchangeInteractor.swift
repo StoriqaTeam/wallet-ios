@@ -20,6 +20,7 @@ class ExchangeInteractor {
     private let signHeaderFactory: SignHeaderFactoryProtocol
     private let authTokenprovider: AuthTokenProviderProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
+    private let exchangeRatesLoader: ExchangeRatesLoaderProtocol
     
     private var exchangeProvider: ExchangeProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
@@ -31,7 +32,8 @@ class ExchangeInteractor {
          exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol,
          signHeaderFactory: SignHeaderFactoryProtocol,
          authTokenprovider: AuthTokenProviderProtocol,
-         userDataStoreService: UserDataStoreServiceProtocol) {
+         userDataStoreService: UserDataStoreServiceProtocol,
+         exchangeRatesLoader: ExchangeRatesLoaderProtocol) {
         
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
@@ -42,6 +44,7 @@ class ExchangeInteractor {
         self.exchangeRateNetworkProvider = exchangeRateNetworkProvider
         self.authTokenprovider = authTokenprovider
         self.userDataStoreService = userDataStoreService
+        self.exchangeRatesLoader = exchangeRatesLoader
         
         let account = accountWatcher.getAccount()
         exchangeProviderBuilder.set(account: account)
@@ -209,14 +212,48 @@ extension ExchangeInteractor {
     
     private func updateTotal() {
         let accountCurrency = accountWatcher.getAccount().currency
-        let total = exchangeProvider.getSubtotal()
-        let formIsValid = isFormValid()
-        let isEnough = exchangeProvider.isEnoughFunds()
-        let hasAmount = !exchangeProvider.amount.isZero
+        let amount = exchangeProvider.amount
+        guard let recepientCurrency = exchangeProvider.recepientAccount?.currency else {
+            log.error("Recepient account not found")
+            return
+        }
         
-        output.updateTotal(total, currency: accountCurrency)
-        output.updateIsEnoughFunds(!hasAmount || isEnough)
-        output.updateFormIsValid(formIsValid)
+        if amount.isZero {
+            let total = exchangeProvider.getSubtotal()
+            let formIsValid = isFormValid()
+            let isEnough = exchangeProvider.isEnoughFunds()
+            let hasAmount = !exchangeProvider.amount.isZero
+            
+            output.updateTotal(total, currency: accountCurrency)
+            output.updateIsEnoughFunds(!hasAmount || isEnough)
+            output.updateFormIsValid(formIsValid)
+            return
+        }
+        
+        
+        exchangeRatesLoader.getExchangeRates(from: accountCurrency,
+                                             to: recepientCurrency,
+                                             amountCurrency: accountCurrency,
+                                             amountInMinUnits: amount) { [weak self] (result) in
+                                                switch result {
+                                                case .success(let exchangeRate):
+                                                    guard let strongSelf = self else { return }
+                                                    
+                                                    strongSelf.exchangeProviderBuilder.set(exchangeRate: exchangeRate)
+                                                    let total = strongSelf.exchangeProvider.getSubtotal()
+                                                    let formIsValid = strongSelf.isFormValid()
+                                                    let isEnough = strongSelf.exchangeProvider.isEnoughFunds()
+                                                    let hasAmount = !strongSelf.exchangeProvider.amount.isZero
+                                                    
+                                                    strongSelf.output.updateTotal(total, currency: accountCurrency)
+                                                    strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
+                                                    strongSelf.output.updateFormIsValid(formIsValid)
+                                                case .failure(let error):
+                                                    print(error)
+                                                    
+                                                }
+        }
+
     }
     
     private func isFormValid() -> Bool {

@@ -12,12 +12,13 @@ protocol ExchangeProviderBuilderProtocol: class {
     func set(account: Account)
     func set(recepientAccount: Account)
     func set(cryptoAmount: Decimal)
+    func set(exchangeRate: ExchangeRate)
     func build() -> ExchangeProvider
     func clear()
 }
 
 class ExchangeProviderBuilder: ExchangeProviderBuilderProtocol {
-    
+
     private var exchangeProvider: ExchangeProvider
     private let accountsProvider: AccountsProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
@@ -46,6 +47,10 @@ class ExchangeProviderBuilder: ExchangeProviderBuilderProtocol {
     
     func set(cryptoAmount: Decimal) {
         exchangeProvider.amount = cryptoAmount
+    }
+    
+    func set(exchangeRate: ExchangeRate) {
+        exchangeProvider.exchangeRate = exchangeRate
     }
     
     func build() -> ExchangeProvider {

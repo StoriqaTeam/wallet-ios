@@ -75,6 +75,9 @@ class ExchangeViewController: UIViewController {
         output.recepientAccountPressed()
     }
     
+    @IBAction func exchangeButtonPressed(_ sender: UIButton) {
+        output.exchangeButtonPressed()
+    }
 }
 
 

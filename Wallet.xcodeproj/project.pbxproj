@@ -348,6 +348,7 @@
 		A5933D3C219DBE230080C8C7 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5933D3B219DBE230080C8C7 /* Signer.swift */; };
 		A597577321A554850036C7E8 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577221A554850036C7E8 /* ExchangeRate.swift */; };
 		A597577521A554A80036C7E8 /* ExchangeRateNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577421A554A80036C7E8 /* ExchangeRateNetworkProvider.swift */; };
+		A597577821A5A8210036C7E8 /* ExchangeRatesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577721A5A8210036C7E8 /* ExchangeRatesLoader.swift */; };
 		A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */; };
 		A5A52854216B940200DB03B6 /* TransactionDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */; };
 		A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */; };
@@ -1027,6 +1028,7 @@
 		A5933D3B219DBE230080C8C7 /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		A597577221A554850036C7E8 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		A597577421A554A80036C7E8 /* ExchangeRateNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateNetworkProvider.swift; sourceTree = "<group>"; };
+		A597577721A5A8210036C7E8 /* ExchangeRatesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesLoader.swift; sourceTree = "<group>"; };
 		A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashTrackerConfigurator.swift; sourceTree = "<group>"; };
 		A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TransactionDetails.storyboard; sourceTree = "<group>"; };
 		A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDetailView.xib; sourceTree = "<group>"; };
@@ -3321,6 +3323,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A597577621A5A7EE0036C7E8 /* ExchangeLoader */,
 				CEE6730621A2B755008FAC09 /* SendTransactionService */,
 				CEE672FE21A2AEB3008FAC09 /* ExchangeProvider */,
 				B870F1D621A3248F00BC53BE /* UserKeyManager */,
@@ -3416,6 +3419,14 @@
 				B8241856219D55EC009000D4 /* PublicKey.swift */,
 			);
 			path = Keys;
+			sourceTree = "<group>";
+		};
+		A597577621A5A7EE0036C7E8 /* ExchangeLoader */ = {
+			isa = PBXGroup;
+			children = (
+				A597577721A5A8210036C7E8 /* ExchangeRatesLoader.swift */,
+			);
+			path = ExchangeLoader;
 			sourceTree = "<group>";
 		};
 		A5A20BB5215E77CB00001340 /* CrashAnaliticConfigurator */ = {
@@ -5480,6 +5491,7 @@
 				A5743540217A1B09006B4CAE /* API+Unauthorize.swift in Sources */,
 				83AFFB2DDED752D79D48DD23 /* TransactionsRouterInput.swift in Sources */,
 				1F8EED368B9491D4564C5EAA /* TransactionsRouter.swift in Sources */,
+				A597577821A5A8210036C7E8 /* ExchangeRatesLoader.swift in Sources */,
 				270320A5E31AFF1AF5AE9A3C /* TransactionsModuleInput.swift in Sources */,
 				F93614C131B3CE5DCBCF2C92 /* TransactionsModuleOutput.swift in Sources */,
 				CE4401A52174DCC200F7C8D8 /* ContactsSorter.swift in Sources */,

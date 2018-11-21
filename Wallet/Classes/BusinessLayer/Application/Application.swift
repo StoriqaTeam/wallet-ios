@@ -181,6 +181,12 @@ class Application {
                                                                               transactionOpponentResolver: self.transactionOpponentResolver,
                                                                               denominationUnitsConverter: self.denominationUnitsConverter)
     
+    // MARK: - Loaders
+    lazy var exchangeLoader: ExchangeRatesLoaderProtocol = ExchangeRatesLoader(userDataStore: self.userDataStoreService,
+                                                                               authTokenProvider: self.authTokenProvider,
+                                                                               signHeaderFactory: self.signHeaderFactory,
+                                                                               exchangeRatesNetworkProvider: self.exchangeRateNetworkProvider)
+    
     // MARK: - Social Networks
     lazy var facebookLoginManager: LoginManager = LoginManager()
     

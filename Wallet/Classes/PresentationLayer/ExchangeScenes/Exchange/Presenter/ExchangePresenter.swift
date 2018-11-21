@@ -104,7 +104,7 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func exchangeButtonPressed() {
-        //TODO: exchangeButtonPressed
+        interactor.sendTransaction()
     }
     
 }
