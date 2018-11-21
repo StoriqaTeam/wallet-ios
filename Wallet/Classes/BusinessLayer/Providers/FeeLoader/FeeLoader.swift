@@ -39,7 +39,6 @@ class FeeLoader: FeeLoaderProtocol {
                  accountAddress: String,
                  completion: @escaping (Result<[EstimatedFee]>) -> Void) {
         pendingRequestWorkItem?.cancel()
-        print("----- cancel")
         
         let address: String = {
             switch currency {
@@ -94,7 +93,6 @@ extension FeeLoader {
             accountAddress: accountAddress,
             signHeader: signHeader,
             queue: .main) {
-                print("----- " + currency.ISO)
                 completion($0)
         }
     }
