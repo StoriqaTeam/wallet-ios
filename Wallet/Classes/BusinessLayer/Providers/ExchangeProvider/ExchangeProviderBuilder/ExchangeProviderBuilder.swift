@@ -12,7 +12,6 @@ protocol ExchangeProviderBuilderProtocol: class {
     func set(account: Account)
     func set(recepientAccount: Account)
     func set(cryptoAmount: Decimal)
-    func setPaymentFee(index: Int)
     func build() -> ExchangeProvider
     func clear()
 }
@@ -20,24 +19,19 @@ protocol ExchangeProviderBuilderProtocol: class {
 class ExchangeProviderBuilder: ExchangeProviderBuilderProtocol {
     
     private var exchangeProvider: ExchangeProvider
-    
     private let accountsProvider: AccountsProviderProtocol
-    private let feeProvider: FeeProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     private let converterFactory: CurrencyConverterFactoryProtocol
     
     init(accountsProvider: AccountsProviderProtocol,
-         feeProvider: FeeProviderProtocol,
          converterFactory: CurrencyConverterFactoryProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.accountsProvider = accountsProvider
-        self.feeProvider = feeProvider
         self.denominationUnitsConverter = denominationUnitsConverter
         self.converterFactory = converterFactory
         
         exchangeProvider = ExchangeProvider(accountsProvider: accountsProvider,
-                                            feeProvider: feeProvider,
                                             converterFactory: converterFactory,
                                             denominationUnitsConverter: denominationUnitsConverter)
     }
@@ -54,17 +48,12 @@ class ExchangeProviderBuilder: ExchangeProviderBuilderProtocol {
         exchangeProvider.amount = cryptoAmount
     }
     
-    func setPaymentFee(index: Int) {
-        exchangeProvider.setPaymentFee(index: index)
-    }
-    
     func build() -> ExchangeProvider {
         return exchangeProvider
     }
     
     func clear() {
         exchangeProvider = ExchangeProvider(accountsProvider: accountsProvider,
-                                            feeProvider: feeProvider,
                                             converterFactory: converterFactory,
                                             denominationUnitsConverter: denominationUnitsConverter)
     }

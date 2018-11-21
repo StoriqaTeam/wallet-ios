@@ -19,6 +19,8 @@ protocol SendInteractorOutput: class {
     func updateIsEnoughFunds(_ enough: Bool)
     func updateFormIsValid(_ valid: Bool)
     func updateAddressIsValid(_ valid: Bool)
+    func setFeeUpdating(_ isUpdating: Bool)
+    func setWrongCurrency(message: String)
     func sendTxFailed(message: String)
     func sendTxSucceed()
 }

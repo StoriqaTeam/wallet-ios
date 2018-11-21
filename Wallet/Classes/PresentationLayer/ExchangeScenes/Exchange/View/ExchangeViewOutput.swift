@@ -19,7 +19,6 @@ protocol ExchangeViewOutput: class {
     func amountChanged(_ amount: String)
     func amountDidBeginEditing()
     func amountDidEndEditing()
-    func newFeeSelected(_ index: Int)
     
     func recepientAccountPressed()
     func exchangeButtonPressed()

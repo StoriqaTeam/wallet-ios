@@ -18,6 +18,7 @@ protocol SendViewInput: class, Presentable {
     func setMedianWait(_ wait: String)
     func setPaymentFee(_ fee: String)
     func setPaymentFee(count: Int, value: Int)
+    func setFeeUpdateIndicator(hidden: Bool)
     func setSubtotal(_ subtotal: String)
     func setAddressError(_ message: String?)
     func setButtonEnabled(_ enabled: Bool)

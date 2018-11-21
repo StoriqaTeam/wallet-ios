@@ -13,15 +13,10 @@ protocol ExchangeProviderProtocol: class {
     var selectedAccount: Account { get }
     var recepientAccount: Account? { get }
     var amount: Decimal { get }
-    var paymentFee: Decimal? { get }
     
     func getRecepientAccounts() -> [Account]
-    func getFeeWaitCount() -> Int
-    func getFeeIndex() -> Int
-    func getFeeAndWait() -> (fee: Decimal?, wait: String)
     func getSubtotal() -> Decimal
     func isEnoughFunds() -> Bool
-    func updateFees()
     func createTransaction() -> Transaction
 }
 
@@ -30,7 +25,6 @@ class ExchangeProvider: ExchangeProviderProtocol {
     
     var selectedAccount: Account {
         didSet {
-            updateFees()
             updateRecepientAccounts()
             updateRecepientAccount()
         }
@@ -41,81 +35,43 @@ class ExchangeProvider: ExchangeProviderProtocol {
         }
     }
     var amount: Decimal
-    var paymentFee: Decimal?
     
-    private var feeIndex: Int?
     private var recepientAccounts = [Account]()
     
     private let accountsProvider: AccountsProviderProtocol
-    private let feeProvider: FeeProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     private let converterFactory: CurrencyConverterFactoryProtocol
     private var currencyConverter: CurrencyConverterProtocol!
     
     init(accountsProvider: AccountsProviderProtocol,
-         feeProvider: FeeProviderProtocol,
          converterFactory: CurrencyConverterFactoryProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.accountsProvider = accountsProvider
-        self.feeProvider = feeProvider
         self.denominationUnitsConverter = denominationUnitsConverter
         self.converterFactory = converterFactory
         
         // default build
         self.amount = 0
-        self.paymentFee = 0
         self.selectedAccount = accountsProvider.getAllAccounts().first!
         
         updateRecepientAccounts()
         recepientAccount = recepientAccounts.first
-        updateFees()
         updateConverter()
-    }
-    
-    func setPaymentFee(index: Int) {
-        guard let fee = feeProvider.getFee(index: index) else {
-            feeIndex = nil
-            paymentFee = nil
-            return
-        }
-        feeIndex = index
-        paymentFee = fee
     }
     
     func getRecepientAccounts() -> [Account] {
         return recepientAccounts
     }
     
-    func getFeeIndex() -> Int {
-        return feeIndex ?? 0
-    }
-    
-    func getFeeWaitCount() -> Int {
-        return feeProvider.getValuesCount()
-    }
-    
-    func getFeeAndWait() -> (fee: Decimal?, wait: String) {
-        guard let paymentFee = paymentFee else {
-            return (nil, "-")
-        }
-        
-        let currency = selectedAccount.currency
-        let wait = feeProvider.getWait(fee: paymentFee)
-        let fee = denominationUnitsConverter.amountToMaxUnits(paymentFee, currency: currency)
-        return (fee, wait)
-    }
-    
     func getSubtotal() -> Decimal {
-        guard !amount.isZero, let paymentFee = paymentFee else {
+        guard !amount.isZero else {
             return 0
         }
         
         let currency = selectedAccount.currency
         let converted = currencyConverter.convert(amount: amount, to: currency)
-        let fee = denominationUnitsConverter.amountToMaxUnits(paymentFee, currency: currency)
-        let sum = converted + fee
-        return sum
+        return converted
     }
     
     func isEnoughFunds() -> Bool {
@@ -124,23 +80,6 @@ class ExchangeProvider: ExchangeProviderProtocol {
         let inMinUnits = denominationUnitsConverter.amountToMinUnits(subtotal, currency: currency)
         let available = selectedAccount.balance
         return inMinUnits.isLessThanOrEqualTo(available)
-    }
-    
-    func updateFees() {
-        let currency = selectedAccount.currency
-        feeProvider.updateSelected(fromCurrency: currency, toCurrency: currency)
-        
-        let count = feeProvider.getValuesCount()
-        let index: Int = {
-            if let feeIndex = feeIndex, count > feeIndex {
-                return feeIndex
-            } else {
-                return count / 2
-            }
-        }()
-        
-        feeIndex = index
-        paymentFee = feeProvider.getFee(index: index)
     }
     
     func createTransaction() -> Transaction {

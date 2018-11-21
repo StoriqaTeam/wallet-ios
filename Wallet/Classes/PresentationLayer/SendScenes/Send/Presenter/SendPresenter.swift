@@ -50,8 +50,7 @@ extension SendPresenter: SendViewOutput {
     
     func viewWillAppear() {
         view.viewController.setWhiteNavigationBarButtons()
-        interactor.updateState()
-        interactor.setAddress(address)
+        interactor.updateState(receiverAddress: address)
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -134,6 +133,10 @@ extension SendPresenter: SendViewOutput {
 // MARK: - SendInteractorOutput
 
 extension SendPresenter: SendInteractorOutput {
+    func setWrongCurrency(message: String) {
+        view.setAddressError(message)
+    }
+    
     func updateAddressIsValid(_ valid: Bool) {
         view.setAddressError(valid ? nil : "Addres is invalid")
     }
@@ -163,7 +166,7 @@ extension SendPresenter: SendInteractorOutput {
         }
         
         let currency = interactor.getCurrency()
-        let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency)
+        let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency, maxFractionDigits: 8)
         view.setPaymentFee(formatted)
     }
     
@@ -186,6 +189,16 @@ extension SendPresenter: SendInteractorOutput {
     
     func updateFormIsValid(_ valid: Bool) {
         view.setButtonEnabled(valid)
+    }
+    
+    func setFeeUpdating(_ isUpdating: Bool) {
+        view.setFeeUpdateIndicator(hidden: !isUpdating)
+        
+        if isUpdating {
+            view.setPaymentFee(" ")
+            view.setMedianWait(" ")
+            view.setPaymentFee(count: 0, value: 0)
+        }
     }
     
     func sendTxFailed(message: String) {
@@ -235,8 +248,7 @@ extension SendPresenter: QRScannerDelegate {
 
 extension SendPresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
-        interactor.setCurrentAccount(index: newIndex)
-        interactor.setAddress(address)
+        interactor.setCurrentAccount(index: newIndex, receiverAddress: address)
         view.setNewPage(newIndex)
     }
 }
@@ -246,10 +258,10 @@ extension SendPresenter: AccountsDataManagerDelegate {
 
 extension SendPresenter: PopUpSendConfirmSuccessVMDelegate {
     func okButtonPressed() {
-        interactor.clearBuilder()
-        interactor.updateState()
         address = ""
         view.setScannedAddress("")
+        interactor.clearBuilder()
+        interactor.updateState(receiverAddress: address)
     }
 }
 

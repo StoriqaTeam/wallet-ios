@@ -10,6 +10,7 @@ import Foundation
 
 protocol CurrencyFormatterProtocol {
     func getStringFrom(amount: Decimal, currency: Currency) -> String
+    func getStringFrom(amount: Decimal, currency: Currency, maxFractionDigits: Int) -> String
     func getStringWithoutCurrencyFrom(amount: Decimal, currency: Currency) -> String
 }
 
@@ -29,6 +30,22 @@ class CurrencyFormatter: CurrencyFormatterProtocol {
     func getStringWithoutCurrencyFrom(amount: Decimal, currency: Currency) -> String {
         let amountStr = getFormatted(amount: amount, currency: currency, usesGroupingSeparator: false)
         return amountStr
+    }
+    
+    func getStringFrom(amount: Decimal, currency: Currency, maxFractionDigits: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = maxFractionDigits
+        formatter.usesGroupingSeparator = true
+        
+        let amountStr = formatter.string(for: amount)!
+        switch currency {
+        case .fiat:
+            return currency.symbol + amountStr
+        default:
+            return amountStr + " " + currency.symbol
+        }
     }
 }
 
