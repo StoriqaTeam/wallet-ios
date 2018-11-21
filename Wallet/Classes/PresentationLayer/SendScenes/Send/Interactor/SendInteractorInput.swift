@@ -20,12 +20,12 @@ protocol SendInteractorInput: class {
     func getAddress() -> String
     
     func setAmount(_ amount: Decimal)
-    func setCurrentAccount(index: Int)
+    func setCurrentAccount(index: Int, receiverAddress: String)
     func setPaymentFee(index: Int)
     func setAddress(_ address: String)
     
     func getTransactionBuilder() -> SendProviderBuilderProtocol
-    func updateState()
+    func updateState(receiverAddress: String)
     func startObservers()
     func setScannedDelegate(_ delegate: QRScannerDelegate)
     

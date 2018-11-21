@@ -33,10 +33,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
         let toCurrency = transaction.toCurrency
         let value = transaction.toValue.string
         let receiverType = getReceiverType(transaction: transaction)
-        
-        // TODO: - Now fee is fix and equals zero because of server!!!
-        // let fee = transaction.fee.string
-        let feeString = "0"
+        let feeString = transaction.fee.string
         
         // TODO: - exchangeId, exchangeRate
         let request = API.Authorized.sendTransaction(authToken: authToken,

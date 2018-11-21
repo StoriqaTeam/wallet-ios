@@ -10,82 +10,54 @@ import Foundation
 
 
 protocol FeeProviderProtocol {
-    func updateSelected(fromCurrency: Currency, toCurrency: Currency)
+    func updateFees(fees: [EstimatedFee]?)
     func getValuesCount() -> Int
     func getIndex(fee: Decimal) -> Int
     func getFee(index: Int) -> Decimal?
     func getWait(fee: Decimal) -> String
-    
-    func setFeeUpdaterChannel(_ channel: FeeUpdateChannel)
 }
 
 class FeeProvider: FeeProviderProtocol {
     
-    private let feeDataStoreService: FeeDataStoreServiceProtocol
     private let medianWaitFormatter: MedianWaitFormatterProtocol
-    private var feeUpadateChannelOutput: FeeUpdateChannel?
-    private var selectedFees = [FeeAndWait]()
+    private var fees: [EstimatedFee]?
     
-    init(feeDataStoreService: FeeDataStoreServiceProtocol,
-         medianWaitFormatter: MedianWaitFormatterProtocol) {
-        self.feeDataStoreService = feeDataStoreService
+    init(medianWaitFormatter: MedianWaitFormatterProtocol) {
         self.medianWaitFormatter = medianWaitFormatter
     }
     
-    func setFeeUpdaterChannel(_ channel: FeeUpdateChannel) {
-        guard feeUpadateChannelOutput == nil else {
-            return
-        }
+    func updateFees(fees: [EstimatedFee]?) {
+        let sorted = fees?.sorted(by: {
+            $0.value < $1.value
+        })
         
-        self.feeUpadateChannelOutput = channel
-        
-        feeDataStoreService.observe { [weak self] (fees) in
-            self?.feeUpadateChannelOutput?.send(fees)
-        }
-    }
-    
-    func updateSelected(fromCurrency: Currency, toCurrency: Currency) {
-        
-        // FIXME: delete this
-        
-        selectedFees = [FeeAndWait(value: 0, estimatedTime: 0)]
-        
-        // -----------------
-        
-//        let fees = feeDataStoreService.getFees()
-//        let selected = fees.first {
-//            $0.fromCurrency == fromCurrency && $0.toCurrency == toCurrency
-//        }
-//        let sorted = selected?.fees.sorted(by: {
-//            $0.value < $1.value
-//        })
-//
-//        selectedFees = sorted ?? []
+        self.fees = sorted
     }
     
     func getValuesCount() -> Int {
-        return selectedFees.count
+        return fees?.count ?? 0
     }
     
     func getIndex(fee: Decimal) -> Int {
-        let index = selectedFees.firstIndex {
+        let index = fees?.firstIndex {
             $0.value == fee
         }!
-        return index
+        return index ?? 0
     }
     
     func getFee(index: Int) -> Decimal? {
-        guard selectedFees.count > index else {
+        guard (fees?.count ?? 0) > index else {
             return nil
         }
         
-        return selectedFees[index].value
+        return fees?[index].value
     }
     
     func getWait(fee: Decimal) -> String {
-        let wait = selectedFees.first(where: {
-            $0.value == fee
-        })!.estimatedTime
+        guard let wait = fees?.first(where: { $0.value == fee })!.estimatedTime else {
+            return ""
+        }
+        
         let formatted = medianWaitFormatter.stringValue(from: wait)
         return formatted
     }

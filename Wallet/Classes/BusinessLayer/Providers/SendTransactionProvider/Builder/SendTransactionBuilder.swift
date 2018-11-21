@@ -56,6 +56,10 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
         defaultSendTxProvider.scanDelegate = delegate
     }
     
+    func setFees(_ fees: [EstimatedFee]?) {
+        defaultSendTxProvider.setFees(fees)
+    }
+    
     func build() -> SendTransactionProvider {
         return defaultSendTxProvider
     }

@@ -17,7 +17,6 @@ class MainTabBarInteractor {
     private let accountsUpdater: AccountsUpdaterProtocol
     private let txsUpdater: TransactionsUpdaterProtocol
     private let ratesUpdater: RatesUpdaterProtocol
-    private let feeUpdater: FeeUpdaterProtocol
     private let app: Application
     
     private var shortPollingChannelInput: ShortPollingChannel?
@@ -27,7 +26,6 @@ class MainTabBarInteractor {
          accountsUpdater: AccountsUpdaterProtocol,
          txsUpdater: TransactionsUpdaterProtocol,
          ratesUpdater: RatesUpdaterProtocol,
-         feeUpdater: FeeUpdaterProtocol,
          app: Application) {
         
         self.accountWatcher = accountWatcher
@@ -35,7 +33,6 @@ class MainTabBarInteractor {
         self.accountsUpdater = accountsUpdater
         self.txsUpdater = txsUpdater
         self.ratesUpdater = ratesUpdater
-        self.feeUpdater = feeUpdater
         self.app = app
         
         update()
@@ -88,7 +85,6 @@ extension MainTabBarInteractor {
         accountsUpdater.update(userId: user.id)
         txsUpdater.update(userId: user.id)
         ratesUpdater.update()
-//        feeUpdater.update()
     }
     
     private func signalPolling() {

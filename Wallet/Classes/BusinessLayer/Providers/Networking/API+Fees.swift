@@ -12,7 +12,7 @@ import Alamofire
 
 extension API {
     enum Fees {
-        case getFees(authToken: String, fromCurrency: Currency, toCurrency: Currency)
+        case getFees(authToken: String, currency: Currency, accountAddress: String, signHeader: SignHeader)
     }
 }
 
@@ -35,19 +35,22 @@ extension API.Fees: APIMethodProtocol {
     
     var headers: [String: String] {
         switch self {
-        case .getFees(let authToken, _, _):
+        case .getFees(let authToken, _, _, let signHeader):
             return [
-                "Authorization": "Bearer \(authToken)"
+                "Authorization": "Bearer \(authToken)",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
             ]
         }
     }
     
     var params: Params? {
         switch self {
-        case .getFees(_, let fromCurrency, let toCurrency):
+        case .getFees(_, let currency, let accountAddress, _):
             return [
-                "fromCurrency": fromCurrency.ISO.lowercased(),
-                "toCurrency": toCurrency.ISO.lowercased()
+                "currency": currency.ISO.lowercased(),
+                "accountAddress": accountAddress
             ]
         }
     }

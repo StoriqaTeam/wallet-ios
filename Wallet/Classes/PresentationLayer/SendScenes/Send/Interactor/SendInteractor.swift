@@ -17,15 +17,17 @@ class SendInteractor {
     private let sendTransactionBuilder: SendProviderBuilderProtocol
     private let cryptoAddressResolver: CryptoAddressResolverProtocol
     private let sendTransactionService: SendTransactionServiceProtocol
+    private let feeLoader: FeeLoaderProtocol
+    
     private var sendProvider: SendTransactionProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
-    private var feeUpadteChannelInput: FeeUpdateChannel?
     
     init(sendTransactionBuilder: SendProviderBuilderProtocol,
          accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
          cryptoAddressResolver: CryptoAddressResolverProtocol,
-         sendTransactionService: SendTransactionServiceProtocol) {
+         sendTransactionService: SendTransactionServiceProtocol,
+         feeLoader: FeeLoaderProtocol) {
         
         self.accountsProvider = accountsProvider
         self.sendTransactionBuilder = sendTransactionBuilder
@@ -33,16 +35,12 @@ class SendInteractor {
         self.cryptoAddressResolver = cryptoAddressResolver
         self.sendProvider = sendTransactionBuilder.build()
         self.sendTransactionService = sendTransactionService
-        
-        let account = accountWatcher.getAccount()
-        sendTransactionBuilder.set(account: account)
+        self.feeLoader = feeLoader
     }
     
     deinit {
         self.accountsUpadteChannelInput?.removeObserver(withId: self.objId)
         self.accountsUpadteChannelInput = nil
-        self.feeUpadteChannelInput?.removeObserver(withId: self.objId)
-        self.feeUpadteChannelInput = nil
     }
     
     // MARK: - Channels
@@ -55,16 +53,15 @@ class SendInteractor {
     func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
         self.accountsUpadteChannelInput = channel
     }
-    
-    func setFeeUpdateChannelInput(_ channel: FeeUpdateChannel) {
-        self.feeUpadteChannelInput = channel
-    }
 }
 
 
 // MARK: - SendInteractorInput
 
 extension SendInteractor: SendInteractorInput {
+    func setAddress(_ address: String) {
+        setAddress(address, updateFeesIfNeeded: true)
+    }
     
     func getAddress() -> String {
         return sendProvider.receiverAddress
@@ -103,19 +100,15 @@ extension SendInteractor: SendInteractorInput {
         updateTotal()
     }
     
-    func setCurrentAccount(index: Int) {
+    func setCurrentAccount(index: Int, receiverAddress: String) {
         let currentIndex = getAccountIndex()
         guard currentIndex != index else { return }
         
         let allAccounts = accountsProvider.getAllAccounts()
-        accountWatcher.setAccount(allAccounts[index])
         let account = allAccounts[index]
-        sendTransactionBuilder.set(account: account)
+        accountWatcher.setAccount(account)
         
-        updateAmount()
-        updateFeeCount()
-        updateFeeAndWait()
-        updateTotal()
+        updateState(receiverAddress: receiverAddress)
     }
     
     func setPaymentFee(index: Int) {
@@ -125,46 +118,25 @@ extension SendInteractor: SendInteractorInput {
         updateTotal()
     }
     
-    func setAddress(_ address: String) {
-        let currency = sendProvider.selectedAccount.currency
-        
-        guard !address.isEmpty else {
-            sendTransactionBuilder.setAddress("")
-            output.updateAddressIsValid(true)
-            output.updateFormIsValid(false)
-            return
-        }
-        
-        guard let addressCurrency = cryptoAddressResolver.resove(address: address) else {
-            sendTransactionBuilder.setAddress("")
-            output.updateAddressIsValid(false)
-            output.updateFormIsValid(false)
-            return
-        }
-        
-        switch addressCurrency {
-        case .eth where currency == .eth || currency == .stq:
-            sendTransactionBuilder.setAddress(address)
-        case .btc where currency == .btc:
-            sendTransactionBuilder.setAddress(address)
-        default:
-            sendTransactionBuilder.setAddress("")
-        }
-        
-        updateAddressValidity()
-    }
-    
     func getTransactionBuilder() -> SendProviderBuilderProtocol {
         return sendTransactionBuilder
     }
     
-    func updateState() {
+    func updateState(receiverAddress: String) {
         let account = accountWatcher.getAccount()
+        let previousCurrency = sendProvider.selectedAccount.currency
+
         sendTransactionBuilder.set(account: account)
-        
+        setAddress(receiverAddress, updateFeesIfNeeded: false)
         updateAmount()
         updateFeeCount()
         updateFeeAndWait()
+        
+        let address = sendProvider.receiverAddress
+        if account.currency != previousCurrency && !address.isEmpty {
+            updateFees()
+        }
+        
         updateTotal()
     }
     
@@ -173,11 +145,6 @@ extension SendInteractor: SendInteractorInput {
             self?.accountsDidUpdate(accounts)
         }
         self.accountsUpadteChannelInput?.addObserver(accountsObserver)
-        
-        let feeObserver = Observer<[Fee]>(id: self.objId) { [weak self] _ in
-            self?.feeDidUpdate()
-        }
-        self.feeUpadteChannelInput?.addObserver(feeObserver)
     }
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
@@ -185,7 +152,6 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func sendTransaction() {
-        
         let txToSend = sendProvider.createTransaction()
         let account = sendProvider.selectedAccount
         let fromAccount = account.id.lowercased()
@@ -213,9 +179,83 @@ extension SendInteractor: SendInteractorInput {
 // MARK: - Private methods
 
 extension SendInteractor {
-    private func feeDidUpdate() {
-        sendProvider.updateFees()
+    private func setAddress(_ address: String, updateFeesIfNeeded: Bool) {
+        let currency = sendProvider.selectedAccount.currency
         
+        guard !address.isEmpty else {
+            sendTransactionBuilder.setAddress("")
+            output.updateAddressIsValid(true)
+            output.updateFormIsValid(false)
+            updateEmptyFees()
+            return
+        }
+        
+        guard let addressCurrency = cryptoAddressResolver.resove(address: address) else {
+            sendTransactionBuilder.setAddress("")
+            output.updateAddressIsValid(false)
+            output.updateFormIsValid(false)
+            updateEmptyFees()
+            return
+        }
+        
+        let newAddress: String
+        
+        switch addressCurrency {
+        case .eth where currency == .eth || currency == .stq:
+            newAddress = address
+        case .btc where currency == .btc:
+            newAddress = address
+        default:
+            newAddress = ""
+            updateEmptyFees()
+        }
+        
+        let previousAddress = sendProvider.receiverAddress
+        sendTransactionBuilder.setAddress(newAddress)
+        
+        if updateFeesIfNeeded && !newAddress.isEmpty && newAddress != previousAddress {
+            updateFees()
+        }
+        
+        updateAddressValidity()
+    }
+    
+    private func updateFees() {
+        let currency = sendProvider.selectedAccount.currency
+        let accountAddress = sendProvider.receiverAddress
+        
+        guard !accountAddress.isEmpty else {
+            return
+        }
+        
+        output.setFeeUpdating(true)
+        sendTransactionBuilder.setFees(nil)
+        
+        
+        feeLoader.getFees(currency: currency, accountAddress: accountAddress) { [weak self] (result) in
+            switch result {
+            case .success(let fees):
+                self?.sendTransactionBuilder.setFees(fees)
+                
+                
+            case .failure(let error):
+                if let error = error as? FeeNetworkProviderError {
+                    switch error {
+                    case .wrongCurrency(let message):
+                        self?.output.setWrongCurrency(message: message)
+                    default: break
+                    }
+                }
+            }
+            self?.output.setFeeUpdating(false)
+            self?.updateFeeCount()
+            self?.updateFeeAndWait()
+            self?.updateTotal()
+        }
+        
+    }
+    
+    private func feeDidUpdate() {
         updateFeeCount()
         updateFeeAndWait()
         updateTotal()
@@ -267,6 +307,13 @@ extension SendInteractor {
         let count = sendProvider.getFeeWaitCount()
         let index = sendProvider.getFeeIndex()
         output.updatePaymentFees(count: count, selected: index)
+    }
+    
+    private func updateEmptyFees() {
+        sendTransactionBuilder.setFees(nil)
+        output.updatePaymentFee(nil)
+        output.updateMedianWait("")
+        output.updatePaymentFees(count: 0, selected: 0)
     }
     
     private func updateTotal() {
