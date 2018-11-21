@@ -346,6 +346,8 @@
 		A58EE3C62150379E0096C155 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58EE3C52150379E0096C155 /* Login.storyboard */; };
 		A5933D39219DAB910080C8C7 /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5933D38219DAB910080C8C7 /* KeyGenerator.swift */; };
 		A5933D3C219DBE230080C8C7 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5933D3B219DBE230080C8C7 /* Signer.swift */; };
+		A597577321A554850036C7E8 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577221A554850036C7E8 /* ExchangeRate.swift */; };
+		A597577521A554A80036C7E8 /* ExchangeRateNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577421A554A80036C7E8 /* ExchangeRateNetworkProvider.swift */; };
 		A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */; };
 		A5A52854216B940200DB03B6 /* TransactionDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */; };
 		A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */; };
@@ -1018,6 +1020,8 @@
 		A58EE3C52150379E0096C155 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		A5933D38219DAB910080C8C7 /* KeyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGenerator.swift; sourceTree = "<group>"; };
 		A5933D3B219DBE230080C8C7 /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
+		A597577221A554850036C7E8 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
+		A597577421A554A80036C7E8 /* ExchangeRateNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateNetworkProvider.swift; sourceTree = "<group>"; };
 		A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashTrackerConfigurator.swift; sourceTree = "<group>"; };
 		A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TransactionDetails.storyboard; sourceTree = "<group>"; };
 		A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDetailView.xib; sourceTree = "<group>"; };
@@ -2633,6 +2637,7 @@
 				A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */,
 				B8C5EDD52189A2FA00345B79 /* API+Rates.swift */,
 				CE288A17219EB02B0010FA3B /* API+Fees.swift */,
+				A597577421A554A80036C7E8 /* ExchangeRateNetworkProvider.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -4354,6 +4359,7 @@
 				A5743529217774E3006B4CAE /* Session.swift */,
 				B8C5EDDB2189ACE700345B79 /* Rate.swift */,
 				CE288A0B219EA1EA0010FA3B /* EstimatedFee.swift */,
+				A597577221A554850036C7E8 /* ExchangeRate.swift */,
 			);
 			path = PlainModels;
 			sourceTree = "<group>";
@@ -5207,6 +5213,7 @@
 				860E97FA0D267899D0A69A75 /* BiometryQuickLaunchViewOutput.swift in Sources */,
 				A574352A217774E3006B4CAE /* Session.swift in Sources */,
 				CE41F34F2181FC7500070D5D /* TransactionAccount.swift in Sources */,
+				A597577321A554850036C7E8 /* ExchangeRate.swift in Sources */,
 				42AAFB7B52547D34DE57DDA6 /* BiometryQuickLaunchViewController.swift in Sources */,
 				A5F59AB921624908005F1765 /* RealmStorable.swift in Sources */,
 				8654A9AF519CBAD05884EF9F /* BiometryQuickLaunchPresenter.swift in Sources */,
@@ -5428,6 +5435,7 @@
 				A58DB4E5218346E80024E463 /* ShortPollingTimer.swift in Sources */,
 				64E23EAB94A275122397F4F0 /* TransactionsViewInput.swift in Sources */,
 				A574352021777383006B4CAE /* SessionsViewInput.swift in Sources */,
+				A597577521A554A80036C7E8 /* ExchangeRateNetworkProvider.swift in Sources */,
 				2AED92047919143BAC2443D9 /* TransactionsViewOutput.swift in Sources */,
 				BD77230FE2D1F20DB9EB5064 /* TransactionsViewController.swift in Sources */,
 				8766665A802F01EF3B6DA3B3 /* TransactionsPresenter.swift in Sources */,
