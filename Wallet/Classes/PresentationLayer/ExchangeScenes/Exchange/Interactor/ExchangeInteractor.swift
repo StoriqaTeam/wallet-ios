@@ -16,6 +16,10 @@ class ExchangeInteractor {
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let exchangeProviderBuilder: ExchangeProviderBuilderProtocol
     private let sendTransactionService: SendTransactionServiceProtocol
+    private let exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let authTokenprovider: AuthTokenProviderProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
     
     private var exchangeProvider: ExchangeProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
@@ -24,12 +28,21 @@ class ExchangeInteractor {
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
          exchangeProviderBuilder: ExchangeProviderBuilderProtocol,
-         sendTransactionService: SendTransactionServiceProtocol) {
+         sendTransactionService: SendTransactionServiceProtocol,
+         exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol,
+         authTokenprovider: AuthTokenProviderProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol) {
+        
         self.accountsProvider = accountsProvider
         self.accountWatcher = accountWatcher
         self.exchangeProviderBuilder = exchangeProviderBuilder
         self.exchangeProvider = exchangeProviderBuilder.build()
         self.sendTransactionService = sendTransactionService
+        self.signHeaderFactory = signHeaderFactory
+        self.exchangeRateNetworkProvider = exchangeRateNetworkProvider
+        self.authTokenprovider = authTokenprovider
+        self.userDataStoreService = userDataStoreService
         
         let account = accountWatcher.getAccount()
         exchangeProviderBuilder.set(account: account)
@@ -146,6 +159,41 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         updateFeeCount()
         updateFeeAndWait()
         updateTotal()
+        
+        
+        let email = userDataStoreService.getCurrentUser().email
+        
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: email)
+        } catch {
+            log.error(error.localizedDescription)
+            return
+        }
+        
+        
+        authTokenprovider.currentAuthToken { (result) in
+            switch result {
+            case .success(let token):
+                self.exchangeRateNetworkProvider.getExchangeRate(authToken: token,
+                                                                 from: Currency.btc,
+                                                                 to: Currency.eth,
+                                                                 amountCurrency: Currency.btc,
+                                                                 amountInMinUnits: 1e9,
+                                                                 signHeader: signHeader,
+                                                                 queue: .main,
+                                                                 completion: { (result) in
+                                                                    switch result {
+                                                                    case .success(let exchangeRate):
+                                                                        print(exchangeRate)
+                                                                    case .failure(let error):
+                                                                        log.error(error)
+                                                                    }
+                })
+            case .failure(let error):
+                log.error(error)
+            }
+        }
     }
     
     
