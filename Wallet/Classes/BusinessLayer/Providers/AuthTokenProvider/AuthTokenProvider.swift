@@ -5,6 +5,7 @@
 //  Created by Storiqa on 23/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+//swiftlint:disable function_body_length
 
 import Foundation
 

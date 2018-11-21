@@ -145,7 +145,7 @@ class ExchangeProvider: ExchangeProviderProtocol {
     
     func createTransaction() -> Transaction {
         // FIXME: доделать
-        fatalError()
+        fatalError("createTransaction")
     }
     
 }

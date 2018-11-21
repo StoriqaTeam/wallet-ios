@@ -139,7 +139,7 @@ extension LoginService {
         
         switch authData {
         case .email(let email, _): currentEmail = email
-        case .social: fatalError("Needs email")
+        case .social(_, _, let email): currentEmail = email
         }
         
         let signHeader: SignHeader 

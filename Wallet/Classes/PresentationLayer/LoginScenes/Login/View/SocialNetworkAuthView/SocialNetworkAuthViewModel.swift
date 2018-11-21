@@ -66,21 +66,15 @@ class SocialNetworkAuthViewModel: NSObject {
                             return
                         }
                         
-                        guard let userInfo = result as? [String: String] else {
+                        guard let userInfo = result as? [String: String],
+                            let email = userInfo["email"] else {
                             let error = SocialNetworkViewModelError.emptyUserEmail
                             let result: Result<Token> = .failure(error)
                             self?.delegate.signInWithResult(result)
                             return
                         }
                         
-                        guard let email = userInfo["email"] else {
-                            let error = SocialNetworkViewModelError.emptyUserEmail
-                            let result: Result<Token> = .failure(error)
-                            self?.delegate.signInWithResult(result)
-                            return
-                        }
-                        
-                        let result: Result<Token> = .success((SocialNetworkTokenProvider.facebook, accessToken.authenticationToken, email: email))
+                        let result: Result<Token> = .success((.facebook, accessToken.authenticationToken, email: email))
                         self?.delegate.signInWithResult(result)
                     })
                 }
