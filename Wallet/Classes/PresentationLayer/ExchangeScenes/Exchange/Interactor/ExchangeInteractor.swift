@@ -159,41 +159,6 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         updateFeeCount()
         updateFeeAndWait()
         updateTotal()
-        
-        
-        let email = userDataStoreService.getCurrentUser().email
-        
-        let signHeader: SignHeader
-        do {
-            signHeader = try signHeaderFactory.createSignHeader(email: email)
-        } catch {
-            log.error(error.localizedDescription)
-            return
-        }
-        
-        
-        authTokenprovider.currentAuthToken { (result) in
-            switch result {
-            case .success(let token):
-                self.exchangeRateNetworkProvider.getExchangeRate(authToken: token,
-                                                                 from: Currency.btc,
-                                                                 to: Currency.eth,
-                                                                 amountCurrency: Currency.btc,
-                                                                 amountInMinUnits: 1e9,
-                                                                 signHeader: signHeader,
-                                                                 queue: .main,
-                                                                 completion: { (result) in
-                                                                    switch result {
-                                                                    case .success(let exchangeRate):
-                                                                        print(exchangeRate)
-                                                                    case .failure(let error):
-                                                                        log.error(error)
-                                                                    }
-                })
-            case .failure(let error):
-                log.error(error)
-            }
-        }
     }
     
     
