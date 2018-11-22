@@ -16,6 +16,7 @@ protocol ExchangeInteractorOutput: class {
     func updateTotal(_ total: Decimal, currency: Currency)
     func updateIsEnoughFunds(_ enough: Bool)
     func updateFormIsValid(_ valid: Bool)
+    func exchangeTxAmountOutOfLimit(min: String, max: String, currency: Currency)
     func exchangeTxFailed(message: String)
     func exchangeTxSucceed()
 }

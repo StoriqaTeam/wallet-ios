@@ -96,7 +96,6 @@
 		45FACDCCDC36DDB4D6F0E6BC /* QuickLaunchViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1CDC303071909C61FFEA7 /* QuickLaunchViewOutput.swift */; };
 		46338A8E78AF151F358EA4EF /* ConnectPhoneRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B5D21CB0AFC9B873659326 /* ConnectPhoneRouterInput.swift */; };
 		465860B22DAE53BD8C32F0EC /* SendConfirmPopUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8ABF0FAF2DDA5C452C3678 /* SendConfirmPopUpRouter.swift */; };
-		48A320CB752A6C4B8697A780 /* ExchangeConfirmPopUpModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA7BFEACC4F29428CB62F8 /* ExchangeConfirmPopUpModuleInput.swift */; };
 		48AE3AD16EB72471782C5432 /* DepositViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA382BF2247B3893EBBA5A86 /* DepositViewController.swift */; };
 		48D375B575D57A4CF0D1F591 /* FirstLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BB9E942735421F64D092F /* FirstLaunchViewController.swift */; };
 		490A73840930B45425B9C531 /* ExchangeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF16AA05A03400C8AC39F8F8 /* ExchangeModule.swift */; };
@@ -116,7 +115,6 @@
 		505F3C485B956B860664837B /* ExchangeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0849B2AAA3A871FDF9AB9401 /* ExchangeModuleInput.swift */; };
 		5190C80AF91A79F1263D9412 /* BiometryQuickLaunchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4C9E9BF72EBCC926DA594D /* BiometryQuickLaunchInteractor.swift */; };
 		5204D9FA16C33FE34875A023 /* ConnectPhonePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0980380C954DA1F652CCCDFB /* ConnectPhonePresenter.swift */; };
-		546CB52D2A24722585EDC101 /* ExchangeConfirmPopUpInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6805138B02C2D222FEE12F89 /* ExchangeConfirmPopUpInteractorInput.swift */; };
 		559A9C4888FBB801ECBBE758 /* FirstLaunchViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F87C123CCB845393E9A751 /* FirstLaunchViewInput.swift */; };
 		559FC8BA4571B6DFDC9C5935 /* EmailConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EDBF5F5648660EDE35636A /* EmailConfirmViewController.swift */; };
 		56F4D108002737EB88708931 /* RecepientAccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9B20AA95103F156AE1823 /* RecepientAccountsViewController.swift */; };
@@ -132,7 +130,6 @@
 		60AC208DB93701555B9756D2 /* Pods_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B791AF2B9D0414C8D95EEE /* Pods_Wallet.framework */; };
 		6198B66322F837450B616ECF /* PinQuickLaunchInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AF32F0B960F8792570D3E /* PinQuickLaunchInteractorInput.swift */; };
 		6214E91B27DC987F18161F2F /* MyWalletInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3208FF935CC66779A7912 /* MyWalletInteractorInput.swift */; };
-		62295A6BD30145E40C1B3F63 /* ExchangeConfirmPopUpViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A5D7348E1F8C3367E34850 /* ExchangeConfirmPopUpViewOutput.swift */; };
 		635DE3E3C1E8A42654DE5A1E /* ConnectPhoneViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0B91A3DD6F7B558027E75 /* ConnectPhoneViewInput.swift */; };
 		64E23EAB94A275122397F4F0 /* TransactionsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB3F5F89F8F320497E32D /* TransactionsViewInput.swift */; };
 		655663AF844FD6B0CB44B4C4 /* PasswordRecoveryConfirmModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA0B4EBFD1C925C15BC8DAD /* PasswordRecoveryConfirmModule.swift */; };
@@ -143,7 +140,6 @@
 		69C4EF18BCB61EA914545A3C /* RecepientAccountsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D75C496F9B9960A9C14344A /* RecepientAccountsInteractorInput.swift */; };
 		6A1D52E903F3D6B877A13671 /* PasswordRecoveryConfirmModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C992E8AFDE891E6143EC9F /* PasswordRecoveryConfirmModuleInput.swift */; };
 		6C058C8AD6F82CA0A27040AC /* AccountsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E778658164181DCDC63E9AE /* AccountsViewInput.swift */; };
-		6C24852C22AD9457FB14752A /* ExchangeConfirmPopUpRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA724DE1FB37CAE3D115383 /* ExchangeConfirmPopUpRouterInput.swift */; };
 		6C43917246FA54B4F5B61CB6 /* RecepientAccountsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F7369CD7F59356FBC31C9 /* RecepientAccountsModuleInput.swift */; };
 		6CF496C0626DE43C8B12A28C /* QuickLaunchInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5C18F46BC7569ABB715E75 /* QuickLaunchInteractorInput.swift */; };
 		6D2F370D03CC576C40C28A3A /* ProfileInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A00BBC1208ED512B27D9CE1 /* ProfileInteractorInput.swift */; };
@@ -176,9 +172,7 @@
 		7F478B40359F79AE643EF8EC /* SendRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1AA2A6115C09EE2EBBB4 /* SendRouterInput.swift */; };
 		806176EA94EC87C0F56391B6 /* PasswordEmailRecoveryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9382E17D9F1AE337DF105E81 /* PasswordEmailRecoveryRouter.swift */; };
 		808AA9FAC10B0D3D3CB59FC4 /* SendViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A5FB436718CE11763D266 /* SendViewOutput.swift */; };
-		813F1B63E086DB044EF8B901 /* ExchangeConfirmPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AD3A66EEEE129BA21D9E09 /* ExchangeConfirmPopUpViewController.swift */; };
 		81CF806732A0FB3967B8B297 /* DeviceRegisterConfirmRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0733ED48131F84879D2EACB3 /* DeviceRegisterConfirmRouterInput.swift */; };
-		828D2A26236A08047E9D2065 /* ExchangeConfirmPopUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF469184E4BAB00583A246F0 /* ExchangeConfirmPopUpPresenter.swift */; };
 		8317737E0B57F6F338C5DE9D /* ChangePasswordModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BDFA424764FAFD61C7CF37 /* ChangePasswordModuleInput.swift */; };
 		836A0F971469672F08324F42 /* PinInputModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72281BFA29D45AEE30F5DBB5 /* PinInputModule.swift */; };
 		83AFFB2DDED752D79D48DD23 /* TransactionsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F09457884B3F910E35FDDB /* TransactionsRouterInput.swift */; };
@@ -393,10 +387,8 @@
 		A7B879DB4C2E78DC60D11D96 /* TransactionFilterModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE8AC3F21EBDF40A3AFFBF8 /* TransactionFilterModulePresenter.swift */; };
 		A94569B43B0A5C670A352940 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5A627B3631F5EA37D9E794 /* SettingsRouter.swift */; };
 		A95375544EF55158D5B2C26D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1778CBA637B13B2E85930143 /* ChangePasswordViewController.swift */; };
-		AA35545F8F6B5E29CDAC5319 /* ExchangeConfirmPopUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30D5AF8E70B137F596C8DA /* ExchangeConfirmPopUpRouter.swift */; };
 		AA6D33F045D1085DB5FDD1CC /* MainTabBarModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDB1081E3B59616497BA0F0 /* MainTabBarModule.swift */; };
 		AAF839BB8A7DB1396F7FAC33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E68F2791C11BF019BE072 /* LoginViewController.swift */; };
-		AC048C36E72CE7AE14749343 /* ExchangeConfirmPopUpModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28CCA43EF8E62E8DB129296 /* ExchangeConfirmPopUpModule.swift */; };
 		AC64C1C921224168B77DB559 /* TransactionFilterModuleModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6803DF498658353F5739E266 /* TransactionFilterModuleModuleOutput.swift */; };
 		AE15451EF54175EA14849158 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5160A4CA4216CB99563B0FB6 /* ProfileViewController.swift */; };
 		AE2282A5E23671E2690EEBB7 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E27E24CE03DA7F24E9C3F22 /* ProfilePresenter.swift */; };
@@ -435,7 +427,6 @@
 		B98F7B6D236E5C7D1D3FD552 /* ExchangeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16F0648E2EB779A26C6732 /* ExchangeRouter.swift */; };
 		BC265F78A4724A6201226822 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1C3889E0ABA3DD0896A52 /* LoginRouter.swift */; };
 		BC5B1AC1C08666ED0D21E500 /* QRScannerInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C31B262DC570614CEE539 /* QRScannerInteractorOutput.swift */; };
-		BC7BDCC8E180102F19C4B6F9 /* ExchangeConfirmPopUpViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ACBEB23B8087606359055 /* ExchangeConfirmPopUpViewInput.swift */; };
 		BCA4BFC5046C983A17062737 /* DepositModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04F53F9D75BC74DFD477AD /* DepositModuleInput.swift */; };
 		BD77230FE2D1F20DB9EB5064 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14E7C3DB39C2B2C32A2D52 /* TransactionsViewController.swift */; };
 		BE9590E0480343163111D6DB /* TransactionFilterModuleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD74645140B8988B96C229A5 /* TransactionFilterModuleInteractor.swift */; };
@@ -450,7 +441,6 @@
 		C479078B225F756B4A8BD97E /* LoginViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E7D90E600F2A8F3F1D9300 /* LoginViewOutput.swift */; };
 		C4A238A1D91E3EAB1A09CB08 /* TransactionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6096D6763E2E99032C4001 /* TransactionsInteractor.swift */; };
 		C6DE89D0E5755BA05866C1DD /* PopUpInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BE08D431D523C941B8A2CA /* PopUpInteractorOutput.swift */; };
-		C85443C141795C7B6E609790 /* ExchangeConfirmPopUpInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8692ABC766D53F6E0D528 /* ExchangeConfirmPopUpInteractorOutput.swift */; };
 		C869AF886C63B5DE00965A14 /* DeviceRegisterConfirmInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27620998BC14338F44F7281D /* DeviceRegisterConfirmInteractorOutput.swift */; };
 		C8892A41B012C2FF8E244933 /* ChangePasswordModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708CDAE57CE222CE53E9344B /* ChangePasswordModule.swift */; };
 		C8D9A40E5B96755FB71A7946 /* QRScannerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2024533363B829AF033E25DA /* QRScannerModule.swift */; };
@@ -537,9 +527,6 @@
 		CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9962167B7A500EA9EED /* Currency.swift */; };
 		CE8CC99A2167D9C300EA9EED /* MyWalletDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9992167D9C300EA9EED /* MyWalletDataManager.swift */; };
 		CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC99C216B7EE700EA9EED /* AccountTypeResolver.swift */; };
-		CE8E2E0821A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E2E0721A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard */; };
-		CE8E2E0A21A6D08D00F0B395 /* PopUpExchangeFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E0921A6D08D00F0B395 /* PopUpExchangeFailedVM.swift */; };
-		CE8E2E0C21A6D91300F0B395 /* ExchangeConfirmPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E2E0B21A6D91300F0B395 /* ExchangeConfirmPopUp.storyboard */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE976482216252B9000E9336 /* SmallAccountCell.xib */; };
 		CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976487216263C0000E9336 /* QRCodeProvider.swift */; };
@@ -654,10 +641,8 @@
 		F686C7139F346CD48BB88FFC /* TransactionFilterViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACC3C72A78B25A08D98936 /* TransactionFilterViewOutput.swift */; };
 		F6FFC06886618EE0C23D164A /* DepositViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645AA16961B16438A2B53C92 /* DepositViewOutput.swift */; };
 		F724C3EE1C872FF0DF3C37D7 /* PinInputModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB5A3DC24D8C7A866DD767 /* PinInputModuleOutput.swift */; };
-		F7AE73FAAFF4E0570C9A922A /* ExchangeConfirmPopUpModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A2FACBFA9E96379A197F77 /* ExchangeConfirmPopUpModuleOutput.swift */; };
 		F84105BB46F917B0AB9317C9 /* BiometryQuickLaunchRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780B0994FB4C72C4468647B0 /* BiometryQuickLaunchRouterInput.swift */; };
 		F91599534C9DC69FA45F1EF4 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CA8F79C9B850C18EE16038 /* RegistrationPresenter.swift */; };
-		F9249488527F4D41EE917C2E /* ExchangeConfirmPopUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EBD84469FFD6149626AB43 /* ExchangeConfirmPopUpInteractor.swift */; };
 		F93614C131B3CE5DCBCF2C92 /* TransactionsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B93F5D4CB1B4D6000F8C9B /* TransactionsModuleOutput.swift */; };
 		F9E1E2A5FDFCDE04A10EBF47 /* MainTabBarModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBF6C57F49D49576D93C9E /* MainTabBarModuleInput.swift */; };
 		FADAF6221CEF898971879A0E /* AccountsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD47475EC5C86EAEFBA888B /* AccountsModuleOutput.swift */; };
@@ -763,9 +748,7 @@
 		366E45BC6A318B149B5612AD /* DepositInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositInteractor.swift; sourceTree = "<group>"; };
 		382A000FA7D500FEBEABD1CA /* ChangePasswordInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChangePasswordInteractorInput.swift; sourceTree = "<group>"; };
 		390C23610EB031515F3F3FD6 /* PasswordEmailRecoveryModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryModuleInput.swift; sourceTree = "<group>"; };
-		3A9ACBEB23B8087606359055 /* ExchangeConfirmPopUpViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpViewInput.swift; sourceTree = "<group>"; };
 		3AD5C5E1184438EBAB0618BC /* AccountsRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsRouterInput.swift; sourceTree = "<group>"; };
-		3CA724DE1FB37CAE3D115383 /* ExchangeConfirmPopUpRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpRouterInput.swift; sourceTree = "<group>"; };
 		3CBC2A11D9B65A4016994E69 /* FirstLaunchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchPresenter.swift; sourceTree = "<group>"; };
 		3CF7B40D3A60AB3A135372B4 /* BiometryQuickLaunchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchPresenter.swift; sourceTree = "<group>"; };
 		3CFE40FA45A19AA345622BF2 /* TransactionFilterModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleInput.swift; sourceTree = "<group>"; };
@@ -782,7 +765,6 @@
 		48A12B501B3C01B17C85EDE6 /* TransactionsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsModuleInput.swift; sourceTree = "<group>"; };
 		4A28663A0E1F5A3A399F7C7B /* TransactionFilterViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterViewInput.swift; sourceTree = "<group>"; };
 		4A36ECA6CA6EB262B594A23D /* ProfileModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModule.swift; sourceTree = "<group>"; };
-		4AAA7BFEACC4F29428CB62F8 /* ExchangeConfirmPopUpModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpModuleInput.swift; sourceTree = "<group>"; };
 		4B0B86D1518BF13364C96281 /* PinInputRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputRouterInput.swift; sourceTree = "<group>"; };
 		4B4ED0815E61CF22DB8393CF /* PasswordEmailRecoveryPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryPresenter.swift; sourceTree = "<group>"; };
 		4E584CA20C39C7B025BFCF2D /* EmailConfirmRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmailConfirmRouterInput.swift; sourceTree = "<group>"; };
@@ -825,7 +807,6 @@
 		677CA2E638264F4628E48B2E /* ExchangeInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeInteractor.swift; sourceTree = "<group>"; };
 		67E15D2B306FE84D4A71D4C0 /* PinQuickLaunchViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchViewOutput.swift; sourceTree = "<group>"; };
 		6803DF498658353F5739E266 /* TransactionFilterModuleModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionFilterModuleModuleOutput.swift; sourceTree = "<group>"; };
-		6805138B02C2D222FEE12F89 /* ExchangeConfirmPopUpInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpInteractorInput.swift; sourceTree = "<group>"; };
 		6A00BBC1208ED512B27D9CE1 /* ProfileInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileInteractorInput.swift; sourceTree = "<group>"; };
 		6AD618365786E3DA2F887FAA /* PasswordEmailRecoveryViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryViewOutput.swift; sourceTree = "<group>"; };
 		6B2C31B262DC570614CEE539 /* QRScannerInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorOutput.swift; sourceTree = "<group>"; };
@@ -848,7 +829,6 @@
 		75D1C3889E0ABA3DD0896A52 /* LoginRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		75F6A4E3FA81EB71FE408EAC /* LoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		77A58646680E6F707CC3318D /* BiometryQuickLaunchInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchInteractorOutput.swift; sourceTree = "<group>"; };
-		77A5D7348E1F8C3367E34850 /* ExchangeConfirmPopUpViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpViewOutput.swift; sourceTree = "<group>"; };
 		780B0994FB4C72C4468647B0 /* BiometryQuickLaunchRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchRouterInput.swift; sourceTree = "<group>"; };
 		782A15357B69ED5C10B1D116 /* PinInputViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputViewInput.swift; sourceTree = "<group>"; };
 		79978B4C5BD3C435F70B3AF9 /* ProfileViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewOutput.swift; sourceTree = "<group>"; };
@@ -917,7 +897,6 @@
 		A12D33681916760FB8F37D8E /* BiometryQuickLaunchViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometryQuickLaunchViewInput.swift; sourceTree = "<group>"; };
 		A182B8E7E3D62E9FB0DB3628 /* TransactionsInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionsInteractorOutput.swift; sourceTree = "<group>"; };
 		A1B27BA5EC4202B73FE8F821 /* PinInputnteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinInputnteractorInput.swift; sourceTree = "<group>"; };
-		A28CCA43EF8E62E8DB129296 /* ExchangeConfirmPopUpModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpModule.swift; sourceTree = "<group>"; };
 		A34AA72FDAEEE7FB56C574DA /* PinSetupModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinSetupModuleOutput.swift; sourceTree = "<group>"; };
 		A48885CF253B286522B46DE3 /* SendModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendModuleOutput.swift; sourceTree = "<group>"; };
 		A50086002150BD2B00C47015 /* PinInput.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PinInput.storyboard; sourceTree = "<group>"; };
@@ -1097,7 +1076,6 @@
 		B1A7DB7FCB9E33101C800989 /* ConnectPhoneInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectPhoneInteractorOutput.swift; sourceTree = "<group>"; };
 		B20AFFE8EBAFA104AF111038 /* FirstLaunchModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchModule.swift; sourceTree = "<group>"; };
 		B214F0A46EB4E0373905A0CF /* RecepientAccountsRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecepientAccountsRouterInput.swift; sourceTree = "<group>"; };
-		B2EBD84469FFD6149626AB43 /* ExchangeConfirmPopUpInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpInteractor.swift; sourceTree = "<group>"; };
 		B384185E28E51E830A7B3A42 /* TransactionDetailsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionDetailsModuleInput.swift; sourceTree = "<group>"; };
 		B3CD00DD04D35E33227747A4 /* AccountsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		B47A2E9D8F7B0491EC86237F /* RecepientAccountsViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecepientAccountsViewInput.swift; sourceTree = "<group>"; };
@@ -1184,7 +1162,6 @@
 		CE288A15219EAFCF0010FA3B /* FeeNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeNetworkProvider.swift; sourceTree = "<group>"; };
 		CE288A17219EB02B0010FA3B /* API+Fees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Fees.swift"; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		CE30D5AF8E70B137F596C8DA /* ExchangeConfirmPopUpRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpRouter.swift; sourceTree = "<group>"; };
 		CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLinkParser.swift; sourceTree = "<group>"; };
 		CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailConfirm.storyboard; sourceTree = "<group>"; };
 		CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEmailConfirmSuccessVM.swift; sourceTree = "<group>"; };
@@ -1238,9 +1215,6 @@
 		CE8CC9962167B7A500EA9EED /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		CE8CC9992167D9C300EA9EED /* MyWalletDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletDataManager.swift; sourceTree = "<group>"; };
 		CE8CC99C216B7EE700EA9EED /* AccountTypeResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeResolver.swift; sourceTree = "<group>"; };
-		CE8E2E0721A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeviceRegisterConfirm.storyboard; sourceTree = "<group>"; };
-		CE8E2E0921A6D08D00F0B395 /* PopUpExchangeFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpExchangeFailedVM.swift; sourceTree = "<group>"; };
-		CE8E2E0B21A6D91300F0B395 /* ExchangeConfirmPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExchangeConfirmPopUp.storyboard; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CE976482216252B9000E9336 /* SmallAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallAccountCell.xib; sourceTree = "<group>"; };
 		CE976487216263C0000E9336 /* QRCodeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeProvider.swift; sourceTree = "<group>"; };
@@ -1288,7 +1262,6 @@
 		CEFC9CA321590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPasswordRecoveryConfirmFailedVM.swift; sourceTree = "<group>"; };
 		CEFC9CAD215A140800962356 /* DeviceContactsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceContactsFetcher.swift; sourceTree = "<group>"; };
 		CEFC9CB5215A59E700962356 /* SendTransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionProvider.swift; sourceTree = "<group>"; };
-		CF469184E4BAB00583A246F0 /* ExchangeConfirmPopUpPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpPresenter.swift; sourceTree = "<group>"; };
 		CF8F0B2850093F1F2CAC624D /* ConnectPhoneViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectPhoneViewOutput.swift; sourceTree = "<group>"; };
 		CF962FEE45869770D4CEE25A /* PasswordRecoveryConfirmInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmInteractor.swift; sourceTree = "<group>"; };
 		CFAA74BEB37658866667A131 /* ChangePasswordViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewOutput.swift; sourceTree = "<group>"; };
@@ -1296,10 +1269,8 @@
 		D49396E582D646CBCCC1A469 /* FirstLaunchModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirstLaunchModuleInput.swift; sourceTree = "<group>"; };
 		D4E40DB92AE6C9CA32997780 /* TransactionDetailsViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewInput.swift; sourceTree = "<group>"; };
 		D5A1CDC303071909C61FFEA7 /* QuickLaunchViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuickLaunchViewOutput.swift; sourceTree = "<group>"; };
-		D6B8692ABC766D53F6E0D528 /* ExchangeConfirmPopUpInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpInteractorOutput.swift; sourceTree = "<group>"; };
 		D92E6A797943DE019CDDA1AD /* PasswordEmailRecoveryModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordEmailRecoveryModule.swift; sourceTree = "<group>"; };
 		D9346E648CDE41C22839F32B /* AccountsInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountsInteractorInput.swift; sourceTree = "<group>"; };
-		D9AD3A66EEEE129BA21D9E09 /* ExchangeConfirmPopUpViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpViewController.swift; sourceTree = "<group>"; };
 		D9B82869812679BB8D99763C /* QRScannerRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerRouter.swift; sourceTree = "<group>"; };
 		DA382BF2247B3893EBBA5A86 /* DepositViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositViewController.swift; sourceTree = "<group>"; };
 		DA6D985FDF9CE4E15B606476 /* DepositInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DepositInteractorOutput.swift; sourceTree = "<group>"; };
@@ -1317,7 +1288,6 @@
 		E523E81B6C7956E0629857F1 /* MainTabBarViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarViewOutput.swift; sourceTree = "<group>"; };
 		E54A17C419475A62BBD16C45 /* PinQuickLaunchModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinQuickLaunchModuleInput.swift; sourceTree = "<group>"; };
 		E6892BDCE8C4B88F2177183A /* RecepientAccountsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecepientAccountsInteractor.swift; sourceTree = "<group>"; };
-		E7A2FACBFA9E96379A197F77 /* ExchangeConfirmPopUpModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpModuleOutput.swift; sourceTree = "<group>"; };
 		E8DE60D3416CBB1526E45766 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
 		E915C3052BF99CAB17844FFD /* MainTabBarInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarInteractorOutput.swift; sourceTree = "<group>"; };
 		EBB2F52A00FAE31274E1D336 /* LoginModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleOutput.swift; sourceTree = "<group>"; };
@@ -1370,16 +1340,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0003B2528152C9D8478CB997 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				6805138B02C2D222FEE12F89 /* ExchangeConfirmPopUpInteractorInput.swift */,
-				D6B8692ABC766D53F6E0D528 /* ExchangeConfirmPopUpInteractorOutput.swift */,
-				B2EBD84469FFD6149626AB43 /* ExchangeConfirmPopUpInteractor.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
 		005086C7E463F91AABB74171 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -1588,14 +1548,6 @@
 				81C6FB667D6F74E21E62DD15 /* QuickLaunchRouter.swift */,
 			);
 			path = Router;
-			sourceTree = "<group>";
-		};
-		1506EAF9FA1820FCBCB81D6C /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				CF469184E4BAB00583A246F0 /* ExchangeConfirmPopUpPresenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		15769E94B721E789C79F858C /* View */ = {
@@ -2034,7 +1986,6 @@
 				E23FC67135B58752997E5F0D /* ExchangeInteractorInput.swift */,
 				2172969F81D16585F2E34234 /* ExchangeInteractorOutput.swift */,
 				677CA2E638264F4628E48B2E /* ExchangeInteractor.swift */,
-				CE8E2E0921A6D08D00F0B395 /* PopUpExchangeFailedVM.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2136,18 +2087,6 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		5B3C60D7A7DC77A34CDCEB10 /* ExchangeConfirmPopUp */ = {
-			isa = PBXGroup;
-			children = (
-				68A55ED02DFE36C97D18D3AD /* View */,
-				1506EAF9FA1820FCBCB81D6C /* Presenter */,
-				0003B2528152C9D8478CB997 /* Interactor */,
-				F693B34D48DCCA62A97C6345 /* Router */,
-				BE2C0F607D3B724257CF3102 /* Module */,
-			);
-			path = ExchangeConfirmPopUp;
-			sourceTree = "<group>";
-		};
 		5C77DE802363AA80F9795E84 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -2204,17 +2143,6 @@
 				FF3B0356D60C799459BDFFA2 /* Module */,
 			);
 			path = ConnectPhone;
-			sourceTree = "<group>";
-		};
-		68A55ED02DFE36C97D18D3AD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3A9ACBEB23B8087606359055 /* ExchangeConfirmPopUpViewInput.swift */,
-				77A5D7348E1F8C3367E34850 /* ExchangeConfirmPopUpViewOutput.swift */,
-				D9AD3A66EEEE129BA21D9E09 /* ExchangeConfirmPopUpViewController.swift */,
-				CE8E2E0B21A6D91300F0B395 /* ExchangeConfirmPopUp.storyboard */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		6958715DECA6DCB6DC67676A /* Module */ = {
@@ -2908,7 +2836,6 @@
 				198E8CDAC65594B3A80D9372 /* DeviceRegisterConfirmViewInput.swift */,
 				2CB3D4477AD54322BDA8D93E /* DeviceRegisterConfirmViewOutput.swift */,
 				E3E579AF9AC826846ECB976C /* DeviceRegisterConfirmViewController.swift */,
-				CE8E2E0721A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3318,6 +3245,7 @@
 				1F5CC2762745A1888809B71C /* FirstLaunch */,
 				7C3BA4968353AE0FB00EA5A2 /* PopUp */,
 				CE1E3460217DC8DD001B1477 /* QuickLaunchScenes */,
+				89FB6BAAF8B2889DDA16FC25 /* DeviceRegisterConfirm */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -3384,8 +3312,11 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				CE053AF021A5662300EA6E26 /* FeeLoader */,
+<<<<<<< HEAD
 				A597577621A5A7EE0036C7E8 /* ExchangeLoader */,
+=======
+				CE053AF021A5662300EA6E26 /* FeeLoader */,
+>>>>>>> 4dce1563886c06a622f3ecdf264cfffdc811612f
 				CEE6730621A2B755008FAC09 /* SendTransactionService */,
 				CEE672FE21A2AEB3008FAC09 /* ExchangeProvider */,
 				B870F1D621A3248F00BC53BE /* UserKeyManager */,
@@ -3859,16 +3790,6 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		BE2C0F607D3B724257CF3102 /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				4AAA7BFEACC4F29428CB62F8 /* ExchangeConfirmPopUpModuleInput.swift */,
-				E7A2FACBFA9E96379A197F77 /* ExchangeConfirmPopUpModuleOutput.swift */,
-				A28CCA43EF8E62E8DB129296 /* ExchangeConfirmPopUpModule.swift */,
-			);
-			path = Module;
-			sourceTree = "<group>";
-		};
 		C2AE9CA33F7352DF1310347D /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -4009,7 +3930,6 @@
 				CF3351575A07B8E3876198EB /* PasswordRecoveryConfirm */,
 				74E1EE79A36215B0DCA248BA /* PinSetup */,
 				20AF74ED816A9420367EB18E /* EmailConfirm */,
-				89FB6BAAF8B2889DDA16FC25 /* DeviceRegisterConfirm */,
 			);
 			path = LoginScenes;
 			sourceTree = "<group>";
@@ -4039,7 +3959,6 @@
 		CE1E345F217DC8A8001B1477 /* ExchangeScenes */ = {
 			isa = PBXGroup;
 			children = (
-				5B3C60D7A7DC77A34CDCEB10 /* ExchangeConfirmPopUp */,
 				405559271A78D279EC6AA1DF /* RecepientAccounts */,
 				35A0221638484423AA99FE5F /* Exchange */,
 			);
@@ -4752,15 +4671,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		F693B34D48DCCA62A97C6345 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				3CA724DE1FB37CAE3D115383 /* ExchangeConfirmPopUpRouterInput.swift */,
-				CE30D5AF8E70B137F596C8DA /* ExchangeConfirmPopUpRouter.swift */,
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
 		F8090C8C9DCC7D6C59EC515D /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -4943,12 +4853,10 @@
 				A574353921789BB3006B4CAE /* SessionCell.xib in Resources */,
 				A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */,
 				A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */,
-				CE8E2E0C21A6D91300F0B395 /* ExchangeConfirmPopUp.storyboard in Resources */,
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
 				A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */,
 				A51CB55D215942F400CDC80C /* RouteButton.xib in Resources */,
 				CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */,
-				CE8E2E0821A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard in Resources */,
 				A58EE3C62150379E0096C155 /* Login.storyboard in Resources */,
 				A560C743216B57F9009F0E95 /* SettingsHeaderView.xib in Resources */,
 				CE5FAFB92153801F009E707E /* PinQuickLaunch.storyboard in Resources */,
@@ -5248,7 +5156,6 @@
 				A5B7820F215E241800EFD1A5 /* BitcoinAddressValidator.swift in Sources */,
 				39D7E17D89D8B4417C0931DE /* PasswordRecoveryConfirmPresenter.swift in Sources */,
 				CEE6730321A2AEE4008FAC09 /* ExchangeProviderBuilder.swift in Sources */,
-				CE8E2E0A21A6D08D00F0B395 /* PopUpExchangeFailedVM.swift in Sources */,
 				CEFC9C9A21590D1B00962356 /* PopUpRegistrationFailedVM.swift in Sources */,
 				2AB82AFB4252B3D2787F924C /* PasswordRecoveryConfirmInteractorInput.swift in Sources */,
 				1E6B3F5DDE41BEA1DC5FAD1D /* PasswordRecoveryConfirmInteractorOutput.swift in Sources */,
@@ -5662,18 +5569,6 @@
 				37764CF0928FD1FE3203A060 /* DeviceRegisterConfirmModuleInput.swift in Sources */,
 				8682E1B3ED20AF23E0A152EB /* DeviceRegisterConfirmModuleOutput.swift in Sources */,
 				A322751EEA14E86AD51FCE56 /* DeviceRegisterConfirmModule.swift in Sources */,
-				BC7BDCC8E180102F19C4B6F9 /* ExchangeConfirmPopUpViewInput.swift in Sources */,
-				62295A6BD30145E40C1B3F63 /* ExchangeConfirmPopUpViewOutput.swift in Sources */,
-				813F1B63E086DB044EF8B901 /* ExchangeConfirmPopUpViewController.swift in Sources */,
-				828D2A26236A08047E9D2065 /* ExchangeConfirmPopUpPresenter.swift in Sources */,
-				546CB52D2A24722585EDC101 /* ExchangeConfirmPopUpInteractorInput.swift in Sources */,
-				C85443C141795C7B6E609790 /* ExchangeConfirmPopUpInteractorOutput.swift in Sources */,
-				F9249488527F4D41EE917C2E /* ExchangeConfirmPopUpInteractor.swift in Sources */,
-				6C24852C22AD9457FB14752A /* ExchangeConfirmPopUpRouterInput.swift in Sources */,
-				AA35545F8F6B5E29CDAC5319 /* ExchangeConfirmPopUpRouter.swift in Sources */,
-				48A320CB752A6C4B8697A780 /* ExchangeConfirmPopUpModuleInput.swift in Sources */,
-				F7AE73FAAFF4E0570C9A922A /* ExchangeConfirmPopUpModuleOutput.swift in Sources */,
-				AC048C36E72CE7AE14749343 /* ExchangeConfirmPopUpModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

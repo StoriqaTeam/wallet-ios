@@ -26,10 +26,10 @@ class ExchangeModule {
                                             accountWatcher: accountWatcher,
                                             exchangeProviderBuilder: exchangeProviderBuilder,
                                             sendTransactionService: app.sendTransactionService,
-                                            exchangeRateNetworkProvider: app.exchangeRateNetworkProvider,
                                             signHeaderFactory: app.signHeaderFactory,
                                             authTokenprovider: app.authTokenProvider,
-                                            userDataStoreService: app.userDataStoreService)
+                                            userDataStoreService: app.userDataStoreService,
+                                            exchangeRatesLoader: app.exchangeLoader)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController

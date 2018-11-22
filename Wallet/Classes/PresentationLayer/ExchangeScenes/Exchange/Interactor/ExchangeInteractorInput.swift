@@ -17,6 +17,8 @@ protocol ExchangeInteractorInput: class {
     func getAmount() -> Decimal
     func getAccountCurrency() -> Currency
     func getRecepientCurrency() -> Currency
+    func getAccountName() -> String
+    func getRecepientAccountName() -> String
     
     func setCurrentAccount(index: Int)
     func setAmount(_ amount: Decimal)

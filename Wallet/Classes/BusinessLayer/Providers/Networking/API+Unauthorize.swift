@@ -193,7 +193,7 @@ extension API.Unauthorized: APIMethodProtocol {
             ]
         case .confirmAddDevice(let deviceConfirmToken):
             return [
-                "deviceConfirmToken": deviceConfirmToken
+                "token": deviceConfirmToken
             ]
         }
     }

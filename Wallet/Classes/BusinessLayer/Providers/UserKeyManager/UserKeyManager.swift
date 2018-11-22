@@ -10,7 +10,7 @@ import Foundation
 
 protocol UserKeyManagerProtocol {
     func getPrivateKeyFor(email: String) -> PrivateKey?
-    func addPrivateKey(email: String) -> PrivateKey?
+    func addPrivateKeyIfNeeded(email: String) -> PrivateKey?
     func clearUserKeyData()
 }
 
@@ -44,7 +44,11 @@ class UserKeyManager: UserKeyManagerProtocol {
     ///   - email: user email.
     /// - Returns: return generated private key, otherwise nil.
     
-    func addPrivateKey(email: String) -> PrivateKey? {
+    func addPrivateKeyIfNeeded(email: String) -> PrivateKey? {
+        if let privateKey = getPrivateKeyFor(email: email) {
+            return privateKey
+        }
+        
         guard let privateKey = try? keyGenerator.generatePrivKey() else { return nil }
         
         if let pairs = keychain.privKeyEmail {

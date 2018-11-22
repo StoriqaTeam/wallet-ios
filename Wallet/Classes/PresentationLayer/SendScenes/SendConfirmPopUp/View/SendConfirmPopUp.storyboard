@@ -30,7 +30,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6T1-4O-HpI">
                                                         <rect key="frame" x="0.0" y="0.0" width="270" height="169.5"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="successIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCR-wq-X7r">
+                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sendBigIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCR-wq-X7r">
                                                                 <rect key="frame" x="65" y="15" width="140" height="140"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="bCR-wq-X7r" secondAttribute="height" id="Oig-UZ-1CA"/>
@@ -223,6 +223,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="successIcon" width="141" height="100"/>
+        <image name="sendBigIcon" width="66" height="78"/>
     </resources>
 </document>

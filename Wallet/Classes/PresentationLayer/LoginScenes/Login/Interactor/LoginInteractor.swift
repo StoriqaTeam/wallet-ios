@@ -66,7 +66,11 @@ extension LoginInteractor: LoginInteractorInput {
     
     func signIn(email: String, password: String) {
         authData = AuthData.email(email: email, password: password)
-        setNewPrivateKeyIfNeeded(with: email)
+        
+        guard let _ = userKeyManager.addPrivateKeyIfNeeded(email: email) else {
+            log.error("Fail to add pair email and private key")
+            return
+        }
         
         loginService.signIn(email: email, password: password) { [weak self] (result) in
             switch result {
@@ -93,7 +97,12 @@ extension LoginInteractor: LoginInteractorInput {
     
     func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, email: String) {
         authData = AuthData.social(provider: tokenProvider, token: oauthToken, email: email)
-        setNewPrivateKeyIfNeeded(with: email)
+        
+        guard let _ = userKeyManager.addPrivateKeyIfNeeded(email: email) else {
+            log.error("Fail to add pair email and private key")
+            return
+        }
+        
         loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken, email: email) { [weak self] (result) in
             switch result {
             case .success:
@@ -120,7 +129,11 @@ extension LoginInteractor: LoginInteractorInput {
         
         switch authData {
         case .email(let email, let password):
-            setNewPrivateKeyIfNeeded(with: email)
+            guard let _ = userKeyManager.addPrivateKeyIfNeeded(email: email) else {
+                log.error("Fail to add pair email and private key")
+                return
+            }
+            
             signIn(email: email, password: password)
         case .social(let provider, let token, let email):
             signIn(tokenProvider: provider, oauthToken: token, email: email)
@@ -175,14 +188,6 @@ extension LoginInteractor {
             output.showQuickLaunch()
         } else {
             output.showPinQuickLaunch()
-        }
-    }
-    
-    private func setNewPrivateKeyIfNeeded(with email: String) {
-        guard userKeyManager.getPrivateKeyFor(email: email) == nil else { return }
-        guard let _ = userKeyManager.addPrivateKey(email: email) else {
-            log.error("Fail to add pair email and private key")
-            return
         }
     }
 }

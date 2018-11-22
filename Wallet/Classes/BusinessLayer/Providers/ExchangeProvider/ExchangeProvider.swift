@@ -5,6 +5,7 @@
 //  Created by Storiqa on 19/11/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 
@@ -13,11 +14,13 @@ protocol ExchangeProviderProtocol: class {
     var selectedAccount: Account { get }
     var recepientAccount: Account? { get }
     var amount: Decimal { get }
+    var exchangeRate: ExchangeRate { get set }
     
     func getRecepientAccounts() -> [Account]
     func getSubtotal() -> Decimal
+    func getAmountInMinUnits() -> Decimal
     func isEnoughFunds() -> Bool
-    func createTransaction() -> Transaction
+    func createExchangeTransaction() -> Transaction
 }
 
 
@@ -34,9 +37,12 @@ class ExchangeProvider: ExchangeProviderProtocol {
             updateConverter()
         }
     }
+    
     var amount: Decimal
+    var exchangeRate: ExchangeRate
     
     private var recepientAccounts = [Account]()
+    private var amountToSend: Decimal = 0
     
     private let accountsProvider: AccountsProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
@@ -54,6 +60,7 @@ class ExchangeProvider: ExchangeProviderProtocol {
         // default build
         self.amount = 0
         self.selectedAccount = accountsProvider.getAllAccounts().first!
+        self.exchangeRate = ExchangeRate()
         
         updateRecepientAccounts()
         recepientAccount = recepientAccounts.first
@@ -65,13 +72,22 @@ class ExchangeProvider: ExchangeProviderProtocol {
     }
     
     func getSubtotal() -> Decimal {
-        guard !amount.isZero else {
+        guard !amount.isZero else { return 0 }
+        guard isValidExchangeRate() else { return 0 }
+        
+        let rate = exchangeRate.rate
+        amountToSend = amount / rate
+        return amountToSend
+    }
+    
+    func getAmountInMinUnits() -> Decimal {
+        guard let recepientAccount = recepientAccount else {
             return 0
         }
         
-        let currency = selectedAccount.currency
-        let converted = currencyConverter.convert(amount: amount, to: currency)
-        return converted
+        let currency = recepientAccount.currency
+        let inMinUnits = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
+        return inMinUnits
     }
     
     func isEnoughFunds() -> Bool {
@@ -82,9 +98,32 @@ class ExchangeProvider: ExchangeProviderProtocol {
         return inMinUnits.isLessThanOrEqualTo(available)
     }
     
-    func createTransaction() -> Transaction {
-        // FIXME: доделать
-        fatalError("createTransaction")
+    func createExchangeTransaction() -> Transaction {
+        
+        let uuid = UUID().uuidString
+        let timestamp = Date()
+        let currency = selectedAccount.currency
+        let fromAddress = selectedAccount.accountAddress
+        let toAddress = recepientAccount!.accountAddress
+        let toAccount = TransactionAccount(accountId: recepientAccount!.id, ownerName: recepientAccount!.name)
+        
+        let toValue = denominationUnitsConverter.amountToMinUnits(amount, currency: recepientAccount!.currency)
+        
+        let transaction = Transaction(id: uuid,
+                                      fromAddress: [fromAddress],
+                                      fromAccount: [],
+                                      toAddress: toAddress,
+                                      toAccount: toAccount,
+                                      fromValue: 0, // не используется
+            fromCurrency: currency,
+            toValue: toValue,
+            toCurrency: recepientAccount!.currency,
+            fee: 0,
+            blockchainIds: [],
+            createdAt: timestamp,
+            updatedAt: timestamp,
+            status: .pending)
+        return transaction
     }
     
 }
@@ -114,4 +153,16 @@ extension ExchangeProvider {
         currencyConverter = converterFactory.createConverter(from: currency)
     }
     
+    private func isValidExchangeRate() -> Bool {
+        let from = exchangeRate.from
+        let to = exchangeRate.to
+        
+        let selectedFrom = selectedAccount.currency
+        guard let selectedTo = recepientAccount?.currency else { return false }
+        
+        if from == to { return false }
+        if selectedTo == to && selectedFrom == from { return true }
+        
+        return false
+    }
 }

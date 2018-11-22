@@ -110,10 +110,10 @@ extension SendPresenter: SendViewOutput {
     
     func sendButtonPressed() {
         let amount = interactor.getAmount()
-        let fee = interactor.getFee()
+        let fee = interactor.getFee() ?? 0
         let currency = interactor.getCurrency()
         let amountString = getStringFrom(amount: amount, currency: currency)
-        let feeString = getStringFrom(amount: fee, currency: currency)
+        let feeString = currencyFormatter.getStringFrom(amount: fee, currency: currency)
         let address = interactor.getAddress()
         let confirmTxBlock = { [weak self] in
             self?.storiqaLoader.startLoader()

@@ -47,7 +47,7 @@ extension API.Rates: APIMethodProtocol {
         }
     }
     
-    var headers: [String : String] {
+    var headers: [String: String] {
         switch self {
         case .getRates:
             return [:]

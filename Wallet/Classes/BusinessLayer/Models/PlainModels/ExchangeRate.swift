@@ -49,4 +49,17 @@ extension ExchangeRate {
         self.updatedAt = updatedDate
         self.expiration = expirationDate
     }
+    
+    
+    // Default init
+    init() {
+        self.init(id: "0",
+                  from: .fiat,
+                  to: .fiat,
+                  rate: 1488,
+                  amount: 1488,
+                  expiration: Date(),
+                  createdAt: Date(),
+                  updatedAt: Date())
+    }
 }

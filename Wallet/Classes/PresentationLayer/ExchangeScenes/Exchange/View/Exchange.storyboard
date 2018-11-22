@@ -253,9 +253,12 @@
                                                                     <constraint firstAttribute="width" priority="751" constant="334" id="056-bq-ajj"/>
                                                                     <constraint firstAttribute="height" constant="45" id="fvc-2L-PuM"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Send">
+                                                                <state key="normal" title="Exchange">
                                                                     <color key="titleColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="exchangeButtonPressed:" destination="pnf-EG-l7q" eventType="touchUpInside" id="0Nd-3K-CyN"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

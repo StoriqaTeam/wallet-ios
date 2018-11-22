@@ -104,7 +104,21 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func exchangeButtonPressed() {
-        //TODO: exchangeButtonPressed
+        let fromAccount = interactor.getAccountName()
+        let toAccount = interactor.getRecepientAccountName()
+        let currency = interactor.getRecepientCurrency()
+        let decimalAmount = interactor.getAmount()
+        let amountStr = currencyFormatter.getStringFrom(amount: decimalAmount, currency: currency)
+        let confirmTxBlock = { [weak self] in
+            self?.storiqaLoader.startLoader()
+            self?.interactor.sendTransaction()
+        }
+        
+        router.showConfirm(fromAccount: fromAccount,
+                           toAccount: toAccount,
+                           amount: amountStr,
+                           confirmTxBlock: confirmTxBlock,
+                           from: view.viewController)
     }
     
 }
@@ -158,16 +172,25 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setButtonEnabled(valid)
     }
     
+    func exchangeTxAmountOutOfLimit(min: String, max: String, currency: Currency) {
+        storiqaLoader.stopLoader()
+        
+        let minAmountStr = currencyFormatter.getStringFrom(amount: min.decimalValue(), currency: currency)
+        let maxAmountStr = currencyFormatter.getStringFrom(amount: max.decimalValue(), currency: currency)
+        let message = "Amount should be between \(minAmountStr) and \(maxAmountStr)"
+        
+        router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
+    }
+    
     func exchangeTxFailed(message: String) {
-        // TODO: exchangeTxFailed
-        print("exchangeTxFailed")
+        storiqaLoader.stopLoader()
+        router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
     }
     
     func exchangeTxSucceed() {
-        // TODO: exchangeTxSucceed
-        print("exchangeTxSucceed")
+        storiqaLoader.stopLoader()
+        router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
     }
-    
 
 }
 
@@ -195,6 +218,26 @@ extension ExchangePresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccount(index: newIndex)
         view.setNewPage(newIndex)
+    }
+}
+
+
+// MARK: - PopUpExchangeFailedVMDelegate
+
+extension ExchangePresenter: PopUpExchangeFailedVMDelegate {
+    func retry() {
+        storiqaLoader.startLoader()
+        interactor.sendTransaction()
+    }
+}
+
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension ExchangePresenter: PopUpSendConfirmSuccessVMDelegate {
+    func okButtonPressed() {
+        interactor.clearBuilder()
+        interactor.updateState()
     }
 }
 

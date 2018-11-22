@@ -15,13 +15,15 @@ class DeviceRegisterConfirmModule {
             token: token,
             confirmAddDeviceNetworkProvider: app.confirmAddDeviceNetworkProvider)
         
-        let viewController = DeviceRegisterConfirmViewController()
+        let storyboard = UIStoryboard(name: "DeviceRegisterConfirm", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "DeviceRegisterConfirmVC")
+            as! DeviceRegisterConfirmViewController
         
         interactor.output = presenter
         
+        presenter.view = viewController
         viewController.output = presenter
         
-        presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor
         
