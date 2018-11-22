@@ -31,9 +31,9 @@ extension DeviceRegisterConfirmRouter: DeviceRegisterConfirmRouterInput {
     }
     
     func showFailure(message: String,
-                     popUpDelegate: PopUpPasswordRecoveryConfirmFailedVMDelegate,
+                     popUpDelegate: PopUpEmailConfirmFailedVMDelegate,
                      from viewController: UIViewController) {
-        let viewModel = PopUpPasswordRecoveryConfirmFailedVM(message: message)
+        let viewModel = PopUpEmailConfirmFailedVM(message: message)
         viewModel.delegate = popUpDelegate
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }

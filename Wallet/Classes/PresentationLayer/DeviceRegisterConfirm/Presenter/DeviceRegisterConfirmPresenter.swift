@@ -37,10 +37,12 @@ extension DeviceRegisterConfirmPresenter: DeviceRegisterConfirmViewOutput {
 
 extension DeviceRegisterConfirmPresenter: DeviceRegisterConfirmInteractorOutput {
     func confirmationSucceed() {
+        storiqaLoader.stopLoader()
         router.showSuccess(popUpDelegate: self, from: view.viewController)
     }
     
     func confirmationFailed(message: String) {
+        storiqaLoader.stopLoader()
         router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
     }
 }
@@ -64,11 +66,15 @@ extension DeviceRegisterConfirmPresenter: PopUpConfirmDeviceRegisterSucceedVMDel
 }
 
 
-// MARK: - PopUpPasswordRecoveryConfirmFailedVMDelegate
+// MARK: - PopUpEmailConfirmFailedVMDelegate
 
-extension DeviceRegisterConfirmPresenter: PopUpPasswordRecoveryConfirmFailedVMDelegate {
-    func retry() {
+extension DeviceRegisterConfirmPresenter: PopUpEmailConfirmFailedVMDelegate {
+    func retryButtonPressed() {
         registerDevice()
+    }
+    
+    func cancelButtonPressed() {
+        router.showLogin()
     }
 }
 

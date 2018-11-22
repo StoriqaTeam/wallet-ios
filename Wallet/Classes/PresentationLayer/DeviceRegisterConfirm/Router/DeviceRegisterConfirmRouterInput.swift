@@ -13,7 +13,7 @@ protocol DeviceRegisterConfirmRouterInput: class {
     func showSuccess(popUpDelegate: PopUpConfirmDeviceRegisterSucceedVMDelegate,
                      from viewController: UIViewController)
     func showFailure(message: String,
-                     popUpDelegate: PopUpPasswordRecoveryConfirmFailedVMDelegate,
+                     popUpDelegate: PopUpEmailConfirmFailedVMDelegate,
                      from viewController: UIViewController)
     func showLogin()
 }

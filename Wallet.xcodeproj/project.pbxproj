@@ -527,6 +527,7 @@
 		CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9962167B7A500EA9EED /* Currency.swift */; };
 		CE8CC99A2167D9C300EA9EED /* MyWalletDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9992167D9C300EA9EED /* MyWalletDataManager.swift */; };
 		CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC99C216B7EE700EA9EED /* AccountTypeResolver.swift */; };
+		CE8E2E0821A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E2E0721A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE976482216252B9000E9336 /* SmallAccountCell.xib */; };
 		CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976487216263C0000E9336 /* QRCodeProvider.swift */; };
@@ -1215,6 +1216,7 @@
 		CE8CC9962167B7A500EA9EED /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		CE8CC9992167D9C300EA9EED /* MyWalletDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletDataManager.swift; sourceTree = "<group>"; };
 		CE8CC99C216B7EE700EA9EED /* AccountTypeResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeResolver.swift; sourceTree = "<group>"; };
+		CE8E2E0721A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeviceRegisterConfirm.storyboard; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CE976482216252B9000E9336 /* SmallAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallAccountCell.xib; sourceTree = "<group>"; };
 		CE976487216263C0000E9336 /* QRCodeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeProvider.swift; sourceTree = "<group>"; };
@@ -2836,6 +2838,7 @@
 				198E8CDAC65594B3A80D9372 /* DeviceRegisterConfirmViewInput.swift */,
 				2CB3D4477AD54322BDA8D93E /* DeviceRegisterConfirmViewOutput.swift */,
 				E3E579AF9AC826846ECB976C /* DeviceRegisterConfirmViewController.swift */,
+				CE8E2E0721A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4854,6 +4857,7 @@
 				A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */,
 				A51CB55D215942F400CDC80C /* RouteButton.xib in Resources */,
 				CE5FAFBB21538653009E707E /* BiometryQuickLaunch.storyboard in Resources */,
+				CE8E2E0821A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard in Resources */,
 				A58EE3C62150379E0096C155 /* Login.storyboard in Resources */,
 				A560C743216B57F9009F0E95 /* SettingsHeaderView.xib in Resources */,
 				CE5FAFB92153801F009E707E /* PinQuickLaunch.storyboard in Resources */,
