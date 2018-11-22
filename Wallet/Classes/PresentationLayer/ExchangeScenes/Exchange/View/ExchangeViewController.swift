@@ -231,6 +231,7 @@ extension ExchangeViewController {
         
         errorLabel.textColor = Theme.Text.Color.errorRed
         
+        errorLabel.text = ""
         errorLabel.isHidden = true
         exchangeButton.isEnabled = false
         
@@ -277,12 +278,16 @@ extension ExchangeViewController {
         
         guard delta > 0 else { return }
         
+        scrollView.contentOffset = CGPoint(x: 0, y: delta)
+        
         if scrollView.contentSize.height < view.frame.height {
             delta += view.frame.height - scrollView.contentSize.height
         }
-        
-        scrollView.contentOffset = CGPoint(x: 0, y: delta)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
+        
+        UIView.animate(withDuration: keyboardAnimationDelay) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
