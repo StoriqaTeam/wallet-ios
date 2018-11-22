@@ -25,6 +25,7 @@ extension ExchangeRate {
     
     init?(json: JSON) {
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         dateFormatter.dateFormat = Constants.DateFormats.txDateString
         
         guard let id = json["id"].string,

@@ -355,6 +355,7 @@
 		A597577321A554850036C7E8 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577221A554850036C7E8 /* ExchangeRate.swift */; };
 		A597577521A554A80036C7E8 /* ExchangeRateNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577421A554A80036C7E8 /* ExchangeRateNetworkProvider.swift */; };
 		A597577821A5A8210036C7E8 /* ExchangeRatesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577721A5A8210036C7E8 /* ExchangeRatesLoader.swift */; };
+		A597577A21A6E4540036C7E8 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577921A6E4540036C7E8 /* Order.swift */; };
 		A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */; };
 		A5A52854216B940200DB03B6 /* TransactionDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */; };
 		A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */; };
@@ -1045,6 +1046,7 @@
 		A597577221A554850036C7E8 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		A597577421A554A80036C7E8 /* ExchangeRateNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateNetworkProvider.swift; sourceTree = "<group>"; };
 		A597577721A5A8210036C7E8 /* ExchangeRatesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesLoader.swift; sourceTree = "<group>"; };
+		A597577921A6E4540036C7E8 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashTrackerConfigurator.swift; sourceTree = "<group>"; };
 		A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TransactionDetails.storyboard; sourceTree = "<group>"; };
 		A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDetailView.xib; sourceTree = "<group>"; };
@@ -4455,6 +4457,7 @@
 				B8C5EDDB2189ACE700345B79 /* Rate.swift */,
 				CE288A0B219EA1EA0010FA3B /* EstimatedFee.swift */,
 				A597577221A554850036C7E8 /* ExchangeRate.swift */,
+				A597577921A6E4540036C7E8 /* Order.swift */,
 			);
 			path = PlainModels;
 			sourceTree = "<group>";
@@ -5204,6 +5207,7 @@
 				A5C12E4B217DE8CC00A7D68C /* Strings.swift in Sources */,
 				A574352C217775AE006B4CAE /* RealmSession.swift in Sources */,
 				A5B7820D215E236F00EFD1A5 /* Network.swift in Sources */,
+				A597577A21A6E4540036C7E8 /* Order.swift in Sources */,
 				A51CB5472158E0DB00CDC80C /* TransactionsDataManager.swift in Sources */,
 				F0868C4BC96F8724DDDD2386 /* RegistrationViewOutput.swift in Sources */,
 				7D2290D15CEAF84FA8628C09 /* RegistrationViewController.swift in Sources */,
