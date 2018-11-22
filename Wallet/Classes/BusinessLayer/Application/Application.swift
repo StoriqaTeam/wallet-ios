@@ -136,10 +136,6 @@ class Application {
                                                                                              accountsUpdater: self.accountsUpdater,
                                                                                              txnUpdater: self.transactionsUpdater,
                                                                                              signHeaderFactory: self.signHeaderFactory)
-    lazy var feeLoader: FeeLoaderProtocol = FeeLoader(userDataStore: self.userDataStoreService,
-                                                      authTokenProvider: self.authTokenProvider,
-                                                      signHeaderFactory: self.signHeaderFactory,
-                                                      feeNetworkProvider: self.feeNetworkProvider)
     
     
     // MARK: - Converters and formattera
@@ -184,6 +180,10 @@ class Application {
                                                                                authTokenProvider: self.authTokenProvider,
                                                                                signHeaderFactory: self.signHeaderFactory,
                                                                                exchangeRatesNetworkProvider: self.exchangeRateNetworkProvider)
+    lazy var feeLoader: FeeLoaderProtocol = FeeLoader(userDataStore: self.userDataStoreService,
+                                                      authTokenProvider: self.authTokenProvider,
+                                                      signHeaderFactory: self.signHeaderFactory,
+                                                      feeNetworkProvider: self.feeNetworkProvider)
     
     // MARK: - Social Networks
     lazy var facebookLoginManager: LoginManager = LoginManager()

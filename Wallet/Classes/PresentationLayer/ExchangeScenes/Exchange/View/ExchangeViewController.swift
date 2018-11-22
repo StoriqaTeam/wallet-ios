@@ -31,6 +31,10 @@ class ExchangeViewController: UIViewController {
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var exchangeButton: DefaultButton!
     
+    
+    var countdownTimer: Timer!
+    var totalTime = 60
+    
     // MARK: Variables
 
     private let keyboardAnimationDelay = 0.5
@@ -50,6 +54,7 @@ class ExchangeViewController: UIViewController {
         output.configureCollections()
         output.viewWillAppear()
         setNavBarTransparency()
+        startTimer()
     }
     
     override func viewDidLayoutSubviews() {
@@ -78,6 +83,36 @@ class ExchangeViewController: UIViewController {
     @IBAction func exchangeButtonPressed(_ sender: UIButton) {
         output.exchangeButtonPressed()
     }
+    
+    
+    func startTimer() {
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1,
+                                              target: self,
+                                              selector: #selector(updateTime),
+                                              userInfo: nil,
+                                              repeats: true)
+    }
+    
+    @objc func updateTime() {
+        rateTimerLabel.text = "\(timeFormatted(totalTime))"
+        
+        if totalTime != 0 {
+            totalTime -= 1
+        } else {
+            endTimer()
+        }
+    }
+    
+    func endTimer() {
+        countdownTimer.invalidate()
+    }
+    
+    func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+
 }
 
 
