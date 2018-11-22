@@ -44,7 +44,6 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     }
     
     func setScannedAddress(_ address: String) {
-        defaultSendTxProvider.receiverAddress = address
         defaultSendTxProvider.scanDelegate?.didScanAddress(address)
     }
     
