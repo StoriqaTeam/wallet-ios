@@ -21,6 +21,7 @@ class RealmAccount: Object {
     dynamic var name: String = ""
     dynamic var createdAt: Double = 0
     dynamic var updatedAt: Double = 0
+    dynamic var erc20Approved: Bool = false
     
     override class func primaryKey() -> String? {
         return "id"

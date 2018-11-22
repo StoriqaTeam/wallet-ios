@@ -144,9 +144,10 @@ class Application {
     lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
     lazy var medianWaitFormatter: MedianWaitFormatterProtocol = MedianWaitFormatter()
     
-    // MARK: Validators
+    // MARK: - Validators
     lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: BITCOIN_NETWORK)
     lazy var ethAddressValidator: AddressValidatorProtocol = EthereumAddressValidator()
+    lazy var erc20SendValidator: Erc20SendValidatorProtocol = Erc20SendValidator()
     
     
     // MARK: - Resolvers
