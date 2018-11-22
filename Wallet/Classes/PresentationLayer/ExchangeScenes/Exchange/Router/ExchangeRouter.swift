@@ -28,4 +28,18 @@ extension ExchangeRouter: ExchangeRouterInput {
         RecepientAccountsModule.create(app: app,
                                        exchangeProviderBuilder: exchangeProviderBuilder).present(from: fromViewController)
     }
+    
+    func showConfirmSucceed(popUpDelegate: PopUpSendConfirmSuccessVMDelegate, from viewController: UIViewController) {
+        let viewModel = PopUpSendConfirmSuccessVM()
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showConfirmFailed(popUpDelegate: PopUpExchangeFailedVMDelegate,
+                           message: String,
+                           from viewController: UIViewController) {
+        let viewModel = PopUpExchangeFailedVM(message: message)
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
 }

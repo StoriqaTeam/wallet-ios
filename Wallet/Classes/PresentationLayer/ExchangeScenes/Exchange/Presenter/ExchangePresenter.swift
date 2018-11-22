@@ -104,6 +104,9 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func exchangeButtonPressed() {
+        // FIXME: confirm popup
+        
+        storiqaLoader.startLoader()
         interactor.sendTransaction()
     }
     
@@ -158,16 +161,25 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setButtonEnabled(valid)
     }
     
+    func exchangeTxAmountOutOfLimit(min: String, max: String, currency: Currency) {
+        storiqaLoader.stopLoader()
+        
+        let minAmountStr = currencyFormatter.getStringFrom(amount: min.decimalValue(), currency: currency)
+        let maxAmountStr = currencyFormatter.getStringFrom(amount: max.decimalValue(), currency: currency)
+        let message = "Amount should be between \(minAmountStr) and \(maxAmountStr)"
+        
+        router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
+    }
+    
     func exchangeTxFailed(message: String) {
-        // TODO: exchangeTxFailed
-        print("exchangeTxFailed")
+        storiqaLoader.stopLoader()
+        router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
     }
     
     func exchangeTxSucceed() {
-        // TODO: exchangeTxSucceed
-        print("exchangeTxSucceed")
+        storiqaLoader.stopLoader()
+        router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
     }
-    
 
 }
 
@@ -195,6 +207,26 @@ extension ExchangePresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccount(index: newIndex)
         view.setNewPage(newIndex)
+    }
+}
+
+
+// MARK: - PopUpExchangeFailedVMDelegate
+
+extension ExchangePresenter: PopUpExchangeFailedVMDelegate {
+    func retry() {
+        storiqaLoader.startLoader()
+        interactor.sendTransaction()
+    }
+}
+
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension ExchangePresenter: PopUpSendConfirmSuccessVMDelegate {
+    func okButtonPressed() {
+        interactor.clearBuilder()
+        interactor.updateState()
     }
 }
 

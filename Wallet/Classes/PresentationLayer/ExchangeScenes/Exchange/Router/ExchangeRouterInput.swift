@@ -12,4 +12,9 @@ import UIKit
 protocol ExchangeRouterInput: class {
     func showRecepientAccountSelection(exchangeProviderBuilder: ExchangeProviderBuilderProtocol,
                                        from fromViewController: UIViewController)
+    func showConfirmSucceed(popUpDelegate: PopUpSendConfirmSuccessVMDelegate,
+                            from viewController: UIViewController)
+    func showConfirmFailed(popUpDelegate: PopUpExchangeFailedVMDelegate,
+                           message: String,
+                           from viewController: UIViewController)
 }

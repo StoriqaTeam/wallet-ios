@@ -41,6 +41,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
         
         let txId = transaction.id
         let toCurrency = transaction.toCurrency
+        let valueCurrency = toCurrency
         let value = transaction.toValue.string
         let receiverType = getReceiverType(transaction: transaction)
         let feeString = transaction.fee.string
@@ -50,7 +51,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      userId: userId,
                                                      fromAccount: fromAccount,
                                                      receiverType: receiverType,
-                                                     toCurrency: toCurrency,
+                                                     toCurrency: valueCurrency,
                                                      value: value,
                                                      valueCurrency: toCurrency,
                                                      fee: feeString,
@@ -73,7 +74,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                     }
                     completion(.success(txn))
                 } else {
-                    let apiError = SendTransactionNetworkProviderError(code: code)
+                    let apiError = SendTransactionNetworkProviderError(code: code, json: json, currency: valueCurrency)
                     completion(.failure(apiError))
                     return
                 }
@@ -95,6 +96,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
         
         let txId = transaction.id
         let toCurrency = transaction.toCurrency
+        let valueCurrency = toCurrency
         let value = transaction.toValue.string
         let receiverType = getReceiverType(transaction: transaction)
         let feeString = transaction.fee.string
@@ -106,7 +108,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      receiverType: receiverType,
                                                      toCurrency: toCurrency,
                                                      value: value,
-                                                     valueCurrency: toCurrency,
+                                                     valueCurrency: valueCurrency,
                                                      fee: feeString,
                                                      exchangeId: exchangeId,
                                                      exchangeRate: exchangeRate,
@@ -126,7 +128,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                     }
                     completion(.success(txn))
                 } else {
-                    let apiError = SendTransactionNetworkProviderError(code: code)
+                    let apiError = SendTransactionNetworkProviderError(code: code, json: json, currency: valueCurrency)
                     completion(.failure(apiError))
                     return
                 }
@@ -171,11 +173,22 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
     case unauthorized
     case unknownError
     case failToParseJson
+    case amountOutOfBounds(min: String, max: String, currency: Currency)
     
-    init(code: Int) {
+    init(code: Int, json: JSON, currency: Currency) {
         switch code {
         case 401:
             self = .unauthorized
+        case 422:
+            if let deviceErrors = json["actual_amount"].array,
+                let existsError = deviceErrors.first(where: { $0["code"] == "limit" }),
+                let params = existsError["params"].dictionary,
+                let min = params["min"]?.string,
+                let max = params["max"]?.string {
+                self = .amountOutOfBounds(min: min, max: max, currency: currency)
+            } else {
+                self = .unknownError
+            }
         case 500:
             self = .internalServer
         default:
@@ -189,7 +202,8 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
             return "User unauthorized"
         case .internalServer:
             return "Internal server error"
-        case .unknownError:
+        case .unknownError,
+             .amountOutOfBounds:
             return Constants.Errors.userFriendly
         case .failToParseJson:
             return "Failed to parse JSON"

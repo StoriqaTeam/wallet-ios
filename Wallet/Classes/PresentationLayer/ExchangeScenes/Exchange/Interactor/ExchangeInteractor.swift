@@ -153,16 +153,26 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         let exchangeId = exchangeRate.id
         let rate = exchangeRate.rate
         
-        sendTransactionService.sendExchangeTransaction(transaction: exchangeTransaction,
-                                                       fromAccount: fromAccount,
-                                                       exchangeId: exchangeId,
-                                                       exchangeRate: rate) { [weak self] (result) in
-                                                        switch result {
-                                                        case .success:
-                                                            self?.output.exchangeTxSucceed()
-                                                        case .failure(let error):
-                                                            self?.output.exchangeTxFailed(message: error.localizedDescription)
-                                                        }
+        sendTransactionService.sendExchangeTransaction(
+            transaction: exchangeTransaction,
+            fromAccount: fromAccount,
+            exchangeId: exchangeId,
+            exchangeRate: rate) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.output.exchangeTxSucceed()
+                case .failure(let error):
+                    if let error = error as? SendTransactionNetworkProviderError {
+                        switch error {
+                        case .amountOutOfBounds(let min, let max, let currency):
+                            self?.output.exchangeTxAmountOutOfLimit(min: min, max: max, currency: currency)
+                            return
+                        default: break
+                        }
+                    }
+                    
+                    self?.output.exchangeTxFailed(message: error.localizedDescription)
+                }
         }
     }
     
