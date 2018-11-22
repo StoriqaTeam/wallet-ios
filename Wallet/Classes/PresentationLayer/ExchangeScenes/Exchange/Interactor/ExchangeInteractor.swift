@@ -16,7 +16,6 @@ class ExchangeInteractor {
     private let accountWatcher: CurrentAccountWatcherProtocol
     private let exchangeProviderBuilder: ExchangeProviderBuilderProtocol
     private let sendTransactionService: SendTransactionServiceProtocol
-    private let exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
     private let authTokenprovider: AuthTokenProviderProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
@@ -29,7 +28,6 @@ class ExchangeInteractor {
          accountWatcher: CurrentAccountWatcherProtocol,
          exchangeProviderBuilder: ExchangeProviderBuilderProtocol,
          sendTransactionService: SendTransactionServiceProtocol,
-         exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol,
          signHeaderFactory: SignHeaderFactoryProtocol,
          authTokenprovider: AuthTokenProviderProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
@@ -41,7 +39,6 @@ class ExchangeInteractor {
         self.exchangeProvider = exchangeProviderBuilder.build()
         self.sendTransactionService = sendTransactionService
         self.signHeaderFactory = signHeaderFactory
-        self.exchangeRateNetworkProvider = exchangeRateNetworkProvider
         self.authTokenprovider = authTokenprovider
         self.userDataStoreService = userDataStoreService
         self.exchangeRatesLoader = exchangeRatesLoader
@@ -216,7 +213,7 @@ extension ExchangeInteractor {
     
     private func updateTotal() {
         let accountCurrency = accountWatcher.getAccount().currency
-        let amount = exchangeProvider.amount
+        let amount = exchangeProvider.getAmountInMinUnits()
         guard let recepientCurrency = exchangeProvider.recepientAccount?.currency else {
             log.error("Recepient account not found")
             return
@@ -237,7 +234,7 @@ extension ExchangeInteractor {
         
         exchangeRatesLoader.getExchangeRates(from: accountCurrency,
                                              to: recepientCurrency,
-                                             amountCurrency: accountCurrency,
+                                             amountCurrency: recepientCurrency,
                                              amountInMinUnits: amount) { [weak self] (result) in
                                                 switch result {
                                                 case .success(let exchangeRate):

@@ -18,6 +18,7 @@ protocol ExchangeProviderProtocol: class {
     
     func getRecepientAccounts() -> [Account]
     func getSubtotal() -> Decimal
+    func getAmountInMinUnits() -> Decimal
     func isEnoughFunds() -> Bool
     func createExchangeTransaction() -> Transaction
 }
@@ -79,6 +80,16 @@ class ExchangeProvider: ExchangeProviderProtocol {
         return amountToSend
     }
     
+    func getAmountInMinUnits() -> Decimal {
+        guard let recepientAccount = recepientAccount else {
+            return 0
+        }
+        
+        let currency = recepientAccount.currency
+        let inMinUnits = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
+        return inMinUnits
+    }
+    
     func isEnoughFunds() -> Bool {
         let currency = selectedAccount.currency
         let subtotal = getSubtotal()
@@ -94,10 +105,9 @@ class ExchangeProvider: ExchangeProviderProtocol {
         let currency = selectedAccount.currency
         let fromAddress = selectedAccount.accountAddress
         let toAddress = recepientAccount!.accountAddress
-        let toAccount = TransactionAccount.init(accountId: recepientAccount!.id, ownerName: recepientAccount!.name)
+        let toAccount = TransactionAccount(accountId: recepientAccount!.id, ownerName: recepientAccount!.name)
         
-    
-        let toValue = denominationUnitsConverter.amountToMinUnits(amountToSend, currency: currency)
+        let toValue = denominationUnitsConverter.amountToMinUnits(amount, currency: recepientAccount!.currency)
         
         let transaction = Transaction(id: uuid,
                                       fromAddress: [fromAddress],

@@ -95,7 +95,6 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
         
         let txId = transaction.id
         let toCurrency = transaction.toCurrency
-        let fromCurrency = transaction.fromCurrency
         let value = transaction.toValue.string
         let receiverType = getReceiverType(transaction: transaction)
         let feeString = transaction.fee.string
@@ -107,7 +106,7 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      receiverType: receiverType,
                                                      toCurrency: toCurrency,
                                                      value: value,
-                                                     valueCurrency: fromCurrency,
+                                                     valueCurrency: toCurrency,
                                                      fee: feeString,
                                                      exchangeId: exchangeId,
                                                      exchangeRate: exchangeRate,

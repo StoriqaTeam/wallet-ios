@@ -26,7 +26,6 @@ class ExchangeModule {
                                             accountWatcher: accountWatcher,
                                             exchangeProviderBuilder: exchangeProviderBuilder,
                                             sendTransactionService: app.sendTransactionService,
-                                            exchangeRateNetworkProvider: app.exchangeRateNetworkProvider,
                                             signHeaderFactory: app.signHeaderFactory,
                                             authTokenprovider: app.authTokenProvider,
                                             userDataStoreService: app.userDataStoreService,
