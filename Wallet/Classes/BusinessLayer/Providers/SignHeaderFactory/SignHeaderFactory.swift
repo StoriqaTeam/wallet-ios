@@ -27,7 +27,7 @@ class SignHeaderFactory: SignHeaderFactoryProtocol {
     
     func createSignHeader(email: String) throws -> SignHeader {
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
-        let timestamp = Int(Date().timeIntervalSince1970 * 1000)
+        let timestamp = UInt64(Date().timeIntervalSince1970 * 1000)
         
         guard let privateKey = getPrivateKey(email: email) else {
             throw SignHeaderFactoryError.keychainEmpty

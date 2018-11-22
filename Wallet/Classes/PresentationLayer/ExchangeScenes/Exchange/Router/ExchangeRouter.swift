@@ -35,6 +35,16 @@ extension ExchangeRouter: ExchangeRouterInput {
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
+    func showConfirm(fromAccount: String,
+                     toAccount: String,
+                     amount: String,
+                     confirmTxBlock: @escaping (() -> Void),
+                     from viewController: UIViewController) {
+        ExchangeConfirmPopUpModule
+            .create(fromAccount: fromAccount, toAccount: toAccount, amount: amount, confirmTxBlock: confirmTxBlock)
+            .present(from: viewController)
+    }
+    
     func showConfirmFailed(popUpDelegate: PopUpExchangeFailedVMDelegate,
                            message: String,
                            from viewController: UIViewController) {

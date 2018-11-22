@@ -104,10 +104,21 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func exchangeButtonPressed() {
-        // FIXME: confirm popup
+        let fromAccount = interactor.getAccountName()
+        let toAccount = interactor.getRecepientAccountName()
+        let currency = interactor.getRecepientCurrency()
+        let decimalAmount = interactor.getAmount()
+        let amountStr = currencyFormatter.getStringFrom(amount: decimalAmount, currency: currency)
+        let confirmTxBlock = { [weak self] in
+            self?.storiqaLoader.startLoader()
+            self?.interactor.sendTransaction()
+        }
         
-        storiqaLoader.startLoader()
-        interactor.sendTransaction()
+        router.showConfirm(fromAccount: fromAccount,
+                           toAccount: toAccount,
+                           amount: amountStr,
+                           confirmTxBlock: confirmTxBlock,
+                           from: view.viewController)
     }
     
 }

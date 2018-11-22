@@ -69,6 +69,14 @@ class ExchangeInteractor {
 
 extension ExchangeInteractor: ExchangeInteractorInput {
     
+    func getAccountName() -> String {
+        return exchangeProvider.selectedAccount.name
+    }
+    
+    func getRecepientAccountName() -> String {
+        return exchangeProvider.recepientAccount?.name ?? ""
+    }
+    
     func getAccounts() -> [Account] {
         return accountsProvider.getAllAccounts()
     }

@@ -253,7 +253,7 @@
                                                                     <constraint firstAttribute="width" priority="751" constant="334" id="056-bq-ajj"/>
                                                                     <constraint firstAttribute="height" constant="45" id="fvc-2L-PuM"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Send">
+                                                                <state key="normal" title="Exchange">
                                                                     <color key="titleColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>

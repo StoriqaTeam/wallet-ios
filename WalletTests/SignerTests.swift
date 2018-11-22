@@ -71,7 +71,7 @@ class SighnerTests: XCTestCase {
     }
     
     func testSignHeader() {
-        let ts = "1542629842"
+        let ts = "1542629842123"
         let vendorId = "56a81d5d-c89c-4971-8bc1-a6101270d2ce"
         let message = ts+vendorId
         

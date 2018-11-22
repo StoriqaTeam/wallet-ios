@@ -64,8 +64,9 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     
     func register(with registrationData: RegistrationData) {
         self.registrationData = registrationData
-        guard let _ = userKeyManager.addPrivateKey(email: registrationData.email) else {
-            log.error("Fail To create and save new private key")
+        
+        guard let _ = userKeyManager.addPrivateKeyIfNeeded(email: registrationData.email) else {
+            log.error("Fail to add pair email and private key")
             return
         }
         
@@ -107,9 +108,8 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     }
     
     func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, email: String) {
-        
-        guard let _ = userKeyManager.addPrivateKey(email: email) else {
-            log.error("Fail To create and save new private key")
+        guard let _ = userKeyManager.addPrivateKeyIfNeeded(email: email) else {
+            log.error("Fail to add pair email and private key")
             return
         }
     
