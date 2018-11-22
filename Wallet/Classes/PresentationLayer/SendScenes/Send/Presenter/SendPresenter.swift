@@ -109,6 +109,13 @@ extension SendPresenter: SendViewOutput {
     }
     
     func sendButtonPressed() {
+        guard interactor.validateErc20Approved() else {
+            // FIXME: message for erc 20 not approved!
+            view.viewController.showAlert(message: "Erc20 not approved")
+            return
+        }
+        
+        
         let amount = interactor.getAmount()
         let fee = interactor.getFee() ?? 0
         let currency = interactor.getCurrency()

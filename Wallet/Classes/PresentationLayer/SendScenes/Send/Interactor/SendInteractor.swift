@@ -18,6 +18,7 @@ class SendInteractor {
     private let cryptoAddressResolver: CryptoAddressResolverProtocol
     private let sendTransactionService: SendTransactionServiceProtocol
     private let feeLoader: FeeLoaderProtocol
+    private let erc20SendValidator: Erc20SendValidatorProtocol
     
     private var sendProvider: SendTransactionProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
@@ -27,7 +28,8 @@ class SendInteractor {
          accountWatcher: CurrentAccountWatcherProtocol,
          cryptoAddressResolver: CryptoAddressResolverProtocol,
          sendTransactionService: SendTransactionServiceProtocol,
-         feeLoader: FeeLoaderProtocol) {
+         feeLoader: FeeLoaderProtocol,
+         erc20SendValidator: Erc20SendValidatorProtocol) {
         
         self.accountsProvider = accountsProvider
         self.sendTransactionBuilder = sendTransactionBuilder
@@ -36,6 +38,7 @@ class SendInteractor {
         self.sendProvider = sendTransactionBuilder.build()
         self.sendTransactionService = sendTransactionService
         self.feeLoader = feeLoader
+        self.erc20SendValidator = erc20SendValidator
     }
     
     deinit {
@@ -149,6 +152,12 @@ extension SendInteractor: SendInteractorInput {
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
         sendTransactionBuilder.setScannedDelegate(delegate)
+    }
+    
+    func validateErc20Approved() -> Bool {
+        let account = sendProvider.selectedAccount
+        let isValid = erc20SendValidator.isValidAccount(account)
+        return isValid
     }
     
     func sendTransaction() {

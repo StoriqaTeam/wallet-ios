@@ -19,6 +19,7 @@ struct Account {
     let name: String
     let createdAt: Date
     let updatedAt: Date
+    let erc20Approved: Bool
 }
 
 
@@ -35,6 +36,7 @@ extension Account: RealmMappable {
         self.currency = Currency(string: object.currency)
         self.createdAt = Date(timeIntervalSince1970: object.createdAt)
         self.updatedAt = Date(timeIntervalSince1970: object.updatedAt)
+        self.erc20Approved = object.erc20Approved
     }
     
     init?(json: JSON) {
@@ -51,7 +53,8 @@ extension Account: RealmMappable {
             let createdAtStr = json["createdAt"].string,
             let updatedAtStr = json["updatedAt"].string,
             let createdAt = dateFormatter.date(from: createdAtStr),
-            let updatedAt = dateFormatter.date(from: updatedAtStr) else {
+            let updatedAt = dateFormatter.date(from: updatedAtStr),
+            let erc20Approved = json["erc20Approved"].bool else {
                 return nil
         }
         let currency = Currency(string: currencyStr)
@@ -66,6 +69,7 @@ extension Account: RealmMappable {
 
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.erc20Approved = erc20Approved
     }
     
     func mapToRealmObject() -> RealmAccount {
@@ -77,6 +81,7 @@ extension Account: RealmMappable {
         object.accountAddress = self.accountAddress
         object.name = self.name
         object.currency = self.currency.ISO
+        object.erc20Approved = self.erc20Approved
         
         let createdAt = self.createdAt.timeIntervalSince1970
         object.createdAt = Double(createdAt)
