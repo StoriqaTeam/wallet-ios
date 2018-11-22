@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AccountsUpdaterProtocol {
-    func update(userId: Int)
+    func update()
 }
 
 class AccountsUpdater: AccountsUpdaterProtocol {
@@ -35,14 +35,16 @@ class AccountsUpdater: AccountsUpdaterProtocol {
         self.userDataStoreService = userDataStoreService
     }
     
-    func update(userId: Int) {
+    func update() {
         guard !isUpdating else {
             return
         }
         
         isUpdating = true
         
-        let currentEmail = userDataStoreService.getCurrentUser().email
+        let user = userDataStoreService.getCurrentUser()
+        let currentEmail = user.email
+        let userId = user.id
         let signHeader: SignHeader
         do {
             signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)

@@ -138,7 +138,7 @@ extension MyWalletPresenter {
     }
     
     @objc private func loadData() {
-        interactor.refreshAccounts(for: user)
+        interactor.refreshAccounts()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.pullToRefresh.endRefreshing()
         }

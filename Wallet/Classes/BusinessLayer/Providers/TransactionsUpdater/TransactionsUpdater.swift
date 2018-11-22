@@ -9,7 +9,7 @@
 import Foundation
 
 protocol TransactionsUpdaterProtocol {
-    func update(userId: Int)
+    func update()
 }
 
 class TransactionsUpdater: TransactionsUpdaterProtocol {
@@ -24,7 +24,6 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     
     private var isUpdating = false
     private var lastTxTime: TimeInterval!
-    private var userId: Int!
     private var offset = 0
     private let limit: Int
     
@@ -46,15 +45,13 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
         self.limit = limit
     }
     
-    func update(userId: Int) {
+    func update() {
         guard !isUpdating else {
             return
         }
         
         isUpdating = true
         offset = 0
-        
-        self.userId = userId
         
         if let unfinishedTime = defaults.lastTxTimastamp {
             lastTxTime = unfinishedTime
@@ -63,7 +60,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
             defaults.lastTxTimastamp = lastTxTime
         }
         
-        update()
+        updateTransactions()
     }
     
 }
@@ -73,7 +70,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
 
 extension TransactionsUpdater {
     
-    private func update() {
+    private func updateTransactions() {
         authTokenProvider.currentAuthToken { [weak self] (result) in
             switch result {
             case .success(let token):
@@ -87,8 +84,9 @@ extension TransactionsUpdater {
     }
     
     private func getTransactions(token: String) {
-        
-        let currentEmail = userDataStoreService.getCurrentUser().email
+        let user = userDataStoreService.getCurrentUser()
+        let currentEmail = user.email
+        let userId = user.id
         
         let signHeader: SignHeader
         do {

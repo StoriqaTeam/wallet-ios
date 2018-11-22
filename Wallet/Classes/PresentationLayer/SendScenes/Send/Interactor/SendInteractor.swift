@@ -19,6 +19,7 @@ class SendInteractor {
     private let sendTransactionService: SendTransactionServiceProtocol
     private let feeLoader: FeeLoaderProtocol
     private let erc20SendValidator: Erc20SendValidatorProtocol
+    private let accountsUpdater: AccountsUpdaterProtocol
     
     private var sendProvider: SendTransactionProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
@@ -29,7 +30,8 @@ class SendInteractor {
          cryptoAddressResolver: CryptoAddressResolverProtocol,
          sendTransactionService: SendTransactionServiceProtocol,
          feeLoader: FeeLoaderProtocol,
-         erc20SendValidator: Erc20SendValidatorProtocol) {
+         erc20SendValidator: Erc20SendValidatorProtocol,
+         accountsUpdater: AccountsUpdaterProtocol) {
         
         self.accountsProvider = accountsProvider
         self.sendTransactionBuilder = sendTransactionBuilder
@@ -39,6 +41,7 @@ class SendInteractor {
         self.sendTransactionService = sendTransactionService
         self.feeLoader = feeLoader
         self.erc20SendValidator = erc20SendValidator
+        self.accountsUpdater = accountsUpdater
     }
     
     deinit {
@@ -157,6 +160,11 @@ extension SendInteractor: SendInteractorInput {
     func validateErc20Approved() -> Bool {
         let account = sendProvider.selectedAccount
         let isValid = erc20SendValidator.isValidAccount(account)
+        
+        if !isValid {
+            accountsUpdater.update()
+        }
+        
         return isValid
     }
     

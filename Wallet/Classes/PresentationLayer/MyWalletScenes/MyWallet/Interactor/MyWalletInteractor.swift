@@ -57,9 +57,9 @@ class MyWalletInteractor {
 // MARK: - MyWalletInteractorInput
 
 extension MyWalletInteractor: MyWalletInteractorInput {
-    func refreshAccounts(for user: User) {
-        accountsUpdater.update(userId: user.id)
-        txnUpdater.update(userId: user.id)
+    func refreshAccounts() {
+        accountsUpdater.update()
+        txnUpdater.update()
     }
     
     func getAccounts() -> [Account] {

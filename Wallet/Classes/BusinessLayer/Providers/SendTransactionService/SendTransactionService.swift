@@ -70,8 +70,8 @@ class SendTransactionService: SendTransactionServiceProtocol {
                     completion: { [weak self] (result) in
                         switch result {
                         case .success:
-                            self?.accountsUpdater.update(userId: userId)
-                            self?.txnUpdater.update(userId: userId)
+                            self?.accountsUpdater.update()
+                            self?.txnUpdater.update()
                             
                             completion(.success(nil))
                         case .failure(let error):
@@ -119,8 +119,8 @@ class SendTransactionService: SendTransactionServiceProtocol {
                                         
                                                         switch result {
                                                         case .success:
-                                                            self?.accountsUpdater.update(userId: userId)
-                                                            self?.txnUpdater.update(userId: userId)
+                                                            self?.accountsUpdater.update()
+                                                            self?.txnUpdater.update()
                                                             
                                                             completion(.success(nil))
                                                         case .failure(let error):

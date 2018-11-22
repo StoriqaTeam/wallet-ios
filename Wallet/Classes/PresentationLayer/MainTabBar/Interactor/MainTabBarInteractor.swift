@@ -81,9 +81,8 @@ extension MainTabBarInteractor: MainTabBarInteractorInput {
 
 extension MainTabBarInteractor {
     private func update() {
-        let user = getCurrentUser()
-        accountsUpdater.update(userId: user.id)
-        txsUpdater.update(userId: user.id)
+        accountsUpdater.update()
+        txsUpdater.update()
         ratesUpdater.update()
     }
     

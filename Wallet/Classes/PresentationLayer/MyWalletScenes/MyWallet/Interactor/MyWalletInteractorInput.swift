@@ -12,5 +12,5 @@ import Foundation
 protocol MyWalletInteractorInput: class {
     func getAccountWatcher() -> CurrentAccountWatcherProtocol
     func getAccounts() -> [Account]
-    func refreshAccounts(for user: User)
+    func refreshAccounts()
 }

@@ -115,7 +115,6 @@ extension SendPresenter: SendViewOutput {
             return
         }
         
-        
         let amount = interactor.getAmount()
         let fee = interactor.getFee() ?? 0
         let currency = interactor.getCurrency()
