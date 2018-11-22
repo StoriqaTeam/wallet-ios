@@ -149,19 +149,23 @@ extension ExchangeInteractor: ExchangeInteractorInput {
     }
     
     func sendTransaction() {
-        let txToSend = exchangeProvider.createTransaction()
+        let exchangeTransaction = exchangeProvider.createExchangeTransaction()
         let account = exchangeProvider.selectedAccount
         let fromAccount = account.id.lowercased()
+        let exchangeRate = exchangeProvider.exchangeRate
+        let exchangeId = exchangeRate.id
+        let rate = exchangeRate.rate
         
-        sendTransactionService.sendTransaction(
-            transaction: txToSend,
-            fromAccount: fromAccount) { [weak self] (result) in
-                switch result {
-                case .success:
-                    self?.output.exchangeTxSucceed()
-                case .failure(let error):
-                    self?.output.exchangeTxFailed(message: error.localizedDescription)
-                }
+        sendTransactionService.sendExchangeTransaction(transaction: exchangeTransaction,
+                                                       fromAccount: fromAccount,
+                                                       exchangeId: exchangeId,
+                                                       exchangeRate: rate) { [weak self] (result) in
+                                                        switch result {
+                                                        case .success:
+                                                            self?.output.exchangeTxSucceed()
+                                                        case .failure(let error):
+                                                            self?.output.exchangeTxFailed(message: error.localizedDescription)
+                                                        }
         }
     }
     

@@ -12,6 +12,12 @@ protocol SendTransactionServiceProtocol {
     func sendTransaction(transaction: Transaction,
                          fromAccount: String,
                          completion: @escaping (Result<String?>) -> Void)
+    func sendExchangeTransaction(transaction: Transaction,
+                                 fromAccount: String,
+                                 exchangeId: String,
+                                 exchangeRate: Decimal,
+                                 completion: @escaping (Result<String?>) -> Void)
+    
 }
 
 class SendTransactionService: SendTransactionServiceProtocol {
@@ -73,6 +79,55 @@ class SendTransactionService: SendTransactionServiceProtocol {
                         }
                     }
                 )
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    
+    func sendExchangeTransaction(transaction: Transaction,
+                                 fromAccount: String,
+                                 exchangeId: String,
+                                 exchangeRate: Decimal,
+                                 completion: @escaping (Result<String?>) -> Void) {
+        
+        let user = userDataStoreService.getCurrentUser()
+        let userId = user.id
+        let currentEmail = user.email
+        
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
+        } catch {
+            log.error(error.localizedDescription)
+            return
+        }
+        
+        authTokenProvider.currentAuthToken { [weak self] (result) in
+            switch result {
+            case .success(let token):
+               self?.sendNetworkProvider.sendExchange(transaction: transaction,
+                                                      userId: userId,
+                                                      fromAccount: fromAccount,
+                                                      authToken: token,
+                                                      queue: .main,
+                                                      signHeader: signHeader,
+                                                      exchangeId: exchangeId,
+                                                      exchangeRate: exchangeRate,
+                                                      completion: { [weak self] (result) in
+                                        
+                                                        switch result {
+                                                        case .success:
+                                                            self?.accountsUpdater.update(userId: userId)
+                                                            self?.txnUpdater.update(userId: userId)
+                                                            
+                                                            completion(.success(nil))
+                                                        case .failure(let error):
+                                                            completion(.failure(error))
+                                                        }
+                                                        
+               })
             case .failure(let error):
                 completion(.failure(error))
             }

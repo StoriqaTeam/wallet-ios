@@ -17,6 +17,16 @@ protocol SendTransactionNetworkProviderProtocol {
               queue: DispatchQueue,
               signHeader: SignHeader,
               completion: @escaping (Result<Transaction>) -> Void)
+    
+    func sendExchange(transaction: Transaction,
+                      userId: Int,
+                      fromAccount: String,
+                      authToken: String,
+                      queue: DispatchQueue,
+                      signHeader: SignHeader,
+                      exchangeId: String,
+                      exchangeRate: Decimal,
+                      completion: @escaping (Result<Transaction>) -> Void)
 }
 
 class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkProviderProtocol {
@@ -35,7 +45,6 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
         let receiverType = getReceiverType(transaction: transaction)
         let feeString = transaction.fee.string
         
-        // TODO: - exchangeId, exchangeRate
         let request = API.Authorized.sendTransaction(authToken: authToken,
                                                      transactionId: txId,
                                                      userId: userId,
@@ -74,6 +83,59 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
         }
     }
     
+    func sendExchange(transaction: Transaction,
+                      userId: Int,
+                      fromAccount: String,
+                      authToken: String,
+                      queue: DispatchQueue,
+                      signHeader: SignHeader,
+                      exchangeId: String,
+                      exchangeRate: Decimal,
+                      completion: @escaping (Result<Transaction>) -> Void) {
+        
+        let txId = transaction.id
+        let toCurrency = transaction.toCurrency
+        let fromCurrency = transaction.fromCurrency
+        let value = transaction.toValue.string
+        let receiverType = getReceiverType(transaction: transaction)
+        let feeString = transaction.fee.string
+        
+        let request = API.Authorized.sendTransaction(authToken: authToken,
+                                                     transactionId: txId,
+                                                     userId: userId,
+                                                     fromAccount: fromAccount,
+                                                     receiverType: receiverType,
+                                                     toCurrency: toCurrency,
+                                                     value: value,
+                                                     valueCurrency: fromCurrency,
+                                                     fee: feeString,
+                                                     exchangeId: exchangeId,
+                                                     exchangeRate: exchangeRate,
+                                                     signHeader: signHeader)
+        loadObjectJSON(request: request, queue: queue) { (result) in
+            switch result {
+            case .success(let response):
+                let code = response.responseStatusCode
+                let json = JSON(response.value)
+                
+                if code == 200 {
+                    guard let txn = Transaction(json: json) else {
+                        log.error("Failed to parse sent transaction json")
+                        let apiError = SendTransactionNetworkProviderError.failToParseJson
+                        completion(.failure(apiError))
+                        return
+                    }
+                    completion(.success(txn))
+                } else {
+                    let apiError = SendTransactionNetworkProviderError(code: code)
+                    completion(.failure(apiError))
+                    return
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
 
 
