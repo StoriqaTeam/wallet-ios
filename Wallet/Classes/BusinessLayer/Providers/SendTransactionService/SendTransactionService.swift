@@ -143,7 +143,7 @@ extension SendTransactionService {
                     if retryCount > 0,
                         let error = error as? SendTransactionNetworkProviderError,
                         case .internalServer = error {
-                        self?.sendTransaction(retryCount: retryCount - 1,
+                        self?.sendTransaction(retryCount: retryCount,
                                               authToken: authToken,
                                               userId: userId,
                                               email: email,
