@@ -289,7 +289,6 @@ extension ExchangeInteractor {
             return
         }
         
-        let formIsValid = isFormValid()
         let isEnough = exchangeProvider.isEnoughFunds()
         let hasAmount = !exchangeProvider.amount.isZero
         

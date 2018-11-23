@@ -3426,7 +3426,6 @@
 			isa = PBXGroup;
 			children = (
 				A52FEB7A21A7FA8C00DFA7BC /* Orders */,
-				CE8E2E0D21A6EF8100F0B395 /* Erc20SendValidator */,
 				CE053AF021A5662300EA6E26 /* FeeLoader */,
 				A597577621A5A7EE0036C7E8 /* ExchangeLoader */,
 				CEE6730621A2B755008FAC09 /* SendTransactionService */,
