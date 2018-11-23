@@ -14,11 +14,15 @@ protocol ExchangeProviderProtocol: class {
     var selectedAccount: Account { get }
     var recepientAccount: Account? { get }
     var amount: Decimal { get }
-    var exchangeRate: ExchangeRate { get set }
+    
+    func setNewOrder(_ order: Order)
+    func invalidateOrder()
     
     func getRecepientAccounts() -> [Account]
+    func getOrderId() -> String?
     func getSubtotal() -> Decimal
     func getAmountInMinUnits() -> Decimal
+    func getRateForCurrentOrder() -> Decimal?
     func isEnoughFunds() -> Bool
     func createExchangeTransaction() -> Transaction
 }
@@ -39,7 +43,6 @@ class ExchangeProvider: ExchangeProviderProtocol {
     }
     
     var amount: Decimal
-    var exchangeRate: ExchangeRate
     
     private var recepientAccounts = [Account]()
     private var amountToSend: Decimal = 0
@@ -48,23 +51,33 @@ class ExchangeProvider: ExchangeProviderProtocol {
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     private let converterFactory: CurrencyConverterFactoryProtocol
     private var currencyConverter: CurrencyConverterProtocol!
+    private let orderObserver: OrderObserverProtocol
     
     init(accountsProvider: AccountsProviderProtocol,
          converterFactory: CurrencyConverterFactoryProtocol,
-         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
+         denominationUnitsConverter: DenominationUnitsConverterProtocol,
+         orderObserver: OrderObserverProtocol) {
         
         self.accountsProvider = accountsProvider
         self.denominationUnitsConverter = denominationUnitsConverter
         self.converterFactory = converterFactory
+        self.orderObserver = orderObserver
         
         // default build
         self.amount = 0
         self.selectedAccount = accountsProvider.getAllAccounts().first!
-        self.exchangeRate = ExchangeRate()
-        
+
         updateRecepientAccounts()
         recepientAccount = recepientAccounts.first
         updateConverter()
+    }
+    
+    func invalidateOrder() {
+        orderObserver.invalidateOrder()
+    }
+    
+    func setNewOrder(_ order: Order) {
+        orderObserver.setNewOrder(order: order)
     }
     
     func getRecepientAccounts() -> [Account] {
@@ -74,8 +87,7 @@ class ExchangeProvider: ExchangeProviderProtocol {
     func getSubtotal() -> Decimal {
         guard !amount.isZero else { return 0 }
         guard isValidExchangeRate() else { return 0 }
-        
-        let rate = exchangeRate.rate
+        guard let rate = orderObserver.getCurrentRate() else { return 0 }
         amountToSend = amount / rate
         return amountToSend
     }
@@ -96,6 +108,15 @@ class ExchangeProvider: ExchangeProviderProtocol {
         let inMinUnits = denominationUnitsConverter.amountToMinUnits(subtotal, currency: currency)
         let available = selectedAccount.balance
         return inMinUnits.isLessThanOrEqualTo(available)
+    }
+    
+    func getRateForCurrentOrder() -> Decimal? {
+        guard let rate = orderObserver.getCurrentRate() else { return nil }
+        return rate
+    }
+    
+    func getOrderId() -> String? {
+        return orderObserver.getCurrentOrderId()
     }
     
     func createExchangeTransaction() -> Transaction {
@@ -154,8 +175,11 @@ extension ExchangeProvider {
     }
     
     private func isValidExchangeRate() -> Bool {
-        let from = exchangeRate.from
-        let to = exchangeRate.to
+        
+        guard let orderCurrencies = orderObserver.getCurrentCurrencies() else { return false }
+        
+        let from = orderCurrencies.from
+        let to = orderCurrencies.to
         
         let selectedFrom = selectedAccount.currency
         guard let selectedTo = recepientAccount?.currency else { return false }

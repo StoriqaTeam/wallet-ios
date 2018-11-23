@@ -29,7 +29,9 @@ class ExchangeModule {
                                             signHeaderFactory: app.signHeaderFactory,
                                             authTokenprovider: app.authTokenProvider,
                                             userDataStoreService: app.userDataStoreService,
-                                            exchangeRatesLoader: app.exchangeLoader)
+                                            exchangeRatesLoader: app.exchangeLoader,
+                                            orderFactory: app.orderFactory,
+                                            orderObserver: app.orderObserver)
         
         let exchangeSb = UIStoryboard(name: "Exchange", bundle: nil)
         let viewController = exchangeSb.instantiateViewController(withIdentifier: "exchangeVC") as! ExchangeViewController
@@ -37,6 +39,7 @@ class ExchangeModule {
         interactor.output = presenter
         
         viewController.output = presenter
+        app.orderObserver.setDelegate(obj: interactor)
         
         presenter.view = viewController
         presenter.router = router
@@ -44,8 +47,10 @@ class ExchangeModule {
         
         // MARK: - Channels
         let accountsUpdateChannel = app.channelStorage.accountsUpadteChannel
+        let expiredOrderChannel = app.channelStorage.orderExpiredChannel
         app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
         interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
+        interactor.setOrderExpiredChannelInput(expiredOrderChannel)
         
         return presenter
     }

@@ -19,4 +19,6 @@ protocol ExchangeInteractorOutput: class {
     func exchangeTxAmountOutOfLimit(min: String, max: String, currency: Currency)
     func exchangeTxFailed(message: String)
     func exchangeTxSucceed()
+    func updateRateFor(oneUnit: Decimal?, from: Currency, to: Currency)
+    func updateOrder(time: Int?)
 }
