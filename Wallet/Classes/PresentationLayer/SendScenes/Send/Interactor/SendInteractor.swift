@@ -93,7 +93,8 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func getFee() -> Decimal? {
-        return sendProvider.paymentFee
+        let estimatedFee = sendProvider.getFeeAndWait()
+        return estimatedFee.fee
     }
     
     func getCurrency() -> Currency {

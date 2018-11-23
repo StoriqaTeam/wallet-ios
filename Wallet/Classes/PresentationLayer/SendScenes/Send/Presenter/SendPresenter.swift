@@ -110,8 +110,9 @@ extension SendPresenter: SendViewOutput {
     
     func sendButtonPressed() {
         guard interactor.validateErc20Approved() else {
-            // FIXME: message for erc 20 not approved!
-            view.viewController.showAlert(message: "Erc20 not approved")
+            let message = "Sending tokens is unavailable. Some of your tokens haven't been verified. " +
+            "Please wait, confirmation usually takes about a minute."
+            router.showFailure(message: message, from: view.viewController)
             return
         }
         
@@ -209,7 +210,7 @@ extension SendPresenter: SendInteractorOutput {
     
     func sendTxFailed(message: String) {
         storiqaLoader.stopLoader()
-        router.showConfirmFailed(message: message, from: view.viewController)
+        router.showFailure(message: message, from: view.viewController)
     }
     
     func sendTxSucceed() {
