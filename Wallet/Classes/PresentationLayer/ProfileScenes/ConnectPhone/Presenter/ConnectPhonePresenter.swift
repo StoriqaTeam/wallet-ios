@@ -16,6 +16,7 @@ class ConnectPhonePresenter {
     var interactor: ConnectPhoneInteractorInput!
     var router: ConnectPhoneRouterInput!
     
+    private var storiqaLoader: StoriqaLoader!
 }
 
 
@@ -31,20 +32,24 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
         view.setupInitialState(phone: phone, buttonTitle: button)
         configureNavigationBar(title: title)
         view.setConnectButtonEnabled(false)
+        addLoader()
     }
     
     func viewWillAppear() {
         view.viewController.setDarkNavigationBarButtons()
     }
+    
+    func phoneChanged(_ phone: String) {
+        view.setConnectButtonEnabled(phone.isValidPhone(hasPlusPrefix: true))
+    }
 
     func isValidPhoneNumber(_ phone: String) -> Bool {
-        view.setConnectButtonEnabled(phone.isValidPhone(hasPlusPrefix: true))
         return phone.isValidPhone(hasPlusPrefix: true, unfinished: true)
     }
     
     func connectButtonPressed(_ phone: String) {
-        interactor.updateUserPhone(phone)
-        view.dismiss()
+        storiqaLoader.startLoader()
+        interactor.updateUserPhone(phone.clearedPhoneNumber())
     }
     
     func cancelButtonPressed() {
@@ -57,7 +62,15 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
 // MARK: - ConnectPhoneInteractorOutput
 
 extension ConnectPhonePresenter: ConnectPhoneInteractorOutput {
-
+    func userUpdatedSuccessfully() {
+        storiqaLoader.stopLoader()
+        view.dismiss()
+    }
+    
+    func userUpdateFailed(message: String) {
+        storiqaLoader.stopLoader()
+        router.showFailure(message: message, from: view.viewController)
+    }
 }
 
 
@@ -80,4 +93,8 @@ extension ConnectPhonePresenter {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
     }
     
+    private func addLoader() {
+        guard let parentView = view.viewController.view else { return }
+        storiqaLoader = StoriqaLoader(parentView: parentView)
+    }
 }

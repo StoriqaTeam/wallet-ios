@@ -16,6 +16,7 @@ class EditProfilePresenter {
     var interactor: EditProfileInteractorInput!
     var router: EditProfileRouterInput!
     
+    private var storiqaLoader: StoriqaLoader!
 }
 
 
@@ -27,9 +28,11 @@ extension EditProfilePresenter: EditProfileViewOutput {
         let user = interactor.getCurrentUser()
         view.setupInitialState(firstName: user.firstName, lastName: user.lastName)
         configureNavigtionBar()
+        addLoader()
     }
     
     func saveButtonTapped(firstName: String, lastName: String) {
+        storiqaLoader.startLoader()
         interactor.updateUser(firstName: firstName, lastName: lastName)
     }
     
@@ -55,10 +58,12 @@ extension EditProfilePresenter: EditProfileViewOutput {
 
 extension EditProfilePresenter: EditProfileInteractorOutput {
     func userUpdatedSuccessfully() {
+        storiqaLoader.stopLoader()
         view.dismiss()
     }
     
     func userUpdateFailed(message: String) {
+        storiqaLoader.stopLoader()
         router.showFailure(message: message, from: view.viewController)
     }
 }
@@ -79,5 +84,10 @@ extension EditProfilePresenter: EditProfileModuleInput {
 extension EditProfilePresenter {
     private func configureNavigtionBar() {
         view.viewController.title = "Edit profile"
+    }
+    
+    private func addLoader() {
+        guard let parentView = view.viewController.view else { return }
+        storiqaLoader = StoriqaLoader(parentView: parentView)
     }
 }

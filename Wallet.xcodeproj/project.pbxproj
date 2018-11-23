@@ -540,7 +540,6 @@
 		CE8E2E0821A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E2E0721A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard */; };
 		CE8E2E0A21A6D08D00F0B395 /* PopUpExchangeFailedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E0921A6D08D00F0B395 /* PopUpExchangeFailedVM.swift */; };
 		CE8E2E0C21A6D91300F0B395 /* ExchangeConfirmPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E2E0B21A6D91300F0B395 /* ExchangeConfirmPopUp.storyboard */; };
-		CE8E2E0F21A6EFED00F0B395 /* Erc20SendValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E0E21A6EFED00F0B395 /* Erc20SendValidator.swift */; };
 		CE8E2E1121A7D91C00F0B395 /* BasePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E1021A7D91C00F0B395 /* BasePopUpViewController.swift */; };
 		CE8E2E1321A7DBBA00F0B395 /* PopUpDefaultFailureVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E1221A7DBBA00F0B395 /* PopUpDefaultFailureVM.swift */; };
 		CE8E2E1621A7E72900F0B395 /* UpdateUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E1521A7E72900F0B395 /* UpdateUserNetworkProvider.swift */; };
@@ -1244,7 +1243,6 @@
 		CE8E2E0721A6A80B00F0B395 /* DeviceRegisterConfirm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeviceRegisterConfirm.storyboard; sourceTree = "<group>"; };
 		CE8E2E0921A6D08D00F0B395 /* PopUpExchangeFailedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpExchangeFailedVM.swift; sourceTree = "<group>"; };
 		CE8E2E0B21A6D91300F0B395 /* ExchangeConfirmPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExchangeConfirmPopUp.storyboard; sourceTree = "<group>"; };
-		CE8E2E0E21A6EFED00F0B395 /* Erc20SendValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Erc20SendValidator.swift; sourceTree = "<group>"; };
 		CE8E2E1021A7D91C00F0B395 /* BasePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePopUpViewController.swift; sourceTree = "<group>"; };
 		CE8E2E1221A7DBBA00F0B395 /* PopUpDefaultFailureVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDefaultFailureVM.swift; sourceTree = "<group>"; };
 		CE8E2E1521A7E72900F0B395 /* UpdateUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserNetworkProvider.swift; sourceTree = "<group>"; };
@@ -3392,7 +3390,6 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				CE8E2E0D21A6EF8100F0B395 /* Erc20SendValidator */,
 				CE053AF021A5662300EA6E26 /* FeeLoader */,
 				A597577621A5A7EE0036C7E8 /* ExchangeLoader */,
 				CEE6730621A2B755008FAC09 /* SendTransactionService */,
@@ -4347,14 +4344,6 @@
 			path = AccountTypeResolver;
 			sourceTree = "<group>";
 		};
-		CE8E2E0D21A6EF8100F0B395 /* Erc20SendValidator */ = {
-			isa = PBXGroup;
-			children = (
-				CE8E2E0E21A6EFED00F0B395 /* Erc20SendValidator.swift */,
-			);
-			path = Erc20SendValidator;
-			sourceTree = "<group>";
-		};
 		CE8E2E1421A7E70300F0B395 /* UpdateUserNetworkProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -5243,7 +5232,6 @@
 				CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */,
 				CE4401A22174B2C500F7C8D8 /* UIImageExtension.swift in Sources */,
 				1E743E76CB9A3AE2D7072FA9 /* RegistrationRouterInput.swift in Sources */,
-				CE8E2E0F21A6EFED00F0B395 /* Erc20SendValidator.swift in Sources */,
 				42580D4883A4C123BC97C148 /* RegistrationRouter.swift in Sources */,
 				CE8E2E1121A7D91C00F0B395 /* BasePopUpViewController.swift in Sources */,
 				499A139819810CE495D7F452 /* RegistrationModuleInput.swift in Sources */,

@@ -49,7 +49,6 @@ extension EditProfileInteractor: EditProfileInteractorInput {
             }
         }
     }
-    
 }
 
 
@@ -66,13 +65,10 @@ extension EditProfileInteractor {
             return
         }
         
-        var updatedUser = user
-        updatedUser.firstName = firstName
-        updatedUser.lastName = lastName
-        
         updateUserNetworkProvider.updateUser(
             authToken: authToken,
-            user: updatedUser,
+            firstName: firstName,
+            lastName: lastName,
             queue: .main,
             signHeader: signHeader) { [weak self] (result) in
                 switch result {

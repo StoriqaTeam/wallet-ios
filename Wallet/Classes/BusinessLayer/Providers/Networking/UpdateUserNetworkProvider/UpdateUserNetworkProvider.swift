@@ -10,22 +10,48 @@ import Foundation
 
 
 protocol UpdateUserNetworkProviderProtocol {
+    typealias ResultBlock = (Result<User>) -> Void
+    
     func updateUser(authToken: String,
-                    user: User,
+                    firstName: String,
+                    lastName: String,
                     queue: DispatchQueue,
                     signHeader: SignHeader,
-                    completion: @escaping (Result<User>) -> Void)
+                    completion: @escaping ResultBlock)
+    func updateUser(authToken: String,
+                    phone: String,
+                    queue: DispatchQueue,
+                    signHeader: SignHeader,
+                    completion: @escaping ResultBlock)
 }
 
 class UpdateUserNetworkProvider: NetworkLoadable, UpdateUserNetworkProviderProtocol {
     func updateUser(authToken: String,
-                    user: User,
+                    firstName: String,
+                    lastName: String,
                     queue: DispatchQueue,
                     signHeader: SignHeader,
-                    completion: @escaping (Result<User>) -> Void) {
+                    completion: @escaping ResultBlock) {
         
-        let request = API.Settings.updateUser(authToken: authToken, user: user, signHeader: signHeader)
-        
+        let request = API.Settings.updateProfile(authToken: authToken, firstName: firstName, lastName: lastName, signHeader: signHeader)
+        sendRequest(request: request, queue: queue, completion: completion)
+    }
+    
+    func updateUser(authToken: String,
+                    phone: String,
+                    queue: DispatchQueue,
+                    signHeader: SignHeader,
+                    completion: @escaping ResultBlock) {
+        let request = API.Settings.updatePhone(authToken: authToken, phone: phone, signHeader: signHeader)
+        sendRequest(request: request, queue: queue, completion: completion)
+    }
+}
+
+
+// MARK: - Private methods
+
+extension UpdateUserNetworkProvider {
+    func sendRequest(request: API.Settings, queue: DispatchQueue, completion: @escaping (Result<User>) -> Void) {
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):

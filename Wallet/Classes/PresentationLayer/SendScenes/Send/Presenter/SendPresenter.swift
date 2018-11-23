@@ -109,13 +109,6 @@ extension SendPresenter: SendViewOutput {
     }
     
     func sendButtonPressed() {
-        guard interactor.validateErc20Approved() else {
-            let message = "Sending tokens is unavailable. Some of your tokens haven't been verified. " +
-            "Please wait, confirmation usually takes about a minute."
-            router.showFailure(message: message, from: view.viewController)
-            return
-        }
-        
         let amount = interactor.getAmount()
         let fee = interactor.getFee() ?? 0
         let currency = interactor.getCurrency()

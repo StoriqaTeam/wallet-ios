@@ -13,6 +13,7 @@ protocol ConnectPhoneViewOutput: class {
     func viewIsReady()
     func viewWillAppear()
     func isValidPhoneNumber(_ phone: String) -> Bool
+    func phoneChanged(_ phone: String)
     func connectButtonPressed(_ phone: String)
     func cancelButtonPressed()
 }

@@ -148,7 +148,6 @@ class Application {
     // MARK: - Validators
     lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: BITCOIN_NETWORK)
     lazy var ethAddressValidator: AddressValidatorProtocol = EthereumAddressValidator()
-    lazy var erc20SendValidator: Erc20SendValidatorProtocol = Erc20SendValidator()
     
     
     // MARK: - Resolvers

@@ -14,7 +14,8 @@ import Alamofire
 extension API {
     enum Settings {
         case changePassword(authToken: String, currentPassword: String, newPassword: String, signHeader: SignHeader)
-        case updateUser(authToken: String, user: User, signHeader: SignHeader)
+        case updateProfile(authToken: String, firstName: String, lastName: String, signHeader: SignHeader)
+        case updatePhone(authToken: String, phone: String, signHeader: SignHeader)
     }
 }
 
@@ -24,7 +25,7 @@ extension API.Settings: APIMethodProtocol {
         switch self {
         case .changePassword:
             return .post
-        case .updateUser:
+        case .updateProfile, .updatePhone:
             return .put
         }
     }
@@ -33,7 +34,7 @@ extension API.Settings: APIMethodProtocol {
         switch self {
         case .changePassword:
             return "\(Constants.Network.baseUrl)/users/change_password"
-        case .updateUser:
+        case .updateProfile, .updatePhone:
             return "\(Constants.Network.baseUrl)/users"
         }
     }
@@ -48,7 +49,15 @@ extension API.Settings: APIMethodProtocol {
                 "Device-id": signHeader.deviceId,
                 "Sign": signHeader.signature
             ]
-        case .updateUser(let authToken, _, let signHeader):
+        case .updateProfile(let authToken, _, _, let signHeader):
+            return [
+                "accept": "application/json",
+                "Authorization": "Bearer \(authToken)",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
+            ]
+        case .updatePhone(let authToken, _, let signHeader):
             return [
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)",
@@ -66,11 +75,14 @@ extension API.Settings: APIMethodProtocol {
                 "newPassword": newPassword,
                 "oldPassword": currentPassword
             ]
-        case .updateUser(_, let user, _):
+        case .updateProfile(_, let firstName, let lastName, _):
             return [
-                "firstName": user.firstName,
-                "lastName": user.lastName,
-                "phone": user.phone
+                "firstName": firstName,
+                "lastName": lastName
+            ]
+        case .updatePhone(_, let phone, _):
+            return [
+                "phone": phone
             ]
         }
     }

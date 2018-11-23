@@ -8,10 +8,12 @@
 
 import UIKit
 
-private enum SettingsCellType: Int {
+private enum SettingsCell: Int {
     case editProfile = 0
     case changePassword
     case changePhone
+    
+    static var count = 3
 }
 
 class SettingsViewController: UIViewController {
@@ -21,12 +23,18 @@ class SettingsViewController: UIViewController {
     @IBOutlet private var settingsTableView: UITableView!
     @IBOutlet private var signOutButton: LightButton!
     
+    private var changePhoneTitle: String = ""
     
     // MARK: Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
     }
     
     
@@ -44,8 +52,9 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let info: String = {
             switch indexPath.row {
-            case SettingsCellType.editProfile.rawValue: return "Edit profile"
-            case SettingsCellType.changePassword.rawValue: return "Change password"
+            case SettingsCell.editProfile.rawValue: return "Edit profile"
+            case SettingsCell.changePassword.rawValue: return "Change password"
+            case SettingsCell.changePhone.rawValue: return changePhoneTitle
             default: return ""
             }
         }()
@@ -57,7 +66,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return SettingsCell.count
     }
 }
 
@@ -73,10 +82,10 @@ extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.row {
-        case SettingsCellType.editProfile.rawValue: output.editProfileSelected()
-        case SettingsCellType.changePassword.rawValue: output.changePasswordSelected()
-        default:
-            break
+        case SettingsCell.editProfile.rawValue: output.editProfileSelected()
+        case SettingsCell.changePassword.rawValue: output.changePasswordSelected()
+        case SettingsCell.changePhone.rawValue: output.changePhoneNumber()
+        default: break
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -92,6 +101,15 @@ extension SettingsViewController: SettingsViewInput {
         registerCell()
         configureTableView()
         configureInterface()
+    }
+    
+    func setChangePhoneTitle(_ title: String) {
+        if changePhoneTitle != title {
+            changePhoneTitle = title
+            settingsTableView.reloadRows(
+                at: [IndexPath(row: SettingsCell.changePhone.rawValue, section: 0)],
+                with: UITableView.RowAnimation.fade)
+        }
     }
 }
 
