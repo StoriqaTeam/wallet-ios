@@ -16,4 +16,5 @@ protocol PinInputInteractorInput: class {
     func authWithBiometry()
     func resetPin()
     func getCurrentUser() -> User
+    func setIsLocked()
 }
