@@ -25,7 +25,8 @@ class LoginModule {
                                          keyGenerator: app.keyGenerator,
                                          userKeyManager: app.userKeyManager,
                                          addDeviceNetworkProvider: app.addDeviceNetworkProvider,
-                                         signHeaderFactory: app.signHeaderFactory)
+                                         signHeaderFactory: app.signHeaderFactory,
+                                         resendConfirmEmailNetworkProvider: app.resendConfirmEmailNetworkProvider)
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController

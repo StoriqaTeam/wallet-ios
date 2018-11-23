@@ -40,6 +40,7 @@ extension API {
             signHeader: SignHeader)
         case addDevice(userId: Int, deviceOs: String, signHeader: SignHeader)
         case confirmAddDevice(deviceConfirmToken: String)
+        case resendConfirmEmail(email: String, deviceType: DeviceType)
     }
     
 }
@@ -65,6 +66,8 @@ extension API.Unauthorized: APIMethodProtocol {
             return .post
         case .confirmAddDevice:
             return .post
+        case .resendConfirmEmail:
+            return .post
         }
     }
     
@@ -86,6 +89,8 @@ extension API.Unauthorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/users/add_device"
         case .confirmAddDevice:
             return "\(Constants.Network.baseUrl)/users/confirm_add_device"
+        case .resendConfirmEmail:
+            return "\(Constants.Network.baseUrl)/users/resend_confirm_email"
         }
     }
     
@@ -134,6 +139,11 @@ extension API.Unauthorized: APIMethodProtocol {
                 "Sign": signHeader.signature
             ]
         case .confirmAddDevice:
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json"
+            ]
+        case .resendConfirmEmail:
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json"
@@ -194,6 +204,11 @@ extension API.Unauthorized: APIMethodProtocol {
         case .confirmAddDevice(let deviceConfirmToken):
             return [
                 "token": deviceConfirmToken
+            ]
+        case .resendConfirmEmail(let email, let deviceType):
+            return [
+                "email": email,
+                "deviceType": deviceType.rawValue
             ]
         }
     }
