@@ -24,4 +24,10 @@ struct EstimatedFee {
         self.estimatedTime = estimatedTime
         self.currency = currency
     }
+    
+    init(currency: Currency, value: Decimal, estimatedTime: Int) {
+        self.currency = currency
+        self.value = value
+        self.estimatedTime = estimatedTime
+    }
 }
