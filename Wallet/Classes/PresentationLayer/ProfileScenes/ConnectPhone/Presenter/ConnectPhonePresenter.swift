@@ -25,7 +25,14 @@ class ConnectPhonePresenter {
 extension ConnectPhonePresenter: ConnectPhoneViewOutput {
 
     func viewIsReady() {
-        let phone = interactor.getUserPhone()
+        let phone: String = {
+            let userPhone = interactor.getUserPhone()
+            if userPhone.hasPrefix("+") {
+                return userPhone
+            } else {
+                return "+" + userPhone
+            }
+        }()
         let button = phone.isEmpty ? "Connect" : "Change"
         let title = button + " telephone number"
         
