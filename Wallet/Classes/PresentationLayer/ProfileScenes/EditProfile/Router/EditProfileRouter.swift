@@ -23,5 +23,9 @@ class EditProfileRouter {
 // MARK: - EditProfileRouterInput
 
 extension EditProfileRouter: EditProfileRouterInput {
-    
+    func showFailure(message: String,
+                     from viewController: UIViewController) {
+        let viewModel = PopUpDefaultFailureVM(message: message)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
 }

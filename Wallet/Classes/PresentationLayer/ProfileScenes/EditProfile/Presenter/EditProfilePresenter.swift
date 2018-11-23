@@ -31,7 +31,6 @@ extension EditProfilePresenter: EditProfileViewOutput {
     
     func saveButtonTapped(firstName: String, lastName: String) {
         interactor.updateUser(firstName: firstName, lastName: lastName)
-        view.dismiss()
     }
     
     func viewWillAppear() {
@@ -55,7 +54,13 @@ extension EditProfilePresenter: EditProfileViewOutput {
 // MARK: - EditProfileInteractorOutput
 
 extension EditProfilePresenter: EditProfileInteractorOutput {
-
+    func userUpdatedSuccessfully() {
+        view.dismiss()
+    }
+    
+    func userUpdateFailed(message: String) {
+        router.showFailure(message: message, from: view.viewController)
+    }
 }
 
 

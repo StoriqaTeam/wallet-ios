@@ -8,6 +8,11 @@
 
 import UIKit
 
+private enum SettingsCellType: Int {
+    case editProfile = 0
+    case changePassword
+    case changePhone
+}
 
 class SettingsViewController: UIViewController {
 
@@ -37,8 +42,13 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let info = indexPath.row == 0 ? "Edit profile" : "Change password"
+        let info: String = {
+            switch indexPath.row {
+            case SettingsCellType.editProfile.rawValue: return "Edit profile"
+            case SettingsCellType.changePassword.rawValue: return "Change password"
+            default: return ""
+            }
+        }()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
         guard let settingsCell = cell as? SettingsTableViewCell else { fatalError("Fail to cast cell") }
@@ -63,8 +73,8 @@ extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.row {
-        case 0: output.editProfileSelected()
-        case 1: output.changePasswordSelected()
+        case SettingsCellType.editProfile.rawValue: output.editProfileSelected()
+        case SettingsCellType.changePassword.rawValue: output.changePasswordSelected()
         default:
             break
         }
