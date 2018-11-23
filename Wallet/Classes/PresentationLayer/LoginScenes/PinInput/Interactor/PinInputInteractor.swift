@@ -16,15 +16,18 @@ class PinInputInteractor {
     private let pinValidator: PinValidationProviderProtocol
     private let biometricAuthProvider: BiometricAuthProviderProtocol
     private let userStoreService: UserDataStoreServiceProtocol
+    private let appLockerProvider: AppLockerProviderProtocol
     
     init(defaultsProvider: DefaultsProviderProtocol,
          pinValidator: PinValidationProviderProtocol,
          biometricAuthProvider: BiometricAuthProviderProtocol,
-         userStoreService: UserDataStoreServiceProtocol) {
+         userStoreService: UserDataStoreServiceProtocol,
+         appLockerProvider: AppLockerProviderProtocol) {
         self.defaultsProvider = defaultsProvider
         self.pinValidator = pinValidator
         self.biometricAuthProvider = biometricAuthProvider
         self.userStoreService = userStoreService
+        self.appLockerProvider = appLockerProvider
     }
 }
 
@@ -32,6 +35,9 @@ class PinInputInteractor {
 // MARK: - PinInputInteractorInput
 
 extension PinInputInteractor: PinInputInteractorInput {
+    func setIsLocked() {
+        appLockerProvider.setIsLocked(true)
+    }
     
     func getCurrentUser() -> User {
         return userStoreService.getCurrentUser()
@@ -52,6 +58,7 @@ extension PinInputInteractor: PinInputInteractorInput {
     func resetPin() {
         pinValidator.resetPin()
         userStoreService.delete()
+        appLockerProvider.setIsLocked(false)
     }
     
     func biometricAuthImage() -> UIImage? {
@@ -64,6 +71,7 @@ extension PinInputInteractor: PinInputInteractorInput {
                 switch result {
                 case .success:
                     self?.output.touchAuthenticationSucceed()
+                    self?.appLockerProvider.setIsLocked(false)
                 case .failure(let error):
                     self?.output.touchAuthenticationFailed(error: error.localizedDescription)
                 }
