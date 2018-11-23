@@ -17,7 +17,6 @@ protocol SendTransactionServiceProtocol {
                                  exchangeId: String,
                                  exchangeRate: Decimal,
                                  completion: @escaping (Result<String?>) -> Void)
-    
 }
 
 class SendTransactionService: SendTransactionServiceProtocol {
@@ -27,6 +26,8 @@ class SendTransactionService: SendTransactionServiceProtocol {
     private let accountsUpdater: AccountsUpdaterProtocol
     private let txnUpdater: TransactionsUpdaterProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
+    
+    private let retryCount = 3
     
     init(sendNetworkProvider: SendTransactionNetworkProviderProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
@@ -49,36 +50,20 @@ class SendTransactionService: SendTransactionServiceProtocol {
         let userId = user.id
         let currentEmail = user.email
         
-        let signHeader: SignHeader
-        do {
-            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
-        } catch {
-            log.error(error.localizedDescription)
-            return
-        }
-        
         authTokenProvider.currentAuthToken { [weak self] (result) in
+            guard let strongSelf = self else {
+                return
+            }
+            
             switch result {
             case .success(let token):
-                self?.sendNetworkProvider.send(
-                    transaction: transaction,
-                    userId: userId,
-                    fromAccount: fromAccount,
-                    authToken: token,
-                    queue: .main,
-                    signHeader: signHeader,
-                    completion: { [weak self] (result) in
-                        switch result {
-                        case .success:
-                            self?.accountsUpdater.update()
-                            self?.txnUpdater.update()
-                            
-                            completion(.success(nil))
-                        case .failure(let error):
-                            completion(.failure(error))
-                        }
-                    }
-                )
+                strongSelf.sendTransaction(retryCount: strongSelf.retryCount,
+                                           authToken: token,
+                                           userId: userId,
+                                           email: currentEmail,
+                                           transaction: transaction,
+                                           fromAccount: fromAccount,
+                                           completion: completion)
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -96,41 +81,140 @@ class SendTransactionService: SendTransactionServiceProtocol {
         let userId = user.id
         let currentEmail = user.email
         
+        authTokenProvider.currentAuthToken { [weak self] (result) in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            switch result {
+            case .success(let token):
+                strongSelf.sendExchangeTransaction(retryCount: strongSelf.retryCount,
+                                                   authToken: token,
+                                                   userId: userId,
+                                                   email: currentEmail,
+                                                   transaction: transaction,
+                                                   fromAccount: fromAccount,
+                                                   exchangeId: exchangeId,
+                                                   exchangeRate: exchangeRate,
+                                                   completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+
+// MARK: Private methods
+
+extension SendTransactionService {
+    private func sendTransaction(retryCount: Int,
+                                 authToken: String,
+                                 userId: Int,
+                                 email: String,
+                                 transaction: Transaction,
+                                 fromAccount: String,
+                                 completion: @escaping (Result<String?>) -> Void) {
+        let retryCount = retryCount - 1
+        
         let signHeader: SignHeader
         do {
-            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
+            signHeader = try signHeaderFactory.createSignHeader(email: email)
         } catch {
             log.error(error.localizedDescription)
             return
         }
         
-        authTokenProvider.currentAuthToken { [weak self] (result) in
-            switch result {
-            case .success(let token):
-               self?.sendNetworkProvider.sendExchange(transaction: transaction,
+        sendNetworkProvider.send(
+            transaction: transaction,
+            userId: userId,
+            fromAccount: fromAccount,
+            authToken: authToken,
+            queue: .main,
+            signHeader: signHeader,
+            completion: { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.accountsUpdater.update()
+                    self?.txnUpdater.update()
+                    
+                    completion(.success(nil))
+                case .failure(let error):
+                    if retryCount > 0,
+                        let error = error as? SendTransactionNetworkProviderError,
+                        case .internalServer = error {
+                        self?.sendTransaction(retryCount: retryCount,
+                                              authToken: authToken,
+                                              userId: userId,
+                                              email: email,
+                                              transaction: transaction,
+                                              fromAccount: fromAccount,
+                                              completion: completion)
+                        return
+                    }
+                    
+                    completion(.failure(error))
+                }
+            }
+        )
+        
+    }
+    
+    
+    private func sendExchangeTransaction(retryCount: Int,
+                                         authToken: String,
+                                         userId: Int,
+                                         email: String,
+                                         transaction: Transaction,
+                                         fromAccount: String,
+                                         exchangeId: String,
+                                         exchangeRate: Decimal,
+                                         completion: @escaping (Result<String?>) -> Void) {
+        let retryCount = retryCount - 1
+        
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: email)
+        } catch {
+            log.error(error.localizedDescription)
+            return
+        }
+        
+        sendNetworkProvider.sendExchange(
+            transaction: transaction,
+            userId: userId,
+            fromAccount: fromAccount,
+            authToken: authToken,
+            queue: .main,
+            signHeader: signHeader,
+            exchangeId: exchangeId,
+            exchangeRate: exchangeRate,
+            completion: { [weak self] (result) in
+                
+                switch result {
+                case .success:
+                    self?.accountsUpdater.update()
+                    self?.txnUpdater.update()
+                    
+                    completion(.success(nil))
+                case .failure(let error):
+                    if retryCount > 0,
+                        let error = error as? SendTransactionNetworkProviderError,
+                        case .internalServer = error {
+                        self?.sendExchangeTransaction(retryCount: retryCount,
+                                                      authToken: authToken,
                                                       userId: userId,
+                                                      email: email,
+                                                      transaction: transaction,
                                                       fromAccount: fromAccount,
-                                                      authToken: token,
-                                                      queue: .main,
-                                                      signHeader: signHeader,
                                                       exchangeId: exchangeId,
                                                       exchangeRate: exchangeRate,
-                                                      completion: { [weak self] (result) in
-                                        
-                                                        switch result {
-                                                        case .success:
-                                                            self?.accountsUpdater.update()
-                                                            self?.txnUpdater.update()
-                                                            
-                                                            completion(.success(nil))
-                                                        case .failure(let error):
-                                                            completion(.failure(error))
-                                                        }
-                                                        
-               })
-            case .failure(let error):
-                completion(.failure(error))
+                                                      completion: completion)
+                        return
+                    }
+                    completion(.failure(error))
+                }
             }
-        }
+        )
     }
 }
