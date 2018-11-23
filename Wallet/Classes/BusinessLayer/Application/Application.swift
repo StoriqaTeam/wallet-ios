@@ -66,6 +66,7 @@ class Application {
     lazy var confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol = ConfirmAddDeviceNetworkProvider()
     lazy var exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol = ExchangeRateNetworkProvider()
     lazy var updateUserNetworkProvider: UpdateUserNetworkProviderProtocol = UpdateUserNetworkProvider()
+    lazy var resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol = ResendConfirmEmailNetworkProvider()
     
     
     // MARK: - Common Providers

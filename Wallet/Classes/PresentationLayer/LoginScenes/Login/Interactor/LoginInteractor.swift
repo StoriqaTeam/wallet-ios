@@ -21,6 +21,7 @@ class LoginInteractor {
     private let userKeyManager: UserKeyManagerProtocol
     private let addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol
     
     // for Retry
     private var authData: AuthData?
@@ -35,7 +36,8 @@ class LoginInteractor {
          keyGenerator: KeyGeneratorProtocol,
          userKeyManager: UserKeyManagerProtocol,
          addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol,
-         signHeaderFactory: SignHeaderFactoryProtocol) {
+         signHeaderFactory: SignHeaderFactoryProtocol,
+         resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
@@ -46,6 +48,7 @@ class LoginInteractor {
         self.userKeyManager = userKeyManager
         self.addDeviceNetworkProvider = addDeviceNetworkProvider
         self.signHeaderFactory = signHeaderFactory
+        self.resendConfirmEmailNetworkProvider = resendConfirmEmailNetworkProvider
     }
 }
 
@@ -86,6 +89,8 @@ extension LoginInteractor: LoginInteractorInput {
                         self?.deviceRegisterUserId = userId
                         self?.output.deviceNotRegistered()
                         return
+                    case .emailNotVerified:
+                        self?.output.emailNotVerified()
                     default: break
                     }
                 }
@@ -174,6 +179,32 @@ extension LoginInteractor: LoginInteractorInput {
                     self?.output.deviceRegisterEmailSent()
                 case .failure(let error):
                     self?.output.failedSendDeviceRegisterEmail(message: error.localizedDescription)
+                }
+        }
+    }
+    
+    func resendConfirmationEmail() {
+        guard let authData = authData else {
+            fatalError("Trying to resend confirmation email without previous auth data")
+        }
+        
+        let currentEmail: String
+        
+        switch authData {
+        case .email(let email, _):
+            currentEmail = email
+        case .social:
+            fatalError("Trying to resend confirmation email after social network auth")
+        }
+        
+        resendConfirmEmailNetworkProvider.confirmAddDevice(
+            email: currentEmail,
+            queue: .main) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.output.confirmEmailSentSuccessfully(email: currentEmail)
+                case .failure(let error):
+                    self?.output.confirmEmailSendingFailed(message: error.localizedDescription)
                 }
         }
     }

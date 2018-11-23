@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PopUpDeviceRegisterVMDelegate: class {
-    func okButtonPressed()
+    func deviceRegisterOkButtonPressed()
 }
 
 class PopUpDeviceRegisterVM: PopUpViewModelProtocol {
@@ -25,6 +25,6 @@ class PopUpDeviceRegisterVM: PopUpViewModelProtocol {
     }
     
     func performAction() {
-        delegate?.okButtonPressed()
+        delegate?.deviceRegisterOkButtonPressed()
     }
 }

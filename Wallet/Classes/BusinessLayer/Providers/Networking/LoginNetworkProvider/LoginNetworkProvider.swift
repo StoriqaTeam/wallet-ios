@@ -61,6 +61,7 @@ enum LoginProviderError: LocalizedError, Error {
     case internalServer
     case validationError(email: String?, password: String?)
     case deviceNotRegistered(userId: Int)
+    case emailNotVerified
     
     init(code: Int, json: JSON) {
         switch code {
@@ -69,6 +70,12 @@ enum LoginProviderError: LocalizedError, Error {
         case 401:
             self = .unauthorized
         case 422:
+            if let emailErrors = json["email"].array,
+                let _ = emailErrors.first(where: { $0["code"] == "not_verified" }) {
+                self = .emailNotVerified
+                return
+            }
+            
             var emailMessage: String?
             var passwordMessage: String?
             
@@ -121,6 +128,8 @@ enum LoginProviderError: LocalizedError, Error {
             return result.trim()
         case .deviceNotRegistered:
             return "Device is not registered"
+        case .emailNotVerified:
+            return "Email not verified"
         }
     }
 }

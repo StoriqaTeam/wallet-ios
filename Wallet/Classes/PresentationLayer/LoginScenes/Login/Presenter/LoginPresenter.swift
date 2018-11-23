@@ -94,6 +94,25 @@ extension LoginPresenter: LoginInteractorOutput {
         storiqaLoader.stopLoader()
         router.showDeviceRegisterFailedSendEmail(message: message, popUpDelegate: self, from: view.viewController)
     }
+    
+    func emailNotVerified() {
+        storiqaLoader.stopLoader()
+        router.showEmailNotVerified(popUpDelegate: self, from: view.viewController)
+    }
+    
+    func confirmEmailSentSuccessfully(email: String) {
+        storiqaLoader.stopLoader()
+        router.showEmailSengingSuccess(email: email,
+                                       popUpDelegate: self,
+                                       from: view.viewController)
+    }
+    
+    func confirmEmailSendingFailed(message: String) {
+        storiqaLoader.stopLoader()
+        router.showEmailSengingFailure(message: message,
+                                       from: view.viewController)
+    }
+    
 }
 
 
@@ -123,7 +142,7 @@ extension LoginPresenter: PopUpRegistrationFailedVMDelegate {
 // MARK: - PopUpDeviceRegisterVMDelegate
 
 extension LoginPresenter: PopUpDeviceRegisterVMDelegate {
-    func okButtonPressed() {
+    func deviceRegisterOkButtonPressed() {
         storiqaLoader.startLoader()
         interactor.registerDevice()
     }
@@ -137,6 +156,23 @@ extension LoginPresenter: PopUpDeviceRegisterFailedSendEmailVMDelegate {
         storiqaLoader.startLoader()
         interactor.registerDevice()
     }
+}
+
+
+// MARK: - PopUpDeviceRegisterFailedSendEmailVMDelegate
+
+extension LoginPresenter: PopUpResendConfirmEmailVMDelegate {
+    func resendButtonPressed() {
+        storiqaLoader.startLoader()
+        interactor.resendConfirmationEmail()
+    }
+}
+
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension LoginPresenter: PopUpRegistrationSuccessVMDelegate {
+    func okButtonPressed() { }
 }
 
 

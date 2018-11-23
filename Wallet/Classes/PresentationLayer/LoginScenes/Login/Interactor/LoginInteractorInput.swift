@@ -16,4 +16,5 @@ protocol LoginInteractorInput: class {
     func viewIsReady()
     func retry()
     func registerDevice()
+    func resendConfirmationEmail()
 }
