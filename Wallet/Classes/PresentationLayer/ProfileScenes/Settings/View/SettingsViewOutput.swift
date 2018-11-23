@@ -13,5 +13,7 @@ protocol SettingsViewOutput: class {
     func viewIsReady()
     func editProfileSelected()
     func changePasswordSelected()
+    func changePhoneNumber()
     func signOutButtonTapped()
+    func viewWillAppear()
 }

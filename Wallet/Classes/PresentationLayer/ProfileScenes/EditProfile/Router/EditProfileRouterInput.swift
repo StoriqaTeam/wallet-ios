@@ -10,5 +10,6 @@ import UIKit
 
 
 protocol EditProfileRouterInput: class {
-
+    func showFailure(message: String,
+                     from viewController: UIViewController)
 }

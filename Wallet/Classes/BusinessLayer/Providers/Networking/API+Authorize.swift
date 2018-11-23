@@ -35,7 +35,6 @@ extension API {
             exchangeId: String?,
             exchangeRate: Decimal?,
             signHeader: SignHeader)
-        case changePassword(authToken: String, currentPassword: String, newPassword: String, signHeader: SignHeader)
         case createAccount(authToken: String, userId: Int, id: String, currency: Currency, name: String, signHeader: SignHeader)
     }
 }
@@ -48,7 +47,6 @@ extension API.Authorized: APIMethodProtocol {
              .getTransactions:
             return .get
         case .sendTransaction,
-             .changePassword,
              .createAccount:
             return .post
         }
@@ -65,8 +63,6 @@ extension API.Authorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/users/\(userId)/transactions?offset=\(offset)&limit=\(limit)"
         case .sendTransaction:
             return "\(Constants.Network.baseUrl)/transactions"
-        case .changePassword:
-            return "\(Constants.Network.baseUrl)/users/change_password"
         case .createAccount(_, let userId, _, _, _, _):
             return "\(Constants.Network.baseUrl)/users/\(userId)/accounts"
         }
@@ -98,14 +94,6 @@ extension API.Authorized: APIMethodProtocol {
                 "Sign": signHeader.signature
             ]
         case .sendTransaction(let authToken, _, _, _, _, _, _, _, _, _, _, let signHeader):
-            return [
-                "accept": "application/json",
-                "Authorization": "Bearer \(authToken)",
-                "Timestamp": signHeader.timestamp,
-                "Device-id": signHeader.deviceId,
-                "Sign": signHeader.signature
-            ]
-        case .changePassword(let authToken, _, _, let signHeader):
             return [
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)",
@@ -176,11 +164,6 @@ extension API.Authorized: APIMethodProtocol {
             }
             
             return params
-        case .changePassword(_, let currentPassword, let newPassword, _):
-            return [
-                "newPassword": newPassword,
-                "oldPassword": currentPassword
-            ]
         case .createAccount(_, _, let id, let currency, let name, _):
             return [
                 "id": id,

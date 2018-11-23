@@ -10,5 +10,6 @@ import Foundation
 
 
 protocol ConnectPhoneInteractorOutput: class {
-
+    func userUpdatedSuccessfully()
+    func userUpdateFailed(message: String)
 }

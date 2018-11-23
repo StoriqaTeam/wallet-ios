@@ -28,6 +28,11 @@ extension SettingsPresenter: SettingsViewOutput {
         configureNavigationBar()
     }
     
+    func viewWillAppear() {
+        let hasPhone = interactor.userHasPhone()
+        let title = hasPhone ? "Change" : "Connect" + " telephone number"
+        view.setChangePhoneTitle(title)
+    }
     
     func editProfileSelected() {
         router.showEditProfile(from: view.viewController)
@@ -35,6 +40,10 @@ extension SettingsPresenter: SettingsViewOutput {
     
     func changePasswordSelected() {
         router.showChangePassword(from: view.viewController)
+    }
+    
+    func changePhoneNumber() {
+        router.showChangePhone(from: view.viewController)
     }
     
     func signOutButtonTapped() {
