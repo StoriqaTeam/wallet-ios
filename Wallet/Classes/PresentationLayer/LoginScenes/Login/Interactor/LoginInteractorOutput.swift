@@ -18,4 +18,7 @@ protocol LoginInteractorOutput: class {
     func deviceNotRegistered()
     func deviceRegisterEmailSent()
     func failedSendDeviceRegisterEmail(message: String)
+    func emailNotVerified()
+    func confirmEmailSentSuccessfully(email: String)
+    func confirmEmailSendingFailed(message: String)
 }

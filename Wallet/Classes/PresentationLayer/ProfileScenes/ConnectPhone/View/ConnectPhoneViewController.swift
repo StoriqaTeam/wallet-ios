@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreTelephony
 
 
 class ConnectPhoneViewController: UIViewController {
@@ -35,6 +34,10 @@ class ConnectPhoneViewController: UIViewController {
     
     @IBAction func connectButtonPressed(_ sender: UIButton) {
         output.connectButtonPressed(phoneTextField.text!)
+    }
+    
+    @IBAction func inputChanged(_ sender: UITextField) {
+        output.phoneChanged(sender.text ?? "")
     }
 }
 

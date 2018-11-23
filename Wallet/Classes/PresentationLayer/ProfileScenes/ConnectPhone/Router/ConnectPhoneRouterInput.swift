@@ -10,5 +10,6 @@ import UIKit
 
 
 protocol ConnectPhoneRouterInput: class {
-
+    func showFailure(message: String,
+                     from viewController: UIViewController)
 }

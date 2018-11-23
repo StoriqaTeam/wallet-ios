@@ -34,4 +34,10 @@ extension SettingsInteractor: SettingsInteractorInput {
         keychainProvider.deleteAll()
         defaultsProvider.clear()
     }
+    
+    func userHasPhone() -> Bool {
+        let user = userStoreService.getCurrentUser()
+        let hasPhone = !user.phone.isEmpty
+        return hasPhone
+    }
 }

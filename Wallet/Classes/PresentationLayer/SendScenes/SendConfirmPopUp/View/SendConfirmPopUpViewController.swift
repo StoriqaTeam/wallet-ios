@@ -9,13 +9,12 @@
 import UIKit
 
 
-class SendConfirmPopUpViewController: UIViewController {
+class SendConfirmPopUpViewController: BasePopUpViewController {
 
     var output: SendConfirmPopUpViewOutput!
     
     // MARK: - IBOutlets
     
-    @IBOutlet private var containerView: UIView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var addressTitle: UILabel!
     @IBOutlet private var amountTitle: UILabel!
@@ -25,33 +24,13 @@ class SendConfirmPopUpViewController: UIViewController {
     @IBOutlet private var feeLabel: UILabel!
     @IBOutlet private var confirmButton: DefaultButton!
     @IBOutlet private var closeButton: BaseButton!
-    @IBOutlet private var verticalCenterConstraint: NSLayoutConstraint!
 
     // MARK: Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        verticalCenterConstraint.constant = Constants.Sizes.screenHeight
         configureInterface()
         output.viewIsReady()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
-            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        }, completion: nil)
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        verticalCenterConstraint.constant = 0
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut], animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
     }
     
     // MARK: - Action
@@ -85,9 +64,7 @@ extension SendConfirmPopUpViewController: SendConfirmPopUpViewInput {
 // MARK: - Private methods
 
 extension SendConfirmPopUpViewController {
-    
     private func configureInterface() {
-        containerView.roundCorners(radius: 7)
         titleLabel.font = Theme.Font.title
 
         addressTitle.font = Theme.Font.smallText
@@ -106,19 +83,4 @@ extension SendConfirmPopUpViewController {
         
         closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }
-    
-    private func animateDismiss(completion: @escaping () -> Void) {
-        verticalCenterConstraint.constant = Constants.Sizes.screenHeight
-        
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut], animations: {
-            self.view.layoutIfNeeded()
-        }, completion: { _ in
-            self.dismiss(animated: false, completion: completion)
-        })
-        
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {
-            self.view.backgroundColor = .clear
-        }, completion: nil)
-    }
-    
 }

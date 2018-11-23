@@ -68,6 +68,8 @@ class Application {
     lazy var addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol = AddDeviceNetworkProvider()
     lazy var confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol = ConfirmAddDeviceNetworkProvider()
     lazy var exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol = ExchangeRateNetworkProvider()
+    lazy var updateUserNetworkProvider: UpdateUserNetworkProviderProtocol = UpdateUserNetworkProvider()
+    lazy var resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol = ResendConfirmEmailNetworkProvider()
     
     
     // MARK: - Common Providers -
@@ -149,7 +151,6 @@ class Application {
     // MARK: - Validators -
     lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: BITCOIN_NETWORK)
     lazy var ethAddressValidator: AddressValidatorProtocol = EthereumAddressValidator()
-    lazy var erc20SendValidator: Erc20SendValidatorProtocol = Erc20SendValidator()
     
     
     // MARK: - Resolvers -

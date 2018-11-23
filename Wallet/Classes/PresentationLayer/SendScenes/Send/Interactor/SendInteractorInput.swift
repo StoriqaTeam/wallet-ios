@@ -28,7 +28,6 @@ protocol SendInteractorInput: class {
     func updateState(receiverAddress: String)
     func startObservers()
     func setScannedDelegate(_ delegate: QRScannerDelegate)
-    func validateErc20Approved() -> Bool
     
     func sendTransaction() 
     func clearBuilder()

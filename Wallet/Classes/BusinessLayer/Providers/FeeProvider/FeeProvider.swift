@@ -27,7 +27,14 @@ class FeeProvider: FeeProviderProtocol {
     }
     
     func updateFees(fees: [EstimatedFee]?) {
-        let sorted = fees?.sorted(by: {
+        guard let fees = fees else {
+            self.fees = nil
+            return
+        }
+        
+        let rounded = roundedValues(fees)
+        
+        let sorted = rounded.sorted(by: {
             $0.value < $1.value
         })
         
@@ -60,5 +67,32 @@ class FeeProvider: FeeProviderProtocol {
         
         let formatted = medianWaitFormatter.stringValue(from: wait)
         return formatted
+    }
+}
+
+
+// Private methods
+
+extension FeeProvider {
+    func roundedValues(_ fees: [EstimatedFee]) -> [EstimatedFee] {
+        
+        let roundedFees = fees.map { (fee) -> EstimatedFee in
+            switch fee.currency {
+            case .stq:
+                let newValue = Decimal(round((fee.value / pow(10, 18)).double)) * pow(10, 18)
+                let roundedFee = EstimatedFee(currency: fee.currency, value: newValue, estimatedTime: fee.estimatedTime)
+                return roundedFee
+                
+            case .eth:
+                let newValue = Decimal(round((fee.value / pow(10, 12)).double)) * pow(10, 12)
+                let roundedFee = EstimatedFee(currency: fee.currency, value: newValue, estimatedTime: fee.estimatedTime)
+                return roundedFee
+                
+            default:
+                return fee
+            }
+        }
+        
+        return roundedFees
     }
 }

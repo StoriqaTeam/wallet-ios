@@ -11,4 +11,5 @@ import UIKit
 
 protocol SettingsViewInput: class, Presentable {
     func setupInitialState()
+    func setChangePhoneTitle(_ title: String)
 }
