@@ -18,8 +18,6 @@ class SendInteractor {
     private let cryptoAddressResolver: CryptoAddressResolverProtocol
     private let sendTransactionService: SendTransactionServiceProtocol
     private let feeLoader: FeeLoaderProtocol
-    private let erc20SendValidator: Erc20SendValidatorProtocol
-    private let accountsUpdater: AccountsUpdaterProtocol
     
     private var sendProvider: SendTransactionProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
@@ -29,9 +27,7 @@ class SendInteractor {
          accountWatcher: CurrentAccountWatcherProtocol,
          cryptoAddressResolver: CryptoAddressResolverProtocol,
          sendTransactionService: SendTransactionServiceProtocol,
-         feeLoader: FeeLoaderProtocol,
-         erc20SendValidator: Erc20SendValidatorProtocol,
-         accountsUpdater: AccountsUpdaterProtocol) {
+         feeLoader: FeeLoaderProtocol) {
         
         self.accountsProvider = accountsProvider
         self.sendTransactionBuilder = sendTransactionBuilder
@@ -40,8 +36,6 @@ class SendInteractor {
         self.sendProvider = sendTransactionBuilder.build()
         self.sendTransactionService = sendTransactionService
         self.feeLoader = feeLoader
-        self.erc20SendValidator = erc20SendValidator
-        self.accountsUpdater = accountsUpdater
     }
     
     deinit {
@@ -93,7 +87,8 @@ extension SendInteractor: SendInteractorInput {
     }
     
     func getFee() -> Decimal? {
-        return sendProvider.paymentFee
+        let estimatedFee = sendProvider.getFeeAndWait()
+        return estimatedFee.fee
     }
     
     func getCurrency() -> Currency {
@@ -155,17 +150,6 @@ extension SendInteractor: SendInteractorInput {
     
     func setScannedDelegate(_ delegate: QRScannerDelegate) {
         sendTransactionBuilder.setScannedDelegate(delegate)
-    }
-    
-    func validateErc20Approved() -> Bool {
-        let account = sendProvider.selectedAccount
-        let isValid = erc20SendValidator.isValidAccount(account)
-        
-        if !isValid {
-            accountsUpdater.update()
-        }
-        
-        return isValid
     }
     
     func sendTransaction() {

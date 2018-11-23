@@ -32,9 +32,7 @@ class SendModule {
                                         accountWatcher: accountWatcher,
                                         cryptoAddressResolver: app.cryptoAddressResolver,
                                         sendTransactionService: app.sendTransactionService,
-                                        feeLoader: app.feeLoader,
-                                        erc20SendValidator: app.erc20SendValidator,
-                                        accountsUpdater: app.accountsUpdater)
+                                        feeLoader: app.feeLoader)
         
         let sendSb = UIStoryboard(name: "Send", bundle: nil)
         let viewController = sendSb.instantiateViewController(withIdentifier: "sendVC") as! SendViewController

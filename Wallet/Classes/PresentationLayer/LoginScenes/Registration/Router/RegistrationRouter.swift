@@ -39,7 +39,7 @@ extension RegistrationRouter: RegistrationRouterInput {
     }
     
     func showSocialNetworkFailure(message: String, from viewController: UIViewController) {
-        let viewModel = PopUpSocialRegistrationFailedVM(message: message)
+        let viewModel = PopUpDefaultFailureVM(message: message)
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     

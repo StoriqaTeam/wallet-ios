@@ -17,8 +17,8 @@ protocol SendRouterInput: class {
                      fee: String,
                      confirmTxBlock: @escaping (() -> Void),
                      from viewController: UIViewController)
-    func showConfirmFailed(message: String,
-                           from viewController: UIViewController)
+    func showFailure(message: String,
+                     from viewController: UIViewController)
     func showConfirmSucceed(popUpDelegate: PopUpSendConfirmSuccessVMDelegate,
                             from viewController: UIViewController)
 }

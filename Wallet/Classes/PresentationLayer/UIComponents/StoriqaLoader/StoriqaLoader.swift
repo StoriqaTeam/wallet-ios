@@ -45,7 +45,12 @@ extension StoriqaLoader {
     private func addDimView() {
         dimView = UIView(frame: parentView.frame)
         dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        dimView.alpha = 0
         parentView.addSubview(dimView)
+        
+        UIView.animate(withDuration: 0.25) {
+            self.dimView.alpha = 1
+        }
     }
     
     private func addLoaderView() {
