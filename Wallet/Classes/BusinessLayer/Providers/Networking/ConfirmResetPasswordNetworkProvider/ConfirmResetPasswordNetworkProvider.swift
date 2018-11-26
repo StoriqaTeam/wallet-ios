@@ -45,6 +45,7 @@ enum ConfirmResetPasswordNetworkProviderError: LocalizedError, Error {
     case unauthorized
     case internalServer
     case unknownError
+    case deviceTokenExpired
     case validationError(password: String?)
     
     init(code: Int, json: JSON) {
@@ -60,6 +61,9 @@ enum ConfirmResetPasswordNetworkProviderError: LocalizedError, Error {
         
             if passwordMessage != nil && !passwordMessage!.isEmpty {
                 self = .validationError(password: passwordMessage)
+            } else if let deviceErrors = json["device"].array,
+                deviceErrors.contains(where: { $0["code"] == "token" }) {
+                self = .deviceTokenExpired
             } else {
                 self = .unknownError
             }
@@ -74,10 +78,11 @@ enum ConfirmResetPasswordNetworkProviderError: LocalizedError, Error {
         switch self {
         case .unauthorized:
             return "User unauthorized"
-        case .internalServer:
-            return "Internal server error"
-        case .unknownError:
+        case .internalServer, .unknownError:
             return Constants.Errors.userFriendly
+        case .deviceTokenExpired:
+            // FIXME: error message
+            return "Device token expired"
         case .validationError(let password):
             var result = ""
             if let password = password {

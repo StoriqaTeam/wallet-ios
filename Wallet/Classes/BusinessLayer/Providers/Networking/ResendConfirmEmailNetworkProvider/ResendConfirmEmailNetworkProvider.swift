@@ -25,9 +25,10 @@ class ResendConfirmEmailNetworkProvider: NetworkLoadable, ResendConfirmEmailNetw
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
+                let json = JSON(response.value)
                 
                 guard code == 200 else {
-                    let error = ResendConfirmEmailNetworkProviderError(code: code)
+                    let error = ResendConfirmEmailNetworkProviderError(code: code, json: json)
                     completion(.failure(error))
                     return
                 }
@@ -45,11 +46,19 @@ enum ResendConfirmEmailNetworkProviderError: Error, LocalizedError {
     case unauthorized
     case unknownError
     case internalServer
+    case sendEmailTimeout
     
-    init(code: Int) {
+    init(code: Int, json: JSON) {
         switch code {
         case 400: self = .badRequest
         case 401: self = .unauthorized
+        case 422:
+            if let deviceErrors = json["device"].array,
+                deviceErrors.contains(where: { $0["code"] == "email_timeout" }) {
+                self = .sendEmailTimeout
+            } else {
+                self = .unknownError
+            }
         case 500: self = .internalServer
         default: self = .unknownError
         }
@@ -61,6 +70,9 @@ enum ResendConfirmEmailNetworkProviderError: Error, LocalizedError {
             return "Bad request"
         case .unauthorized:
             return "User unauthorized"
+        case .sendEmailTimeout:
+            // FIXME: error message
+            return "Can not send email more often then once in 30 seconds"
         case .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }

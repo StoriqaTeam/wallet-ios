@@ -30,9 +30,10 @@ class AddDeviceNetworkProvider: NetworkLoadable, AddDeviceNetworkProviderProtoco
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
+                let json = JSON(response.value)
                 
                 guard code == 200 else {
-                    let error = AddDeviceNetworkProviderError(code: code)
+                    let error = AddDeviceNetworkProviderError(code: code, json: json)
                     completion(.failure(error))
                     return
                 }
@@ -50,11 +51,23 @@ enum AddDeviceNetworkProviderError: Error, LocalizedError {
     case internalServer
     case unauthorized
     case unknownError
+    case deviceAlreadyExists
+    case sendEmailTimeout
     
-    init(code: Int) {
+    init(code: Int, json: JSON) {
         switch code {
         case 401:
             self = .unauthorized
+        case 422:
+            if let deviceErrors = json["device"].array,
+                deviceErrors.contains(where: { $0["code"] == "exists" }) {
+                self = .deviceAlreadyExists
+            } else if let deviceErrors = json["device"].array,
+                deviceErrors.contains(where: { $0["code"] == "email_timeout" }) {
+                self = .sendEmailTimeout
+            } else {
+                self = .unknownError
+            }
         case 500:
             self = .internalServer
         default:
@@ -66,9 +79,13 @@ enum AddDeviceNetworkProviderError: Error, LocalizedError {
         switch self {
         case .unauthorized:
             return "User unauthorized"
-        case .internalServer:
-            return "Internal server error"
-        case .unknownError:
+        case .deviceAlreadyExists:
+            // FIXME: error message
+            return "Device already exists"
+        case .sendEmailTimeout:
+            // FIXME: error message
+            return "Can not send email more often then once in 30 seconds"
+        case .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }
     }

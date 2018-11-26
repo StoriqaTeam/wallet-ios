@@ -72,10 +72,9 @@ enum FeeNetworkProviderError: LocalizedError, Error {
         switch code {
         case 422:
             if let accountErrors = json["account"].array,
-                let existsError = accountErrors.first(where: { $0["code"] == "currency" }),
-                let params = existsError["params"].dictionary,
-                let message = params["message"]?.string {
-                self = .wrongCurrency(message: message)
+                accountErrors.contains(where: { $0["code"] == "currency" }) {
+                // FIXME: error message
+                self = .wrongCurrency(message: "Account currency doesn't match address currency")
             } else {
                 self = .unknownError
             }
