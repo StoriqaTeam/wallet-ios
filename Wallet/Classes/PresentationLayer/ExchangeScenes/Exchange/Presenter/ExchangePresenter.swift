@@ -137,13 +137,13 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.updateExpiredTimeLabel(elapsedString)
     }
     
-    func updateRateFor(oneUnit: Decimal?, from: Currency, to: Currency) {
+    func updateRateFor(oneUnit: Decimal?, fromCurrency: Currency, toCurrency: Currency) {
         guard let oneUnitRate = oneUnit else {
             view.updateRateLabel(text: "-")
             return
         }
         
-        let outString = "1 \(from.ISO) = \(oneUnitRate.double) \(to.ISO)"
+        let outString = "1 \(fromCurrency.ISO) = \(oneUnitRate.double) \(toCurrency.ISO)"
         view.updateRateLabel(text: outString)
     }
     

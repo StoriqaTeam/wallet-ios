@@ -281,52 +281,53 @@ extension ExchangeInteractor {
     private func updateTotal() {
         let accountCurrency = accountWatcher.getAccount().currency
         let amount = exchangeProvider.getAmountInMinUnits()
-        let exchangeAmount: Decimal = amount.isZero ? 1 : 0
-
+        let exchangeAmount = max(1, amount)
+        
         guard let recepientCurrency = exchangeProvider.recepientAccount?.currency else {
             log.error("Recepient account not found")
             output.updateFormIsValid(false)
-            output.updateRateFor(oneUnit: nil, from: .fiat, to: .fiat)
+            output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
             return
         }
         
         let isEnough = exchangeProvider.isEnoughFunds()
         let hasAmount = !exchangeProvider.amount.isZero
         
-        exchangeRatesLoader.getExchangeRates(from: accountCurrency,
-                                             to: recepientCurrency,
-                                             amountCurrency: recepientCurrency,
-                                             amountInMinUnits: exchangeAmount) { [weak self]  (result) in
-                                                switch result {
-                                                case .success(let exchangeRate):
-                                                    guard let strongSelf = self else { return }
-                                                    log.warn("Exchange rate id: \(exchangeRate.id)")
-                                                    log.warn("From currency: \(exchangeRate.from)")
-                                                    log.warn("To currency: \(exchangeRate.to)")
-                                                    log.warn("\n\n")
-3
-                                                    strongSelf.updateOrder(with: exchangeRate)
-                                                    
-                                                    let total = strongSelf.exchangeProvider.getSubtotal()
-                                                    let formIsValid = strongSelf.isFormValid()
-                                                    let isEnough = strongSelf.exchangeProvider.isEnoughFunds()
-                                                    let hasAmount = !strongSelf.exchangeProvider.amount.isZero
-                                                    
-                                                    strongSelf.output.updateTotal(total, currency: accountCurrency)
-                                                    strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
-                                                    strongSelf.output.updateFormIsValid(formIsValid)
-                                                    strongSelf.updateRateForOneUnit(from: accountCurrency, to: recepientCurrency)
-                                                    strongSelf.removeTimerIfNeeded(amount: amount)
-                                                    
-                                                case .failure(let error):
-                                                    log.error(error)
-                                                    guard let strongSelf = self else { return }
-                                                    
-                                                    strongSelf.output.updateTotal(0, currency: accountCurrency)
-                                                    strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
-                                                    strongSelf.output.updateFormIsValid(false)
-                                                    strongSelf.output.updateRateFor(oneUnit: nil, from: .fiat, to: .fiat)
-                                                }
+        exchangeRatesLoader.getExchangeRates(
+            from: accountCurrency,
+            to: recepientCurrency,
+            amountCurrency: recepientCurrency,
+            amountInMinUnits: exchangeAmount) { [weak self]  (result) in
+                switch result {
+                case .success(let exchangeRate):
+                    guard let strongSelf = self else { return }
+                    log.warn("Exchange rate id: \(exchangeRate.id)")
+                    log.warn("From currency: \(exchangeRate.from)")
+                    log.warn("To currency: \(exchangeRate.to)")
+                    log.warn("\n\n")
+                    
+                    strongSelf.updateOrder(with: exchangeRate)
+                    
+                    let total = strongSelf.exchangeProvider.getSubtotal()
+                    let formIsValid = strongSelf.isFormValid()
+                    let isEnough = strongSelf.exchangeProvider.isEnoughFunds()
+                    let hasAmount = !strongSelf.exchangeProvider.amount.isZero
+                    
+                    strongSelf.output.updateTotal(total, currency: accountCurrency)
+                    strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
+                    strongSelf.output.updateFormIsValid(formIsValid)
+                    strongSelf.updateRateForOneUnit(from: accountCurrency, to: recepientCurrency)
+                    strongSelf.removeTimerIfNeeded(amount: amount)
+                    
+                case .failure(let error):
+                    log.error(error)
+                    guard let strongSelf = self else { return }
+                    
+                    strongSelf.output.updateTotal(0, currency: accountCurrency)
+                    strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
+                    strongSelf.output.updateFormIsValid(false)
+                    strongSelf.output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
+                }
         }
     }
     
@@ -345,11 +346,11 @@ extension ExchangeInteractor {
     
     private func updateRateForOneUnit(from: Currency, to: Currency) {
         guard let rate = exchangeProvider.getRateForCurrentOrder() else {
-            output.updateRateFor(oneUnit: nil, from: .fiat, to: .fiat)
+            output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
             return
         }
         
-        output.updateRateFor(oneUnit: 1/rate, from: to, to: from)
+        output.updateRateFor(oneUnit: 1/rate, fromCurrency: to, toCurrency: from)
     }
     
     private func removeTimerIfNeeded(amount: Decimal) {

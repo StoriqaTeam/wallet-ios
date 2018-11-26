@@ -187,17 +187,12 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
                 let min = params["min"]?.string,
                 let max = params["max"]?.string {
                 self = .amountOutOfBounds(min: min, max: max, currency: currency)
-                
             } else if let exchangeRate = json["exchange_rate"].array,
-                let expiredCode = exchangeRate[0]["code"].string {
-                
-                if expiredCode == "expired" {
-                    self = .orderExpired
-                    return
-                }
+                exchangeRate.contains(where: { $0["code"] == "expired" }) {
+                self = .orderExpired
+            } else {
+                self = .unknownError
             }
-            
-            self = .unknownError
         case 500:
             self = .internalServer
         default:
