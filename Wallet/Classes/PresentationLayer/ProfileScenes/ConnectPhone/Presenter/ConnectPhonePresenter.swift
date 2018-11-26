@@ -27,11 +27,11 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
     func viewIsReady() {
         let phone: String = {
             let userPhone = interactor.getUserPhone()
-            if userPhone.hasPrefix("+") {
+            if userPhone.isEmpty || userPhone.hasPrefix("+") {
                 return userPhone
-            } else {
-                return "+" + userPhone
             }
+            
+            return "+" + userPhone
         }()
         let button = phone.isEmpty ? "Connect" : "Change"
         let title = button + " telephone number"
