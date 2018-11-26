@@ -32,7 +32,7 @@ class BasePopUpViewController: UIViewController {
         super.viewDidAppear(animated)
         
         verticalCenterConstraint.constant = 0
-        UIView.animate(withDuration: 0.6,
+        UIView.animate(withDuration: 0.65,
                        delay: 0,
                        usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 0,
