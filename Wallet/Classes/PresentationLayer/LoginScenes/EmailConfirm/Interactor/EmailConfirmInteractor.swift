@@ -24,13 +24,26 @@ class EmailConfirmInteractor {
         self.authTokenDefaults = authTokenDefaults
         self.emailConfirmProvider = emailConfirmProvider
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 
 // MARK: - EmailConfirmInteractorInput
 
 extension EmailConfirmInteractor: EmailConfirmInteractorInput {
-    func confirmEmail() {
+    @objc func confirmEmail() {
+        guard case .active = AppDelegate.currenctApplication.applicationState else {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(confirmEmail),
+                                                   name: UIApplication.didBecomeActiveNotification,
+                                                   object: nil)
+            return
+        }
+        
+        NotificationCenter.default.removeObserver(self)
         
         emailConfirmProvider.confirm(token: token, queue: .main) { [weak self] (result) in
             switch result {

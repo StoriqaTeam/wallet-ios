@@ -6,6 +6,7 @@
 	<array>
 		<string>applinks:beta.storiqa.com</string>
 		<string>applinks:stable.stq.cloud</string>
+		<string>applinks:storiqa.com</string>
 	</array>
 </dict>
 </plist>
