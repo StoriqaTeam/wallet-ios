@@ -29,7 +29,7 @@ class EmailConfirmNetworkProvider: NetworkLoadable, EmailConfirmNetworkProviderP
                 if let token = json.string {
                     completion(.success(token))
                 } else {
-                    let apiError = EmailConfirmProviderError(code: response.responseStatusCode)
+                    let apiError = EmailConfirmProviderError(code: response.responseStatusCode, json: json)
                     completion(.failure(apiError))
                 }
                 
@@ -44,11 +44,19 @@ enum EmailConfirmProviderError: LocalizedError, Error {
     case internalServer
     case unauthorized
     case unknownError
+    case deviceTokenExpired
     
-    init(code: Int) {
+    init(code: Int, json: JSON) {
         switch code {
         case 401:
             self = .unauthorized
+        case 422:
+            if let deviceErrors = json["device"].array,
+                deviceErrors.contains(where: { $0["code"] == "token" }) {
+                self = .deviceTokenExpired
+            } else {
+                self = .unknownError
+            }
         case 500:
             self = .internalServer
         default:
@@ -60,9 +68,10 @@ enum EmailConfirmProviderError: LocalizedError, Error {
         switch self {
         case .unauthorized:
             return "User unauthorized"
-        case .internalServer:
-            return "Internal server error"
-        case .unknownError:
+        case .deviceTokenExpired:
+            // FIXME: error message
+            return "Device token expired"
+        case .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }
     }
