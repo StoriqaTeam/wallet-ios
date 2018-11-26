@@ -5,6 +5,7 @@
 //  Created by Storiqa on 20/09/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 
@@ -299,7 +300,11 @@ extension ExchangeInteractor {
                                                 switch result {
                                                 case .success(let exchangeRate):
                                                     guard let strongSelf = self else { return }
-                                                    
+                                                    log.warn("Exchange rate id: \(exchangeRate.id)")
+                                                    log.warn("From currency: \(exchangeRate.from)")
+                                                    log.warn("To currency: \(exchangeRate.to)")
+                                                    log.warn("\n\n")
+3
                                                     strongSelf.updateOrder(with: exchangeRate)
                                                     
                                                     let total = strongSelf.exchangeProvider.getSubtotal()

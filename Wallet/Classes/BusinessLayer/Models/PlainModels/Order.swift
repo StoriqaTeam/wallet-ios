@@ -5,6 +5,7 @@
 //  Created by Storiqa on 22/11/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 
@@ -32,7 +33,7 @@ struct Order: OrderProtocol {
     // MARK: - OrderProtocol
     
     func elapsedTime() -> Int {
-        let expirationTimeStamp = Int(exchangeRate.expiration.timeIntervalSince1970) - 291
+        let expirationTimeStamp = Int(exchangeRate.expiration.timeIntervalSince1970) - 60
         let elapsedTime = expirationTimeStamp - now
         return elapsedTime <= 0 ? 0 : elapsedTime
     }

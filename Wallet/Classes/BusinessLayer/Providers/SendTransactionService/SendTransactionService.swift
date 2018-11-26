@@ -88,8 +88,7 @@ class SendTransactionService: SendTransactionServiceProtocol {
             
             switch result {
             case .success(let token):
-                strongSelf.sendExchangeTransaction(retryCount: strongSelf.retryCount,
-                                                   authToken: token,
+                strongSelf.sendExchangeTransaction(authToken: token,
                                                    userId: userId,
                                                    email: currentEmail,
                                                    transaction: transaction,
@@ -161,16 +160,15 @@ extension SendTransactionService {
     }
     
     
-    private func sendExchangeTransaction(retryCount: Int,
-                                         authToken: String,
-                                         userId: Int,
-                                         email: String,
-                                         transaction: Transaction,
-                                         fromAccount: String,
-                                         exchangeId: String,
-                                         exchangeRate: Decimal,
-                                         completion: @escaping (Result<String?>) -> Void) {
-        let retryCount = retryCount - 1
+    private func sendExchangeTransaction( authToken: String,
+                                          userId: Int,
+                                          email: String,
+                                          transaction: Transaction,
+                                          fromAccount: String,
+                                          exchangeId: String,
+                                          exchangeRate: Decimal,
+                                          completion: @escaping (Result<String?>) -> Void) {
+        
         
         let signHeader: SignHeader
         do {
@@ -191,27 +189,16 @@ extension SendTransactionService {
             exchangeRate: exchangeRate,
             completion: { [weak self] (result) in
                 
+                log.warn("Send: Exchange rate id: \(exchangeId)")
+                log.warn("Send: From currency: \(fromAccount)")
+                log.warn("\n\n")
+            
                 switch result {
                 case .success:
                     self?.accountsUpdater.update()
                     self?.txnUpdater.update()
-                    
                     completion(.success(nil))
                 case .failure(let error):
-                    if retryCount > 0,
-                        let error = error as? SendTransactionNetworkProviderError,
-                        case .internalServer = error {
-                        self?.sendExchangeTransaction(retryCount: retryCount,
-                                                      authToken: authToken,
-                                                      userId: userId,
-                                                      email: email,
-                                                      transaction: transaction,
-                                                      fromAccount: fromAccount,
-                                                      exchangeId: exchangeId,
-                                                      exchangeRate: exchangeRate,
-                                                      completion: completion)
-                        return
-                    }
                     completion(.failure(error))
                 }
             }
