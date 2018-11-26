@@ -21,13 +21,26 @@ class DeviceRegisterConfirmInteractor {
         self.token = token
         self.confirmAddDeviceNetworkProvider = confirmAddDeviceNetworkProvider
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 
 // MARK: - DeviceRegisterConfirmInteractorInput
 
 extension DeviceRegisterConfirmInteractor: DeviceRegisterConfirmInteractorInput {
-    func registerDevice() {
+    @objc func registerDevice() {
+        guard case .active = AppDelegate.currenctApplication.applicationState else {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(registerDevice),
+                                                   name: UIApplication.didBecomeActiveNotification,
+                                                   object: nil)
+            return
+        }
+        
+        NotificationCenter.default.removeObserver(self)
         
         confirmAddDeviceNetworkProvider.confirmAddDevice(
             deviceConfirmToken: token,
