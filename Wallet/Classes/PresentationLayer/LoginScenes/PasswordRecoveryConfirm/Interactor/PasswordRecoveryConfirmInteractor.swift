@@ -33,11 +33,9 @@ class PasswordRecoveryConfirmInteractor {
 
 extension PasswordRecoveryConfirmInteractor: PasswordRecoveryConfirmInteractorInput {
     
-    func validateForm(newPassword: String?, passwordConfirm: String?) {
-        
+    func validateForm(withMessage: Bool, newPassword: String?, passwordConfirm: String?) {
         let result = formValidator.formIsValid(newPassword: newPassword, passwordConfirm: passwordConfirm)
-        output.setFormIsValid(result.valid, passwordsEqualityMessage: result.message)
-        
+        output.setFormIsValid(result.valid, passwordsEqualityMessage: withMessage ? result.message : nil)
     }
     
     func confirmReset(newPassword: String) {
