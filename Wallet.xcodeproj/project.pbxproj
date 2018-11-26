@@ -265,6 +265,8 @@
 		A52FE2AE2185FB2200100E21 /* ChannelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2AB2185FB2200100E21 /* ChannelStorage.swift */; };
 		A52FE2B02185FB2800100E21 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2AF2185FB2800100E21 /* Observer.swift */; };
 		A52FE2B221860D2300100E21 /* ChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2B121860D2300100E21 /* ChannelTests.swift */; };
+		A52FEB7921A7F06A00DFA7BC /* OrderObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FEB7821A7F06A00DFA7BC /* OrderObserver.swift */; };
+		A52FEB7D21A7FAB100DFA7BC /* OrderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FEB7C21A7FAB100DFA7BC /* OrderFactory.swift */; };
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
@@ -969,6 +971,8 @@
 		A52FE2AB2185FB2200100E21 /* ChannelStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelStorage.swift; sourceTree = "<group>"; };
 		A52FE2AF2185FB2800100E21 /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		A52FE2B121860D2300100E21 /* ChannelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTests.swift; sourceTree = "<group>"; };
+		A52FEB7821A7F06A00DFA7BC /* OrderObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderObserver.swift; sourceTree = "<group>"; };
+		A52FEB7C21A7FAB100DFA7BC /* OrderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFactory.swift; sourceTree = "<group>"; };
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
@@ -2889,6 +2893,31 @@
 			path = Channels;
 			sourceTree = "<group>";
 		};
+		A52FEB7721A7F03C00DFA7BC /* OrderObserver */ = {
+			isa = PBXGroup;
+			children = (
+				A52FEB7821A7F06A00DFA7BC /* OrderObserver.swift */,
+			);
+			path = OrderObserver;
+			sourceTree = "<group>";
+		};
+		A52FEB7A21A7FA8C00DFA7BC /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				A52FEB7B21A7FA9900DFA7BC /* OrderFactory */,
+				A52FEB7721A7F03C00DFA7BC /* OrderObserver */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		A52FEB7B21A7FA9900DFA7BC /* OrderFactory */ = {
+			isa = PBXGroup;
+			children = (
+				A52FEB7C21A7FAB100DFA7BC /* OrderFactory.swift */,
+			);
+			path = OrderFactory;
+			sourceTree = "<group>";
+		};
 		A534883D230884E6416A5516 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -3396,6 +3425,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A52FEB7A21A7FA8C00DFA7BC /* Orders */,
 				CE053AF021A5662300EA6E26 /* FeeLoader */,
 				A597577621A5A7EE0036C7E8 /* ExchangeLoader */,
 				CEE6730621A2B755008FAC09 /* SendTransactionService */,
@@ -5319,6 +5349,7 @@
 				A5743546217A309D006B4CAE /* SwiftyJSON.swift in Sources */,
 				C177BB07723F235A87EF4141 /* QuickLaunchRouterInput.swift in Sources */,
 				B2EE15BCB20ED6ED71584DC2 /* QuickLaunchRouter.swift in Sources */,
+				A52FEB7D21A7FAB100DFA7BC /* OrderFactory.swift in Sources */,
 				A40E2F8BB4E10D0E0A388DCF /* QuickLaunchModuleInput.swift in Sources */,
 				0B71D203EA67FB0928D31D05 /* QuickLaunchModule.swift in Sources */,
 				A56B4C76215CD8F10017B337 /* Device.swift in Sources */,
@@ -5421,6 +5452,7 @@
 				CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */,
 				CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */,
 				CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */,
+				A52FEB7921A7F06A00DFA7BC /* OrderObserver.swift in Sources */,
 				A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */,
 				CE5F8302219DB98600A18324 /* BiometricAuthProviderFactory.swift in Sources */,
 				4A8416E8E79E93524467F707 /* MyWalletInteractor.swift in Sources */,

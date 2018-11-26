@@ -127,6 +127,26 @@ extension ExchangePresenter: ExchangeViewOutput {
 // MARK: - ExchangeInteractorOutput
 
 extension ExchangePresenter: ExchangeInteractorOutput {
+    func updateOrder(time: Int?) {
+        guard let elapsedTime = time else {
+            view.updateExpiredTimeLabel("_")
+            return
+        }
+        
+        let elapsedString = timeFormatted(elapsedTime)
+        view.updateExpiredTimeLabel(elapsedString)
+    }
+    
+    func updateRateFor(oneUnit: Decimal?, fromCurrency: Currency, toCurrency: Currency) {
+        guard let oneUnitRate = oneUnit else {
+            view.updateRateLabel(text: "-")
+            return
+        }
+        
+        let outString = "1 \(fromCurrency.ISO) = \(oneUnitRate.double) \(toCurrency.ISO)"
+        view.updateRateLabel(text: outString)
+    }
+    
     
     func updateAccounts(accounts: [Account], index: Int) {
         accountsDataManager?.updateAccounts(accounts)
@@ -287,5 +307,11 @@ extension ExchangePresenter {
     private func addLoader() {
         guard let parentView = view.viewController.navigationController?.view else { return }
         storiqaLoader = StoriqaLoader(parentView: parentView)
+    }
+    
+    private func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }

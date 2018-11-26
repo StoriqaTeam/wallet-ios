@@ -16,19 +16,23 @@ class ExchangeProviderBuilderFactory: ExchangeProviderBuilderFactoryProtocol {
     private let accountsProvider: AccountsProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     private let converterFactory: CurrencyConverterFactoryProtocol
+    private let orderObserver: OrderObserverProtocol
     
     init(accountsProvider: AccountsProviderProtocol,
          converterFactory: CurrencyConverterFactoryProtocol,
-         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
+         denominationUnitsConverter: DenominationUnitsConverterProtocol,
+         orderObserver: OrderObserverProtocol) {
         
         self.accountsProvider = accountsProvider
         self.denominationUnitsConverter = denominationUnitsConverter
         self.converterFactory = converterFactory
+        self.orderObserver = orderObserver
     }
     
     func create() -> ExchangeProviderBuilderProtocol {
         return ExchangeProviderBuilder(accountsProvider: accountsProvider,
                                        converterFactory: converterFactory,
-                                       denominationUnitsConverter: denominationUnitsConverter)
+                                       denominationUnitsConverter: denominationUnitsConverter,
+                                       orderObserver: orderObserver)
     }
 }

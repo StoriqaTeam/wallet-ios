@@ -173,6 +173,7 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
     case unauthorized
     case unknownError
     case failToParseJson
+    case orderExpired
     case amountOutOfBounds(min: String, max: String, currency: Currency)
     
     init(code: Int, json: JSON, currency: Currency) {
@@ -186,6 +187,9 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
                 let min = params["min"]?.string,
                 let max = params["max"]?.string {
                 self = .amountOutOfBounds(min: min, max: max, currency: currency)
+            } else if let exchangeRate = json["exchange_rate"].array,
+                exchangeRate.contains(where: { $0["code"] == "expired" }) {
+                self = .orderExpired
             } else {
                 self = .unknownError
             }
@@ -207,6 +211,8 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
             return Constants.Errors.userFriendly
         case .failToParseJson:
             return "Failed to parse JSON"
+        case .orderExpired:
+            return "Current exchange order did expire."
         }
     }
 }

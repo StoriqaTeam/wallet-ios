@@ -19,4 +19,6 @@ protocol ExchangeViewInput: class, Presentable {
     func setSubtotal(_ subtotal: String)
     func setErrorHidden(_ hidden: Bool)
     func setButtonEnabled(_ enabled: Bool)
+    func updateExpiredTimeLabel(_ time: String)
+    func updateRateLabel(text: String)
 }

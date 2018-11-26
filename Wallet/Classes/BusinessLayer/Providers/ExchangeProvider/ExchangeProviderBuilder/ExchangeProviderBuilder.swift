@@ -12,7 +12,7 @@ protocol ExchangeProviderBuilderProtocol: class {
     func set(account: Account)
     func set(recepientAccount: Account)
     func set(cryptoAmount: Decimal)
-    func set(exchangeRate: ExchangeRate)
+    func set(order: Order)
     func build() -> ExchangeProvider
     func clear()
 }
@@ -23,18 +23,22 @@ class ExchangeProviderBuilder: ExchangeProviderBuilderProtocol {
     private let accountsProvider: AccountsProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     private let converterFactory: CurrencyConverterFactoryProtocol
+    private let orderObserver: OrderObserverProtocol
     
     init(accountsProvider: AccountsProviderProtocol,
          converterFactory: CurrencyConverterFactoryProtocol,
-         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
+         denominationUnitsConverter: DenominationUnitsConverterProtocol,
+         orderObserver: OrderObserverProtocol) {
         
         self.accountsProvider = accountsProvider
         self.denominationUnitsConverter = denominationUnitsConverter
         self.converterFactory = converterFactory
+        self.orderObserver = orderObserver
         
         exchangeProvider = ExchangeProvider(accountsProvider: accountsProvider,
                                             converterFactory: converterFactory,
-                                            denominationUnitsConverter: denominationUnitsConverter)
+                                            denominationUnitsConverter: denominationUnitsConverter,
+                                            orderObserver: orderObserver)
     }
     
     func set(account: Account) {
@@ -49,8 +53,8 @@ class ExchangeProviderBuilder: ExchangeProviderBuilderProtocol {
         exchangeProvider.amount = cryptoAmount
     }
     
-    func set(exchangeRate: ExchangeRate) {
-        exchangeProvider.exchangeRate = exchangeRate
+    func set(order: Order) {
+        exchangeProvider.setNewOrder(order)
     }
     
     func build() -> ExchangeProvider {
@@ -60,6 +64,7 @@ class ExchangeProviderBuilder: ExchangeProviderBuilderProtocol {
     func clear() {
         exchangeProvider = ExchangeProvider(accountsProvider: accountsProvider,
                                             converterFactory: converterFactory,
-                                            denominationUnitsConverter: denominationUnitsConverter)
+                                            denominationUnitsConverter: denominationUnitsConverter,
+                                            orderObserver: orderObserver)
     }
 }

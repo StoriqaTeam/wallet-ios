@@ -19,8 +19,7 @@ let BITCOIN_NETWORK = Network.btcMainnet
 
 class Application {
     
-    // MARK: - Factories
-    
+    // MARK: - Factories -
     lazy var accountWatcherFactory: CurrentAccountWatcherFactoryProtocol = CurrentAccountWatcherFactory(accountProvider: self.accountsProvider)
     lazy var sendTransactionBuilderFactory: SendTransactionBuilderFactoryProtocol = SendTransactionBuilderFactory(currencyConverterFactory: self.currencyConverterFactory,
                                                                                                                   currencyFormatter: self.currencyFormatter,
@@ -30,15 +29,19 @@ class Application {
     lazy var biometricAuthProviderFactory: BiometricAuthProviderFactory = BiometricAuthProviderFactory()
     lazy var exchangeProviderBuilderFactory: ExchangeProviderBuilderFactoryProtocol = ExchangeProviderBuilderFactory(accountsProvider: self.accountsProvider,
                                                                                                                      converterFactory: self.currencyConverterFactory,
-                                                                                                                     denominationUnitsConverter: self.denominationUnitsConverter)
+                                                                                                                     denominationUnitsConverter: self.denominationUnitsConverter,
+                                                                                                                     orderObserver: self.orderObserver)
+    lazy var currencyConverterFactory: CurrencyConverterFactoryProtocol = CurrencyConverterFactory(ratesProvider: self.ratesProvider)
+    lazy var signHeaderFactory: SignHeaderFactoryProtocol = SignHeaderFactory(keychain: self.keychainProvider, signer: self.signer)
+    lazy var orderFactory: OrderFactoryProtocol = OrderFactory()
     
     
-    // MARK: - System store
+    // MARK: - System store -
     lazy var keychainProvider: KeychainProviderProtocol = KeychainProvider()
     lazy var defaultsProvider: DefaultsProviderProtocol = DefaultsProvider()
     
     
-    // MARK: - Data Store Services
+    // MARK: - Data Store Services -
     lazy var userDataStoreService: UserDataStoreService = UserDataStoreService()
     lazy var accountsDataStoreService: AccountsDataStoreServiceProtocol = AccountsDataStoreService()
     lazy var sessionsDataStoreService: SessionsDataStoreServiceProtocol = SessionsDataStoreService()
@@ -47,7 +50,7 @@ class Application {
     lazy var ratesDataStoreService: RatesDataStoreServiceProtocol = RatesDataStoreService()
     
     
-    // MARK: - Network Providers
+    // MARK: - Network Providers -
     lazy var loginNetworkProvider: LoginNetworkProviderProtocol = LoginNetworkProvider()
     lazy var userNetworkProvider: CurrentUserNetworkProviderProtocol = CurrentUserNetworkProvider()
     lazy var accountsNetworkProvider: AccountsNetworkProviderProtocol = AccountsNetworkProvider()
@@ -69,7 +72,7 @@ class Application {
     lazy var resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol = ResendConfirmEmailNetworkProvider()
     
     
-    // MARK: - Common Providers
+    // MARK: - Common Providers -
     lazy var pinValidationProvider: PinValidationProviderProtocol = PinValidationProvider(keychainProvider: self.keychainProvider)
     lazy var passwordRecoveryConfirmFormValidator: PasswordRecoveryConfirmFormValidatorProtocol = PasswordRecoveryConfirmFormValidator()
     lazy var registrationFormValidatonProvider: RegistrationFormValidatonProviderProtocol = RegistrationFormValidatonProvider()
@@ -96,10 +99,10 @@ class Application {
                                                                                                 signHeaderFactory: self.signHeaderFactory)
     lazy var signer: SignerProtocol = Signer()
     lazy var keyGenerator: KeyGeneratorProtocol = KeyGenerator()
-    lazy var signHeaderFactory: SignHeaderFactoryProtocol = SignHeaderFactory(keychain: self.keychainProvider, signer: self.signer)
     lazy var userKeyManager: UserKeyManagerProtocol = UserKeyManager(keychainProvider: self.keychainProvider, keyGenerator: self.keyGenerator)
+    lazy var orderObserver: OrderObserverProtocol = OrderObserver(outputChannel: self.channelStorage.orderExpiredChannel)
     
-    // MARK: - Updaters
+    // MARK: - Updaters -
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,
                                                                         accountsDataStore: self.accountsDataStoreService,
                                                                         authTokenProvider: self.authTokenProvider,
@@ -140,18 +143,17 @@ class Application {
                                                                                              signHeaderFactory: self.signHeaderFactory)
     
     
-    // MARK: - Converters and formattera
-    lazy var currencyConverterFactory: CurrencyConverterFactoryProtocol = CurrencyConverterFactory(ratesProvider: self.ratesProvider)
+    // MARK: - Converters and formatters -
     lazy var currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatter()
     lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
     lazy var medianWaitFormatter: MedianWaitFormatterProtocol = MedianWaitFormatter()
     
-    // MARK: - Validators
+    // MARK: - Validators -
     lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: BITCOIN_NETWORK)
     lazy var ethAddressValidator: AddressValidatorProtocol = EthereumAddressValidator()
     
     
-    // MARK: - Resolvers
+    // MARK: - Resolvers -
     lazy var accountTypeResolver: AccountTypeResolverProtocol = AccountTypeResolver()
     lazy var transactionDirectionResolver: TransactionDirectionResolverProtocol = TransactionDirectionResolver()
     lazy var transactionOpponentResolver: TransactionOpponentResolverProtocol = TransactionOpponentResolver(contactsProvider: self.contactsProvider,
@@ -160,16 +162,16 @@ class Application {
     lazy var cryptoAddressResolver: CryptoAddressResolverProtocol = CryptoAddressResolver(btcAddressValidator: self.btcAddressValidator,
                                                                                           ethAddressValidator: self.ethAddressValidator)
     
-    // MARK: - Sorters
+    // MARK: - Sorters -
     lazy var contactsSorter: ContactsSorterProtocol = ContactsSorter()
     lazy var sessionDateSorter: SessionDateSorterProtocol = SessionDateSorter()
     
     
-    // MARK: - Linkers
+    // MARK: - Linkers -
     lazy var accountLinker: AccountsLinkerProtocol = AccountsLinker(accountsProvider: self.accountsProvider, transactionsProvider: self.transactionsProvider)
     lazy var contactsAddressLinker: ContactsAddressLinkerProtocol = ContactsAddressLinker(contactsDataStoreService: self.contactsDataStoreService)
     
-    // MARK: - Mappers
+    // MARK: - Mappers -
     lazy var contactsMapper: ContactsMapper = ContactsMapper()
     lazy var transactionMapper: TransactionMapperProtocol = TransactionMapper(currencyFormatter: self.currencyFormatter,
                                                                               converterFactory: self.currencyConverterFactory,
@@ -177,7 +179,7 @@ class Application {
                                                                               transactionOpponentResolver: self.transactionOpponentResolver,
                                                                               denominationUnitsConverter: self.denominationUnitsConverter)
     
-    // MARK: - Loaders
+    // MARK: - Loaders -
     lazy var exchangeLoader: ExchangeRatesLoaderProtocol = ExchangeRatesLoader(userDataStore: self.userDataStoreService,
                                                                                authTokenProvider: self.authTokenProvider,
                                                                                signHeaderFactory: self.signHeaderFactory,
@@ -187,14 +189,14 @@ class Application {
                                                       signHeaderFactory: self.signHeaderFactory,
                                                       feeNetworkProvider: self.feeNetworkProvider)
     
-    // MARK: - Social Networks
+    // MARK: - Social Networks -
     lazy var facebookLoginManager: LoginManager = LoginManager()
     
     
-    // MARK: - Global services
+    // MARK: - Global services -
     lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 90)
     
-    // MARK: - Channels
+    // MARK: - Channels -
     lazy var channelStorage: ChannelStorage = ChannelStorage()
     
     

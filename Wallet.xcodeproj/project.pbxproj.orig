@@ -265,6 +265,8 @@
 		A52FE2AE2185FB2200100E21 /* ChannelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2AB2185FB2200100E21 /* ChannelStorage.swift */; };
 		A52FE2B02185FB2800100E21 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2AF2185FB2800100E21 /* Observer.swift */; };
 		A52FE2B221860D2300100E21 /* ChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2B121860D2300100E21 /* ChannelTests.swift */; };
+		A52FEB7921A7F06A00DFA7BC /* OrderObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FEB7821A7F06A00DFA7BC /* OrderObserver.swift */; };
+		A52FEB7D21A7FAB100DFA7BC /* OrderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FEB7C21A7FAB100DFA7BC /* OrderFactory.swift */; };
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
@@ -544,6 +546,8 @@
 		CE8E2E1321A7DBBA00F0B395 /* PopUpDefaultFailureVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E1221A7DBBA00F0B395 /* PopUpDefaultFailureVM.swift */; };
 		CE8E2E1621A7E72900F0B395 /* UpdateUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E1521A7E72900F0B395 /* UpdateUserNetworkProvider.swift */; };
 		CE8E2E1821A7E8FF00F0B395 /* API+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E1721A7E8FF00F0B395 /* API+Settings.swift */; };
+		CE8E2E1A21A8184B00F0B395 /* PopUpResendConfirmEmailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E1921A8184B00F0B395 /* PopUpResendConfirmEmailVM.swift */; };
+		CE8E2E1D21A81BF500F0B395 /* ResendConfirmEmailNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E2E1C21A81BF500F0B395 /* ResendConfirmEmailNetworkProvider.swift */; };
 		CE8F3EDB212BF20600FF1639 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */; };
 		CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE976482216252B9000E9336 /* SmallAccountCell.xib */; };
 		CE976488216263C0000E9336 /* QRCodeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976487216263C0000E9336 /* QRCodeProvider.swift */; };
@@ -967,6 +971,8 @@
 		A52FE2AB2185FB2200100E21 /* ChannelStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelStorage.swift; sourceTree = "<group>"; };
 		A52FE2AF2185FB2800100E21 /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		A52FE2B121860D2300100E21 /* ChannelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTests.swift; sourceTree = "<group>"; };
+		A52FEB7821A7F06A00DFA7BC /* OrderObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderObserver.swift; sourceTree = "<group>"; };
+		A52FEB7C21A7FAB100DFA7BC /* OrderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFactory.swift; sourceTree = "<group>"; };
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
@@ -1247,6 +1253,8 @@
 		CE8E2E1221A7DBBA00F0B395 /* PopUpDefaultFailureVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDefaultFailureVM.swift; sourceTree = "<group>"; };
 		CE8E2E1521A7E72900F0B395 /* UpdateUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserNetworkProvider.swift; sourceTree = "<group>"; };
 		CE8E2E1721A7E8FF00F0B395 /* API+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Settings.swift"; sourceTree = "<group>"; };
+		CE8E2E1921A8184B00F0B395 /* PopUpResendConfirmEmailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpResendConfirmEmailVM.swift; sourceTree = "<group>"; };
+		CE8E2E1C21A81BF500F0B395 /* ResendConfirmEmailNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendConfirmEmailNetworkProvider.swift; sourceTree = "<group>"; };
 		CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CE976482216252B9000E9336 /* SmallAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallAccountCell.xib; sourceTree = "<group>"; };
 		CE976487216263C0000E9336 /* QRCodeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeProvider.swift; sourceTree = "<group>"; };
@@ -2568,6 +2576,7 @@
 				CEE6730B21A3E94C008FAC09 /* PopUpDeviceRegisterVM.swift */,
 				CEE6730D21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift */,
 				CEE6730F21A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift */,
+				CE8E2E1921A8184B00F0B395 /* PopUpResendConfirmEmailVM.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2693,6 +2702,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CE8E2E1B21A81BDE00F0B395 /* ResendConfirmEmailNetworkProvider */,
 				CE8E2E1421A7E70300F0B395 /* UpdateUserNetworkProvider */,
 				B870F1D321A31F8200BC53BE /* ConfirmAddDeviceNetworkProvider */,
 				B870F1D021A31C5B00BC53BE /* AddDeviceNetworkProvider */,
@@ -2881,6 +2891,31 @@
 				A52FE2AF2185FB2800100E21 /* Observer.swift */,
 			);
 			path = Channels;
+			sourceTree = "<group>";
+		};
+		A52FEB7721A7F03C00DFA7BC /* OrderObserver */ = {
+			isa = PBXGroup;
+			children = (
+				A52FEB7821A7F06A00DFA7BC /* OrderObserver.swift */,
+			);
+			path = OrderObserver;
+			sourceTree = "<group>";
+		};
+		A52FEB7A21A7FA8C00DFA7BC /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				A52FEB7B21A7FA9900DFA7BC /* OrderFactory */,
+				A52FEB7721A7F03C00DFA7BC /* OrderObserver */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		A52FEB7B21A7FA9900DFA7BC /* OrderFactory */ = {
+			isa = PBXGroup;
+			children = (
+				A52FEB7C21A7FAB100DFA7BC /* OrderFactory.swift */,
+			);
+			path = OrderFactory;
 			sourceTree = "<group>";
 		};
 		A534883D230884E6416A5516 /* Router */ = {
@@ -3390,6 +3425,11 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+				A52FEB7A21A7FA8C00DFA7BC /* Orders */,
+				CE8E2E0D21A6EF8100F0B395 /* Erc20SendValidator */,
+=======
+>>>>>>> dev
 				CE053AF021A5662300EA6E26 /* FeeLoader */,
 				A597577621A5A7EE0036C7E8 /* ExchangeLoader */,
 				CEE6730621A2B755008FAC09 /* SendTransactionService */,
@@ -4344,7 +4384,6 @@
 			path = AccountTypeResolver;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		CE8E2E1421A7E70300F0B395 /* UpdateUserNetworkProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -4353,8 +4392,14 @@
 			path = UpdateUserNetworkProvider;
 			sourceTree = "<group>";
 		};
-=======
->>>>>>> dev
+		CE8E2E1B21A81BDE00F0B395 /* ResendConfirmEmailNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CE8E2E1C21A81BF500F0B395 /* ResendConfirmEmailNetworkProvider.swift */,
+			);
+			path = ResendConfirmEmailNetworkProvider;
+			sourceTree = "<group>";
+		};
 		CE97647E21625285000E9336 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -5308,6 +5353,7 @@
 				A5743546217A309D006B4CAE /* SwiftyJSON.swift in Sources */,
 				C177BB07723F235A87EF4141 /* QuickLaunchRouterInput.swift in Sources */,
 				B2EE15BCB20ED6ED71584DC2 /* QuickLaunchRouter.swift in Sources */,
+				A52FEB7D21A7FAB100DFA7BC /* OrderFactory.swift in Sources */,
 				A40E2F8BB4E10D0E0A388DCF /* QuickLaunchModuleInput.swift in Sources */,
 				0B71D203EA67FB0928D31D05 /* QuickLaunchModule.swift in Sources */,
 				A56B4C76215CD8F10017B337 /* Device.swift in Sources */,
@@ -5410,6 +5456,7 @@
 				CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */,
 				CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */,
 				CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */,
+				A52FEB7921A7F06A00DFA7BC /* OrderObserver.swift in Sources */,
 				A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */,
 				CE5F8302219DB98600A18324 /* BiometricAuthProviderFactory.swift in Sources */,
 				4A8416E8E79E93524467F707 /* MyWalletInteractor.swift in Sources */,
@@ -5437,6 +5484,7 @@
 				A52FE2B02185FB2800100E21 /* Observer.swift in Sources */,
 				A5C12E67217DFEBA00A7D68C /* Strings+MyWallet.swift in Sources */,
 				91222D27E9ACA0B31B779533 /* SendRouter.swift in Sources */,
+				CE8E2E1D21A81BF500F0B395 /* ResendConfirmEmailNetworkProvider.swift in Sources */,
 				CEFC9C9E21590D8400962356 /* PopUpPasswordEmailRecoverySuccessVM.swift in Sources */,
 				09A1CEBCE8C1B2CD243902EC /* SendModuleInput.swift in Sources */,
 				342AB1F25E5B5D468E2F7687 /* SendModuleOutput.swift in Sources */,
@@ -5604,6 +5652,7 @@
 				41BE6CD39AB51A11D33C65CC /* ConnectPhoneModuleInput.swift in Sources */,
 				A522AAE4219980BB00C39826 /* PinSetupDataManager.swift in Sources */,
 				D1E2319F1277268F069541E3 /* ConnectPhoneModuleOutput.swift in Sources */,
+				CE8E2E1A21A8184B00F0B395 /* PopUpResendConfirmEmailVM.swift in Sources */,
 				7934CE37D1CDACDF65C1F2DF /* ConnectPhoneModule.swift in Sources */,
 				E48F38E3F6C54C04DF13180D /* TransactionFilterViewInput.swift in Sources */,
 				F686C7139F346CD48BB88FFC /* TransactionFilterViewOutput.swift in Sources */,
