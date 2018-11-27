@@ -33,7 +33,7 @@ struct Order: OrderProtocol {
     // MARK: - OrderProtocol
     
     func elapsedTime() -> Int {
-        let expirationTimeStamp = Int(exchangeRate.expiration.timeIntervalSince1970) - 295
+        let expirationTimeStamp = Int(exchangeRate.expiration.timeIntervalSince1970) - 60
         let elapsedTime = expirationTimeStamp - now
         return elapsedTime <= 0 ? 0 : elapsedTime
     }
