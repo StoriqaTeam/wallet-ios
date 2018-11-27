@@ -13,16 +13,19 @@ class TransactionDetailView: LoadableFromXib {
     @IBOutlet private var cryptoAmountLabel: UILabel!
     @IBOutlet private var fiatAmountLabel: UILabel!
     @IBOutlet private var timestampLabel: UILabel!
+    @IBOutlet private var pendingView: UIView!
     @IBOutlet private var pendingLabel: UILabel!
     @IBOutlet private var directionImageView: UIImageView!
     @IBOutlet private var backgroundView: UIView!
     
     private var gradientColors = [CGColor]()
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configureInterface()
+    }
+    
     func configure(transaction: TransactionDisplayable) {
-        cryptoAmountLabel.text = transaction.cryptoAmountString
-        fiatAmountLabel.text = transaction.fiatAmountString
-        timestampLabel.text = "\(transaction.timestamp)"
         configureAppearence(for: transaction)
     }
     
@@ -61,6 +64,19 @@ extension TransactionDetailView {
         cryptoAmountLabel.textColor = cryptoLabelColor
         cryptoAmountLabel.text = cryptoAmountString
         directionImageView.image = directionImage
+        fiatAmountLabel.text = transaction.fiatAmountString
+        timestampLabel.text = "\(transaction.timestamp)"
+        pendingView.isHidden = transaction.transaction.status != .pending
     }
 
+    private func configureInterface() {
+        fiatAmountLabel.textColor = Theme.Text.Color.captionGrey
+        timestampLabel.textColor = Theme.Color.cloudyBlue
+        pendingLabel.textColor = Theme.Color.cloudyBlue
+        
+        fiatAmountLabel.font = Theme.Font.smallText
+        timestampLabel.font = Theme.Font.smallText
+        pendingLabel.font = Theme.Font.smallText
+    }
+    
 }
