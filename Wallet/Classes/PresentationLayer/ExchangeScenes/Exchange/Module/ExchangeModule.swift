@@ -39,7 +39,6 @@ class ExchangeModule {
         interactor.output = presenter
         
         viewController.output = presenter
-        app.orderObserver.setDelegate(obj: interactor)
         
         presenter.view = viewController
         presenter.router = router
@@ -48,9 +47,12 @@ class ExchangeModule {
         // MARK: - Channels
         let accountsUpdateChannel = app.channelStorage.accountsUpadteChannel
         let expiredOrderChannel = app.channelStorage.orderExpiredChannel
+        let orderTickChannel = app.channelStorage.orderTickChannel
+        
         app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
         interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
         interactor.setOrderExpiredChannelInput(expiredOrderChannel)
+        interactor.setOrderTickChannelInput(orderTickChannel)
         
         return presenter
     }

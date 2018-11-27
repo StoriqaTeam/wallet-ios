@@ -26,7 +26,7 @@ class ExchangeInteractor {
     private var exchangeProvider: ExchangeProviderProtocol
     private var accountsUpadteChannelInput: AccountsUpdateChannel?
     private var expiredOrderChannelInput: OrderExpiredChannel?
-    
+    private var orderTickChannelInput: OrderTickChannel?
     
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
@@ -60,6 +60,9 @@ class ExchangeInteractor {
         
         self.expiredOrderChannelInput?.removeObserver(withId: self.objId)
         self.expiredOrderChannelInput = nil
+        
+        self.orderTickChannelInput?.removeObserver(withId: self.objId) 
+        self.orderTickChannelInput = nil
     }
     
     // MARK: - Channels
@@ -75,6 +78,10 @@ class ExchangeInteractor {
     
     func setOrderExpiredChannelInput(_ channel: OrderExpiredChannel) {
         self.expiredOrderChannelInput = channel
+    }
+    
+    func setOrderTickChannelInput(_ channel: OrderTickChannel) {
+        self.orderTickChannelInput = channel
     }
 }
 
@@ -170,8 +177,13 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         let expiredOrderObserver = Observer<Order?>(id: self.objId) { [weak self] (order) in
             self?.orderDidExpire(order)
         }
-        
         self.expiredOrderChannelInput?.addObserver(expiredOrderObserver)
+        
+        let orderTickObserver = Observer<Int>(id: self.objId) { [weak self] (seconds) in
+            self?.orderTick(seconds)
+        }
+        self.orderTickChannelInput?.addObserver(orderTickObserver)
+        
     }
     
     func sendTransaction() {
@@ -239,15 +251,9 @@ extension ExchangeInteractor {
     private func orderDidExpire(_ order: Order?) {
         exchangeProvider.invalidateOrder()
         updateTotal()
-        
     }
-}
-
-
-// MARK: - OrderObserverDelegate
-
-extension ExchangeInteractor: OrderObserverDelegate {
-    func updateExpired(seconds: Int) {
+    
+    private func orderTick(_ seconds: Int) {
         let amount = exchangeProvider.amount
         guard !amount.isZero else {
             output.updateOrder(time: nil)
