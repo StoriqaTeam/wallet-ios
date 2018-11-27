@@ -107,7 +107,21 @@ extension QRScannerPresenter {
     private func createCaptureSession() {
         //TODO: info plist camera usage description
         
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+        let cameraMediaType = AVMediaType.video
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
+
+        switch cameraAuthorizationStatus {
+        case .authorized, .notDetermined:
+            break
+        case .restricted:
+            failed()
+            return
+        case .denied:
+            userDeniedAccess()
+            return
+        }
+        
+        guard let videoCaptureDevice = AVCaptureDevice.default(for: cameraMediaType) else {
             failed()
             return
         }
@@ -162,6 +176,26 @@ extension QRScannerPresenter {
             self?.view.dismiss()
         }
         alertVC.addAction(action)
+        alertVC.view.tintColor = Theme.Color.brightSkyBlue
+        
+        view.viewController.present(alertVC, animated: true)
+    }
+    
+    private func userDeniedAccess() {
+        captureSession = nil
+        
+        let alertVC = UIAlertController(title: "No camera access",
+                                        message: "Give access to camera from settings",
+                                        preferredStyle: .alert)
+        let showSettings = UIAlertAction(title: "Show settings", style: .default) { [weak self] _ in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            self?.view.dismiss()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+            self?.view.dismiss()
+        }
+        alertVC.addAction(cancel)
+        alertVC.addAction(showSettings)
         alertVC.view.tintColor = Theme.Color.brightSkyBlue
         
         view.viewController.present(alertVC, animated: true)
