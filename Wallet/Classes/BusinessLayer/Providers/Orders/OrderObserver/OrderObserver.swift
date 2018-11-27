@@ -22,7 +22,6 @@ protocol OrderObserverProtocol {
     func getCurrentOrderId() -> String?
     func invalidateOrder()
     
-    func setDelegate(obj: OrderObserverDelegate)
 }
 
 
@@ -33,9 +32,11 @@ class OrderObserver: OrderObserverProtocol {
     
     weak var delegate: OrderObserverDelegate?
     private var expiredOrderOutputChannel: OrderExpiredChannel?
+    private var orderTickOutputChannel: OrderTickChannel?
     
-    init(outputChannel: OrderExpiredChannel) {
-        self.expiredOrderOutputChannel = outputChannel
+    init(expiredOrderOutputChannel: OrderExpiredChannel, orderTickOutputChannel: OrderTickChannel ) {
+        self.expiredOrderOutputChannel = expiredOrderOutputChannel
+        self.orderTickOutputChannel = orderTickOutputChannel
     }
     
     
@@ -49,10 +50,6 @@ class OrderObserver: OrderObserverProtocol {
     func isAliveCurrentOrder() -> Bool {
         guard let order = currentOrder else { return false }
         return order.elapsedTime() > 0
-    }
-    
-    func setDelegate(obj: OrderObserverDelegate) {
-        self.delegate = obj
     }
     
     func getCurrentRate() -> Decimal? {
@@ -97,13 +94,13 @@ extension OrderObserver {
         
         let elapsedTime = order.elapsedTime()
         guard elapsedTime != 0 else {
-            delegate?.updateExpired(seconds: 0)
+            orderTickOutputChannel?.send(0)
             expiredOrderOutputChannel?.send(nil)
             invalidateOrder()
             return
         }
         
-        delegate?.updateExpired(seconds: elapsedTime)
+        orderTickOutputChannel?.send(elapsedTime)
     }
     
     private func endTimer() {

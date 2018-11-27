@@ -100,7 +100,7 @@ class Application {
     lazy var signer: SignerProtocol = Signer()
     lazy var keyGenerator: KeyGeneratorProtocol = KeyGenerator()
     lazy var userKeyManager: UserKeyManagerProtocol = UserKeyManager(keychainProvider: self.keychainProvider, keyGenerator: self.keyGenerator)
-    lazy var orderObserver: OrderObserverProtocol = OrderObserver(outputChannel: self.channelStorage.orderExpiredChannel)
+    lazy var orderObserver: OrderObserverProtocol = OrderObserver(expiredOrderOutputChannel: self.channelStorage.orderExpiredChannel, orderTickOutputChannel: self.channelStorage.orderTickChannel)
     
     // MARK: - Updaters -
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,
