@@ -130,7 +130,6 @@ class Application {
                                                                defaults: self.defaultsProvider,
                                                                accountsNetworkProvider: self.accountsNetworkProvider,
                                                                accountsDataStore: self.accountsDataStoreService,
-                                                               defaultAccountsProvider: self.defaultAccountsProvider,
                                                                signHeaderFactory: self.signHeaderFactory)
     lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
                                                                            keychain: self.keychainProvider,
