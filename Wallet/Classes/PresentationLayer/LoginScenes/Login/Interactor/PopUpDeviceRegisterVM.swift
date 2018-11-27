@@ -17,7 +17,7 @@ class PopUpDeviceRegisterVM: PopUpViewModelProtocol {
     weak var delegate: PopUpDeviceRegisterVMDelegate?
     
     init() {
-        apperance = PopUpApperance(image: #imageLiteral(resourceName: "generalErrorIcon"),
+        apperance = PopUpApperance(image: #imageLiteral(resourceName: "signConfirm"),
                                    title: "Your device is not registered yet",
                                    text: "Do you want to register this device to your account?",
                                    actionButtonTitle: "ok".localized(),
