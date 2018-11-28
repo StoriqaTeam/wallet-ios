@@ -49,14 +49,13 @@ extension TransactionFilterPresenter: TransactionFilterViewOutput {
     }
 
     func didSelectFrom(date: Date) {
-        transactionDateFilter.fromDate = removeTime(from: date)
+        transactionDateFilter.fromDate = setEarliestTime(for: date)
         let validFilter = transactionDateFilter.canApplyFilter()
         view.buttonsChangedState(isEnabled: validFilter)
-        
     }
     
     func didSelectTo(date: Date) {
-        transactionDateFilter.toDate = removeTime(from: date)
+        transactionDateFilter.toDate = setLatestTime(for: date)
         let validFilter = transactionDateFilter.canApplyFilter()
         view.buttonsChangedState(isEnabled: validFilter)
     }
@@ -102,11 +101,13 @@ extension TransactionFilterPresenter {
         view.buttonsChangedState(isEnabled: true)
     }
     
-    private func removeTime(from date: Date) -> Date {
-        var seconds = Int(date.timeIntervalSinceReferenceDate)
-        seconds -= (seconds % (3600*24))
-        
-        let cleared = Date(timeIntervalSinceReferenceDate: TimeInterval(seconds))
-        return cleared
+    private func setEarliestTime(for date: Date) -> Date {
+        let newDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date)!
+        return newDate
+    }
+    
+    private func setLatestTime(for date: Date) -> Date {
+        let newDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: date)!
+        return newDate
     }
 }
