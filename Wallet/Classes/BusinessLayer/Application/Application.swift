@@ -188,6 +188,16 @@ class Application {
                                                       signHeaderFactory: self.signHeaderFactory,
                                                       feeNetworkProvider: self.feeNetworkProvider)
     
+    
+    // MARK: - Displayers -
+    lazy var accountDisplayer: AccountDisplayerProtocol = AccountDisplayer(
+        userDataStoreService: self.userDataStoreService,
+        currencyFormatter: self.currencyFormatter,
+        converterFactory: self.currencyConverterFactory,
+        accountTypeResolver: self.accountTypeResolver,
+        denominationUnitsConverter: self.denominationUnitsConverter)
+    
+    
     // MARK: - Social Networks -
     lazy var facebookLoginManager: LoginManager = LoginManager()
     

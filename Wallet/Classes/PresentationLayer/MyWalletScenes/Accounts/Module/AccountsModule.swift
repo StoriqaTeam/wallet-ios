@@ -10,18 +10,10 @@ class AccountsModule {
     
     class func create(app: Application,
                       accountWatcher: CurrentAccountWatcherProtocol,
-                      tabBar: UITabBarController,
-                      user: User) -> AccountsModuleInput {
+                      tabBar: UITabBarController) -> AccountsModuleInput {
         
         let router = AccountsRouter(app: app)
-        
-        let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: app.currencyFormatter,
-                                                converterFactory: app.currencyConverterFactory,
-                                                accountTypeResolver: app.accountTypeResolver,
-                                                denominationUnitsConverter: app.denominationUnitsConverter)
-        
-        let presenter = AccountsPresenter(accountDisplayer: accountDisplayer,
+        let presenter = AccountsPresenter(accountDisplayer: app.accountDisplayer,
                                           transactionsMapper: app.transactionMapper)
         presenter.mainTabBar = tabBar
         let interactor = AccountsInteractor(accountLinker: app.accountLinker,
@@ -47,6 +39,9 @@ class AccountsModule {
         let accountsUpdateChannel = app.channelStorage.accountsUpadteChannel
         app.accountsProvider.setAccountsUpdaterChannel(accountsUpdateChannel)
         interactor.setAccountsUpdateChannelInput(accountsUpdateChannel)
+        
+        let userUpadteChannel = app.channelStorage.userUpdateChannel
+        interactor.setUserUpdateChannelInput(userUpadteChannel)
         
         return presenter
     }

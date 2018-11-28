@@ -17,14 +17,11 @@ class MyWalletPresenter {
     var router: MyWalletRouterInput!
     weak var mainTabBar: UITabBarController!
     
-    private let user: User
     private let accountDisplayer: AccountDisplayerProtocol
     private var dataManager: MyWalletDataManager!
     private var pullToRefresh: UIRefreshControl!
     
-    init(user: User,
-         accountDisplayer: AccountDisplayerProtocol) {
-        self.user = user
+    init(accountDisplayer: AccountDisplayerProtocol) {
         self.accountDisplayer = accountDisplayer
     }
 }
@@ -37,6 +34,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
     func viewIsReady() {
         view.setupInitialState()
         configureNavigationBar()
+        interactor.startObservers()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -65,6 +63,10 @@ extension MyWalletPresenter: MyWalletInteractorOutput {
     func updateAccounts(accounts: [Account]) {
         dataManager?.updateAccounts(accounts: accounts)
     }
+    
+    func userDidUpdate() {
+        dataManager?.reloadData()
+    }
 }
 
 
@@ -91,8 +93,7 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
         accountWatcher.setAccount(account)
         router.showAccountsWith(accountWatcher: accountWatcher,
                                 from: view.viewController,
-                                tabBar: mainTabBar,
-                                user: user)
+                                tabBar: mainTabBar)
     }
     
 }

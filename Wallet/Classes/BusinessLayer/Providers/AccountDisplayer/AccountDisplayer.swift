@@ -19,19 +19,19 @@ protocol AccountDisplayerProtocol {
 
 class AccountDisplayer: AccountDisplayerProtocol {
     
-    private let user: User
+    private let userDataStoreService: UserDataStoreServiceProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
     private let converterFactory: CurrencyConverterFactoryProtocol
     private let accountTypeResolver: AccountTypeResolverProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
-    init(user: User,
+    init(userDataStoreService: UserDataStoreServiceProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
          converterFactory: CurrencyConverterFactoryProtocol,
          accountTypeResolver: AccountTypeResolverProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
-        self.user = user
+        self.userDataStoreService = userDataStoreService
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
         self.accountTypeResolver = accountTypeResolver
@@ -55,6 +55,7 @@ class AccountDisplayer: AccountDisplayerProtocol {
     }
     
     func holderName() -> String {
+        let user = userDataStoreService.getCurrentUser()
         let holderName = "\(user.firstName) \(user.lastName)"
         return holderName
     }

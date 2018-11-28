@@ -114,6 +114,10 @@ extension AccountsPresenter: AccountsInteractorOutput {
         view.setNewPage(index)
     }
     
+    func userDidUpdate() {
+        accountsDataManager?.reloadData()
+    }
+    
 }
 
 

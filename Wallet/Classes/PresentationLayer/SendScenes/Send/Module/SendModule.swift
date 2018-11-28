@@ -10,23 +10,14 @@ class SendModule {
     
     class func create(app: Application,
                       accountWatcher: CurrentAccountWatcherProtocol,
-                      user: User,
                       tabBar: UITabBarController) -> SendModuleInput {
         let router = SendRouter(app: app)
-        
-        
-        let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: app.currencyFormatter,
-                                                converterFactory: app.currencyConverterFactory,
-                                                accountTypeResolver: app.accountTypeResolver,
-                                                denominationUnitsConverter: app.denominationUnitsConverter)
-        let sendTransactionBuilder = app.sendTransactionBuilderFactory.create()
-        
-        
         let presenter = SendPresenter(currencyFormatter: app.currencyFormatter,
                                       currencyImageProvider: app.currencyImageProvider,
-                                      accountDisplayer: accountDisplayer)
+                                      accountDisplayer: app.accountDisplayer)
         presenter.mainTabBar = tabBar
+        
+        let sendTransactionBuilder = app.sendTransactionBuilderFactory.create()
         let interactor = SendInteractor(sendTransactionBuilder: sendTransactionBuilder,
                                         accountsProvider: app.accountsProvider,
                                         accountWatcher: accountWatcher,

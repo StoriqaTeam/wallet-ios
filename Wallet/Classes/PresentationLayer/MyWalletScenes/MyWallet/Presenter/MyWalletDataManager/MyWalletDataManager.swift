@@ -52,6 +52,10 @@ class MyWalletDataManager: NSObject {
         collectionView.reloadData()
     }
     
+    func reloadData() {
+        collectionView.reloadData()
+    }
+    
 }
 
 

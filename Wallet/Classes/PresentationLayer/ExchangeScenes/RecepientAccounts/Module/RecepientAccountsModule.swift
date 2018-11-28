@@ -11,13 +11,7 @@ class RecepientAccountsModule {
     class func create(app: Application, exchangeProviderBuilder: ExchangeProviderBuilderProtocol) -> RecepientAccountsModuleInput {
         let router = RecepientAccountsRouter()
         
-        let user = app.userDataStoreService.getCurrentUser()
-        let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: app.currencyFormatter,
-                                                converterFactory: app.currencyConverterFactory,
-                                                accountTypeResolver: app.accountTypeResolver,
-                                                denominationUnitsConverter: app.denominationUnitsConverter)
-        let presenter = RecepientAccountsPresenter(accountDisplayer: accountDisplayer)
+        let presenter = RecepientAccountsPresenter(accountDisplayer: app.accountDisplayer)
         let interactor = RecepientAccountsInteractor(exchangeProviderBuilder: exchangeProviderBuilder)
         
         let storyboard = UIStoryboard(name: "RecepientAccounts", bundle: nil)
