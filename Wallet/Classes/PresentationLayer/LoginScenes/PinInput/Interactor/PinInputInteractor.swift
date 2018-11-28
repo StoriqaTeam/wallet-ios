@@ -46,6 +46,7 @@ extension PinInputInteractor: PinInputInteractorInput {
     func validatePassword(_ password: String) {
         if pinValidator.pinIsValid(password) {
             output.passwordIsCorrect()
+            appLockerProvider.setIsLocked(false)
         } else {
             output.passwordIsWrong()
         }
