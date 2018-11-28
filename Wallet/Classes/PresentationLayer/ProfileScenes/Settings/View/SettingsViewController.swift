@@ -12,8 +12,9 @@ private enum SettingsCell: Int {
     case editProfile = 0
     case changePassword
     case changePhone
+    case appInfo
     
-    static var count = 3
+    static var count = 4
 }
 
 class SettingsViewController: UIViewController {
@@ -55,6 +56,7 @@ extension SettingsViewController: UITableViewDataSource {
             case SettingsCell.editProfile.rawValue: return "Edit profile"
             case SettingsCell.changePassword.rawValue: return "Change password"
             case SettingsCell.changePhone.rawValue: return changePhoneTitle
+            case SettingsCell.appInfo.rawValue: return "App info"
             default: return ""
             }
         }()
@@ -85,6 +87,7 @@ extension SettingsViewController: UITableViewDelegate {
         case SettingsCell.editProfile.rawValue: output.editProfileSelected()
         case SettingsCell.changePassword.rawValue: output.changePasswordSelected()
         case SettingsCell.changePhone.rawValue: output.changePhoneNumber()
+        case SettingsCell.appInfo.rawValue: output.appInfoSelected()
         default: break
         }
         

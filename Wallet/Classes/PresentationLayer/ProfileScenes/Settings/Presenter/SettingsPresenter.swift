@@ -50,6 +50,10 @@ extension SettingsPresenter: SettingsViewOutput {
         router.signOutConfirmPopUp(popUpDelegate: self, from: view.viewController)
     }
     
+    func appInfoSelected() {
+        router.showAppInfo(from: view.viewController)
+    }
+    
 }
 
 
