@@ -16,9 +16,10 @@ class StepSlider: UISlider {
         didSet {
             if paymentFeeValuesCount > 1 {
                 stepLength = 1.0 / Float(paymentFeeValuesCount - 1)
+                isUserInteractionEnabled = true
             } else {
                 stepLength = 1
-                setValue(0, animated: false)
+                isUserInteractionEnabled = false
             }
         }
     }
@@ -36,7 +37,10 @@ class StepSlider: UISlider {
     }
     
     func updateCurrentValue(step: Int) {
-        if step < paymentFeeValuesCount {
+        if paymentFeeValuesCount <= 1 {
+            setValue(0.5, animated: false)
+            currentSliderStep = step
+        } else if step < paymentFeeValuesCount {
             setValue(Float(step) * stepLength, animated: false)
             currentSliderStep = step
         }

@@ -35,7 +35,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     var amount: Decimal
     var paymentFee: Decimal?
     var receiverAddress: String
-    private var feeIndex: Int?
+    private var feeIndex: Int = -1
     
     private let accountProvider: AccountsProviderProtocol
     private let feeProvider: FeeProviderProtocol
@@ -51,7 +51,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         
         // default build
         self.amount = 0
-        self.paymentFee = 0
+        self.paymentFee = nil
         self.receiverAddress = ""
         self.selectedAccount = accountProvider.getAllAccounts().first!
     }
@@ -61,7 +61,6 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     
     func setPaymentFee(index: Int) {
         guard let fee = feeProvider.getFee(index: index) else {
-            feeIndex = nil
             paymentFee = nil
             return
         }
@@ -72,9 +71,19 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     func setFees(_ fees: [EstimatedFee]?) {
         feeProvider.updateFees(fees: fees)
         
-        let count = fees?.count ?? 0
+        guard let fees = fees else {
+            paymentFee = nil
+            return
+        }
+        
+        guard fees.count > 1 else {
+            paymentFee = feeProvider.getFee(index: 0)
+            return
+        }
+        
+        let count = fees.count
         let index: Int = {
-            if let feeIndex = feeIndex, count > feeIndex {
+            if count > feeIndex && feeIndex >= 0 {
                 return feeIndex
             } else {
                 return count / 2
@@ -86,7 +95,11 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     }
     
     func getFeeIndex() -> Int {
-        return feeIndex ?? 0
+        guard paymentFee != nil, feeIndex >= 0 else {
+            return 0
+        }
+        
+        return feeIndex
     }
     
     func getFeeWaitCount() -> Int {
