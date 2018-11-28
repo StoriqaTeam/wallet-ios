@@ -41,13 +41,7 @@ class SendViewController: UIViewController {
     
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
-    private var currentSliderStep = 0 {
-        didSet {
-            if oldValue != currentSliderStep {
-                output.newFeeSelected(currentSliderStep)
-            }
-        }
-    }
+    private var currentSliderStep = 0
     
     // MARK: Life cycle
     
@@ -97,7 +91,12 @@ class SendViewController: UIViewController {
     }
     
     @IBAction private func sliderMoved(_ sender: StepSlider) {
+        let oldValue = currentSliderStep
         currentSliderStep = sender.currentSliderStep
+        
+        if oldValue != currentSliderStep {
+            output.newFeeSelected(currentSliderStep)
+        }
     }
 }
 
@@ -135,8 +134,6 @@ extension SendViewController: SendViewInput {
         paymentFeeSlider.paymentFeeValuesCount = count
         paymentFeeSlider.updateCurrentValue(step: value)
         currentSliderStep = value
-        
-        paymentFeeSlider.isUserInteractionEnabled = count > 1
     }
     
     func setFeeUpdateIndicator(hidden: Bool) {
