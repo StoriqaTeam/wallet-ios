@@ -46,6 +46,7 @@ class RatesUpdater: RatesUpdaterProtocol {
                                             strongSelf.ratesDataStoreService.save(rates: rates)
                                             self?.isUpdating = false
                                         case .failure(let error):
+                                            log.error("Fail to update rates")
                                             log.error(error.localizedDescription)
                                             self?.isUpdating = false
                                         }
