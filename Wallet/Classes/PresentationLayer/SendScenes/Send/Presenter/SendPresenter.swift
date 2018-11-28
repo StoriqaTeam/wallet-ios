@@ -210,6 +210,15 @@ extension SendPresenter: SendInteractorOutput {
         storiqaLoader.stopLoader()
         router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
     }
+    
+    func exceededDayLimit(limit: String, currency: Currency) {
+        storiqaLoader.stopLoader()
+        
+        let limitStr = currencyFormatter.getStringFrom(amount: limit.decimalValue(), currency: currency)
+        let message = "Day limit \(limitStr) exceeded for account"
+        
+        router.showFailure(message: message, from: view.viewController)
+    }
 }
 
 

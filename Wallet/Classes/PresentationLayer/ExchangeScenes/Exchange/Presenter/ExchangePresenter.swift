@@ -202,6 +202,15 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
     }
     
+    func exceededDayLimit(limit: String, currency: Currency) {
+        storiqaLoader.stopLoader()
+        
+        let limitStr = currencyFormatter.getStringFrom(amount: limit.decimalValue(), currency: currency)
+        let message = "Dayly limit for the account \(limitStr) exceeded"
+        
+        router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
+    }
+    
     func exchangeTxFailed(message: String) {
         storiqaLoader.stopLoader()
         router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
