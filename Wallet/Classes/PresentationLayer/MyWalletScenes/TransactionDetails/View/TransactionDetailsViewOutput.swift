@@ -12,4 +12,5 @@ import UIKit
 protocol TransactionDetailsViewOutput: class {
     func viewIsReady()
     func viewWillAppear()
+    func addressTapped(_ address: String)
 }

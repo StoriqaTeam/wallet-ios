@@ -37,9 +37,13 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="some blockchain address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-dh-iEt">
                                     <rect key="frame" x="0.0" y="27.5" width="375" height="18"/>
+                                    <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="1aU-qJ-h3d" appends="YES" id="97C-46-QUM"/>
+                                    </connections>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -148,5 +152,10 @@
             <viewLayoutGuide key="safeArea" id="6GP-I9-IVd"/>
             <point key="canvasLocation" x="-906.39999999999998" y="-750.22488755622192"/>
         </view>
+        <tapGestureRecognizer id="1aU-qJ-h3d">
+            <connections>
+                <action selector="addresstapped:" destination="-1" id="EY9-cB-Kgo"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

@@ -307,10 +307,6 @@ extension ExchangeInteractor {
                 switch result {
                 case .success(let exchangeRate):
                     guard let strongSelf = self else { return }
-                    log.warn("Exchange rate id: \(exchangeRate.id)")
-                    log.warn("From currency: \(exchangeRate.from)")
-                    log.warn("To currency: \(exchangeRate.to)")
-                    log.warn("\n\n")
                     
                     strongSelf.updateOrder(with: exchangeRate)
                     
