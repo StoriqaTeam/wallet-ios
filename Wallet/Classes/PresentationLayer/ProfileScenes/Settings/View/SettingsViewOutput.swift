@@ -16,4 +16,5 @@ protocol SettingsViewOutput: class {
     func changePhoneNumber()
     func signOutButtonTapped()
     func viewWillAppear()
+    func appInfoSelected()
 }

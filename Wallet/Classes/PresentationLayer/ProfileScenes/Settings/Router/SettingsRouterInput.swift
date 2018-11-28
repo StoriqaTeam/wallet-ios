@@ -15,4 +15,5 @@ protocol SettingsRouterInput: class {
     func showChangePhone(from viewController: UIViewController)
     func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate, from viewController: UIViewController)
     func signOut()
+    func showAppInfo(from viewController: UIViewController)
 }
