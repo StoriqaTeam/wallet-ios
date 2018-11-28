@@ -57,6 +57,10 @@ class AccountsDataManager: NSObject {
         accountsCollectionView.reloadData()
     }
     
+    func reloadData() {
+        accountsCollectionView.reloadData()
+    }
+    
     func scrollTo(index: Int) {
         guard index < accounts.count else {
             return

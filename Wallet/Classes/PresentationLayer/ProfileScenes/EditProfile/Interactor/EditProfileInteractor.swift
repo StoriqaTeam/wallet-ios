@@ -17,6 +17,7 @@ class EditProfileInteractor {
     private let authTokenProvider: AuthTokenProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
     private var user: User
+    private var userUpadateChannelOutput: UserUpdateChannel?
     
     init(userDataStore: UserDataStoreServiceProtocol,
          updateUserNetworkProvider: UpdateUserNetworkProviderProtocol,
@@ -27,6 +28,14 @@ class EditProfileInteractor {
         self.authTokenProvider = authTokenProvider
         self.signHeaderFactory = signHeaderFactory
         user = userDataStore.getCurrentUser()
+    }
+    
+    func setUserUpdaterChannel(_ channel: UserUpdateChannel) {
+        guard userUpadateChannelOutput == nil else {
+            return
+        }
+        
+        self.userUpadateChannelOutput = channel
     }
 }
 
@@ -75,6 +84,7 @@ extension EditProfileInteractor {
                 case .success(let user):
                     self?.user = user
                     self?.userDataStore.save(user)
+                    self?.userUpadateChannelOutput?.send(user)
                     self?.output.userUpdatedSuccessfully()
                 case .failure(let error):
                     self?.output.userUpdateFailed(message: error.localizedDescription)

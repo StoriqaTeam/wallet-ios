@@ -17,6 +17,7 @@ class MyWalletInteractor {
     private let accountsUpdater: AccountsUpdaterProtocol
     private let txnUpdater: TransactionsUpdaterProtocol
     private var accountsUpadateChannelInput: AccountsUpdateChannel?
+    private var userUpadateChannelInput: UserUpdateChannel?
     
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
@@ -32,6 +33,9 @@ class MyWalletInteractor {
     deinit {
         self.accountsUpadateChannelInput?.removeObserver(withId: self.objId)
         self.accountsUpadateChannelInput = nil
+        
+        self.userUpadateChannelInput?.removeObserver(withId: self.objId)
+        self.userUpadateChannelInput = nil
     }
     
     
@@ -44,11 +48,10 @@ class MyWalletInteractor {
     
     func setAccountsUpdateChannelInput(_ channel: AccountsUpdateChannel) {
         self.accountsUpadateChannelInput = channel
-        
-        let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
-            self?.accountsDidUpdate(accounts)
-        }
-        self.accountsUpadateChannelInput?.addObserver(accountsObserver)
+    }
+    
+    func setUserUpdateChannelInput(_ channel: UserUpdateChannel) {
+        self.userUpadateChannelInput = channel
     }
     
 }
@@ -69,6 +72,18 @@ extension MyWalletInteractor: MyWalletInteractorInput {
     func getAccountWatcher() -> CurrentAccountWatcherProtocol {
         return accountWatcher
     }
+    
+    func startObservers() {
+        let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
+            self?.accountsDidUpdate(accounts)
+        }
+        self.accountsUpadateChannelInput?.addObserver(accountsObserver)
+        
+        let userObserver = Observer<User>(id: self.objId) { [weak self] _ in
+            self?.userDidUpdate()
+        }
+        self.userUpadateChannelInput?.addObserver(userObserver)
+    }
 }
 
 
@@ -78,5 +93,9 @@ extension MyWalletInteractor {
     
     private func accountsDidUpdate(_ accounts: [Account]) {
         output.updateAccounts(accounts: accounts)
+    }
+    
+    private func userDidUpdate() {
+        output.userDidUpdate()
     }
 }

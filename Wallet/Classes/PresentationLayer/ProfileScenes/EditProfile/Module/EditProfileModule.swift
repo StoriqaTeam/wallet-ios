@@ -28,6 +28,10 @@ class EditProfileModule {
         presenter.router = router
         presenter.interactor = interactor
         
+        // MARK: - Channels
+        let userUpdateChannel = app.channelStorage.userUpdateChannel
+        interactor.setUserUpdaterChannel(userUpdateChannel)
+        
         return presenter
     }
     

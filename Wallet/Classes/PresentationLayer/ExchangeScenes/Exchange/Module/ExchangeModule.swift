@@ -8,18 +8,11 @@ import UIKit
 
 class ExchangeModule {
     
-    class func create(app: Application, accountWatcher: CurrentAccountWatcherProtocol, user: User) -> ExchangeModuleInput {
+    class func create(app: Application, accountWatcher: CurrentAccountWatcherProtocol) -> ExchangeModuleInput {
         let router = ExchangeRouter(app: app)
-        
-        let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: app.currencyFormatter,
-                                                converterFactory: app.currencyConverterFactory,
-                                                accountTypeResolver: app.accountTypeResolver,
-                                                denominationUnitsConverter: app.denominationUnitsConverter)
-        
         let presenter = ExchangePresenter(converterFactory: app.currencyConverterFactory,
                                           currencyFormatter: app.currencyFormatter,
-                                          accountDisplayer: accountDisplayer)
+                                          accountDisplayer: app.accountDisplayer)
         
         let exchangeProviderBuilder = app.exchangeProviderBuilderFactory.create()
         let interactor = ExchangeInteractor(accountsProvider: app.accountsProvider,

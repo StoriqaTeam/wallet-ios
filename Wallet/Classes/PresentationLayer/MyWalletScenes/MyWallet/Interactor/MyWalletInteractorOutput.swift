@@ -11,4 +11,5 @@ import Foundation
 
 protocol MyWalletInteractorOutput: class {
     func updateAccounts(accounts: [Account])
+    func userDidUpdate()
 }

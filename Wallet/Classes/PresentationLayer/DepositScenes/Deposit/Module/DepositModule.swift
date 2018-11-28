@@ -9,18 +9,10 @@ import UIKit
 class DepositModule {
     
     class func create(app: Application,
-                      accountWatcher: CurrentAccountWatcherProtocol,
-                      user: User) -> DepositModuleInput {
+                      accountWatcher: CurrentAccountWatcherProtocol) -> DepositModuleInput {
         
         let router = DepositRouter(app: app)
-        
-        let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: app.currencyFormatter,
-                                                converterFactory: app.currencyConverterFactory,
-                                                accountTypeResolver: app.accountTypeResolver,
-                                                denominationUnitsConverter: app.denominationUnitsConverter)
-        
-        let presenter = DepositPresenter(accountDisplayer: accountDisplayer)
+        let presenter = DepositPresenter(accountDisplayer: app.accountDisplayer)
         let interactor = DepositInteractor(qrProvider: app.qrCodeProvider,
                                            accountsProvider: app.accountsProvider,
                                            accountWatcher: accountWatcher)

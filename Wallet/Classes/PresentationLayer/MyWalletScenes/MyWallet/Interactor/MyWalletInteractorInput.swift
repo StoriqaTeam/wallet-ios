@@ -13,4 +13,5 @@ protocol MyWalletInteractorInput: class {
     func getAccountWatcher() -> CurrentAccountWatcherProtocol
     func getAccounts() -> [Account]
     func refreshAccounts()
+    func startObservers()
 }

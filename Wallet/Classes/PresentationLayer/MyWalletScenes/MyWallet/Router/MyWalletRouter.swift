@@ -24,11 +24,8 @@ class MyWalletRouter {
 extension MyWalletRouter: MyWalletRouterInput {
     func showAccountsWith(accountWatcher: CurrentAccountWatcherProtocol,
                           from fromViewController: UIViewController,
-                          tabBar: UITabBarController,
-                          user: User) {
-        
-        
-        let accountsPresenter = AccountsModule.create(app: app, accountWatcher: accountWatcher, tabBar: tabBar, user: user)
+                          tabBar: UITabBarController) {
+        let accountsPresenter = AccountsModule.create(app: app, accountWatcher: accountWatcher, tabBar: tabBar)
         accountsPresenter.present(from: fromViewController)
     }
 }
