@@ -23,4 +23,5 @@ protocol SendInteractorOutput: class {
     func setWrongCurrency(message: String)
     func sendTxFailed(message: String)
     func sendTxSucceed()
+    func exceededDayLimit(limit: String, currency: Currency)
 }

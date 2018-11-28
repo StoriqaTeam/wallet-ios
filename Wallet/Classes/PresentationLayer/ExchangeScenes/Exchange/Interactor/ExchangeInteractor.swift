@@ -215,6 +215,9 @@ extension ExchangeInteractor: ExchangeInteractorInput {
                         case .amountOutOfBounds(let min, let max, let currency):
                             self?.output.exchangeTxAmountOutOfLimit(min: min, max: max, currency: currency)
                             return
+                        case .exceededDayLimit(let limit, let currency):
+                            self?.output.exceededDayLimit(limit: limit, currency: currency)
+                            return
                         default: break
                         }
                     }

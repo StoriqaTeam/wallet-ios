@@ -164,6 +164,14 @@ extension SendInteractor: SendInteractorInput {
                 case .success:
                     self?.output.sendTxSucceed()
                 case .failure(let error):
+                    if let error = error as? SendTransactionNetworkProviderError {
+                        switch error {
+                        case .exceededDayLimit(let limit, let currency):
+                            self?.output.exceededDayLimit(limit: limit, currency: currency)
+                            return
+                        default: break
+                        }
+                    }
                     self?.output.sendTxFailed(message: error.localizedDescription)
                 }
         }
