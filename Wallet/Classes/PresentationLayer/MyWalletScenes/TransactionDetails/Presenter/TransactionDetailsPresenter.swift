@@ -22,6 +22,11 @@ class TransactionDetailsPresenter {
 // MARK: - TransactionDetailsViewOutput
 
 extension TransactionDetailsPresenter: TransactionDetailsViewOutput {
+    func addressTapped(_ address: String) {
+        UIPasteboard.general.string = address
+        view.viewController.showAlert(title: "", message: "Address copied to clipboard")
+    }
+    
 
     func viewIsReady() {
         let transaction = interactor.getTransaction()

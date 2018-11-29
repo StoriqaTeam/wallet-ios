@@ -37,17 +37,30 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="some blockchain address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-dh-iEt">
                                     <rect key="frame" x="0.0" y="27.5" width="375" height="18"/>
+                                    <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vzf-MY-yzU">
+                                    <rect key="frame" x="343" y="-4.5" width="32" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="Copy">
+                                        <color key="titleColor" red="0.0" green="0.69803921570000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="copyAddress:" destination="-1" eventType="touchUpInside" id="uOJ-fk-31E"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="cpS-dh-iEt" secondAttribute="bottom" id="D6i-oC-HdB"/>
                                 <constraint firstItem="cpS-dh-iEt" firstAttribute="width" secondItem="Xfn-bN-aTX" secondAttribute="width" id="Hb5-vy-OgC"/>
                                 <constraint firstItem="cpS-dh-iEt" firstAttribute="top" secondItem="Ewf-N1-yik" secondAttribute="bottom" constant="8" id="O9T-J8-mJH"/>
+                                <constraint firstAttribute="trailing" secondItem="vzf-MY-yzU" secondAttribute="trailing" id="WJC-hi-Tb4"/>
                                 <constraint firstItem="cpS-dh-iEt" firstAttribute="leading" secondItem="Xfn-bN-aTX" secondAttribute="leading" id="ZCx-Is-EfD"/>
+                                <constraint firstItem="vzf-MY-yzU" firstAttribute="centerY" secondItem="Ewf-N1-yik" secondAttribute="centerY" id="iSu-jS-uDF"/>
                                 <constraint firstAttribute="trailing" secondItem="Ewf-N1-yik" secondAttribute="trailing" id="q73-fT-q8K"/>
                                 <constraint firstItem="Ewf-N1-yik" firstAttribute="leading" secondItem="Xfn-bN-aTX" secondAttribute="leading" id="rvr-oU-Nuj"/>
                                 <constraint firstItem="Ewf-N1-yik" firstAttribute="top" secondItem="Xfn-bN-aTX" secondAttribute="top" id="tZ5-SK-9OS"/>
@@ -146,7 +159,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="6GP-I9-IVd"/>
-            <point key="canvasLocation" x="-906.39999999999998" y="-750.22488755622192"/>
+            <point key="canvasLocation" x="-1023" y="-752"/>
         </view>
     </objects>
 </document>
