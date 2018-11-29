@@ -68,7 +68,8 @@ class FeeLoader: FeeLoaderProtocol {
         }
         
         pendingRequestWorkItem = requestWorkItem
-        DispatchQueue.main.async(execute: requestWorkItem)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250),
+                                      execute: requestWorkItem)
     }
 }
 
