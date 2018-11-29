@@ -39,7 +39,7 @@ extension API {
             deviceOs: String,
             signHeader: SignHeader)
         case addDevice(userId: Int, deviceOs: String, signHeader: SignHeader)
-        case confirmAddDevice(deviceConfirmToken: String)
+        case confirmAddDevice(token: String, deviceId: String)
         case resendConfirmEmail(email: String, deviceType: DeviceType)
     }
     
@@ -201,9 +201,10 @@ extension API.Unauthorized: APIMethodProtocol {
                 "deviceId": signHeader.deviceId,
                 "publicKey": signHeader.pubKeyHex
             ]
-        case .confirmAddDevice(let deviceConfirmToken):
+        case .confirmAddDevice(let token, let deviceId):
             return [
-                "token": deviceConfirmToken
+                "token": token,
+                "deviceId": deviceId
             ]
         case .resendConfirmEmail(let email, let deviceType):
             return [
