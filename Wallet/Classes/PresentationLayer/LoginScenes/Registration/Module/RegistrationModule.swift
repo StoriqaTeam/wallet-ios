@@ -22,7 +22,8 @@ class RegistrationModule {
                                                 loginService: app.loginService,
                                                 biometricAuthProvider: biometricAuthProvider,
                                                 signHeaderFactory: app.signHeaderFactory,
-                                                userKeyManager: app.userKeyManager)
+                                                userKeyManager: app.userKeyManager,
+                                                addDeviceNetworkProvider: app.addDeviceNetworkProvider)
         
         let registrationSb = UIStoryboard(name: "Registration", bundle: nil)
         let viewController = registrationSb.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationViewController

@@ -17,4 +17,7 @@ protocol RegistrationInteractorOutput: class {
     func showQuickLaunch()
     func showPinQuickLaunch()
     func socialAuthFailed(message: String)
+    func deviceNotRegistered()
+    func deviceRegisterEmailSent()
+    func failedSendDeviceRegisterEmail(message: String)
 }

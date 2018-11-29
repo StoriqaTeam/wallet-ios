@@ -20,4 +20,10 @@ protocol RegistrationRouterInput: class {
     func showSocialNetworkFailure(message: String, from viewController: UIViewController)
     func showQuickLaunch(from viewController: UIViewController)
     func showPinQuickLaunch(from viewController: UIViewController)
+    func showDeviceRegister(popUpDelegate: PopUpDeviceRegisterVMDelegate,
+                            from viewController: UIViewController)
+    func showDeviceRegisterEmailSent(from viewController: UIViewController)
+    func showDeviceRegisterFailedSendEmail(message: String,
+                                           popUpDelegate: PopUpDeviceRegisterFailedSendEmailVMDelegate,
+                                           from viewController: UIViewController)
 }
