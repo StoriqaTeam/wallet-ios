@@ -146,6 +146,7 @@ class Application {
     lazy var currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatter()
     lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
     lazy var medianWaitFormatter: MedianWaitFormatterProtocol = MedianWaitFormatter()
+    lazy var constantRateFiatConverterFactory: ConstantRateFiatConverterFactoryProtocol = ConstantRateFiatConverterFactory(ratesProvider: self.ratesProvider)
     
     // MARK: - Validators -
     lazy var btcAddressValidator: AddressValidatorProtocol = BitcoinAddressValidator(network: BITCOIN_NETWORK)
@@ -155,9 +156,7 @@ class Application {
     // MARK: - Resolvers -
     lazy var accountTypeResolver: AccountTypeResolverProtocol = AccountTypeResolver()
     lazy var transactionDirectionResolver: TransactionDirectionResolverProtocol = TransactionDirectionResolver()
-    lazy var transactionOpponentResolver: TransactionOpponentResolverProtocol = TransactionOpponentResolver(contactsProvider: self.contactsProvider,
-                                                                                                            transactionDirectionResolver: self.transactionDirectionResolver,
-                                                                                                            contactsMapper: self.contactsMapper)
+    lazy var transactionOpponentResolver: TransactionOpponentResolverProtocol = TransactionOpponentResolver(transactionDirectionResolver: self.transactionDirectionResolver)
     lazy var cryptoAddressResolver: CryptoAddressResolverProtocol = CryptoAddressResolver(btcAddressValidator: self.btcAddressValidator,
                                                                                           ethAddressValidator: self.ethAddressValidator)
     
@@ -173,7 +172,7 @@ class Application {
     // MARK: - Mappers -
     lazy var contactsMapper: ContactsMapper = ContactsMapper()
     lazy var transactionMapper: TransactionMapperProtocol = TransactionMapper(currencyFormatter: self.currencyFormatter,
-                                                                              converterFactory: self.currencyConverterFactory,
+                                                                              converterFactory: self.constantRateFiatConverterFactory,
                                                                               transactionDirectionResolver: self.transactionDirectionResolver,
                                                                               transactionOpponentResolver: self.transactionOpponentResolver,
                                                                               denominationUnitsConverter: self.denominationUnitsConverter)
