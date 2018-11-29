@@ -174,6 +174,8 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
     case unknownError
     case failToParseJson
     case orderExpired
+    case notEnoughBalance
+    case exceededDayLimit(limit: String, currency: Currency)
     case amountOutOfBounds(min: String, max: String, currency: Currency)
     
     init(code: Int, json: JSON, currency: Currency) {
@@ -190,6 +192,14 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
             } else if let exchangeRate = json["exchange_rate"].array,
                 exchangeRate.contains(where: { $0["code"] == "expired" }) {
                 self = .orderExpired
+            } else if let accountErrors = json["value"].array,
+                accountErrors.contains(where: { $0["code"] == "not_enough_balance" }) {
+                self = .notEnoughBalance
+            } else if let accountErrors = json["value"].array,
+                let limitError = accountErrors.first(where: { $0["code"] == "exceeded_daily_limit" }),
+                let params = limitError["params"].dictionary,
+                let limit = params["limit"]?.string {
+                self = .exceededDayLimit(limit: limit, currency: currency)
             } else {
                 self = .unknownError
             }
@@ -207,12 +217,15 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
         case .internalServer:
             return "Internal server error"
         case .unknownError,
-             .amountOutOfBounds:
+             .amountOutOfBounds,
+             .exceededDayLimit:
             return Constants.Errors.userFriendly
         case .failToParseJson:
             return "Failed to parse JSON"
         case .orderExpired:
-            return "Current exchange order did expire."
+            return "Current exchange order did expire"
+        case .notEnoughBalance:
+            return "Account balance is not enough"
         }
     }
 }

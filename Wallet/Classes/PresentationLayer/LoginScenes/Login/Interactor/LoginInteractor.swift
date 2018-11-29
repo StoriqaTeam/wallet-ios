@@ -22,6 +22,7 @@ class LoginInteractor {
     private let addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
     private let resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol
+    private let ratesUpdater: RatesUpdaterProtocol
     
     // for Retry
     private var authData: AuthData?
@@ -37,7 +38,8 @@ class LoginInteractor {
          userKeyManager: UserKeyManagerProtocol,
          addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol,
          signHeaderFactory: SignHeaderFactoryProtocol,
-         resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol) {
+         resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol,
+         ratesUpdater: RatesUpdaterProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
@@ -49,6 +51,7 @@ class LoginInteractor {
         self.addDeviceNetworkProvider = addDeviceNetworkProvider
         self.signHeaderFactory = signHeaderFactory
         self.resendConfirmEmailNetworkProvider = resendConfirmEmailNetworkProvider
+        self.ratesUpdater = ratesUpdater
     }
 }
 
@@ -61,6 +64,7 @@ extension LoginInteractor: LoginInteractorInput {
         userDataStore.resetAllDatabase()
         keychain.deleteAll()
         defaultProvider.clear()
+        ratesUpdater.update()
     }
     
     func getSocialVM() -> SocialNetworkAuthViewModel {

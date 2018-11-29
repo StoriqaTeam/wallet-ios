@@ -15,16 +15,10 @@ protocol TransactionOpponentResolverProtocol {
 
 class TransactionOpponentResolver: TransactionOpponentResolverProtocol {
     
-    private let contactsProvider: ContactsProviderProtocol
     private let transactionDirectionResolver: TransactionDirectionResolverProtocol
-    private let contactsMapper: ContactsMapper
     
-    init(contactsProvider: ContactsProviderProtocol,
-         transactionDirectionResolver: TransactionDirectionResolverProtocol,
-         contactsMapper: ContactsMapper) {
-        self.contactsProvider = contactsProvider
+    init(transactionDirectionResolver: TransactionDirectionResolverProtocol) {
         self.transactionDirectionResolver = transactionDirectionResolver
-        self.contactsMapper = contactsMapper
     }
     
     func resolveOpponent(for transaction: Transaction, account: Account) -> OpponentType {

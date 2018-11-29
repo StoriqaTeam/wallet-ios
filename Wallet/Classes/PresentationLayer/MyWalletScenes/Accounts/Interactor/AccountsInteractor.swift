@@ -88,9 +88,6 @@ extension AccountsInteractor: AccountsInteractorInput {
     }
     
     func setCurrentAccountWith(index: Int) {
-        let currentIndex = getAccountIndex()
-        guard currentIndex != index else { return }
-        
         let allAccounts = accountLinker.getAllAccounts()
         accountWatcher.setAccount(allAccounts[index])
         let currentAccount = accountWatcher.getAccount()

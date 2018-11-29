@@ -51,7 +51,7 @@ enum ResetPasswordNetworkProviderError: LocalizedError, Error {
         case 401:
             self = .unauthorized
         case 422:
-            if let deviceErrors = json["device"].array,
+            if let deviceErrors = json["email"].array,
                 deviceErrors.contains(where: { $0["code"] == "email_timeout" }) {
                 self = .sendEmailTimeout
             } else {

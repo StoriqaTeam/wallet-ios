@@ -4,9 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:beta.storiqa.com</string>
-		<string>applinks:stable.stq.cloud</string>
-		<string>applinks:storiqa.com</string>
+		<string>$(APP_LINK)</string>
 	</array>
 </dict>
 </plist>

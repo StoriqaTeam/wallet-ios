@@ -62,7 +62,7 @@ enum AddDeviceNetworkProviderError: Error, LocalizedError {
             if let deviceErrors = json["device"].array,
                 deviceErrors.contains(where: { $0["code"] == "exists" }) {
                 self = .deviceAlreadyExists
-            } else if let deviceErrors = json["device"].array,
+            } else if let deviceErrors = json["email"].array,
                 deviceErrors.contains(where: { $0["code"] == "email_timeout" }) {
                 self = .sendEmailTimeout
             } else {
