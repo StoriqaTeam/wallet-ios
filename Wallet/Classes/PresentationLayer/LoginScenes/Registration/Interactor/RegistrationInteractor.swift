@@ -19,6 +19,7 @@ class RegistrationInteractor {
     weak var output: RegistrationInteractorOutput!
     
     private var registrationData: RegistrationData?
+    private var deviceRegisterData: (userId: Int, email: String)?
     
     private let socialViewVM: SocialNetworkAuthViewModel
     private let formValidationProvider: RegistrationFormValidatonProviderProtocol
@@ -27,6 +28,7 @@ class RegistrationInteractor {
     private let biometricAuthProvider: BiometricAuthProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
     private let userKeyManager: UserKeyManagerProtocol
+    private let addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          formValidationProvider: RegistrationFormValidatonProviderProtocol,
@@ -34,7 +36,8 @@ class RegistrationInteractor {
          loginService: LoginServiceProtocol,
          biometricAuthProvider: BiometricAuthProviderProtocol,
          signHeaderFactory: SignHeaderFactoryProtocol,
-         userKeyManager: UserKeyManagerProtocol) {
+         userKeyManager: UserKeyManagerProtocol,
+         addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol) {
         
         self.socialViewVM = socialViewVM
         self.formValidationProvider = formValidationProvider
@@ -43,7 +46,7 @@ class RegistrationInteractor {
         self.biometricAuthProvider = biometricAuthProvider
         self.signHeaderFactory = signHeaderFactory
         self.userKeyManager = userKeyManager
-        
+        self.addDeviceNetworkProvider = addDeviceNetworkProvider
     }
     
 }
@@ -118,6 +121,15 @@ extension RegistrationInteractor: RegistrationInteractorInput {
             case .success:
                 self?.socialAuthSucceed()
             case .failure(let error):
+                if let error = error as? SocialAuthNetworkProviderError {
+                    switch error {
+                    case .deviceNotRegistered(let userId):
+                        self?.deviceRegisterData = (userId, email)
+                        self?.output.deviceNotRegistered()
+                        return
+                    default: break
+                    }
+                }
                 self?.output.socialAuthFailed(message: error.localizedDescription)
             }
         }
@@ -128,6 +140,34 @@ extension RegistrationInteractor: RegistrationInteractorInput {
             fatalError("trying to retry registration without registrationData")
         }
         register(with: registrationData)
+    }
+    
+    func registerDevice() {
+        guard let deviceRegisterData = deviceRegisterData else {
+                fatalError("Registring device with no user id")
+        }
+        
+        let signHeader: SignHeader
+        
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: deviceRegisterData.email)
+        } catch {
+            log.error(error.localizedDescription)
+            output.registrationFailed(message: error.localizedDescription)
+            return
+        }
+        
+        addDeviceNetworkProvider.addDevice(
+            userId: deviceRegisterData.userId,
+            signHeader: signHeader,
+            queue: .main) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.output.deviceRegisterEmailSent()
+                case .failure(let error):
+                    self?.output.failedSendDeviceRegisterEmail(message: error.localizedDescription)
+                }
+        }
     }
 }
 

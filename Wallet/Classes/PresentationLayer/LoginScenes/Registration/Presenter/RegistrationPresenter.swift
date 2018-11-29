@@ -85,6 +85,21 @@ extension RegistrationPresenter: RegistrationViewOutput {
 // MARK: - RegistrationInteractorOutput
 
 extension RegistrationPresenter: RegistrationInteractorOutput {
+    func deviceNotRegistered() {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegister(popUpDelegate: self, from: view.viewController)
+    }
+    
+    func deviceRegisterEmailSent() {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegisterEmailSent(from: view.viewController)
+    }
+    
+    func failedSendDeviceRegisterEmail(message: String) {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegisterFailedSendEmail(message: message, popUpDelegate: self, from: view.viewController)
+    }
+    
     func formValidationFailed(email: String?, password: String?) {
         storiqaLoader.stopLoader()
         view.showErrorMessage(email: email, password: password)
@@ -152,6 +167,24 @@ extension RegistrationPresenter: PopUpRegistrationFailedVMDelegate {
     }
 }
 
+// MARK: - PopUpDeviceRegisterVMDelegate
+
+extension RegistrationPresenter: PopUpDeviceRegisterVMDelegate {
+    func deviceRegisterOkButtonPressed() {
+        storiqaLoader.startLoader()
+        interactor.registerDevice()
+    }
+}
+
+
+// MARK: - PopUpDeviceRegisterFailedSendEmailVMDelegate
+
+extension RegistrationPresenter: PopUpDeviceRegisterFailedSendEmailVMDelegate {
+    func retryDeviceRegister() {
+        storiqaLoader.startLoader()
+        interactor.registerDevice()
+    }
+}
 
 // MARK: - Private methods
 
