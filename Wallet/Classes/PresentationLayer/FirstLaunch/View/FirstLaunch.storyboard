@@ -24,7 +24,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Er1-GH-KNz">
                                         <rect key="frame" x="74" y="101" width="227" height="265.5"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" image="logoFirstLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="3rc-Uj-0x9">
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" image="logoTure" translatesAutoresizingMaskIntoConstraints="NO" id="3rc-Uj-0x9">
                                                 <rect key="frame" x="0.0" y="0.0" width="227" height="227"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="227" id="exS-hB-i8J"/>
@@ -119,6 +119,6 @@ with your fiat &amp; crypto funds</string>
         </scene>
     </scenes>
     <resources>
-        <image name="logoFirstLaunch" width="156" height="159"/>
+        <image name="logoTure" width="156" height="159"/>
     </resources>
 </document>

@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPj-Se-nqY">
                                 <rect key="frame" x="0.0" y="110" width="375" height="467"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoFirstLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="fNH-pw-PHW">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoTure" translatesAutoresizingMaskIntoConstraints="NO" id="fNH-pw-PHW">
                                         <rect key="frame" x="74" y="120" width="227" height="227"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="227" id="780-SI-nKr"/>
@@ -52,6 +52,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logoFirstLaunch" width="156" height="159"/>
+        <image name="logoTure" width="156" height="159"/>
     </resources>
 </document>
