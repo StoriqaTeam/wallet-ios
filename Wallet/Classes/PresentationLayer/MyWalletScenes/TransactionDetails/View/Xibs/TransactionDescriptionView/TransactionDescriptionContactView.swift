@@ -31,7 +31,7 @@ class  TransactionDescriptionContactView: LoadableFromXib {
 
     }
     
-    @IBAction func addresstapped(_ sender: Any) {
+    @IBAction func copyAddress(_ sender: Any) {
         guard let address = addresslabel.text else { return }
         delegate?.addressDidTapped(address: address)
     }
