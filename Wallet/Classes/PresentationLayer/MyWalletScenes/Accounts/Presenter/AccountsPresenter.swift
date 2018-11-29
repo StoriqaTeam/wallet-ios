@@ -103,8 +103,10 @@ extension AccountsPresenter: AccountsInteractorOutput {
     
     func transactionsDidChange(_ txs: [Transaction]) {
         let account = interactor.getSelectedAccount()
-        let displayable = txs.map { transactionsMapper.map(from: $0, account: account) }
-        transactionDataManager.updateTransactions(displayable)
+        
+        transactionsMapper.map(from: txs, account: account) { [weak self] (displayable) in
+            self?.transactionDataManager.updateTransactions(displayable)
+        }
     }
     
     func updateAccounts(accounts: [Account], index: Int) {

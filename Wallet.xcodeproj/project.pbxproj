@@ -483,6 +483,8 @@
 		CE13517B218C9BF0009CB4F9 /* DefaultAccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13517A218C9BF0009CB4F9 /* DefaultAccountsProvider.swift */; };
 		CE185489214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */; };
 		CE185494214BE558009D1360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE185496214BE558009D1360 /* Localizable.strings */; };
+		CE18FAE321B0200700A840C1 /* ConstantRateFiatConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18FAE221B0200700A840C1 /* ConstantRateFiatConverter.swift */; };
+		CE18FAE521B0203600A840C1 /* ConstantRateFiatConverterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18FAE421B0203600A840C1 /* ConstantRateFiatConverterFactory.swift */; };
 		CE1A47DB212E9C5400418C11 /* PinContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D8212E9C5400418C11 /* PinContainerView.swift */; };
 		CE1A47DC212E9C5400418C11 /* PinDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47D9212E9C5400418C11 /* PinDotView.swift */; };
 		CE1A47DD212E9C5400418C11 /* PinInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A47DA212E9C5400418C11 /* PinInputView.swift */; };
@@ -1201,6 +1203,8 @@
 		CE13517A218C9BF0009CB4F9 /* DefaultAccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAccountsProvider.swift; sourceTree = "<group>"; };
 		CE185488214BA3FD009D1360 /* PasswordRecoveryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryBaseViewController.swift; sourceTree = "<group>"; };
 		CE185495214BE558009D1360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE18FAE221B0200700A840C1 /* ConstantRateFiatConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantRateFiatConverter.swift; sourceTree = "<group>"; };
+		CE18FAE421B0203600A840C1 /* ConstantRateFiatConverterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantRateFiatConverterFactory.swift; sourceTree = "<group>"; };
 		CE1A47D0212E9BDA00418C11 /* PinContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinContainerView.xib; sourceTree = "<group>"; };
 		CE1A47D8212E9C5400418C11 /* PinContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinContainerView.swift; sourceTree = "<group>"; };
 		CE1A47D9212E9C5400418C11 /* PinDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDotView.swift; sourceTree = "<group>"; };
@@ -4492,6 +4496,8 @@
 		CED822E1215BC31400693B92 /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				CE18FAE421B0203600A840C1 /* ConstantRateFiatConverterFactory.swift */,
+				CE18FAE221B0200700A840C1 /* ConstantRateFiatConverter.swift */,
 				CED822E6215BDF3B00693B92 /* CurrecncyConverterFactory.swift */,
 				CED822E2215BC33000693B92 /* CurrencyConverter.swift */,
 			);
@@ -5607,6 +5613,7 @@
 				70D91778B8FFB807C57A87E1 /* DepositInteractorOutput.swift in Sources */,
 				21015C726AD801A30F41DE91 /* DepositInteractor.swift in Sources */,
 				A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */,
+				CE18FAE521B0203600A840C1 /* ConstantRateFiatConverterFactory.swift in Sources */,
 				CE4401A02174AF4400F7C8D8 /* ContactDisplayable.swift in Sources */,
 				679C8567C9F7F0A5585CAC4D /* DepositRouterInput.swift in Sources */,
 				1499BCCDEF796FDA812A7DBC /* DepositRouter.swift in Sources */,
@@ -5781,6 +5788,7 @@
 				4B17C7DC5FBF92215059BB75 /* SendConfirmPopUpViewInput.swift in Sources */,
 				0127C73CACDE8664575DE407 /* SendConfirmPopUpViewOutput.swift in Sources */,
 				1CFAD4D96C4930A39119C7FD /* SendConfirmPopUpViewController.swift in Sources */,
+				CE18FAE321B0200700A840C1 /* ConstantRateFiatConverter.swift in Sources */,
 				DE1D57B3EA191B405DD5A39E /* SendConfirmPopUpPresenter.swift in Sources */,
 				57C534828D14F0A2296684FA /* SendConfirmPopUpInteractorInput.swift in Sources */,
 				76FD35E4CE0BD5A368AFB2A8 /* SendConfirmPopUpInteractorOutput.swift in Sources */,
