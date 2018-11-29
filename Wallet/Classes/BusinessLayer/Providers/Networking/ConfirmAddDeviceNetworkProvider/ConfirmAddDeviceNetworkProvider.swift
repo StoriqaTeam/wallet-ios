@@ -21,8 +21,8 @@ class ConfirmAddDeviceNetworkProvider: NetworkLoadable, ConfirmAddDeviceNetworkP
     func confirmAddDevice(deviceConfirmToken: String,
                           queue: DispatchQueue,
                           completion: @escaping (Result<String?>) -> Void) {
-        
-        let request = API.Unauthorized.confirmAddDevice(deviceConfirmToken: deviceConfirmToken)
+        let deviceId = UIDevice.current.identifierForVendor!.uuidString
+        let request = API.Unauthorized.confirmAddDevice(token: deviceConfirmToken, deviceId: deviceId)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
@@ -50,6 +50,7 @@ enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
     case unknownError
     case internalServer
     case deviceTokenExpired
+    case deviceDiffers
     
     init(code: Int, json: JSON) {
         switch code {
@@ -59,6 +60,9 @@ enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
             if let deviceErrors = json["device"].array,
                 deviceErrors.contains(where: { $0["code"] == "token" }) {
                 self = .deviceTokenExpired
+            } else if let deviceErrors = json["device"].array,
+                deviceErrors.contains(where: { $0["code"] == "device_id" }) {
+                self = .deviceDiffers
             } else {
                 self = .unknownError
             }
@@ -77,6 +81,9 @@ enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
         case .deviceTokenExpired:
             // FIXME: error message
             return "Device token expired"
+        case .deviceDiffers:
+            // FIXME: error message
+            return "Confirmed device differs from your device"
         case .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }
