@@ -6038,6 +6038,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ADE2B87D000AB5C20D3AD8A0 /* Pods-Wallet.debug.xcconfig */;
 			buildSettings = {
+				APP_LINK = "applinks:stable.stq.cloud";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon$(BUNDLE_ID_SUFFIX)";
 				BUNDLE_ID_SUFFIX = "-test";
 				CODE_SIGN_ENTITLEMENTS = Wallet/Wallet.entitlements;
@@ -6059,6 +6060,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9C21C637BF3AA6BA1C4DA088 /* Pods-Wallet.release.xcconfig */;
 			buildSettings = {
+				APP_LINK = "applinks:storiqa.com";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon$(BUNDLE_ID_SUFFIX)";
 				BUNDLE_ID_SUFFIX = "";
 				CODE_SIGN_ENTITLEMENTS = Wallet/Wallet.entitlements;
