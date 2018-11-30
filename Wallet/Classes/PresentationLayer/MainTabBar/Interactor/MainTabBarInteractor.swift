@@ -20,6 +20,7 @@ class MainTabBarInteractor {
     private let app: Application
     
     private var shortPollingChannelInput: ShortPollingChannel?
+    private var depositShortPollingChannelInput: DepositShortPollingChannel?
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
@@ -41,6 +42,9 @@ class MainTabBarInteractor {
     deinit {
         self.shortPollingChannelInput?.removeObserver(withId: self.objId)
         self.shortPollingChannelInput = nil
+        
+        self.depositShortPollingChannelInput?.removeObserver(withId: self.objId)
+        self.depositShortPollingChannelInput = nil
     }
     
     // MARK: - Channels
@@ -56,6 +60,17 @@ class MainTabBarInteractor {
             self?.signalPolling()
         }
         self.shortPollingChannelInput?.addObserver(observer)
+    }
+    
+    func setDepositShortPollingChannelInput(_ channel: DepositShortPollingChannel) {
+        self.depositShortPollingChannelInput = channel
+        
+        let observer = Observer<String?>(id: self.objId) { [weak self] (_) in
+            self?.updateDepositInfo()
+        }
+        
+        self.depositShortPollingChannelInput?.addObserver(observer)
+        
     }
 }
 
@@ -89,5 +104,10 @@ extension MainTabBarInteractor {
     private func signalPolling() {
         log.debug("Get polling signal")
         update()
+    }
+    
+    private func updateDepositInfo() {
+        accountsUpdater.update()
+        txsUpdater.update()
     }
 }

@@ -205,6 +205,7 @@ class Application {
     
     // MARK: - Global services -
     lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 60)
+    lazy var depositShortPollintTimer: DepositShortPollingTimerProtocol = DepositShortPollingTimer(timeout: 5)
     
     // MARK: - Channels -
     lazy var channelStorage: ChannelStorage = ChannelStorage()

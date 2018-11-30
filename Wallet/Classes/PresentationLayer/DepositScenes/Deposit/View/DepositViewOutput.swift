@@ -12,6 +12,7 @@ import UIKit
 protocol DepositViewOutput: class {
     func viewIsReady()
     func viewWillAppear()
+    func viewWillDisapear()
     func accountsCollectionView(_ collectionView: UICollectionView)
     func configureCollections()
     func copyButtonPressed()
