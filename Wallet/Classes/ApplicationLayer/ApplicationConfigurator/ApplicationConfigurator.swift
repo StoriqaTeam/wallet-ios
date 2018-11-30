@@ -58,7 +58,6 @@ extension ApplicationConfigurator {
     
     private func setGID() {
         NetworkActivityIndicatorManager.shared.isEnabled = true
-//            Alamofire.Manager.sharedInstance.delegate.taskWillPerformHTTPRedirection = nil
         GIDSignIn.sharedInstance().clientID = Constants.NetworkAuth.kGoogleClientId
     }
     
