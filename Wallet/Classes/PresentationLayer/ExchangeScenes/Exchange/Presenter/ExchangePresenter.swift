@@ -127,9 +127,10 @@ extension ExchangePresenter: ExchangeViewOutput {
 // MARK: - ExchangeInteractorOutput
 
 extension ExchangePresenter: ExchangeInteractorOutput {
+    
     func updateOrder(time: Int?) {
         guard let elapsedTime = time else {
-            view.updateExpiredTimeLabel("_")
+            view.updateExpiredTimeLabel("")
             return
         }
         
@@ -139,7 +140,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
     
     func updateRateFor(oneUnit: Decimal?, fromCurrency: Currency, toCurrency: Currency) {
         guard let oneUnitRate = oneUnit else {
-            view.updateRateLabel(text: "-")
+            view.updateRateLabel(text: "")
             return
         }
         
@@ -166,6 +167,10 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         
         view.setRecepientAccount(account.name)
         view.setRecepientBalance("Balance: \(balance)")
+    }
+    
+    func exchangeRateError(_ error: Error) {
+        view.showEchangeRateError(message: error.localizedDescription)
     }
     
     func updateAmount(_ amount: Decimal, currency: Currency) {

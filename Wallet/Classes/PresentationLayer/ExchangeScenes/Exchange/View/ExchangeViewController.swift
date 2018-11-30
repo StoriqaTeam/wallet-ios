@@ -127,7 +127,20 @@ extension ExchangeViewController: ExchangeViewInput {
                 }
             })
         }
+    }
+    
+    func showEchangeRateError(message: String) {
+        self.errorLabel.isHidden = false
+        self.errorLabel.text = message
         
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.layoutSubviews()
+            self.errorLabel.alpha = 1
+        }, completion: { finished in
+            if finished {
+                self.errorLabel.isHidden = false
+            }
+        })
     }
     
     func setNewPage(_ index: Int) {

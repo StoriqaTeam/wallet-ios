@@ -219,7 +219,7 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
         case .unknownError,
              .amountOutOfBounds,
              .exceededDayLimit:
-            return Constants.Errors.userFriendly
+             return Constants.Errors.userFriendly
         case .failToParseJson:
             return "Failed to parse JSON"
         case .orderExpired:

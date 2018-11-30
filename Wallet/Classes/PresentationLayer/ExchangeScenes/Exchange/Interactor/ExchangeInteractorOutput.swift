@@ -22,4 +22,5 @@ protocol ExchangeInteractorOutput: class {
     func updateRateFor(oneUnit: Decimal?, fromCurrency: Currency, toCurrency: Currency)
     func updateOrder(time: Int?)
     func exceededDayLimit(limit: String, currency: Currency)
+    func exchangeRateError(_ error: Error)
 }
