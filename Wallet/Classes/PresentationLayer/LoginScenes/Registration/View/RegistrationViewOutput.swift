@@ -17,7 +17,8 @@ protocol RegistrationViewOutput: class {
                         email: String?,
                         password: String?,
                         repeatPassword: String?,
-                        agreement: Bool)
+                        agreement: Bool,
+                        privacy: Bool)
     func validatePasswords(onEndEditing: Bool, password: String?, repeatPassword: String?)
     func showLogin()
     func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String, email: String)

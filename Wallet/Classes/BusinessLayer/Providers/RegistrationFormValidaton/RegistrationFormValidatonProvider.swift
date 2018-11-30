@@ -15,6 +15,7 @@ struct RegistrationForm {
     let password: String?
     let repeatPassword: String?
     let agreement: Bool
+    let policy: Bool
 }
 
 protocol RegistrationFormValidatonProviderProtocol {
@@ -40,6 +41,7 @@ class RegistrationFormValidatonProvider: RegistrationFormValidatonProviderProtoc
             !password.isEmpty &&
             !repeatPassword.isEmpty &&
             form.agreement &&
+            form.policy &&
             password == repeatPassword
         
         return formIsValid
