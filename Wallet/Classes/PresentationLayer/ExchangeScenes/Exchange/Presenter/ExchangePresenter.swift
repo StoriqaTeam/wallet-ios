@@ -193,10 +193,6 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setErrorHidden(enough)
     }
     
-//    func updateExceedRateLimit() {
-//        
-//    }
-    
     func updateFormIsValid(_ valid: Bool) {
         view.setButtonEnabled(valid)
     }
