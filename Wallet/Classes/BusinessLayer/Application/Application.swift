@@ -103,6 +103,7 @@ class Application {
     lazy var keyGenerator: KeyGeneratorProtocol = KeyGenerator()
     lazy var userKeyManager: UserKeyManagerProtocol = UserKeyManager(keychainProvider: self.keychainProvider, keyGenerator: self.keyGenerator)
     lazy var orderObserver: OrderObserverProtocol = OrderObserver(expiredOrderOutputChannel: self.channelStorage.orderExpiredChannel, orderTickOutputChannel: self.channelStorage.orderTickChannel)
+    lazy var receivedTransactionProvider: ReceivedTransactionProviderProtocol = ReceivedTransactionProvider(directionResolver: self.transactionDirectionResolver)
     
     // MARK: - Updaters -
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,
@@ -116,7 +117,8 @@ class Application {
                                                                                     signHeaderFactory: self.signHeaderFactory,
                                                                                     defaultsProvider: self.defaultsProvider,
                                                                                     authTokenProvider: self.authTokenProvider,
-                                                                                    userDataStoreService: self.userDataStoreService)
+                                                                                    userDataStoreService: self.userDataStoreService,
+                                                                                    receivedTransactionProvider: self.receivedTransactionProvider)
 
     lazy var contactsChacheUpdater: ContactsCacheUpdaterProtocol = ContactsCacheUpdater(deviceContactsFetcher: self.deviceContactsFetcher,
                                                                                         contactsNetworkProvider: self.fakeContactsNetworkProvider,
@@ -157,7 +159,7 @@ class Application {
     
     // MARK: - Resolvers -
     lazy var accountTypeResolver: AccountTypeResolverProtocol = AccountTypeResolver()
-    lazy var transactionDirectionResolver: TransactionDirectionResolverProtocol = TransactionDirectionResolver()
+    lazy var transactionDirectionResolver: TransactionDirectionResolverProtocol = TransactionDirectionResolver(accountProvider: self.accountsProvider)
     lazy var transactionOpponentResolver: TransactionOpponentResolverProtocol = TransactionOpponentResolver(transactionDirectionResolver: self.transactionDirectionResolver)
     lazy var cryptoAddressResolver: CryptoAddressResolverProtocol = CryptoAddressResolver(btcAddressValidator: self.btcAddressValidator,
                                                                                           ethAddressValidator: self.ethAddressValidator)

@@ -16,6 +16,7 @@ typealias AccountsUpdateChannel = Channel<[Account]>
 typealias OrderExpiredChannel = Channel<Order?>
 typealias OrderTickChannel = Channel<Int>
 typealias UserUpdateChannel = Channel<User>
+typealias ReceivedTxsChannel = Channel<(stq: Decimal, eth: Decimal, btc: Decimal)>
 
 
 struct ChannelStorage {
@@ -27,5 +28,5 @@ struct ChannelStorage {
     let orderExpiredChannel: OrderExpiredChannel = OrderExpiredChannel(queue: .main)
     let orderTickChannel: OrderTickChannel = OrderTickChannel(queue: .main)
     let userUpdateChannel: UserUpdateChannel = UserUpdateChannel(queue: .main)
-    
+    let receivedTxsChannel: ReceivedTxsChannel = ReceivedTxsChannel(queue: .main)
 }

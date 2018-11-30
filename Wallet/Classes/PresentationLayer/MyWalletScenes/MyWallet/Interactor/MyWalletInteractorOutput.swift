@@ -12,4 +12,5 @@ import Foundation
 protocol MyWalletInteractorOutput: class {
     func updateAccounts(accounts: [Account])
     func userDidUpdate()
+    func receivedNewTxs(stq: Decimal, eth: Decimal, btc: Decimal)
 }
