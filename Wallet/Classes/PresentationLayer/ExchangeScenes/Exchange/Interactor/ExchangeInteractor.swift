@@ -331,6 +331,7 @@ extension ExchangeInteractor {
                     strongSelf.output.updateTotal(0, currency: accountCurrency)
                     strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
                     strongSelf.output.updateFormIsValid(false)
+                    strongSelf.output.exchangeRateError(error)
                     strongSelf.output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
                 }
         }

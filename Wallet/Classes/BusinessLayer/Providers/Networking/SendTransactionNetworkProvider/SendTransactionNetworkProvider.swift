@@ -217,10 +217,9 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
         case .internalServer:
             return "Internal server error"
         case .unknownError,
-             .amountOutOfBounds:
+             .amountOutOfBounds,
+             .exceededDayLimit:
              return Constants.Errors.userFriendly
-        case .exceededDayLimit:
-            return "At the moment, the exchange of this amount is not possible, please try again later."
         case .failToParseJson:
             return "Failed to parse JSON"
         case .orderExpired:
