@@ -21,7 +21,9 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     private let authTokenProvider: AuthTokenProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
+    private let receivedTransactionProvider: ReceivedTransactionProviderProtocol
     
+    private var prevTxs = [Transaction]()
     private var isUpdating = false
     private var lastTxTime: TimeInterval!
     private var offset = 0
@@ -34,6 +36,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
          defaultsProvider: DefaultsProviderProtocol,
          authTokenProvider: AuthTokenProviderProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
+         receivedTransactionProvider: ReceivedTransactionProviderProtocol,
          limit: Int = 50) {
         self.provider = transactionsProvider
         self.networkProvider = transactionsNetworkProvider
@@ -42,6 +45,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
         self.authTokenProvider = authTokenProvider
         self.signHeaderFactory = signHeaderFactory
         self.userDataStoreService = userDataStoreService
+        self.receivedTransactionProvider = receivedTransactionProvider
         self.limit = limit
     }
     
@@ -52,6 +56,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
         
         isUpdating = true
         offset = 0
+        prevTxs = provider.getAllTransactions()
         
         if let unfinishedTime = defaults.lastTxTimastamp {
             lastTxTime = unfinishedTime
@@ -92,6 +97,7 @@ extension TransactionsUpdater {
         do {
             signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
         } catch {
+            isUpdating = false
             log.error(error.localizedDescription)
             return
         }
@@ -112,7 +118,7 @@ extension TransactionsUpdater {
                     self?.transactionsLoaded(txs)
                 case .failure(let error):
                     log.error(error.localizedDescription)
-                    self?.isUpdating = false
+                    self?.finish()
                 }
             }
         )
@@ -123,16 +129,28 @@ extension TransactionsUpdater {
         
         if txs.count < limit ||
             isTxAlreadyLoaded(txs.last!) {
-            isUpdating = false
+            finish()
             defaults.lastTxTimastamp = nil
         } else {
             offset += limit
-            update()
+            updateTransactions()
         }
     }
     
     private func isTxAlreadyLoaded(_ transaction: Transaction) -> Bool {
         return lastTxTime >= transaction.createdAt.timeIntervalSince1970
+    }
+    
+    private func finish() {
+        isUpdating = false
+        
+        guard !defaults.isFirstTransactionsLoad else {
+            defaults.isFirstTransactionsLoad = false
+            return
+        }
+        
+        let newTxs = provider.getAllTransactions()
+        receivedTransactionProvider.resolve(oldTxs: prevTxs, newTxs: newTxs)
     }
     
 }

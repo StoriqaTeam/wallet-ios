@@ -18,6 +18,7 @@ class MyWalletInteractor {
     private let txnUpdater: TransactionsUpdaterProtocol
     private var accountsUpadateChannelInput: AccountsUpdateChannel?
     private var userUpadateChannelInput: UserUpdateChannel?
+    private var receivedTxsChannelInput: ReceivedTxsChannel?
     
     init(accountsProvider: AccountsProviderProtocol,
          accountWatcher: CurrentAccountWatcherProtocol,
@@ -36,6 +37,9 @@ class MyWalletInteractor {
         
         self.userUpadateChannelInput?.removeObserver(withId: self.objId)
         self.userUpadateChannelInput = nil
+        
+        self.receivedTxsChannelInput?.removeObserver(withId: self.objId)
+        self.receivedTxsChannelInput = nil
     }
     
     
@@ -52,6 +56,10 @@ class MyWalletInteractor {
     
     func setUserUpdateChannelInput(_ channel: UserUpdateChannel) {
         self.userUpadateChannelInput = channel
+    }
+    
+    func setReceivedTxsChannelInput(_ channel: ReceivedTxsChannel) {
+        self.receivedTxsChannelInput = channel
     }
     
 }
@@ -83,6 +91,11 @@ extension MyWalletInteractor: MyWalletInteractorInput {
             self?.userDidUpdate()
         }
         self.userUpadateChannelInput?.addObserver(userObserver)
+        
+        let receivedTxsObserver = Observer<(stq: Decimal, eth: Decimal, btc: Decimal)>(id: self.objId) { [weak self] obj in
+            self?.receivedNewTxs(stq: obj.stq, eth: obj.eth, btc: obj.btc)
+        }
+        self.receivedTxsChannelInput?.addObserver(receivedTxsObserver)
     }
 }
 
@@ -97,5 +110,9 @@ extension MyWalletInteractor {
     
     private func userDidUpdate() {
         output.userDidUpdate()
+    }
+    
+    private func receivedNewTxs(stq: Decimal, eth: Decimal, btc: Decimal) {
+        output.receivedNewTxs(stq: stq, eth: eth, btc: btc)
     }
 }

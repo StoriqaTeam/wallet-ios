@@ -13,7 +13,9 @@ class MyWalletModule {
                       accountWatcher: CurrentAccountWatcherProtocol) -> MyWalletModuleInput {
         let router = MyWalletRouter(app: app)
         
-        let presenter = MyWalletPresenter(accountDisplayer: app.accountDisplayer)
+        let presenter = MyWalletPresenter(accountDisplayer: app.accountDisplayer,
+                                          denominationUnitsConverter: app.denominationUnitsConverter,
+                                          currencyFormatter: app.currencyFormatter)
         presenter.mainTabBar = tabBar
         
         let interactor = MyWalletInteractor(accountsProvider: app.accountsProvider,
@@ -39,6 +41,10 @@ class MyWalletModule {
         
         let userUpadteChannel = app.channelStorage.userUpdateChannel
         interactor.setUserUpdateChannelInput(userUpadteChannel)
+        
+        let receivedTxsChannel = app.channelStorage.receivedTxsChannel
+        app.receivedTransactionProvider.setReceivedTxsChannel(receivedTxsChannel)
+        interactor.setReceivedTxsChannelInput(receivedTxsChannel)
         
         return presenter
     }
