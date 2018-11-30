@@ -41,14 +41,17 @@ extension RegistrationPresenter: RegistrationViewOutput {
                         email: String?,
                         password: String?,
                         repeatPassword: String?,
-                        agreement: Bool) {
+                        agreement: Bool,
+                        privacy: Bool) {
         
         let form = RegistrationForm(firstName: firstName,
                                     lastName: lastName,
                                     email: email,
                                     password: password,
                                     repeatPassword: repeatPassword,
-                                    agreement: agreement)
+                                    agreement: agreement,
+                                    policy: privacy)
+        
         interactor.validateForm(form)
     }
     
