@@ -21,4 +21,5 @@ protocol ExchangeViewInput: class, Presentable {
     func setButtonEnabled(_ enabled: Bool)
     func updateExpiredTimeLabel(_ time: String)
     func updateRateLabel(text: String)
+    func showEchangeRateError(message: String)
 }

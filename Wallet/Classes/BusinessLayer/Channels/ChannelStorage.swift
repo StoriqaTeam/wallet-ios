@@ -10,6 +10,7 @@ import Foundation
 
 
 typealias ShortPollingChannel = Channel<String?>
+typealias DepositShortPollingChannel = Channel<String?>
 typealias TxsUpdateChannel = Channel<[Transaction]>
 typealias AccountsUpdateChannel = Channel<[Account]>
 typealias OrderExpiredChannel = Channel<Order?>
@@ -20,6 +21,8 @@ typealias ReceivedTxsChannel = Channel<(stq: Decimal, eth: Decimal, btc: Decimal
 
 struct ChannelStorage {
     let shortPollingChannel: ShortPollingChannel = ShortPollingChannel(queue: .main)
+    let depositShortPollingChannel: DepositShortPollingChannel = ShortPollingChannel(queue: .main)
+    
     let txsUpadteChannel: TxsUpdateChannel = TxsUpdateChannel(queue: .main)
     let accountsUpadteChannel: AccountsUpdateChannel = AccountsUpdateChannel(queue: .main)
     let orderExpiredChannel: OrderExpiredChannel = OrderExpiredChannel(queue: .main)

@@ -50,7 +50,7 @@ class ExchangeRateNetworkProvider: NetworkLoadable, ExchangeRateNetworkProviderP
                 let json = JSON(response.value)
                 
                 guard code == 200 else  {
-                    let apiError = ExchangeRateNetworkProviderError(code: code)
+                    let apiError = ExchangeRateNetworkProviderError(code: code, json: json)
                     completion(.failure(apiError))
                     return
                 }
@@ -75,11 +75,19 @@ enum ExchangeRateNetworkProviderError: LocalizedError, Error {
     case internalServer
     case unknownError
     case parseError
+    case exceedRateLimit
     
-    init(code: Int) {
+    init(code: Int, json: JSON) {
         switch code {
         case 401:
             self = .unauthorized
+        case 422:
+            if let exchangeRateError = json["value"].array,
+                exchangeRateError.contains(where: { $0["code"] == "not_enough_on_market" }) {
+                self = .exceedRateLimit
+                return
+            }
+            self = .unknownError
         case 500:
             self = .internalServer
         default:
@@ -93,6 +101,8 @@ enum ExchangeRateNetworkProviderError: LocalizedError, Error {
             return "User unauthorized"
         case .internalServer:
             return "Internal server error"
+        case .exceedRateLimit:
+            return "At the moment, the exchange of this amount is not possible, please try again later"
         case .unknownError:
             return Constants.Errors.userFriendly
         case .parseError:
