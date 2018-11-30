@@ -108,7 +108,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     
     func getFeeAndWait() -> (fee: Decimal?, wait: String) {
         guard let paymentFee = paymentFee else {
-            return (nil, "-")
+            return (nil, "")
         }
         
         let currency = selectedAccount.currency

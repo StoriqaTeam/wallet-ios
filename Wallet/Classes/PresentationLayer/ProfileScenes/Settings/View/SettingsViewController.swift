@@ -11,10 +11,11 @@ import UIKit
 private enum SettingsCell: Int {
     case editProfile = 0
     case changePassword
-    case changePhone
+    //FIXME: hidden
+//    case changePhone
     case appInfo
     
-    static var count = 4
+    static var count = 3 // 4
 }
 
 class SettingsViewController: UIViewController {
@@ -55,7 +56,8 @@ extension SettingsViewController: UITableViewDataSource {
             switch indexPath.row {
             case SettingsCell.editProfile.rawValue: return "Edit profile"
             case SettingsCell.changePassword.rawValue: return "Change password"
-            case SettingsCell.changePhone.rawValue: return changePhoneTitle
+            //FIXME: hidden
+//            case SettingsCell.changePhone.rawValue: return changePhoneTitle
             case SettingsCell.appInfo.rawValue: return "App info"
             default: return ""
             }
@@ -86,7 +88,8 @@ extension SettingsViewController: UITableViewDelegate {
         switch indexPath.row {
         case SettingsCell.editProfile.rawValue: output.editProfileSelected()
         case SettingsCell.changePassword.rawValue: output.changePasswordSelected()
-        case SettingsCell.changePhone.rawValue: output.changePhoneNumber()
+        //FIXME: hidden
+//        case SettingsCell.changePhone.rawValue: output.changePhoneNumber()
         case SettingsCell.appInfo.rawValue: output.appInfoSelected()
         default: break
         }
@@ -107,12 +110,14 @@ extension SettingsViewController: SettingsViewInput {
     }
     
     func setChangePhoneTitle(_ title: String) {
-        if changePhoneTitle != title {
-            changePhoneTitle = title
-            settingsTableView.reloadRows(
-                at: [IndexPath(row: SettingsCell.changePhone.rawValue, section: 0)],
-                with: UITableView.RowAnimation.fade)
-        }
+        
+        //FIXME: hidden
+//        if changePhoneTitle != title {
+//            changePhoneTitle = title
+//            settingsTableView.reloadRows(
+//                at: [IndexPath(row: SettingsCell.changePhone.rawValue, section: 0)],
+//                with: UITableView.RowAnimation.fade)
+//        }
     }
 }
 
