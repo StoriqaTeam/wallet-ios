@@ -40,6 +40,7 @@ extension ApplicationConfigurator {
         if defaults.isFirstLaunch {
             
             defaults.isFirstLaunch = false
+            defaults.deviceId = UUID().uuidString
             keychain.deleteAll()
             userKeyManager.clearUserKeyData()
             FirstLaunchModule.create(app: app).present()
@@ -57,6 +58,7 @@ extension ApplicationConfigurator {
     
     private func setGID() {
         NetworkActivityIndicatorManager.shared.isEnabled = true
+//            Alamofire.Manager.sharedInstance.delegate.taskWillPerformHTTPRedirection = nil
         GIDSignIn.sharedInstance().clientID = Constants.NetworkAuth.kGoogleClientId
     }
     

@@ -14,12 +14,15 @@ class DeviceRegisterConfirmInteractor {
     
     private let token: String
     private let confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol
+    private let defaults: DefaultsProviderProtocol
     
     init(token: String,
-         confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol) {
+         confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol,
+         defaults: DefaultsProviderProtocol) {
         
         self.token = token
         self.confirmAddDeviceNetworkProvider = confirmAddDeviceNetworkProvider
+        self.defaults = defaults
     }
     
     deinit {
@@ -42,8 +45,11 @@ extension DeviceRegisterConfirmInteractor: DeviceRegisterConfirmInteractorInput 
         
         NotificationCenter.default.removeObserver(self)
         
+        let deviceId = defaults.deviceId
+        
         confirmAddDeviceNetworkProvider.confirmAddDevice(
             deviceConfirmToken: token,
+            deviceId: deviceId,
             queue: .main) { [weak self] (result) in
                 switch result {
                 case .success:

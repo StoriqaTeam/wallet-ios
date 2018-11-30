@@ -17,16 +17,18 @@ protocol SignHeaderFactoryProtocol {
 class SignHeaderFactory: SignHeaderFactoryProtocol {
     
     private let keychain: KeychainProviderProtocol
+    private let defaults: DefaultsProviderProtocol
     private let signer: SignerProtocol
     
     
-    init(keychain: KeychainProviderProtocol, signer: SignerProtocol) {
+    init(keychain: KeychainProviderProtocol, signer: SignerProtocol, defaults: DefaultsProviderProtocol) {
         self.keychain = keychain
+        self.defaults = defaults
         self.signer = signer
     }
     
     func createSignHeader(email: String) throws -> SignHeader {
-        let deviceId = UIDevice.current.identifierForVendor!.uuidString
+        let deviceId = defaults.deviceId
         let timestamp = UInt64(Date().timeIntervalSince1970 * 1000)
         
         guard let privateKey = getPrivateKey(email: email) else {
