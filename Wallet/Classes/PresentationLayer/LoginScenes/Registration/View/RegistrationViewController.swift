@@ -254,7 +254,7 @@ extension RegistrationViewController {
     }
     
     private func addLinkToLicenceAgreement() {
-        let attributedString = NSMutableAttributedString(string: "I accept the license agreement")
+        let attributedString = NSMutableAttributedString(string: "I accept the License Agreement")
         let linkRange = NSRange(location: 13, length: 17)
         let textRange = NSRange(location: 0, length: 13)
         attributedString.addAttribute(.link, value: "https://storiqa.com/turewallet/terms_of_use.pdf", range: linkRange)
