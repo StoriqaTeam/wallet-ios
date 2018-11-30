@@ -35,6 +35,7 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
         confirmButton.title = "confirm_new_password".localized()
         
         passwordTextField.placeholder = "password".localized()
+        passwordTextField.hintMessage = "At least: 8 characters, 1 capital, 1 digit, 1 special sign"
         passwordTextField.layoutBlock = layoutBlock
         
         repeatPasswordTextField.placeholder = "repeat_password".localized()
@@ -61,7 +62,10 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
     }
     
     override func textDidChange(_ notification: Notification) {
-        output.validateForm(newPassword: passwordTextField.text, passwordConfirm: repeatPasswordTextField.text)
+        let equalLength = passwordTextField.text?.count == repeatPasswordTextField.text?.count
+        output.validateForm(withMessage: equalLength,
+                            newPassword: passwordTextField.text,
+                            passwordConfirm: repeatPasswordTextField.text)
     }
     
 }
@@ -112,5 +116,9 @@ extension PasswordRecoveryConfirmViewController: UITextFieldDelegate {
         if textField == passwordTextField {
             (textField as? UnderlinedTextField)?.errorText = nil
         }
+        
+        output.validateForm(withMessage: true,
+                            newPassword: passwordTextField.text,
+                            passwordConfirm: repeatPasswordTextField.text)
     }
 }

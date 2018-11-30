@@ -18,9 +18,11 @@ class DepositPresenter {
     
     private let accountDisplayer: AccountDisplayerProtocol
     private var accountsDataManager: AccountsDataManager!
+    private let depositShortPollingTimer: DepositShortPollingTimerProtocol
     
-    init(accountDisplayer: AccountDisplayerProtocol) {
+    init(accountDisplayer: AccountDisplayerProtocol, depositShortPollingTimer: DepositShortPollingTimerProtocol) {
         self.accountDisplayer = accountDisplayer
+        self.depositShortPollingTimer = depositShortPollingTimer
     }
 }
 
@@ -73,8 +75,12 @@ extension DepositPresenter: DepositViewOutput {
     
     func viewWillAppear() {
         view.viewController.setWhiteNavigationBarButtons()
+        depositShortPollingTimer.resume()
     }
-
+    
+    func viewWillDisapear() {
+       depositShortPollingTimer.pause()
+    }
 }
 
 
@@ -129,7 +135,7 @@ extension DepositPresenter: AccountsDataManagerDelegate {
 
 extension DepositPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.accountsCollectionSmallFlowLayout
+        let deviceLayout = Device.model.flowLayout(type: .horizontalSmall)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing

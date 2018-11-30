@@ -87,6 +87,7 @@ extension DepositInteractor: DepositInteractorInput {
         let accountsObserver = Observer<[Account]>(id: self.objId) { [weak self] (accounts) in
             self?.accountsDidUpdate(accounts)
         }
+        
         self.accountsUpadteChannelInput?.addObserver(accountsObserver)
     }
 }

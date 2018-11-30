@@ -12,6 +12,7 @@ protocol AccountsNetworkProviderProtocol {
     func getAccounts(authToken: String,
                      userId: Int,
                      queue: DispatchQueue,
+                     signHeader: SignHeader,
                      completion: @escaping (Result<[Account]>) -> Void)
 }
 
@@ -20,22 +21,38 @@ class AccountsNetworkProvider: NetworkLoadable, AccountsNetworkProviderProtocol 
     func getAccounts(authToken: String,
                      userId: Int,
                      queue: DispatchQueue,
+                     signHeader: SignHeader,
                      completion: @escaping (Result<[Account]>) -> Void) {
         
-        let request = API.Authorized.getAccounts(authToken: authToken, userId: userId)
+        let request = API.Authorized.getAccounts(authToken: authToken, userId: userId, signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
                 let json = JSON(response.value)
                 
-                if let accountsJson = json.array {
-                    let accounts = accountsJson.compactMap { Account(json: $0) }
-                    completion(.success(accounts))
-                } else {
+                guard let accountsJson = json.array else {
                     let apiError = AccountsNetworkProviderError(code: response.responseStatusCode)
                     completion(.failure(apiError))
+                    return
                 }
+                
+                guard !accountsJson.isEmpty else {
+                    let apiError = AccountsNetworkProviderError.emptyAccountList
+                    completion(.failure(apiError))
+                    return
+                }
+                
+                let accounts = accountsJson.compactMap { Account(json: $0) }
+                
+                guard accounts.count == accountsJson.count else {
+                    let apiError = AccountsNetworkProviderError.parseJsonError
+                    completion(.failure(apiError))
+                    return
+                }
+                
+                completion(.success(accounts))
+                
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -48,6 +65,8 @@ enum AccountsNetworkProviderError: LocalizedError, Error {
     case unauthorized
     case unknownError
     case internalServer
+    case emptyAccountList
+    case parseJsonError
     
     init(code: Int) {
         switch code {
@@ -66,6 +85,10 @@ enum AccountsNetworkProviderError: LocalizedError, Error {
             return "User unauthorized"
         case .unknownError, .internalServer:
             return Constants.Errors.userFriendly
+        case .parseJsonError:
+            return "JSON parse error"
+        case .emptyAccountList:
+            return "No accounts received. Please, try again later."
         }
     }
 }

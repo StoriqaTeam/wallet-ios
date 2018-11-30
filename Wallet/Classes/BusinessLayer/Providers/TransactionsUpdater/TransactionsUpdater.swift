@@ -9,7 +9,7 @@
 import Foundation
 
 protocol TransactionsUpdaterProtocol {
-    func update(userId: Int)
+    func update()
 }
 
 class TransactionsUpdater: TransactionsUpdaterProtocol {
@@ -19,36 +19,44 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
     private let dataStore: TransactionDataStoreServiceProtocol
     private let defaults: DefaultsProviderProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let userDataStoreService: UserDataStoreServiceProtocol
+    private let receivedTransactionProvider: ReceivedTransactionProviderProtocol
     
+    private var prevTxs = [Transaction]()
     private var isUpdating = false
     private var lastTxTime: TimeInterval!
-    private var userId: Int!
     private var offset = 0
     private let limit: Int
     
     init(transactionsProvider: TransactionsProviderProtocol,
          transactionsNetworkProvider: TransactionsNetworkProviderProtocol,
          transactionsDataStoreService: TransactionDataStoreServiceProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol,
          defaultsProvider: DefaultsProviderProtocol,
          authTokenProvider: AuthTokenProviderProtocol,
+         userDataStoreService: UserDataStoreServiceProtocol,
+         receivedTransactionProvider: ReceivedTransactionProviderProtocol,
          limit: Int = 50) {
         self.provider = transactionsProvider
         self.networkProvider = transactionsNetworkProvider
         self.dataStore = transactionsDataStoreService
         self.defaults = defaultsProvider
         self.authTokenProvider = authTokenProvider
+        self.signHeaderFactory = signHeaderFactory
+        self.userDataStoreService = userDataStoreService
+        self.receivedTransactionProvider = receivedTransactionProvider
         self.limit = limit
     }
     
-    func update(userId: Int) {
+    func update() {
         guard !isUpdating else {
             return
         }
         
         isUpdating = true
         offset = 0
-        
-        self.userId = userId
+        prevTxs = provider.getAllTransactions()
         
         if let unfinishedTime = defaults.lastTxTimastamp {
             lastTxTime = unfinishedTime
@@ -57,7 +65,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
             defaults.lastTxTimastamp = lastTxTime
         }
         
-        update()
+        updateTransactions()
     }
     
 }
@@ -67,7 +75,7 @@ class TransactionsUpdater: TransactionsUpdaterProtocol {
 
 extension TransactionsUpdater {
     
-    private func update() {
+    private func updateTransactions() {
         authTokenProvider.currentAuthToken { [weak self] (result) in
             switch result {
             case .success(let token):
@@ -81,12 +89,27 @@ extension TransactionsUpdater {
     }
     
     private func getTransactions(token: String) {
+        let user = userDataStoreService.getCurrentUser()
+        let currentEmail = user.email
+        let userId = user.id
+        
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
+        } catch {
+            isUpdating = false
+            log.error(error.localizedDescription)
+            return
+        }
+        
+        
         networkProvider.getTransactions(
             authToken: token,
             userId: userId,
             offset: offset,
             limit: limit,
             queue: .main,
+            signHeader: signHeader,
             completion: { [weak self] (result) in
                 switch result {
                 case .success(let txs):
@@ -95,7 +118,7 @@ extension TransactionsUpdater {
                     self?.transactionsLoaded(txs)
                 case .failure(let error):
                     log.error(error.localizedDescription)
-                    self?.isUpdating = false
+                    self?.finish()
                 }
             }
         )
@@ -106,16 +129,28 @@ extension TransactionsUpdater {
         
         if txs.count < limit ||
             isTxAlreadyLoaded(txs.last!) {
-            isUpdating = false
+            finish()
             defaults.lastTxTimastamp = nil
         } else {
             offset += limit
-            update()
+            updateTransactions()
         }
     }
     
     private func isTxAlreadyLoaded(_ transaction: Transaction) -> Bool {
         return lastTxTime >= transaction.createdAt.timeIntervalSince1970
+    }
+    
+    private func finish() {
+        isUpdating = false
+        
+        guard !defaults.isFirstTransactionsLoad else {
+            defaults.isFirstTransactionsLoad = false
+            return
+        }
+        
+        let newTxs = provider.getAllTransactions()
+        receivedTransactionProvider.resolve(oldTxs: prevTxs, newTxs: newTxs)
     }
     
 }

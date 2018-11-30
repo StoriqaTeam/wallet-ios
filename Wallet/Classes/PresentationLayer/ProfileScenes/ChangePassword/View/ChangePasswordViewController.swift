@@ -157,6 +157,7 @@ extension ChangePasswordViewController {
         currentPassword.layoutBlock = layoutBlock
         currentPassword.delegate = self
         newPassword.placeholder = "New password"
+        newPassword.hintMessage = "At least: 8 characters, 1 capital, 1 digit, 1 special sign"
         newPassword.layoutBlock = layoutBlock
         newPassword.delegate = self
         repeatPassword.placeholder = "Repeat password"

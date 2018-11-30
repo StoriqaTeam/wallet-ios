@@ -45,4 +45,45 @@ extension LoginRouter: LoginRouterInput {
     func showAuthorizedZone() {
         MainTabBarModule.create(app: app).present()
     }
+    
+    func showDeviceRegister(popUpDelegate: PopUpDeviceRegisterVMDelegate,
+                            from viewController: UIViewController) {
+        let viewModel = PopUpDeviceRegisterVM()
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showDeviceRegisterEmailSent(from viewController: UIViewController) {
+        let viewModel = PopUpDeviceRegisterEmailSentVM()
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showDeviceRegisterFailedSendEmail(message: String,
+                                           popUpDelegate: PopUpDeviceRegisterFailedSendEmailVMDelegate,
+                                           from viewController: UIViewController) {
+        let viewModel = PopUpDeviceRegisterFailedSendEmailVM(message: message)
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showEmailNotVerified(popUpDelegate: PopUpResendConfirmEmailVMDelegate,
+                              from viewController: UIViewController) {
+        let viewModel = PopUpResendConfirmEmailVM()
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showEmailSengingSuccess(email: String,
+                                 popUpDelegate: PopUpRegistrationSuccessVMDelegate,
+                                 from viewController: UIViewController) {
+        let viewModel = PopUpRegistrationSuccessVM(email: email)
+        viewModel.delegate = popUpDelegate
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showEmailSengingFailure(message: String,
+                                 from viewController: UIViewController) {
+        let viewModel = PopUpDefaultFailureVM(message: message)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
 }

@@ -18,8 +18,8 @@ class PinInputViewController: UIViewController {
     @IBOutlet private var greetingContainerView: UIView!
     @IBOutlet private var greetingVerticalSpacingConstraint: NSLayoutConstraint!
     @IBOutlet private var greetingLabel: UILabel!
-    @IBOutlet private var userPhotoImageView: UIImageView!
-    @IBOutlet private var userPhotoContainerView: ActivityIndicatorView!
+    @IBOutlet private var userPhotoImageView: UIImageView?
+    @IBOutlet private var userPhotoContainerView: ActivityIndicatorView?
     @IBOutlet private var pinContainerView: PinContainerView!
     
 
@@ -80,26 +80,22 @@ extension PinInputViewController: PinInputViewInput {
 extension PinInputViewController {
     
     private func configureGreeting(name: String) {
-        if Device.model == .iPhoneSE {
-            greetingContainerView.isHidden = true
-            greetingVerticalSpacingConstraint.constant = 0
-            greetingLabel.text = ""
-        } else {
-            greetingLabel.text = name + "greeting".localized()
-        }
+        greetingLabel.text = name + "greeting".localized()
     }
     
     private func configureUserPhoto(photo: UIImage) {
+        guard let userPhotoImageView = userPhotoImageView else { return }
+        
         userPhotoImageView.image = photo
         userPhotoImageView.roundCorners(radius: userPhotoImageView.frame.height / 2)
         userPhotoImageView.backgroundColor = UIColor(white: 0.95, alpha: 1)
     }
     
     private func showActivityIndicator() {
-        userPhotoContainerView.showActivityIndicator(linewidth: 2.0)
+        userPhotoContainerView?.showActivityIndicator(linewidth: 2.0)
     }
     
     private func hideActivityIndicator() {
-        userPhotoContainerView.hideActivityIndicator()
+        userPhotoContainerView?.hideActivityIndicator()
     }
 }

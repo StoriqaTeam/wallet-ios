@@ -14,6 +14,8 @@ protocol DefaultsProviderProtocol: class {
     var fiatISO: String { get set }
     var lastTxTimastamp: TimeInterval? { get set }
     var socialAuthProvider: SocialNetworkTokenProvider? { get set }
+    var deviceId: String { get set }
+    var isFirstTransactionsLoad: Bool { get set }
     
     func clear()
 }
@@ -26,6 +28,8 @@ class DefaultsProvider: DefaultsProviderProtocol {
         case fiatISO
         case lastTxTimastamp
         case socialAuthProvider
+        case deviceId
+        case isFirstTransactionsLoad
     }
     
     var isFirstLaunch: Bool {
@@ -83,6 +87,25 @@ class DefaultsProvider: DefaultsProviderProtocol {
         }
         set {
             setString(newValue?.name, key: .socialAuthProvider)
+        }
+    }
+    
+    var deviceId: String {
+        get {
+            return getString(.deviceId)!
+        }
+        set {
+            setString(newValue, key: .deviceId)
+        }
+    }
+    
+    var isFirstTransactionsLoad: Bool {
+        get {
+            guard let first = getBool(.isFirstTransactionsLoad) else { return true }
+            return first
+        }
+        set {
+            setBool(newValue, key: .isFirstTransactionsLoad)
         }
     }
     

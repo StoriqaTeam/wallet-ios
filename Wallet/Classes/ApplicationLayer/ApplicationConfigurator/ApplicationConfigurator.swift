@@ -14,12 +14,16 @@ class ApplicationConfigurator: Configurable {
     private let keychain: KeychainProviderProtocol
     private let defaults: DefaultsProviderProtocol
     private let shortPollingTimer: ShortPollingTimerProtocol
+    private let depositShortPollingtimer: DepositShortPollingTimerProtocol
+    private let userKeyManager: UserKeyManagerProtocol
     let app: Application
     
     init(app: Application) {
         self.keychain = app.keychainProvider
         self.defaults = app.defaultsProvider
         self.shortPollingTimer = app.shortPollingTimer
+        self.userKeyManager = app.userKeyManager
+        self.depositShortPollingtimer = app.depositShortPollintTimer
         self.app = app
     }
     
@@ -27,7 +31,7 @@ class ApplicationConfigurator: Configurable {
         setInitialVC()
         setGID()
         setupChannel()
-    }    
+    }
 }
 
 
@@ -36,9 +40,13 @@ extension ApplicationConfigurator {
     
     private func setInitialVC() {
         if defaults.isFirstLaunch {
+            
             defaults.isFirstLaunch = false
+            defaults.deviceId = UUID().uuidString
             keychain.deleteAll()
+            userKeyManager.clearUserKeyData()
             FirstLaunchModule.create(app: app).present()
+            
         } else if isPinSet() {
             PinInputModule.create(app: app).present()
         } else {
@@ -57,7 +65,10 @@ extension ApplicationConfigurator {
     
     private func setupChannel() {
         let shortPollingChannel = app.channelStorage.shortPollingChannel
+        let depositShortPollingChannel = app.channelStorage.depositShortPollingChannel
         self.shortPollingTimer.setOutputChannel(shortPollingChannel)
+        self.depositShortPollingtimer.setOutputChannel(depositShortPollingChannel)
         self.shortPollingTimer.startPolling()
+        self.depositShortPollingtimer.startPolling()
     }
 }

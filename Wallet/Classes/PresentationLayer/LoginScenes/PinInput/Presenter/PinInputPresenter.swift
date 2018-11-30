@@ -40,6 +40,7 @@ extension PinInputPresenter: PinInputViewOutput {
         let user = interactor.getCurrentUser()
         let userPhoto = user.photo ?? #imageLiteral(resourceName: "profilePhotoPlaceholder")
         view.setupInitialState(userPhoto: userPhoto, userName: user.firstName)
+        interactor.setIsLocked()
     }
     
     func inputComplete(_ password: String) {
@@ -107,13 +108,11 @@ extension PinInputPresenter: PinInputInteractorOutput {
         }
     }
     
-    func touchAuthenticationFailed(error: String?) {
+    func touchAuthenticationFailed(error: String) {
         view.clearInput()
         
-        if let error = error {
+        if !error.isEmpty {
             log.warn(error)
-            
-            //TODO: debug
             view.showAlert(title: "Touch ID failed", message: error)
         }
     }

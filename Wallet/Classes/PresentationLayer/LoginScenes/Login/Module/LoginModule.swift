@@ -14,13 +14,20 @@ class LoginModule {
         let presenter = LoginPresenter()
         
         let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: app.facebookLoginManager)
+        let biometricAuthProvider = app.biometricAuthProviderFactory.create()
         
         let interactor = LoginInteractor(socialViewVM: socialVM,
                                          defaultProvider: app.defaultsProvider,
-                                         biometricAuthProvider: app.biometricAuthProvider,
+                                         biometricAuthProvider: biometricAuthProvider,
                                          userDataStore: app.userDataStoreService,
                                          keychain: app.keychainProvider,
-                                         loginService: app.loginService)
+                                         loginService: app.loginService,
+                                         keyGenerator: app.keyGenerator,
+                                         userKeyManager: app.userKeyManager,
+                                         addDeviceNetworkProvider: app.addDeviceNetworkProvider,
+                                         signHeaderFactory: app.signHeaderFactory,
+                                         resendConfirmEmailNetworkProvider: app.resendConfirmEmailNetworkProvider,
+                                         ratesUpdater: app.ratesUpdater)
         
         let loginSb = UIStoryboard(name: "Login", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController

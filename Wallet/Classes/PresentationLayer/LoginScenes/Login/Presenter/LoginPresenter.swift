@@ -46,9 +46,9 @@ extension LoginPresenter: LoginViewOutput {
         interactor.signIn(email: email, password: password)
     }
     
-    func signIn(tokenProvider: SocialNetworkTokenProvider, token: String) {
+    func signIn(tokenProvider: SocialNetworkTokenProvider, token: String, email: String) {
         storiqaLoader.startLoader()
-        interactor.signIn(tokenProvider: tokenProvider, oauthToken: token)
+        interactor.signIn(tokenProvider: tokenProvider, oauthToken: token, email: email)
     }
     
 }
@@ -57,7 +57,6 @@ extension LoginPresenter: LoginViewOutput {
 // MARK: - LoginInteractorOutput
 
 extension LoginPresenter: LoginInteractorOutput {
-    
     func loginSucceed() {
         storiqaLoader.stopLoader()
         router.showAuthorizedZone()
@@ -81,13 +80,45 @@ extension LoginPresenter: LoginInteractorOutput {
         view.showErrorMessage(email: email, password: password)
     }
     
+    func deviceNotRegistered() {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegister(popUpDelegate: self, from: view.viewController)
+    }
+    
+    func deviceRegisterEmailSent() {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegisterEmailSent(from: view.viewController)
+    }
+    
+    func failedSendDeviceRegisterEmail(message: String) {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegisterFailedSendEmail(message: message, popUpDelegate: self, from: view.viewController)
+    }
+    
+    func emailNotVerified() {
+        storiqaLoader.stopLoader()
+        router.showEmailNotVerified(popUpDelegate: self, from: view.viewController)
+    }
+    
+    func confirmEmailSentSuccessfully(email: String) {
+        storiqaLoader.stopLoader()
+        router.showEmailSengingSuccess(email: email,
+                                       popUpDelegate: self,
+                                       from: view.viewController)
+    }
+    
+    func confirmEmailSendingFailed(message: String) {
+        storiqaLoader.stopLoader()
+        router.showEmailSengingFailure(message: message,
+                                       from: view.viewController)
+    }
+    
 }
 
 
 // MARK: - LoginModuleInput
 
 extension LoginPresenter: LoginModuleInput {
-    
     func present() {
         view.presentAsNavController()
     }
@@ -105,6 +136,43 @@ extension LoginPresenter: PopUpRegistrationFailedVMDelegate {
         storiqaLoader.startLoader()
         interactor.retry()
     }
+}
+
+
+// MARK: - PopUpDeviceRegisterVMDelegate
+
+extension LoginPresenter: PopUpDeviceRegisterVMDelegate {
+    func deviceRegisterOkButtonPressed() {
+        storiqaLoader.startLoader()
+        interactor.registerDevice()
+    }
+}
+
+
+// MARK: - PopUpDeviceRegisterFailedSendEmailVMDelegate
+
+extension LoginPresenter: PopUpDeviceRegisterFailedSendEmailVMDelegate {
+    func retryDeviceRegister() {
+        storiqaLoader.startLoader()
+        interactor.registerDevice()
+    }
+}
+
+
+// MARK: - PopUpDeviceRegisterFailedSendEmailVMDelegate
+
+extension LoginPresenter: PopUpResendConfirmEmailVMDelegate {
+    func resendButtonPressed() {
+        storiqaLoader.startLoader()
+        interactor.resendConfirmationEmail()
+    }
+}
+
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension LoginPresenter: PopUpRegistrationSuccessVMDelegate {
+    func okButtonPressed() { }
 }
 
 

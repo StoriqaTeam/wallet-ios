@@ -23,12 +23,17 @@ class SettingsRouter {
 // MARK: - SettingsRouterInput
 
 extension SettingsRouter: SettingsRouterInput {
+    
     func showEditProfile(from viewController: UIViewController) {
         EditProfileModule.create(app: app).present(from: viewController)
     }
     
     func showChangePassword(from viewController: UIViewController) {
         ChangePasswordModule.create(app: app).present(from: viewController)
+    }
+    
+    func showChangePhone(from viewController: UIViewController) {
+        ConnectPhoneModule.create(app: app).present(from: viewController)
     }
     
     func signOut() {
@@ -39,5 +44,9 @@ extension SettingsRouter: SettingsRouterInput {
         let viewModel = PopUpSignOutVM()
         viewModel.delegate = popUpDelegate
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
+    
+    func showAppInfo(from viewController: UIViewController) {
+        AppInfoModule.create().present(from: viewController)
     }
 }

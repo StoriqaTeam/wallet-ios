@@ -12,12 +12,12 @@ import UIKit
 class ActivityIndicatorView: UIView {
     private var circleLayer: WCGraintCircleLayer?
     
-    func showActivityIndicator(linewidth: CGFloat = 5.0) {
+    func showActivityIndicator(linewidth: CGFloat = 5.0, color: UIColor = Theme.Color.brightSkyBlue) {
         if circleLayer == nil {
             let radius = self.frame.height / 2
             circleLayer = WCGraintCircleLayer(bounds: self.bounds,
                                               position: CGPoint(x: radius, y: radius),
-                                              fromColor: Theme.Color.brightSkyBlue,
+                                              fromColor: color,
                                               toColor: UIColor.white.withAlphaComponent(0),
                                               linewidth: linewidth,
                                               toValue: 0.98)

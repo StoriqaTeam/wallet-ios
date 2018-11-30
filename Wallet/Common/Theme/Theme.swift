@@ -51,18 +51,18 @@ struct Theme {
     
     struct Gradient {
         struct Details {
-            static let detailsRedGradient = [UIColor(displayP3Red: 240/255, green: 243/255, blue: 246/255, alpha: 0.70).cgColor,
-                                             UIColor(displayP3Red: 255/255, green: 233/255, blue: 233/255, alpha: 0.70).cgColor]
+            static let detailsRedGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
+                                             UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
             
-            static let detailsGreenGradient = [UIColor(displayP3Red: 240/255, green: 243/255, blue: 246/255, alpha: 0.70).cgColor,
-                                               UIColor(displayP3Red: 233/255, green: 255/255, blue: 248/255, alpha: 0.70).cgColor]
+            static let detailsGreenGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
+                                               UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
         }
         
         static let headerGradient = [UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
                                      UIColor(red: 45/255, green: 100/255, blue: 194/255, alpha: 1).cgColor]
         
         static let sendingHeaderGradient = [UIColor(red: 55/255, green: 145/255, blue: 221/255, alpha: 1).cgColor,
-                                            UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor ]
+                                            UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor]
     }
     
     struct Font {

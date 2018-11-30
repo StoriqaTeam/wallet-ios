@@ -41,14 +41,17 @@ extension RegistrationPresenter: RegistrationViewOutput {
                         email: String?,
                         password: String?,
                         repeatPassword: String?,
-                        agreement: Bool) {
+                        agreement: Bool,
+                        privacy: Bool) {
         
         let form = RegistrationForm(firstName: firstName,
                                     lastName: lastName,
                                     email: email,
                                     password: password,
                                     repeatPassword: repeatPassword,
-                                    agreement: agreement)
+                                    agreement: agreement,
+                                    policy: privacy)
+        
         interactor.validateForm(form)
     }
     
@@ -70,9 +73,9 @@ extension RegistrationPresenter: RegistrationViewOutput {
         router.showLogin()
     }
     
-    func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String) {
+    func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
         storiqaLoader.startLoader()
-        interactor.signIn(tokenProvider: provider, oauthToken: token)
+        interactor.signIn(tokenProvider: provider, oauthToken: token, email: email)
     }
     
     func socialNetworkRegisterFailed() {
@@ -85,6 +88,21 @@ extension RegistrationPresenter: RegistrationViewOutput {
 // MARK: - RegistrationInteractorOutput
 
 extension RegistrationPresenter: RegistrationInteractorOutput {
+    func deviceNotRegistered() {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegister(popUpDelegate: self, from: view.viewController)
+    }
+    
+    func deviceRegisterEmailSent() {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegisterEmailSent(from: view.viewController)
+    }
+    
+    func failedSendDeviceRegisterEmail(message: String) {
+        storiqaLoader.stopLoader()
+        router.showDeviceRegisterFailedSendEmail(message: message, popUpDelegate: self, from: view.viewController)
+    }
+    
     func formValidationFailed(email: String?, password: String?) {
         storiqaLoader.stopLoader()
         view.showErrorMessage(email: email, password: password)
@@ -152,6 +170,24 @@ extension RegistrationPresenter: PopUpRegistrationFailedVMDelegate {
     }
 }
 
+// MARK: - PopUpDeviceRegisterVMDelegate
+
+extension RegistrationPresenter: PopUpDeviceRegisterVMDelegate {
+    func deviceRegisterOkButtonPressed() {
+        storiqaLoader.startLoader()
+        interactor.registerDevice()
+    }
+}
+
+
+// MARK: - PopUpDeviceRegisterFailedSendEmailVMDelegate
+
+extension RegistrationPresenter: PopUpDeviceRegisterFailedSendEmailVMDelegate {
+    func retryDeviceRegister() {
+        storiqaLoader.startLoader()
+        interactor.registerDevice()
+    }
+}
 
 // MARK: - Private methods
 

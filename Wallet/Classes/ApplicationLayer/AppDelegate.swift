@@ -78,6 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             EmailConfirmModule.create(app: app, token: token).present()
         case .resetPassword(let token):
             PasswordRecoveryConfirmModule.create(app: app, token: token).present()
+        case .registerDevice(let token):
+            DeviceRegisterConfirmModule.create(app: app, token: token).present()
         }
         
         return true

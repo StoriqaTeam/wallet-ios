@@ -13,21 +13,21 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     private var defaultSendTxProvider: SendTransactionProvider
     
     private let accountsProvider: AccountsProviderProtocol
-    private let feeWaitProvider: PaymentFeeAndWaitProviderProtocol
+    private let feeProvider: FeeProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
     init(currencyConverterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
          accountsProvider: AccountsProviderProtocol,
-         feeWaitProvider: PaymentFeeAndWaitProviderProtocol,
+         feeProvider: FeeProviderProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.accountsProvider = accountsProvider
-        self.feeWaitProvider = feeWaitProvider
+        self.feeProvider = feeProvider
         self.denominationUnitsConverter = denominationUnitsConverter
         
         defaultSendTxProvider = SendTransactionProvider(accountProvider: self.accountsProvider,
-                                                        feeWaitProvider: self.feeWaitProvider,
+                                                        feeProvider: self.feeProvider,
                                                         denominationUnitsConverter: self.denominationUnitsConverter)
     }
     
@@ -44,7 +44,6 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     }
     
     func setScannedAddress(_ address: String) {
-        defaultSendTxProvider.receiverAddress = address
         defaultSendTxProvider.scanDelegate?.didScanAddress(address)
     }
     
@@ -56,13 +55,17 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
         defaultSendTxProvider.scanDelegate = delegate
     }
     
+    func setFees(_ fees: [EstimatedFee]?) {
+        defaultSendTxProvider.setFees(fees)
+    }
+    
     func build() -> SendTransactionProvider {
         return defaultSendTxProvider
     }
     
     func clear() {
         defaultSendTxProvider = SendTransactionProvider(accountProvider: self.accountsProvider,
-                                                        feeWaitProvider: self.feeWaitProvider,
+                                                        feeProvider: self.feeProvider,
                                                         denominationUnitsConverter: self.denominationUnitsConverter)
     }
 }

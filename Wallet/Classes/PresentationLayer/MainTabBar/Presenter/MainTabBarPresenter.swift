@@ -20,7 +20,7 @@ class MainTabBarPresenter {
         let watcher = interactor.getAccountWatcher()
         let user = interactor.getCurrentUser()
         let app = interactor.getApplication()
-        let module = MyWalletModule.create(app: app, tabBar: view.mainTabBar!, accountWatcher: watcher, user: user)
+        let module = MyWalletModule.create(app: app, tabBar: view.mainTabBar!, accountWatcher: watcher)
         module.output = self
         return module
     }()
@@ -29,23 +29,21 @@ class MainTabBarPresenter {
         let watcher = interactor.getAccountWatcher()
         let user = interactor.getCurrentUser()
         let app = interactor.getApplication()
-        return SendModule.create(app: app, accountWatcher: watcher, user: user, tabBar: view.mainTabBar!)
+        return SendModule.create(app: app, accountWatcher: watcher, tabBar: view.mainTabBar!)
     }()
     
-    // FIXME: hidden before release
-    
-//    private lazy var exchangeModule: ExchangeModuleInput = {
-//        let watcher = interactor.getAccountWatcher()
-//        let user = interactor.getCurrentUser()
-//        let app = interactor.getApplication()
-//        return ExchangeModule.create(app: app, accountWatcher: watcher, user: user)
-//    }()
+    private lazy var exchangeModule: ExchangeModuleInput = {
+        let watcher = interactor.getAccountWatcher()
+        let user = interactor.getCurrentUser()
+        let app = interactor.getApplication()
+        return ExchangeModule.create(app: app, accountWatcher: watcher)
+    }()
     
     private lazy var depositModule: DepositModuleInput = {
         let watcher = interactor.getAccountWatcher()
         let user = interactor.getCurrentUser()
         let app = interactor.getApplication()
-        return DepositModule.create(app: app, accountWatcher: watcher, user: user)
+        return DepositModule.create(app: app, accountWatcher: watcher)
     }()
     
     private lazy var settingsModule: SettingsModuleInput = SettingsModule.create(app: interactor.getApplication())
@@ -99,9 +97,7 @@ extension MainTabBarPresenter {
         view.viewControllers = [
             myWalletModule.viewController.wrapToNavigationController(),
             sendModule.viewController.wrapToNavigationController(),
-            
-            // FIXME: hidden before release
-//            exchangeModule.viewController.wrapToNavigationController(),
+            exchangeModule.viewController.wrapToNavigationController(),
             depositModule.viewController.wrapToNavigationController(),
             settingsModule.viewController.wrapToNavigationController()
         ]

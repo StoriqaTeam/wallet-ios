@@ -23,5 +23,8 @@ class ConnectPhoneRouter {
 // MARK: - ConnectPhoneRouterInput
 
 extension ConnectPhoneRouter: ConnectPhoneRouterInput {
-    
+    func showFailure(message: String, from viewController: UIViewController) {
+        let viewModel = PopUpDefaultFailureVM(message: message)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+    }
 }

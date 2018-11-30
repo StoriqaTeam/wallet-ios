@@ -36,7 +36,7 @@ enum SocialNetworkTokenProvider {
 
 protocol SocialNetworkAuthViewDelegate: class {
     func socialNetworkAuthViewDidTapFooterButton()
-    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String)
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String)
     func socialNetworkAuthFailed()
 }
 
@@ -103,13 +103,13 @@ class SocialNetworkAuthView: LoadableFromXib {
 // MARK: - SocialNetworkAuthViewModelProtocol
 
 extension SocialNetworkAuthView: SocialNetworkAuthViewModelProtocol {
-    func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String)>) {
+    func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String, email: String)>) {
         switch result {
         case .failure(let error):
             delegate?.socialNetworkAuthFailed()
             log.warn(error.localizedDescription)
         case .success(let token):
-            delegate?.socialNetworkAuthSucceed(provider: token.provider, token: token.token)
+            delegate?.socialNetworkAuthSucceed(provider: token.provider, token: token.token, email: token.email)
         }
     }
 }

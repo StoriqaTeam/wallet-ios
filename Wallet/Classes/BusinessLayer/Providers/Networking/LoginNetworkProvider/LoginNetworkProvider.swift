@@ -13,6 +13,7 @@ protocol LoginNetworkProviderProtocol: class {
     func loginUser(email: String,
                    password: String,
                    queue: DispatchQueue,
+                   signHeader: SignHeader,
                    completion: @escaping (Result<String>) -> Void)
 }
 
@@ -21,17 +22,18 @@ class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
     func loginUser(email: String,
                    password: String,
                    queue: DispatchQueue,
+                   signHeader: SignHeader,
                    completion: @escaping (Result<String>) -> Void) {
         
-        let deviceId = UIDevice.current.identifierForVendor!.uuidString
         let deviceOs = UIDevice.current.systemVersion
         let deviceType = DeviceType.ios
-        
+    
         let request = API.Unauthorized.login(email: email,
                                              password: password,
                                              deviceType: deviceType,
                                              deviceOs: deviceOs,
-                                             deviceId: deviceId)
+                                             signHeader: signHeader)
+        
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
             case .success(let response):
@@ -58,6 +60,8 @@ enum LoginProviderError: LocalizedError, Error {
     case unknownError
     case internalServer
     case validationError(email: String?, password: String?)
+    case deviceNotRegistered(userId: Int)
+    case emailNotVerified
     
     init(code: Int, json: JSON) {
         switch code {
@@ -66,6 +70,12 @@ enum LoginProviderError: LocalizedError, Error {
         case 401:
             self = .unauthorized
         case 422:
+            if let emailErrors = json["email"].array,
+                let _ = emailErrors.first(where: { $0["code"] == "not_verified" }) {
+                self = .emailNotVerified
+                return
+            }
+            
             var emailMessage: String?
             var passwordMessage: String?
             
@@ -81,9 +91,16 @@ enum LoginProviderError: LocalizedError, Error {
             
             if hasEmailError || hasPasswordError {
                 self = .validationError(email: emailMessage, password: passwordMessage)
+            } else if let deviceErrors = json["device"].array,
+                let existsError = deviceErrors.first(where: { $0["code"] == "exists" }),
+                let params = existsError["params"].dictionary,
+                let userIdStr = params["user_id"]?.string,
+                let userId = Int(userIdStr) {
+                self = .deviceNotRegistered(userId: userId)
             } else {
                 self = .unknownError
             }
+            
         case 500:
             self = .internalServer
         default:
@@ -109,6 +126,10 @@ enum LoginProviderError: LocalizedError, Error {
             }
             
             return result.trim()
+        case .deviceNotRegistered:
+            return "Device is not registered"
+        case .emailNotVerified:
+            return "Email not verified"
         }
     }
 }

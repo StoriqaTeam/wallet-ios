@@ -11,4 +11,6 @@ import Foundation
 
 protocol SettingsInteractorInput: class {
     func deleteAppData()
+    func userHasPhone() -> Bool
+    func userLoginedWithSocialProvider() -> Bool
 }

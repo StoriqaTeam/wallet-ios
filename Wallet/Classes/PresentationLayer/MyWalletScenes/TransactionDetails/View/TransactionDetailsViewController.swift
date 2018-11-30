@@ -44,6 +44,16 @@ extension TransactionDetailsViewController: TransactionDetailsViewInput {
 }
 
 
+// MARK: - TransactionDescriptionAddressViewDelegate
+
+extension TransactionDetailsViewController: TransactionDescriptionAddressViewDelegate {
+    func addressDidTapped(address: String) {
+        output.addressTapped(address)
+    }
+    
+}
+
+
 // MARK: - Private methods
 
 extension TransactionDetailsViewController {
@@ -59,6 +69,7 @@ extension TransactionDetailsViewController {
                            accountType: transaction.currency.ISO,
                            feeAmount: transaction.feeAmountString)
             descriptionView = view
+            view.delegate = self
             
         case .txAccount(let account, let address):
             let view = TransactionDescriptionContactView()
@@ -67,6 +78,7 @@ extension TransactionDetailsViewController {
                            contact: account.ownerName,
                            feeAmount: transaction.feeAmountString)
             descriptionView = view
+            view.delegate = self
         }
         
         descriptionView.translatesAutoresizingMaskIntoConstraints = false

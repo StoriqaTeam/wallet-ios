@@ -57,11 +57,10 @@ extension APIMethodProtocol {
             urlRequest.setValue(header.1, forHTTPHeaderField: header.0)
         }
         
-        
         switch method {
         case .get:
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: params?.safe())
-        case .post:
+        case .post, .put:
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with: params?.safe())
         default:
             return urlRequest

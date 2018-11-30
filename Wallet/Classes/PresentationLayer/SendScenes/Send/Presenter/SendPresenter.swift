@@ -50,8 +50,7 @@ extension SendPresenter: SendViewOutput {
     
     func viewWillAppear() {
         view.viewController.setWhiteNavigationBarButtons()
-        interactor.updateState()
-        interactor.setAddress(address)
+        interactor.updateState(receiverAddress: address)
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -71,11 +70,11 @@ extension SendPresenter: SendViewOutput {
     }
     
     func isValidAmount(_ amount: String) -> Bool {
-        return interactor.isValidAmount(amount)
+        return amount.isEmpty || amount == "." || amount == "," || amount.isValidDecimal()
     }
     
     func amountChanged(_ amount: String) {
-        interactor.setAmount(amount)
+        interactor.setAmount(amount.decimalValue())
     }
     
     func amountDidBeginEditing() {
@@ -111,10 +110,10 @@ extension SendPresenter: SendViewOutput {
     
     func sendButtonPressed() {
         let amount = interactor.getAmount()
-        let fee = interactor.getFee()
+        let fee = interactor.getFee() ?? 0
         let currency = interactor.getCurrency()
         let amountString = getStringFrom(amount: amount, currency: currency)
-        let feeString = getStringFrom(amount: fee, currency: currency)
+        let feeString = currencyFormatter.getStringFrom(amount: fee, currency: currency)
         let address = interactor.getAddress()
         let confirmTxBlock = { [weak self] in
             self?.storiqaLoader.startLoader()
@@ -134,6 +133,10 @@ extension SendPresenter: SendViewOutput {
 // MARK: - SendInteractorOutput
 
 extension SendPresenter: SendInteractorOutput {
+    func setWrongCurrency(message: String) {
+        view.setAddressError(message)
+    }
+    
     func updateAddressIsValid(_ valid: Bool) {
         view.setAddressError(valid ? nil : "Addres is invalid")
     }
@@ -156,14 +159,24 @@ extension SendPresenter: SendInteractorOutput {
         view.setAmount(amountString)
     }
     
-    func updatePaymentFee(_ fee: Decimal) {
+    func updatePaymentFee(_ fee: Decimal?) {
+        guard let fee = fee else {
+            view.setPaymentFee("")
+            return
+        }
+        
+        guard !fee.isZero else {
+            view.setPaymentFee("FREE")
+            return
+        }
+        
         let currency = interactor.getCurrency()
-        let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency)
+        let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency, maxFractionDigits: 8)
         view.setPaymentFee(formatted)
     }
     
     func updatePaymentFees(count: Int, selected: Int) {
-        view.setPaymentFee(count: count, value: selected)
+        view.setPaymentFee(count: count, value: selected, enabled: count > 1)
     }
     
     func updateMedianWait(_ wait: String) {
@@ -171,7 +184,7 @@ extension SendPresenter: SendInteractorOutput {
     }
     
     func updateTotal(_ total: Decimal, currency: Currency) {
-        let totalAmountString = getStringFrom(amount: total, currency: currency)
+        let totalAmountString = currencyFormatter.getStringFrom(amount: total, currency: currency)
         view.setSubtotal(totalAmountString)
     }
     
@@ -183,14 +196,33 @@ extension SendPresenter: SendInteractorOutput {
         view.setButtonEnabled(valid)
     }
     
+    func setFeeUpdating(_ isUpdating: Bool) {
+        view.setFeeUpdateIndicator(hidden: !isUpdating)
+        
+        if isUpdating {
+            view.setPaymentFee("")
+            view.setMedianWait("")
+            view.setPaymentFee(count: 0, value: 0, enabled: false)
+        }
+    }
+    
     func sendTxFailed(message: String) {
         storiqaLoader.stopLoader()
-        router.showConfirmFailed(message: message, from: view.viewController)
+        router.showFailure(message: message, from: view.viewController)
     }
     
     func sendTxSucceed() {
         storiqaLoader.stopLoader()
         router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
+    }
+    
+    func exceededDayLimit(limit: String, currency: Currency) {
+        storiqaLoader.stopLoader()
+        
+        let limitStr = currencyFormatter.getStringFrom(amount: limit.decimalValue(), currency: currency)
+        let message = "Day limit \(limitStr) exceeded for account"
+        
+        router.showFailure(message: message, from: view.viewController)
     }
 }
 
@@ -230,8 +262,7 @@ extension SendPresenter: QRScannerDelegate {
 
 extension SendPresenter: AccountsDataManagerDelegate {
     func currentPageDidChange(_ newIndex: Int) {
-        interactor.setCurrentAccount(index: newIndex)
-        interactor.setAddress(address)
+        interactor.setCurrentAccount(index: newIndex, receiverAddress: address)
         view.setNewPage(newIndex)
     }
 }
@@ -241,10 +272,10 @@ extension SendPresenter: AccountsDataManagerDelegate {
 
 extension SendPresenter: PopUpSendConfirmSuccessVMDelegate {
     func okButtonPressed() {
-        interactor.clearBuilder()
-        interactor.updateState()
         address = ""
         view.setScannedAddress("")
+        interactor.clearBuilder()
+        interactor.updateState(receiverAddress: address)
     }
 }
 
@@ -258,7 +289,7 @@ extension SendPresenter {
     }
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.accountsCollectionSmallFlowLayout
+        let deviceLayout = Device.model.flowLayout(type: .horizontalSmall)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing

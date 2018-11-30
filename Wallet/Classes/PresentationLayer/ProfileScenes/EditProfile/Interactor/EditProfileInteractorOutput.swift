@@ -10,5 +10,6 @@ import Foundation
 
 
 protocol EditProfileInteractorOutput: class {
-
+    func userUpdatedSuccessfully()
+    func userUpdateFailed(message: String)
 }

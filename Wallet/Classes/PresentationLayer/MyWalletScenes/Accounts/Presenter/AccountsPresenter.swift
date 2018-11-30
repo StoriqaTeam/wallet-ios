@@ -46,12 +46,9 @@ extension AccountsPresenter: AccountsViewOutput {
     func handleCustomButton(type: RouteButtonType) {
         switch type {
         case .change:
-            // FIXME: exchange hidden before release
-//            mainTabBar.selectedIndex = 2
-            view.viewController.showAlert(message: "Exchange module is not ready yet")
+            mainTabBar.selectedIndex = 2
         case .deposit:
-            // FIXME: exchange hidden before release
-            mainTabBar.selectedIndex = 2 // 3
+            mainTabBar.selectedIndex = 3
         case .send:
             mainTabBar.selectedIndex = 1
         }
@@ -106,8 +103,10 @@ extension AccountsPresenter: AccountsInteractorOutput {
     
     func transactionsDidChange(_ txs: [Transaction]) {
         let account = interactor.getSelectedAccount()
-        let displayable = txs.map { transactionsMapper.map(from: $0, account: account) }
-        transactionDataManager.updateTransactions(displayable)
+        
+        transactionsMapper.map(from: txs, account: account) { [weak self] (displayable) in
+            self?.transactionDataManager.updateTransactions(displayable)
+        }
     }
     
     func updateAccounts(accounts: [Account], index: Int) {
@@ -115,6 +114,10 @@ extension AccountsPresenter: AccountsInteractorOutput {
         accountsDataManager?.scrollTo(index: index)
         view.updatePagesCount(accounts.count)
         view.setNewPage(index)
+    }
+    
+    func userDidUpdate() {
+        accountsDataManager?.reloadData()
     }
     
 }
@@ -153,7 +156,7 @@ extension AccountsPresenter: TransactionsDataManagerDelegate {
 
 extension AccountsPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.accountsCollectionFlowLayout
+        let deviceLayout = Device.model.flowLayout(type: .horizontal)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing

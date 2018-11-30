@@ -15,19 +15,17 @@ protocol SendInteractorInput: class {
     func getAccountsCount() -> Int
     func getAccountIndex() -> Int
     func getAmount() -> Decimal?
-    func getFee() -> Decimal
+    func getFee() -> Decimal?
     func getCurrency() -> Currency
     func getAddress() -> String
     
-    func setAmount(_ amount: String)
-    func setCurrentAccount(index: Int)
+    func setAmount(_ amount: Decimal)
+    func setCurrentAccount(index: Int, receiverAddress: String)
     func setPaymentFee(index: Int)
     func setAddress(_ address: String)
     
-    func isValidAmount(_ amount: String) -> Bool
-    
     func getTransactionBuilder() -> SendProviderBuilderProtocol
-    func updateState()
+    func updateState(receiverAddress: String)
     func startObservers()
     func setScannedDelegate(_ delegate: QRScannerDelegate)
     

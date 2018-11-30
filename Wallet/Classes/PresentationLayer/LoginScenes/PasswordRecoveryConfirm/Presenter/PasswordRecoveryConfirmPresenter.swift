@@ -34,8 +34,10 @@ extension PasswordRecoveryConfirmPresenter: PasswordRecoveryConfirmViewOutput {
         interactor.confirmReset(newPassword: newPassword)
     }
     
-    func validateForm(newPassword: String?, passwordConfirm: String?) {
-        interactor.validateForm(newPassword: newPassword, passwordConfirm: passwordConfirm)
+    func validateForm(withMessage: Bool, newPassword: String?, passwordConfirm: String?) {
+        interactor.validateForm(withMessage: withMessage,
+                                newPassword: newPassword,
+                                passwordConfirm: passwordConfirm)
     }
     
 }

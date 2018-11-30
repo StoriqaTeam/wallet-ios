@@ -17,15 +17,20 @@ class MyWalletPresenter {
     var router: MyWalletRouterInput!
     weak var mainTabBar: UITabBarController!
     
-    private let user: User
     private let accountDisplayer: AccountDisplayerProtocol
+    private let denominationUnitsConverter: DenominationUnitsConverterProtocol
+    private let currencyFormatter: CurrencyFormatterProtocol
     private var dataManager: MyWalletDataManager!
     private var pullToRefresh: UIRefreshControl!
+    private var notificationTopConstraint: NSLayoutConstraint?
+    private var notificationView: UIView?
     
-    init(user: User,
-         accountDisplayer: AccountDisplayerProtocol) {
-        self.user = user
+    init(accountDisplayer: AccountDisplayerProtocol,
+         denominationUnitsConverter: DenominationUnitsConverterProtocol,
+         currencyFormatter: CurrencyFormatterProtocol) {
         self.accountDisplayer = accountDisplayer
+        self.denominationUnitsConverter = denominationUnitsConverter
+        self.currencyFormatter = currencyFormatter
     }
 }
 
@@ -37,6 +42,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
     func viewIsReady() {
         view.setupInitialState()
         configureNavigationBar()
+        interactor.startObservers()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -65,6 +71,50 @@ extension MyWalletPresenter: MyWalletInteractorOutput {
     func updateAccounts(accounts: [Account]) {
         dataManager?.updateAccounts(accounts: accounts)
     }
+    
+    func userDidUpdate() {
+        dataManager?.reloadData()
+    }
+    
+    func receivedNewTxs(stq: Decimal, eth: Decimal, btc: Decimal) {
+        var notificationStr = ""
+        
+        if !stq.isZero {
+            let maxStq = denominationUnitsConverter.amountToMaxUnits(stq, currency: .stq)
+            let stqStr = currencyFormatter.getStringFrom(amount: maxStq, currency: .stq)
+            
+            notificationStr += stqStr
+        }
+        
+        if !eth.isZero {
+            let maxEth = denominationUnitsConverter.amountToMaxUnits(stq, currency: .eth)
+            let ethStr = currencyFormatter.getStringFrom(amount: maxEth, currency: .eth)
+            
+            if !notificationStr.isEmpty {
+                notificationStr += ", "
+            }
+            
+            notificationStr += ethStr
+        }
+        
+        if !btc.isZero {
+            let maxBtc = denominationUnitsConverter.amountToMaxUnits(stq, currency: .btc)
+            let btcStr = currencyFormatter.getStringFrom(amount: maxBtc, currency: .btc)
+            
+            if !notificationStr.isEmpty {
+                notificationStr += ", "
+            }
+            
+            notificationStr += btcStr
+        }
+        
+        if !notificationStr.isEmpty {
+            notificationStr = "You received " + notificationStr
+            showReceivedNotification(message: notificationStr)
+        }
+        
+    }
+    
 }
 
 
@@ -91,8 +141,7 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
         accountWatcher.setAccount(account)
         router.showAccountsWith(accountWatcher: accountWatcher,
                                 from: view.viewController,
-                                tabBar: mainTabBar,
-                                user: user)
+                                tabBar: mainTabBar)
     }
     
 }
@@ -102,7 +151,7 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
 
 extension MyWalletPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.myWalletCollectionFlowLayout
+        let deviceLayout = Device.model.flowLayout(type: .vertical)
         let flowLayout = UICollectionViewFlowLayout()
         
         flowLayout.minimumLineSpacing = deviceLayout.spacing
@@ -138,9 +187,72 @@ extension MyWalletPresenter {
     }
     
     @objc private func loadData() {
-        interactor.refreshAccounts(for: user)
+        interactor.refreshAccounts()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.pullToRefresh.endRefreshing()
         }
+    }
+    
+    private func showReceivedNotification(message: String) {
+        let window = AppDelegate.currentWindow
+        
+        let screenWidth = Constants.Sizes.screenWidth
+        let font = Theme.Font.smallMediumWeightText
+        let strHeight = message.height(withConstrainedWidth: screenWidth - 40 - 32, font: font)
+        let viewHeight = strHeight + 40
+        
+        let txNotificationView = UIView(frame: CGRect(x: 20, y: 20, width: screenWidth - 40, height: viewHeight))
+        txNotificationView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        txNotificationView.roundCorners(radius: 10)
+        txNotificationView.isUserInteractionEnabled = true
+        
+        let label = UILabel(frame: CGRect(x: 16, y: 20, width: txNotificationView.frame.width - 32, height: strHeight))
+        label.text = message
+        label.font = font
+        label.textColor = .white
+        label.numberOfLines = 0
+        txNotificationView.addSubview(label)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideNotification))
+        txNotificationView.addGestureRecognizer(tap)
+        
+        window.addSubview(txNotificationView)
+        
+        txNotificationView.translatesAutoresizingMaskIntoConstraints = false
+        let topConstraint = txNotificationView.topAnchor.constraint(equalTo: window.topAnchor, constant: -(viewHeight + 20))
+        let centerXConstraint = txNotificationView.centerXAnchor.constraint(equalTo: window.centerXAnchor, constant: 0)
+        let widthConstraint = txNotificationView.widthAnchor.constraint(equalToConstant: screenWidth - 40)
+        let heightConstraint = txNotificationView.heightAnchor.constraint(equalToConstant: viewHeight)
+        NSLayoutConstraint.activate([topConstraint, centerXConstraint, widthConstraint, heightConstraint])
+        
+        self.notificationTopConstraint = topConstraint
+        self.notificationView = txNotificationView
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            
+            self?.notificationTopConstraint?.constant = 20
+            
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
+                window.layoutIfNeeded()
+            }, completion: { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+                    self?.hideNotification()
+                }
+            })
+        }
+    }
+    
+    @objc private func hideNotification() {
+        guard let notificationView = notificationView else {
+            return
+        }
+        
+        notificationTopConstraint?.constant = -(notificationView.frame.height + 20)
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
+            AppDelegate.currentWindow.layoutIfNeeded()
+        }, completion: { _ in
+            notificationView.removeFromSuperview()
+            self.notificationView = nil
+        })
     }
 }

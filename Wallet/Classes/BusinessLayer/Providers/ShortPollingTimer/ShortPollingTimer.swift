@@ -18,6 +18,13 @@ protocol ShortPollingTimerProtocol {
 
 class ShortPollingTimer: ShortPollingTimerProtocol {
     
+    private enum State {
+        case paused
+        case resumed
+    }
+    
+    private var state: State = .resumed
+    
     private var timer: DispatchSourceTimer?
     private let pollingQueue = DispatchQueue(label: "com.storiqaWallet.shortPolling", attributes: .concurrent)
     private let timeout: Int
@@ -43,14 +50,22 @@ class ShortPollingTimer: ShortPollingTimerProtocol {
     }
     
     func pause() {
-         timer?.suspend()
+        if state == .paused {
+            return
+        }
+        log.debug("Polling timer paused")
+        
+        state = .paused
+        timer?.suspend()
     }
     
     func resume() {
-        guard let pollingTimer = timer else { return }
-        if pollingTimer.isCancelled {
-            pollingTimer.resume()
+        if state == .resumed {
+            return
         }
+        state = .resumed
+        timer?.resume()
+        log.debug("Polling timer resumed")
     }
     
     func invalidate() {

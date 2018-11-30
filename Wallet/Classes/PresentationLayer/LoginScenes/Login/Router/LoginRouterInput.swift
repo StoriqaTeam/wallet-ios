@@ -18,4 +18,17 @@ protocol LoginRouterInput: class {
     func showFailurePopup(message: String,
                           popUpDelegate: PopUpRegistrationFailedVMDelegate,
                           from viewController: UIViewController)
+    func showDeviceRegister(popUpDelegate: PopUpDeviceRegisterVMDelegate,
+                            from viewController: UIViewController)
+    func showDeviceRegisterEmailSent(from viewController: UIViewController)
+    func showDeviceRegisterFailedSendEmail(message: String,
+                                           popUpDelegate: PopUpDeviceRegisterFailedSendEmailVMDelegate,
+                                           from viewController: UIViewController)
+    func showEmailNotVerified(popUpDelegate: PopUpResendConfirmEmailVMDelegate,
+                              from viewController: UIViewController)
+    func showEmailSengingSuccess(email: String,
+                                 popUpDelegate: PopUpRegistrationSuccessVMDelegate,
+                                 from viewController: UIViewController)
+    func showEmailSengingFailure(message: String,
+                                 from viewController: UIViewController)
 }

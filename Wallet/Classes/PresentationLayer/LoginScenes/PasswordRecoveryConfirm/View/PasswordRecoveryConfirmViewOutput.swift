@@ -11,6 +11,6 @@ import UIKit
 
 protocol PasswordRecoveryConfirmViewOutput: class {
     func viewIsReady()
-    func validateForm(newPassword: String?, passwordConfirm: String?)
+    func validateForm(withMessage: Bool, newPassword: String?, passwordConfirm: String?)
     func confirmReset(newPassword: String)
 }

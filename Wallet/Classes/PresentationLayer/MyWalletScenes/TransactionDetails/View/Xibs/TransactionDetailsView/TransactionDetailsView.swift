@@ -13,16 +13,19 @@ class TransactionDetailView: LoadableFromXib {
     @IBOutlet private var cryptoAmountLabel: UILabel!
     @IBOutlet private var fiatAmountLabel: UILabel!
     @IBOutlet private var timestampLabel: UILabel!
+    @IBOutlet private var pendingView: UIView!
     @IBOutlet private var pendingLabel: UILabel!
     @IBOutlet private var directionImageView: UIImageView!
     @IBOutlet private var backgroundView: UIView!
     
     private var gradientColors = [CGColor]()
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configureInterface()
+    }
+    
     func configure(transaction: TransactionDisplayable) {
-        cryptoAmountLabel.text = transaction.cryptoAmountString
-        fiatAmountLabel.text = transaction.fiatAmountString
-        timestampLabel.text = "\(transaction.timestamp)"
         configureAppearence(for: transaction)
     }
     
@@ -42,25 +45,38 @@ class TransactionDetailView: LoadableFromXib {
 extension TransactionDetailView {
     private func configureAppearence(for transaction: TransactionDisplayable) {
         let direction = transaction.direction
-        let cryptoLabelColor: UIColor
         let directionImage: UIImage?
         let cryptoAmountString: String
+        let fiatAmountString: String
         
         if direction == .receive {
             gradientColors = Theme.Gradient.Details.detailsGreenGradient
-            directionImage = UIImage(named: "receiveTransactionIcon")
-            cryptoLabelColor = Theme.Text.Color.detailsGreen
+            directionImage = UIImage(named: "ReceiveStatusImg")
             cryptoAmountString = "+ \(transaction.cryptoAmountString)"
+            fiatAmountString = "+ \(transaction.fiatAmountString)"
         } else {
             gradientColors = Theme.Gradient.Details.detailsRedGradient
-            cryptoLabelColor = Theme.Text.Color.detailsRed
-            directionImage = UIImage(named: "sendTransactionIcon")
+            directionImage = UIImage(named: "SendStatusImg")
             cryptoAmountString = "- \(transaction.cryptoAmountString)"
+            fiatAmountString = "- \(transaction.fiatAmountString)"
         }
         
-        cryptoAmountLabel.textColor = cryptoLabelColor
         cryptoAmountLabel.text = cryptoAmountString
         directionImageView.image = directionImage
+        fiatAmountLabel.text = fiatAmountString
+        timestampLabel.text = "\(transaction.timestamp)"
+        pendingView.isHidden = transaction.transaction.status != .pending
     }
 
+    private func configureInterface() {
+        fiatAmountLabel.textColor = Theme.Text.Color.captionGrey
+        timestampLabel.textColor = Theme.Color.cloudyBlue
+        pendingLabel.textColor = Theme.Color.cloudyBlue
+        cryptoAmountLabel.textColor = Theme.Text.Color.blackMain
+        
+        fiatAmountLabel.font = Theme.Font.smallText
+        timestampLabel.font = Theme.Font.smallText
+        pendingLabel.font = Theme.Font.smallText
+    }
+    
 }

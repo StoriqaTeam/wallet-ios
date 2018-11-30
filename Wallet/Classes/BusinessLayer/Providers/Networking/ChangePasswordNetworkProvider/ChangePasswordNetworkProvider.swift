@@ -14,6 +14,7 @@ protocol ChangePasswordNetworkProviderProtocol {
                         currentPassword: String,
                         newPassword: String,
                         queue: DispatchQueue,
+                        signHeader: SignHeader,
                         completion: @escaping (Result<String?>) -> Void)
 }
 
@@ -22,11 +23,13 @@ class ChangePasswordNetworkProvider: NetworkLoadable, ChangePasswordNetworkProvi
                         currentPassword: String,
                         newPassword: String,
                         queue: DispatchQueue,
+                        signHeader: SignHeader,
                         completion: @escaping (Result<String?>) -> Void) {
         
-        let request = API.Authorized.changePassword(authToken: authToken,
-                                                    currentPassword: currentPassword,
-                                                    newPassword: newPassword)
+        let request = API.Settings.changePassword(authToken: authToken,
+                                                  currentPassword: currentPassword,
+                                                  newPassword: newPassword,
+                                                  signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { (result) in
             switch result {
@@ -89,9 +92,8 @@ enum ChangePasswordNetworkProviderError: LocalizedError, Error {
         switch self {
         case .unauthorized:
             return "User unauthorized"
-        case .internalServer:
-            return "Internal server error"
-        case .unknownError:
+        case .internalServer,
+             .unknownError:
             return Constants.Errors.userFriendly
         case .validationError(let oldPassword, let newPassword):
             var result = oldPassword ?? ""

@@ -15,6 +15,8 @@ class  TransactionDescriptionContactView: LoadableFromXib {
     @IBOutlet weak var contactLabel: UILabel!
     @IBOutlet weak var feeAmountLabel: UILabel!
     
+    weak var delegate: TransactionDescriptionAddressViewDelegate?
+    
     
     func configure(address: String,
                    accountType: String,
@@ -25,6 +27,12 @@ class  TransactionDescriptionContactView: LoadableFromXib {
         self.accountTypeLabel.text = "\(accountType) account"
         self.contactLabel.text = contact
         self.feeAmountLabel.text = feeAmount
+        self.addresslabel.isUserInteractionEnabled = true
+
     }
     
+    @IBAction func copyAddress(_ sender: Any) {
+        guard let address = addresslabel.text else { return }
+        delegate?.addressDidTapped(address: address)
+    }
 }

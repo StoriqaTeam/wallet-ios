@@ -14,12 +14,16 @@ class RegistrationModule {
         let presenter = RegistrationPresenter()
         
         let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: app.facebookLoginManager)
+        let biometricAuthProvider = app.biometricAuthProviderFactory.create()
         
         let interactor = RegistrationInteractor(socialViewVM: socialVM,
                                                 formValidationProvider: app.registrationFormValidatonProvider,
                                                 registrationNetworkProvider: app.registrationNetworkProvider,
                                                 loginService: app.loginService,
-                                                biometricAuthProvider: app.biometricAuthProvider)
+                                                biometricAuthProvider: biometricAuthProvider,
+                                                signHeaderFactory: app.signHeaderFactory,
+                                                userKeyManager: app.userKeyManager,
+                                                addDeviceNetworkProvider: app.addDeviceNetworkProvider)
         
         let registrationSb = UIStoryboard(name: "Registration", bundle: nil)
         let viewController = registrationSb.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationViewController

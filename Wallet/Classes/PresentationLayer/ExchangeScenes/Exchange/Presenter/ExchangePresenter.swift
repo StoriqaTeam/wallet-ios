@@ -18,10 +18,11 @@ class ExchangePresenter {
     
     private let converterFactory: CurrencyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
-    private var currencyConverter: CurrencyConverterProtocol!
     private let accountDisplayer: AccountDisplayerProtocol
-    private var accountsTableDataManager: AccountsTableDataManager!
     private var accountsDataManager: AccountsDataManager!
+    
+    private var storiqaLoader: StoriqaLoader!
+    private var isEditingAmount = false
     
     init(converterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
@@ -41,13 +42,14 @@ extension ExchangePresenter: ExchangeViewOutput {
         let numberOfPages = interactor.getAccountsCount()
         view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
+        addLoader()
         
-        interactor.updateInitialState()
         interactor.startObservers()
     }
     
     func viewWillAppear() {
         view.viewController.setWhiteNavigationBarButtons()
+        interactor.updateState()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -59,15 +61,6 @@ extension ExchangePresenter: ExchangeViewOutput {
         accountsManager.setCollectionView(collectionView, cellType: .small)
         accountsDataManager = accountsManager
         accountsDataManager.delegate = self
-    }
-    
-    func accountsActionSheet(_ tableView: UITableView) {
-        let currencyImageProvider = CurrencyImageProvider()
-        let accountsManager = AccountsTableDataManager(currencyFormatter: currencyFormatter,
-                                                       currencyImageProvider: currencyImageProvider)
-        accountsManager.setTableView(tableView)
-        accountsTableDataManager = accountsManager
-        accountsTableDataManager.delegate = self
     }
     
     func configureCollections() {
@@ -84,23 +77,19 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func amountDidBeginEditing() {
+        isEditingAmount = true
         let amount = interactor.getAmount()
-        
-        if amount.isZero {
-            view.setAmount("")
-        } else {
-            view.setAmount(amount.description)
-        }
+        let currency = interactor.getRecepientCurrency()
+        let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
+        view.setAmount(formatted)
     }
     
     func amountDidEndEditing() {
+        isEditingAmount = false
         let amount = interactor.getAmount()
         let currency = interactor.getRecepientCurrency()
-        updateAmount(amount, currency: currency)
-    }
-    
-    func newFeeSelected(_ index: Int) {
-        interactor.setPaymentFee(index: index)
+        let formatted = getStringFrom(amount: amount, currency: currency)
+        view.setAmount(formatted)
     }
     
     func recepientAccountPressed() {
@@ -110,14 +99,26 @@ extension ExchangePresenter: ExchangeViewOutput {
             return
         }
         
-        accountsTableDataManager.accounts = accounts
-        
-        let height = accountsTableDataManager.calculateHeight()
-        view.showAccountsActionSheet(height: height)
+        let builder = interactor.getTransactionBuilder()
+        router.showRecepientAccountSelection(exchangeProviderBuilder: builder, from: view.viewController)
     }
     
     func exchangeButtonPressed() {
-        //TODO: exchangeButtonPressed
+        let fromAccount = interactor.getAccountName()
+        let toAccount = interactor.getRecepientAccountName()
+        let currency = interactor.getRecepientCurrency()
+        let decimalAmount = interactor.getAmount()
+        let amountStr = currencyFormatter.getStringFrom(amount: decimalAmount, currency: currency)
+        let confirmTxBlock = { [weak self] in
+            self?.storiqaLoader.startLoader()
+            self?.interactor.sendTransaction()
+        }
+        
+        router.showConfirm(fromAccount: fromAccount,
+                           toAccount: toAccount,
+                           amount: amountStr,
+                           confirmTxBlock: confirmTxBlock,
+                           from: view.viewController)
     }
     
 }
@@ -126,6 +127,27 @@ extension ExchangePresenter: ExchangeViewOutput {
 // MARK: - ExchangeInteractorOutput
 
 extension ExchangePresenter: ExchangeInteractorOutput {
+    
+    func updateOrder(time: Int?) {
+        guard let elapsedTime = time else {
+            view.updateExpiredTimeLabel("")
+            return
+        }
+        
+        let elapsedString = timeFormatted(elapsedTime)
+        view.updateExpiredTimeLabel(elapsedString)
+    }
+    
+    func updateRateFor(oneUnit: Decimal?, fromCurrency: Currency, toCurrency: Currency) {
+        guard let oneUnitRate = oneUnit else {
+            view.updateRateLabel(text: "")
+            return
+        }
+        
+        let outString = "1 \(fromCurrency.ISO) = \(oneUnitRate.double) \(toCurrency.ISO)"
+        view.updateRateLabel(text: outString)
+    }
+    
     
     func updateAccounts(accounts: [Account], index: Int) {
         accountsDataManager?.updateAccounts(accounts)
@@ -137,56 +159,34 @@ extension ExchangePresenter: ExchangeInteractorOutput {
     func updateRecepientAccount(_ account: Account?) {
         guard let account = account else {
             view.setRecepientAccount("No accounts available")
+            view.setRecepientBalance("")
             return
         }
         
-        currencyConverter = converterFactory.createConverter(from: account.currency)
+        let balance = accountDisplayer.cryptoAmount(for: account)
+        
         view.setRecepientAccount(account.name)
+        view.setRecepientBalance("Balance: \(balance)")
+    }
+    
+    func exchangeRateError(_ error: Error) {
+        view.showEchangeRateError(message: error.localizedDescription)
     }
     
     func updateAmount(_ amount: Decimal, currency: Currency) {
-        guard !amount.isZero else {
-            view.setAmount("")
-            return
-        }
-        
-        let formatted = currencyFormatter.getStringFrom(amount: amount, currency: currency)
-        view.setAmount(formatted)
+        let amountString: String = {
+            if isEditingAmount {
+                return getStringAmountWithoutCurrency(amount: amount, currency: currency)
+            } else {
+                return getStringFrom(amount: amount, currency: currency)
+            }
+        }()
+        view.setAmount(amountString)
     }
     
-    func convertAmount(_ amount: Decimal, to currency: Currency) {
-        guard let currencyConverter = currencyConverter, !amount.isZero else {
-            view.setConvertedAmount("")
-            return
-        }
-        
-        let converted = currencyConverter.convert(amount: amount, to: currency)
-        let formatted = currencyFormatter.getStringFrom(amount: converted, currency: currency)
-        view.setConvertedAmount("≈" + formatted)
-    }
-    
-    func updatePaymentFee(_ fee: Decimal) {
-        let currency = interactor.getAccountCurrency()
-        let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency)
-        view.setPaymentFee(formatted)
-    }
-    
-    func updatePaymentFees(count: Int, selected: Int) {
-        view.setPaymentFee(count: count, value: selected)
-    }
-    
-    func updateMedianWait(_ wait: String) {
-        view.setMedianWait(wait)
-    }
-    
-    func updateTotal(_ total: Decimal, accountCurrency: Currency) {
-        guard !total.isZero else {
-            view.setSubtotal("")
-            return
-        }
-        
-        let formatted = currencyFormatter.getStringFrom(amount: total, currency: accountCurrency)
-        view.setSubtotal(formatted)
+    func updateTotal(_ total: Decimal, currency: Currency) {
+        let totalAmountString = currencyFormatter.getStringFrom(amount: total, currency: currency)
+        view.setSubtotal(totalAmountString)
     }
     
     func updateIsEnoughFunds(_ enough: Bool) {
@@ -197,7 +197,35 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setButtonEnabled(valid)
     }
     
+    func exchangeTxAmountOutOfLimit(min: String, max: String, currency: Currency) {
+        storiqaLoader.stopLoader()
+        
+        let minAmountStr = currencyFormatter.getStringFrom(amount: min.decimalValue(), currency: currency)
+        let maxAmountStr = currencyFormatter.getStringFrom(amount: max.decimalValue(), currency: currency)
+        let message = "Amount should be between \(minAmountStr) and \(maxAmountStr)"
+        
+        router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
+    }
     
+    func exceededDayLimit(limit: String, currency: Currency) {
+        storiqaLoader.stopLoader()
+        
+        let limitStr = currencyFormatter.getStringFrom(amount: limit.decimalValue(), currency: currency)
+        let message = "Dayly limit for the account \(limitStr) exceeded"
+        
+        router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
+    }
+    
+    func exchangeTxFailed(message: String) {
+        storiqaLoader.stopLoader()
+        router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
+    }
+    
+    func exchangeTxSucceed() {
+        storiqaLoader.stopLoader()
+        router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
+    }
+
 }
 
 
@@ -228,12 +256,22 @@ extension ExchangePresenter: AccountsDataManagerDelegate {
 }
 
 
-// MARK: - AccountsTableDataManagerDelegate
+// MARK: - PopUpExchangeFailedVMDelegate
 
-extension ExchangePresenter: AccountsTableDataManagerDelegate {
-    func chooseAccount(_ index: Int) {
-        interactor.setRecepientAccount(index: index)
-        view.hideAccountsActionSheet()
+extension ExchangePresenter: PopUpExchangeFailedVMDelegate {
+    func retry() {
+        storiqaLoader.startLoader()
+        interactor.sendTransaction()
+    }
+}
+
+
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension ExchangePresenter: PopUpSendConfirmSuccessVMDelegate {
+    func okButtonPressed() {
+        interactor.clearBuilder()
+        interactor.updateState()
     }
 }
 
@@ -243,7 +281,7 @@ extension ExchangePresenter: AccountsTableDataManagerDelegate {
 extension ExchangePresenter {
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.accountsCollectionSmallFlowLayout
+        let deviceLayout = Device.model.flowLayout(type: .horizontalSmall)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = deviceLayout.spacing
@@ -260,5 +298,34 @@ extension ExchangePresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
         view.viewController.setWhiteNavigationBar(title: "Exchange")
+    }
+    
+    private func getStringFrom(amount: Decimal?, currency: Currency) -> String {
+        guard let amount = amount, !amount.isZero else {
+            return ""
+        }
+        
+        let formatted = currencyFormatter.getStringFrom(amount: amount, currency: currency)
+        return formatted
+    }
+    
+    private func getStringAmountWithoutCurrency(amount: Decimal?, currency: Currency) -> String {
+        guard let amount = amount, !amount.isZero else {
+            return ""
+        }
+        
+        let formatted = currencyFormatter.getStringWithoutCurrencyFrom(amount: amount, currency: currency)
+        return formatted
+    }
+    
+    private func addLoader() {
+        guard let parentView = view.viewController.navigationController?.view else { return }
+        storiqaLoader = StoriqaLoader(parentView: parentView)
+    }
+    
+    private func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }

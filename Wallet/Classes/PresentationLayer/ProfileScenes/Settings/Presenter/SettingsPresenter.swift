@@ -24,10 +24,16 @@ class SettingsPresenter {
 extension SettingsPresenter: SettingsViewOutput {
     
     func viewIsReady() {
-        view.setupInitialState()
+        let hasChangePassword = !interactor.userLoginedWithSocialProvider()
+        view.setupInitialState(hasChangePassword: hasChangePassword)
         configureNavigationBar()
     }
     
+    func viewWillAppear() {
+        let hasPhone = interactor.userHasPhone()
+        let title = (hasPhone ? "Change" : "Connect") + " telephone number"
+        view.setChangePhoneTitle(title)
+    }
     
     func editProfileSelected() {
         router.showEditProfile(from: view.viewController)
@@ -37,8 +43,16 @@ extension SettingsPresenter: SettingsViewOutput {
         router.showChangePassword(from: view.viewController)
     }
     
+    func changePhoneNumber() {
+        router.showChangePhone(from: view.viewController)
+    }
+    
     func signOutButtonTapped() {
         router.signOutConfirmPopUp(popUpDelegate: self, from: view.viewController)
+    }
+    
+    func appInfoSelected() {
+        router.showAppInfo(from: view.viewController)
     }
     
 }

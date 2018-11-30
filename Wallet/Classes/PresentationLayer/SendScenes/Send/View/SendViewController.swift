@@ -17,12 +17,12 @@ class SendViewController: UIViewController {
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var gradientView: HeaderGradientView!
     @IBOutlet private var receiverTitleLabel: UILabel!
     @IBOutlet private var scanQRButton: UIButton!
     @IBOutlet private var receiverTextField: UnderlinedTextField!
     @IBOutlet private var amountTitleLabel: UILabel!
     @IBOutlet private var amountTextField: UITextField!
+    @IBOutlet private var paymentFeeView: UIView!
     @IBOutlet private var paymentFeeTitleLabel: UILabel!
     @IBOutlet private var paymentFeeLabel: UILabel!
     @IBOutlet private var paymentFeeSlider: StepSlider!
@@ -35,19 +35,14 @@ class SendViewController: UIViewController {
     @IBOutlet private var subtotalLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var sendButton: DefaultButton!
+    @IBOutlet private var loaderView: ActivityIndicatorView!
     
     
     // MARK: Variables
     
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
-    private var currentSliderStep = 0 {
-        didSet {
-            if oldValue != currentSliderStep {
-                output.newFeeSelected(currentSliderStep)
-            }
-        }
-    }
+    private var currentSliderStep = 0
     
     // MARK: Life cycle
     
@@ -67,7 +62,6 @@ class SendViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         output.configureCollections()
-        configureGradientView()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -85,6 +79,10 @@ class SendViewController: UIViewController {
         output.amountChanged(sender.text ?? "")
     }
     
+    @IBAction func addressDidChange(_ sender: UITextField) {
+        output.receiverAddressDidChange(sender.text ?? "")
+    }
+    
     @IBAction func sendButtonTapped(_ sender: UIButton) {
         output.sendButtonPressed()
     }
@@ -94,7 +92,12 @@ class SendViewController: UIViewController {
     }
     
     @IBAction private func sliderMoved(_ sender: StepSlider) {
+        let oldValue = currentSliderStep
         currentSliderStep = sender.currentSliderStep
+        
+        if oldValue != currentSliderStep {
+            output.newFeeSelected(currentSliderStep)
+        }
     }
 }
 
@@ -118,13 +121,6 @@ extension SendViewController: SendViewInput {
     
     func setSubtotal(_ subtotal: String) {
         subtotalLabel.text = subtotal
-        
-        if self.subtotalLabel.superview!.isHidden != subtotal.isEmpty {
-            UIView.performWithoutAnimation {
-                self.subtotalLabel.superview?.isHidden = subtotal.isEmpty
-            }
-        }
-        
     }
     
     func setMedianWait(_ wait: String) {
@@ -135,10 +131,22 @@ extension SendViewController: SendViewInput {
         paymentFeeLabel.text = fee
     }
     
-    func setPaymentFee(count: Int, value: Int) {
+    func setPaymentFee(count: Int, value: Int, enabled: Bool) {
         paymentFeeSlider.paymentFeeValuesCount = count
         paymentFeeSlider.updateCurrentValue(step: value)
+        paymentFeeView.alpha = enabled ? 1 : 0.22
+        paymentFeeView.isUserInteractionEnabled = enabled
         currentSliderStep = value
+    }
+    
+    func setFeeUpdateIndicator(hidden: Bool) {
+        loaderView.isHidden = hidden
+        
+        if hidden {
+            loaderView.hideActivityIndicator()
+        } else {
+            loaderView.showActivityIndicator(linewidth: 2, color: Theme.Text.Color.captionGrey)
+        }
     }
     
     func updatePagesCount(_ count: Int) {
@@ -192,6 +200,16 @@ extension SendViewController: SendViewInput {
 // MARK: - UITextFieldDelegate
 
 extension SendViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case receiverTextField:
+            amountTextField.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
+    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
@@ -299,15 +317,7 @@ extension SendViewController {
         errorLabel.alpha = 0
         
         sendButton.isEnabled = false
-    }
-    
-    private func configureGradientView() {
-        let height = accountsCollectionView.frame.height +
-            accountsPageControl.frame.height +
-            (navigationController?.navigationBar.frame.size.height ?? 44) +
-            UIApplication.shared.statusBarFrame.height
-        
-        gradientView.setHeight(height: height)
+        loaderView.isUserInteractionEnabled = false
     }
     
     private func setNavBarTransparency() {
@@ -356,12 +366,16 @@ extension SendViewController {
         
         guard delta > 0 else { return }
         
+        scrollView.contentOffset = CGPoint(x: 0, y: delta)
+        
         if scrollView.contentSize.height < view.frame.height {
             delta += view.frame.height - scrollView.contentSize.height
         }
-        
-        scrollView.contentOffset = CGPoint(x: 0, y: delta)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: delta, right: 0)
+        
+        UIView.animate(withDuration: keyboardAnimationDelay) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {

@@ -12,9 +12,10 @@ class QuickLaunchModule {
         let router = QuickLaunchRouter(app: app)
         let presenter = QuickLaunchPresenter()
         
+        let biometricAuthProvider = app.biometricAuthProviderFactory.create()
         let quickLaunchProvider = QuickLaunchProvider(defaultsProvider: app.defaultsProvider,
                                                       keychainProvider: app.keychainProvider,
-                                                      biometricAuthProvider: app.biometricAuthProvider)
+                                                      biometricAuthProvider: biometricAuthProvider)
         
         let interactor = QuickLaunchInteractor(qiuckLaunchProvider: quickLaunchProvider)
         

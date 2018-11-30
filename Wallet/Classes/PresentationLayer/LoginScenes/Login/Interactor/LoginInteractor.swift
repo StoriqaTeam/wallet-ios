@@ -18,16 +18,28 @@ class LoginInteractor {
     private let userDataStore: UserDataStoreServiceProtocol
     private let keychain: KeychainProviderProtocol
     private let loginService: LoginServiceProtocol
+    private let userKeyManager: UserKeyManagerProtocol
+    private let addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol
+    private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol
+    private let ratesUpdater: RatesUpdaterProtocol
     
     // for Retry
     private var authData: AuthData?
+    private var deviceRegisterUserId: Int?
     
     init(socialViewVM: SocialNetworkAuthViewModel,
          defaultProvider: DefaultsProviderProtocol,
          biometricAuthProvider: BiometricAuthProviderProtocol,
          userDataStore: UserDataStoreServiceProtocol,
          keychain: KeychainProviderProtocol,
-         loginService: LoginServiceProtocol) {
+         loginService: LoginServiceProtocol,
+         keyGenerator: KeyGeneratorProtocol,
+         userKeyManager: UserKeyManagerProtocol,
+         addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol,
+         signHeaderFactory: SignHeaderFactoryProtocol,
+         resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol,
+         ratesUpdater: RatesUpdaterProtocol) {
         
         self.socialViewVM = socialViewVM
         self.defaultProvider = defaultProvider
@@ -35,6 +47,11 @@ class LoginInteractor {
         self.userDataStore = userDataStore
         self.keychain = keychain
         self.loginService = loginService
+        self.userKeyManager = userKeyManager
+        self.addDeviceNetworkProvider = addDeviceNetworkProvider
+        self.signHeaderFactory = signHeaderFactory
+        self.resendConfirmEmailNetworkProvider = resendConfirmEmailNetworkProvider
+        self.ratesUpdater = ratesUpdater
     }
 }
 
@@ -47,6 +64,7 @@ extension LoginInteractor: LoginInteractorInput {
         userDataStore.resetAllDatabase()
         keychain.deleteAll()
         defaultProvider.clear()
+        ratesUpdater.update()
     }
     
     func getSocialVM() -> SocialNetworkAuthViewModel {
@@ -56,37 +74,58 @@ extension LoginInteractor: LoginInteractorInput {
     func signIn(email: String, password: String) {
         authData = AuthData.email(email: email, password: password)
         
-        loginService.signIn(email: email, password: password) { [weak self] (result) in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            switch result {
-            case .success:
-                strongSelf.loginSucceed()
-            case .failure(let error):
-                if let error = error as? LoginProviderError {
-                    switch error {
-                    case .validationError(let email, let password):
-                        strongSelf.output.formValidationFailed(email: email, password: password)
-                        return
-                    default: break
-                    }
-                }
-                
-                strongSelf.output.loginFailed(message: error.localizedDescription)
-            }
+        guard let _ = userKeyManager.addPrivateKeyIfNeeded(email: email) else {
+            log.error("Fail to add pair email and private key")
+            return
         }
-    }
-    
-    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String) {
-        authData = AuthData.social(provider: tokenProvider, token: oauthToken)
         
-        loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken) { [weak self] (result) in
+        loginService.signIn(email: email, password: password) { [weak self] (result) in
             switch result {
             case .success:
                 self?.loginSucceed()
             case .failure(let error):
+                if let error = error as? LoginProviderError {
+                    switch error {
+                    case .validationError(let email, let password):
+                        self?.output.formValidationFailed(email: email, password: password)
+                        return
+                    case .deviceNotRegistered(let userId):
+                        self?.deviceRegisterUserId = userId
+                        self?.output.deviceNotRegistered()
+                        return
+                    case .emailNotVerified:
+                        self?.output.emailNotVerified()
+                    default: break
+                    }
+                }
+                
+                self?.output.loginFailed(message: error.localizedDescription)
+            }
+        }
+    }
+    
+    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, email: String) {
+        authData = AuthData.social(provider: tokenProvider, token: oauthToken, email: email)
+        
+        guard let _ = userKeyManager.addPrivateKeyIfNeeded(email: email) else {
+            log.error("Fail to add pair email and private key")
+            return
+        }
+        
+        loginService.signIn(tokenProvider: tokenProvider, oauthToken: oauthToken, email: email) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.loginSucceed()
+            case .failure(let error):
+                if let error = error as? SocialAuthNetworkProviderError {
+                    switch error {
+                    case .deviceNotRegistered(let userId):
+                        self?.deviceRegisterUserId = userId
+                        self?.output.deviceNotRegistered()
+                        return
+                    default: break
+                    }
+                }
                 self?.output.loginFailed(message: error.localizedDescription)
             }
         }
@@ -99,12 +138,80 @@ extension LoginInteractor: LoginInteractorInput {
         
         switch authData {
         case .email(let email, let password):
+            guard let _ = userKeyManager.addPrivateKeyIfNeeded(email: email) else {
+                log.error("Fail to add pair email and private key")
+                return
+            }
+            
             signIn(email: email, password: password)
-        case .social(let provider, let token):
-            signIn(tokenProvider: provider, oauthToken: token)
+        case .social(let provider, let token, let email):
+            signIn(tokenProvider: provider, oauthToken: token, email: email)
         }
     }
     
+    func registerDevice() {
+        guard let userId = deviceRegisterUserId,
+            let authData = authData else {
+            fatalError("Registring device with no user id")
+        }
+        
+        let currentEmail: String
+        
+        switch authData {
+        case .email(let email, _):
+            currentEmail = email
+        case .social(_, _, let email):
+            currentEmail = email
+        }
+        
+        let signHeader: SignHeader
+        
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: currentEmail)
+        } catch {
+            log.error(error.localizedDescription)
+            output.loginFailed(message: error.localizedDescription)
+            return
+        }
+        
+        addDeviceNetworkProvider.addDevice(
+            userId: userId,
+            signHeader: signHeader,
+            queue: .main) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.output.deviceRegisterEmailSent()
+                case .failure(let error):
+                    self?.output.failedSendDeviceRegisterEmail(message: error.localizedDescription)
+                }
+        }
+    }
+    
+    func resendConfirmationEmail() {
+        guard let authData = authData else {
+            fatalError("Trying to resend confirmation email without previous auth data")
+        }
+        
+        let currentEmail: String
+        
+        switch authData {
+        case .email(let email, _):
+            currentEmail = email
+        case .social:
+            fatalError("Trying to resend confirmation email after social network auth")
+        }
+        
+        resendConfirmEmailNetworkProvider.confirmAddDevice(
+            email: currentEmail,
+            queue: .main) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.output.confirmEmailSentSuccessfully(email: currentEmail)
+                case .failure(let error):
+                    self?.output.confirmEmailSendingFailed(message: error.localizedDescription)
+                }
+        }
+    }
 }
 
 

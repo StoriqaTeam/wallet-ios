@@ -8,20 +8,36 @@
 
 import UIKit
 
+private enum SettingsCell: Int {
+    case editProfile = 0
+    case changePassword
+    //FIXME: hidden
+    //    case changePhone
+    case appInfo
+    
+    static var count = 3 // 4
+}
 
 class SettingsViewController: UIViewController {
-
+    
     var output: SettingsViewOutput!
     
     @IBOutlet private var settingsTableView: UITableView!
     @IBOutlet private var signOutButton: LightButton!
     
+    private var changePhoneTitle: String = ""
+    private var hasChangePassword = true
     
     // MARK: Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
     }
     
     
@@ -37,17 +53,25 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let info = indexPath.row == 0 ? "Edit profile" : "Change password"
+        let info: String = {
+            switch indexPath.row {
+            case SettingsCell.editProfile.rawValue: return "Edit profile"
+            case SettingsCell.changePassword.rawValue where hasChangePassword: return "Change password"
+                //FIXME: hidden
+            //            case SettingsCell.changePhone.rawValue: return changePhoneTitle
+            case SettingsCell.appInfo.rawValue: return "App info"
+            default: return ""
+            }
+        }()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
         guard let settingsCell = cell as? SettingsTableViewCell else { fatalError("Fail to cast cell") }
         settingsCell.configure(info: info)
         return settingsCell
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return SettingsCell.count
     }
 }
 
@@ -57,16 +81,24 @@ extension SettingsViewController: UITableViewDataSource {
 extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case SettingsCell.changePassword.rawValue where !hasChangePassword:
+            return 0.001
+        default: break
+        }
+        
         return 44
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.row {
-        case 0: output.editProfileSelected()
-        case 1: output.changePasswordSelected()
-        default:
-            break
+        case SettingsCell.editProfile.rawValue: output.editProfileSelected()
+        case SettingsCell.changePassword.rawValue where hasChangePassword: output.changePasswordSelected()
+            //FIXME: hidden
+        //        case SettingsCell.changePhone.rawValue: output.changePhoneNumber()
+        case SettingsCell.appInfo.rawValue: output.appInfoSelected()
+        default: break
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -77,11 +109,24 @@ extension SettingsViewController: UITableViewDelegate {
 // MARK: - SettingsViewInput
 
 extension SettingsViewController: SettingsViewInput {
-    func setupInitialState() {
+    func setupInitialState(hasChangePassword: Bool) {
         setDelegates()
         registerCell()
         configureTableView()
         configureInterface()
+        
+        self.hasChangePassword = hasChangePassword
+    }
+    
+    func setChangePhoneTitle(_ title: String) {
+        
+        //FIXME: hidden
+        //        if changePhoneTitle != title {
+        //            changePhoneTitle = title
+        //            settingsTableView.reloadRows(
+        //                at: [IndexPath(row: SettingsCell.changePhone.rawValue, section: 0)],
+        //                with: UITableView.RowAnimation.fade)
+        //        }
     }
 }
 

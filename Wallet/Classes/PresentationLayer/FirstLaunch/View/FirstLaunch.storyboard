@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,40 +18,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Er1-GH-KNz">
-                                <rect key="frame" x="0.0" y="110" width="375" height="467"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2g-72-HuQ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="467"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="storiqaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="add-ZZ-qjS">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="53" id="pCD-99-lgi"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.46999999999999997" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mal-DX-jFs">
-                                        <rect key="frame" x="86.5" y="67" width="202" height="26.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="202" id="POQ-6Q-1XO"/>
-                                        </constraints>
-                                        <string key="text">Multicurrency tool for easy operating
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Er1-GH-KNz">
+                                        <rect key="frame" x="74" y="101" width="227" height="265.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" image="logoTure" translatesAutoresizingMaskIntoConstraints="NO" id="3rc-Uj-0x9">
+                                                <rect key="frame" x="0.0" y="0.0" width="227" height="227"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="227" id="exS-hB-i8J"/>
+                                                    <constraint firstAttribute="height" constant="227" id="noi-cj-3cV"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.46999999999999997" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mal-DX-jFs">
+                                                <rect key="frame" x="12.5" y="239" width="202" height="26.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="202" id="POQ-6Q-1XO"/>
+                                                </constraints>
+                                                <string key="text">Multicurrency tool for easy operating
 with your fiat &amp; crypto funds</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.26274509800000001" green="0.21960784310000001" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" image="logoFirstLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="3rc-Uj-0x9">
-                                        <rect key="frame" x="0.0" y="93.5" width="375" height="327.5"/>
-                                    </imageView>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <color key="textColor" red="0.26274509800000001" green="0.21960784310000001" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="3rc-Uj-0x9" secondAttribute="trailing" id="4w7-K5-6D3"/>
+                                            <constraint firstItem="3rc-Uj-0x9" firstAttribute="leading" secondItem="Er1-GH-KNz" secondAttribute="leading" id="BEG-OM-VKp"/>
+                                            <constraint firstAttribute="bottom" secondItem="mal-DX-jFs" secondAttribute="bottom" id="SA0-qs-Rer"/>
+                                            <constraint firstItem="3rc-Uj-0x9" firstAttribute="top" secondItem="Er1-GH-KNz" secondAttribute="top" id="ZeZ-3f-nkZ"/>
+                                            <constraint firstItem="mal-DX-jFs" firstAttribute="centerX" secondItem="Er1-GH-KNz" secondAttribute="centerX" id="bdA-fd-cN8"/>
+                                            <constraint firstItem="mal-DX-jFs" firstAttribute="top" secondItem="3rc-Uj-0x9" secondAttribute="bottom" constant="12" id="iW9-Od-M1k"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="mal-DX-jFs" firstAttribute="top" secondItem="add-ZZ-qjS" secondAttribute="bottom" constant="14" id="BXl-LP-6d3"/>
-                                    <constraint firstItem="add-ZZ-qjS" firstAttribute="leading" secondItem="Er1-GH-KNz" secondAttribute="leading" id="blS-aD-yCy"/>
-                                    <constraint firstItem="3rc-Uj-0x9" firstAttribute="leading" secondItem="Er1-GH-KNz" secondAttribute="leading" id="f2i-J3-4gb"/>
-                                    <constraint firstItem="mal-DX-jFs" firstAttribute="centerX" secondItem="Er1-GH-KNz" secondAttribute="centerX" id="iuG-FN-hnB"/>
-                                    <constraint firstAttribute="trailing" secondItem="3rc-Uj-0x9" secondAttribute="trailing" id="vCB-lI-E9Q"/>
-                                    <constraint firstItem="3rc-Uj-0x9" firstAttribute="top" secondItem="mal-DX-jFs" secondAttribute="bottom" id="yLw-Ud-Bsi"/>
-                                    <constraint firstItem="add-ZZ-qjS" firstAttribute="centerX" secondItem="Er1-GH-KNz" secondAttribute="centerX" id="zHr-IZ-kKi"/>
-                                    <constraint firstItem="add-ZZ-qjS" firstAttribute="top" secondItem="Er1-GH-KNz" secondAttribute="top" id="zbf-SP-rsc"/>
+                                    <constraint firstItem="Er1-GH-KNz" firstAttribute="centerY" secondItem="b2g-72-HuQ" secondAttribute="centerY" id="oIv-Ym-dKO"/>
+                                    <constraint firstItem="Er1-GH-KNz" firstAttribute="centerX" secondItem="b2g-72-HuQ" secondAttribute="centerX" id="vur-s2-vug"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLy-W4-uNU">
@@ -69,7 +75,7 @@ with your fiat &amp; crypto funds</string>
                                             <action selector="getStartedPressed:" destination="1ZA-KR-Ckj" eventType="touchUpInside" id="0nq-jc-T50"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-MI-siA" customClass="LightButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-MI-siA" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="61" width="300" height="45"/>
                                         <state key="normal" title="Sign in">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -95,13 +101,12 @@ with your fiat &amp; crypto funds</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Er1-GH-KNz" firstAttribute="centerX" secondItem="9yg-aO-dPp" secondAttribute="centerX" id="7GH-1i-a1G"/>
+                            <constraint firstItem="qil-kT-1Lu" firstAttribute="trailing" secondItem="b2g-72-HuQ" secondAttribute="trailing" id="0R7-Lb-al3"/>
+                            <constraint firstItem="gLy-W4-uNU" firstAttribute="top" secondItem="b2g-72-HuQ" secondAttribute="bottom" id="3KH-WE-2hX"/>
                             <constraint firstItem="gLy-W4-uNU" firstAttribute="centerX" secondItem="9yg-aO-dPp" secondAttribute="centerX" id="8Nv-Zs-xju"/>
                             <constraint firstItem="qil-kT-1Lu" firstAttribute="bottom" secondItem="gLy-W4-uNU" secondAttribute="bottom" constant="30" id="8ya-Sh-PML"/>
-                            <constraint firstItem="Er1-GH-KNz" firstAttribute="width" secondItem="9yg-aO-dPp" secondAttribute="width" id="AxF-vN-0Dh"/>
-                            <constraint firstItem="Er1-GH-KNz" firstAttribute="centerY" secondItem="9yg-aO-dPp" secondAttribute="centerY" constant="10" id="g39-PA-U2T"/>
-                            <constraint firstItem="Er1-GH-KNz" firstAttribute="height" secondItem="9yg-aO-dPp" secondAttribute="height" multiplier="0.7" id="gps-cJ-FeR"/>
-                            <constraint firstItem="gLy-W4-uNU" firstAttribute="top" secondItem="3rc-Uj-0x9" secondAttribute="bottom" id="uLc-0r-PIg"/>
+                            <constraint firstItem="b2g-72-HuQ" firstAttribute="top" secondItem="qil-kT-1Lu" secondAttribute="top" id="pZK-UG-st5"/>
+                            <constraint firstItem="b2g-72-HuQ" firstAttribute="leading" secondItem="qil-kT-1Lu" secondAttribute="leading" id="rfF-N0-5kH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qil-kT-1Lu"/>
                     </view>
@@ -110,11 +115,10 @@ with your fiat &amp; crypto funds</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQe-d3-OPS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5004" y="-2468"/>
+            <point key="canvasLocation" x="-5004" y="-2468.8155922038982"/>
         </scene>
     </scenes>
     <resources>
-        <image name="logoFirstLaunch" width="188" height="190"/>
-        <image name="storiqaLogo" width="113" height="49"/>
+        <image name="logoTure" width="156" height="159"/>
     </resources>
 </document>

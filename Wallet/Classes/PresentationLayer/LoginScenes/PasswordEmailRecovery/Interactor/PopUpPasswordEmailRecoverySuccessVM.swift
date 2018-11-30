@@ -2,7 +2,7 @@
 //  PopUpPasswordEmailRecoverySuccessVM.swift
 //  Wallet
 //
-//  Created by user on 24.09.2018.
+//  Created by Storiqa on 24.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 

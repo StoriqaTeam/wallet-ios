@@ -53,7 +53,7 @@ extension MainTabBarViewController {
         tabBar.layer.shadowOpacity = 0.04
         
         let lineView = UIView(frame: CGRect(x: 0, y: 0,
-                                            width: Constants.Sizes.screenWith,
+                                            width: Constants.Sizes.screenWidth,
                                             height: Constants.Sizes.lineWidth))
         lineView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.35)
         tabBar.addSubview(lineView)

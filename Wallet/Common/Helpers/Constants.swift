@@ -5,6 +5,7 @@
 //  Created by Storiqa on 15.08.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable all
 
 import Foundation
 import UIKit
@@ -33,6 +34,7 @@ struct Constants {
     
     struct Errors {
         static let userFriendly = "user_friendly_error".localized()
+        
     }
     
     struct NetworkAuth {
@@ -43,11 +45,18 @@ struct Constants {
     struct DateFormats {
         static let txDateString = "yyyy-MM-dd'T'HH:mm:ss.SS"
     }
+    
+    struct Crypto {
+        struct PBKDF2 {
+            static let password: Array<UInt8> = Array("storiqa".utf8)
+            static let salt: Array<UInt8> = Array("iOS".utf8) 
+        }
+    }
 }
 
 
 struct SizeConstants {
-    static let screenWith = UIScreen.main.bounds.size.width
+    static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
     
     /** For separators. Depends on screen scale */

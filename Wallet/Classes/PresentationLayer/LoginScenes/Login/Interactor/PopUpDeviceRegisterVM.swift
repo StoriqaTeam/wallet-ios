@@ -1,0 +1,30 @@
+//
+//  PopUpDeviceRegisterVM.swift
+//  Wallet
+//
+//  Created by Storiqa on 20/11/2018.
+//  Copyright © 2018 Storiqa. All rights reserved.
+//
+
+import Foundation
+
+protocol PopUpDeviceRegisterVMDelegate: class {
+    func deviceRegisterOkButtonPressed()
+}
+
+class PopUpDeviceRegisterVM: PopUpViewModelProtocol {
+    var apperance: PopUpApperance
+    weak var delegate: PopUpDeviceRegisterVMDelegate?
+    
+    init() {
+        apperance = PopUpApperance(image: #imageLiteral(resourceName: "signConfirm"),
+                                   title: "Your device is not registered yet",
+                                   text: "Do you want to register this device to your account?",
+                                   actionButtonTitle: "ok".localized(),
+                                   hasCloseButton: true)
+    }
+    
+    func performAction() {
+        delegate?.deviceRegisterOkButtonPressed()
+    }
+}

@@ -21,16 +21,20 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var passwordTextField: SecureInputTextField!
     @IBOutlet private var repeatPasswordTextField: SecureInputTextField!
     @IBOutlet private var agreementTickImageView: UIImageView!
-    @IBOutlet private var agreementLabel: UILabel!
+    @IBOutlet private var privacyPolicyTickImageView: UIImageView!
+    
     @IBOutlet private var signUpButton: DefaultButton!
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
     @IBOutlet private var textFields: [UnderlinedTextField]!
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var licenceAgreementTextView: UITextView!
+    @IBOutlet private var privacyPolicyTextView: UITextView!
     
     // MARK: - Variables
     
     private var activeTextField: UITextField?
     private var isAcceptedAgreement = false
+    private var isAcceptedPolicy = false
     private let acceptedAgreementColor = Theme.Color.brightSkyBlue
     private let nonAcceptedAgreementColor = UIColor.lightGray
     
@@ -68,9 +72,15 @@ class RegistrationViewController: UIViewController {
         output.register(firstName: firstName, lastName: lastName, email: email, password: password)
     }
     
-    @IBAction private func toggleAgreement() {
+    @IBAction private func toggleLicenceAgreement() {
         isAcceptedAgreement.toggle()
         setAgreementTintColor()
+        updateContinueButton()
+    }
+    
+    @IBAction private func togglePrivacyPolicy() {
+        isAcceptedPolicy.toggle()
+        setPolicyTintColor()
         updateContinueButton()
     }
     
@@ -176,8 +186,8 @@ extension RegistrationViewController: UITextFieldDelegate {
 // MARK: - SocialNetworkAuthViewDelegate
 
 extension RegistrationViewController: SocialNetworkAuthViewDelegate {
-    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String) {
-        output.socialNetworkRegisterSucceed(provider: provider, token: token)
+    func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
+        output.socialNetworkRegisterSucceed(provider: provider, token: token, email: email)
     }
     
     func socialNetworkAuthFailed() {
@@ -209,16 +219,18 @@ extension RegistrationViewController {
         emailTextField.layoutBlock = layoutBlock
         
         passwordTextField.placeholder = "password".localized()
+        passwordTextField.hintMessage = "At least: 8 characters, 1 capital, 1 digit, 1 special sign"
         passwordTextField.layoutBlock = layoutBlock
         
         repeatPasswordTextField.placeholder = "repeat_password".localized()
         repeatPasswordTextField.layoutBlock = layoutBlock
         
         setAgreementTintColor()
-        
-        agreementLabel.textColor = Theme.Color.primaryGrey
-        agreementLabel.text = "accept_agreement".localized()
-        
+        setPolicyTintColor()
+
+        addLinkToPrivatePolicy()
+        addLinkToLicenceAgreement()
+        privacyPolicyTextView.isEditable = false
         signUpButton.title = "sign_up".localized()
     }
     
@@ -228,12 +240,41 @@ extension RegistrationViewController {
                               email: emailTextField.text,
                               password: passwordTextField.text,
                               repeatPassword: repeatPasswordTextField.text,
-                              agreement: isAcceptedAgreement)
+                              agreement: isAcceptedAgreement,
+                              privacy: isAcceptedPolicy)
     }
     
     
     private func setAgreementTintColor() {
         agreementTickImageView.image = isAcceptedAgreement ? #imageLiteral(resourceName: "checkOn") : #imageLiteral(resourceName: "checkOff")
+    }
+    
+    private func setPolicyTintColor() {
+        privacyPolicyTickImageView.image = isAcceptedPolicy ? #imageLiteral(resourceName: "checkOn") : #imageLiteral(resourceName: "checkOff")
+    }
+    
+    private func addLinkToLicenceAgreement() {
+        let attributedString = NSMutableAttributedString(string: "I accept the License Agreement")
+        let linkRange = NSRange(location: 13, length: 17)
+        let textRange = NSRange(location: 0, length: 13)
+        attributedString.addAttribute(.link, value: "https://storiqa.com/turewallet/terms_of_use.pdf", range: linkRange)
+        attributedString.addAttribute(.foregroundColor, value: Theme.Color.primaryGrey, range: textRange)
+        
+        self.licenceAgreementTextView.attributedText = attributedString
+        self.licenceAgreementTextView.isUserInteractionEnabled = true
+        self.licenceAgreementTextView.isEditable = false
+    }
+    
+    private func addLinkToPrivatePolicy() {
+        let attributedString = NSMutableAttributedString(string: "I accept the Privacy Policy")
+        let linkRange = NSRange(location: 13, length: 14)
+        let textRange = NSRange(location: 0, length: 13)
+        attributedString.addAttribute(.link, value: "https://storiqa.com/turewallet/privacy_policy.pdf", range: linkRange)
+        attributedString.addAttribute(.foregroundColor, value: Theme.Color.primaryGrey, range: textRange)
+        
+        self.privacyPolicyTextView.attributedText = attributedString
+        self.privacyPolicyTextView.isUserInteractionEnabled = true
+        self.privacyPolicyTextView.isEditable = false
     }
     
     private func restoreSecureFields() {

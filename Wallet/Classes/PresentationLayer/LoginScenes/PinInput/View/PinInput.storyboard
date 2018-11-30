@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,29 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWh-H4-gYQ">
-                                <rect key="frame" x="40" y="40" width="295" height="144.5"/>
+                                <rect key="frame" x="40" y="40" width="295" height="40.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kca-x7-kZw" customClass="ActivityIndicatorView" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="95.5" y="0.0" width="104" height="104"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="be4-VN-69w">
-                                                <rect key="frame" x="8" y="8" width="88" height="88"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="be4-VN-69w" secondAttribute="height" multiplier="1:1" id="5D7-tb-hnH"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="104" id="3iE-nO-VKi"/>
-                                            <constraint firstAttribute="width" secondItem="Kca-x7-kZw" secondAttribute="height" multiplier="1:1" id="PQj-4C-QVW"/>
-                                            <constraint firstItem="be4-VN-69w" firstAttribute="centerX" secondItem="Kca-x7-kZw" secondAttribute="centerX" id="VRJ-Ns-R1Z"/>
-                                            <constraint firstItem="be4-VN-69w" firstAttribute="centerY" secondItem="Kca-x7-kZw" secondAttribute="centerY" id="lHO-Mx-N36"/>
-                                            <constraint firstItem="be4-VN-69w" firstAttribute="top" secondItem="Kca-x7-kZw" secondAttribute="top" constant="8" id="rr5-8m-1GG"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wwl-0y-csb">
-                                        <rect key="frame" x="82.5" y="104" width="130" height="40.5"/>
+                                        <rect key="frame" x="82.5" y="0.0" width="130" height="40.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="1000" text="Dmitrii, good day" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ekg-2p-R0S">
                                                 <rect key="frame" x="0.0" y="20" width="130" height="20.5"/>
@@ -62,19 +43,18 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Wwl-0y-csb" firstAttribute="centerX" secondItem="gWh-H4-gYQ" secondAttribute="centerX" id="4d1-Ec-Yis"/>
-                                    <constraint firstItem="Kca-x7-kZw" firstAttribute="top" secondItem="gWh-H4-gYQ" secondAttribute="top" id="ApP-gx-ZgL"/>
                                     <constraint firstAttribute="bottom" secondItem="Wwl-0y-csb" secondAttribute="bottom" id="LFs-z9-FEP"/>
-                                    <constraint firstItem="Wwl-0y-csb" firstAttribute="top" secondItem="Kca-x7-kZw" secondAttribute="bottom" id="V1C-oJ-ipU"/>
                                     <constraint firstItem="Wwl-0y-csb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gWh-H4-gYQ" secondAttribute="leading" id="tka-YA-kEf"/>
-                                    <constraint firstItem="Kca-x7-kZw" firstAttribute="centerX" secondItem="gWh-H4-gYQ" secondAttribute="centerX" id="y6N-yF-T8i"/>
+                                    <constraint firstItem="Wwl-0y-csb" firstAttribute="top" secondItem="gWh-H4-gYQ" secondAttribute="top" id="xZJ-bj-Tyv"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7R-O3-ykX">
-                                <rect key="frame" x="127.5" y="607" width="120" height="40"/>
+                                <rect key="frame" x="136" y="607" width="103" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="VD2-dq-Qcf"/>
                                 </constraints>
-                                <state key="normal" title="I forgot my PIN">
+                                <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
+                                <state key="normal" title="Reset PIN">
                                     <color key="titleColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -82,7 +62,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwG-hO-0ot" customClass="PinContainerView" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="57" y="199" width="261" height="413.5"/>
+                                <rect key="frame" x="57" y="95.5" width="261" height="517.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="261" id="OpC-k3-NJa"/>
@@ -108,8 +88,6 @@
                         <outlet property="greetingLabel" destination="Ekg-2p-R0S" id="PZw-Md-gv5"/>
                         <outlet property="greetingVerticalSpacingConstraint" destination="fYd-W2-wbn" id="WhI-Bb-Gth"/>
                         <outlet property="pinContainerView" destination="RwG-hO-0ot" id="69n-AH-YUu"/>
-                        <outlet property="userPhotoContainerView" destination="Kca-x7-kZw" id="Acn-qH-ZCC"/>
-                        <outlet property="userPhotoImageView" destination="be4-VN-69w" id="cTy-sI-o3u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f62-OQ-1Eo" userLabel="First Responder" sceneMemberID="firstResponder"/>

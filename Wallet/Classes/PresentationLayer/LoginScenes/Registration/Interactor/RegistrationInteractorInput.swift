@@ -14,5 +14,6 @@ protocol RegistrationInteractorInput: class {
     func validateForm(_ form: RegistrationForm)
     func register(with registrationData: RegistrationData) 
     func retryRegistration()
-    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String)
+    func signIn(tokenProvider: SocialNetworkTokenProvider, oauthToken: String, email: String)
+    func registerDevice()
 }

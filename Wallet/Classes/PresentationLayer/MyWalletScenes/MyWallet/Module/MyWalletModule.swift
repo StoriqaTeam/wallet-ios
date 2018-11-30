@@ -10,17 +10,12 @@ class MyWalletModule {
     
     class func create(app: Application,
                       tabBar: UITabBarController,
-                      accountWatcher: CurrentAccountWatcherProtocol,
-                      user: User) -> MyWalletModuleInput {
+                      accountWatcher: CurrentAccountWatcherProtocol) -> MyWalletModuleInput {
         let router = MyWalletRouter(app: app)
         
-        let accountDisplayer = AccountDisplayer(user: user,
-                                                currencyFormatter: app.currencyFormatter,
-                                                converterFactory: app.currencyConverterFactory,
-                                                accountTypeResolver: app.accountTypeResolver,
-                                                denominationUnitsConverter: app.denominationUnitsConverter)
-        
-        let presenter = MyWalletPresenter(user: user, accountDisplayer: accountDisplayer)
+        let presenter = MyWalletPresenter(accountDisplayer: app.accountDisplayer,
+                                          denominationUnitsConverter: app.denominationUnitsConverter,
+                                          currencyFormatter: app.currencyFormatter)
         presenter.mainTabBar = tabBar
         
         let interactor = MyWalletInteractor(accountsProvider: app.accountsProvider,
@@ -43,6 +38,13 @@ class MyWalletModule {
         let accountsUpadteChannel = app.channelStorage.accountsUpadteChannel
         app.accountsProvider.setAccountsUpdaterChannel(accountsUpadteChannel)
         interactor.setAccountsUpdateChannelInput(accountsUpadteChannel)
+        
+        let userUpadteChannel = app.channelStorage.userUpdateChannel
+        interactor.setUserUpdateChannelInput(userUpadteChannel)
+        
+        let receivedTxsChannel = app.channelStorage.receivedTxsChannel
+        app.receivedTransactionProvider.setReceivedTxsChannel(receivedTxsChannel)
+        interactor.setReceivedTxsChannelInput(receivedTxsChannel)
         
         return presenter
     }
