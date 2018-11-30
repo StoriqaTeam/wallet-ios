@@ -49,10 +49,6 @@ class ReceivedTransactionProvider: ReceivedTransactionProviderProtocol {
         let ethAmount = received.filter({ $0.toCurrency == .eth }).map({ $0.toValue }).reduce(0, +)
         let btcAmount = received.filter({ $0.toCurrency == .btc }).map({ $0.toValue }).reduce(0, +)
         
-        print("--- stq \(stqAmount)")
-        print("--- eth \(ethAmount)")
-        print("--- btc \(btcAmount)")
-        
         if !stqAmount.isZero || !ethAmount.isZero || !btcAmount.isZero {
             receivedTxsChannelOutput?.send((stq: stqAmount, eth: ethAmount, btc: btcAmount))
         }
