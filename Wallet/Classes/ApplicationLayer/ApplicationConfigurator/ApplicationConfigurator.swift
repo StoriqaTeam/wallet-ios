@@ -40,6 +40,7 @@ extension ApplicationConfigurator {
         if defaults.isFirstLaunch {
             
             defaults.isFirstLaunch = false
+            defaults.deviceId = UUID().uuidString
             keychain.deleteAll()
             userKeyManager.clearUserKeyData()
             FirstLaunchModule.create(app: app).present()
