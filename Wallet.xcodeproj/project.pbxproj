@@ -239,6 +239,7 @@
 		A50BF8AC215409B500FB0DA2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BF8AB215409B500FB0DA2 /* Theme.swift */; };
 		A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */; };
 		A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A512020B2153D68A00D44A22 /* MainTabBar.storyboard */; };
+		A519770921B13AA700515619 /* DepositShortPollingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519770821B13AA700515619 /* DepositShortPollingTimer.swift */; };
 		A51CB5472158E0DB00CDC80C /* TransactionsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */; };
 		A51CB5492158E60500CDC80C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB5482158E60500CDC80C /* Transaction.swift */; };
 		A51CB54B2158E80400CDC80C /* TransactionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB54A2158E80400CDC80C /* TransactionsProvider.swift */; };
@@ -960,6 +961,7 @@
 		A50BF8AB215409B500FB0DA2 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthViewModel.swift; sourceTree = "<group>"; };
 		A512020B2153D68A00D44A22 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
+		A519770821B13AA700515619 /* DepositShortPollingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositShortPollingTimer.swift; sourceTree = "<group>"; };
 		A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDataManager.swift; sourceTree = "<group>"; };
 		A51CB5482158E60500CDC80C /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		A51CB54A2158E80400CDC80C /* TransactionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsProvider.swift; sourceTree = "<group>"; };
@@ -3403,6 +3405,7 @@
 			isa = PBXGroup;
 			children = (
 				A58DB4E4218346E80024E463 /* ShortPollingTimer.swift */,
+				A519770821B13AA700515619 /* DepositShortPollingTimer.swift */,
 			);
 			path = ShortPollingTimer;
 			sourceTree = "<group>";
@@ -5462,6 +5465,7 @@
 				3EB4EB7F0A93536634E1688B /* PinQuickLaunchRouter.swift in Sources */,
 				CEE6731021A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift in Sources */,
 				5CB377C30BE6A3E3A6A71B8D /* PinQuickLaunchModuleInput.swift in Sources */,
+				A519770921B13AA700515619 /* DepositShortPollingTimer.swift in Sources */,
 				A57434E521774B85006B4CAE /* ContactsCacheUpdater.swift in Sources */,
 				CEE6730E21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift in Sources */,
 				25F219D759BBDCBB79AC76A8 /* PinQuickLaunchModuleOutput.swift in Sources */,

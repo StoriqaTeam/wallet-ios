@@ -14,6 +14,7 @@ class ApplicationConfigurator: Configurable {
     private let keychain: KeychainProviderProtocol
     private let defaults: DefaultsProviderProtocol
     private let shortPollingTimer: ShortPollingTimerProtocol
+    private let depositShortPollingtimer: DepositShortPollingTimerProtocol
     private let userKeyManager: UserKeyManagerProtocol
     let app: Application
     
@@ -22,6 +23,7 @@ class ApplicationConfigurator: Configurable {
         self.defaults = app.defaultsProvider
         self.shortPollingTimer = app.shortPollingTimer
         self.userKeyManager = app.userKeyManager
+        self.depositShortPollingtimer = app.depositShortPollintTimer
         self.app = app
     }
     
@@ -63,7 +65,10 @@ extension ApplicationConfigurator {
     
     private func setupChannel() {
         let shortPollingChannel = app.channelStorage.shortPollingChannel
+        let depositShortPollingChannel = app.channelStorage.depositShortPollingChannel
         self.shortPollingTimer.setOutputChannel(shortPollingChannel)
+        self.depositShortPollingtimer.setOutputChannel(depositShortPollingChannel)
         self.shortPollingTimer.startPolling()
+        self.depositShortPollingtimer.startPolling()
     }
 }

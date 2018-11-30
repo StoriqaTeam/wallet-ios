@@ -12,7 +12,8 @@ class DepositModule {
                       accountWatcher: CurrentAccountWatcherProtocol) -> DepositModuleInput {
         
         let router = DepositRouter(app: app)
-        let presenter = DepositPresenter(accountDisplayer: app.accountDisplayer)
+        let presenter = DepositPresenter(accountDisplayer: app.accountDisplayer,
+                                         depositShortPollingTimer: app.depositShortPollintTimer)
         let interactor = DepositInteractor(qrProvider: app.qrCodeProvider,
                                            accountsProvider: app.accountsProvider,
                                            accountWatcher: accountWatcher)
