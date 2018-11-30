@@ -40,4 +40,9 @@ extension SettingsInteractor: SettingsInteractorInput {
         let hasPhone = !user.phone.isEmpty
         return hasPhone
     }
+    
+    func userLoginedWithSocialProvider() -> Bool {
+        let socialAuthToken = keychainProvider.socialAuthToken
+        return socialAuthToken != nil
+    }
 }

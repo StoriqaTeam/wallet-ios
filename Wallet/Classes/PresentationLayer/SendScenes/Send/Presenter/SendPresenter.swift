@@ -161,7 +161,12 @@ extension SendPresenter: SendInteractorOutput {
     
     func updatePaymentFee(_ fee: Decimal?) {
         guard let fee = fee else {
-            view.setPaymentFee("-")
+            view.setPaymentFee("")
+            return
+        }
+        
+        guard !fee.isZero else {
+            view.setPaymentFee("FREE")
             return
         }
         
@@ -171,7 +176,7 @@ extension SendPresenter: SendInteractorOutput {
     }
     
     func updatePaymentFees(count: Int, selected: Int) {
-        view.setPaymentFee(count: count, value: selected)
+        view.setPaymentFee(count: count, value: selected, enabled: count > 1)
     }
     
     func updateMedianWait(_ wait: String) {
@@ -195,9 +200,9 @@ extension SendPresenter: SendInteractorOutput {
         view.setFeeUpdateIndicator(hidden: !isUpdating)
         
         if isUpdating {
-            view.setPaymentFee(" ")
-            view.setMedianWait(" ")
-            view.setPaymentFee(count: 0, value: 0)
+            view.setPaymentFee("")
+            view.setMedianWait("")
+            view.setPaymentFee(count: 0, value: 0, enabled: false)
         }
     }
     

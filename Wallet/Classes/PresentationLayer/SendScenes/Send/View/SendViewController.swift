@@ -22,6 +22,7 @@ class SendViewController: UIViewController {
     @IBOutlet private var receiverTextField: UnderlinedTextField!
     @IBOutlet private var amountTitleLabel: UILabel!
     @IBOutlet private var amountTextField: UITextField!
+    @IBOutlet private var paymentFeeView: UIView!
     @IBOutlet private var paymentFeeTitleLabel: UILabel!
     @IBOutlet private var paymentFeeLabel: UILabel!
     @IBOutlet private var paymentFeeSlider: StepSlider!
@@ -130,9 +131,11 @@ extension SendViewController: SendViewInput {
         paymentFeeLabel.text = fee
     }
     
-    func setPaymentFee(count: Int, value: Int) {
+    func setPaymentFee(count: Int, value: Int, enabled: Bool) {
         paymentFeeSlider.paymentFeeValuesCount = count
         paymentFeeSlider.updateCurrentValue(step: value)
+        paymentFeeView.alpha = enabled ? 1 : 0.22
+        paymentFeeView.isUserInteractionEnabled = enabled
         currentSliderStep = value
     }
     

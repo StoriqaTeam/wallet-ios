@@ -21,7 +21,7 @@ class MedianWaitFormatter: MedianWaitFormatterProtocol {
         
         if minutes > 0 { result = "\(minutes)m" }
         if seconds > 0 { result += "\(seconds)s" }
-        if result.isEmpty { result += "-" }
+        if result.isEmpty { result += "0s" }
         
         return result
     }

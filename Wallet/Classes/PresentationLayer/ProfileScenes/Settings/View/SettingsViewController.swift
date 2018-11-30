@@ -11,20 +11,22 @@ import UIKit
 private enum SettingsCell: Int {
     case editProfile = 0
     case changePassword
-    case changePhone
+    //FIXME: hidden
+    //    case changePhone
     case appInfo
     
-    static var count = 4
+    static var count = 3 // 4
 }
 
 class SettingsViewController: UIViewController {
-
+    
     var output: SettingsViewOutput!
     
     @IBOutlet private var settingsTableView: UITableView!
     @IBOutlet private var signOutButton: LightButton!
     
     private var changePhoneTitle: String = ""
+    private var hasChangePassword = true
     
     // MARK: Life cycle
     
@@ -54,8 +56,9 @@ extension SettingsViewController: UITableViewDataSource {
         let info: String = {
             switch indexPath.row {
             case SettingsCell.editProfile.rawValue: return "Edit profile"
-            case SettingsCell.changePassword.rawValue: return "Change password"
-            case SettingsCell.changePhone.rawValue: return changePhoneTitle
+            case SettingsCell.changePassword.rawValue where hasChangePassword: return "Change password"
+                //FIXME: hidden
+            //            case SettingsCell.changePhone.rawValue: return changePhoneTitle
             case SettingsCell.appInfo.rawValue: return "App info"
             default: return ""
             }
@@ -66,7 +69,7 @@ extension SettingsViewController: UITableViewDataSource {
         settingsCell.configure(info: info)
         return settingsCell
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SettingsCell.count
     }
@@ -78,6 +81,12 @@ extension SettingsViewController: UITableViewDataSource {
 extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case SettingsCell.changePassword.rawValue where !hasChangePassword:
+            return 0.001
+        default: break
+        }
+        
         return 44
     }
     
@@ -85,8 +94,9 @@ extension SettingsViewController: UITableViewDelegate {
         
         switch indexPath.row {
         case SettingsCell.editProfile.rawValue: output.editProfileSelected()
-        case SettingsCell.changePassword.rawValue: output.changePasswordSelected()
-        case SettingsCell.changePhone.rawValue: output.changePhoneNumber()
+        case SettingsCell.changePassword.rawValue where hasChangePassword: output.changePasswordSelected()
+            //FIXME: hidden
+        //        case SettingsCell.changePhone.rawValue: output.changePhoneNumber()
         case SettingsCell.appInfo.rawValue: output.appInfoSelected()
         default: break
         }
@@ -99,20 +109,24 @@ extension SettingsViewController: UITableViewDelegate {
 // MARK: - SettingsViewInput
 
 extension SettingsViewController: SettingsViewInput {
-    func setupInitialState() {
+    func setupInitialState(hasChangePassword: Bool) {
         setDelegates()
         registerCell()
         configureTableView()
         configureInterface()
+        
+        self.hasChangePassword = hasChangePassword
     }
     
     func setChangePhoneTitle(_ title: String) {
-        if changePhoneTitle != title {
-            changePhoneTitle = title
-            settingsTableView.reloadRows(
-                at: [IndexPath(row: SettingsCell.changePhone.rawValue, section: 0)],
-                with: UITableView.RowAnimation.fade)
-        }
+        
+        //FIXME: hidden
+        //        if changePhoneTitle != title {
+        //            changePhoneTitle = title
+        //            settingsTableView.reloadRows(
+        //                at: [IndexPath(row: SettingsCell.changePhone.rawValue, section: 0)],
+        //                with: UITableView.RowAnimation.fade)
+        //        }
     }
 }
 

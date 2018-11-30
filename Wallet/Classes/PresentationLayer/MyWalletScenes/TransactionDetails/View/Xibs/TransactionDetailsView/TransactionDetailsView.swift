@@ -45,26 +45,25 @@ class TransactionDetailView: LoadableFromXib {
 extension TransactionDetailView {
     private func configureAppearence(for transaction: TransactionDisplayable) {
         let direction = transaction.direction
-        let cryptoLabelColor: UIColor
         let directionImage: UIImage?
         let cryptoAmountString: String
+        let fiatAmountString: String
         
         if direction == .receive {
             gradientColors = Theme.Gradient.Details.detailsGreenGradient
-            directionImage = UIImage(named: "receiveTransactionIcon")
-            cryptoLabelColor = Theme.Text.Color.detailsGreen
+            directionImage = UIImage(named: "ReceiveStatusImg")
             cryptoAmountString = "+ \(transaction.cryptoAmountString)"
+            fiatAmountString = "+ \(transaction.fiatAmountString)"
         } else {
             gradientColors = Theme.Gradient.Details.detailsRedGradient
-            cryptoLabelColor = Theme.Text.Color.detailsRed
-            directionImage = UIImage(named: "sendTransactionIcon")
+            directionImage = UIImage(named: "SendStatusImg")
             cryptoAmountString = "- \(transaction.cryptoAmountString)"
+            fiatAmountString = "- \(transaction.fiatAmountString)"
         }
         
-        cryptoAmountLabel.textColor = cryptoLabelColor
         cryptoAmountLabel.text = cryptoAmountString
         directionImageView.image = directionImage
-        fiatAmountLabel.text = transaction.fiatAmountString
+        fiatAmountLabel.text = fiatAmountString
         timestampLabel.text = "\(transaction.timestamp)"
         pendingView.isHidden = transaction.transaction.status != .pending
     }
@@ -73,6 +72,7 @@ extension TransactionDetailView {
         fiatAmountLabel.textColor = Theme.Text.Color.captionGrey
         timestampLabel.textColor = Theme.Color.cloudyBlue
         pendingLabel.textColor = Theme.Color.cloudyBlue
+        cryptoAmountLabel.textColor = Theme.Text.Color.blackMain
         
         fiatAmountLabel.font = Theme.Font.smallText
         timestampLabel.font = Theme.Font.smallText
