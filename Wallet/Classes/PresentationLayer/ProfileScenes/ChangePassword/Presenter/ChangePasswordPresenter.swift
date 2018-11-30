@@ -61,6 +61,7 @@ extension ChangePasswordPresenter: ChangePasswordViewOutput {
 
     func viewIsReady() {
         view.setupInitialState()
+        view.setButtonEnabled(false)
         addLoader()
     }
     

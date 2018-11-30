@@ -24,7 +24,8 @@ class SettingsPresenter {
 extension SettingsPresenter: SettingsViewOutput {
     
     func viewIsReady() {
-        view.setupInitialState()
+        let hasChangePassword = !interactor.userLoginedWithSocialProvider()
+        view.setupInitialState(hasChangePassword: hasChangePassword)
         configureNavigationBar()
     }
     
