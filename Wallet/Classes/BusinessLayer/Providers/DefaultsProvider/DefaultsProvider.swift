@@ -113,6 +113,7 @@ class DefaultsProvider: DefaultsProviderProtocol {
         isBiometryAuthEnabled = false
         socialAuthProvider = nil
         lastTxTimastamp = nil
+        isFirstTransactionsLoad = true
     }
     
 }
