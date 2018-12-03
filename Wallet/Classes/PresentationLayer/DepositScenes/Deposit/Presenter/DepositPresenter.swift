@@ -57,7 +57,7 @@ extension DepositPresenter: DepositViewOutput {
         let index = interactor.getAccountIndex()
         accountsDataManager.scrollTo(index: index)
     }
-
+    
     func viewIsReady() {
         configureNavBar()
         
@@ -75,11 +75,11 @@ extension DepositPresenter: DepositViewOutput {
     
     func viewWillAppear() {
         view.viewController.setWhiteNavigationBarButtons()
-        depositShortPollingTimer.resume()
+        depositShortPollingTimer.startPolling()
     }
     
     func viewWillDisapear() {
-       depositShortPollingTimer.pause()
+        depositShortPollingTimer.invalidate()
     }
 }
 

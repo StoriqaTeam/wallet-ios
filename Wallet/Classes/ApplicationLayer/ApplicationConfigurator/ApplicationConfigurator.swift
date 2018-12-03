@@ -69,6 +69,5 @@ extension ApplicationConfigurator {
         self.shortPollingTimer.setOutputChannel(shortPollingChannel)
         self.depositShortPollingtimer.setOutputChannel(depositShortPollingChannel)
         self.shortPollingTimer.startPolling()
-        self.depositShortPollingtimer.startPolling()
     }
 }
