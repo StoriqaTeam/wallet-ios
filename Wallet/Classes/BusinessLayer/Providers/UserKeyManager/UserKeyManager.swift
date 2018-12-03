@@ -32,8 +32,9 @@ class UserKeyManager: UserKeyManagerProtocol {
     ///            or no private key in keychain returns nil.
     
     func getPrivateKeyFor(email: String) -> PrivateKey? {
+        let lowercasedEmail = email.lowercased()
         guard let pairs = keychain.privKeyEmail else { return nil }
-        guard let privKeyHex = pairs[email] else { return nil }
+        guard let privKeyHex = pairs[lowercasedEmail] else { return nil }
         return PrivateKey(raw: Data(hexString: privKeyHex))
     }
     
@@ -45,6 +46,7 @@ class UserKeyManager: UserKeyManagerProtocol {
     /// - Returns: return generated private key, otherwise nil.
     
     func addPrivateKeyIfNeeded(email: String) -> PrivateKey? {
+        
         if let privateKey = getPrivateKeyFor(email: email) {
             return privateKey
         }
