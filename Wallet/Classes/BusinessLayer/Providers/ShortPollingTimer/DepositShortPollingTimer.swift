@@ -52,7 +52,6 @@ class DepositShortPollingTimer: DepositShortPollingTimerProtocol {
     }
     
     func pause() {
-        
         if state == .paused {
             return
         }
@@ -74,6 +73,7 @@ class DepositShortPollingTimer: DepositShortPollingTimerProtocol {
     func invalidate() {
         timer?.cancel()
         timer = nil
+        log.debug("Deposit Polling timer invalidated")
     }
     
     // MARK: - Channel
@@ -98,13 +98,11 @@ extension DepositShortPollingTimer {
     @objc
     private func appMovedToBackground() {
         pause()
-        log.debug("Deposit Polling timer paused")
     }
     
     @objc
     private func appBecomeActive() {
         resume()
-        log.debug("Deposit Polling timer resumed")
     }
     
     private func subscribeNotification() {
