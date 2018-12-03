@@ -25,7 +25,7 @@
                             <constraint firstAttribute="width" constant="29" id="zCD-kV-Vi5"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5E-b2-s0y">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Send" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5E-b2-s0y">
                         <rect key="frame" x="60" y="10" width="31" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
@@ -43,7 +43,7 @@
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="BTC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91o-8T-wzl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="BTC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="91o-8T-wzl">
                         <rect key="frame" x="329" y="10" width="26" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                         <nil key="textColor"/>
@@ -55,8 +55,8 @@
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKQ-Zr-eqf">
-                        <rect key="frame" x="97" y="10" width="26" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKQ-Zr-eqf">
+                        <rect key="frame" x="95" y="10" width="26" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -70,6 +70,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="I5E-b2-s0y" firstAttribute="top" secondItem="nQn-DC-Y93" secondAttribute="top" id="34U-0K-6X4"/>
+                    <constraint firstItem="91o-8T-wzl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZKQ-Zr-eqf" secondAttribute="trailing" constant="6" id="4O2-Lt-71m"/>
                     <constraint firstItem="ZKQ-Zr-eqf" firstAttribute="centerY" secondItem="I5E-b2-s0y" secondAttribute="centerY" id="BX7-C6-OLf"/>
                     <constraint firstItem="I5E-b2-s0y" firstAttribute="leading" secondItem="nQn-DC-Y93" secondAttribute="trailing" constant="11" id="BY1-du-pF9"/>
                     <constraint firstItem="jHj-S5-XFc" firstAttribute="leading" secondItem="IBe-fH-g7A" secondAttribute="trailing" constant="4" id="CCs-6t-FuF"/>
@@ -85,7 +86,7 @@
                     <constraint firstItem="nQn-DC-Y93" firstAttribute="top" secondItem="Y6v-pi-4Rz" secondAttribute="top" constant="10" id="lnY-c4-ub5"/>
                     <constraint firstItem="jHj-S5-XFc" firstAttribute="width" secondItem="Y6v-pi-4Rz" secondAttribute="width" multiplier="1:2" id="sAh-BF-G1m"/>
                     <constraint firstAttribute="trailing" secondItem="91o-8T-wzl" secondAttribute="trailing" constant="20" id="u05-Yc-AfG"/>
-                    <constraint firstItem="ZKQ-Zr-eqf" firstAttribute="leading" secondItem="I5E-b2-s0y" secondAttribute="trailing" constant="6" id="w63-xI-Huz"/>
+                    <constraint firstItem="ZKQ-Zr-eqf" firstAttribute="leading" secondItem="I5E-b2-s0y" secondAttribute="trailing" constant="4" id="w63-xI-Huz"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GFd-FL-QFo" secondAttribute="bottom" constant="9" id="xH9-Cz-KWn"/>
                 </constraints>
             </tableViewCellContentView>

@@ -92,5 +92,18 @@ class SighnerTests: XCTestCase {
         XCTAssertEqual(signature.count, 64)
     }
     
+    func testSign() {
+        let pubKeyHex = "048d1464c6fe2e814f751414c523003a7d4e18e4e6fe4cc3607a65ac7af286afd4a08ae54f32edfa38e6f6c450966b6767e786efd4ac3d4fdd72c23a90344dcf89"
+        let signHex = "c22f95eb64109779369a5129a51c7b782ca8ba244e5bde84331ed4f3769420578d4a4d5cb680a7700f501aecfc891c67212480df8aacdad0ae8ad330e170dc5"
+        
+        
+        let signData = Data(hexString: signHex)
+        let pubKeyRaw = Data(hexString: pubKeyHex)
+        let pubkey = PublicKey(raw: pubKeyRaw)
+        
+        let isValid = signer.verify(signature: signData, publicKey: pubkey, message: "15438302545168B9603FD-860A-414F-BDD0-A11B79BECDCA")
+        print(isValid)
+    }
+    
 }
 

@@ -75,16 +75,21 @@ class KeychainProvider: KeychainProviderProtocol {
     
     var privKeyEmail: [String: String]? {
         get {
+            
+            
             guard let data = get(for: "privKeyEmail") else {
                 return nil
             }
             
             let object = try? JSONDecoder().decode([String:String].self, from: data)
-            return object
+            let lowercasedDict = makeKeysLowercased(dict: object)
+            return lowercasedDict
         }
         
         set {
-            let data = try? JSONEncoder().encode(newValue)
+        
+            let newDict = makeKeysLowercased(dict: newValue)
+            let data = try? JSONEncoder().encode(newDict)
             set(data, for: "privKeyEmail")
         }
     }
@@ -240,6 +245,16 @@ extension KeychainProvider {
     private func delete(for key: String) {
         let query = generateQuery(for: key)
         SecItemDelete(query as CFDictionary)
+    }
+    
+    private func makeKeysLowercased(dict: [String: String]?) -> [String: String]? {
+        guard let dictionary = dict else { return nil }
+        var newDict = dictionary
+        for key in newDict.keys {
+            newDict[key.lowercased()] = newDict.removeValue(forKey: key)
+        }
+        
+        return newDict
     }
 }
 

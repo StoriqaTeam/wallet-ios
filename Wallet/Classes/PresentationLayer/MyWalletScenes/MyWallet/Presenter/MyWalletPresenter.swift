@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox.AudioServices
 
 
 class MyWalletPresenter {
@@ -22,7 +23,7 @@ class MyWalletPresenter {
     private let currencyFormatter: CurrencyFormatterProtocol
     private var dataManager: MyWalletDataManager!
     private var pullToRefresh: UIRefreshControl!
-    private var notificationTopConstraint: NSLayoutConstraint?
+    private var hideNotificationAnimator: UIViewPropertyAnimator?
     private var notificationView: UIView?
     
     init(accountDisplayer: AccountDisplayerProtocol,
@@ -87,7 +88,7 @@ extension MyWalletPresenter: MyWalletInteractorOutput {
         }
         
         if !eth.isZero {
-            let maxEth = denominationUnitsConverter.amountToMaxUnits(stq, currency: .eth)
+            let maxEth = denominationUnitsConverter.amountToMaxUnits(eth, currency: .eth)
             let ethStr = currencyFormatter.getStringFrom(amount: maxEth, currency: .eth)
             
             if !notificationStr.isEmpty {
@@ -98,7 +99,7 @@ extension MyWalletPresenter: MyWalletInteractorOutput {
         }
         
         if !btc.isZero {
-            let maxBtc = denominationUnitsConverter.amountToMaxUnits(stq, currency: .btc)
+            let maxBtc = denominationUnitsConverter.amountToMaxUnits(btc, currency: .btc)
             let btcStr = currencyFormatter.getStringFrom(amount: maxBtc, currency: .btc)
             
             if !notificationStr.isEmpty {
@@ -194,19 +195,28 @@ extension MyWalletPresenter {
     }
     
     private func showReceivedNotification(message: String) {
+        if notificationView != nil {
+            self.notificationView?.removeFromSuperview()
+            self.notificationView = nil
+            self.hideNotificationAnimator = nil
+        }
+        
         let window = AppDelegate.currentWindow
-        
         let screenWidth = Constants.Sizes.screenWidth
+        let viewWidth = screenWidth - 40
         let font = Theme.Font.smallMediumWeightText
-        let strHeight = message.height(withConstrainedWidth: screenWidth - 40 - 32, font: font)
+        let strHeight = message.height(withConstrainedWidth: viewWidth - 32, font: font)
         let viewHeight = strHeight + 40
+        let hiddenOrigin = CGPoint(x: 20, y: -(viewHeight + 20))
         
-        let txNotificationView = UIView(frame: CGRect(x: 20, y: 20, width: screenWidth - 40, height: viewHeight))
-        txNotificationView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        let statusBarSize = max(UIApplication.shared.statusBarFrame.size.height, 20)
+        let shownOrigin = CGPoint(x: 20, y: statusBarSize)
+        
+        let txNotificationView = UIView(frame: CGRect(origin: hiddenOrigin, size: CGSize(width: viewWidth, height: viewHeight)))
+        txNotificationView.backgroundColor = UIColor.black.withAlphaComponent(0.65)
         txNotificationView.roundCorners(radius: 10)
-        txNotificationView.isUserInteractionEnabled = true
         
-        let label = UILabel(frame: CGRect(x: 16, y: 20, width: txNotificationView.frame.width - 32, height: strHeight))
+        let label = UILabel(frame: CGRect(x: 16, y: 20, width: viewWidth - 32, height: strHeight))
         label.text = message
         label.font = font
         label.textColor = .white
@@ -217,42 +227,30 @@ extension MyWalletPresenter {
         txNotificationView.addGestureRecognizer(tap)
         
         window.addSubview(txNotificationView)
+        notificationView = txNotificationView
         
-        txNotificationView.translatesAutoresizingMaskIntoConstraints = false
-        let topConstraint = txNotificationView.topAnchor.constraint(equalTo: window.topAnchor, constant: -(viewHeight + 20))
-        let centerXConstraint = txNotificationView.centerXAnchor.constraint(equalTo: window.centerXAnchor, constant: 0)
-        let widthConstraint = txNotificationView.widthAnchor.constraint(equalToConstant: screenWidth - 40)
-        let heightConstraint = txNotificationView.heightAnchor.constraint(equalToConstant: viewHeight)
-        NSLayoutConstraint.activate([topConstraint, centerXConstraint, widthConstraint, heightConstraint])
+        let animator = UIViewPropertyAnimator(duration: 0.35, dampingRatio: 0.5) {
+            txNotificationView.frame.origin = shownOrigin
+        }
         
-        self.notificationTopConstraint = topConstraint
-        self.notificationView = txNotificationView
+        animator.startAnimation()
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            
-            self?.notificationTopConstraint?.constant = 20
-            
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
-                window.layoutIfNeeded()
-            }, completion: { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-                    self?.hideNotification()
-                }
-            })
+        hideNotificationAnimator = UIViewPropertyAnimator(duration: 0.25, curve: .easeIn, animations: {
+            txNotificationView.frame.origin = hiddenOrigin
+        })
+        hideNotificationAnimator?.addCompletion({ _ in
+            self.notificationView?.removeFromSuperview()
+            self.notificationView = nil
+            self.hideNotificationAnimator = nil
+        })
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.hideNotificationAnimator?.startAnimation()
         }
     }
     
     @objc private func hideNotification() {
-        guard let notificationView = notificationView else {
-            return
-        }
-        
-        notificationTopConstraint?.constant = -(notificationView.frame.height + 20)
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
-            AppDelegate.currentWindow.layoutIfNeeded()
-        }, completion: { _ in
-            notificationView.removeFromSuperview()
-            self.notificationView = nil
-        })
+        hideNotificationAnimator?.startAnimation()
     }
 }
