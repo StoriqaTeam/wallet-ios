@@ -92,9 +92,6 @@ class SighnerTests: XCTestCase {
         XCTAssertEqual(signature.count, 64)
     }
     
-//    "timestamp": "1543830298414", "device-id": "8B9603FD-860A-414F-BDD0-A11B79BECDCA", "accept-language": "ru-RU;q=1.0", "user-agent": "Wallet/1.1 (com.storiqa.mobilewallet; build:36; iOS 12.1.0) Alamofire/4.7.3", "sign": "b4a4cfd5b4a460381a1e4d34c0707d550e533f2d26078a34d6e0717295faafcd24220245fb896f1d8484a3e2ddf6857911ef77684d45b8e53e93d311d3539d78"
-    
-    
     func testSign() {
         let pubKeyHex = "048d1464c6fe2e814f751414c523003a7d4e18e4e6fe4cc3607a65ac7af286afd4a08ae54f32edfa38e6f6c450966b6767e786efd4ac3d4fdd72c23a90344dcf89"
         let signHex = "c22f95eb64109779369a5129a51c7b782ca8ba244e5bde84331ed4f3769420578d4a4d5cb680a7700f501aecfc891c67212480df8aacdad0ae8ad330e170dc5"

@@ -41,10 +41,22 @@ extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryViewOutput {
 // MARK: - PasswordEmailRecoveryInteractorOutput
 
 extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryInteractorOutput {
+    func confirmEmailSentSuccessfully(email: String) {
+        storiqaLoader.stopLoader()
+        router.showEmailSengingSuccess(email: email,
+                                       popUpDelegate: self,
+                                       from: view.viewController)
+    }
+    
+    func confirmEmailSendingFailed(message: String) {
+        storiqaLoader.stopLoader()
+        router.showEmailSengingFailure(message: message,
+                                       from: view.viewController)
+    }
+    
     func setFormIsValid(_ valid: Bool) {
         view.setButtonEnabled(valid)
     }
-    
     
     func emailSentSuccessfully() {
         storiqaLoader.stopLoader()
@@ -56,8 +68,20 @@ extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryInteractorOutput 
         router.showFailure(message: message, popUpDelegate: self, from: view.viewController)
     }
     
+    func emailNotVerified() {
+        storiqaLoader.stopLoader()
+        router.showEmailNotVerified(popUpDelegate: self, from: view.viewController)
+    }
+    
 }
 
+// MARK: - PopUpRegistrationSuccessVMDelegate
+
+extension PasswordEmailRecoveryPresenter: PopUpRegistrationSuccessVMDelegate {
+    func okButtonPressed() {
+        
+    }
+}
 
 // MARK: - PasswordEmailRecoveryModuleInput
 
@@ -88,6 +112,15 @@ extension PasswordEmailRecoveryPresenter: PopUpPasswordEmailRecoveryFailedVMDele
     func retry() {
         storiqaLoader.startLoader()
         interactor.retry()
+    }
+}
+
+// MARK: - PopUpDeviceRegisterFailedSendEmailVMDelegate
+
+extension PasswordEmailRecoveryPresenter: PopUpResendConfirmEmailVMDelegate {
+    func resendButtonPressed() {
+        storiqaLoader.startLoader()
+        interactor.resendConfirmationEmail()
     }
 }
 
