@@ -65,10 +65,13 @@ class AccountsDataManager: NSObject {
         guard index < accounts.count else {
             return
         }
-        
+        let prevIndex = self.indexOfMajorCell()
         let indexPath = IndexPath(row: index, section: 0)
         accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-        delegate?.currentPageDidChange(index)
+        
+        if prevIndex != index {
+            delegate?.currentPageDidChange(index)
+        }
     }
     
 }
@@ -153,7 +156,10 @@ extension AccountsDataManager: UICollectionViewDelegate {
             // This is a much better way to scroll to a cell:
             let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
             accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            delegate?.currentPageDidChange(indexPath.row)
+            
+            if indexOfCellBeforeDragging != indexOfMajorCell {
+                delegate?.currentPageDidChange(indexOfMajorCell)
+            }
         }
     }
 }
