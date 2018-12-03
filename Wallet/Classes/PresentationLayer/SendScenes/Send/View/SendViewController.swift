@@ -361,7 +361,7 @@ extension SendViewController {
         isKeyboardAnimating = true
         
         let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
-        let textFieldOrigin = amountTextField.convert(amountTextField.bounds, to: view).maxY
+        let textFieldOrigin = amountTextField.convert(amountTextField.bounds, to: view).maxY + scrollView.contentOffset.y
         var delta = textFieldOrigin - keyboardOrigin + 8
         
         guard delta > 0 else { return }
