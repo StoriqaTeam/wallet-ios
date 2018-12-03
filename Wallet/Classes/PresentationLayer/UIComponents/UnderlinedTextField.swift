@@ -67,6 +67,15 @@ class UnderlinedTextField: UITextField {
         }
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if let hintMessage = hintMessage,
+            textFieldState == .idle {
+            showMessage(text: hintMessage, animated: false)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -111,7 +120,7 @@ class UnderlinedTextField: UITextField {
 
 extension UnderlinedTextField {
     
-    private func showMessage(text: String) {
+    private func showMessage(text: String, animated: Bool = true) {
         let width = self.frame.width - messageLabelHorizontalMargin * 2
         
         if messageLabel == nil {
@@ -131,9 +140,11 @@ extension UnderlinedTextField {
         messageLabel.isHidden = false
         messageLabel.textColor = errorColor
         messageLabel.text = text
+        messageLabel.preferredMaxLayoutWidth = width
+        messageLabel.sizeToFit()
         
         let height = text.height(withConstrainedWidth: width, font: messageLabel.font)
-        let frame = CGRect(origin: messageLabel.frame.origin, size: CGSize(width: messageLabel.frame.width, height: height))
+        let frame = CGRect(origin: messageLabel.frame.origin, size: CGSize(width: width, height: height))
         messageLabel.frame = frame
         
         if let bottomConstraint = bottomConstraint {
@@ -144,13 +155,20 @@ extension UnderlinedTextField {
                 
                 if newValue != bottomConstraintBackup {
                     bottomConstraint.constant = newValue
-                    animateConstraintChange()
+                    if animated {
+                        animateConstraintChange()
+                    } else {
+                        layoutBlock?()
+                    }
                 }
             }
         }
         
         resolveUnderlineColor()
-        animateMessageLabel()
+        
+        if animated {
+            animateMessageLabel()
+        }
     }
     
     private func hideError() {
@@ -166,9 +184,9 @@ extension UnderlinedTextField {
     }
     
     private func animateConstraintChange() {
-        UIView.animate(withDuration: 0.2) {[weak self] in
+        UIView.animate(withDuration: 0.2, animations: {[weak self] in
             self?.layoutBlock?()
-        }
+        })
     }
     
     private func animateMessageLabel() {
