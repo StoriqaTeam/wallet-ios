@@ -98,7 +98,11 @@ extension AccountsPresenter: AccountsViewOutput {
 extension AccountsPresenter: AccountsInteractorOutput {
     
     func ISODidChange(_ iso: String) {
-         view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
+        if view.viewController.isViewLoaded && view.viewController.view?.window != nil {
+            // viewController is visible
+            // to prevent changing bar color on other controllers in stack
+            view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
+        }
     }
     
     func transactionsDidChange(_ txs: [Transaction]) {
