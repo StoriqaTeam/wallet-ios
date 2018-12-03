@@ -144,7 +144,10 @@ extension ExchangePresenter: ExchangeInteractorOutput {
             return
         }
         
-        let outString = "1 \(fromCurrency.ISO) = \(oneUnitRate.double) \(toCurrency.ISO)"
+        let fromStr = currencyFormatter.getStringFrom(amount: 1, currency: fromCurrency)
+        let rateStr = currencyFormatter.getStringFrom(amount: oneUnitRate, currency: toCurrency)
+        
+        let outString = "\(fromStr) = \(rateStr)"
         view.updateRateLabel(text: outString)
     }
     
