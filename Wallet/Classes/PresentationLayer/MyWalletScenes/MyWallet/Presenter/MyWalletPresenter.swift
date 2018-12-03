@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox.AudioServices
 
 
 class MyWalletPresenter {
@@ -207,7 +208,9 @@ extension MyWalletPresenter {
         let strHeight = message.height(withConstrainedWidth: viewWidth - 32, font: font)
         let viewHeight = strHeight + 40
         let hiddenOrigin = CGPoint(x: 20, y: -(viewHeight + 20))
-        let shownOrigin = CGPoint(x: 20, y: 20)
+        
+        let statusBarSize = max(UIApplication.shared.statusBarFrame.size.height, 20)
+        let shownOrigin = CGPoint(x: 20, y: statusBarSize)
         
         let txNotificationView = UIView(frame: CGRect(origin: hiddenOrigin, size: CGSize(width: viewWidth, height: viewHeight)))
         txNotificationView.backgroundColor = UIColor.black.withAlphaComponent(0.65)
@@ -231,6 +234,7 @@ extension MyWalletPresenter {
         }
         
         animator.startAnimation()
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         
         hideNotificationAnimator = UIViewPropertyAnimator(duration: 0.25, curve: .easeIn, animations: {
             txNotificationView.frame.origin = hiddenOrigin
