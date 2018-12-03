@@ -34,7 +34,8 @@ class Application {
     lazy var currencyConverterFactory: CurrencyConverterFactoryProtocol = CurrencyConverterFactory(ratesProvider: self.ratesProvider)
     lazy var signHeaderFactory: SignHeaderFactoryProtocol = SignHeaderFactory(keychain: self.keychainProvider,
                                                                               signer: self.signer,
-                                                                              defaults: self.defaultsProvider)
+                                                                              defaults: self.defaultsProvider,
+                                                                              userkeyManager: self.userKeyManager)
     lazy var orderFactory: OrderFactoryProtocol = OrderFactory()
     
     

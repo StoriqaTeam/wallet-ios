@@ -19,19 +19,23 @@ class SignHeaderFactory: SignHeaderFactoryProtocol {
     private let keychain: KeychainProviderProtocol
     private let defaults: DefaultsProviderProtocol
     private let signer: SignerProtocol
+    private let userkeyManager: UserKeyManagerProtocol
     
-    
-    init(keychain: KeychainProviderProtocol, signer: SignerProtocol, defaults: DefaultsProviderProtocol) {
+    init(keychain: KeychainProviderProtocol,
+         signer: SignerProtocol,
+         defaults: DefaultsProviderProtocol,
+         userkeyManager: UserKeyManagerProtocol) {
         self.keychain = keychain
         self.defaults = defaults
         self.signer = signer
+        self.userkeyManager = userkeyManager
     }
     
     func createSignHeader(email: String) throws -> SignHeader {
         let deviceId = defaults.deviceId
         let timestamp = UInt64(Date().timeIntervalSince1970 * 1000)
         
-        guard let privateKey = getPrivateKey(email: email) else {
+        guard let privateKey = userkeyManager.getPrivateKeyFor(email: email) else {
             throw SignHeaderFactoryError.keychainEmpty
         }
         
@@ -48,19 +52,6 @@ class SignHeaderFactory: SignHeaderFactoryProtocol {
                           pubKeyHex: publicKey.hex)
     }
 }
-
-
-// MARK: - Private methods
-
-extension SignHeaderFactory {
-    
-    private func getPrivateKey(email: String) -> PrivateKey? {
-        guard let pairs = keychain.privKeyEmail else { return nil }
-        guard let privKeyHex = pairs[email] else { return nil }
-        return PrivateKey(raw: Data(hexString: privKeyHex))
-    }
-}
-
 
 enum SignHeaderFactoryError: Error, LocalizedError {
     case keychainEmpty
