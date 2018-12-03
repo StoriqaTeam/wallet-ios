@@ -40,11 +40,13 @@ class ResetPasswordNetworkProvider: NetworkLoadable, ResetPasswordNetworkProvide
     }
 }
 
+
 enum ResetPasswordNetworkProviderError: LocalizedError, Error {
     case unauthorized
     case internalServer
     case unknownError
     case sendEmailTimeout
+    case emailNotVerified
     
     init(code: Int, json: JSON) {
         switch code {
@@ -54,6 +56,9 @@ enum ResetPasswordNetworkProviderError: LocalizedError, Error {
             if let deviceErrors = json["email"].array,
                 deviceErrors.contains(where: { $0["code"] == "email_timeout" }) {
                 self = .sendEmailTimeout
+            } else if let deviceErrors = json["email"].array,
+                let _ = deviceErrors.first(where: { $0["code"] == "not_verified" }) {
+                self = .emailNotVerified
             } else {
                 self = .unknownError
             }
@@ -73,6 +78,8 @@ enum ResetPasswordNetworkProviderError: LocalizedError, Error {
         case .sendEmailTimeout:
             // FIXME: error message
             return "Can not send email more often then once in 30 seconds"
+        case .emailNotVerified:
+            return "Email not verified"
         case .unknownError:
             return Constants.Errors.userFriendly
         }
