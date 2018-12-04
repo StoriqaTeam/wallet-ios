@@ -19,7 +19,11 @@ class PinInputPresenter {
     
     private let kPasswordDigits = 4
     private var isPresentedModally = false
+    private var isBiometryAuthShown = false
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 
@@ -41,7 +45,13 @@ extension PinInputPresenter: PinInputViewOutput {
         let userPhoto = user.photo ?? #imageLiteral(resourceName: "profilePhotoPlaceholder")
         view.setupInitialState(userPhoto: userPhoto, userName: user.firstName)
         interactor.setIsLocked()
+        subscribeNotification()
     }
+    
+    func viewDidAppear() {
+        authWithBiometry(delay: 0)
+    }
+    
     
     func inputComplete(_ password: String) {
         interactor.validatePassword(password)
@@ -99,6 +109,7 @@ extension PinInputPresenter: PinInputInteractorOutput {
     }
     
     func touchAuthenticationSucceed() {
+        isBiometryAuthShown = false
         view.inputSucceed()
         
         if isPresentedModally {
@@ -109,6 +120,7 @@ extension PinInputPresenter: PinInputInteractorOutput {
     }
     
     func touchAuthenticationFailed(error: String) {
+        isBiometryAuthShown = false
         view.clearInput()
         
         if !error.isEmpty {
@@ -149,7 +161,30 @@ extension PinInputPresenter: PinInputCompleteProtocol {
     }
     
     func authWithBiometryTapped() {
+        isBiometryAuthShown = true
         interactor.authWithBiometry()
     }
     
+}
+
+
+// MARK: - Private methods
+extension PinInputPresenter {
+    private func subscribeNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(authWithBiometry),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+    }
+    
+    @objc private func authWithBiometry(delay: TimeInterval = 0.35) {
+        guard !isBiometryAuthShown && interactor.isBiometryAuthEnabled() else {
+            return
+        }
+        
+        isBiometryAuthShown = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+            self?.interactor.authWithBiometry()
+        }
+    }
 }
