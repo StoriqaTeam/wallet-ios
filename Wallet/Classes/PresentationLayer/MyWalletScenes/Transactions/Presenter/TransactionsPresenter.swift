@@ -21,6 +21,7 @@ class TransactionsPresenter: NSObject {
     private let transactionsMapper: TransactionMapperProtocol
     
     private var transactions = [TransactionDisplayable]()
+    private var transactionDirectionFilter = DirectionFilter.all
     
     init(transactionsDateFilter: TransactionDateFilterProtocol,
          transactionsMapper: TransactionMapperProtocol) {
@@ -81,7 +82,9 @@ extension TransactionsPresenter: TransactionsInteractorOutput {
     func updateTransactions(_ txs: [Transaction]) {
         let displayable = filteredDispayable(txs)
         self.transactions = displayable
-        transactionDataManager.updateTransactions(displayable)
+        
+        let directionFilteredTxs = filterTransactionsByDirection()
+        transactionDataManager.updateTransactions(directionFilteredTxs)
     }
 }
 
@@ -121,19 +124,21 @@ extension TransactionsPresenter {
     
     func getFilteredTransacitons(index: Int) -> [TransactionDisplayable] {
         guard let filter = DirectionFilter(rawValue: index) else { return [] }
-        let filteredTransactions = filterTransactionsByDirection(filter)
+        transactionDirectionFilter = filter
+        
+        let filteredTransactions = filterTransactionsByDirection()
         return filteredTransactions
     }
     
-    private func filterTransactionsByDirection(_ filter: DirectionFilter) -> [TransactionDisplayable] {
-        let dateFilteredTransactions = transactionsDateFilter.applyFilter(for: transactions)
-        switch filter {
+    private func filterTransactionsByDirection() -> [TransactionDisplayable] {
+        let directionFilteredTxs = transactionsDateFilter.applyFilter(for: transactions)
+        switch transactionDirectionFilter {
         case .all:
-            return dateFilteredTransactions
+            return directionFilteredTxs
         case .send:
-            return dateFilteredTransactions.filter { $0.direction == .send }
+            return directionFilteredTxs.filter { $0.direction == .send }
         case .receive:
-            return dateFilteredTransactions.filter { $0.direction == .receive }
+            return directionFilteredTxs.filter { $0.direction == .receive }
         }
     }
 }

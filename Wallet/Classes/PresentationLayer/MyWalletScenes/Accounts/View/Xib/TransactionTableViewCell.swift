@@ -43,13 +43,13 @@ extension TransactionTableViewCell {
         
         switch direction {
         case .send:
-            directionLabel.text = "Send"
+            directionLabel.text = "Sent"
             directionOpponentLabel.text = "to"
             cryptoAmountLabel.text = "- \(transaction.cryptoAmountString)"
             fiatAmountlabel.text = "- \(transaction.fiatAmountString)"
             directionImageView.image = UIImage(named: "SendStatusImg")
         case .receive:
-            directionLabel.text = "Receive"
+            directionLabel.text = "Received"
             directionOpponentLabel.text = "from"
             cryptoAmountLabel.text = "+ \(transaction.cryptoAmountString)"
             fiatAmountlabel.text = "+\(transaction.fiatAmountString)"
