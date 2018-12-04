@@ -26,6 +26,8 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
     private let context = LAContext()
     
     //FIXME: - localization
+    
+    // FIXME: msg
     private let touchAuthenticationReason = "Authentication is needed to access your account"//.localized()
     
     var canAuthWithBiometry: Bool {
@@ -99,6 +101,8 @@ enum BiometricAuthProviderError: LocalizedError, Error {
             let errorCode = error.code
             
             //TODO: тексты сообщений
+            
+            // FIXME: msg
             
             switch errorCode {
             case .appCancel:

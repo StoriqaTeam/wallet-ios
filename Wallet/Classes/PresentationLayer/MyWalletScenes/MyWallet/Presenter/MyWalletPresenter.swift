@@ -111,6 +111,7 @@ extension MyWalletPresenter: MyWalletInteractorOutput {
         }
         
         if !notificationStr.isEmpty {
+            // FIXME: msg
             notificationStr = "You received " + notificationStr
             showReceivedNotification(message: notificationStr)
         }

@@ -6,6 +6,9 @@
   Copyright © 2018 Storiqa. All rights reserved.
 */
 
+
+// FIXME: msg
+
 //TextFields
 
 "email" = "Email";
@@ -72,6 +75,7 @@
 "have_no_account" = "Haven’t got account?";
 "sign_in_social" = "Sign in via social account";
 "sign_up_social" = "Sign up via social account";
+"password_hint" = "At least: 8 characters, 1 capital, 1 digit";
 
 //Messages
 "passwords_nonequal" = "Passwords are not equal";
@@ -88,6 +92,7 @@
 "sign_out_title" = "Sure to sign out?";
 "sign_out_text" = "After signing out you won’t be able to receive notifications from Wallet app";
 "qr_code_hint" = "Place QR-code inside white frame. Try not to shake your phone.";
+"not_enough_funds" = "You haven’t got enough funds to send. Try to set another count.";
 
 
 //Error constants

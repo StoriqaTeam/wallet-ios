@@ -80,10 +80,10 @@ enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
         case .unauthorized:
             return "User unauthorized"
         case .deviceTokenExpired:
-            // FIXME: error message
+            // FIXME: msg error message
             return "Device token expired"
         case .deviceDiffers:
-            // FIXME: error message
+            // FIXME: msg error message
             return "Confirmed device differs from your device"
         case .internalServer, .unknownError:
             return Constants.Errors.userFriendly

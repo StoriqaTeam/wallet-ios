@@ -33,6 +33,7 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
             
             return "+" + userPhone
         }()
+        // FIXME: msg
         let button = phone.isEmpty ? "Connect" : "Change"
         let title = button + " telephone number"
         

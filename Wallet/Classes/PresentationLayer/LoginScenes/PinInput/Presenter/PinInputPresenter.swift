@@ -60,6 +60,8 @@ extension PinInputPresenter: PinInputViewOutput {
     func iForgotPinPressed() {
         //TODO: message, localization
         
+        // FIXME: msg
+        
         let alertController = UIAlertController(title: nil, message: "Do you want to reset your pin?", preferredStyle: .actionSheet)
         
         let resetPin = UIAlertAction(title: "Reset pin", style: .default, handler: { [weak self] _ -> Void in

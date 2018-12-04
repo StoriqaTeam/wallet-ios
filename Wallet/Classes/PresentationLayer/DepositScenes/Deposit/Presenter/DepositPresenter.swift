@@ -33,6 +33,7 @@ extension DepositPresenter: DepositViewOutput {
     func copyButtonPressed() {
         let address = interactor.getAddress()
         UIPasteboard.general.string = address
+        // FIXME: msg
         view.viewController.showAlert(message: "Address copied to clipboard")
     }
     

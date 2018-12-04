@@ -73,7 +73,7 @@ enum FeeNetworkProviderError: LocalizedError, Error {
         case 422:
             if let accountErrors = json["account"].array,
                 accountErrors.contains(where: { $0["code"] == "currency" }) {
-                // FIXME: error message
+                // FIXME: msg error message
                 self = .wrongCurrency(message: "Account currency doesn't match address currency")
             } else {
                 self = .unknownError

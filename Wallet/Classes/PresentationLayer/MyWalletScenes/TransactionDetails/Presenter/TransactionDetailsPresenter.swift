@@ -43,6 +43,7 @@ extension TransactionDetailsPresenter: TransactionDetailsViewOutput {
     }
     
     func addressTapped(_ address: String) {
+        // FIXME: msg
         UIPasteboard.general.string = address
         view.viewController.showAlert(title: "", message: "Address copied to clipboard")
     }

@@ -31,6 +31,7 @@ extension SettingsPresenter: SettingsViewOutput {
     
     func viewWillAppear() {
         let hasPhone = interactor.userHasPhone()
+        // FIXME: msg
         let title = (hasPhone ? "Change" : "Connect") + " telephone number"
         view.setChangePhoneTitle(title)
     }

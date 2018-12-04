@@ -35,7 +35,7 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
         confirmButton.title = "confirm_new_password".localized()
         
         passwordTextField.placeholder = "password".localized()
-        passwordTextField.hintMessage = "At least: 8 characters, 1 capital, 1 digit, 1 special sign"
+        passwordTextField.hintMessage = "password_hint".localized()
         passwordTextField.layoutBlock = layoutBlock
         
         repeatPasswordTextField.placeholder = "repeat_password".localized()

@@ -219,7 +219,7 @@ extension RegistrationViewController {
         emailTextField.layoutBlock = layoutBlock
         
         passwordTextField.placeholder = "password".localized()
-        passwordTextField.hintMessage = "At least: 8 characters, 1 capital, 1 digit, 1 special sign"
+        passwordTextField.hintMessage = "password_hint".localized()
         passwordTextField.layoutBlock = layoutBlock
         
         repeatPasswordTextField.placeholder = "repeat_password".localized()
@@ -254,6 +254,7 @@ extension RegistrationViewController {
     }
     
     private func addLinkToLicenceAgreement() {
+        // FIXME: msg
         let attributedString = NSMutableAttributedString(string: "I accept the License Agreement")
         let linkRange = NSRange(location: 13, length: 17)
         let textRange = NSRange(location: 0, length: 13)
@@ -266,6 +267,7 @@ extension RegistrationViewController {
     }
     
     private func addLinkToPrivatePolicy() {
+        // FIXME: msg
         let attributedString = NSMutableAttributedString(string: "I accept the Privacy Policy")
         let linkRange = NSRange(location: 13, length: 14)
         let textRange = NSRange(location: 0, length: 13)

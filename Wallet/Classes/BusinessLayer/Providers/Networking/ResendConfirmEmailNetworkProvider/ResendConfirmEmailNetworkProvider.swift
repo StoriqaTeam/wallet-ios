@@ -66,14 +66,12 @@ enum ResendConfirmEmailNetworkProviderError: Error, LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .badRequest:
-            return "Bad request"
         case .unauthorized:
             return "User unauthorized"
         case .sendEmailTimeout:
-            // FIXME: error message
+            // FIXME: msg error message
             return "Can not send email more often then once in 30 seconds"
-        case .internalServer, .unknownError:
+        case .badRequest, .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }
     }

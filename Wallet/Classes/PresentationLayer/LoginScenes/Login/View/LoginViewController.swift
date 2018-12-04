@@ -96,6 +96,7 @@ extension LoginViewController: SocialNetworkAuthViewDelegate {
 
     func socialNetworkAuthFailed() {
         //TODO: error message
+        // FIXME: msg
         self.showAlert(message: "socialNetworkAuthFailed")
     }
 
