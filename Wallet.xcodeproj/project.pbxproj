@@ -549,6 +549,8 @@
 		CE7297A5219B34F100A765B1 /* StepSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7297A4219B34F100A765B1 /* StepSlider.swift */; };
 		CE7297AA219B352200A765B1 /* PopUpSendConfirmSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7297A7219B352200A765B1 /* PopUpSendConfirmSuccessVM.swift */; };
 		CE81AD69218080CB0033F75D /* AuthTokenDefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81AD68218080CB0033F75D /* AuthTokenDefaultsProvider.swift */; };
+		CE83E21E21B68F300067A779 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE83E21D21B68F300067A779 /* NotificationView.xib */; };
+		CE83E22021B68F390067A779 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83E21F21B68F390067A779 /* NotificationView.swift */; };
 		CE8CC9922167A90D00EA9EED /* AccountDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */; };
 		CE8CC9952167A92B00EA9EED /* CurrencyImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */; };
 		CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9962167B7A500EA9EED /* Currency.swift */; };
@@ -1273,6 +1275,8 @@
 		CE7297A4219B34F100A765B1 /* StepSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepSlider.swift; sourceTree = "<group>"; };
 		CE7297A7219B352200A765B1 /* PopUpSendConfirmSuccessVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpSendConfirmSuccessVM.swift; sourceTree = "<group>"; };
 		CE81AD68218080CB0033F75D /* AuthTokenDefaultsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenDefaultsProvider.swift; sourceTree = "<group>"; };
+		CE83E21D21B68F300067A779 /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
+		CE83E21F21B68F390067A779 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayer.swift; sourceTree = "<group>"; };
 		CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyImageProvider.swift; sourceTree = "<group>"; };
 		CE8CC9962167B7A500EA9EED /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -4435,6 +4439,15 @@
 			path = StepSlider;
 			sourceTree = "<group>";
 		};
+		CE83E21C21B68EF50067A779 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				CE83E21D21B68F300067A779 /* NotificationView.xib */,
+				CE83E21F21B68F390067A779 /* NotificationView.swift */,
+			);
+			path = NotificationView;
+			sourceTree = "<group>";
+		};
 		CE8CC9902167A8F200EA9EED /* AccountDisplayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -4609,6 +4622,7 @@
 		CEFC9C892154E8E400962356 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				CE83E21C21B68EF50067A779 /* NotificationView */,
 				CEFC9C8A2154E8EF00962356 /* AccountViewCell */,
 			);
 			path = Xib;
@@ -5102,6 +5116,7 @@
 				A51CB55A21590F6800CDC80C /* TransactionCell.xib in Resources */,
 				A56B4C7C215CFE080017B337 /* EmptyView.xib in Resources */,
 				CE6A0974216CE3AE004A96A8 /* ConnectPhone.storyboard in Resources */,
+				CE83E21E21B68F300067A779 /* NotificationView.xib in Resources */,
 				CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */,
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
 				A522AADF21997DE400C39826 /* PinSetupCell.xib in Resources */,
@@ -5766,6 +5781,7 @@
 				B8C5EDDE2189ADE600345B79 /* RealmRate.swift in Sources */,
 				4C9AC1E9C6D0D8C5181C95BF /* TransactionFilterViewController.swift in Sources */,
 				A7B879DB4C2E78DC60D11D96 /* TransactionFilterModulePresenter.swift in Sources */,
+				CE83E22021B68F390067A779 /* NotificationView.swift in Sources */,
 				AE25E836624D8FB16AABA72B /* TransactionFilterModuleInteractorInput.swift in Sources */,
 				6FC1A3D461CBFECC89185438 /* TransactionFilterModuleInteractorOutput.swift in Sources */,
 				BE9590E0480343163111D6DB /* TransactionFilterModuleInteractor.swift in Sources */,
