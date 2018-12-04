@@ -209,8 +209,7 @@ extension MyWalletPresenter {
             return
         }
         
-        let statusBarSize = max(UIApplication.shared.statusBarFrame.size.height, 20)
-        let shownOrigin = CGPoint(x: 20, y: statusBarSize)
+        let shownOrigin = CGPoint.zero
         let hiddenOrigin = notificationView.frame.origin
         let animator = UIViewPropertyAnimator(duration: 0.35, dampingRatio: 0.5) {
             notificationView.frame.origin = shownOrigin
@@ -268,24 +267,13 @@ extension MyWalletPresenter {
     
     private func addNotificationView(message: String) {
         let window = AppDelegate.currentWindow
-        let screenWidth = Constants.Sizes.screenWidth
-        let viewWidth = screenWidth - 40
-        let font = Theme.Font.smallMediumWeightText
-        let strHeight = message.height(withConstrainedWidth: viewWidth - 32, font: font)
-        let viewHeight = strHeight + 40
-        let hiddenOrigin = CGPoint(x: 20, y: -(viewHeight + 20))
-        
-        
-        let txNotificationView = UIView(frame: CGRect(origin: hiddenOrigin, size: CGSize(width: viewWidth, height: viewHeight)))
-        txNotificationView.backgroundColor = UIColor.black.withAlphaComponent(0.65)
-        txNotificationView.roundCorners(radius: 10)
-        
-        let label = UILabel(frame: CGRect(x: 16, y: 20, width: viewWidth - 32, height: strHeight))
-        label.text = message
-        label.font = font
-        label.textColor = .white
-        label.numberOfLines = 0
-        txNotificationView.addSubview(label)
+        let viewWidth = Constants.Sizes.screenWidth
+        let hiddenOrigin = CGPoint(x: 0, y: -200)
+        let txNotificationView = NotificationView(frame: CGRect(origin: hiddenOrigin, size: CGSize(width: viewWidth, height: 200)))
+        txNotificationView.setMessage(message)
+        txNotificationView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([txNotificationView.widthAnchor.constraint(equalToConstant: viewWidth)])
+        txNotificationView.layoutIfNeeded()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideNotification))
         txNotificationView.addGestureRecognizer(tap)
