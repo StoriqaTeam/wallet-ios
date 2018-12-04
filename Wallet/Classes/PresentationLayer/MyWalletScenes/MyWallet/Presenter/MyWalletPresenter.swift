@@ -25,6 +25,7 @@ class MyWalletPresenter {
     private var pullToRefresh: UIRefreshControl!
     private var hideNotificationAnimator: UIViewPropertyAnimator?
     private var notificationView: UIView?
+    private var isPanGestureActive = false
     
     init(accountDisplayer: AccountDisplayerProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol,
@@ -126,7 +127,6 @@ extension MyWalletPresenter: MyWalletModuleInput {
         return view.viewController
     }
     
-
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }
@@ -198,9 +198,75 @@ extension MyWalletPresenter {
         if notificationView != nil {
             self.notificationView?.removeFromSuperview()
             self.notificationView = nil
+            self.hideNotificationAnimator?.stopAnimation(true)
             self.hideNotificationAnimator = nil
+            isPanGestureActive = false
         }
         
+        addNotificationView(message: message)
+        
+        guard let notificationView = notificationView else {
+            return
+        }
+        
+        let statusBarSize = max(UIApplication.shared.statusBarFrame.size.height, 20)
+        let shownOrigin = CGPoint(x: 20, y: statusBarSize)
+        let hiddenOrigin = notificationView.frame.origin
+        let animator = UIViewPropertyAnimator(duration: 0.35, dampingRatio: 0.5) {
+            notificationView.frame.origin = shownOrigin
+        }
+        
+        animator.startAnimation()
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        
+        hideNotificationAnimator = UIViewPropertyAnimator(duration: 0.25, curve: .easeIn, animations: {
+            notificationView.frame.origin = hiddenOrigin
+        })
+        hideNotificationAnimator?.addCompletion({ _ in
+            self.notificationView?.removeFromSuperview()
+            self.notificationView = nil
+            self.hideNotificationAnimator = nil
+        })
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.hideNotification()
+        }
+    }
+    
+    @objc private func hideNotification() {
+        guard !isPanGestureActive else { return }
+        hideNotificationAnimator?.startAnimation()
+    }
+    
+    @objc private func handlePan(recognizer: UIPanGestureRecognizer) {
+        guard let notificationView = notificationView else {
+            return
+        }
+        
+        let window = AppDelegate.currentWindow
+        let translation = recognizer.translation(in: window)
+        
+        switch recognizer.state {
+        case .began:
+            isPanGestureActive = true
+            
+        case .ended:
+            isPanGestureActive = false
+            
+            if translation.y < -10 {
+                hideNotification()
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+                    self?.hideNotification()
+                }
+            }
+        default:
+            let progress = max(0, min(1, -translation.y / notificationView.frame.height))
+            hideNotificationAnimator?.fractionComplete = progress
+        }
+    }
+    
+    private func addNotificationView(message: String) {
         let window = AppDelegate.currentWindow
         let screenWidth = Constants.Sizes.screenWidth
         let viewWidth = screenWidth - 40
@@ -209,8 +275,6 @@ extension MyWalletPresenter {
         let viewHeight = strHeight + 40
         let hiddenOrigin = CGPoint(x: 20, y: -(viewHeight + 20))
         
-        let statusBarSize = max(UIApplication.shared.statusBarFrame.size.height, 20)
-        let shownOrigin = CGPoint(x: 20, y: statusBarSize)
         
         let txNotificationView = UIView(frame: CGRect(origin: hiddenOrigin, size: CGSize(width: viewWidth, height: viewHeight)))
         txNotificationView.backgroundColor = UIColor.black.withAlphaComponent(0.65)
@@ -226,31 +290,10 @@ extension MyWalletPresenter {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideNotification))
         txNotificationView.addGestureRecognizer(tap)
         
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan(recognizer:)))
+        txNotificationView.addGestureRecognizer(pan)
+        
         window.addSubview(txNotificationView)
         notificationView = txNotificationView
-        
-        let animator = UIViewPropertyAnimator(duration: 0.35, dampingRatio: 0.5) {
-            txNotificationView.frame.origin = shownOrigin
-        }
-        
-        animator.startAnimation()
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-        
-        hideNotificationAnimator = UIViewPropertyAnimator(duration: 0.25, curve: .easeIn, animations: {
-            txNotificationView.frame.origin = hiddenOrigin
-        })
-        hideNotificationAnimator?.addCompletion({ _ in
-            self.notificationView?.removeFromSuperview()
-            self.notificationView = nil
-            self.hideNotificationAnimator = nil
-        })
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-            self?.hideNotificationAnimator?.startAnimation()
-        }
-    }
-    
-    @objc private func hideNotification() {
-        hideNotificationAnimator?.startAnimation()
     }
 }
