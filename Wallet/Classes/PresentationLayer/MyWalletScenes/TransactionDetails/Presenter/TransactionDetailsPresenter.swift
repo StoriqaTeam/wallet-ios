@@ -10,12 +10,6 @@
 import UIKit
 
 
-enum BlockchainExplorer: String {
-    case Blockcypher
-    case Etherscan
-}
-
-
 class TransactionDetailsPresenter {
     
     weak var view: TransactionDetailsViewInput!
