@@ -14,6 +14,7 @@ class TransactionDetailsViewController: UIViewController {
     var output: TransactionDetailsViewOutput!
 
     @IBOutlet weak var detailView: TransactionDetailView!
+    @IBOutlet weak var blockchainTransactionButton: UIButton!
     
     
     // MARK: Life cycle
@@ -27,7 +28,10 @@ class TransactionDetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         output.viewWillAppear()
     }
-
+    
+    @IBAction func viewOnBlockchainTapped(_ sender: UIButton) {
+        output.viewInBlockchain()
+    }
 }
 
 
@@ -39,6 +43,14 @@ extension TransactionDetailsViewController: TransactionDetailsViewInput {
         detailView.configure(transaction: transaction)
         addDescriptionView(for: transaction)
         view.layoutSubviews()
+    }
+    
+    func setupViewInBlockchainButtonVisibility(isVisible: Bool) {
+        blockchainTransactionButton.isHidden = !isVisible
+    }
+    
+    func setupBlockchainButton(title: String) {
+        blockchainTransactionButton.titleLabel?.text = title
     }
 
 }

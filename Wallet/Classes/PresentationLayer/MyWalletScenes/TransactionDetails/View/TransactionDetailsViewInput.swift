@@ -11,4 +11,6 @@ import UIKit
 
 protocol TransactionDetailsViewInput: class, Presentable {
     func setupInitialState(transaction: TransactionDisplayable)
+    func setupViewInBlockchainButtonVisibility(isVisible: Bool)
+    func setupBlockchainButton(title: String)
 }
