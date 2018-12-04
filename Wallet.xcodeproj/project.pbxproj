@@ -276,6 +276,7 @@
 		A52FE2B221860D2300100E21 /* ChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FE2B121860D2300100E21 /* ChannelTests.swift */; };
 		A52FEB7921A7F06A00DFA7BC /* OrderObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FEB7821A7F06A00DFA7BC /* OrderObserver.swift */; };
 		A52FEB7D21A7FAB100DFA7BC /* OrderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FEB7C21A7FAB100DFA7BC /* OrderFactory.swift */; };
+		A54B5B1421B6B76200BDCC94 /* BlockchainExplorerLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54B5B1321B6B76200BDCC94 /* BlockchainExplorerLinkHandler.swift */; };
 		A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55A196C2155349000330EB8 /* Accounts.storyboard */; };
 		A55A196F2155383B00330EB8 /* AccountsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A196E2155383B00330EB8 /* AccountsProvider.swift */; };
 		A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A197521554BF600330EB8 /* AccountsDataManager.swift */; };
@@ -998,6 +999,7 @@
 		A52FE2B121860D2300100E21 /* ChannelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTests.swift; sourceTree = "<group>"; };
 		A52FEB7821A7F06A00DFA7BC /* OrderObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderObserver.swift; sourceTree = "<group>"; };
 		A52FEB7C21A7FAB100DFA7BC /* OrderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFactory.swift; sourceTree = "<group>"; };
+		A54B5B1321B6B76200BDCC94 /* BlockchainExplorerLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainExplorerLinkHandler.swift; sourceTree = "<group>"; };
 		A55A196C2155349000330EB8 /* Accounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Accounts.storyboard; sourceTree = "<group>"; };
 		A55A196E2155383B00330EB8 /* AccountsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsProvider.swift; sourceTree = "<group>"; };
 		A55A197521554BF600330EB8 /* AccountsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataManager.swift; sourceTree = "<group>"; };
@@ -3554,6 +3556,7 @@
 				CE8CC99B216B7ED200EA9EED /* AccountTypeResolver */,
 				CE41F3442181A8F100070D5D /* UniversalLinkParser */,
 				CE41F35721831C6400070D5D /* TransactionsUpdater */,
+				A54B5B1321B6B76200BDCC94 /* BlockchainExplorerLinkHandler.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -5666,6 +5669,7 @@
 				A56ED387216CD715009FA58B /* TransactionDetailsViewController.swift in Sources */,
 				A46ED52D7D6FB1332671B806 /* AccountsViewController.swift in Sources */,
 				A5F59AA721621968005F1765 /* TestConfigurator.swift in Sources */,
+				A54B5B1421B6B76200BDCC94 /* BlockchainExplorerLinkHandler.swift in Sources */,
 				CED822EA215BE09F00693B92 /* CurrencyFormatter.swift in Sources */,
 				976C69F50B9E785FE8122C16 /* AccountsPresenter.swift in Sources */,
 				AE3D99DB0E383E9F099380B0 /* AccountsInteractorInput.swift in Sources */,
