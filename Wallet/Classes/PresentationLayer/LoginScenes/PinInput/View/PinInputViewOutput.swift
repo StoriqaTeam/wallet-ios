@@ -14,4 +14,5 @@ protocol PinInputViewOutput: class {
     func pinContainer(_ pinContainer: PinContainerView)
     func inputComplete(_ password: String)
     func iForgotPinPressed()
+    func viewDidAppear()
 }

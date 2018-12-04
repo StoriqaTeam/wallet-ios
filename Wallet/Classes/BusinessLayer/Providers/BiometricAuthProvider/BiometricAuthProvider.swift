@@ -107,8 +107,6 @@ enum BiometricAuthProviderError: LocalizedError, Error {
                 return "The user failed to provide valid credentials"
             case .passcodeNotSet:
                 return "Passcode is not set on the device"
-            case .systemCancel:
-                return "Authentication was cancelled by the system"
             case .biometryLockout:
                 return "Biometry is not available on the device"
             case .biometryNotAvailable:

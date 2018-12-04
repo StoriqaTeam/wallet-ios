@@ -41,6 +41,11 @@ class PinInputViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.viewDidAppear()
+    }
+    
     
     // MARK: Life cycle
     
