@@ -39,6 +39,8 @@ class SocialNetworkAuthViewModel: NSObject {
     }
     
     func signInWithFacebook(from viewController: UIViewController) {
+        facebookLoginManager.loginBehavior = LoginBehavior.web
+        
         let viewController = UIViewController()
         facebookLoginManager.logIn(
             readPermissions: [.userGender, .publicProfile, .email],
