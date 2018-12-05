@@ -69,8 +69,7 @@ enum EmailConfirmProviderError: LocalizedError, Error {
         case .unauthorized:
             return "User unauthorized"
         case .deviceTokenExpired:
-            // FIXME: msg error message
-            return "Device token expired"
+            return "device_token_expired".localized()
         case .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }

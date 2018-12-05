@@ -79,6 +79,7 @@ extension RegistrationPresenter: RegistrationViewOutput {
     }
     
     func socialNetworkRegisterFailed() {
+        // FIXME: msg
         router.showSocialNetworkFailure(message: Constants.Errors.userFriendly, from: view.viewController)
     }
     

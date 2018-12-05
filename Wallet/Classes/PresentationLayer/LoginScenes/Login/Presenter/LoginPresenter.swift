@@ -24,11 +24,15 @@ class LoginPresenter {
 // MARK: - LoginViewOutput
 
 extension LoginPresenter: LoginViewOutput {
+    func socialNetworkRegisterFailed() {
+        // FIXME: msg
+        router.showFailure(message: Constants.Errors.userFriendly, from: view.viewController)
+    }
     
     func showPasswordRecovery() {
         router.showPasswordRecovery(from: view.viewController)
     }
-
+    
     func viewIsReady() {
         view.setupInitialState()
         let viewModel = interactor.getSocialVM()
@@ -36,7 +40,7 @@ extension LoginPresenter: LoginViewOutput {
         addLoader()
         interactor.viewIsReady()
     }
-
+    
     func showRegistration() {
         router.showRegistration()
     }
@@ -109,8 +113,8 @@ extension LoginPresenter: LoginInteractorOutput {
     
     func confirmEmailSendingFailed(message: String) {
         storiqaLoader.stopLoader()
-        router.showEmailSengingFailure(message: message,
-                                       from: view.viewController)
+        router.showFailure(message: message,
+                           from: view.viewController)
     }
     
 }
@@ -122,7 +126,7 @@ extension LoginPresenter: LoginModuleInput {
     func present() {
         view.presentAsNavController()
     }
-
+    
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
     }

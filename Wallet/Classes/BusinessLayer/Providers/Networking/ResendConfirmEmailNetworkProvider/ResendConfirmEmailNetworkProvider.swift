@@ -69,8 +69,7 @@ enum ResendConfirmEmailNetworkProviderError: Error, LocalizedError {
         case .unauthorized:
             return "User unauthorized"
         case .sendEmailTimeout:
-            // FIXME: msg error message
-            return "Can not send email more often then once in 30 seconds"
+            return "send_email_timeout".localized()
         case .badRequest, .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }

@@ -80,11 +80,9 @@ enum AddDeviceNetworkProviderError: Error, LocalizedError {
         case .unauthorized:
             return "User unauthorized"
         case .deviceAlreadyExists:
-            // FIXME: msg error message
-            return "Device already exists"
+            return "This device is already confirmed"
         case .sendEmailTimeout:
-            // FIXME: msg error message
-            return "Can not send email more often then once in 30 seconds"
+            return "send_email_timeout".localized()
         case .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }

@@ -81,8 +81,8 @@ extension LoginRouter: LoginRouterInput {
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
-    func showEmailSengingFailure(message: String,
-                                 from viewController: UIViewController) {
+    func showFailure(message: String,
+                     from viewController: UIViewController) {
         let viewModel = PopUpDefaultFailureVM(message: message)
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }

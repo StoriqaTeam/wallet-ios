@@ -22,7 +22,7 @@ class PinInputPresenter {
     private var isBiometryAuthShown = false
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        unsubscribeFromNotification()
     }
 }
 
@@ -45,7 +45,7 @@ extension PinInputPresenter: PinInputViewOutput {
         let userPhoto = user.photo ?? #imageLiteral(resourceName: "profilePhotoPlaceholder")
         view.setupInitialState(userPhoto: userPhoto, userName: user.firstName)
         interactor.setIsLocked()
-        subscribeNotification()
+        subscribeForNotification()
     }
     
     func viewDidAppear() {
@@ -58,7 +58,7 @@ extension PinInputPresenter: PinInputViewOutput {
     }
 
     func iForgotPinPressed() {
-        //TODO: message, localization
+        // TODO: message, localization
         
         // FIXME: msg
         
@@ -66,6 +66,8 @@ extension PinInputPresenter: PinInputViewOutput {
         
         let resetPin = UIAlertAction(title: "Reset pin", style: .default, handler: { [weak self] _ -> Void in
             guard let strongSelf = self else { return }
+            
+            strongSelf.unsubscribeFromNotification()
             
             let completion = { [weak strongSelf] in
                 strongSelf?.interactor.resetPin()
@@ -97,6 +99,7 @@ extension PinInputPresenter: PinInputInteractorOutput {
     
     func passwordIsCorrect() {
         view.inputSucceed()
+        unsubscribeFromNotification()
         
         if isPresentedModally {
             view.dismissModal()
@@ -172,12 +175,17 @@ extension PinInputPresenter: PinInputCompleteProtocol {
 
 // MARK: - Private methods
 extension PinInputPresenter {
-    private func subscribeNotification() {
+    private func subscribeForNotification() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(authWithBiometry),
                                                name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
     }
+    
+    private func unsubscribeFromNotification() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     
     @objc private func authWithBiometry(delay: TimeInterval = 0.35) {
         guard !isBiometryAuthShown && interactor.isBiometryAuthEnabled() else {

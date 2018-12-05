@@ -139,7 +139,7 @@ extension SendPresenter: SendInteractorOutput {
     
     func updateAddressIsValid(_ valid: Bool) {
         // FIXME: msg
-        view.setAddressError(valid ? nil : "Addres is invalid")
+        view.setAddressError(valid ? nil : "Address is invalid")
     }
     
     func updateAccounts(accounts: [Account], index: Int) {

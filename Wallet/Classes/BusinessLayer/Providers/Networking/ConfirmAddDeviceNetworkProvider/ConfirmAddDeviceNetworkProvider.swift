@@ -75,17 +75,14 @@ enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .badRequest:
-            return "Bad request"
         case .unauthorized:
             return "User unauthorized"
         case .deviceTokenExpired:
-            // FIXME: msg error message
-            return "Device token expired"
+            return "device_token_expired".localized()
         case .deviceDiffers:
-            // FIXME: msg error message
+            // FIXME: msg
             return "Confirmed device differs from your device"
-        case .internalServer, .unknownError:
+        case .badRequest, .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }
     }

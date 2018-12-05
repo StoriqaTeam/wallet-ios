@@ -25,8 +25,6 @@ class SessionsViewController: UIViewController {
     
     
     @objc func trashButtonTapped() {
-        // FIXME: msg
-        
         showAlert(title: "", message: "Do you want to delete all sessions?") {
             self.output.deleteAllSessions()
         }

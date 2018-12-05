@@ -76,8 +76,7 @@ enum ResetPasswordNetworkProviderError: LocalizedError, Error {
         case .internalServer:
             return "Internal server error"
         case .sendEmailTimeout:
-            // FIXME: msg error message
-            return "Can not send email more often then once in 30 seconds"
+            return "send_email_timeout".localized()
         case .emailNotVerified:
             return "Email not verified"
         case .unknownError:
