@@ -24,9 +24,9 @@ class LoginPresenter {
 // MARK: - LoginViewOutput
 
 extension LoginPresenter: LoginViewOutput {
-    func socialNetworkRegisterFailed() {
-        // FIXME: msg
-        router.showFailure(message: Constants.Errors.userFriendly, from: view.viewController)
+    func socialNetworkRegisterFailed(tokenProvider: SocialNetworkTokenProvider) {
+        let message = "We couldn’t retrieve your data from " + tokenProvider.displayableName
+        router.showFailure(message: message, from: view.viewController)
     }
     
     func showPasswordRecovery() {

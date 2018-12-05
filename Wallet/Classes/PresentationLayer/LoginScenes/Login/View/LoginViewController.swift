@@ -94,8 +94,8 @@ extension LoginViewController: SocialNetworkAuthViewDelegate {
         output.signIn(tokenProvider: provider, token: token, email: email)
     }
 
-    func socialNetworkAuthFailed() {
-        output.socialNetworkRegisterFailed()
+    func socialNetworkAuthFailed(provider: SocialNetworkTokenProvider) {
+        output.socialNetworkRegisterFailed(tokenProvider: provider)
     }
 
     func socialNetworkAuthViewDidTapFooterButton() {

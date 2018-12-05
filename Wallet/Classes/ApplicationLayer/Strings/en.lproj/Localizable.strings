@@ -7,8 +7,6 @@
 */
 
 
-// FIXME: msg
-
 //TextFields
 
 "email" = "Email";
@@ -77,8 +75,8 @@
 "passwords_nonequal" = "Passwords do not match";
 "email_sent" = "Email sent successfully";
 "check_email" = "Check your mailbox! We've sent you the email address confirmation link";
-"smth_went_wrong" = "Oops! Something gone wrong!";
-"psw_recovery_result_success_title" = "Password reset complete";
+"smth_went_wrong" = "Oops! Something went wrong.";
+"psw_recovery_result_success_title" = "Password reset complete.";
 "psw_recovery_result_success_subtitle" = "You have successfully set up new password.";
 "confirm_send" = "Confirm transfer";
 "to" = "to";

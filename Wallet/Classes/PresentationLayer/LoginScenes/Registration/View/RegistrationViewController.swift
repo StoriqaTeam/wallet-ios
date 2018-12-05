@@ -190,8 +190,8 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
         output.socialNetworkRegisterSucceed(provider: provider, token: token, email: email)
     }
     
-    func socialNetworkAuthFailed() {
-        output.socialNetworkRegisterFailed()
+    func socialNetworkAuthFailed(provider: SocialNetworkTokenProvider) {
+        output.socialNetworkRegisterFailed(tokenProvider: provider)
     }
     
     func socialNetworkAuthViewDidTapFooterButton() {

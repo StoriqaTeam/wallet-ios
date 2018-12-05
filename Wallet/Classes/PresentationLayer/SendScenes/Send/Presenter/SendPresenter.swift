@@ -138,8 +138,7 @@ extension SendPresenter: SendInteractorOutput {
     }
     
     func updateAddressIsValid(_ valid: Bool) {
-        // FIXME: msg
-        view.setAddressError(valid ? nil : "Address is invalid")
+        view.setAddressError(valid ? nil : "Address is non-existent")
     }
     
     func updateAccounts(accounts: [Account], index: Int) {
@@ -221,8 +220,7 @@ extension SendPresenter: SendInteractorOutput {
         storiqaLoader.stopLoader()
         
         let limitStr = currencyFormatter.getStringFrom(amount: limit.decimalValue(), currency: currency)
-        // FIXME: msg
-        let message = "Day limit \(limitStr) exceeded for account"
+        let message = "You’ve exceeded you daily transaction limit of \(limitStr) for this account."
         
         router.showFailure(message: message, from: view.viewController)
     }

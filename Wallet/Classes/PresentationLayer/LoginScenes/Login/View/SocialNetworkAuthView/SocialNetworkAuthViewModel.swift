@@ -12,12 +12,13 @@ import FBSDKCoreKit
 
 
 protocol SocialNetworkAuthViewModelProtocol: class {
-    func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String, email: String)>)
+    func signInWithResult(_ result: Result<(token: String, email: String)>,
+                          provider: SocialNetworkTokenProvider)
 }
 
 
 class SocialNetworkAuthViewModel: NSObject {
-    typealias Token = (provider: SocialNetworkTokenProvider, token: String, email: String)
+    typealias Token = (token: String, email: String)
     
     weak var delegate: SocialNetworkAuthViewModelProtocol!
     
@@ -49,7 +50,7 @@ class SocialNetworkAuthViewModel: NSObject {
                     log.debug(error)
                     let err = SocialNetworkViewModelError.failToSign(error: error)
                     let result: Result<Token> = .failure(err)
-                    self?.delegate.signInWithResult(result)
+                    self?.delegate.signInWithResult(result, provider: .facebook)
                 case .cancelled:
                     log.debug("User cancelled login.")
                 case .success(let grantedPermissions, let declinedPermissions, let accessToken):
@@ -62,7 +63,7 @@ class SocialNetworkAuthViewModel: NSObject {
                         
                         if let error = error {
                             let result: Result<Token> = .failure(error)
-                            self?.delegate.signInWithResult(result)
+                            self?.delegate.signInWithResult(result, provider: .facebook)
                             return
                         }
                         
@@ -70,12 +71,12 @@ class SocialNetworkAuthViewModel: NSObject {
                             let email = userInfo["email"] else {
                             let error = SocialNetworkViewModelError.emptyUserEmail
                             let result: Result<Token> = .failure(error)
-                            self?.delegate.signInWithResult(result)
+                            self?.delegate.signInWithResult(result, provider: .facebook)
                             return
                         }
                         
-                        let result: Result<Token> = .success((.facebook, accessToken.authenticationToken, email: email))
-                        self?.delegate.signInWithResult(result)
+                        let result: Result<Token> = .success((accessToken.authenticationToken, email: email))
+                        self?.delegate.signInWithResult(result, provider: .facebook)
                     })
                 }
             })
@@ -99,18 +100,18 @@ extension SocialNetworkAuthViewModel: GIDSignInDelegate {
             guard let userEmail = user.profile.email else {
                 let error = SocialNetworkViewModelError.emptyUserEmail
                 result = .failure(error)
-                delegate.signInWithResult(result)
+                delegate.signInWithResult(result, provider: .google)
                 return
             }
             
-            result = .success((SocialNetworkTokenProvider.google, token, userEmail))
+            result = .success((token, userEmail))
         } else {
             log.debug("Falied signIn with google account: user token empty")
             let err = SocialNetworkViewModelError.userTokenIsEmpty
             result = .failure(err)
         }
         
-        delegate.signInWithResult(result)
+        delegate.signInWithResult(result, provider: .google)
     }
 }
 

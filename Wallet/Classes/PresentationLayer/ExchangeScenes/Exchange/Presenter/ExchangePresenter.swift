@@ -205,8 +205,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         
         let minAmountStr = currencyFormatter.getStringFrom(amount: min.decimalValue(), currency: currency)
         let maxAmountStr = currencyFormatter.getStringFrom(amount: max.decimalValue(), currency: currency)
-        // FIXME: msg
-        let message = "Amount should be between \(minAmountStr) and \(maxAmountStr)"
+        let message = "Transaction amount should be between \(minAmountStr) and \(maxAmountStr)"
         
         router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
     }
@@ -215,8 +214,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         storiqaLoader.stopLoader()
         
         let limitStr = currencyFormatter.getStringFrom(amount: limit.decimalValue(), currency: currency)
-        // FIXME: msg
-        let message = "Dayly limit for the account \(limitStr) exceeded"
+        let message = "You’ve exceeded you daily transaction limit of \(limitStr) for this account."
         
         router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
     }

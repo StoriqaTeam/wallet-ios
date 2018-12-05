@@ -80,8 +80,7 @@ enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
         case .deviceTokenExpired:
             return "device_token_expired".localized()
         case .deviceDiffers:
-            // FIXME: msg
-            return "Confirmed device differs from your device"
+            return "This device differs from the one with which you’ve requested confirmation."
         case .badRequest, .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         }

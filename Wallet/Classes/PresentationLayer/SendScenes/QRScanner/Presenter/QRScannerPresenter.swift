@@ -105,9 +105,6 @@ extension QRScannerPresenter {
     }
     
     private func createCaptureSession() {
-        //TODO: info plist camera usage description
-        // FIXME: msg
-        
         let cameraMediaType = AVMediaType.video
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
 
@@ -169,10 +166,9 @@ extension QRScannerPresenter {
     
     private func failed() {
         captureSession = nil
-        // FIXME: msg
         
         let alertVC = UIAlertController(title: "Scanning not supported",
-                                   message: "Your device does not support scanning a code from an item.",
+                                   message: "It seems your device does not support QR-code scanning.",
                                    preferredStyle: .alert)
         let action = UIAlertAction(title: "ok".localized(), style: .default) { [weak self] _ in
             self?.view.dismiss()
@@ -185,12 +181,11 @@ extension QRScannerPresenter {
     
     private func userDeniedAccess() {
         captureSession = nil
-        // FIXME: msg
         
         let alertVC = UIAlertController(title: "No camera access",
-                                        message: "Give access to camera from settings",
+                                        message: "It seems you’ve restricted access to your camera. Enable it in Settings.",
                                         preferredStyle: .alert)
-        let showSettings = UIAlertAction(title: "Show settings", style: .default) { [weak self] _ in
+        let showSettings = UIAlertAction(title: "Settings", style: .default) { [weak self] _ in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             self?.view.dismiss()
         }

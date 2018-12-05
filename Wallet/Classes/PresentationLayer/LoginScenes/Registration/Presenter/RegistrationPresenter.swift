@@ -78,9 +78,9 @@ extension RegistrationPresenter: RegistrationViewOutput {
         interactor.signIn(tokenProvider: provider, oauthToken: token, email: email)
     }
     
-    func socialNetworkRegisterFailed() {
-        // FIXME: msg
-        router.showSocialNetworkFailure(message: Constants.Errors.userFriendly, from: view.viewController)
+    func socialNetworkRegisterFailed(tokenProvider: SocialNetworkTokenProvider) {
+        let message = "We couldn’t retrieve your data from " + tokenProvider.displayableName
+        router.showSocialNetworkFailure(message: message, from: view.viewController)
     }
     
 }
