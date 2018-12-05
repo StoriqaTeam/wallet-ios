@@ -6096,7 +6096,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "./Wallet/Other/Wallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
-				WALLET_DISPLAY_NAME = "Test Ture";
+				WALLET_DISPLAY_NAME = "Test TURE";
 			};
 			name = Debug;
 		};
@@ -6118,7 +6118,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "./Wallet/Other/Wallet-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
-				WALLET_DISPLAY_NAME = Ture;
+				WALLET_DISPLAY_NAME = TURE;
 			};
 			name = Release;
 		};
