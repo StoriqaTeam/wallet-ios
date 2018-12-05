@@ -179,7 +179,7 @@ extension ProfilePresenter {
             imagePicker.allowsEditing = true
             view.viewController.present(imagePicker, animated: true, completion: nil)
         } else {
-            view.viewController.showAlert(message: "Photos not available")
+            view.viewController.showAlert(message: "Gallery not available")
         }
     }
 }

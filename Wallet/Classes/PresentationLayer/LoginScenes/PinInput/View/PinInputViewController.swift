@@ -85,7 +85,7 @@ extension PinInputViewController: PinInputViewInput {
 extension PinInputViewController {
     
     private func configureGreeting(name: String) {
-        greetingLabel.text = name + "greeting".localized()
+        greetingLabel.text = "greeting".localized() + name + "!"
     }
     
     private func configureUserPhoto(photo: UIImage) {

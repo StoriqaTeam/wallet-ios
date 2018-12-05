@@ -33,8 +33,9 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
             
             return "+" + userPhone
         }()
+        
         let button = phone.isEmpty ? "Connect" : "Change"
-        let title = button + " telephone number"
+        let title = button + " phone number"
         
         view.setupInitialState(phone: phone, buttonTitle: button)
         configureNavigationBar(title: title)

@@ -21,6 +21,15 @@ enum SocialNetworkTokenProvider {
             return "facebook"
         }
     }
+    
+    var displayableName: String {
+        switch self {
+        case .google:
+            return "Google"
+        case .facebook:
+            return "Facebook"
+        }
+    }
 
     init?(_ string: String) {
         switch string.lowercased() {
@@ -37,7 +46,7 @@ enum SocialNetworkTokenProvider {
 protocol SocialNetworkAuthViewDelegate: class {
     func socialNetworkAuthViewDidTapFooterButton()
     func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String)
-    func socialNetworkAuthFailed()
+    func socialNetworkAuthFailed(provider: SocialNetworkTokenProvider)
 }
 
 class SocialNetworkAuthView: LoadableFromXib {
@@ -103,13 +112,13 @@ class SocialNetworkAuthView: LoadableFromXib {
 // MARK: - SocialNetworkAuthViewModelProtocol
 
 extension SocialNetworkAuthView: SocialNetworkAuthViewModelProtocol {
-    func signInWithResult(_ result: Result<(provider: SocialNetworkTokenProvider, token: String, email: String)>) {
+    func signInWithResult(_ result: Result<(token: String, email: String)>, provider: SocialNetworkTokenProvider) {
         switch result {
         case .failure(let error):
-            delegate?.socialNetworkAuthFailed()
+            delegate?.socialNetworkAuthFailed(provider: provider)
             log.warn(error.localizedDescription)
         case .success(let token):
-            delegate?.socialNetworkAuthSucceed(provider: token.provider, token: token.token, email: token.email)
+            delegate?.socialNetworkAuthSucceed(provider: provider, token: token.token, email: token.email)
         }
     }
 }

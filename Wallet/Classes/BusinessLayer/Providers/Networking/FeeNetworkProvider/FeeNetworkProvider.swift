@@ -33,7 +33,7 @@ class FeeNetworkProvider: NetworkLoadable, FeeNetworkProviderProtocol {
                 let json = JSON(response.value)
                 
                 guard code == 200 else {
-                    let error = FeeNetworkProviderError(code: code, json: json)
+                    let error = FeeNetworkProviderError(code: code, json: json, currency: currency)
                     completion(.failure(error))
                     return
                 }
@@ -68,13 +68,12 @@ enum FeeNetworkProviderError: LocalizedError, Error {
     case parseJsonError
     case wrongCurrency(message: String)
     
-    init(code: Int, json: JSON) {
+    init(code: Int, json: JSON, currency: Currency) {
         switch code {
         case 422:
             if let accountErrors = json["account"].array,
                 accountErrors.contains(where: { $0["code"] == "currency" }) {
-                // FIXME: error message
-                self = .wrongCurrency(message: "Account currency doesn't match address currency")
+                self = .wrongCurrency(message: "\(currency.ISO) can be transferred only to \(currency.ISO) accounts.")
             } else {
                 self = .unknownError
             }
