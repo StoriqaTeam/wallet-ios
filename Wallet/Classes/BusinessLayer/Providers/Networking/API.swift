@@ -10,8 +10,7 @@ import Alamofire
 
 enum API {}
 
-
-protocol APIMethodProtocol: URLRequestConvertible {
+protocol APIMethodProtocol: NetworkLoadableRequestProtocol {
     var method: Alamofire.HTTPMethod { get }
     var path: String { get }
     var params: Params? { get }

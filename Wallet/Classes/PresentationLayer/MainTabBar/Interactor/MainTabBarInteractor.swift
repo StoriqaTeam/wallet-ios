@@ -37,6 +37,7 @@ class MainTabBarInteractor {
         self.app = app
         
         update()
+        setLogUserInfo()
     }
     
     deinit {
@@ -109,5 +110,10 @@ extension MainTabBarInteractor {
     private func updateDepositInfo() {
         accountsUpdater.update()
         txsUpdater.update()
+    }
+    
+    private func setLogUserInfo() {
+        let user = getCurrentUser()
+        CrashlyticsLogger.setUser(user)
     }
 }
