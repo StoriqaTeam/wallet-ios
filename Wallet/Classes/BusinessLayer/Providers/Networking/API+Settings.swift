@@ -86,4 +86,12 @@ extension API.Settings: APIMethodProtocol {
             ]
         }
     }
+    
+    var unloggedParams: [String]? {
+        switch self {
+        case .changePassword:
+            return ["newPassword", "oldPassword"]
+        default: return nil
+        }
+    }
 }

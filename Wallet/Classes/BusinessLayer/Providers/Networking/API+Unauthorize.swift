@@ -213,4 +213,16 @@ extension API.Unauthorized: APIMethodProtocol {
             ]
         }
     }
+    
+    var unloggedParams: [String]? {
+        switch self {
+        case .login:
+            return ["password"]
+        case .register:
+            return ["password"]
+        case .confirmResetPassword:
+            return ["password"]
+        default: return nil
+        }
+    }
 }

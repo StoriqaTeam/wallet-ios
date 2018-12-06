@@ -552,6 +552,7 @@
 		CE81AD69218080CB0033F75D /* AuthTokenDefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81AD68218080CB0033F75D /* AuthTokenDefaultsProvider.swift */; };
 		CE83E21E21B68F300067A779 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE83E21D21B68F300067A779 /* NotificationView.xib */; };
 		CE83E22021B68F390067A779 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83E21F21B68F390067A779 /* NotificationView.swift */; };
+		CE83E22521B92BC30067A779 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83E22421B92BC30067A779 /* CrashlyticsLogger.swift */; };
 		CE8CC9922167A90D00EA9EED /* AccountDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */; };
 		CE8CC9952167A92B00EA9EED /* CurrencyImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */; };
 		CE8CC9972167B7A500EA9EED /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CC9962167B7A500EA9EED /* Currency.swift */; };
@@ -1279,6 +1280,7 @@
 		CE81AD68218080CB0033F75D /* AuthTokenDefaultsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenDefaultsProvider.swift; sourceTree = "<group>"; };
 		CE83E21D21B68F300067A779 /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		CE83E21F21B68F390067A779 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		CE83E22421B92BC30067A779 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
 		CE8CC9912167A90D00EA9EED /* AccountDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayer.swift; sourceTree = "<group>"; };
 		CE8CC9942167A92B00EA9EED /* CurrencyImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyImageProvider.swift; sourceTree = "<group>"; };
 		CE8CC9962167B7A500EA9EED /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -4250,6 +4252,7 @@
 				CE526C67212471CE00A2EED2 /* Constants.swift */,
 				CE25B74D2126BEDB0097230A /* UserInfo.swift */,
 				A500860C2150FA1600C47015 /* Result.swift */,
+				CE83E22421B92BC30067A779 /* CrashlyticsLogger.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -5869,6 +5872,7 @@
 				AA35545F8F6B5E29CDAC5319 /* ExchangeConfirmPopUpRouter.swift in Sources */,
 				48A320CB752A6C4B8697A780 /* ExchangeConfirmPopUpModuleInput.swift in Sources */,
 				F7AE73FAAFF4E0570C9A922A /* ExchangeConfirmPopUpModuleOutput.swift in Sources */,
+				CE83E22521B92BC30067A779 /* CrashlyticsLogger.swift in Sources */,
 				AC048C36E72CE7AE14749343 /* ExchangeConfirmPopUpModule.swift in Sources */,
 				28327668D4287BE3A359EAA4 /* AppInfoViewInput.swift in Sources */,
 				8FA60E3AB3042D929BCD457F /* AppInfoViewOutput.swift in Sources */,
