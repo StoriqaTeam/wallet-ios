@@ -53,6 +53,8 @@ private struct AnyOperation<ResponseSerializer: DataResponseSerializerProtocol>:
                 switch code {
                 case 200:
                     log.debug(responseStr)
+                case 422:
+                    log.warn(responseStr)
                 default:
                     log.warn(responseStr)
                     
