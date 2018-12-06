@@ -22,5 +22,5 @@ protocol RegistrationViewOutput: class {
     func validatePasswords(onEndEditing: Bool, password: String?, repeatPassword: String?)
     func showLogin()
     func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String, email: String)
-    func socialNetworkRegisterFailed()
+    func socialNetworkRegisterFailed(tokenProvider: SocialNetworkTokenProvider)
 }

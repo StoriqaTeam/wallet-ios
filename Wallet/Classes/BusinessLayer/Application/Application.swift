@@ -105,6 +105,7 @@ class Application {
     lazy var userKeyManager: UserKeyManagerProtocol = UserKeyManager(keychainProvider: self.keychainProvider, keyGenerator: self.keyGenerator)
     lazy var orderObserver: OrderObserverProtocol = OrderObserver(expiredOrderOutputChannel: self.channelStorage.orderExpiredChannel, orderTickOutputChannel: self.channelStorage.orderTickChannel)
     lazy var receivedTransactionProvider: ReceivedTransactionProviderProtocol = ReceivedTransactionProvider(directionResolver: self.transactionDirectionResolver)
+    lazy var blockchainExplorerLinkGenerator: BlockchainExplorerLinkGeneratorProtocol = BlockchainExplorerLinkGenerator()
     
     // MARK: - Updaters -
     lazy var accountsUpdater: AccountsUpdaterProtocol = AccountsUpdater(accountsNetworkProvider: self.accountsNetworkProvider,

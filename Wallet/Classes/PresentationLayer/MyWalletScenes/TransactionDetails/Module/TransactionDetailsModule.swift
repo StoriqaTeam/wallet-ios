@@ -10,7 +10,7 @@ class TransactionDetailsModule {
     
     class func create(app: Application, transaction: TransactionDisplayable) -> TransactionDetailsModuleInput {
         let router = TransactionDetailsRouter(app: app)
-        let presenter = TransactionDetailsPresenter()
+        let presenter = TransactionDetailsPresenter(blockchainExplorerLinkGenerator: app.blockchainExplorerLinkGenerator)
         let interactor = TransactionDetailsInteractor(transaction: transaction)
         
         let transactionsDetailsSB = UIStoryboard(name: "TransactionDetails", bundle: nil)

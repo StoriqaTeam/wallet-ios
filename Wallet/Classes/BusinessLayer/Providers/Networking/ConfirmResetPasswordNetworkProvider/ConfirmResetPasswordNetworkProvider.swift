@@ -81,8 +81,7 @@ enum ConfirmResetPasswordNetworkProviderError: LocalizedError, Error {
         case .internalServer, .unknownError:
             return Constants.Errors.userFriendly
         case .deviceTokenExpired:
-            // FIXME: error message
-            return "Device token expired"
+            return "device_token_expired".localized()
         case .validationError(let password):
             var result = ""
             if let password = password {

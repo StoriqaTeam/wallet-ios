@@ -19,7 +19,11 @@ class PinInputPresenter {
     
     private let kPasswordDigits = 4
     private var isPresentedModally = false
+    private var isBiometryAuthShown = false
     
+    deinit {
+        unsubscribeFromNotification()
+    }
 }
 
 
@@ -41,29 +45,35 @@ extension PinInputPresenter: PinInputViewOutput {
         let userPhoto = user.photo ?? #imageLiteral(resourceName: "profilePhotoPlaceholder")
         view.setupInitialState(userPhoto: userPhoto, userName: user.firstName)
         interactor.setIsLocked()
+        subscribeForNotification()
     }
+    
+    func viewDidAppear() {
+        authWithBiometry(delay: 0)
+    }
+    
     
     func inputComplete(_ password: String) {
         interactor.validatePassword(password)
     }
 
     func iForgotPinPressed() {
-        //TODO: message, localization
+        let alertController = UIAlertController(title: nil, message: "Confirm PIN reset", preferredStyle: .actionSheet)
         
-        let alertController = UIAlertController(title: nil, message: "Do you want to reset your pin?", preferredStyle: .actionSheet)
-        
-        let resetPin = UIAlertAction(title: "Reset pin", style: .default, handler: { [weak self] _ -> Void in
+        let resetPin = UIAlertAction(title: "Reset PIN", style: .default, handler: { [weak self] _ -> Void in
             guard let strongSelf = self else { return }
             
+            strongSelf.unsubscribeFromNotification()
+            
+            let completion = { [weak strongSelf] in
+                strongSelf?.interactor.resetPin()
+                strongSelf?.router.showLogin()
+            }
+            
             if strongSelf.isPresentedModally {
-                strongSelf.view.dismissModal { [weak strongSelf] in
-                    
-                    strongSelf?.interactor.resetPin()
-                    strongSelf?.router.showLogin()
-                }
+                strongSelf.view.dismissModal(animated: false, completion: completion)
             } else {
-                strongSelf.interactor.resetPin()
-                strongSelf.router.showLogin()
+                completion()
             }
         })
         
@@ -85,6 +95,7 @@ extension PinInputPresenter: PinInputInteractorOutput {
     
     func passwordIsCorrect() {
         view.inputSucceed()
+        unsubscribeFromNotification()
         
         if isPresentedModally {
             view.dismissModal()
@@ -99,6 +110,7 @@ extension PinInputPresenter: PinInputInteractorOutput {
     }
     
     func touchAuthenticationSucceed() {
+        isBiometryAuthShown = false
         view.inputSucceed()
         
         if isPresentedModally {
@@ -109,6 +121,7 @@ extension PinInputPresenter: PinInputInteractorOutput {
     }
     
     func touchAuthenticationFailed(error: String) {
+        isBiometryAuthShown = false
         view.clearInput()
         
         if !error.isEmpty {
@@ -149,7 +162,35 @@ extension PinInputPresenter: PinInputCompleteProtocol {
     }
     
     func authWithBiometryTapped() {
+        isBiometryAuthShown = true
         interactor.authWithBiometry()
     }
     
+}
+
+
+// MARK: - Private methods
+extension PinInputPresenter {
+    private func subscribeForNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(authWithBiometry),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+    }
+    
+    private func unsubscribeFromNotification() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    @objc private func authWithBiometry(delay: TimeInterval = 0.35) {
+        guard !isBiometryAuthShown && interactor.isBiometryAuthEnabled() else {
+            return
+        }
+        
+        isBiometryAuthShown = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+            self?.interactor.authWithBiometry()
+        }
+    }
 }

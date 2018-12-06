@@ -182,7 +182,7 @@ extension SendViewController: SendViewInput {
             })
         } else {
             self.errorLabel.isHidden = false
-            self.errorLabel.text = "You haven’t got enough funds to send. Try to set another count."
+            self.errorLabel.text = "not_enough_funds".localized()
             
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.layoutSubviews()

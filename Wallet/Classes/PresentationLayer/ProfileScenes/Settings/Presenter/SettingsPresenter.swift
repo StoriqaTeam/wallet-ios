@@ -31,7 +31,7 @@ extension SettingsPresenter: SettingsViewOutput {
     
     func viewWillAppear() {
         let hasPhone = interactor.userHasPhone()
-        let title = (hasPhone ? "Change" : "Connect") + " telephone number"
+        let title = (hasPhone ? "Change" : "Connect") + " phone number"
         view.setChangePhoneTitle(title)
     }
     

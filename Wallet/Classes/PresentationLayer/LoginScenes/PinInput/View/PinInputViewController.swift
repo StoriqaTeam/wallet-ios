@@ -41,6 +41,11 @@ class PinInputViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.viewDidAppear()
+    }
+    
     
     // MARK: Life cycle
     
@@ -80,7 +85,7 @@ extension PinInputViewController: PinInputViewInput {
 extension PinInputViewController {
     
     private func configureGreeting(name: String) {
-        greetingLabel.text = name + "greeting".localized()
+        greetingLabel.text = "greeting".localized() + name + "!"
     }
     
     private func configureUserPhoto(photo: UIImage) {

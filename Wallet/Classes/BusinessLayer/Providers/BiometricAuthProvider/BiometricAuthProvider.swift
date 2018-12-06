@@ -26,7 +26,8 @@ class BiometricAuthProvider: BiometricAuthProviderProtocol {
     private let context = LAContext()
     
     //FIXME: - localization
-    private let touchAuthenticationReason = "Authentication is needed to access your account"//.localized()
+    
+    private let touchAuthenticationReason = "Authentication is required to access your account"//.localized()
     
     var canAuthWithBiometry: Bool {
         return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
@@ -98,17 +99,13 @@ enum BiometricAuthProviderError: LocalizedError, Error {
         case .laError(let error):
             let errorCode = error.code
             
-            //TODO: тексты сообщений
-            
             switch errorCode {
             case .appCancel:
-                return "Authentication was cancelled"
+                return "Authentication was interrupted"
             case .authenticationFailed:
-                return "The user failed to provide valid credentials"
+                return "Invalid credentials"
             case .passcodeNotSet:
                 return "Passcode is not set on the device"
-            case .systemCancel:
-                return "Authentication was cancelled by the system"
             case .biometryLockout:
                 return "Biometry is not available on the device"
             case .biometryNotAvailable:
