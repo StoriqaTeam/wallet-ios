@@ -17,6 +17,9 @@ class MyWalletViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet private var collectionView: UICollectionView!
+    @IBOutlet private var navigationBar: UINavigationBar!
+    @IBOutlet private var navigationBarTopConstraint: NSLayoutConstraint!
+    @IBOutlet private var navigationBarHorizontalConstraint: NSLayoutConstraint!
     
     // MARK: variables
     
@@ -28,7 +31,9 @@ class MyWalletViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
+        setUpCollectionView()
         output.accountsCollectionView(collectionView)
+        output.navigationBar(navigationBar)
         output.viewIsReady()
     }
     
@@ -74,6 +79,14 @@ class MyWalletViewController: UIViewController {
 // MARK: - MyWalletViewInput
 
 extension MyWalletViewController: MyWalletViewInput {
+    func setNavigationBarTopSpace(_ topSpace: CGFloat) {
+        navigationBarTopConstraint.constant = topSpace
+    }
+    
+    func setNavigationBarHorizontalSpace(_ horizontalSpace: CGFloat) {
+        navigationBarHorizontalConstraint.constant = horizontalSpace
+    }
+    
     
     func setupInitialState() {
         
@@ -94,9 +107,6 @@ extension MyWalletViewController: MyWalletViewInput {
 extension MyWalletViewController {
     
     private func configureNavBar() {
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        navigationBar.barStyle = .blackTranslucent
-        
         
         // FIXME: hidden before release
         
@@ -112,4 +122,13 @@ extension MyWalletViewController {
             self.addNewButton.alpha = show ? 1.0 : 0.0
         }
     }
+    
+    private func setUpCollectionView() {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        let topInset = navigationBar.frame.height + statusBarHeight
+        collectionView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+        collectionView.contentInsetAdjustmentBehavior = .never
+    }
+    
 }

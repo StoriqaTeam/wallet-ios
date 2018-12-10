@@ -64,6 +64,7 @@ extension RecepientAccountsPresenter: RecepientAccountsInteractorOutput {
 // MARK: - MyWalletViewOutput
 
 extension RecepientAccountsPresenter: MyWalletDataManagerDelegate {
+    func didChangeOffset(_ newValue: CGFloat) { }
     
     func selectAccount(_ account: Account) {
         interactor.setSelected(account: account)
