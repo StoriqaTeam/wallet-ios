@@ -5,6 +5,7 @@
 //  Created by Storiqa on 10/12/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+// swiftlint:disable multiple_closures_with_trailing_closure
 
 import UIKit
 
@@ -20,7 +21,7 @@ class MyWalletToAccountsAnimator: NSObject {
     weak var delegate: MyWalletToAccountsAnimatorDelegate?
     
     func setInitialFrame(_ frame: CGRect) {
-        initialFrame = frame
+        self.initialFrame = frame
     }
     
     func setDestinationFrame(_ frame: CGRect) {
