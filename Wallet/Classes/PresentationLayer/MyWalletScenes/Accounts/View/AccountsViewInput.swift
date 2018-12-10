@@ -13,4 +13,5 @@ protocol AccountsViewInput: class, Presentable {
     func setupInitialState(numberOfPages: Int)
     func setNewPage(_ index: Int)
     func updatePagesCount(_ count: Int)
+    func showAccounts()
 }

@@ -64,6 +64,9 @@ extension RecepientAccountsPresenter: RecepientAccountsInteractorOutput {
 // MARK: - MyWalletViewOutput
 
 extension RecepientAccountsPresenter: MyWalletDataManagerDelegate {
+    
+    func rectOfSelectedItem(_ rect: CGRect?, in collectionView: UICollectionView) { }
+
     func didChangeOffset(_ newValue: CGFloat) { }
     
     func selectAccount(_ account: Account) {

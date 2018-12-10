@@ -252,6 +252,9 @@ extension ExchangePresenter: ExchangeModuleInput {
 // MARK: - AccountsDataManagerDelegate
 
 extension ExchangePresenter: AccountsDataManagerDelegate {
+    
+    func rectOfChosenItem(_ rect: CGRect?, in collectionView: UICollectionView) { }
+    
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccount(index: newIndex)
         view.setNewPage(newIndex)

@@ -79,6 +79,7 @@ class MyWalletViewController: UIViewController {
 // MARK: - MyWalletViewInput
 
 extension MyWalletViewController: MyWalletViewInput {
+    
     func setNavigationBarTopSpace(_ topSpace: CGFloat) {
         navigationBarTopConstraint.constant = topSpace
     }

@@ -118,6 +118,9 @@ extension DepositPresenter: DepositModuleInput {
 // MARK: - AccountsDataManagerDelegate
 
 extension DepositPresenter: AccountsDataManagerDelegate {
+    
+    func rectOfChosenItem(_ rect: CGRect?, in collectionView: UICollectionView) { }
+    
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccountWith(index: newIndex)
         view.setNewPage(newIndex)

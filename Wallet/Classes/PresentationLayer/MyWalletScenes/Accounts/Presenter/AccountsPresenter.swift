@@ -21,11 +21,15 @@ class AccountsPresenter {
     private let transactionsMapper: TransactionMapperProtocol
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: TransactionsDataManager!
+    private var animator: MyWalletToAccountsAnimator?
     
     init(accountDisplayer: AccountDisplayerProtocol,
-         transactionsMapper: TransactionMapperProtocol) {
+         transactionsMapper: TransactionMapperProtocol,
+         animator: MyWalletToAccountsAnimator?) {
+        
         self.accountDisplayer = accountDisplayer
         self.transactionsMapper = transactionsMapper
+        self.animator = animator
     }
 }
 
@@ -85,6 +89,7 @@ extension AccountsPresenter: AccountsViewOutput {
         view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
         interactor.startObservers()
+        animator?.delegate = self
     }
     
     func viewWillAppear() {
@@ -137,9 +142,24 @@ extension AccountsPresenter: AccountsModuleInput {
 }
 
 
+// MARK: - MyWalletToAccountsAnimatorDelegate
+
+extension AccountsPresenter: MyWalletToAccountsAnimatorDelegate {
+    func animationComplete() {
+        view.showAccounts()
+    }
+}
+
+
 // MARK: - AccountsDataManagerDelegate
 
 extension AccountsPresenter: AccountsDataManagerDelegate {
+    func rectOfChosenItem(_ rect: CGRect?, in collectionView: UICollectionView) {
+        guard let frame = rect else { return }
+        let accountFrame = collectionView.convert(frame, to: view.viewController.view)
+        animator?.setDestinationFrame(accountFrame)
+    }
+    
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccountWith(index: newIndex)
         view.setNewPage(newIndex)

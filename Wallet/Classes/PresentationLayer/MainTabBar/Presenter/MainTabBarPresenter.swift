@@ -95,7 +95,7 @@ extension MainTabBarPresenter: MyWalletModuleOutput {
 extension MainTabBarPresenter {
     private func insertViewControllers() {
         view.viewControllers = [
-            myWalletModule.viewController.wrapToNavigationController(),
+            myWalletModule.viewController.wrapToTransitiningNavigationController(),
             sendModule.viewController.wrapToNavigationController(),
             exchangeModule.viewController.wrapToNavigationController(),
             depositModule.viewController.wrapToNavigationController(),

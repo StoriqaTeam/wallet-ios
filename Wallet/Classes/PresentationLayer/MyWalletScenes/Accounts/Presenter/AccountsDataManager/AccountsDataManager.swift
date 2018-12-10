@@ -10,6 +10,7 @@ import UIKit
 
 protocol AccountsDataManagerDelegate: class {
     func currentPageDidChange(_ newIndex: Int)
+    func rectOfChosenItem(_ rect: CGRect?, in collectionView: UICollectionView)
 }
 
 class AccountsDataManager: NSObject {
@@ -65,9 +66,14 @@ class AccountsDataManager: NSObject {
         guard index < accounts.count else {
             return
         }
+        
         let prevIndex = self.indexOfMajorCell()
         let indexPath = IndexPath(row: index, section: 0)
         accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        
+        let attributes = accountsCollectionView.layoutAttributesForItem(at: indexPath)
+        let frame = attributes?.frame
+        delegate?.rectOfChosenItem(frame, in: accountsCollectionView)
         
         if prevIndex != index {
             delegate?.currentPageDidChange(index)

@@ -34,6 +34,7 @@ class AccountsViewController: UIViewController {
         super.viewWillAppear(animated)
         output.configureCollections()
         output.viewWillAppear()
+        accountsCollectionView.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,6 +58,11 @@ class AccountsViewController: UIViewController {
 // MARK: - AccountsViewInput
 
 extension AccountsViewController: AccountsViewInput {
+    
+    func showAccounts() {
+        accountsCollectionView.isHidden = false
+    }
+    
     func updatePagesCount(_ count: Int) {
         accountsPageControl.numberOfPages = count
     }
