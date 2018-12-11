@@ -444,6 +444,8 @@
 		B8C5EDE52189C16000345B79 /* RatesUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDE42189C16000345B79 /* RatesUpdater.swift */; };
 		B8C5EDE82189D7E200345B79 /* RatesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EDE72189D7E200345B79 /* RatesProvider.swift */; };
 		B8D4D58E13E50746B516D91C /* SettingsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD115AF70D53CBDC0F87BD /* SettingsModuleOutput.swift */; };
+		B8FFAD4121BEF3E5003F370F /* MyWalletToAccountsAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FFAD4021BEF3E5003F370F /* MyWalletToAccountsAnimator.swift */; };
+		B8FFAD4321BEF817003F370F /* TransitionNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FFAD4221BEF817003F370F /* TransitionNavigationController.swift */; };
 		B94586225AAFD2D9572D1301 /* ChangePasswordModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CE1DEFC08E2383F2C27C2 /* ChangePasswordModuleOutput.swift */; };
 		B98F7B6D236E5C7D1D3FD552 /* ExchangeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16F0648E2EB779A26C6732 /* ExchangeRouter.swift */; };
 		BC265F78A4724A6201226822 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1C3889E0ABA3DD0896A52 /* LoginRouter.swift */; };
@@ -1166,6 +1168,8 @@
 		B8C5EDE72189D7E200345B79 /* RatesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesProvider.swift; sourceTree = "<group>"; };
 		B8C93285C87DA2BC12D6A1E4 /* AppInfoModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppInfoModule.swift; sourceTree = "<group>"; };
 		B8DFDAFBB213DB18269D4ACB /* PasswordRecoveryConfirmViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmViewOutput.swift; sourceTree = "<group>"; };
+		B8FFAD4021BEF3E5003F370F /* MyWalletToAccountsAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletToAccountsAnimator.swift; sourceTree = "<group>"; };
+		B8FFAD4221BEF817003F370F /* TransitionNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionNavigationController.swift; sourceTree = "<group>"; };
 		B92A70B2DE1269BAE2D165B8 /* PopUpRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopUpRouter.swift; sourceTree = "<group>"; };
 		BA4283A25FC720D41932D050 /* SendConfirmPopUpViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SendConfirmPopUpViewInput.swift; sourceTree = "<group>"; };
 		BA5EBFF4CABBEDECFEEA987F /* PasswordRecoveryConfirmPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryConfirmPresenter.swift; sourceTree = "<group>"; };
@@ -3953,6 +3957,22 @@
 			path = RatesProvider;
 			sourceTree = "<group>";
 		};
+		B8FFAD3F21BEF3BC003F370F /* MyWalletToAccountsAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				B8FFAD4021BEF3E5003F370F /* MyWalletToAccountsAnimator.swift */,
+			);
+			path = MyWalletToAccountsAnimator;
+			sourceTree = "<group>";
+		};
+		B8FFAD4421BEF839003F370F /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				B8FFAD4221BEF817003F370F /* TransitionNavigationController.swift */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
 		B90828930B61D8754E0B5BA4 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -4367,6 +4387,7 @@
 		CE526C6F21247F8500A2EED2 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				B8FFAD4421BEF839003F370F /* NavigationController */,
 				A5C12E46217B671400A7D68C /* StoriqaLoader */,
 				A51CB55B215942DA00CDC80C /* Xibs */,
 				CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */,
@@ -4904,6 +4925,7 @@
 		F087D7C00C1F36868EFC0074 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				B8FFAD3F21BEF3BC003F370F /* MyWalletToAccountsAnimator */,
 				CE8CC9982167D9A700EA9EED /* MyWalletDataManager */,
 				30AD6C72FB789A35EDBD9F0F /* MyWalletPresenter.swift */,
 			);
@@ -5373,6 +5395,7 @@
 				A560C741216B57A3009F0E95 /* SettingsHeaderView.swift in Sources */,
 				CE41F34C2181B91700070D5D /* EmailConfirmNetworkProvider.swift in Sources */,
 				3560EFC2F72358E0759F3690 /* FirstLaunchViewOutput.swift in Sources */,
+				B8FFAD4121BEF3E5003F370F /* MyWalletToAccountsAnimator.swift in Sources */,
 				48D375B575D57A4CF0D1F591 /* FirstLaunchViewController.swift in Sources */,
 				A500860D2150FA1600C47015 /* Result.swift in Sources */,
 				299D987919399E29BA78858E /* FirstLaunchPresenter.swift in Sources */,
@@ -5438,6 +5461,7 @@
 				E25A0E75B3C836260DA96051 /* PasswordRecoveryConfirmViewController.swift in Sources */,
 				A5B7820F215E241800EFD1A5 /* BitcoinAddressValidator.swift in Sources */,
 				39D7E17D89D8B4417C0931DE /* PasswordRecoveryConfirmPresenter.swift in Sources */,
+				B8FFAD4321BEF817003F370F /* TransitionNavigationController.swift in Sources */,
 				CEE6730321A2AEE4008FAC09 /* ExchangeProviderBuilder.swift in Sources */,
 				CE8E2E0A21A6D08D00F0B395 /* PopUpExchangeFailedVM.swift in Sources */,
 				CEFC9C9A21590D1B00962356 /* PopUpRegistrationFailedVM.swift in Sources */,

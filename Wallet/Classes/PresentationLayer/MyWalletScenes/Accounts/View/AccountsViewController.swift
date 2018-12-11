@@ -19,15 +19,19 @@ class AccountsViewController: UIViewController {
     @IBOutlet private var changeButton: RouteButton!
     @IBOutlet private var depositButton: RouteButton!
     @IBOutlet private var sendButton: RouteButton!
+    @IBOutlet private var collectionHeightConstraint: NSLayoutConstraint!
     
 
     // MARK: Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         output.accountsCollectionView(accountsCollectionView)
         output.transactionTableView(lastTransactionsTableView)
         output.viewIsReady()
+        
+        accountsCollectionView.alpha = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +61,15 @@ class AccountsViewController: UIViewController {
 // MARK: - AccountsViewInput
 
 extension AccountsViewController: AccountsViewInput {
+    
+    func showAccounts(completion: @escaping (() -> Void)) {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.accountsCollectionView.alpha = 1
+        }, completion: {_ in
+            completion()
+        })
+    }
+    
     func updatePagesCount(_ count: Int) {
         accountsPageControl.numberOfPages = count
     }
@@ -70,6 +83,10 @@ extension AccountsViewController: AccountsViewInput {
         configureButtons()
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
+    }
+    
+    func setCollectionHeight(_ height: CGFloat) {
+        collectionHeightConstraint.constant = height
     }
 }
 

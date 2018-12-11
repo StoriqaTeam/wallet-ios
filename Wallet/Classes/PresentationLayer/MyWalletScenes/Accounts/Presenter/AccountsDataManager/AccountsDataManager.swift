@@ -65,6 +65,7 @@ class AccountsDataManager: NSObject {
         guard index < accounts.count else {
             return
         }
+        
         let prevIndex = self.indexOfMajorCell()
         let indexPath = IndexPath(row: index, section: 0)
         accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)

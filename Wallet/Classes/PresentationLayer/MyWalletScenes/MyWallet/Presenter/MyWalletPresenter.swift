@@ -26,13 +26,17 @@ class MyWalletPresenter {
     private var hideNotificationAnimator: UIViewPropertyAnimator?
     private var notificationView: UIView?
     private var isPanGestureActive = false
+    private let animator: MyWalletToAccountsAnimator
     
     init(accountDisplayer: AccountDisplayerProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol,
-         currencyFormatter: CurrencyFormatterProtocol) {
+         currencyFormatter: CurrencyFormatterProtocol,
+         animator: MyWalletToAccountsAnimator) {
+        
         self.accountDisplayer = accountDisplayer
         self.denominationUnitsConverter = denominationUnitsConverter
         self.currencyFormatter = currencyFormatter
+        self.animator = animator
     }
 }
 
@@ -160,13 +164,21 @@ extension MyWalletPresenter: MyWalletModuleInput {
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletDataManagerDelegate {
+    func rectOfSelectedItem(_ rect: CGRect?, in collectionView: UICollectionView) {
+        guard let frame = rect else { return }
+        let accountFrame = collectionView.convert(frame, to: viewController.view)
+        animator.setInitialFrame(accountFrame)
+
+    }
+    
     
     func selectAccount(_ account: Account) {
         let accountWatcher = interactor.getAccountWatcher()
         accountWatcher.setAccount(account)
         router.showAccountsWith(accountWatcher: accountWatcher,
                                 from: view.viewController,
-                                tabBar: mainTabBar)
+                                tabBar: mainTabBar,
+                                animator: animator)
     }
     
     func didChangeOffset(_ newValue: CGFloat) {
@@ -193,18 +205,8 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
 extension MyWalletPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .vertical)
-        let flowLayout = UICollectionViewFlowLayout()
-        
-        flowLayout.minimumLineSpacing = deviceLayout.spacing
-        flowLayout.minimumInteritemSpacing = deviceLayout.spacing
-        flowLayout.sectionInset = UIEdgeInsets(top: deviceLayout.spacing,
-                                               left: 0,
-                                               bottom: deviceLayout.spacing,
-                                               right: 0)
-        flowLayout.itemSize = deviceLayout.size
-        
         let bounceLayout = BouncyLayout(style: .prominent)
-        bounceLayout.setConfigureFlow(flow: flowLayout)
+        bounceLayout.setConfigureFlow(flow: deviceLayout)
         
         return bounceLayout
     }

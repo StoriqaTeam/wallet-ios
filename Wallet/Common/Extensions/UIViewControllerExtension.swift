@@ -62,6 +62,24 @@ extension UIViewController {
         return navigation
     }
     
+    
+    func wrapToTransitiningNavigationController() -> TransitionNavigationController {
+        let navigation = TransitionNavigationController()
+        navigation.setViewControllers([self], animated: false)
+        navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigation.navigationBar.shadowImage = UIImage()
+        navigation.navigationBar.isTranslucent = true
+        navigation.navigationBar.backgroundColor = .clear
+        navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
+        navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
+        navigation.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "",
+                                                                              style: .plain,
+                                                                              target: nil,
+                                                                              action: nil)
+        return navigation
+        
+    }
+    
 }
 
 //Actions

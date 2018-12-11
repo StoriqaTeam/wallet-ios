@@ -252,6 +252,7 @@ extension ExchangePresenter: ExchangeModuleInput {
 // MARK: - AccountsDataManagerDelegate
 
 extension ExchangePresenter: AccountsDataManagerDelegate {
+    
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccount(index: newIndex)
         view.setNewPage(newIndex)
@@ -285,17 +286,7 @@ extension ExchangePresenter {
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .horizontalSmall)
-        
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = deviceLayout.spacing
-        flowLayout.itemSize = deviceLayout.size
-        flowLayout.sectionInset = UIEdgeInsets(top: 0,
-                                               left: deviceLayout.spacing * 2,
-                                               bottom: 0,
-                                               right: deviceLayout.spacing * 2)
-        flowLayout.scrollDirection = .horizontal
-        
-        return flowLayout
+        return deviceLayout
     }
     
     private func configureNavBar() {
