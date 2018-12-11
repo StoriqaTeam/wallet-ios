@@ -38,6 +38,8 @@ class AccountsPresenter {
 
 extension AccountsPresenter: AccountsViewOutput {
     func viewAllPressed() {
+        resetAnimatorIfNeeded()
+        
         let account = interactor.getSelectedAccount()
         router.showTransactions(from: view.viewController, account: account)
     }
@@ -74,7 +76,8 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
-        collectionView.collectionViewLayout = collectionFlowLayout
+        let collectionViewLayout = self.collectionFlowLayout
+        collectionView.collectionViewLayout = collectionViewLayout
         
         let allAccounts = interactor.getAccounts()
         let accountsManager = AccountsDataManager(accounts: allAccounts,
@@ -82,6 +85,11 @@ extension AccountsPresenter: AccountsViewOutput {
         accountsManager.setCollectionView(collectionView)
         accountsDataManager = accountsManager
         accountsDataManager.delegate = self
+        
+        let height = collectionViewLayout.itemSize.height + collectionViewLayout.minimumLineSpacing * 2
+        view.setCollectionHeight(height)
+        
+        setupAnimatior()
     }
     
     func viewIsReady() {
@@ -145,8 +153,8 @@ extension AccountsPresenter: AccountsModuleInput {
 // MARK: - MyWalletToAccountsAnimatorDelegate
 
 extension AccountsPresenter: MyWalletToAccountsAnimatorDelegate {
-    func animationComplete() {
-        view.showAccounts()
+    func animationComplete(completion: @escaping (() -> Void)) {
+        view.showAccounts(completion: completion)
     }
 }
 
@@ -154,12 +162,6 @@ extension AccountsPresenter: MyWalletToAccountsAnimatorDelegate {
 // MARK: - AccountsDataManagerDelegate
 
 extension AccountsPresenter: AccountsDataManagerDelegate {
-    func rectOfChosenItem(_ rect: CGRect?, in collectionView: UICollectionView) {
-        guard let frame = rect else { return }
-        let accountFrame = collectionView.convert(frame, to: view.viewController.view)
-        animator?.setDestinationFrame(accountFrame)
-    }
-    
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccountWith(index: newIndex)
         view.setNewPage(newIndex)
@@ -171,6 +173,7 @@ extension AccountsPresenter: AccountsDataManagerDelegate {
 
 extension AccountsPresenter: TransactionsDataManagerDelegate {
     func didChooseTransaction(_ transaction: TransactionDisplayable) {
+        resetAnimatorIfNeeded()
         router.showTransactionDetails(with: transaction, from: view.viewController)
     }
 }
@@ -181,22 +184,31 @@ extension AccountsPresenter: TransactionsDataManagerDelegate {
 extension AccountsPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .horizontal)
-        
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = deviceLayout.spacing
-        flowLayout.itemSize = deviceLayout.size
-        flowLayout.sectionInset = UIEdgeInsets(top: 0,
-                                               left: deviceLayout.spacing * 2,
-                                               bottom: 0,
-                                               right: deviceLayout.spacing * 2)
-        flowLayout.scrollDirection = .horizontal
-        
-        return flowLayout
+        return deviceLayout
     }
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
         let iso = interactor.getInitialCurrencyISO()
         view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
+    }
+    
+    private func setupAnimatior() {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        let navigationBarHeight = view.viewController.navigationController?.navigationBar.frame.height ?? 44
+        let itemX = (Constants.Sizes.screenWidth - collectionFlowLayout.itemSize.width) / 2
+        let itemY = statusBarHeight + navigationBarHeight + collectionFlowLayout.minimumLineSpacing
+        let newFrame = CGRect(x: itemX,
+                              y: itemY,
+                              width: collectionFlowLayout.itemSize.width,
+                              height: collectionFlowLayout.itemSize.height)
+        
+        animator?.setDestinationFrame(newFrame)
+    }
+    
+    private func resetAnimatorIfNeeded() {
+        if let navigation = view.viewController.navigationController as? TransitionNavigationController {
+            navigation.useDefaultTransitioningDelegate()
+        }
     }
 }

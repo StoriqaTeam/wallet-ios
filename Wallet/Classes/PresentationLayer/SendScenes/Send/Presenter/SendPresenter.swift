@@ -261,8 +261,6 @@ extension SendPresenter: QRScannerDelegate {
 // MARK: - AccountsDataManagerDelegate
 
 extension SendPresenter: AccountsDataManagerDelegate {
-    func rectOfChosenItem(_ rect: CGRect?, in collectionView: UICollectionView) { }
-    
     func currentPageDidChange(_ newIndex: Int) {
         interactor.setCurrentAccount(index: newIndex, receiverAddress: address)
         view.setNewPage(newIndex)
@@ -292,17 +290,7 @@ extension SendPresenter {
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .horizontalSmall)
-        
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = deviceLayout.spacing
-        flowLayout.itemSize = deviceLayout.size
-        flowLayout.sectionInset = UIEdgeInsets(top: 0,
-                                               left: deviceLayout.spacing * 2,
-                                               bottom: 0,
-                                               right: deviceLayout.spacing * 2)
-        flowLayout.scrollDirection = .horizontal
-        
-        return flowLayout
+        return deviceLayout
     }
     
     private func getStringFrom(amount: Decimal?, currency: Currency) -> String {

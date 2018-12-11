@@ -81,6 +81,7 @@ class BouncyLayout: UICollectionViewFlowLayout {
         self.minimumInteritemSpacing = flow.minimumInteritemSpacing
         self.sectionInset = flow.sectionInset
         self.itemSize = flow.itemSize
+        self.scrollDirection = flow.scrollDirection
     }
 }
 

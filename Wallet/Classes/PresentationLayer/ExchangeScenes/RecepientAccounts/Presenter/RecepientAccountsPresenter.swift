@@ -91,17 +91,7 @@ extension RecepientAccountsPresenter: RecepientAccountsModuleInput {
 extension RecepientAccountsPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .verticalSmall)
-        let flowLayout = UICollectionViewFlowLayout()
-        
-        flowLayout.minimumLineSpacing = deviceLayout.spacing
-        flowLayout.minimumInteritemSpacing = deviceLayout.spacing
-        flowLayout.sectionInset = UIEdgeInsets(top: deviceLayout.spacing,
-                                               left: 0,
-                                               bottom: deviceLayout.spacing,
-                                               right: 0)
-        flowLayout.itemSize = deviceLayout.size
-        
-        return flowLayout
+        return deviceLayout
     }
     
     private func configureNavigationBar() {

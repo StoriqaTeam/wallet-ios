@@ -39,10 +39,15 @@ enum Device: CGFloat {
         case horizontalSmall
     }
     
-    func flowLayout(type: FlowLayoutType) -> (size: CGSize, spacing: CGFloat) {
+    func flowLayout(type: FlowLayoutType) -> UICollectionViewFlowLayout {
+        let size: CGSize
+        let itemSpacing: CGFloat
+        let lineSpacing: CGFloat
+        let scrollDirection: UICollectionView.ScrollDirection
+        
         switch type {
         case .horizontal:
-            let size: CGSize
+            scrollDirection = .horizontal
             
             switch self {
             case .iPhoneSE:
@@ -51,10 +56,10 @@ enum Device: CGFloat {
                 size = CGSize(width: 336, height: 198)
             }
             
-            let spacing = (Constants.Sizes.screenWidth - size.width) / 4
-            return (size, spacing)
+            itemSpacing = (Constants.Sizes.screenWidth - size.width) / 2
+            lineSpacing = itemSpacing / 2
         case .horizontalSmall:
-            let size: CGSize
+            scrollDirection = .horizontal
             
             switch self {
             case .iPhoneSE:
@@ -63,30 +68,56 @@ enum Device: CGFloat {
                 size = CGSize(width: 336, height: 102)
             }
             
-            let spacing = (Constants.Sizes.screenWidth - size.width) / 4
-            return (size, spacing)
+            itemSpacing = (Constants.Sizes.screenWidth - size.width) / 2
+            lineSpacing = itemSpacing / 2
         case .vertical:
+            scrollDirection = .vertical
+            
             switch self {
             case .iPhoneSE:
-                let size = CGSize(width: 296, height: 174)
-                let spacing: CGFloat = 12
-                return (size, spacing)
+                size = CGSize(width: 280, height: 165)
             default:
-                let size = CGSize(width: 336, height: 198)
-                let spacing: CGFloat = 17
-                return (size, spacing)
+                size = CGSize(width: 336, height: 198)
             }
+            
+            itemSpacing = (Constants.Sizes.screenWidth - size.width) / 2
+            lineSpacing = itemSpacing
         case .verticalSmall:
+            scrollDirection = .vertical
+            
             switch self {
             case .iPhoneSE:
-                let size = CGSize(width: 280, height: 85)
-                let spacing: CGFloat = 12
-                return (size, spacing)
+                size = CGSize(width: 280, height: 85)
+                itemSpacing = 12
+                lineSpacing = 12
             default:
-                let size = CGSize(width: 336, height: 102)
-                let spacing: CGFloat = 17
-                return (size, spacing)
+                size = CGSize(width: 336, height: 102)
+                itemSpacing = 17
+                lineSpacing = 17
             }
         }
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        
+        flowLayout.minimumLineSpacing = lineSpacing
+        flowLayout.minimumInteritemSpacing = itemSpacing
+        
+        switch scrollDirection {
+        case .horizontal:
+            flowLayout.sectionInset = UIEdgeInsets(top: 0,
+                                                   left: lineSpacing * 2,
+                                                   bottom: 0,
+                                                   right: lineSpacing * 2)
+        case .vertical:
+            flowLayout.sectionInset = UIEdgeInsets(top: lineSpacing / 2,
+                                                   left: 0,
+                                                   bottom: lineSpacing / 2,
+                                                   right: 0)
+        }
+        
+        flowLayout.itemSize = size
+        flowLayout.scrollDirection = scrollDirection
+        
+        return flowLayout
     }
 }

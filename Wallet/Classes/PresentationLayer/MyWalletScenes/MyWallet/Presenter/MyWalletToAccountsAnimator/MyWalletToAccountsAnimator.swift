@@ -10,7 +10,7 @@
 import UIKit
 
 protocol MyWalletToAccountsAnimatorDelegate: class {
-    func animationComplete()
+    func animationComplete(completion: @escaping (() -> Void))
 }
 
 class MyWalletToAccountsAnimator: NSObject {
@@ -43,7 +43,6 @@ extension MyWalletToAccountsAnimator: UIViewControllerAnimatedTransitioning {
         guard let toVC = transitionContext.viewController(forKey: .to) else { return }
         guard let fromFrame = initialFrame else { return }
         guard let toFrame = destinationFrame else { return }
-        
         guard let snapshot = fromVC.view.resizableSnapshotView(from: fromFrame,
                                                                afterScreenUpdates: true,
                                                                withCapInsets: UIEdgeInsets.zero) else { return }
@@ -54,7 +53,6 @@ extension MyWalletToAccountsAnimator: UIViewControllerAnimatedTransitioning {
         snapshot.frame = fromFrame
         snapshot.layer.cornerRadius = 10
         snapshot.layer.masksToBounds = true
-        snapshot.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
 
         container.addSubview(toVC.view)
         container.addSubview(snapshot)
@@ -66,9 +64,9 @@ extension MyWalletToAccountsAnimator: UIViewControllerAnimatedTransitioning {
             snapshot.frame = toFrame
         }) { _ in
             let success = !transitionContext.transitionWasCancelled
-            self.delegate?.animationComplete()
-            snapshot.removeFromSuperview()
-            snapshot.transform = CGAffineTransform.identity
+            self.delegate?.animationComplete(completion: {
+                snapshot.removeFromSuperview()
+            })
             if !success { toVC.view.removeFromSuperview() }
             transitionContext.completeTransition(success)
         }

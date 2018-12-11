@@ -205,18 +205,8 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
 extension MyWalletPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .vertical)
-        let flowLayout = UICollectionViewFlowLayout()
-        
-        flowLayout.minimumLineSpacing = deviceLayout.spacing
-        flowLayout.minimumInteritemSpacing = deviceLayout.spacing
-        flowLayout.sectionInset = UIEdgeInsets(top: deviceLayout.spacing,
-                                               left: 0,
-                                               bottom: deviceLayout.spacing,
-                                               right: 0)
-        flowLayout.itemSize = deviceLayout.size
-        
         let bounceLayout = BouncyLayout(style: .prominent)
-        bounceLayout.setConfigureFlow(flow: flowLayout)
+        bounceLayout.setConfigureFlow(flow: deviceLayout)
         
         return bounceLayout
     }
