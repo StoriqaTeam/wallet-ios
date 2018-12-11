@@ -144,7 +144,9 @@
                         <outlet property="collectionHeightConstraint" destination="Mj3-ef-U7c" id="yem-wd-MUM"/>
                         <outlet property="depositButton" destination="4yB-CB-nkf" id="HzI-C9-QMx"/>
                         <outlet property="lastTransactionsTableView" destination="t8M-lF-stc" id="OZI-Jd-2DX"/>
+                        <outlet property="lastTransactionsTitle" destination="dfX-zu-jvq" id="fRD-2n-dfi"/>
                         <outlet property="sendButton" destination="mW7-Nb-lY5" id="O9e-oY-0Lg"/>
+                        <outlet property="viewAllButton" destination="O5L-Av-Ltk" id="8eP-9d-QJ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xxR-Ah-CrC" userLabel="First Responder" sceneMemberID="firstResponder"/>

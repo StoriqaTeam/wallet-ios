@@ -20,6 +20,8 @@ class AccountsViewController: UIViewController {
     @IBOutlet private var depositButton: RouteButton!
     @IBOutlet private var sendButton: RouteButton!
     @IBOutlet private var collectionHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var lastTransactionsTitle: UILabel!
+    @IBOutlet private var viewAllButton: UIButton!
     
 
     // MARK: Life cycle
@@ -32,12 +34,21 @@ class AccountsViewController: UIViewController {
         output.viewIsReady()
         
         accountsCollectionView.alpha = 0
+        lastTransactionsTitle.alpha = 0
+        viewAllButton.alpha = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.configureCollections()
         output.viewWillAppear()
+        
+        self.output.viewDidFinishTransitionAnimation()
+        
+        UIView.animate(withDuration: 0.25, delay: 0.2, options: [], animations: {
+            self.lastTransactionsTitle.alpha = 1
+            self.viewAllButton.alpha = 1
+        }, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {

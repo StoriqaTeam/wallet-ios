@@ -22,6 +22,7 @@ class AccountsPresenter {
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: TransactionsDataManager!
     private var animator: MyWalletToAccountsAnimator?
+    private var didAppear = false
     
     init(accountDisplayer: AccountDisplayerProtocol,
          transactionsMapper: TransactionMapperProtocol,
@@ -61,18 +62,10 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func transactionTableView(_ tableView: UITableView) {
-        let transactions = interactor.getTransactionForCurrentAccount()
-        let account = interactor.getSelectedAccount()
-        let displayable = transactions.map { transactionsMapper.map(from: $0, account: account) }
-        let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true, maxCount: 10)
+        let txDataManager = TransactionsDataManager(transactions: [], isHiddenSections: true, maxCount: 10)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
-        
-        if displayable.isEmpty {
-            transactionDataManager.updateEmpty(placeholderImage: UIImage(named: "noTxs")!,
-                                               placeholderText: "")
-        }
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -103,6 +96,17 @@ extension AccountsPresenter: AccountsViewOutput {
     func viewWillAppear() {
         view.viewController.setWhiteNavigationBarButtons()
     }
+    
+    func viewDidFinishTransitionAnimation() {
+        guard !didAppear else { return }
+        didAppear = true
+        
+        let transactions = interactor.getTransactionForCurrentAccount()
+        let account = interactor.getSelectedAccount()
+        transactionsMapper.map(from: transactions, account: account) { [weak self] (displayable) in
+            self?.transactionDataManager.firstUpdateTransactions(displayable)
+        }
+    }
 }
 
 
@@ -119,6 +123,8 @@ extension AccountsPresenter: AccountsInteractorOutput {
     }
     
     func transactionsDidChange(_ txs: [Transaction]) {
+        guard didAppear else { return }
+        
         let account = interactor.getSelectedAccount()
         
         transactionsMapper.map(from: txs, account: account) { [weak self] (displayable) in

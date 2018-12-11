@@ -17,4 +17,5 @@ protocol AccountsViewOutput: class {
     func configureCollections()
     func viewAllPressed()
     func viewWillAppear()
+    func viewDidFinishTransitionAnimation()
 }
