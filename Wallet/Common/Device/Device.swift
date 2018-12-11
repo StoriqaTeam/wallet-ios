@@ -5,7 +5,6 @@
 //  Created by Storiqa on 27.09.2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-//swiftlint:disable cyclomatic_complexity
 
 import Foundation
 
@@ -41,80 +40,50 @@ enum Device: CGFloat {
     
     func flowLayout(type: FlowLayoutType) -> UICollectionViewFlowLayout {
         let size: CGSize
-        let itemSpacing: CGFloat
-        let lineSpacing: CGFloat
-        let scrollDirection: UICollectionView.ScrollDirection
+        let spacing: CGFloat
+        let scrollDirection: UICollectionView.ScrollDirection = {
+            switch type {
+            case .horizontal, .horizontalSmall: return .horizontal
+            case .vertical, .verticalSmall: return .vertical
+            }
+        }()
         
         switch type {
-        case .horizontal:
-            scrollDirection = .horizontal
-            
+        case .horizontal, .vertical:
             switch self {
             case .iPhoneSE:
                 size = CGSize(width: 280, height: 165)
             default:
                 size = CGSize(width: 336, height: 198)
             }
-            
-            itemSpacing = (Constants.Sizes.screenWidth - size.width) / 2
-            lineSpacing = itemSpacing / 2
-        case .horizontalSmall:
-            scrollDirection = .horizontal
-            
+        case .horizontalSmall, .verticalSmall:
             switch self {
             case .iPhoneSE:
                 size = CGSize(width: 280, height: 85)
             default:
                 size = CGSize(width: 336, height: 102)
-            }
-            
-            itemSpacing = (Constants.Sizes.screenWidth - size.width) / 2
-            lineSpacing = itemSpacing / 2
-        case .vertical:
-            scrollDirection = .vertical
-            
-            switch self {
-            case .iPhoneSE:
-                size = CGSize(width: 280, height: 165)
-            default:
-                size = CGSize(width: 336, height: 198)
-            }
-            
-            itemSpacing = (Constants.Sizes.screenWidth - size.width) / 2
-            lineSpacing = itemSpacing
-        case .verticalSmall:
-            scrollDirection = .vertical
-            
-            switch self {
-            case .iPhoneSE:
-                size = CGSize(width: 280, height: 85)
-                itemSpacing = 12
-                lineSpacing = 12
-            default:
-                size = CGSize(width: 336, height: 102)
-                itemSpacing = 17
-                lineSpacing = 17
             }
         }
         
         let flowLayout = UICollectionViewFlowLayout()
         
-        flowLayout.minimumLineSpacing = lineSpacing
-        flowLayout.minimumInteritemSpacing = itemSpacing
-        
         switch scrollDirection {
         case .horizontal:
+            spacing = (Constants.Sizes.screenWidth - size.width) / 4
             flowLayout.sectionInset = UIEdgeInsets(top: 0,
-                                                   left: lineSpacing * 2,
+                                                   left: spacing * 2,
                                                    bottom: 0,
-                                                   right: lineSpacing * 2)
+                                                   right: spacing * 2)
         case .vertical:
-            flowLayout.sectionInset = UIEdgeInsets(top: lineSpacing / 2,
+            spacing = self == .iPhoneSE ? 12 : 18
+            flowLayout.sectionInset = UIEdgeInsets(top: spacing / 2,
                                                    left: 0,
-                                                   bottom: lineSpacing / 2,
+                                                   bottom: spacing / 2,
                                                    right: 0)
         }
         
+        flowLayout.minimumLineSpacing = spacing
+        flowLayout.minimumInteritemSpacing = spacing
         flowLayout.itemSize = size
         flowLayout.scrollDirection = scrollDirection
         

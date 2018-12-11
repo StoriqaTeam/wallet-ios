@@ -34,7 +34,10 @@ class MyWalletToAccountsAnimator: NSObject {
 
 extension MyWalletToAccountsAnimator: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        guard let fromFrame = initialFrame, let toFrame = destinationFrame else { return 0.4 }
+        
+        let duration = log2(Double(abs(fromFrame.midY - toFrame.midY))) / 20
+        return TimeInterval(duration)
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -57,10 +60,7 @@ extension MyWalletToAccountsAnimator: UIViewControllerAnimatedTransitioning {
         container.addSubview(toVC.view)
         container.addSubview(snapshot)
         
-        toVC.view.alpha = 0.0
-        
-        UIView.animate(withDuration: duration, animations: {
-            toVC.view.alpha = 1.0
+        UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
             snapshot.frame = toFrame
         }) { _ in
             let success = !transitionContext.transitionWasCancelled
