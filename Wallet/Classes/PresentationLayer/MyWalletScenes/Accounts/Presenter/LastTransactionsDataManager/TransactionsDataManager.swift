@@ -23,6 +23,7 @@ class TransactionsDataManager: NSObject {
     private let isHiddenSections: Bool
     private let maxCount: Int?
     private var emptyViewPlaceholder: EmptyView?
+    private var isAnimatingApperance: Bool = false
     
     init(transactions: [TransactionDisplayable], isHiddenSections: Bool, maxCount: Int? = nil) {
         self.isHiddenSections = isHiddenSections
@@ -37,7 +38,20 @@ class TransactionsDataManager: NSObject {
         lastTransactionsTableView.dataSource = self
         lastTransactionsTableView.delegate = self
         lastTransactionsTableView.separatorStyle = .none
+        lastTransactionsTableView.estimatedRowHeight = 70
         registerXib()
+    }
+    
+    func firstUpdateTransactions(_ transactions: [TransactionDisplayable]) {
+        isAnimatingApperance = true
+        
+        let duration = Double(lastTransactionsTableView.visibleCells.count) / 8 + 0.5
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
+            self?.isAnimatingApperance = false
+        }
+        
+        updateTransactions(transactions)
     }
     
     func updateTransactions(_ transactions: [TransactionDisplayable]) {
@@ -124,6 +138,18 @@ extension TransactionsDataManager: UITableViewDelegate {
         let mounthTransactions = transactionsSections[section]
         let title = mounthTransactions[0].transaction.createdAt.getMonthName()
         return createHeaderView(with: title)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard isAnimatingApperance else { return }
+        
+        cell.transform = CGAffineTransform(translationX: 0, y: cell.frame.height/2)
+        cell.alpha = 0
+        
+        UIView.animate(withDuration: 0.5, delay: Double(indexPath.row) * 0.05, options: [], animations: {
+            cell.transform = CGAffineTransform.identity
+            cell.alpha = 1
+        }, completion: nil)
     }
 }
 
