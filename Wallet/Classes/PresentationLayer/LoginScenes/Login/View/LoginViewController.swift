@@ -9,6 +9,8 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.Login
 
     var output: LoginViewOutput!
     
@@ -137,19 +139,19 @@ extension LoginViewController {
     }
     
     private func configureControls() {
-        emailTextField.placeholder = "email".localized()
+        emailTextField.placeholder = LocalizedStrings.emailPlaceholder
         emailTextField.layoutBlock = {[weak self] in
             self?.view.layoutIfNeeded()
         }
         
-        passwordTextField.placeholder = "password".localized()
+        passwordTextField.placeholder = LocalizedStrings.passwordPlaceholder
         passwordTextField.layoutBlock = {[weak self] in
             self?.view.layoutIfNeeded()
         }
         
-        signInButton.title = "sign_in".localized()
+        signInButton.title = LocalizedStrings.signInButtonTitle
         forgotPasswordButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
-        forgotPasswordButton.setTitle("forgot_password".localized(), for: .normal)
+        forgotPasswordButton.setTitle(LocalizedStrings.forgotButtonTitle, for: .normal)
     }
     
     private func setSocialView() {

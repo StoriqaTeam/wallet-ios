@@ -12,6 +12,8 @@ import AudioToolbox.AudioServices
 
 class MyWalletPresenter {
     
+    typealias LocalizedStrings = Strings.MyWallet
+    
     weak var view: MyWalletViewInput!
     weak var output: MyWalletModuleOutput?
     var interactor: MyWalletInteractorInput!
@@ -140,7 +142,8 @@ extension MyWalletPresenter: MyWalletInteractorOutput {
         }
         
         if !notificationStr.isEmpty {
-            notificationStr = "You received " + notificationStr
+            let message = LocalizedStrings.newFundsReceivedMessage
+            notificationStr = message + notificationStr
             showReceivedNotification(message: notificationStr)
         }
     }

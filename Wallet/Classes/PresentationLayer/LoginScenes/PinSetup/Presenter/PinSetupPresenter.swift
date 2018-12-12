@@ -12,6 +12,8 @@ import AudioToolbox
 
 class PinSetupPresenter {
     
+    typealias LocalizedStrings = Strings.PinSetup
+    
     weak var view: PinSetupViewInput!
     weak var output: PinSetupModuleOutput?
     var interactor: PinSetupInteractorInput!
@@ -19,8 +21,8 @@ class PinSetupPresenter {
     
     private var pinSetupDataManager: PinSetupDataManager!
     
-    private let firstInputTitle = "enter_pin".localized()
-    private let confirmInputTitle = "confirm_pin".localized()
+    private let firstInputTitle = LocalizedStrings.enterPinTitle
+    private let confirmInputTitle = LocalizedStrings.confirmPinTitle
 }
 
 
@@ -61,8 +63,7 @@ extension PinSetupPresenter: PinSetupInteractorOutput {
     }
     
     func enterPinAgain() {
-        view.viewController.showAlert(message: "pins_not_match_alert".localized())
-        
+        view.viewController.showAlert(message: LocalizedStrings.pinNotMatchAlert)
         view.setTitle(title: firstInputTitle)
         pinSetupDataManager.scrollTo(state: .setPin)
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)

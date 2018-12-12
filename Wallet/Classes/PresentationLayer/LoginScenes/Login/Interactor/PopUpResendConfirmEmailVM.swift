@@ -18,10 +18,9 @@ class PopUpResendConfirmEmailVM: PopUpViewModelProtocol {
     
     init() {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "linkErrorIcon"),
-                                   title: "Your email is not verified",
-                                   text: "The link we’ve sent you has been expired. " +
-            "Tap ‘Resend’ to get a new link to verify your account.",
-                                   actionButtonTitle: "Resend",
+                                   title: Localization.resendConfirmEmailTitle,
+                                   text: Localization.resendConfirmEmailMessage,
+                                   actionButtonTitle: Localization.resendButton,
                                    hasCloseButton: true)
     }
     

@@ -18,9 +18,9 @@ class PopUpExchangeFailedVM: PopUpViewModelProtocol {
     
     init(message: String) {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "generalErrorIcon"),
-                                   title: "smth_went_wrong".localized(),
+                                   title: Localization.failureTitle,
                                    text: message,
-                                   actionButtonTitle: "try_again".localized(),
+                                   actionButtonTitle: Localization.tryAgainButton,
                                    hasCloseButton: true)
     }
     

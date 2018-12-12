@@ -14,11 +14,11 @@ protocol PopUpSignOutVMDelegate: class {
 
 class PopUpSignOutVM: PopUpViewModelProtocol {
     var apperance = PopUpApperance(image: #imageLiteral(resourceName: "signOutIcon"),
-                                   title: "sign_out_title".localized(),
-                                   text: "sign_out_text".localized(),
-                                   actionButtonTitle: "sure".localized(),
+                                   title: Localization.signOutTitle,
+                                   text: Localization.signOutMessage,
+                                   actionButtonTitle: Localization.signOutButton,
                                    hasCloseButton: true,
-                                   closeButtonTitle: "not_now".localized())
+                                   closeButtonTitle: Localization.noButton)
     weak var delegate: PopUpSignOutVMDelegate?
     
     func performAction() {
