@@ -388,6 +388,28 @@
 		A5C12E7F217F009D00A7D68C /* AuthTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E7E217F009D00A7D68C /* AuthTokenProvider.swift */; };
 		A5C12E82217F211200A7D68C /* JwtTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E81217F211200A7D68C /* JwtTokenParser.swift */; };
 		A5C12E84217F261C00A7D68C /* JwtParcerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */; };
+		A5C1874921C0EE5200779D26 /* Registration.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1874721C0EE5100779D26 /* Registration.strings */; };
+		A5C1874A21C0EE5200779D26 /* Strings+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1874821C0EE5100779D26 /* Strings+Registration.swift */; };
+		A5C1874D21C0EE8800779D26 /* Strings+QuickLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1874B21C0EE8800779D26 /* Strings+QuickLaunch.swift */; };
+		A5C1874E21C0EE8800779D26 /* QuickLaunch.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1874C21C0EE8800779D26 /* QuickLaunch.strings */; };
+		A5C1875121C0EEAF00779D26 /* Strings+PinInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1874F21C0EEAE00779D26 /* Strings+PinInput.swift */; };
+		A5C1875221C0EEAF00779D26 /* PinInput.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1875021C0EEAF00779D26 /* PinInput.strings */; };
+		A5C1875521C0EED500779D26 /* Profile.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1875321C0EED400779D26 /* Profile.strings */; };
+		A5C1875621C0EED500779D26 /* Strings+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1875421C0EED400779D26 /* Strings+Profile.swift */; };
+		A5C1875A21C0EF2800779D26 /* Exchange.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1875821C0EF2800779D26 /* Exchange.strings */; };
+		A5C1875C21C0EF3800779D26 /* Strings+Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1875B21C0EF3800779D26 /* Strings+Exchange.swift */; };
+		A5C1875F21C0EF5500779D26 /* BiometryQuickLaunch.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1875D21C0EF5400779D26 /* BiometryQuickLaunch.strings */; };
+		A5C1876021C0EF5500779D26 /* Strings+BiometryQuickLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1875E21C0EF5400779D26 /* Strings+BiometryQuickLaunch.swift */; };
+		A5C1876321C0EF7200779D26 /* Send.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1876121C0EF7100779D26 /* Send.strings */; };
+		A5C1876421C0EF7200779D26 /* Strings+Send.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1876221C0EF7200779D26 /* Strings+Send.swift */; };
+		A5C1876721C0EF9200779D26 /* Strings+PinSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1876521C0EF9200779D26 /* Strings+PinSetup.swift */; };
+		A5C1876821C0EF9200779D26 /* PinSetup.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1876621C0EF9200779D26 /* PinSetup.strings */; };
+		A5C1876B21C0EFB500779D26 /* Strings+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1876921C0EFB500779D26 /* Strings+Login.swift */; };
+		A5C1876C21C0EFB500779D26 /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1876A21C0EFB500779D26 /* Login.strings */; };
+		A5C1876F21C0EFE500779D26 /* Strings+QRScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1876D21C0EFE400779D26 /* Strings+QRScanner.swift */; };
+		A5C1877021C0EFE500779D26 /* QRScanner.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1876E21C0EFE400779D26 /* QRScanner.strings */; };
+		A5C1877321C0F01900779D26 /* Strings+PinQuickLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1877121C0F01900779D26 /* Strings+PinQuickLaunch.swift */; };
+		A5C1877421C0F01900779D26 /* PinQuickLaunch.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5C1877221C0F01900779D26 /* PinQuickLaunch.strings */; };
 		A5D4CE28219EE4B800317326 /* SignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D4CE27219EE4B800317326 /* SignerTests.swift */; };
 		A5D5BB7C217B57D4008BEB74 /* API+Authorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */; };
 		A5D5BB80217B59AF008BEB74 /* CurrentUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */; };
@@ -1111,6 +1133,28 @@
 		A5C12E81217F211200A7D68C /* JwtTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtTokenParser.swift; sourceTree = "<group>"; };
 		A5C12E83217F261C00A7D68C /* JwtParcerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtParcerTests.swift; sourceTree = "<group>"; };
 		A5C12E872180B6D500A7D68C /* Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wallet.entitlements; sourceTree = "<group>"; };
+		A5C1874721C0EE5100779D26 /* Registration.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Registration.strings; sourceTree = "<group>"; };
+		A5C1874821C0EE5100779D26 /* Strings+Registration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Registration.swift"; sourceTree = "<group>"; };
+		A5C1874B21C0EE8800779D26 /* Strings+QuickLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+QuickLaunch.swift"; sourceTree = "<group>"; };
+		A5C1874C21C0EE8800779D26 /* QuickLaunch.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = QuickLaunch.strings; sourceTree = "<group>"; };
+		A5C1874F21C0EEAE00779D26 /* Strings+PinInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+PinInput.swift"; sourceTree = "<group>"; };
+		A5C1875021C0EEAF00779D26 /* PinInput.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = PinInput.strings; sourceTree = "<group>"; };
+		A5C1875321C0EED400779D26 /* Profile.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Profile.strings; sourceTree = "<group>"; };
+		A5C1875421C0EED400779D26 /* Strings+Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Profile.swift"; sourceTree = "<group>"; };
+		A5C1875821C0EF2800779D26 /* Exchange.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Exchange.strings; sourceTree = "<group>"; };
+		A5C1875B21C0EF3800779D26 /* Strings+Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Exchange.swift"; sourceTree = "<group>"; };
+		A5C1875D21C0EF5400779D26 /* BiometryQuickLaunch.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = BiometryQuickLaunch.strings; sourceTree = "<group>"; };
+		A5C1875E21C0EF5400779D26 /* Strings+BiometryQuickLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+BiometryQuickLaunch.swift"; sourceTree = "<group>"; };
+		A5C1876121C0EF7100779D26 /* Send.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Send.strings; sourceTree = "<group>"; };
+		A5C1876221C0EF7200779D26 /* Strings+Send.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Send.swift"; sourceTree = "<group>"; };
+		A5C1876521C0EF9200779D26 /* Strings+PinSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+PinSetup.swift"; sourceTree = "<group>"; };
+		A5C1876621C0EF9200779D26 /* PinSetup.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = PinSetup.strings; sourceTree = "<group>"; };
+		A5C1876921C0EFB500779D26 /* Strings+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Login.swift"; sourceTree = "<group>"; };
+		A5C1876A21C0EFB500779D26 /* Login.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Login.strings; sourceTree = "<group>"; };
+		A5C1876D21C0EFE400779D26 /* Strings+QRScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+QRScanner.swift"; sourceTree = "<group>"; };
+		A5C1876E21C0EFE400779D26 /* QRScanner.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = QRScanner.strings; sourceTree = "<group>"; };
+		A5C1877121C0F01900779D26 /* Strings+PinQuickLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+PinQuickLaunch.swift"; sourceTree = "<group>"; };
+		A5C1877221C0F01900779D26 /* PinQuickLaunch.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = PinQuickLaunch.strings; sourceTree = "<group>"; };
 		A5D4CE27219EE4B800317326 /* SignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerTests.swift; sourceTree = "<group>"; };
 		A5D5BB7B217B57D4008BEB74 /* API+Authorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Authorize.swift"; sourceTree = "<group>"; };
 		A5D5BB7F217B59AF008BEB74 /* CurrentUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserNetworkProvider.swift; sourceTree = "<group>"; };
@@ -1578,6 +1622,8 @@
 				3544DD6D94942645B2A2EC18 /* Interactor */,
 				92F1C8E8168E335BFD1E9A05 /* Router */,
 				9D5AF64084126D486E02A6D8 /* Module */,
+				A5C1876E21C0EFE400779D26 /* QRScanner.strings */,
+				A5C1876D21C0EFE400779D26 /* Strings+QRScanner.swift */,
 			);
 			path = QRScanner;
 			sourceTree = "<group>";
@@ -1648,6 +1694,8 @@
 				6FD17D0D1608028D5BF1EB27 /* Interactor */,
 				878844F24CE76BE85FBA5B9E /* Router */,
 				2184744D2552513155BD831F /* Module */,
+				A5C1877221C0F01900779D26 /* PinQuickLaunch.strings */,
+				A5C1877121C0F01900779D26 /* Strings+PinQuickLaunch.swift */,
 			);
 			path = PinQuickLaunch;
 			sourceTree = "<group>";
@@ -1813,6 +1861,8 @@
 				9EC956BDFFE32A4E043BEB78 /* Interactor */,
 				A5FD9DA6E7DA9EAA4977CC25 /* Router */,
 				EE6533B47B27691635F0D845 /* Module */,
+				A5C1876121C0EF7100779D26 /* Send.strings */,
+				A5C1876221C0EF7200779D26 /* Strings+Send.swift */,
 			);
 			path = Send;
 			sourceTree = "<group>";
@@ -2407,6 +2457,8 @@
 				B90828930B61D8754E0B5BA4 /* Interactor */,
 				B19C4A1751BF807CA83CE829 /* Router */,
 				CB0C6C14F23EAD92D741F255 /* Module */,
+				A5C1876621C0EF9200779D26 /* PinSetup.strings */,
+				A5C1876521C0EF9200779D26 /* Strings+PinSetup.swift */,
 			);
 			path = PinSetup;
 			sourceTree = "<group>";
@@ -4078,6 +4130,8 @@
 				92C159F7C4A0BFCC5BFBDDCB /* Interactor */,
 				30FC739FF644B05AAE36577F /* Router */,
 				B76D0D4B8FA14BD3B34B245C /* Module */,
+				A5C1876A21C0EFB500779D26 /* Login.strings */,
+				A5C1876921C0EFB500779D26 /* Strings+Login.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -4163,6 +4217,8 @@
 				CBDC562DBB37E87E10321A50 /* Login */,
 				E298913915285D81F5C290ED /* PinInput */,
 				0470919340405B88C0254B63 /* Registration */,
+				A5C1874721C0EE5100779D26 /* Registration.strings */,
+				A5C1874821C0EE5100779D26 /* Strings+Registration.swift */,
 				59A031E8BD43381C63F480F4 /* PasswordEmailRecovery */,
 				CF3351575A07B8E3876198EB /* PasswordRecoveryConfirm */,
 				74E1EE79A36215B0DCA248BA /* PinSetup */,
@@ -4200,6 +4256,8 @@
 				5B3C60D7A7DC77A34CDCEB10 /* ExchangeConfirmPopUp */,
 				405559271A78D279EC6AA1DF /* RecepientAccounts */,
 				35A0221638484423AA99FE5F /* Exchange */,
+				A5C1875821C0EF2800779D26 /* Exchange.strings */,
+				A5C1875B21C0EF3800779D26 /* Strings+Exchange.swift */,
 			);
 			path = ExchangeScenes;
 			sourceTree = "<group>";
@@ -4208,6 +4266,8 @@
 			isa = PBXGroup;
 			children = (
 				D1A05278CDB8B0ADE5A9E419 /* QuickLaunch */,
+				A5C1874C21C0EE8800779D26 /* QuickLaunch.strings */,
+				A5C1874B21C0EE8800779D26 /* Strings+QuickLaunch.swift */,
 				145754F06027B916A9383527 /* PinQuickLaunch */,
 				E463DB1BBB09AD64D8E037EB /* BiometryQuickLaunch */,
 			);
@@ -4230,6 +4290,8 @@
 				A57435092177737E006B4CAE /* Sessions */,
 				824A8F0F01793996DDA8CE1B /* Settings */,
 				5C77DE802363AA80F9795E84 /* Profile */,
+				A5C1875321C0EED400779D26 /* Profile.strings */,
+				A5C1875421C0EED400779D26 /* Strings+Profile.swift */,
 				A57434E921776222006B4CAE /* EditProfile */,
 				6704FB5590F7ABAD4F91D9C6 /* ConnectPhone */,
 			);
@@ -4809,6 +4871,8 @@
 				8702542F0A68E20E6EEB0B8A /* Interactor */,
 				9DF0F8D9F30D65C93D4CE1DB /* Router */,
 				C8F2C4517605AB053895013E /* Module */,
+				A5C1875021C0EEAF00779D26 /* PinInput.strings */,
+				A5C1874F21C0EEAE00779D26 /* Strings+PinInput.swift */,
 			);
 			path = PinInput;
 			sourceTree = "<group>";
@@ -4821,6 +4885,8 @@
 				2B22AB6B418E72E79166BF1B /* Interactor */,
 				AAE1264226A17A0997F37672 /* Router */,
 				F8090C8C9DCC7D6C59EC515D /* Module */,
+				A5C1875D21C0EF5400779D26 /* BiometryQuickLaunch.strings */,
+				A5C1875E21C0EF5400779D26 /* Strings+BiometryQuickLaunch.swift */,
 			);
 			path = BiometryQuickLaunch;
 			sourceTree = "<group>";
@@ -5117,14 +5183,18 @@
 				CEE84EFA218B257400AB85F3 /* ChangePassword.storyboard in Resources */,
 				A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */,
 				CED822D4215A796500693B92 /* QRScanner.storyboard in Resources */,
+				A5C1875521C0EED500779D26 /* Profile.strings in Resources */,
 				CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */,
 				A574350221776226006B4CAE /* EditProfile.storyboard in Resources */,
 				CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */,
+				A5C1876C21C0EFB500779D26 /* Login.strings in Resources */,
 				A57434D42175E6DA006B4CAE /* TransactionFilter.storyboard in Resources */,
 				A522AAEB219AF7D300C39826 /* SettingsCell.xib in Resources */,
+				A5C1877421C0F01900779D26 /* PinQuickLaunch.strings in Resources */,
 				A5E8D9A62153EB3900AC6A7E /* Send.storyboard in Resources */,
 				CEE6730A21A2E8B2008FAC09 /* RecepientAccounts.storyboard in Resources */,
 				A56ED379216CAE27009FA58B /* TransactionDescriptionContactView.xib in Resources */,
+				A5C1874E21C0EE8800779D26 /* QuickLaunch.strings in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
 				A50086012150BD2B00C47015 /* PinInput.storyboard in Resources */,
 				CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */,
@@ -5137,24 +5207,31 @@
 				A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */,
 				CE41F3462181AAF900070D5D /* EmailConfirm.storyboard in Resources */,
 				A56ED373216C9F6F009FA58B /* TransactionDescriptionAddressView.xib in Resources */,
+				A5C1877021C0EFE500779D26 /* QRScanner.strings in Resources */,
 				CE185494214BE558009D1360 /* Localizable.strings in Resources */,
 				CE0324A521AEC53500FC4B6D /* AppInfo.storyboard in Resources */,
 				A5743528217773FD006B4CAE /* Sessions.storyboard in Resources */,
+				A5C1875F21C0EF5500779D26 /* BiometryQuickLaunch.strings in Resources */,
 				CE6A096F216B9537004A96A8 /* Profile.storyboard in Resources */,
 				CE5FAFAF21527CAB009E707E /* QuickLaunch.storyboard in Resources */,
 				A5E8D9A82153EBD600AC6A7E /* Exchange.storyboard in Resources */,
 				CEAD96BC219C37CD00924102 /* SendConfirmPopUp.storyboard in Resources */,
+				A5C1874921C0EE5200779D26 /* Registration.strings in Resources */,
 				A51CB55A21590F6800CDC80C /* TransactionCell.xib in Resources */,
 				A56B4C7C215CFE080017B337 /* EmptyView.xib in Resources */,
 				CE6A0974216CE3AE004A96A8 /* ConnectPhone.storyboard in Resources */,
 				CE83E21E21B68F300067A779 /* NotificationView.xib in Resources */,
+				A5C1875221C0EEAF00779D26 /* PinInput.strings in Resources */,
 				CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */,
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
 				A522AADF21997DE400C39826 /* PinSetupCell.xib in Resources */,
 				A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */,
+				A5C1876321C0EF7200779D26 /* Send.strings in Resources */,
 				A574353921789BB3006B4CAE /* SessionCell.xib in Resources */,
 				A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */,
+				A5C1875A21C0EF2800779D26 /* Exchange.strings in Resources */,
 				A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */,
+				A5C1876821C0EF9200779D26 /* PinSetup.strings in Resources */,
 				CE8E2E0C21A6D91300F0B395 /* ExchangeConfirmPopUp.storyboard in Resources */,
 				CE5FAFA321514BBF009E707E /* PasswordEmailRecovery.storyboard in Resources */,
 				A55A196D2155349000330EB8 /* Accounts.storyboard in Resources */,
@@ -5311,6 +5388,7 @@
 				CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */,
 				CEFC9CA421590DB800962356 /* PopUpPasswordRecoveryConfirmFailedVM.swift in Sources */,
 				CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */,
+				A5C1876B21C0EFB500779D26 /* Strings+Login.swift in Sources */,
 				A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */,
 				A58EE3C42150215B0096C155 /* BiometricAuthProvider.swift in Sources */,
 				A56ED397216CEF12009FA58B /* TransactionMapper.swift in Sources */,
@@ -5508,6 +5586,7 @@
 				B2EE15BCB20ED6ED71584DC2 /* QuickLaunchRouter.swift in Sources */,
 				A52FEB7D21A7FAB100DFA7BC /* OrderFactory.swift in Sources */,
 				A40E2F8BB4E10D0E0A388DCF /* QuickLaunchModuleInput.swift in Sources */,
+				A5C1875C21C0EF3800779D26 /* Strings+Exchange.swift in Sources */,
 				0B71D203EA67FB0928D31D05 /* QuickLaunchModule.swift in Sources */,
 				A56B4C76215CD8F10017B337 /* Device.swift in Sources */,
 				A56ED383216CD70B009FA58B /* TransactionDetailsInteractorOutput.swift in Sources */,
@@ -5647,6 +5726,7 @@
 				A56ED382216CD709009FA58B /* TransactionDetailsInteractorInput.swift in Sources */,
 				225C1777C92B40C17A58275B /* SendModule.swift in Sources */,
 				D029C2BDAA326AE7EB885D7C /* ExchangeViewInput.swift in Sources */,
+				A5C1876F21C0EFE500779D26 /* Strings+QRScanner.swift in Sources */,
 				A5C12E7F217F009D00A7D68C /* AuthTokenProvider.swift in Sources */,
 				8AD5E3C4C55B5557FCDFC2AD /* ExchangeViewOutput.swift in Sources */,
 				F3EB762CF50BA3699D0CB2AA /* ExchangeViewController.swift in Sources */,
@@ -5671,6 +5751,7 @@
 				F6FFC06886618EE0C23D164A /* DepositViewOutput.swift in Sources */,
 				48AE3AD16EB72471782C5432 /* DepositViewController.swift in Sources */,
 				A5B7820A215E22FD00EFD1A5 /* Base59Encode.swift in Sources */,
+				A5C1876721C0EF9200779D26 /* Strings+PinSetup.swift in Sources */,
 				A69BEB443BFB8D712A5DD1E7 /* DepositPresenter.swift in Sources */,
 				CE8E2E1621A7E72900F0B395 /* UpdateUserNetworkProvider.swift in Sources */,
 				3000F328272A309F1310DA78 /* DepositInteractorInput.swift in Sources */,
@@ -5720,6 +5801,7 @@
 				AE3D99DB0E383E9F099380B0 /* AccountsInteractorInput.swift in Sources */,
 				9E5BB8C19D08FA91F242EC06 /* AccountsInteractorOutput.swift in Sources */,
 				387049FD4CBF2A4D85926766 /* AccountsInteractor.swift in Sources */,
+				A5C1874D21C0EE8800779D26 /* Strings+QuickLaunch.swift in Sources */,
 				A574352121777383006B4CAE /* SessionsViewController.swift in Sources */,
 				FBC0445139685CE4088D662F /* AccountsRouterInput.swift in Sources */,
 				22613A5133717DCD88294579 /* AccountsRouter.swift in Sources */,
@@ -5741,6 +5823,7 @@
 				E0AD72DCFDB861B1D4DEF6CC /* QRScannerViewController.swift in Sources */,
 				D1165EF7AF3D95C268460D43 /* QRScannerPresenter.swift in Sources */,
 				CE8E2E1821A7E8FF00F0B395 /* API+Settings.swift in Sources */,
+				A5C1875621C0EED500779D26 /* Strings+Profile.swift in Sources */,
 				0F5C6FA888352D3BCF88000F /* QRScannerInteractorInput.swift in Sources */,
 				A5933D3C219DBE230080C8C7 /* Signer.swift in Sources */,
 				BC5B1AC1C08666ED0D21E500 /* QRScannerInteractorOutput.swift in Sources */,
@@ -5806,12 +5889,15 @@
 				4A716DCE68EFC893326C5B35 /* ConnectPhoneRouter.swift in Sources */,
 				CE8E2E1321A7DBBA00F0B395 /* PopUpDefaultFailureVM.swift in Sources */,
 				41BE6CD39AB51A11D33C65CC /* ConnectPhoneModuleInput.swift in Sources */,
+				A5C1877321C0F01900779D26 /* Strings+PinQuickLaunch.swift in Sources */,
 				A522AAE4219980BB00C39826 /* PinSetupDataManager.swift in Sources */,
 				D1E2319F1277268F069541E3 /* ConnectPhoneModuleOutput.swift in Sources */,
+				A5C1874A21C0EE5200779D26 /* Strings+Registration.swift in Sources */,
 				CE8E2E1A21A8184B00F0B395 /* PopUpResendConfirmEmailVM.swift in Sources */,
 				7934CE37D1CDACDF65C1F2DF /* ConnectPhoneModule.swift in Sources */,
 				E48F38E3F6C54C04DF13180D /* TransactionFilterViewInput.swift in Sources */,
 				F686C7139F346CD48BB88FFC /* TransactionFilterViewOutput.swift in Sources */,
+				A5C1875121C0EEAF00779D26 /* Strings+PinInput.swift in Sources */,
 				B8C5EDDE2189ADE600345B79 /* RealmRate.swift in Sources */,
 				4C9AC1E9C6D0D8C5181C95BF /* TransactionFilterViewController.swift in Sources */,
 				A7B879DB4C2E78DC60D11D96 /* TransactionFilterModulePresenter.swift in Sources */,
@@ -5892,6 +5978,7 @@
 				BC7BDCC8E180102F19C4B6F9 /* ExchangeConfirmPopUpViewInput.swift in Sources */,
 				62295A6BD30145E40C1B3F63 /* ExchangeConfirmPopUpViewOutput.swift in Sources */,
 				813F1B63E086DB044EF8B901 /* ExchangeConfirmPopUpViewController.swift in Sources */,
+				A5C1876421C0EF7200779D26 /* Strings+Send.swift in Sources */,
 				828D2A26236A08047E9D2065 /* ExchangeConfirmPopUpPresenter.swift in Sources */,
 				546CB52D2A24722585EDC101 /* ExchangeConfirmPopUpInteractorInput.swift in Sources */,
 				C85443C141795C7B6E609790 /* ExchangeConfirmPopUpInteractorOutput.swift in Sources */,
@@ -5904,6 +5991,7 @@
 				AC048C36E72CE7AE14749343 /* ExchangeConfirmPopUpModule.swift in Sources */,
 				28327668D4287BE3A359EAA4 /* AppInfoViewInput.swift in Sources */,
 				8FA60E3AB3042D929BCD457F /* AppInfoViewOutput.swift in Sources */,
+				A5C1876021C0EF5500779D26 /* Strings+BiometryQuickLaunch.swift in Sources */,
 				45DDC194E080E9EA33FA960D /* AppInfoViewController.swift in Sources */,
 				7EA1DFA345F150677D6EE8ED /* AppInfoPresenter.swift in Sources */,
 				7CADE5128979F7E0524F5BE4 /* AppInfoInteractorInput.swift in Sources */,
