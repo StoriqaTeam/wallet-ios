@@ -604,6 +604,7 @@
 		CEE84EFE218B272200AB85F3 /* SecureInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84EFD218B272200AB85F3 /* SecureInputTextField.swift */; };
 		CEE84F01218B4CA500AB85F3 /* ChangePasswordNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84F00218B4CA500AB85F3 /* ChangePasswordNetworkProvider.swift */; };
 		CEE84F03218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84F02218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift */; };
+		CEF02F2F21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F2E21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
@@ -1334,6 +1335,7 @@
 		CEE84EFD218B272200AB85F3 /* SecureInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputTextField.swift; sourceTree = "<group>"; };
 		CEE84F00218B4CA500AB85F3 /* ChangePasswordNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordNetworkProvider.swift; sourceTree = "<group>"; };
 		CEE84F02218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpChangePasswordSuccessVM.swift; sourceTree = "<group>"; };
+		CEF02F2E21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenNetworkProvider.swift; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
@@ -2792,6 +2794,7 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CEF02F2D21C0EB5A003D18FF /* RefreshTokenNetworkProvider */,
 				CE8E2E1B21A81BDE00F0B395 /* ResendConfirmEmailNetworkProvider */,
 				CE8E2E1421A7E70300F0B395 /* UpdateUserNetworkProvider */,
 				B870F1D321A31F8200BC53BE /* ConfirmAddDeviceNetworkProvider */,
@@ -4621,6 +4624,14 @@
 			path = ChangePasswordNetworkProvider;
 			sourceTree = "<group>";
 		};
+		CEF02F2D21C0EB5A003D18FF /* RefreshTokenNetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CEF02F2E21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift */,
+			);
+			path = RefreshTokenNetworkProvider;
+			sourceTree = "<group>";
+		};
 		CEFC9C872154E57B00962356 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -5422,6 +5433,7 @@
 				7D2290D15CEAF84FA8628C09 /* RegistrationViewController.swift in Sources */,
 				A5B78238215E33BA00EFD1A5 /* CryproAddressResolver.swift in Sources */,
 				F91599534C9DC69FA45F1EF4 /* RegistrationPresenter.swift in Sources */,
+				CEF02F2F21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift in Sources */,
 				A55A197621554BF600330EB8 /* AccountsDataManager.swift in Sources */,
 				A56B4C7E215D00DC0017B337 /* EmptyView.swift in Sources */,
 				D673BB210C0EE94821BDEFFA /* RegistrationInteractorInput.swift in Sources */,
