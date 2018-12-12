@@ -15,9 +15,9 @@ protocol PopUpPasswordRecoveryConfirmSuccessVMDelegate: class {
 class PopUpPasswordRecoveryConfirmSuccessVM: PopUpViewModelProtocol {
     weak var delegate: PopUpPasswordRecoveryConfirmSuccessVMDelegate?
     var apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
-                                   title: "psw_recovery_result_success_title".localized(),
-                                   text: "psw_recovery_result_success_subtitle".localized(),
-                                   actionButtonTitle: "sign_in".localized(),
+                                   title: Localization.passwordRecoveryConfirmTitle,
+                                   text: Localization.passwordRecoveryConfirmMessage,
+                                   actionButtonTitle: Localization.signInButton,
                                    hasCloseButton: false)
     
     func performAction() {

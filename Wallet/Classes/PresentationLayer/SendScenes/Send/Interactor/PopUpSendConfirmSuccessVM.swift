@@ -18,9 +18,9 @@ class PopUpSendConfirmSuccessVM: PopUpViewModelProtocol {
     
     init() {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
-                                   title: "Transaction sent successfully",
+                                   title: Localization.sendTransactionTitle,
                                    text: "",
-                                   actionButtonTitle: "ok".localized(),
+                                   actionButtonTitle: Localization.okButton,
                                    hasCloseButton: false)
     }
     

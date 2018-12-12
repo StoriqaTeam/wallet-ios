@@ -18,9 +18,9 @@ class PopUpChangePasswordSuccessVM: PopUpViewModelProtocol {
     
     init() {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
-                                   title: "Password was changed successfully",
+                                   title: Localization.changePasswordTitle,
                                    text: "",
-                                   actionButtonTitle: "ok".localized(),
+                                   actionButtonTitle: Localization.okButton,
                                    hasCloseButton: false)
     }
     
