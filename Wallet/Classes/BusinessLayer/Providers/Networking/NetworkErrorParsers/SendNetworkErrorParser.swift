@@ -39,19 +39,22 @@ class SendNetworkErrorParser: NetworkErrorParserProtocol {
             let existsError = amountErrors.first(where: { $0["code"] == "limit" }),
             let params = existsError["params"].dictionary,
             let min = params["min"]?.string,
-            let max = params["max"]?.string {
+            let max = params["max"]?.string,
+            let currencyStr = params["currency"]?.string {
+            let currency = Currency(string: currencyStr)
             
-            // FIXME: приделать валюты с бека
-            return SendNetworkError.amountOutOfBounds(min: min, max: max, currency: Currency.stq)
+            return SendNetworkError.amountOutOfBounds(min: min, max: max, currency: currency)
         }
         
         if let accountErrors = json["value"].array,
             let limitError = accountErrors.first(where: { $0["code"] == "exceeded_daily_limit" }),
             let params = limitError["params"].dictionary,
-            let limit = params["limit"]?.string {
+            let limit = params["limit"]?.string,
+            let currencyStr = params["currency"]?.string {
+            let currency = Currency(string: currencyStr)
             
-            // FIXME: приделать валюты с бека
-            return SendNetworkError.exceededDayLimit(limit: limit, currency: Currency.stq)
+            // TODO: проверить currency
+            return SendNetworkError.exceededDayLimit(limit: limit, currency: currency)
         }
         
         return next!.parse(code: code, json: json)

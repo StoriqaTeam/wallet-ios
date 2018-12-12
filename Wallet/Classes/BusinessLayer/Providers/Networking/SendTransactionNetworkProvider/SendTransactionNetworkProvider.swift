@@ -188,7 +188,9 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
                 let existsError = deviceErrors.first(where: { $0["code"] == "limit" }),
                 let params = existsError["params"].dictionary,
                 let min = params["min"]?.string,
-                let max = params["max"]?.string {
+                let max = params["max"]?.string,
+                let currencyStr = params["currency"]?.string {
+                let currency = Currency(string: currencyStr)
                 self = .amountOutOfBounds(min: min, max: max, currency: currency)
             } else if let exchangeRate = json["exchange_rate"].array,
                 exchangeRate.contains(where: { $0["code"] == "expired" }) {
@@ -199,7 +201,10 @@ enum SendTransactionNetworkProviderError: LocalizedError, Error {
             } else if let accountErrors = json["value"].array,
                 let limitError = accountErrors.first(where: { $0["code"] == "exceeded_daily_limit" }),
                 let params = limitError["params"].dictionary,
-                let limit = params["limit"]?.string {
+                let limit = params["limit"]?.string,
+                let currencyStr = params["currency"]?.string {
+                // TODO: проверить
+                let currency = Currency(string: currencyStr)
                 self = .exceededDayLimit(limit: limit, currency: currency)
             } else {
                 self = .unknownError
