@@ -13,7 +13,7 @@ extension Strings {
         static let touchIdTitle = NSLocalizedString(
             "BiometryQuickLaunch.touchIdTitle",
             tableName: "BiometryQuickLaunch",
-            value: "Set up fingerprint launch?",
+            value: "Set up \nfingerprint launch?",
             comment: "Biometry quick launch setup title in case of Touch ID")
         static let touchIdButton = NSLocalizedString(
             "BiometryQuickLaunch.touchIdButton",

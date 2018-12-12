@@ -10,6 +10,9 @@ import UIKit
 
 class SendViewController: UIViewController {
     
+    
+    typealias LocalizedStrings = Strings.Send
+    
     var output: SendViewOutput!
     
     // MARK: IBOutlets
@@ -180,9 +183,10 @@ extension SendViewController: SendViewInput {
                     self.view.layoutSubviews()
                 }
             })
+            
         } else {
             self.errorLabel.isHidden = false
-            self.errorLabel.text = "not_enough_funds".localized()
+            self.errorLabel.text = LocalizedStrings.notEnoughFundsErrorMessage
             
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.layoutSubviews()
@@ -284,14 +288,14 @@ extension SendViewController {
         receiverTextField.delegate = self
         scrollView.delegate = self
         
-        receiverTitleLabel.text = "receiver_address".localized()
-        amountTitleLabel.text = "amount".localized()
-        amountTextField.placeholder = "enter_amount".localized()
+        receiverTitleLabel.text = LocalizedStrings.recepientAddressTitle
+        amountTitleLabel.text = LocalizedStrings.amountTitle
+        amountTextField.placeholder = LocalizedStrings.amountPlaceholder
         
-        receiverTextField.placeholder = "receiver_input_placeholder".localized()
+        receiverTextField.placeholder = LocalizedStrings.recepientInputPlaceholder
         receiverTextField.autocorrectionType = .no
-        scanQRButton.setTitle("scan_QR".localized() + "   ", for: .normal)
-        sendButton.setTitle("send".localized(), for: .normal)
+        scanQRButton.setTitle(LocalizedStrings.scanButtonTitle + "   ", for: .normal)
+        sendButton.setTitle(LocalizedStrings.screenTitle, for: .normal)
         
         receiverTitleLabel.font = Theme.Font.caption
         amountTitleLabel.font = Theme.Font.caption

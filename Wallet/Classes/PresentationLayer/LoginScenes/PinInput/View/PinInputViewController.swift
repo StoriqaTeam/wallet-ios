@@ -10,6 +10,8 @@ import UIKit
 
 
 class PinInputViewController: UIViewController {
+    
+    typealias LocalizedString = Strings.PinInput
 
     var output: PinInputViewOutput!
     
@@ -85,7 +87,8 @@ extension PinInputViewController: PinInputViewInput {
 extension PinInputViewController {
     
     private func configureGreeting(name: String) {
-        greetingLabel.text = "greeting".localized() + name + "!"
+        let greeting = LocalizedString.greetingLabelTitle
+        greetingLabel.text = greeting + name + "!"
     }
     
     private func configureUserPhoto(photo: UIImage) {

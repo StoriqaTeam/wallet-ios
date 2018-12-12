@@ -10,30 +10,30 @@
 //TextFields
 
 //"email" = "Email";
-"first_name" = "First name";
-"last_name" = "Last name";
+//"first_name" = "First name";
+//"last_name" = "Last name";
 //"password" = "Password";
-"repeat_password" = "Repeat password";
-"enter_amount" = "Enter amount";
+//"repeat_password" = "Repeat password";
+//"enter_amount" = "Enter amount";
 
 //Buttons
 "get_started" = "Get started";
 //"forgot_password" = "I forgot password";
-"sign_up" = "Sign up";
+//"sign_up" = "Sign up";
 "sign_in" = "Sign in";
 "try_again" = "Try again";
 "confirm_new_password" = "Confirm new password";
 "reset_password" = "Reset password";
-"set_up_pin" = "Set up PIN code";
-"use_touchId" = "Use Touch ID";
+//"set_up_pin" = "Set up PIN code";
+//"use_touchId" = "Use Touch ID";
 "use_faceId" = "Use Face ID";
 "register" = "Register";
 //"sign_in" = "Sign in";
 //"add_new" = "Add new";
 "ok" = "Ok";
-"set_up_quick_launch" = "Set up quick launch";
+//"set_up_quick_launch" = "Set up quick launch";
 "do_not_use" = "Do not use";
-"scan_QR" = "Scan QR-code";
+//"scan_QR" = "Scan QR-code";
 "next" = "Next";
 "send" = "Send";
 "confirm_transaction" = "Confirm transaction";
@@ -45,25 +45,25 @@
 
 
 //Titles
-"enter_pin" = "Enter 4-digit PIN";
-"confirm_pin" = "Confirm PIN";
+//"enter_pin" = "Enter 4-digit PIN";
+//"confirm_pin" = "Confirm PIN";
 "my_wallet" = "My wallet";
 "receiver" = "Receiver";
-"receiver_input_placeholder" = "Recepient's address";
-"amount" = "AMOUNT";
-"receiver_address" = "RECEPIENT'S ADDRESS";
+//"receiver_input_placeholder" = "Recepient's address";
+//"amount" = "AMOUNT";
+//"receiver_address" = "RECEPIENT'S ADDRESS";
 
 
 //Labels
-"greeting" = "Hi, "; // "Hi, username"
+//"greeting" = "Hi, "; // "Hi, username"
 "password_recovery" = "Password reset";
 "psw_recovery_confirm_subtitle" = "Create new password and confirm it.";
 "email_for_psw_recovery" = "Enter email address to which you would like to receive the password reset link.";
-"quick_launch_title" = "Set up quick launch";
-"quick_launch_subtitle" = "Choose the way to confirm your identity";
-"pin_quick_launch_title" = "Set up PIN code";
-"touchId_quick_launch_title" = "Set up \nfingerprint launch?";
-"faceId_quick_launch_title" = "Set up \nFace ID launch?";
+//"quick_launch_title" = "Set up quick launch";
+//"quick_launch_subtitle" = "Choose the way to confirm your identity";
+//"pin_quick_launch_title" = "Set up PIN code";
+//"touchId_quick_launch_title" = "Set up \nfingerprint launch?";
+//"faceId_quick_launch_title" = "Set up \nFace ID launch?";
 "have_account" = "Have an account?";
 "have_no_account" = "Haven’t got account?";
 "sign_in_social" = "Sign in via social account";
@@ -72,7 +72,7 @@
 
 
 //Messages
-"passwords_nonequal" = "Passwords do not match";
+//"passwords_nonequal" = "Passwords do not match";
 "email_sent" = "Email sent successfully";
 "check_email" = "Check your mailbox! We've sent you the email address confirmation link";
 "smth_went_wrong" = "Oops! Something went wrong.";
@@ -84,13 +84,13 @@
 "change_photo" = "Change profile photo";
 "sign_out_title" = "Want to sign out?";
 "sign_out_text" = "After signing out you won’t be able to receive notifications from TURE app";
-"qr_code_hint" = "Place QR-code inside the white frame. \nTry not to shake your phone.";
-"not_enough_funds" = "You haven’t got enough funds. Try to set lower amount.";
+//"qr_code_hint" = "Place QR-code inside the white frame. \nTry not to shake your phone.";
+//"not_enough_funds" = "You haven’t got enough funds. Try to set lower amount.";
 
 
 //Error constants
 "user_friendly_error" = "Aliens have stolen some of our servers. We are busy chasing them. Please try again or come back later!";
 "pins_not_match_alert" = "PINs do not match. Try again.";
-"qr_code_currency_does_not_match" = "Currency of scanned address doesn't match the currency you are trying to transfer.";
+//"qr_code_currency_does_not_match" = "Currency of scanned address doesn't match the currency you are trying to transfer.";
 "device_token_expired" = "Device confirmation link has expired. Log in one more time to request a new link.";
 "send_email_timeout" = "Can not send email more than once in 30 seconds";

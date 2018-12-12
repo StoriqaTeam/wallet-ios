@@ -28,10 +28,17 @@ extension Strings {
                                                            tableName: "Registration",
                                                            value: "Password",
                                                            comment: "Password placeholder")
+        
+        static let passwordHintTitle = NSLocalizedString("Registration.passwordHintTitle",
+                                                         tableName: "Registration",
+                                                         value: "At least: 8 characters, 1 capital, 1 digit",
+                                                         comment: "Password hint error label title")
+        
         static let repeatPasswordPlaceholder = NSLocalizedString("Registration.repeatPasswordPlaceholder",
                                                            tableName: "Registration",
                                                            value: "Repeat password",
                                                            comment: "Repeat password placeholder")
+        
         static let acceptAgreementLabel = NSLocalizedString("Registration.acceptAgreementLabel",
                                                             tableName: "Registration",
                                                             value: "I accept the terms of the license agreement and privacy policy",
@@ -41,6 +48,26 @@ extension Strings {
                                                          tableName: "Registration",
                                                          value: "Sign up",
                                                          comment: "Sign up button title")
+        
+        static let licenseAgreementString = NSLocalizedString("Registration.licenseAgreementString",
+                                                              tableName: "Registration",
+                                                              value: "I accept the License Agreement",
+                                                              comment: "License Agreement string")
+        
+        static let privacyPolicyString = NSLocalizedString("Registration.privacyPolicyString",
+                                                              tableName: "Registration",
+                                                              value: "I accept the Privacy Policy",
+                                                              comment: "Privacy Policy string")
+        
+        static let passwordsNonEqualMessage = NSLocalizedString("Registration.passwordsNonEqualMessage",
+                                                                tableName: "Registration",
+                                                                value: "Passwords do not match",
+                                                                comment: "Passwords do not match message")
+        
+        static let failRetrieveSocialDataMessage = NSLocalizedString("Registration.failRetrieveSocialDataMessage",
+                                                                     tableName: "Registration",
+                                                                     value: "We couldn’t retrieve your data from ",
+                                                                     comment: "Failure message")
         
     }
 }

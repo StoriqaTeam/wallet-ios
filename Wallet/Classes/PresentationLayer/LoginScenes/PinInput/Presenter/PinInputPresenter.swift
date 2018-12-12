@@ -12,6 +12,8 @@ import AudioToolbox
 
 class PinInputPresenter {
     
+    typealias LocalizedString = Strings.PinInput
+    
     weak var view: PinInputViewInput!
     weak var output: PinInputModuleOutput?
     var interactor: PinInputInteractorInput!
@@ -58,11 +60,15 @@ extension PinInputPresenter: PinInputViewOutput {
     }
 
     func iForgotPinPressed() {
-        let alertController = UIAlertController(title: nil, message: "Confirm PIN reset", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil,
+                                                message: LocalizedString.confirmPinResetMessage,
+                                                preferredStyle: .actionSheet)
         
-        let resetPin = UIAlertAction(title: "Reset PIN", style: .default, handler: { [weak self] _ -> Void in
+        let resetPin = UIAlertAction(title: LocalizedString.resetPinAlertAction,
+                                     style: .default,
+                                     handler: { [weak self] _ -> Void in
+                                        
             guard let strongSelf = self else { return }
-            
             strongSelf.unsubscribeFromNotification()
             
             let completion = { [weak strongSelf] in
@@ -77,7 +83,7 @@ extension PinInputPresenter: PinInputViewOutput {
             }
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: LocalizedString.cancelAlertAction, style: .cancel)
         
         alertController.addAction(resetPin)
         alertController.addAction(cancelAction)
@@ -126,7 +132,7 @@ extension PinInputPresenter: PinInputInteractorOutput {
         
         if !error.isEmpty {
             log.warn(error)
-            view.showAlert(title: "Touch ID failed", message: error)
+            view.showAlert(title: LocalizedString.touchIdFailedMessage, message: error)
         }
     }
     

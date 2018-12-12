@@ -14,5 +14,10 @@ extension Strings {
                                                    tableName: "MyWallet",
                                                    value: "Add new",
                                                    comment: "Button at the right side of navigation bar")
+        
+        static let newFundsReceivedMessage = NSLocalizedString("MyWallet.newFundsReceivedMessage",
+                                                               tableName: "MyWallet",
+                                                               value: "You received ",
+                                                               comment: "Notification message abount new received funds")
     }
 }
