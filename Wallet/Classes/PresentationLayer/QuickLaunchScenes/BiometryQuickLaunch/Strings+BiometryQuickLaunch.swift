@@ -2,7 +2,7 @@
 //  Strings+BiometryQuickLaunch.swift
 //  Wallet
 //
-//  Created by Tata Gri on 22/10/2018.
+//  Created by Storiqa on 22/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 
@@ -23,7 +23,7 @@ extension Strings {
         static let faceIdTitle = NSLocalizedString(
             "BiometryQuickLaunch.faceIdTitle",
             tableName: "BiometryQuickLaunch",
-            value: "Set up Face ID launch?",
+            value: "Set up \nFace ID launch?",
             comment: "Biometry quick launch setup title in case of Face ID")
         static let faceIdButton = NSLocalizedString(
             "BiometryQuickLaunch.faceIdButton",

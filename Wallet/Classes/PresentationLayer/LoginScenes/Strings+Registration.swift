@@ -39,11 +39,6 @@ extension Strings {
                                                            value: "Repeat password",
                                                            comment: "Repeat password placeholder")
         
-        static let acceptAgreementLabel = NSLocalizedString("Registration.acceptAgreementLabel",
-                                                            tableName: "Registration",
-                                                            value: "I accept the terms of the license agreement and privacy policy",
-                                                            comment: "Accept agreement label title")
-        
         static let signUpButtonTitle = NSLocalizedString("Registration.signUpButtonTitle",
                                                          tableName: "Registration",
                                                          value: "Sign up",

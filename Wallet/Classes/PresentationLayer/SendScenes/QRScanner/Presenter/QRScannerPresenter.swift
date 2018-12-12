@@ -21,7 +21,7 @@ class QRScannerPresenter: NSObject {
     
     private var captureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer!
-    private let defaultHintMessage = LocalizedStrings.qrCodeHintMessageTitle
+    private let defaultHintMessage = LocalizedStrings.qrCodeHintMessage
 }
 
 
@@ -89,7 +89,7 @@ extension QRScannerPresenter: AVCaptureMetadataOutputObjectsDelegate {
                 view.changeMessage("")
             case .wrongCurrency:
                 view.changeAimColor(.red)
-                view.changeMessage(LocalizedStrings.wrongQrMessageTitle)
+                view.changeMessage(LocalizedStrings.wrongQrMessage)
             }
         }
     }
@@ -171,7 +171,7 @@ extension QRScannerPresenter {
         let alertVC = UIAlertController(title: LocalizedStrings.scanningNotSupportTitle,
                                    message: LocalizedStrings.scanningNotSupportMessage,
                                    preferredStyle: .alert)
-        let action = UIAlertAction(title: "ok", style: .default) { [weak self] _ in
+        let action = UIAlertAction(title: LocalizedStrings.okMessage, style: .default) { [weak self] _ in
             self?.view.dismiss()
         }
         alertVC.addAction(action)
@@ -186,11 +186,11 @@ extension QRScannerPresenter {
         let alertVC = UIAlertController(title: LocalizedStrings.noCameraAccessTitle,
                                         message: LocalizedStrings.noCameraAccessMessage,
                                         preferredStyle: .alert)
-        let showSettings = UIAlertAction(title: "Settings", style: .default) { [weak self] _ in
+        let showSettings = UIAlertAction(title: LocalizedStrings.settingsButton, style: .default) { [weak self] _ in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             self?.view.dismiss()
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+        let cancel = UIAlertAction(title: LocalizedStrings.cancelButton, style: .cancel) { [weak self] _ in
             self?.view.dismiss()
         }
         
