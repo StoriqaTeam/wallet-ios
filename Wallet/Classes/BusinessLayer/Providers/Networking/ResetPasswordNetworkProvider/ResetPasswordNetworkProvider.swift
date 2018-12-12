@@ -40,6 +40,7 @@ class ResetPasswordNetworkProvider: NetworkLoadable, ResetPasswordNetworkProvide
     }
 }
 
+// EmailNetworkErrorParser
 
 enum ResetPasswordNetworkProviderError: LocalizedError, Error {
     case unauthorized

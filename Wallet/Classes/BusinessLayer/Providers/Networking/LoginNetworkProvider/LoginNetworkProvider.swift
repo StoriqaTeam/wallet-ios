@@ -53,6 +53,7 @@ class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
     }
 }
 
+// DeviceNetworkErrorParser, EmailNetworkErrorParser, AuthNetworkErrorParser
 
 enum LoginProviderError: LocalizedError, Error {
     case badRequest

@@ -69,6 +69,7 @@ class ExchangeRateNetworkProvider: NetworkLoadable, ExchangeRateNetworkProviderP
     }
 }
 
+// SendNetworkErrorParser
 
 enum ExchangeRateNetworkProviderError: LocalizedError, Error {
     case unauthorized

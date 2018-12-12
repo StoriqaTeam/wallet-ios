@@ -57,6 +57,7 @@ class RegistrationNetworkProvider: NetworkLoadable, RegistrationNetworkProviderP
     }
 }
 
+// AuthNetworkErrorParser
 
 enum RegistrationProviderError: LocalizedError, Error {
     case badRequest

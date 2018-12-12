@@ -45,6 +45,8 @@ class ConfirmAddDeviceNetworkProvider: NetworkLoadable, ConfirmAddDeviceNetworkP
     }
 }
 
+// DeviceNetworkErrorParser
+
 enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
     case badRequest
     case unauthorized

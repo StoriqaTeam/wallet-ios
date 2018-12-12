@@ -62,6 +62,8 @@ class FeeNetworkProvider: NetworkLoadable, FeeNetworkProviderProtocol {
     }
 }
 
+// SendNetworkErrorParser
+
 enum FeeNetworkProviderError: LocalizedError, Error {
     case unknownError
     case internalServer
@@ -72,8 +74,14 @@ enum FeeNetworkProviderError: LocalizedError, Error {
         switch code {
         case 422:
             if let accountErrors = json["account"].array,
-                accountErrors.contains(where: { $0["code"] == "currency" }) {
-                self = .wrongCurrency(message: "\(currency.ISO) can be transferred only to \(currency.ISO) accounts.")
+               let existsError = accountErrors.first(where: { $0["code"] == "currency" }),
+                let params = existsError["params"].dictionary,
+                let accountCurrencyStr = params["account_currency"]?.string,
+                let receivedCurrencyStr = params["received_currency"]?.string {
+                let accountCurrency = Currency(string: accountCurrencyStr)
+                let receivedCurrency = Currency(string: receivedCurrencyStr)
+                
+                self = .wrongCurrency(message: "\(receivedCurrency.ISO) can't be transferred to \(accountCurrency.ISO) accounts")
             } else {
                 self = .unknownError
             }

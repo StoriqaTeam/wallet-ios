@@ -41,6 +41,8 @@ class ResendConfirmEmailNetworkProvider: NetworkLoadable, ResendConfirmEmailNetw
     }
 }
 
+// EmailNetworkErrorParser 
+
 enum ResendConfirmEmailNetworkProviderError: Error, LocalizedError {
     case badRequest
     case unauthorized

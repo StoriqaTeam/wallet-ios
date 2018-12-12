@@ -167,6 +167,7 @@ extension SendTransactionNetworkProvider {
     }
 }
 
+// SendNetworkErrorParser
 
 enum SendTransactionNetworkProviderError: LocalizedError, Error {
     case internalServer

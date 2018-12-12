@@ -54,6 +54,7 @@ class SocialAuthNetworkProvider: NetworkLoadable, SocialAuthNetworkProviderProto
     }
 }
 
+// DeviceNetworkErrorParser
 
 enum SocialAuthNetworkProviderError: LocalizedError, Error {
     case badRequest

@@ -40,6 +40,8 @@ class EmailConfirmNetworkProvider: NetworkLoadable, EmailConfirmNetworkProviderP
     }
 }
 
+// DeviceNetworkErrorParser
+
 enum EmailConfirmProviderError: LocalizedError, Error {
     case internalServer
     case unauthorized
