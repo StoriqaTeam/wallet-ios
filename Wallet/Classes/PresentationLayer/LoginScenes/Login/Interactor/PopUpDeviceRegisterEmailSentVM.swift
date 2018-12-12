@@ -13,9 +13,9 @@ class PopUpDeviceRegisterEmailSentVM: PopUpViewModelProtocol {
     
     init() {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
-                                   title: "email_sent".localized(),
-                                   text: "Check the mail! We sent instruction how to register your device",
-                                   actionButtonTitle: "ok".localized(),
+                                   title: Localization.emailSentTitle,
+                                   text: Localization.registerDeviceEmailMessage,
+                                   actionButtonTitle: Localization.okButton,
                                    hasCloseButton: false)
     }
     

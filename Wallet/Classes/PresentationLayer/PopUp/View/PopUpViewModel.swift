@@ -9,12 +9,14 @@
 import Foundation
 
 protocol PopUpViewModelProtocol {
+    typealias Localization = Strings.PopUp
+    
     var apperance: PopUpApperance { get }
     func performAction()
     func cancelAction()
 }
 
 extension PopUpViewModelProtocol {
-    //in case of no cansel button
+    //in case of no cancel button
     func cancelAction() { }
 }

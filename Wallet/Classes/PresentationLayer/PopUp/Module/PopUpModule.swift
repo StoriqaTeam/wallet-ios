@@ -27,7 +27,7 @@ struct PopUpApperance {
         self.attributedText = attributedText
         self.actionButtonTitle = actionButtonTitle
         self.hasCloseButton = hasCloseButton
-        self.closeButtonTitle = closeButtonTitle ?? "cancel".localized()
+        self.closeButtonTitle = closeButtonTitle ?? Strings.PopUp.cancelButton
     }
 }
 
