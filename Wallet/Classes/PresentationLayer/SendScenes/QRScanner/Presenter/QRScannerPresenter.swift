@@ -12,6 +12,8 @@ import AVFoundation
 
 class QRScannerPresenter: NSObject {
     
+    typealias LocalizedStrings = Strings.QRScanner
+    
     weak var view: QRScannerViewInput!
     weak var output: QRScannerModuleOutput?
     var interactor: QRScannerInteractorInput!
@@ -19,8 +21,7 @@ class QRScannerPresenter: NSObject {
     
     private var captureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer!
-    private let defaultHintMessage = "qr_code_hint".localized()
-    
+    private let defaultHintMessage = LocalizedStrings.qrCodeHintMessage
 }
 
 
@@ -88,7 +89,7 @@ extension QRScannerPresenter: AVCaptureMetadataOutputObjectsDelegate {
                 view.changeMessage("")
             case .wrongCurrency:
                 view.changeAimColor(.red)
-                view.changeMessage("qr_code_currency_does_not_match".localized())
+                view.changeMessage(LocalizedStrings.wrongQrMessage)
             }
         }
     }
@@ -101,7 +102,7 @@ extension QRScannerPresenter {
     
     private func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: "scan_QR".localized())
+        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
     
     private func createCaptureSession() {
@@ -167,10 +168,10 @@ extension QRScannerPresenter {
     private func failed() {
         captureSession = nil
         
-        let alertVC = UIAlertController(title: "Scanning not supported",
-                                   message: "It seems your device does not support QR-code scanning.",
+        let alertVC = UIAlertController(title: LocalizedStrings.scanningNotSupportTitle,
+                                   message: LocalizedStrings.scanningNotSupportMessage,
                                    preferredStyle: .alert)
-        let action = UIAlertAction(title: "ok".localized(), style: .default) { [weak self] _ in
+        let action = UIAlertAction(title: LocalizedStrings.okMessage, style: .default) { [weak self] _ in
             self?.view.dismiss()
         }
         alertVC.addAction(action)
@@ -182,16 +183,17 @@ extension QRScannerPresenter {
     private func userDeniedAccess() {
         captureSession = nil
         
-        let alertVC = UIAlertController(title: "No camera access",
-                                        message: "It seems you’ve restricted access to your camera. Enable it in Settings.",
+        let alertVC = UIAlertController(title: LocalizedStrings.noCameraAccessTitle,
+                                        message: LocalizedStrings.noCameraAccessMessage,
                                         preferredStyle: .alert)
-        let showSettings = UIAlertAction(title: "Settings", style: .default) { [weak self] _ in
+        let showSettings = UIAlertAction(title: LocalizedStrings.settingsButton, style: .default) { [weak self] _ in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             self?.view.dismiss()
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+        let cancel = UIAlertAction(title: LocalizedStrings.cancelButton, style: .cancel) { [weak self] _ in
             self?.view.dismiss()
         }
+        
         alertVC.addAction(cancel)
         alertVC.addAction(showSettings)
         alertVC.view.tintColor = Theme.Color.brightSkyBlue

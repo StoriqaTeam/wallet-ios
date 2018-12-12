@@ -10,6 +10,8 @@ import UIKit
 
 
 class ExchangeViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.Exchange
 
     var output: ExchangeViewOutput!
 
@@ -116,7 +118,7 @@ extension ExchangeViewController: ExchangeViewInput {
             })
         } else {
             self.errorLabel.isHidden = false
-            self.errorLabel.text = "not_enough_funds".localized()
+            self.errorLabel.text = LocalizedStrings.notEnoughFundsErrorLabel
             
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.layoutSubviews()
@@ -259,8 +261,8 @@ extension ExchangeViewController {
         exchangeButton.isEnabled = false
         
         //TODO: локализации
-        amountTitleLabel.text = "amount".localized()
-        amountTextField.placeholder = "enter_amount".localized()
+        amountTitleLabel.text = LocalizedStrings.amountTitle
+        amountTextField.placeholder = LocalizedStrings.amountPlaceholder
         
         rateBackgroundView.roundCorners(radius: 10)
     }

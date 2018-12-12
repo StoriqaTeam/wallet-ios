@@ -11,6 +11,8 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
+    typealias LocalizedString = Strings.Registration
+    
     var output: RegistrationViewOutput!
     
     // MARK: - Outlets
@@ -209,20 +211,20 @@ extension RegistrationViewController {
             self?.view.layoutIfNeeded()
         }
         
-        firstNameTextField.placeholder = "first_name".localized()
+        firstNameTextField.placeholder = LocalizedString.firstNamePlaceholder
         firstNameTextField.layoutBlock = layoutBlock
         
-        lastNameTextField.placeholder = "last_name".localized()
+        lastNameTextField.placeholder = LocalizedString.lastNamePlaceholder
         lastNameTextField.layoutBlock = layoutBlock
         
-        emailTextField.placeholder = "email".localized()
+        emailTextField.placeholder = LocalizedString.emailPlaceholder
         emailTextField.layoutBlock = layoutBlock
         
-        passwordTextField.placeholder = "password".localized()
-        passwordTextField.hintMessage = "password_hint".localized()
+        passwordTextField.placeholder = LocalizedString.passwordPlaceholder
+        passwordTextField.hintMessage = LocalizedString.passwordHintTitle
         passwordTextField.layoutBlock = layoutBlock
         
-        repeatPasswordTextField.placeholder = "repeat_password".localized()
+        repeatPasswordTextField.placeholder = LocalizedString.repeatPasswordPlaceholder
         repeatPasswordTextField.layoutBlock = layoutBlock
         
         setAgreementTintColor()
@@ -231,7 +233,7 @@ extension RegistrationViewController {
         addLinkToPrivatePolicy()
         addLinkToLicenceAgreement()
         privacyPolicyTextView.isEditable = false
-        signUpButton.title = "sign_up".localized()
+        signUpButton.title = LocalizedString.signUpButtonTitle
     }
     
     private func updateContinueButton() {
@@ -254,7 +256,8 @@ extension RegistrationViewController {
     }
     
     private func addLinkToLicenceAgreement() {
-        let attributedString = NSMutableAttributedString(string: "I accept the License Agreement")
+        let agreementString = LocalizedString.licenseAgreementString
+        let attributedString = NSMutableAttributedString(string: agreementString)
         let linkRange = NSRange(location: 13, length: 17)
         let textRange = NSRange(location: 0, length: 13)
         attributedString.addAttribute(.link, value: "https://storiqa.com/turewallet/terms_of_use.pdf", range: linkRange)
@@ -266,7 +269,8 @@ extension RegistrationViewController {
     }
     
     private func addLinkToPrivatePolicy() {
-        let attributedString = NSMutableAttributedString(string: "I accept the Privacy Policy")
+        let privacyPolicyString = LocalizedString.privacyPolicyString
+        let attributedString = NSMutableAttributedString(string: privacyPolicyString)
         let linkRange = NSRange(location: 13, length: 14)
         let textRange = NSRange(location: 0, length: 13)
         attributedString.addAttribute(.link, value: "https://storiqa.com/turewallet/privacy_policy.pdf", range: linkRange)

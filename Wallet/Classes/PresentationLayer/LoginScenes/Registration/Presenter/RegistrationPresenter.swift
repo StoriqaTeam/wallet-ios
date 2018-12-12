@@ -10,6 +10,8 @@ import UIKit
 
 class RegistrationPresenter {
     
+    typealias LocalizedStrings = Strings.Registration
+    
     weak var view: RegistrationViewInput!
     weak var output: RegistrationModuleOutput?
     var interactor: RegistrationInteractorInput!
@@ -65,7 +67,7 @@ extension RegistrationPresenter: RegistrationViewOutput {
         if password == repeatPassword {
             view.setPasswordsEqual(onEndEditing, message: nil)
         } else {
-            view.setPasswordsEqual(false, message: "passwords_nonequal".localized())
+            view.setPasswordsEqual(false, message: LocalizedStrings.passwordsNonEqualMessage)
         }
     }
     
@@ -79,7 +81,8 @@ extension RegistrationPresenter: RegistrationViewOutput {
     }
     
     func socialNetworkRegisterFailed(tokenProvider: SocialNetworkTokenProvider) {
-        let message = "We couldn’t retrieve your data from " + tokenProvider.displayableName
+        let failSocial = LocalizedStrings.failRetrieveSocialDataMessage
+        let message = failSocial + tokenProvider.displayableName
         router.showSocialNetworkFailure(message: message, from: view.viewController)
     }
     
