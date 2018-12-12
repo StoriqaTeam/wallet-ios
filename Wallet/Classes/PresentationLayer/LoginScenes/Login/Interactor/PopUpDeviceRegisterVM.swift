@@ -18,9 +18,9 @@ class PopUpDeviceRegisterVM: PopUpViewModelProtocol {
     
     init() {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "signConfirm"),
-                                   title: "Your device is not registered yet",
-                                   text: "Do you want to register this device to your account?",
-                                   actionButtonTitle: "ok".localized(),
+                                   title: Localization.deviceRegisterTitle,
+                                   text: Localization.deviceRegisterMessage,
+                                   actionButtonTitle: Localization.okButton,
                                    hasCloseButton: true)
     }
     

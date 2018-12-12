@@ -626,6 +626,8 @@
 		CEE84EFE218B272200AB85F3 /* SecureInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84EFD218B272200AB85F3 /* SecureInputTextField.swift */; };
 		CEE84F01218B4CA500AB85F3 /* ChangePasswordNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84F00218B4CA500AB85F3 /* ChangePasswordNetworkProvider.swift */; };
 		CEE84F03218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84F02218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift */; };
+		CEF02F3121C0F54F003D18FF /* PopUp.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F3021C0F54F003D18FF /* PopUp.strings */; };
+		CEF02F3321C0F564003D18FF /* Strings+PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3221C0F564003D18FF /* Strings+PopUp.swift */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
@@ -1378,6 +1380,8 @@
 		CEE84EFD218B272200AB85F3 /* SecureInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputTextField.swift; sourceTree = "<group>"; };
 		CEE84F00218B4CA500AB85F3 /* ChangePasswordNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordNetworkProvider.swift; sourceTree = "<group>"; };
 		CEE84F02218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpChangePasswordSuccessVM.swift; sourceTree = "<group>"; };
+		CEF02F3021C0F54F003D18FF /* PopUp.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PopUp.strings; sourceTree = "<group>"; };
+		CEF02F3221C0F564003D18FF /* Strings+PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PopUp.swift"; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
@@ -2544,6 +2548,8 @@
 				31BA8A3C87CE730328B7887D /* Interactor */,
 				98A6098AFCB62E3B6671A997 /* Router */,
 				4D34EB17BA7006F63B9E98F9 /* Module */,
+				CEF02F3021C0F54F003D18FF /* PopUp.strings */,
+				CEF02F3221C0F564003D18FF /* Strings+PopUp.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -5179,6 +5185,7 @@
 			files = (
 				CE5FAFA921523784009E707E /* PasswordRecoveryConfirm.storyboard in Resources */,
 				CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */,
+				CEF02F3121C0F54F003D18FF /* PopUp.strings in Resources */,
 				A5E8D9AC2153ECE300AC6A7E /* Settings.storyboard in Resources */,
 				CEE84EFA218B257400AB85F3 /* ChangePassword.storyboard in Resources */,
 				A5E8D9A42153E91A00AC6A7E /* MyWallet.storyboard in Resources */,
@@ -5860,6 +5867,7 @@
 				A597577821A5A8210036C7E8 /* ExchangeRatesLoader.swift in Sources */,
 				270320A5E31AFF1AF5AE9A3C /* TransactionsModuleInput.swift in Sources */,
 				F93614C131B3CE5DCBCF2C92 /* TransactionsModuleOutput.swift in Sources */,
+				CEF02F3321C0F564003D18FF /* Strings+PopUp.swift in Sources */,
 				CE4401A52174DCC200F7C8D8 /* ContactsSorter.swift in Sources */,
 				E2A7205CD5320CBB749D2F33 /* TransactionsModule.swift in Sources */,
 				CA8E74EF79BDA2F910D844D7 /* ProfileViewInput.swift in Sources */,
