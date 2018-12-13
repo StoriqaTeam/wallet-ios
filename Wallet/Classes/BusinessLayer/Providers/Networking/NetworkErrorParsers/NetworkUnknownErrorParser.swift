@@ -1,5 +1,5 @@
 //
-//  NetworkUnknownedErrorParser.swift
+//  NetworkUnknownErrorParser.swift
 //  Wallet
 //
 //  Created by Storiqa on 12/12/2018.
@@ -9,18 +9,16 @@
 import Foundation
 
 
-class NetworkUnknownedErrorParser: NetworkErrorParserProtocol {
+class NetworkUnknownErrorParser: NetworkErrorParserProtocol {
     var next: NetworkErrorParserProtocol?
     
     func parse(code: Int, json: JSON) -> Error {
-        return NetworkUnknownedError.unknowned
+        return NetworkUnknownError()
     }
 }
 
 
-enum NetworkUnknownedError: LocalizedError, Error {
-    case unknowned
-    
+struct NetworkUnknownError: LocalizedError, Error {
     var errorDescription: String? {
         return Constants.Errors.userFriendly
     }

@@ -164,13 +164,10 @@ extension SendInteractor: SendInteractorInput {
                 case .success:
                     self?.output.sendTxSucceed()
                 case .failure(let error):
-                    if let error = error as? SendTransactionNetworkProviderError {
-                        switch error {
-                        case .exceededDayLimit(let limit, let currency):
-                            self?.output.exceededDayLimit(limit: limit, currency: currency)
-                            return
-                        default: break
-                        }
+                    if let error = error as? SendNetworkError,
+                        case .exceededDayLimit(let limit, let currency) = error {
+                        self?.output.exceededDayLimit(limit: limit, currency: currency)
+                        return
                     }
                     self?.output.sendTxFailed(message: error.localizedDescription)
                 }
@@ -240,22 +237,17 @@ extension SendInteractor {
         output.setFeeUpdating(true)
         sendTransactionBuilder.setFees(nil)
         
-        
         feeLoader.getFees(currency: currency, accountAddress: accountAddress) { [weak self] (result) in
             switch result {
             case .success(let fees):
                 self?.sendTransactionBuilder.setFees(fees)
                 
-                
             case .failure(let error):
-                if let error = error as? FeeNetworkProviderError {
-                    switch error {
-                    case .wrongCurrency(let message):
-                        self?.output.setWrongCurrency(message: message)
-                    default: break
-                    }
+                if case SendNetworkError.wrongCurrency(let message) = error {
+                    self?.output.setWrongCurrency(message: message)
                 }
             }
+            
             self?.output.setFeeUpdating(false)
             self?.updateFeeCount()
             self?.updateFeeAndWait()

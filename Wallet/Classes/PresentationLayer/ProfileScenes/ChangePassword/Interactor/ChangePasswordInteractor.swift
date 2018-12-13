@@ -74,13 +74,10 @@ extension ChangePasswordInteractor {
                     self?.output.changePasswordSucceed()
                     self?.keychain.password = newPassword
                 case .failure(let error):
-                    if let error = error as? ChangePasswordNetworkProviderError {
-                        switch error {
-                        case .validationError(let oldPassword, let newPassword):
-                            self?.output.formValidationFailed(oldPassword: oldPassword, newPassword: newPassword)
-                            return
-                        default: break
-                        }
+                    if let error = error as? ChangePasswordNetworkError {
+                        self?.output.formValidationFailed(oldPassword: error.oldPassword,
+                                                          newPassword: error.newPassword)
+                        return
                     }
                     
                     self?.output.changePasswordFailed(message: error.localizedDescription)

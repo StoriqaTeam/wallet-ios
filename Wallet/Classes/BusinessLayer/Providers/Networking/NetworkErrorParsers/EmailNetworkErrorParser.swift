@@ -20,6 +20,7 @@ class EmailNetworkErrorParser: NetworkErrorParserProtocol {
         if containsError(json: json, key: "email", code: "not_verified") {
             return EmailNetworkError.emailNotVerified
         }
+        
         return next!.parse(code: code, json: json)
     }
 }

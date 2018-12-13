@@ -31,6 +31,12 @@ protocol SendTransactionNetworkProviderProtocol {
 
 class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkProviderProtocol {
     
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createSendErrorResolver()
+    }
+    
     func send(transaction: Transaction,
               userId: Int,
               fromAccount: String,
@@ -59,25 +65,22 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      exchangeRate: nil,
                                                      signHeader: signHeader)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                if code == 200 {
-                    guard let txn = Transaction(json: json) else {
-                        log.error("Failed to parse sent transaction json")
-                        let apiError = SendTransactionNetworkProviderError.failToParseJson
-                        completion(.failure(apiError))
-                        return
-                    }
-                    completion(.success(txn))
-                } else {
-                    let apiError = SendTransactionNetworkProviderError(code: code, json: json, currency: valueCurrency)
-                    completion(.failure(apiError))
+                guard code == 200, let txn = Transaction(json: json) else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
                     return
                 }
+                
+                completion(.success(txn))
+                
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -113,25 +116,22 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      exchangeId: exchangeId,
                                                      exchangeRate: exchangeRate,
                                                      signHeader: signHeader)
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                if code == 200 {
-                    guard let txn = Transaction(json: json) else {
-                        log.error("Failed to parse sent transaction json")
-                        let apiError = SendTransactionNetworkProviderError.failToParseJson
-                        completion(.failure(apiError))
-                        return
-                    }
-                    completion(.success(txn))
-                } else {
-                    let apiError = SendTransactionNetworkProviderError(code: code, json: json, currency: valueCurrency)
-                    completion(.failure(apiError))
+                guard code == 200, let txn = Transaction(json: json) else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
                     return
                 }
+                
+                completion(.success(txn))
+                
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -164,74 +164,5 @@ extension SendTransactionNetworkProvider {
         
         let accountString = account.accountId
         return  ReceiverType.account(account: accountString)
-    }
-}
-
-// SendNetworkErrorParser
-
-enum SendTransactionNetworkProviderError: LocalizedError, Error {
-    case internalServer
-    case unauthorized
-    case unknownError
-    case failToParseJson
-    case orderExpired
-    case notEnoughBalance
-    case exceededDayLimit(limit: String, currency: Currency)
-    case amountOutOfBounds(min: String, max: String, currency: Currency)
-    
-    init(code: Int, json: JSON, currency: Currency) {
-        switch code {
-        case 401:
-            self = .unauthorized
-        case 422:
-            if let deviceErrors = json["actual_amount"].array,
-                let existsError = deviceErrors.first(where: { $0["code"] == "limit" }),
-                let params = existsError["params"].dictionary,
-                let min = params["min"]?.string,
-                let max = params["max"]?.string,
-                let currencyStr = params["currency"]?.string {
-                let currency = Currency(string: currencyStr)
-                self = .amountOutOfBounds(min: min, max: max, currency: currency)
-            } else if let exchangeRate = json["exchange_rate"].array,
-                exchangeRate.contains(where: { $0["code"] == "expired" }) {
-                self = .orderExpired
-            } else if let accountErrors = json["value"].array,
-                accountErrors.contains(where: { $0["code"] == "not_enough_balance" }) {
-                self = .notEnoughBalance
-            } else if let accountErrors = json["value"].array,
-                let limitError = accountErrors.first(where: { $0["code"] == "exceeded_daily_limit" }),
-                let params = limitError["params"].dictionary,
-                let limit = params["limit"]?.string,
-                let currencyStr = params["currency"]?.string {
-                // TODO: проверить
-                let currency = Currency(string: currencyStr)
-                self = .exceededDayLimit(limit: limit, currency: currency)
-            } else {
-                self = .unknownError
-            }
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .unauthorized:
-            return "User unauthorized"
-        case .internalServer:
-            return "Internal server error"
-        case .unknownError,
-             .amountOutOfBounds,
-             .exceededDayLimit:
-             return Constants.Errors.userFriendly
-        case .failToParseJson:
-            return "Failed to parse JSON"
-        case .orderExpired:
-            return "Current exchange order did expire"
-        case .notEnoughBalance:
-            return "Account balance is not enough"
-        }
     }
 }

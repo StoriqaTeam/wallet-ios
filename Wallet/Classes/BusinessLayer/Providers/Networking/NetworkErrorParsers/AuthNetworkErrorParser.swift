@@ -22,15 +22,16 @@ class AuthNetworkErrorParser: NetworkErrorParserProtocol {
         let hasPasswordError = !(passwordMessage?.isEmpty ?? true)
         
         if hasEmailError || hasPasswordError {
-            return AuthNetworkError.validationError(email: emailMessage, password: passwordMessage)
+            return AuthNetworkError(email: emailMessage, password: passwordMessage)
         }
         
         return next!.parse(code: code, json: json)
     }
 }
 
-enum AuthNetworkError: LocalizedError, Error {
-    case validationError(email: String?, password: String?)
+struct AuthNetworkError: LocalizedError, Error {
+    let email: String?
+    let password: String?
     
     var errorDescription: String? {
         return ""

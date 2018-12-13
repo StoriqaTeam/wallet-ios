@@ -19,20 +19,29 @@ protocol ConfirmAddDeviceNetworkProviderProtocol {
 
 class ConfirmAddDeviceNetworkProvider: NetworkLoadable, ConfirmAddDeviceNetworkProviderProtocol {
     
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createConfirmAddDeviceErrorResolver()
+    }
+    
+    
     func confirmAddDevice(deviceConfirmToken: String,
                           deviceId: String,
                           queue: DispatchQueue,
                           completion: @escaping (Result<String?>) -> Void) {
         let request = API.Unauthorized.confirmAddDevice(token: deviceConfirmToken, deviceId: deviceId)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
                 guard code == 200 else {
-                    let error = ConfirmAddDeviceNetworkProviderError(code: code, json: json)
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
                     completion(.failure(error))
                     return
                 }
@@ -41,50 +50,6 @@ class ConfirmAddDeviceNetworkProvider: NetworkLoadable, ConfirmAddDeviceNetworkP
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-// DeviceNetworkErrorParser
-
-enum ConfirmAddDeviceNetworkProviderError: Error, LocalizedError {
-    case badRequest
-    case unauthorized
-    case unknownError
-    case internalServer
-    case deviceTokenExpired
-    case deviceDiffers
-    
-    init(code: Int, json: JSON) {
-        switch code {
-        case 400: self = .badRequest
-        case 401: self = .unauthorized
-        case 422:
-            if let deviceErrors = json["device"].array,
-                deviceErrors.contains(where: { $0["code"] == "token" }) {
-                self = .deviceTokenExpired
-            } else if let deviceErrors = json["device"].array,
-                deviceErrors.contains(where: { $0["code"] == "device_id" }) {
-                self = .deviceDiffers
-            } else {
-                self = .unknownError
-            }
-        case 500: self = .internalServer
-        default: self = .unknownError
-        }
-    }
-    
-    
-    var errorDescription: String? {
-        switch self {
-        case .unauthorized:
-            return "User unauthorized"
-        case .deviceTokenExpired:
-            return "device_token_expired".localized()
-        case .deviceDiffers:
-            return "This device differs from the one with which you’ve requested confirmation."
-        case .badRequest, .internalServer, .unknownError:
-            return Constants.Errors.userFriendly
         }
     }
 }

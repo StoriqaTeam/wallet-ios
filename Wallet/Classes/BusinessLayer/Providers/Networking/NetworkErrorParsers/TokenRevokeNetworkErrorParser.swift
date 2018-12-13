@@ -14,7 +14,7 @@ class TokenRevokeNetworkErrorParser: NetworkErrorParserProtocol {
     func parse(code: Int, json: JSON) -> Error {
         // FIXME: проверить
         if containsError(json: json, key: "token", code: "revoked") {
-            return TokenRevokeNetworkError.tokenRevoked
+            return TokenRevokeNetworkError()
         }
         
         return next!.parse(code: code, json: json)
@@ -22,14 +22,9 @@ class TokenRevokeNetworkErrorParser: NetworkErrorParserProtocol {
 }
 
 
-enum TokenRevokeNetworkError: LocalizedError, Error {
-    case tokenRevoked
-    
+struct TokenRevokeNetworkError: LocalizedError, Error {
     var errorDescription: String? {
-        switch self {
-        case .tokenRevoked:
-            // FIXME: msg token revoked
-            return "Your session was finished. Please sign in again."
-        }
+        // FIXME: msg token revoked
+        return "Your session was finished. Please sign in again."
     }
 }

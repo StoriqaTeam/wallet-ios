@@ -19,6 +19,13 @@ protocol LoginNetworkProviderProtocol: class {
 
 
 class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
+    
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createLoginErrorResolver()
+    }
+    
     func loginUser(email: String,
                    password: String,
                    queue: DispatchQueue,
@@ -34,103 +41,25 @@ class LoginNetworkProvider: NetworkLoadable, LoginNetworkProviderProtocol {
                                              deviceOs: deviceOs,
                                              signHeader: signHeader)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
+                let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                if let token = json["token"].string {
-                    completion(.success(token))
-                } else {
-                    let apiError = LoginProviderError(code: response.responseStatusCode, json: json)
-                    completion(.failure(apiError))
+                guard code == 200, let token = json["token"].string else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
+                    return
                 }
+                
+                completion(.success(token))
                 
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-// DeviceNetworkErrorParser, EmailNetworkErrorParser, AuthNetworkErrorParser
-
-enum LoginProviderError: LocalizedError, Error {
-    case badRequest
-    case unauthorized
-    case unknownError
-    case internalServer
-    case validationError(email: String?, password: String?)
-    case deviceNotRegistered(userId: Int)
-    case emailNotVerified
-    
-    init(code: Int, json: JSON) {
-        switch code {
-        case 400:
-            self = .badRequest
-        case 401:
-            self = .unauthorized
-        case 422:
-            if let emailErrors = json["email"].array,
-                let _ = emailErrors.first(where: { $0["code"] == "not_verified" }) {
-                self = .emailNotVerified
-                return
-            }
-            
-            var emailMessage: String?
-            var passwordMessage: String?
-            
-            if let emailErrors = json["email"].array {
-                emailMessage = emailErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
-            }
-            if let passwordErrors = json["password"].array {
-                passwordMessage = passwordErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
-            }
-            
-            let hasEmailError = emailMessage != nil && !emailMessage!.isEmpty
-            let hasPasswordError = passwordMessage != nil && !passwordMessage!.isEmpty
-            
-            if hasEmailError || hasPasswordError {
-                self = .validationError(email: emailMessage, password: passwordMessage)
-            } else if let deviceErrors = json["device"].array,
-                let existsError = deviceErrors.first(where: { $0["code"] == "exists" }),
-                let params = existsError["params"].dictionary,
-                let userIdStr = params["user_id"]?.string,
-                let userId = Int(userIdStr) {
-                self = .deviceNotRegistered(userId: userId)
-            } else {
-                self = .unknownError
-            }
-            
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .badRequest:
-            return "Bad request"
-        case .unauthorized:
-            return "User unauthorized"
-        case .unknownError, .internalServer:
-            return Constants.Errors.userFriendly
-        case .validationError(let email, let password):
-            var result = email ?? ""
-            if let password = password {
-                if !result.isEmpty {
-                    result += "\n"
-                }
-                result += password
-            }
-            
-            return result.trim()
-        case .deviceNotRegistered:
-            return "Device is not registered"
-        case .emailNotVerified:
-            return "Email not verified"
         }
     }
 }

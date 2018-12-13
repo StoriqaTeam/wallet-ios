@@ -16,14 +16,15 @@ class ConfirmResetPasswordErrorParser: NetworkErrorParserProtocol {
         let passwordMessage = json["password"].array?.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
         
         if !(passwordMessage?.isEmpty ?? true) {
-            return ConfirmResetPasswordNetworkError.validationError(password: passwordMessage)
+            return ConfirmResetPasswordNetworkError(password: passwordMessage)
         }
+        
         return next!.parse(code: code, json: json)
     }
 }
 
-enum ConfirmResetPasswordNetworkError: LocalizedError, Error {
-    case validationError(password: String?)
+struct ConfirmResetPasswordNetworkError: LocalizedError, Error {
+    let password: String?
     
     var errorDescription: String? {
         return ""

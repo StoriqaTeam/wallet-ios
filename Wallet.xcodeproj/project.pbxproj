@@ -638,7 +638,8 @@
 		CEF02F4721C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */; };
 		CEF02F4921C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */; };
 		CEF02F4B21C13F24003D18FF /* AuthNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */; };
-		CEF02F4D21C14211003D18FF /* NetworkUnknownedErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4C21C14211003D18FF /* NetworkUnknownedErrorParser.swift */; };
+		CEF02F4D21C14211003D18FF /* NetworkUnknownErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */; };
+		CEF02F6721C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
@@ -1403,7 +1404,8 @@
 		CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordNetworkErrorParser.swift; sourceTree = "<group>"; };
 		CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordErrorParser.swift; sourceTree = "<group>"; };
 		CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4C21C14211003D18FF /* NetworkUnknownedErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUnknownedErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUnknownErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAccountListNetworkErrorParser.swift; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
@@ -4733,7 +4735,8 @@
 				CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */,
 				CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */,
 				CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */,
-				CEF02F4C21C14211003D18FF /* NetworkUnknownedErrorParser.swift */,
+				CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */,
+				CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */,
 			);
 			path = NetworkErrorParsers;
 			sourceTree = "<group>";
@@ -5610,7 +5613,7 @@
 				655663AF844FD6B0CB44B4C4 /* PasswordRecoveryConfirmModule.swift in Sources */,
 				03B8DF45D671EB1590F32163 /* PopUpViewInput.swift in Sources */,
 				CEE6730821A2B768008FAC09 /* SendTransactionService.swift in Sources */,
-				CEF02F4D21C14211003D18FF /* NetworkUnknownedErrorParser.swift in Sources */,
+				CEF02F4D21C14211003D18FF /* NetworkUnknownErrorParser.swift in Sources */,
 				70D0185949E966619D914F17 /* PopUpViewOutput.swift in Sources */,
 				B8C5EDE22189B3A700345B79 /* RatesDataStoreService.swift in Sources */,
 				C4685D4546664167C97555E2 /* PopUpViewController.swift in Sources */,
@@ -5749,6 +5752,7 @@
 				CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */,
 				CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */,
 				CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */,
+				CEF02F6721C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift in Sources */,
 				A52FEB7921A7F06A00DFA7BC /* OrderObserver.swift in Sources */,
 				A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */,
 				CE5F8302219DB98600A18324 /* BiometricAuthProviderFactory.swift in Sources */,

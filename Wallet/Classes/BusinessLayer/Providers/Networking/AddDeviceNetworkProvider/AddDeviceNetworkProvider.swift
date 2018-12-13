@@ -18,6 +18,13 @@ protocol AddDeviceNetworkProviderProtocol {
 
 
 class AddDeviceNetworkProvider: NetworkLoadable, AddDeviceNetworkProviderProtocol {
+    
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createAddDeviceErrorResolver()
+    }
+    
     func addDevice(userId: Int,
                    signHeader: SignHeader,
                    queue: DispatchQueue,
@@ -26,14 +33,16 @@ class AddDeviceNetworkProvider: NetworkLoadable, AddDeviceNetworkProviderProtoco
         let deviceOs = UIDevice.current.systemVersion
         let request = API.Unauthorized.addDevice(userId: userId, deviceOs: deviceOs, signHeader: signHeader)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
                 guard code == 200 else {
-                    let error = AddDeviceNetworkProviderError(code: code, json: json)
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
                     completion(.failure(error))
                     return
                 }
@@ -42,50 +51,6 @@ class AddDeviceNetworkProvider: NetworkLoadable, AddDeviceNetworkProviderProtoco
             case.failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-// DeviceNetworkErrorParser, EmailNetworkErrorParser
-
-enum AddDeviceNetworkProviderError: Error, LocalizedError {
-    case internalServer
-    case unauthorized
-    case unknownError
-    case deviceAlreadyExists
-    case sendEmailTimeout
-    
-    init(code: Int, json: JSON) {
-        switch code {
-        case 401:
-            self = .unauthorized
-        case 422:
-            if let deviceErrors = json["device"].array,
-                deviceErrors.contains(where: { $0["code"] == "exists" }) {
-                self = .deviceAlreadyExists
-            } else if let deviceErrors = json["email"].array,
-                deviceErrors.contains(where: { $0["code"] == "email_timeout" }) {
-                self = .sendEmailTimeout
-            } else {
-                self = .unknownError
-            }
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .unauthorized:
-            return "User unauthorized"
-        case .deviceAlreadyExists:
-            return "This device is already confirmed"
-        case .sendEmailTimeout:
-            return "send_email_timeout".localized()
-        case .internalServer, .unknownError:
-            return Constants.Errors.userFriendly
         }
     }
 }

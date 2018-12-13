@@ -210,7 +210,7 @@ extension ExchangeInteractor: ExchangeInteractorInput {
                 case .success:
                     self?.output.exchangeTxSucceed()
                 case .failure(let error):
-                    if let error = error as? SendTransactionNetworkProviderError {
+                    if let error = error as? SendNetworkError {
                         switch error {
                         case .amountOutOfBounds(let min, let max, let currency):
                             self?.output.exchangeTxAmountOutOfLimit(min: min, max: max, currency: currency)

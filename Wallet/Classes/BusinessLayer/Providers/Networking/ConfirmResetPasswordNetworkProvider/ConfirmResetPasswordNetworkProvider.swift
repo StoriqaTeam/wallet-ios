@@ -16,83 +16,35 @@ protocol ConfirmResetPasswordNetworkProviderProtocol {
 
 class ConfirmResetPasswordNetworkProvider: NetworkLoadable, ConfirmResetPasswordNetworkProviderProtocol {
     
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createConfirmResetPasswordErrorResolver()
+    }
+    
     func confirmResetPassword(token: String, password: String, queue: DispatchQueue, completion: @escaping (Result<String>) -> Void) {
         let request = API.Unauthorized.confirmResetPassword(token: token, password: password)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                if code == 200,
-                    let token = json.string {
-                    completion(.success(token))
-                } else {
-                    let apiError = ConfirmResetPasswordNetworkProviderError(code: response.responseStatusCode, json: json)
-                    completion(.failure(apiError))
+                guard code == 200,
+                    let token = json.string else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
+                    return
                 }
+                
+                completion(.success(token))
                 
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-// DeviceNetworkErrorParser, ConfirmResetPasswordErrorParser
-
-enum ConfirmResetPasswordNetworkProviderError: LocalizedError, Error {
-    case unauthorized
-    case internalServer
-    case unknownError
-    case deviceTokenExpired
-    case validationError(password: String?)
-    
-    init(code: Int, json: JSON) {
-        switch code {
-        case 401:
-            self = .unauthorized
-        case 422:
-            var passwordMessage: String?
-        
-            if let passwordErrors = json["password"].array {
-                passwordMessage = passwordErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
-            }
-        
-            if passwordMessage != nil && !passwordMessage!.isEmpty {
-                self = .validationError(password: passwordMessage)
-            } else if let deviceErrors = json["device"].array,
-                deviceErrors.contains(where: { $0["code"] == "token" }) {
-                self = .deviceTokenExpired
-            } else {
-                self = .unknownError
-            }
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .unauthorized:
-            return "User unauthorized"
-        case .internalServer, .unknownError:
-            return Constants.Errors.userFriendly
-        case .deviceTokenExpired:
-            return "device_token_expired".localized()
-        case .validationError(let password):
-            var result = ""
-            if let password = password {
-                if !result.isEmpty {
-                    result += "\n"
-                }
-                result += password
-            }
-            
-            return result.trim()
         }
     }
 }

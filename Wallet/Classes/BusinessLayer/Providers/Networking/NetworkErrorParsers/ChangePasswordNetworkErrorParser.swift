@@ -21,15 +21,16 @@ class ChangePasswordNetworkErrorParser: NetworkErrorParserProtocol {
         let hasNewPasswordError = !(newPasswordMessage?.isEmpty ?? true)
         
         if hasOldPasswordError || hasNewPasswordError {
-            return ChangePasswordNetworkError.validationError(oldPassword: oldPasswordMessage, newPassword: newPasswordMessage)
+            return ChangePasswordNetworkError(oldPassword: oldPasswordMessage, newPassword: newPasswordMessage)
         }
         
         return next!.parse(code: code, json: json)
     }
 }
 
-enum ChangePasswordNetworkError: LocalizedError, Error {
-    case validationError(oldPassword: String?, newPassword: String?)
+struct ChangePasswordNetworkError: LocalizedError, Error {
+    let oldPassword: String?
+    let newPassword: String?
     
     var errorDescription: String? {
         return ""

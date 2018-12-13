@@ -26,6 +26,13 @@ protocol UpdateUserNetworkProviderProtocol {
 }
 
 class UpdateUserNetworkProvider: NetworkLoadable, UpdateUserNetworkProviderProtocol {
+    
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createDefaultErrorResolver()
+    }
+    
     func updateUser(authToken: String,
                     firstName: String,
                     lastName: String,
@@ -52,60 +59,25 @@ class UpdateUserNetworkProvider: NetworkLoadable, UpdateUserNetworkProviderProto
 
 extension UpdateUserNetworkProvider {
     func sendRequest(request: API.Settings, queue: DispatchQueue, completion: @escaping (Result<User>) -> Void) {
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                switch code {
-                case 200:
-                    guard let user = User(json: json) else {
-                        let apiError = UpdateUserNetworkProviderError.failToParseJson
-                        completion(.failure(apiError))
-                        return
-                    }
-                    
-                    completion(.success(user))
-                default:
-                    let apiError = UpdateUserNetworkProviderError(code: code)
-                    completion(.failure(apiError))
+                guard code == 200, let user = User(json: json) else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
+                    return
                 }
                 
+                completion(.success(user))
+            
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-
-enum UpdateUserNetworkProviderError: LocalizedError, Error {
-    case unauthorized
-    case internalServer
-    case unknownError
-    case failToParseJson
-    
-    init(code: Int) {
-        switch code {
-        case 401:
-            self = .unauthorized
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .unauthorized:
-            return "User unauthorized"
-        case .internalServer,
-             .unknownError:
-            return Constants.Errors.userFriendly
-        case .failToParseJson:
-            return "Failed to parse JSON"
         }
     }
 }

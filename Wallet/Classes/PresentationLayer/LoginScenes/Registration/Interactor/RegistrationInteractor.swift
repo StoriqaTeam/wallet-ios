@@ -96,13 +96,10 @@ extension RegistrationInteractor: RegistrationInteractorInput {
                 case .success:
                     strongSelf.output.registrationSucceed(email: registrationData.email)
                 case .failure(let error):
-                    if let error = error as? RegistrationProviderError {
-                        switch error {
-                        case .validationError(let email, let password):
-                            strongSelf.output.formValidationFailed(email: email, password: password)
-                            return
-                        default: break
-                        }
+                    if let error = error as? AuthNetworkError {
+                        strongSelf.output.formValidationFailed(email: error.email,
+                                                               password: error.password)
+                        return
                     }
                     
                     strongSelf.output.registrationFailed(message: error.localizedDescription)
@@ -121,15 +118,13 @@ extension RegistrationInteractor: RegistrationInteractorInput {
             case .success:
                 self?.socialAuthSucceed()
             case .failure(let error):
-                if let error = error as? SocialAuthNetworkProviderError {
-                    switch error {
-                    case .deviceNotRegistered(let userId):
-                        self?.deviceRegisterData = (userId, email)
-                        self?.output.deviceNotRegistered()
-                        return
-                    default: break
-                    }
+                if let error = error as? DeviceNetworkError,
+                    case .deviceNotRegistered(let userId) = error {
+                    self?.deviceRegisterData = (userId, email)
+                    self?.output.deviceNotRegistered()
+                    return
                 }
+                
                 self?.output.socialAuthFailed(message: error.localizedDescription)
             }
         }

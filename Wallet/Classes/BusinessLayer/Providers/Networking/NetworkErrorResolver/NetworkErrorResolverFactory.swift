@@ -9,122 +9,144 @@
 import Foundation
 
 protocol NetworkErrorResolverFactoryProtocol {
-    func createDefault() -> NetworkErrorResolverProtocol
-    func createForResendConfirmEmail() -> NetworkErrorResolverProtocol
-    func createForConfirmAddDevice() -> NetworkErrorResolverProtocol
-    func createForAddDevice() -> NetworkErrorResolverProtocol
-    func createForSend() -> NetworkErrorResolverProtocol
-    func createForSocialAuth() -> NetworkErrorResolverProtocol
-    func createForChangePassword() -> NetworkErrorResolverProtocol
-    func createForConfirmResetPassword() -> NetworkErrorResolverProtocol
-    func createForResetPassword() -> NetworkErrorResolverProtocol
-    func createForRegistration() -> NetworkErrorResolverProtocol
-    func createForLogin() -> NetworkErrorResolverProtocol
-    func createForEmailConfirm() -> NetworkErrorResolverProtocol
+    func createDefaultErrorResolver() -> NetworkErrorResolverProtocol
+    func createResendConfirmEmailErrorResolver() -> NetworkErrorResolverProtocol
+    func createConfirmAddDeviceErrorResolver() -> NetworkErrorResolverProtocol
+    func createAddDeviceErrorResolver() -> NetworkErrorResolverProtocol
+    func createSendErrorResolver() -> NetworkErrorResolverProtocol
+    func createSocialAuthErrorResolver() -> NetworkErrorResolverProtocol
+    func createChangePasswordErrorResolver() -> NetworkErrorResolverProtocol
+    func createConfirmResetPasswordErrorResolver() -> NetworkErrorResolverProtocol
+    func createResetPasswordErrorResolver() -> NetworkErrorResolverProtocol
+    func createRegistrationErrorResolver() -> NetworkErrorResolverProtocol
+    func createLoginErrorResolver() -> NetworkErrorResolverProtocol
+    func createEmailConfirmErrorResolver() -> NetworkErrorResolverProtocol
+    func createAccountsErrorResolver() -> NetworkErrorResolverProtocol
 }
 
 
 class NetworkErrorResolverFactory: NetworkErrorResolverFactoryProtocol {
     
-    func createDefault() -> NetworkErrorResolverProtocol {
+    func createDefaultErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             TokenRevokeNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForResendConfirmEmail() -> NetworkErrorResolverProtocol {
+    
+    func createResendConfirmEmailErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             EmailNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForConfirmAddDevice() -> NetworkErrorResolverProtocol {
+    
+    func createConfirmAddDeviceErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             DeviceNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForAddDevice() -> NetworkErrorResolverProtocol {
+    
+    func createAddDeviceErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             DeviceNetworkErrorParser(),
             EmailNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForSend() -> NetworkErrorResolverProtocol {
+    
+    func createSendErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             TokenRevokeNetworkErrorParser(),
             SendNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForSocialAuth() -> NetworkErrorResolverProtocol {
+    
+    func createSocialAuthErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             DeviceNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForChangePassword() -> NetworkErrorResolverProtocol {
+    
+    func createChangePasswordErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             TokenRevokeNetworkErrorParser(),
             ChangePasswordNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForConfirmResetPassword() -> NetworkErrorResolverProtocol {
+    
+    func createConfirmResetPasswordErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             DeviceNetworkErrorParser(),
             ConfirmResetPasswordErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForResetPassword() -> NetworkErrorResolverProtocol {
+    
+    func createResetPasswordErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             EmailNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForRegistration() -> NetworkErrorResolverProtocol {
+    
+    func createRegistrationErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             AuthNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForLogin() -> NetworkErrorResolverProtocol {
+    
+    func createLoginErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             DeviceNetworkErrorParser(),
             EmailNetworkErrorParser(),
             AuthNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }
-    func createForEmailConfirm() -> NetworkErrorResolverProtocol {
+    
+    func createEmailConfirmErrorResolver() -> NetworkErrorResolverProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             DeviceNetworkErrorParser(),
-            NetworkUnknownedErrorParser()
+            NetworkUnknownErrorParser()
+        ]
+        return NetworkErrorResolver(parsers: parsers)
+    }
+    
+    func createAccountsErrorResolver() -> NetworkErrorResolverProtocol {
+        let parsers: [NetworkErrorParserProtocol] = [
+            EmptyAccountListNetworkErrorParser(), // should be the first check
+            InitialNetworkErrorParser(),
+            DeviceNetworkErrorParser(),
+            NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
     }

@@ -16,9 +16,11 @@ class SendNetworkErrorParser: NetworkErrorParserProtocol {
         if containsError(json: json, key: "exchange_rate", code: "expired") {
             return SendNetworkError.orderExpired
         }
+        
         if containsError(json: json, key: "value", code: "not_enough_balance") {
             return SendNetworkError.notEnoughBalance
         }
+        
         if containsError(json: json, key: "value", code: "not_enough_on_market") {
             return SendNetworkError.exceedRateLimit
         }
