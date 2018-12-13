@@ -50,6 +50,8 @@ protocol SocialNetworkAuthViewDelegate: class {
 }
 
 class SocialNetworkAuthView: LoadableFromXib {
+    typealias LocalizedStrings = Strings.SocialNetworkAuth
+    
     private weak var viewModel: SocialNetworkAuthViewModel!
     
     enum SocialNetworkAuthViewType {
@@ -97,13 +99,13 @@ class SocialNetworkAuthView: LoadableFromXib {
 
         switch type {
         case .login:
-            titleLabel.text = "sign_in_social".localized()
-            footerTitleLabel.text = "have_no_account".localized()
-            footerButton.setTitle("register".localized(), for: .normal)
+            titleLabel.text = LocalizedStrings.signInTitle
+            footerTitleLabel.text = LocalizedStrings.signInFooter
+            footerButton.setTitle(LocalizedStrings.registerButton, for: .normal)
         case .register:
-            titleLabel.text = "sign_up_social".localized()
-            footerTitleLabel.text = "have_account".localized()
-            footerButton.setTitle("sign_in".localized(), for: .normal)
+            titleLabel.text = LocalizedStrings.signUpTitle
+            footerTitleLabel.text = LocalizedStrings.signUpFooter
+            footerButton.setTitle(LocalizedStrings.signInButton, for: .normal)
         }
     }
 }

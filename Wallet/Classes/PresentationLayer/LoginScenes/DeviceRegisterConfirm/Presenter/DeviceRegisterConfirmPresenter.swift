@@ -10,6 +10,7 @@ import UIKit
 
 
 class DeviceRegisterConfirmPresenter {
+    typealias LocalizedString = Strings.DeviceRegisterConfirm
     
     weak var view: DeviceRegisterConfirmViewInput!
     weak var output: DeviceRegisterConfirmModuleOutput?
@@ -89,7 +90,7 @@ extension DeviceRegisterConfirmPresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: "Registring device")
+        view.viewController.setDarkNavigationBar(title: LocalizedString.navigationTitle)
     }
     
     private func registerDevice() {

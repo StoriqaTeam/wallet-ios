@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -94,6 +94,7 @@
                     <connections>
                         <outlet property="bottomConstraint" destination="XDE-go-sYE" id="AzX-td-Ccu"/>
                         <outlet property="clearFilterButton" destination="4tZ-ra-MGH" id="uTG-jg-Pv7"/>
+                        <outlet property="dateLabel" destination="9Pz-O5-NC3" id="rSN-Op-q4s"/>
                         <outlet property="fromTextField" destination="PKE-M9-Sxe" id="V4C-NV-JKk"/>
                         <outlet property="okButton" destination="8HR-UQ-gY2" id="HBQ-ew-dwq"/>
                         <outlet property="toTextField" destination="cjS-a9-vgN" id="RHK-B3-5CF"/>

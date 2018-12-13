@@ -25,10 +25,10 @@ class PasswordEmailRecoveryViewController: PasswordRecoveryBaseViewController {
     override func configureInterface() {
         super.configureInterface()
         
-        subtitleLabel.text = "email_for_psw_recovery".localized()
-        confirmButton.title = "reset_password".localized()
+        subtitleLabel.text = LocalizedString.emailInputScreenSubtitle
+        confirmButton.title = LocalizedString.emailInputScreenConfirmButton
         
-        emailTextField.placeholder = "Your email"
+        emailTextField.placeholder = LocalizedString.emailFieldPlaceholder
         emailTextField.layoutBlock = {[weak self] in
             self?.view.layoutIfNeeded()
         }

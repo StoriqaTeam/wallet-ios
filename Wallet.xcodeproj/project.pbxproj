@@ -628,6 +628,18 @@
 		CEE84F03218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE84F02218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift */; };
 		CEF02F3121C0F54F003D18FF /* PopUp.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F3021C0F54F003D18FF /* PopUp.strings */; };
 		CEF02F3321C0F564003D18FF /* Strings+PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3221C0F564003D18FF /* Strings+PopUp.swift */; };
+		CEF02F4F21C24976003D18FF /* Strings+PasswordRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4E21C24976003D18FF /* Strings+PasswordRecovery.swift */; };
+		CEF02F5121C24981003D18FF /* PasswordRecovery.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F5021C24981003D18FF /* PasswordRecovery.strings */; };
+		CEF02F5321C24F8E003D18FF /* Strings+EmailConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F5221C24F8E003D18FF /* Strings+EmailConfirm.swift */; };
+		CEF02F5521C24F97003D18FF /* EmailConfirm.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F5421C24F97003D18FF /* EmailConfirm.strings */; };
+		CEF02F5721C250A5003D18FF /* Strings+DeviceRegisterConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F5621C250A5003D18FF /* Strings+DeviceRegisterConfirm.swift */; };
+		CEF02F5921C250B1003D18FF /* DeviceRegisterConfirm.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F5821C250B1003D18FF /* DeviceRegisterConfirm.strings */; };
+		CEF02F5B21C25164003D18FF /* Strings+SocialNetworkAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F5A21C25164003D18FF /* Strings+SocialNetworkAuth.swift */; };
+		CEF02F5D21C2516E003D18FF /* SocialNetworkAuth.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F5C21C2516E003D18FF /* SocialNetworkAuth.strings */; };
+		CEF02F5F21C254A7003D18FF /* Strings+TransactionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F5E21C254A7003D18FF /* Strings+TransactionFilter.swift */; };
+		CEF02F6121C254B4003D18FF /* TransactionFilter.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F6021C254B4003D18FF /* TransactionFilter.strings */; };
+		CEF02F6321C255BD003D18FF /* Strings+TransactionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6221C255BD003D18FF /* Strings+TransactionDetails.swift */; };
+		CEF02F6521C255C6003D18FF /* TransactionDetails.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F6421C255C6003D18FF /* TransactionDetails.strings */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
@@ -1382,6 +1394,18 @@
 		CEE84F02218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpChangePasswordSuccessVM.swift; sourceTree = "<group>"; };
 		CEF02F3021C0F54F003D18FF /* PopUp.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PopUp.strings; sourceTree = "<group>"; };
 		CEF02F3221C0F564003D18FF /* Strings+PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PopUp.swift"; sourceTree = "<group>"; };
+		CEF02F4E21C24976003D18FF /* Strings+PasswordRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PasswordRecovery.swift"; sourceTree = "<group>"; };
+		CEF02F5021C24981003D18FF /* PasswordRecovery.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PasswordRecovery.strings; sourceTree = "<group>"; };
+		CEF02F5221C24F8E003D18FF /* Strings+EmailConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+EmailConfirm.swift"; sourceTree = "<group>"; };
+		CEF02F5421C24F97003D18FF /* EmailConfirm.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = EmailConfirm.strings; sourceTree = "<group>"; };
+		CEF02F5621C250A5003D18FF /* Strings+DeviceRegisterConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+DeviceRegisterConfirm.swift"; sourceTree = "<group>"; };
+		CEF02F5821C250B1003D18FF /* DeviceRegisterConfirm.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = DeviceRegisterConfirm.strings; sourceTree = "<group>"; };
+		CEF02F5A21C25164003D18FF /* Strings+SocialNetworkAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+SocialNetworkAuth.swift"; sourceTree = "<group>"; };
+		CEF02F5C21C2516E003D18FF /* SocialNetworkAuth.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SocialNetworkAuth.strings; sourceTree = "<group>"; };
+		CEF02F5E21C254A7003D18FF /* Strings+TransactionFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+TransactionFilter.swift"; sourceTree = "<group>"; };
+		CEF02F6021C254B4003D18FF /* TransactionFilter.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = TransactionFilter.strings; sourceTree = "<group>"; };
+		CEF02F6221C255BD003D18FF /* Strings+TransactionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+TransactionDetails.swift"; sourceTree = "<group>"; };
+		CEF02F6421C255C6003D18FF /* TransactionDetails.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = TransactionDetails.strings; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
@@ -1550,6 +1574,8 @@
 				085F6DC8178F69BE94191DA0 /* Interactor */,
 				FEE5EAA1FCA39E71B5D89FDC /* Router */,
 				069CAAF02E6AC36AE779CED5 /* Module */,
+				A5C1874721C0EE5100779D26 /* Registration.strings */,
+				A5C1874821C0EE5100779D26 /* Strings+Registration.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -1793,6 +1819,8 @@
 				4DC3C346B95995C54A34B720 /* Interactor */,
 				51B6FE4CDCBCD4708D9E4612 /* Router */,
 				011744B5BD23D1710A033DD0 /* Module */,
+				CEF02F5221C24F8E003D18FF /* Strings+EmailConfirm.swift */,
+				CEF02F5421C24F97003D18FF /* EmailConfirm.strings */,
 			);
 			path = EmailConfirm;
 			sourceTree = "<group>";
@@ -1906,6 +1934,8 @@
 				40467843E157EF10DB2F8318 /* View */,
 				AF9EC04187DD934779D73B4B /* Interactor */,
 				6AD5023736106B266B21FBAD /* Module */,
+				CEF02F6221C255BD003D18FF /* Strings+TransactionDetails.swift */,
+				CEF02F6421C255C6003D18FF /* TransactionDetails.strings */,
 			);
 			path = TransactionDetails;
 			sourceTree = "<group>";
@@ -2194,6 +2224,8 @@
 				E5F1CA395EE53059E8300FE6 /* Interactor */,
 				9F482FEC69C60CE9943AB1B5 /* Router */,
 				B29C26D0B53B18D83436BE77 /* Module */,
+				CEF02F5E21C254A7003D18FF /* Strings+TransactionFilter.swift */,
+				CEF02F6021C254B4003D18FF /* TransactionFilter.strings */,
 			);
 			path = TransactionFilterModule;
 			sourceTree = "<group>";
@@ -2258,6 +2290,8 @@
 				DD657DCCD102B7A418ED657A /* Interactor */,
 				6EAC4CCE70B7330B19105313 /* Router */,
 				D62B787CE3C17290CB5D96A3 /* Module */,
+				CEF02F4E21C24976003D18FF /* Strings+PasswordRecovery.swift */,
+				CEF02F5021C24981003D18FF /* PasswordRecovery.strings */,
 			);
 			path = PasswordEmailRecovery;
 			sourceTree = "<group>";
@@ -2679,6 +2713,8 @@
 				5A0C137B6720A9A3323C5BA0 /* Interactor */,
 				1FA2452F8F6189E16D96CE81 /* Router */,
 				7C00413761E8BDB331710E05 /* Module */,
+				CEF02F5621C250A5003D18FF /* Strings+DeviceRegisterConfirm.swift */,
+				CEF02F5821C250B1003D18FF /* DeviceRegisterConfirm.strings */,
 			);
 			path = DeviceRegisterConfirm;
 			sourceTree = "<group>";
@@ -4223,8 +4259,6 @@
 				CBDC562DBB37E87E10321A50 /* Login */,
 				E298913915285D81F5C290ED /* PinInput */,
 				0470919340405B88C0254B63 /* Registration */,
-				A5C1874721C0EE5100779D26 /* Registration.strings */,
-				A5C1874821C0EE5100779D26 /* Strings+Registration.swift */,
 				59A031E8BD43381C63F480F4 /* PasswordEmailRecovery */,
 				CF3351575A07B8E3876198EB /* PasswordRecoveryConfirm */,
 				74E1EE79A36215B0DCA248BA /* PinSetup */,
@@ -4643,6 +4677,8 @@
 				CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */,
 				A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */,
 				CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */,
+				CEF02F5A21C25164003D18FF /* Strings+SocialNetworkAuth.swift */,
+				CEF02F5C21C2516E003D18FF /* SocialNetworkAuth.strings */,
 			);
 			path = SocialNetworkAuthView;
 			sourceTree = "<group>";
@@ -5206,12 +5242,14 @@
 				A50086012150BD2B00C47015 /* PinInput.storyboard in Resources */,
 				CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */,
 				CE5FAFAD215253D1009E707E /* PopUp.storyboard in Resources */,
+				CEF02F6521C255C6003D18FF /* TransactionDetails.strings in Resources */,
 				CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */,
 				A5A52854216B940200DB03B6 /* TransactionDetails.storyboard in Resources */,
 				CE57C6992165F83400696FF7 /* AccountTableCell.xib in Resources */,
 				A50086052150D5D600C47015 /* FirstLaunch.storyboard in Resources */,
 				CE976483216252B9000E9336 /* SmallAccountCell.xib in Resources */,
 				A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */,
+				CEF02F5521C24F97003D18FF /* EmailConfirm.strings in Resources */,
 				CE41F3462181AAF900070D5D /* EmailConfirm.storyboard in Resources */,
 				A56ED373216C9F6F009FA58B /* TransactionDescriptionAddressView.xib in Resources */,
 				A5C1877021C0EFE500779D26 /* QRScanner.strings in Resources */,
@@ -5226,16 +5264,20 @@
 				A5C1874921C0EE5200779D26 /* Registration.strings in Resources */,
 				A51CB55A21590F6800CDC80C /* TransactionCell.xib in Resources */,
 				A56B4C7C215CFE080017B337 /* EmptyView.xib in Resources */,
+				CEF02F5121C24981003D18FF /* PasswordRecovery.strings in Resources */,
 				CE6A0974216CE3AE004A96A8 /* ConnectPhone.storyboard in Resources */,
 				CE83E21E21B68F300067A779 /* NotificationView.xib in Resources */,
 				A5C1875221C0EEAF00779D26 /* PinInput.strings in Resources */,
 				CE1A47DE212E9E6900418C11 /* PinContainerView.xib in Resources */,
 				A5E8D9AA2153EC5B00AC6A7E /* Deposit.storyboard in Resources */,
+				CEF02F5D21C2516E003D18FF /* SocialNetworkAuth.strings in Resources */,
 				A522AADF21997DE400C39826 /* PinSetupCell.xib in Resources */,
 				A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */,
+				CEF02F5921C250B1003D18FF /* DeviceRegisterConfirm.strings in Resources */,
 				A5C1876321C0EF7200779D26 /* Send.strings in Resources */,
 				A574353921789BB3006B4CAE /* SessionCell.xib in Resources */,
 				A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */,
+				CEF02F6121C254B4003D18FF /* TransactionFilter.strings in Resources */,
 				A5C1875A21C0EF2800779D26 /* Exchange.strings in Resources */,
 				A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */,
 				A5C1876821C0EF9200779D26 /* PinSetup.strings in Resources */,
@@ -5484,6 +5526,7 @@
 				48D375B575D57A4CF0D1F591 /* FirstLaunchViewController.swift in Sources */,
 				A500860D2150FA1600C47015 /* Result.swift in Sources */,
 				299D987919399E29BA78858E /* FirstLaunchPresenter.swift in Sources */,
+				CEF02F4F21C24976003D18FF /* Strings+PasswordRecovery.swift in Sources */,
 				D38A8FA13AAF73DEB072ECF1 /* FirstLaunchInteractorInput.swift in Sources */,
 				7A80EBB895B1151398C2D79F /* FirstLaunchInteractorOutput.swift in Sources */,
 				EBA3144E74DD09EC8832E45F /* FirstLaunchInteractor.swift in Sources */,
@@ -5521,6 +5564,7 @@
 				499A139819810CE495D7F452 /* RegistrationModuleInput.swift in Sources */,
 				CFF9F4C159614776247E0C56 /* RegistrationModuleOutput.swift in Sources */,
 				E275BFADE175B146D991425C /* RegistrationModule.swift in Sources */,
+				CEF02F5B21C25164003D18FF /* Strings+SocialNetworkAuth.swift in Sources */,
 				BEEDE5E6BEDC5F138D876770 /* PasswordEmailRecoveryViewInput.swift in Sources */,
 				21871BCFB964904C754FD3CF /* PasswordEmailRecoveryViewOutput.swift in Sources */,
 				A1895A9521B8A57EA1BC3561 /* PasswordEmailRecoveryViewController.swift in Sources */,
@@ -5810,6 +5854,7 @@
 				387049FD4CBF2A4D85926766 /* AccountsInteractor.swift in Sources */,
 				A5C1874D21C0EE8800779D26 /* Strings+QuickLaunch.swift in Sources */,
 				A574352121777383006B4CAE /* SessionsViewController.swift in Sources */,
+				CEF02F6321C255BD003D18FF /* Strings+TransactionDetails.swift in Sources */,
 				FBC0445139685CE4088D662F /* AccountsRouterInput.swift in Sources */,
 				22613A5133717DCD88294579 /* AccountsRouter.swift in Sources */,
 				CE135178218C8500009CB4F9 /* CreateAccountNetworkProvider.swift in Sources */,
@@ -5880,6 +5925,7 @@
 				FB6A70C28C7786B6536478B8 /* ProfileInteractor.swift in Sources */,
 				A574350821776226006B4CAE /* EditProfileRouter.swift in Sources */,
 				2DCC590F1683AF50B1B15403 /* ProfileRouterInput.swift in Sources */,
+				CEF02F5F21C254A7003D18FF /* Strings+TransactionFilter.swift in Sources */,
 				F2D470CFD53146653BAE83BC /* ProfileRouter.swift in Sources */,
 				B28B1DB2D406C58BAECE85FE /* ProfileModuleInput.swift in Sources */,
 				7D40375CDFA6A55B7FFC4204 /* ProfileModuleOutput.swift in Sources */,
@@ -5893,6 +5939,7 @@
 				93E7B3BF9EDD80639D31C0B1 /* ConnectPhoneInteractorInput.swift in Sources */,
 				EC91C88F82722139B3F1C7CB /* ConnectPhoneInteractorOutput.swift in Sources */,
 				56F837621197A9323EFB0B23 /* ConnectPhoneInteractor.swift in Sources */,
+				CEF02F5321C24F8E003D18FF /* Strings+EmailConfirm.swift in Sources */,
 				46338A8E78AF151F358EA4EF /* ConnectPhoneRouterInput.swift in Sources */,
 				4A716DCE68EFC893326C5B35 /* ConnectPhoneRouter.swift in Sources */,
 				CE8E2E1321A7DBBA00F0B395 /* PopUpDefaultFailureVM.swift in Sources */,
@@ -5989,6 +6036,7 @@
 				A5C1876421C0EF7200779D26 /* Strings+Send.swift in Sources */,
 				828D2A26236A08047E9D2065 /* ExchangeConfirmPopUpPresenter.swift in Sources */,
 				546CB52D2A24722585EDC101 /* ExchangeConfirmPopUpInteractorInput.swift in Sources */,
+				CEF02F5721C250A5003D18FF /* Strings+DeviceRegisterConfirm.swift in Sources */,
 				C85443C141795C7B6E609790 /* ExchangeConfirmPopUpInteractorOutput.swift in Sources */,
 				F9249488527F4D41EE917C2E /* ExchangeConfirmPopUpInteractor.swift in Sources */,
 				6C24852C22AD9457FB14752A /* ExchangeConfirmPopUpRouterInput.swift in Sources */,
