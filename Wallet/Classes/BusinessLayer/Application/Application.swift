@@ -85,7 +85,6 @@ class Application {
     lazy var currencyImageProvider: CurrencyImageProviderProtocol = CurrencyImageProvider()
     lazy var authTokenDefaultsProvider: AuthTokenDefaultsProviderProtocol = AuthTokenDefaultsProvider()
     lazy var authTokenProvider: AuthTokenProviderProtocol = AuthTokenProvider(defaults: self.authTokenDefaultsProvider,
-                                                                              socialAuthNetworkProvider: self.socialAuthNetworkProvider,
                                                                               authDataResolver: self.authDataResolver,
                                                                               signHeaderFactory: self.signHeaderFactory,
                                                                               refreshTokenNetworkProvider: self.refreshTokenNetworkProvider)
@@ -208,8 +207,8 @@ class Application {
     
     
     // MARK: - Global services -
-    lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 100)
-    lazy var depositShortPollintTimer: DepositShortPollingTimerProtocol = DepositShortPollingTimer(timeout: 100)
+    lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 60)
+    lazy var depositShortPollintTimer: DepositShortPollingTimerProtocol = DepositShortPollingTimer(timeout: 10)
     
     // MARK: - Channels -
     lazy var channelStorage: ChannelStorage = ChannelStorage()

@@ -5,7 +5,6 @@
 //  Created by Storiqa on 23/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-//swiftlint:disable function_body_length
 
 import Foundation
 
@@ -27,7 +26,6 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
     private var authToken: AuthToken?
     private let jwtParser: JwtTokenParserProtocol
     private let defaults: AuthTokenDefaultsProviderProtocol
-    private let socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol
     private let authDataResolver: AuthDataResolverProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
     private let refreshTokenNetworkProvider: RefreshTokenNetworkProviderProtocol
@@ -37,14 +35,12 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
     }
     
     init(defaults: AuthTokenDefaultsProviderProtocol,
-         socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol,
          authDataResolver: AuthDataResolverProtocol,
          signHeaderFactory: SignHeaderFactoryProtocol,
          refreshTokenNetworkProvider: RefreshTokenNetworkProviderProtocol) {
         
         self.defaults = defaults
         self.jwtParser = JwtTokenParser()
-        self.socialAuthNetworkProvider = socialAuthNetworkProvider
         self.authDataResolver = authDataResolver
         self.signHeaderFactory = signHeaderFactory
         self.refreshTokenNetworkProvider = refreshTokenNetworkProvider
@@ -110,7 +106,7 @@ extension AuthTokenProvider {
                                                      queue: .main) { [weak self] (result) in
                                                         guard let strongSelf = self else {
                                                             let error = AuthTokenProviderError.failToGetTokenFromDefaults
-                                                            log.error("Auth Token provider release")
+                                                            log.error("Auth Token provider released")
                                                             completion(.failure(error))
                                                             return
                                                         }
