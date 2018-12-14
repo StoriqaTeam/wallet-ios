@@ -11,6 +11,8 @@ import UIKit
 
 class DepositPresenter {
     
+    typealias LocalizedStrings = Strings.Deposit
+    
     weak var view: DepositViewInput!
     weak var output: DepositModuleOutput?
     var interactor: DepositInteractorInput!
@@ -33,7 +35,7 @@ extension DepositPresenter: DepositViewOutput {
     func copyButtonPressed() {
         let address = interactor.getAddress()
         UIPasteboard.general.string = address
-        view.viewController.showAlert(message: "Address copied to clipboard")
+        view.viewController.showAlert(message: LocalizedStrings.addressCopiedMessage)
     }
     
     func shareButtonPressed() {
@@ -142,6 +144,6 @@ extension DepositPresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: "Deposit to account")
+        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
 }

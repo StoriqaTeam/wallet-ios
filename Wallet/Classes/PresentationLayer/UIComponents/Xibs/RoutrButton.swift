@@ -20,6 +20,8 @@ protocol RouteButtonDelegate: class {
 
 class RouteButton: LoadableFromXib {
     
+    typealias LocalizedStrings = Strings.Accounts
+    
     weak var delegate: RouteButtonDelegate!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var title: UILabel!
@@ -35,12 +37,12 @@ class RouteButton: LoadableFromXib {
         switch type {
         case .change:
             image.image = UIImage(named: "ChangeBtnImg")
-            title.text = "Change"
+            title.text = LocalizedStrings.exchangeButton
         case .deposit:
-            title.text = "Deposit"
+            title.text = LocalizedStrings.depositButton
             image.image = UIImage(named: "DepositBtnImg")
         case .send:
-            title.text = "Send"
+            title.text = LocalizedStrings.sendButton
             image.image = UIImage(named: "SendBtnImage")
         }
         

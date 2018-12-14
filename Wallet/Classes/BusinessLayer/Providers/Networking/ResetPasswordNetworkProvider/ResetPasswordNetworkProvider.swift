@@ -40,6 +40,8 @@ class ResetPasswordNetworkProvider: NetworkLoadable, ResetPasswordNetworkProvide
                     return
                 }
                 
+                completion(.success(nil))
+                
             case .failure(let error):
                 completion(.failure(error))
             }

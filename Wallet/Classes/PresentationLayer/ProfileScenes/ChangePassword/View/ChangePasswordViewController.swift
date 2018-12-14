@@ -10,6 +10,8 @@ import UIKit
 
 
 class ChangePasswordViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.ChangePassword
 
     var output: ChangePasswordViewOutput!
     
@@ -153,19 +155,19 @@ extension ChangePasswordViewController {
             self?.view.layoutIfNeeded()
         }
         
-        currentPassword.placeholder = "Current password"
+        currentPassword.placeholder = LocalizedStrings.currentPasswordPlaceholder
         currentPassword.layoutBlock = layoutBlock
         currentPassword.delegate = self
-        newPassword.placeholder = "New password"
-        newPassword.hintMessage = "password_hint".localized()
+        newPassword.placeholder = LocalizedStrings.newPasswordPlaceholder
+        newPassword.hintMessage = LocalizedStrings.newPasswordHint
         newPassword.layoutBlock = layoutBlock
         newPassword.delegate = self
-        repeatPassword.placeholder = "Repeat password"
+        repeatPassword.placeholder = LocalizedStrings.repeatPasswordPlaceholder
         repeatPassword.layoutBlock = layoutBlock
         repeatPassword.delegate = self
         
         titleLabel.font = Theme.Font.title
-        titleLabel.text = "Change password"
+        titleLabel.text = LocalizedStrings.screenTitle
     }
     
     private func updateContinueButton() {

@@ -10,6 +10,8 @@ import UIKit
 
 
 class ConnectPhoneViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.ConnectPhone
 
     var output: ConnectPhoneViewOutput!
 
@@ -95,7 +97,9 @@ extension ConnectPhoneViewController {
         headerTextLabel.textColor = Theme.Text.Color.captionGrey
         footerTextLabel.textColor = Theme.Text.Color.captionGrey
         
-        // TODO: localizations
+        phoneTextField.placeholder = LocalizedStrings.phoneNumberPlaceholder
+        headerTextLabel.text = LocalizedStrings.screenSubtitle
+        footerTextLabel.text = LocalizedStrings.phoneNumberHint
     }
     
 }

@@ -10,6 +10,8 @@ import UIKit
 
 
 class DepositViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.Deposit
 
     var output: DepositViewOutput!
 
@@ -30,6 +32,7 @@ class DepositViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInterface()
+        localizeText()
         output.accountsCollectionView(accountsCollectionView)
         output.viewIsReady()
     }
@@ -131,6 +134,13 @@ extension DepositViewController {
         copyButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
         shareButton.titleLabel?.font = Theme.Font.smallText
         shareButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+    }
+    
+    private func localizeText() {
+        addressTitleLabel.text = LocalizedStrings.addressTitle
+        qrCodeTitleLabel.text = LocalizedStrings.qrCodeTitle
+        copyButton.setTitle(LocalizedStrings.copyButton, for: .normal)
+        shareButton.setTitle(LocalizedStrings.shareButton, for: .normal)
     }
     
     private func setNavBarTransparency() {
