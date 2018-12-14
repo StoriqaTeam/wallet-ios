@@ -20,6 +20,8 @@ private enum SettingsCell: Int {
 
 class SettingsViewController: UIViewController {
     
+    typealias LocalizedStrings = Strings.Settings
+    
     var output: SettingsViewOutput!
     
     @IBOutlet private var settingsTableView: UITableView!
@@ -55,11 +57,11 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let info: String = {
             switch indexPath.row {
-            case SettingsCell.editProfile.rawValue: return "Edit profile"
-            case SettingsCell.changePassword.rawValue where hasChangePassword: return "Change password"
+            case SettingsCell.editProfile.rawValue: return LocalizedStrings.editProfile
+            case SettingsCell.changePassword.rawValue where hasChangePassword: return LocalizedStrings.changePassword
                 //FIXME: hidden
             //            case SettingsCell.changePhone.rawValue: return changePhoneTitle
-            case SettingsCell.appInfo.rawValue: return "App info"
+            case SettingsCell.appInfo.rawValue: return LocalizedStrings.appInfo
             default: return ""
             }
         }()

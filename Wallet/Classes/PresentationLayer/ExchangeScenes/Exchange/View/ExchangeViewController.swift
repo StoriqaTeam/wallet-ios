@@ -95,6 +95,7 @@ extension ExchangeViewController: ExchangeViewInput {
         addNotificationObservers()
         addHideKeyboardGuesture()
         configInterface()
+        localizeText()
     }
     
     func updatePagesCount(_ count: Int) {
@@ -260,11 +261,15 @@ extension ExchangeViewController {
         errorLabel.isHidden = true
         exchangeButton.isEnabled = false
         
-        //TODO: локализации
+        rateBackgroundView.roundCorners(radius: 10)
+    }
+    
+    private func localizeText() {
+        recepientAccountTitleLabel.text = LocalizedStrings.toAccountTitle
+        subtotalTitleLabel.text = LocalizedStrings.subtotalTitle
         amountTitleLabel.text = LocalizedStrings.amountTitle
         amountTextField.placeholder = LocalizedStrings.amountPlaceholder
-        
-        rateBackgroundView.roundCorners(radius: 10)
+        exchangeButton.setTitle(LocalizedStrings.exchangeButton, for: .normal)
     }
 }
 

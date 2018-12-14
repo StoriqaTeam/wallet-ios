@@ -65,16 +65,16 @@ extension ProfilePresenter: ProfileViewOutput {
     }
     
     func photoTapped() {
-        let alert = UIAlertController(title: "change_photo".localized(),
+        let alert = UIAlertController(title: "Change profile photo",
                                       message: nil,
                                       preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: "make_photo".localized(), style: .default) { _ in
+        let cameraAction = UIAlertAction(title: "Make a photo", style: .default) { _ in
             self.openCamera()
         }
-        let gallaryAction = UIAlertAction(title: "from_gallery".localized(), style: .default) { _ in
+        let gallaryAction = UIAlertAction(title: "Take from gallery", style: .default) { _ in
             self.openGallary()
         }
-        let cancelAction = UIAlertAction(title: "cancel".localized(), style: .cancel)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         // Add the actions
         alert.addAction(cameraAction)

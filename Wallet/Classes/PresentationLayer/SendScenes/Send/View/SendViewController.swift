@@ -116,6 +116,7 @@ extension SendViewController: SendViewInput {
         addNotificationObservers()
         configInterface()
         addHideKeyboardGuesture()
+        localizeText()
     }
     
     func setScannedAddress(_ address: String) {
@@ -288,14 +289,7 @@ extension SendViewController {
         receiverTextField.delegate = self
         scrollView.delegate = self
         
-        receiverTitleLabel.text = LocalizedStrings.recepientAddressTitle
-        amountTitleLabel.text = LocalizedStrings.amountTitle
-        amountTextField.placeholder = LocalizedStrings.amountPlaceholder
-        
-        receiverTextField.placeholder = LocalizedStrings.recepientInputPlaceholder
         receiverTextField.autocorrectionType = .no
-        scanQRButton.setTitle(LocalizedStrings.scanButtonTitle + "   ", for: .normal)
-        sendButton.setTitle(LocalizedStrings.screenTitle, for: .normal)
         
         receiverTitleLabel.font = Theme.Font.caption
         amountTitleLabel.font = Theme.Font.caption
@@ -322,6 +316,24 @@ extension SendViewController {
         
         sendButton.isEnabled = false
         loaderView.isUserInteractionEnabled = false
+    }
+    
+    private func localizeText() {
+        receiverTitleLabel.text = LocalizedStrings.recepientAddressTitle
+        receiverTextField.placeholder = LocalizedStrings.recepientInputPlaceholder
+        scanQRButton.setTitle(LocalizedStrings.scanButtonTitle + "   ", for: .normal)
+        
+        amountTitleLabel.text = LocalizedStrings.amountTitle
+        amountTextField.placeholder = LocalizedStrings.amountPlaceholder
+        
+        paymentFeeTitleLabel.text = LocalizedStrings.feeTitle
+        medianWaitTitleLabel.text = LocalizedStrings.medianWaitTitle
+        paymentFeeLowLabel.text = LocalizedStrings.lowFee
+        paymentFeeMediumLabel.text = LocalizedStrings.mediumFee
+        paymentFeeHighLabel.text = LocalizedStrings.highFee
+        
+        subtotalTitleLabel.text = LocalizedStrings.subtotalTitle
+        sendButton.setTitle(LocalizedStrings.screenTitle, for: .normal)
     }
     
     private func setNavBarTransparency() {
