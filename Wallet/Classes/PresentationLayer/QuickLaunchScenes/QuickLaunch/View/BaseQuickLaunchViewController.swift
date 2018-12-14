@@ -30,7 +30,7 @@ class BaseQuickLaunchViewController: UIViewController {
         titleLabel.font = Theme.Font.title
         subtitleLabel?.font = Theme.Font.subtitle
         subtitleLabel?.textColor = Theme.Color.greyishBrown
-        cancelButton?.setTitle("do_not_use".localized(), for: .normal)
+        cancelButton?.setTitle(Strings.QuickLaunch.cancelButton, for: .normal)
     }
     
     private func disableBackNavigation() {

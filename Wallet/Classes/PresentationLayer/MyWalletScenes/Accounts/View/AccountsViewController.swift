@@ -10,6 +10,8 @@ import UIKit
 
 
 class AccountsViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.Accounts
 
     var output: AccountsViewOutput!
     
@@ -94,6 +96,8 @@ extension AccountsViewController: AccountsViewInput {
         configureButtons()
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
+        lastTransactionsTitle.text = LocalizedStrings.lastTransactionsTitle
+        viewAllButton.setTitle(LocalizedStrings.viewAllButton, for: .normal)
     }
     
     func setCollectionHeight(_ height: CGFloat) {

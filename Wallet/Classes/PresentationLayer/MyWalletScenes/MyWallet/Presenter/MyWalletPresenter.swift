@@ -82,7 +82,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
         navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
         
         navigationBar.prefersLargeTitles = true
-        navigationBar.topItem?.title = "my_wallet".localized()
+        navigationBar.topItem?.title = LocalizedStrings.navigationBarTitle
         
         var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
         titleTextAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white

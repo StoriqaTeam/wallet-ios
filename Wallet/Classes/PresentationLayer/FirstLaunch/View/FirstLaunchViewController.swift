@@ -10,8 +10,14 @@ import UIKit
 
 
 class FirstLaunchViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.FirstLaunch
 
     var output: FirstLaunchViewOutput!
+    
+    @IBOutlet private var getStartedButton: DefaultButton!
+    @IBOutlet private var signInButton: BaseButton!
+    
     
     // MARK: Life cycle
     
@@ -36,6 +42,7 @@ class FirstLaunchViewController: UIViewController {
 extension FirstLaunchViewController: FirstLaunchViewInput {
     
     func setupInitialState() {
-
+        getStartedButton.setTitle(LocalizedStrings.getStartedButton, for: .normal)
+        signInButton.setTitle(LocalizedStrings.signInButton, for: .normal)
     }
 }

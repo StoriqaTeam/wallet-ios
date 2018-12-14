@@ -11,6 +11,8 @@ import UIKit
 
 class TransactionsPresenter: NSObject {
     
+    typealias LocalizedStrings = Strings.Transactions
+    
     weak var view: TransactionsViewInput!
     weak var output: TransactionsModuleOutput?
     var interactor: TransactionsInteractorInput!
@@ -112,7 +114,7 @@ extension TransactionsPresenter: TransactionsDataManagerDelegate {
 extension TransactionsPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: "Transactions")
+        view.viewController.setDarkNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
     
     func filteredDispayable(_ txs: [Transaction]) -> [TransactionDisplayable] {

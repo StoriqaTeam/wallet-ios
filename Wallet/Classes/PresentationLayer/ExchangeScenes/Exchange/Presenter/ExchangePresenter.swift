@@ -11,6 +11,8 @@ import UIKit
 
 class ExchangePresenter {
     
+    typealias LocalizedStrings = Strings.Exchange
+    
     weak var view: ExchangeViewInput!
     weak var output: ExchangeModuleOutput?
     var interactor: ExchangeInteractorInput!
@@ -161,7 +163,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
     
     func updateRecepientAccount(_ account: Account?) {
         guard let account = account else {
-            view.setRecepientAccount("No accounts available")
+            view.setRecepientAccount(LocalizedStrings.noAccountsAvailable)
             view.setRecepientBalance("")
             return
         }
@@ -169,7 +171,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         let balance = accountDisplayer.cryptoAmount(for: account)
         
         view.setRecepientAccount(account.name)
-        view.setRecepientBalance("Balance: \(balance)")
+        view.setRecepientBalance(String(format: LocalizedStrings.balanceLabel, balance))
     }
     
     func exchangeRateError(_ error: Error) {
@@ -205,7 +207,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         
         let minAmountStr = currencyFormatter.getStringFrom(amount: min.decimalValue(), currency: currency)
         let maxAmountStr = currencyFormatter.getStringFrom(amount: max.decimalValue(), currency: currency)
-        let message = "Transaction amount should be between \(minAmountStr) and \(maxAmountStr)"
+        let message = String(format: LocalizedStrings.amountOutOfBounds, minAmountStr, maxAmountStr)
         
         router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
     }
@@ -214,7 +216,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         storiqaLoader.stopLoader()
         
         let limitStr = currencyFormatter.getStringFrom(amount: limit.decimalValue(), currency: currency)
-        let message = "You’ve exceeded you daily transaction limit of \(limitStr) for this account."
+        let message = String(format: LocalizedStrings.exceedDayLimitMessage, limitStr)
         
         router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
     }
@@ -291,7 +293,7 @@ extension ExchangePresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: "Exchange")
+        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
     
     private func getStringFrom(amount: Decimal?, currency: Currency) -> String {

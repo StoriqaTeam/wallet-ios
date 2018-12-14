@@ -11,6 +11,8 @@ import UIKit
 
 class EmailConfirmPresenter {
     
+    typealias LocalizedString = Strings.EmailConfirm
+    
     weak var view: EmailConfirmViewInput!
     weak var output: EmailConfirmModuleOutput?
     var interactor: EmailConfirmInteractorInput!
@@ -90,7 +92,7 @@ extension EmailConfirmPresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: "Confirming email")
+        view.viewController.setDarkNavigationBar(title: LocalizedString.navigationTitle)
     }
     
     private func confirmEmail() {

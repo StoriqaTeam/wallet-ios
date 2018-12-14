@@ -10,11 +10,14 @@ import Foundation
 
 extension Strings {
     enum MyWallet {
+        static let navigationBarTitle = NSLocalizedString("MyWallet.navigationBarTitle",
+                                                          tableName: "MyWallet",
+                                                          value: "My wallet",
+                                                          comment: "Navigation bar title on my wallet screen")
         static let buttonTitle = NSLocalizedString("MyWallet.buttonTitle",
                                                    tableName: "MyWallet",
                                                    value: "Add new",
                                                    comment: "Button at the right side of navigation bar")
-        
         static let newFundsReceivedMessage = NSLocalizedString("MyWallet.newFundsReceivedMessage",
                                                                tableName: "MyWallet",
                                                                value: "You received ",

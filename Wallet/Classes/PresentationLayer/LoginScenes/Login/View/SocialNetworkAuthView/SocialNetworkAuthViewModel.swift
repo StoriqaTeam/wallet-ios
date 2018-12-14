@@ -126,7 +126,7 @@ enum SocialNetworkViewModelError: LocalizedError {
     var localizedDescription: String {
         switch self {
         case .failToSign(let error):
-            return "Failied signIn with account \(error.localizedDescription)"
+            return "Failed signIn with account \(error.localizedDescription)"
         case .userTokenIsEmpty:
             return "Failed signIn with account: user token empty"
         case .emptyUserEmail:

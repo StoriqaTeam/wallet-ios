@@ -23,6 +23,8 @@ class SettingsPresenter {
 
 extension SettingsPresenter: SettingsViewOutput {
     
+    typealias LocalizedStrings = Strings.Settings
+    
     func viewIsReady() {
         let hasChangePassword = !interactor.userLoginedWithSocialProvider()
         view.setupInitialState(hasChangePassword: hasChangePassword)
@@ -31,7 +33,7 @@ extension SettingsPresenter: SettingsViewOutput {
     
     func viewWillAppear() {
         let hasPhone = interactor.userHasPhone()
-        let title = (hasPhone ? "Change" : "Connect") + " phone number"
+        let title = hasPhone ? LocalizedStrings.changePhone : LocalizedStrings.connectPhone
         view.setChangePhoneTitle(title)
     }
     
@@ -93,6 +95,6 @@ extension SettingsPresenter: PopUpSignOutVMDelegate {
 extension SettingsPresenter {
     func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: "Settings")
+        view.viewController.setDarkNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
 }

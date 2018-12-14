@@ -10,6 +10,7 @@ import UIKit
 
 
 class TransactionFilterPresenter {
+    typealias LocalizedStrings = Strings.TransactionFilter
     
     weak var view: TransactionFilterViewInput!
     weak var output: TransactionFilterModuleOutput?
@@ -85,7 +86,7 @@ extension TransactionFilterPresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: "Filter")
+        view.viewController.setDarkNavigationBar(title: LocalizedStrings.navigationTitle)
     }
     
     private func configureViewWithFilter() {

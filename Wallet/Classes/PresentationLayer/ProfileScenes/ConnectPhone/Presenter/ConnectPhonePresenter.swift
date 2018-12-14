@@ -11,6 +11,8 @@ import UIKit
 
 class ConnectPhonePresenter {
     
+    typealias LocalizedStrings = Strings.ConnectPhone
+    
     weak var view: ConnectPhoneViewInput!
     weak var output: ConnectPhoneModuleOutput?
     var interactor: ConnectPhoneInteractorInput!
@@ -34,8 +36,8 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
             return "+" + userPhone
         }()
         
-        let button = phone.isEmpty ? "Connect" : "Change"
-        let title = button + " phone number"
+        let button = phone.isEmpty ? LocalizedStrings.connetButton : LocalizedStrings.changeButton
+        let title = phone.isEmpty ? LocalizedStrings.navigationBarConnectTitle : LocalizedStrings.navigationBarChangeTitle
         
         view.setupInitialState(phone: phone, buttonTitle: button)
         configureNavigationBar(title: title)

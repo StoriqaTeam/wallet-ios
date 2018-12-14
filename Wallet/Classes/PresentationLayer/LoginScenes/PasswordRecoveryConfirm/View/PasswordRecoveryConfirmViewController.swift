@@ -31,14 +31,14 @@ class PasswordRecoveryConfirmViewController: PasswordRecoveryBaseViewController 
             self?.view.layoutIfNeeded()
         }
         
-        subtitleLabel.text = "psw_recovery_confirm_subtitle".localized()
-        confirmButton.title = "confirm_new_password".localized()
+        subtitleLabel.text = LocalizedString.passwordInputScreenSubtitle
+        confirmButton.title = LocalizedString.passwordInputScreenConfirmButton
         
-        passwordTextField.placeholder = "password".localized()
-        passwordTextField.hintMessage = "password_hint".localized()
+        passwordTextField.placeholder = LocalizedString.passwordFieldPlaceholder
+        passwordTextField.hintMessage = LocalizedString.passwordFieldHint
         passwordTextField.layoutBlock = layoutBlock
         
-        repeatPasswordTextField.placeholder = "repeat_password".localized()
+        repeatPasswordTextField.placeholder = LocalizedString.repeatPasswordFieldPlaceholder
         repeatPasswordTextField.layoutBlock = layoutBlock
         
         passwordTextField.delegate = self

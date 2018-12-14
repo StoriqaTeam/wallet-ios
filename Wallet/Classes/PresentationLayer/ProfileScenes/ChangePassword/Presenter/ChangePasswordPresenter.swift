@@ -11,6 +11,8 @@ import UIKit
 
 class ChangePasswordPresenter {
     
+    typealias LocalizedStrings = Strings.ChangePassword
+    
     weak var view: ChangePasswordViewInput!
     weak var output: ChangePasswordModuleOutput?
     var interactor: ChangePasswordInteractorInput!
@@ -49,7 +51,7 @@ extension ChangePasswordPresenter: ChangePasswordViewOutput {
         if password == repeatPassword {
             view.setPasswordsEqual(onEndEditing, message: nil)
         } else {
-            view.setPasswordsEqual(false, message: "passwords_nonequal".localized())
+            view.setPasswordsEqual(false, message: LocalizedStrings.passwordsNotMatchMessage)
         }
     }
     

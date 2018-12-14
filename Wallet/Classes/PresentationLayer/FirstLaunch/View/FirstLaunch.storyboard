@@ -112,6 +112,10 @@ with your fiat &amp; crypto funds</string>
                     </view>
                     <navigationItem key="navigationItem" id="gqr-Io-a8U"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="getStartedButton" destination="kjw-WQ-0cb" id="8cy-KB-vGZ"/>
+                        <outlet property="signInButton" destination="gZA-MI-siA" id="yhQ-2P-9AK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQe-d3-OPS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

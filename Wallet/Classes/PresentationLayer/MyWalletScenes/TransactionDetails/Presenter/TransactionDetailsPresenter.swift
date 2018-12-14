@@ -11,6 +11,7 @@ import UIKit
 
 
 class TransactionDetailsPresenter {
+    typealias LocalizedStrings = Strings.TransactionDetails
     
     weak var view: TransactionDetailsViewInput!
     weak var output: TransactionDetailsModuleOutput?
@@ -44,7 +45,7 @@ extension TransactionDetailsPresenter: TransactionDetailsViewOutput {
     
     func addressTapped(_ address: String) {
         UIPasteboard.general.string = address
-        view.viewController.showAlert(title: "", message: "Address copied to clipboard")
+        view.viewController.showAlert(title: "", message: LocalizedStrings.addressCopiedMessage)
     }
     
     func viewInBlockchain() {
@@ -76,7 +77,7 @@ extension TransactionDetailsPresenter: TransactionDetailsModuleInput {
 
 extension TransactionDetailsPresenter {
     private func configureNavigationBar(transaction: TransactionDisplayable) {
-        let title = transaction.direction == .receive ? "Deposit transaction" : "Send Transaction"
+        let title = transaction.direction == .receive ? LocalizedStrings.navigationBarTitleDeposit : LocalizedStrings.navigationBarTitleSent
         view.viewController.setDarkNavigationBar(title: title)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
     }
@@ -87,7 +88,7 @@ extension TransactionDetailsPresenter {
             return
         }
         
-        let title = "View on "
+        let title = LocalizedStrings.viewOnExplorer
         let explorer = getExplorer(from: transaction)
         
         transactionLink = blockchainExplorerLinkGenerator.getLink(explorer: explorer, transactionHash: hash)
