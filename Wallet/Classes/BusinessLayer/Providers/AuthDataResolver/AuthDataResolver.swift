@@ -16,37 +16,22 @@ enum AuthData {
 
 
 protocol AuthDataResolverProtocol {
-    func getAuthData() -> AuthData?
+    func getAuthData() -> String?
 }
 
 class AuthDataResolver: AuthDataResolverProtocol {
     
-    private let keychain: KeychainProviderProtocol
-    private let defaults: DefaultsProviderProtocol
     private let userDataStore: UserDataStoreServiceProtocol
     
-    init(defaults: DefaultsProviderProtocol,
-         keychain: KeychainProviderProtocol,
-         userDataStoreService: UserDataStoreServiceProtocol) {
-        self.keychain = keychain
-        self.defaults = defaults
+    init(userDataStoreService: UserDataStoreServiceProtocol) {
+        
         self.userDataStore = userDataStoreService
     }
     
-    func getAuthData() -> AuthData? {
+    func getAuthData() -> String? {
         let user = userDataStore.getCurrentUser()
         let email = user.email
-
-        if let socialProvider = defaults.socialAuthProvider,
-            let socialToken = keychain.socialAuthToken {
-            let authData = AuthData.social(provider: socialProvider, token: socialToken, email: email)
-            return authData
-        } else if let password = keychain.password {
-            let authData = AuthData.email(email: email, password: password)
-            return authData
-        } else {
-            return nil
-        }
+        return email
     }
     
 }

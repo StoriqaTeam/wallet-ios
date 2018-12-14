@@ -42,7 +42,7 @@ extension SettingsInteractor: SettingsInteractorInput {
     }
     
     func userLoginedWithSocialProvider() -> Bool {
-        let socialAuthToken = keychainProvider.socialAuthToken
-        return socialAuthToken != nil
+        let isSocial = keychainProvider.socialAuthToken
+        return isSocial != nil
     }
 }
