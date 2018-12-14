@@ -18,6 +18,12 @@ protocol AccountsNetworkProviderProtocol {
 
 class AccountsNetworkProvider: NetworkLoadable, AccountsNetworkProviderProtocol {
     
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createAccountsErrorResolver()
+    }
+    
     func getAccounts(authToken: String,
                      userId: Int,
                      queue: DispatchQueue,
@@ -26,28 +32,18 @@ class AccountsNetworkProvider: NetworkLoadable, AccountsNetworkProviderProtocol 
         
         let request = API.Authorized.getAccounts(authToken: authToken, userId: userId, signHeader: signHeader)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
+                let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                guard let accountsJson = json.array else {
-                    let apiError = AccountsNetworkProviderError(code: response.responseStatusCode)
-                    completion(.failure(apiError))
-                    return
-                }
-                
-                guard !accountsJson.isEmpty else {
-                    let apiError = AccountsNetworkProviderError.emptyAccountList
-                    completion(.failure(apiError))
-                    return
-                }
-                
-                let accounts = accountsJson.compactMap { Account(json: $0) }
-                
-                guard accounts.count == accountsJson.count else {
-                    let apiError = AccountsNetworkProviderError.parseJsonError
-                    completion(.failure(apiError))
+                guard code == 200,
+                    let accounts = json.array?.compactMap({ Account(json: $0) }) else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
                     return
                 }
                 
@@ -56,39 +52,6 @@ class AccountsNetworkProvider: NetworkLoadable, AccountsNetworkProviderProtocol 
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-
-}
-
-enum AccountsNetworkProviderError: LocalizedError, Error {
-    case unauthorized
-    case unknownError
-    case internalServer
-    case emptyAccountList
-    case parseJsonError
-    
-    init(code: Int) {
-        switch code {
-        case 401:
-            self = .unauthorized
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .unauthorized:
-            return "User unauthorized"
-        case .unknownError, .internalServer:
-            return Constants.Errors.userFriendly
-        case .parseJsonError:
-            return "JSON parse error"
-        case .emptyAccountList:
-            return "No accounts received. Please, try again later."
         }
     }
 }

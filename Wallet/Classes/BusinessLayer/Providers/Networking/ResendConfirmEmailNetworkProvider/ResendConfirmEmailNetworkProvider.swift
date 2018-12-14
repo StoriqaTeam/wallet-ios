@@ -15,20 +15,29 @@ protocol ResendConfirmEmailNetworkProviderProtocol {
 }
 
 class ResendConfirmEmailNetworkProvider: NetworkLoadable, ResendConfirmEmailNetworkProviderProtocol {
+    
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createResendConfirmEmailErrorResolver()
+    }
+    
     func confirmAddDevice(email: String,
                           queue: DispatchQueue,
                           completion: @escaping (Result<String?>) -> Void) {
         let deviceType = DeviceType.ios
         let request = API.Unauthorized.resendConfirmEmail(email: email, deviceType: deviceType)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
                 guard code == 200 else {
-                    let error = ResendConfirmEmailNetworkProviderError(code: code, json: json)
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
                     completion(.failure(error))
                     return
                 }
@@ -37,41 +46,6 @@ class ResendConfirmEmailNetworkProvider: NetworkLoadable, ResendConfirmEmailNetw
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-enum ResendConfirmEmailNetworkProviderError: Error, LocalizedError {
-    case badRequest
-    case unauthorized
-    case unknownError
-    case internalServer
-    case sendEmailTimeout
-    
-    init(code: Int, json: JSON) {
-        switch code {
-        case 400: self = .badRequest
-        case 401: self = .unauthorized
-        case 422:
-            if let deviceErrors = json["email"].array,
-                deviceErrors.contains(where: { $0["code"] == "email_timeout" }) {
-                self = .sendEmailTimeout
-            } else {
-                self = .unknownError
-            }
-        case 500: self = .internalServer
-        default: self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .unauthorized:
-            return "User unauthorized"
-        case .sendEmailTimeout:
-            return "send_email_timeout".localized()
-        case .badRequest, .internalServer, .unknownError:
-            return Constants.Errors.userFriendly
         }
     }
 }
