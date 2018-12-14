@@ -115,6 +115,20 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
 
     }
+    
+    func showOkAlert(title: String = "", message: String = "", success: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            success?()
+        }
+        
+        alert.addAction(okAction)
+        alert.view.tintColor = Theme.Color.brightSkyBlue
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
 }
 
 // MARK: - Private methods

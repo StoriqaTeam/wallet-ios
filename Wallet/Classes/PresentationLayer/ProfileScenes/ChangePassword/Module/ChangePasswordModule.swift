@@ -13,7 +13,6 @@ class ChangePasswordModule {
         let presenter = ChangePasswordPresenter()
         let interactor = ChangePasswordInteractor(authTokenProvider: app.authTokenProvider,
                                                   networkProvider: app.changePasswordNetworkProvider,
-                                                  keychain: app.keychainProvider,
                                                   signHeaderFactory: app.signHeaderFactory,
                                                   userDataStoreService: app.userDataStoreService)
         

@@ -11,10 +11,22 @@ import Foundation
 class TokenRevokeNetworkErrorParser: NetworkErrorParserProtocol {
     var next: NetworkErrorParserProtocol?
     
+    private let tokenExpiredChannelOutput: TokenExpiredChannel
+    
+    init(tokenExpiredChannelOutput: TokenExpiredChannel) {
+        self.tokenExpiredChannelOutput = tokenExpiredChannelOutput
+    }
+    
     func parse(code: Int, json: JSON) -> Error {
         // FIXME: проверить
         if containsError(json: json, key: "token", code: "revoked") {
-            return TokenRevokeNetworkError()
+            tokenExpiredChannelOutput.send(true)
+            return TokenRevokeNetworkError.tokenRevoked
+        }
+        
+        if containsError(json: json, key: "token", code: "expired") {
+            tokenExpiredChannelOutput.send(true)
+            return TokenRevokeNetworkError.tokenExpired
         }
         
         return next!.parse(code: code, json: json)
@@ -22,9 +34,17 @@ class TokenRevokeNetworkErrorParser: NetworkErrorParserProtocol {
 }
 
 
-struct TokenRevokeNetworkError: LocalizedError, Error {
+enum TokenRevokeNetworkError: LocalizedError, Error {
+    case tokenRevoked
+    case tokenExpired
+    
     var errorDescription: String? {
-        // FIXME: msg token revoked
-        return "Your session was finished. Please sign in again."
+        switch self {
+        case .tokenRevoked:
+            return "Your session was finished. Please sign in again."
+        case .tokenExpired:
+            return "Your session was expired. Please sign in again."
+        }
     }
+    
 }

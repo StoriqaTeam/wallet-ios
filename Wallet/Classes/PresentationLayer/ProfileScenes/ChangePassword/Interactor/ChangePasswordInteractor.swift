@@ -14,19 +14,16 @@ class ChangePasswordInteractor {
     
     private let authTokenProvider: AuthTokenProviderProtocol
     private let networkProvider: ChangePasswordNetworkProviderProtocol
-    private let keychain: KeychainProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
     
     init(authTokenProvider: AuthTokenProviderProtocol,
          networkProvider: ChangePasswordNetworkProviderProtocol,
-         keychain: KeychainProviderProtocol,
          signHeaderFactory: SignHeaderFactoryProtocol,
          userDataStoreService: UserDataStoreServiceProtocol) {
         
         self.authTokenProvider = authTokenProvider
         self.networkProvider = networkProvider
-        self.keychain = keychain
         self.signHeaderFactory = signHeaderFactory
         self.userDataStoreService = userDataStoreService
     }
@@ -72,7 +69,7 @@ extension ChangePasswordInteractor {
                 switch result {
                 case .success:
                     self?.output.changePasswordSucceed()
-                    self?.keychain.password = newPassword
+//                    self?.keychain.password = newPassword
                 case .failure(let error):
                     if let error = error as? ChangePasswordNetworkError {
                         self?.output.formValidationFailed(oldPassword: error.oldPassword,

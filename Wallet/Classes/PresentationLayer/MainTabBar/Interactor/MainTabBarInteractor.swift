@@ -21,6 +21,8 @@ class MainTabBarInteractor {
     
     private var shortPollingChannelInput: ShortPollingChannel?
     private var depositShortPollingChannelInput: DepositShortPollingChannel?
+    private var tokenExpiredChannelInput: TokenExpiredChannel?
+    
     
     init(accountWatcher: CurrentAccountWatcherProtocol,
          userDataStoreService: UserDataStoreServiceProtocol,
@@ -46,6 +48,9 @@ class MainTabBarInteractor {
         
         self.depositShortPollingChannelInput?.removeObserver(withId: self.objId)
         self.depositShortPollingChannelInput = nil
+        
+        self.tokenExpiredChannelInput?.removeObserver(withId: self.objId)
+        self.tokenExpiredChannelInput = nil
     }
     
     // MARK: - Channels
@@ -72,6 +77,16 @@ class MainTabBarInteractor {
         
         self.depositShortPollingChannelInput?.addObserver(observer)
         
+    }
+    
+    func setTokenExpiredChannelInput(_ channel: TokenExpiredChannel) {
+        self.tokenExpiredChannelInput = channel
+        
+        let observer = Observer<Bool>(id: self.objId) { [weak self] (_) in
+            self?.tokenExpired()
+        }
+        
+        self.tokenExpiredChannelInput?.addObserver(observer)
     }
 }
 
@@ -115,5 +130,9 @@ extension MainTabBarInteractor {
     private func setLogUserInfo() {
         let user = getCurrentUser()
         CrashlyticsLogger.setUser(user)
+    }
+    
+    private func tokenExpired() {
+        output.tokenDidExpire()
     }
 }

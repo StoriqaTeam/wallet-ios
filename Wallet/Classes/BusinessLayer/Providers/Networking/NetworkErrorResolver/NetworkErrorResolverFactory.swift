@@ -22,15 +22,24 @@ protocol NetworkErrorResolverFactoryProtocol {
     func createLoginErrorResolver() -> NetworkErrorResolverProtocol
     func createEmailConfirmErrorResolver() -> NetworkErrorResolverProtocol
     func createAccountsErrorResolver() -> NetworkErrorResolverProtocol
+    func createRefreshErrorResolver() -> NetworkErrorResolverProtocol
 }
 
 
 class NetworkErrorResolverFactory: NetworkErrorResolverFactoryProtocol {
     
+    private let channelStorage: ChannelStorage
+    
+    init(channelStorage: ChannelStorage) {
+        self.channelStorage = channelStorage
+    }
+    
     func createDefaultErrorResolver() -> NetworkErrorResolverProtocol {
+        let tokenExpiredoutputChannel = channelStorage.tokenExpiredChannel
+        
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
-            TokenRevokeNetworkErrorParser(),
+            TokenRevokeNetworkErrorParser(tokenExpiredChannelOutput: tokenExpiredoutputChannel),
             NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
@@ -65,9 +74,12 @@ class NetworkErrorResolverFactory: NetworkErrorResolverFactoryProtocol {
     }
     
     func createSendErrorResolver() -> NetworkErrorResolverProtocol {
+        
+        let tokenExpiredoutputChannel = channelStorage.tokenExpiredChannel
+        
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
-            TokenRevokeNetworkErrorParser(),
+            TokenRevokeNetworkErrorParser(tokenExpiredChannelOutput: tokenExpiredoutputChannel),
             SendNetworkErrorParser(),
             NetworkUnknownErrorParser()
         ]
@@ -84,9 +96,12 @@ class NetworkErrorResolverFactory: NetworkErrorResolverFactoryProtocol {
     }
     
     func createChangePasswordErrorResolver() -> NetworkErrorResolverProtocol {
+        
+        let tokenExpiredoutputChannel = channelStorage.tokenExpiredChannel
+        
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
-            TokenRevokeNetworkErrorParser(),
+            TokenRevokeNetworkErrorParser(tokenExpiredChannelOutput: tokenExpiredoutputChannel),
             ChangePasswordNetworkErrorParser(),
             NetworkUnknownErrorParser()
         ]
@@ -151,4 +166,16 @@ class NetworkErrorResolverFactory: NetworkErrorResolverFactoryProtocol {
         return NetworkErrorResolver(parsers: parsers)
     }
     
+    func createRefreshErrorResolver() -> NetworkErrorResolverProtocol {
+        
+        let tokenExpiredoutputChannel = channelStorage.tokenExpiredChannel
+        
+        let parsers: [NetworkErrorParserProtocol] = [
+            InitialNetworkErrorParser(),
+            TokenRevokeNetworkErrorParser(tokenExpiredChannelOutput: tokenExpiredoutputChannel),
+            NetworkUnknownErrorParser()
+        ]
+        
+        return NetworkErrorResolver(parsers: parsers)
+    }
 }

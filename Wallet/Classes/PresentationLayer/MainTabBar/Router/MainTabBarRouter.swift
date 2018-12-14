@@ -22,5 +22,7 @@ class MainTabBarRouter {
 // MARK: - MainTabBarRouterInput
 
 extension MainTabBarRouter: MainTabBarRouterInput {
-    
+    func signOut() {
+        LoginModule.create(app: app).present()
+    }
 }

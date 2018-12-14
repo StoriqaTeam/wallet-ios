@@ -37,7 +37,7 @@ class Application {
                                                                               defaults: self.defaultsProvider,
                                                                               userkeyManager: self.userKeyManager)
     lazy var orderFactory: OrderFactoryProtocol = OrderFactory()
-    lazy var networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol = NetworkErrorResolverFactory()
+    lazy var networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol = NetworkErrorResolverFactory(channelStorage: self.channelStorage)
     
     
     // MARK: - System store -
@@ -74,6 +74,7 @@ class Application {
     lazy var exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol = ExchangeRateNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
     lazy var updateUserNetworkProvider: UpdateUserNetworkProviderProtocol = UpdateUserNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
     lazy var resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol = ResendConfirmEmailNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var refreshTokenNetworkProvider: RefreshTokenNetworkProviderProtocol = RefreshTokenNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
     
     
     // MARK: - Common Providers -
@@ -84,10 +85,9 @@ class Application {
     lazy var currencyImageProvider: CurrencyImageProviderProtocol = CurrencyImageProvider()
     lazy var authTokenDefaultsProvider: AuthTokenDefaultsProviderProtocol = AuthTokenDefaultsProvider()
     lazy var authTokenProvider: AuthTokenProviderProtocol = AuthTokenProvider(defaults: self.authTokenDefaultsProvider,
-                                                                              loginNetworkProvider: self.loginNetworkProvider,
-                                                                              socialAuthNetworkProvider: self.socialAuthNetworkProvider,
                                                                               authDataResolver: self.authDataResolver,
-                                                                              signHeaderFactory: self.signHeaderFactory)
+                                                                              signHeaderFactory: self.signHeaderFactory,
+                                                                              refreshTokenNetworkProvider: self.refreshTokenNetworkProvider)
     lazy var contactsProvider: ContactsProviderProtocol = ContactsProvider(dataStoreService: self.contactsDataStoreService)
     lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService)
     lazy var transactionsProvider: TransactionsProviderProtocol = TransactionsProvider(transactionDataStoreService:
@@ -138,9 +138,7 @@ class Application {
                                                                accountsNetworkProvider: self.accountsNetworkProvider,
                                                                accountsDataStore: self.accountsDataStoreService,
                                                                signHeaderFactory: self.signHeaderFactory)
-    lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
-                                                                           keychain: self.keychainProvider,
-                                                                           userDataStoreService: self.userDataStoreService)
+    lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(userDataStoreService: self.userDataStoreService)
     lazy var sendTransactionService: SendTransactionServiceProtocol = SendTransactionService(sendNetworkProvider: self.sendTransactionNetworkProvider,
                                                                                              userDataStoreService: self.userDataStoreService,
                                                                                              authTokenProvider: self.authTokenProvider,

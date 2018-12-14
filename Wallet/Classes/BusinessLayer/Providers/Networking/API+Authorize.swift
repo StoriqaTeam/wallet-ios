@@ -36,6 +36,7 @@ extension API {
             exchangeRate: Decimal?,
             signHeader: SignHeader)
         case createAccount(authToken: String, userId: Int, id: String, currency: Currency, name: String, signHeader: SignHeader)
+        case refreshAuthToken(authToken: String, signHeader: SignHeader)
     }
 }
 
@@ -47,7 +48,8 @@ extension API.Authorized: APIMethodProtocol {
              .getTransactions:
             return .get
         case .sendTransaction,
-             .createAccount:
+             .createAccount,
+             .refreshAuthToken:
             return .post
         }
     }
@@ -65,6 +67,8 @@ extension API.Authorized: APIMethodProtocol {
             return "\(Constants.Network.baseUrl)/transactions"
         case .createAccount(_, let userId, _, _, _, _):
             return "\(Constants.Network.baseUrl)/users/\(userId)/accounts"
+        case .refreshAuthToken:
+            return "\(Constants.Network.baseUrl)/sessions/refresh"
         }
     }
     
@@ -102,6 +106,15 @@ extension API.Authorized: APIMethodProtocol {
                 "Sign": signHeader.signature
             ]
         case .createAccount(let authToken, _, _, _, _, let signHeader):
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Authorization": "Bearer \(authToken)",
+                "Timestamp": signHeader.timestamp,
+                "Device-id": signHeader.deviceId,
+                "Sign": signHeader.signature
+            ]
+        case .refreshAuthToken(let authToken, let signHeader):
             return [
                 "Content-Type": "application/json",
                 "accept": "application/json",
@@ -170,6 +183,8 @@ extension API.Authorized: APIMethodProtocol {
                 "currency": currency.ISO.lowercased(),
                 "name": name
             ]
+        case .refreshAuthToken:
+            return nil
         }
     }
 }

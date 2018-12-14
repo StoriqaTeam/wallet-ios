@@ -10,5 +10,5 @@ import UIKit
 
 
 protocol MainTabBarRouterInput: class {
-
+    func signOut() 
 }

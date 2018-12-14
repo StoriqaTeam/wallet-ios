@@ -66,7 +66,11 @@ extension MainTabBarPresenter: MainTabBarViewOutput {
 // MARK: - MainTabBarInteractorOutput
 
 extension MainTabBarPresenter: MainTabBarInteractorOutput {
-    
+    func tokenDidExpire() {
+        view.viewController.showOkAlert(title: "Your session was finished. Please sign in again.", message: "") { [weak self]  in
+            self?.router.signOut()
+        }
+    }
 }
 
 
