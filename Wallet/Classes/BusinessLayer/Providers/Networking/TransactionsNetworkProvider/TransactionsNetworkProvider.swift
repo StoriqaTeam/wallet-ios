@@ -16,6 +16,13 @@ protocol TransactionsNetworkProviderProtocol {
 }
 
 class TransactionsNetworkProvider: NetworkLoadable, TransactionsNetworkProviderProtocol {
+    
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createDefaultErrorResolver()
+    }
+    
     func getTransactions(authToken: String, userId: Int, offset: Int, limit: Int,
                          queue: DispatchQueue,
                          signHeader: SignHeader,
@@ -27,48 +34,25 @@ class TransactionsNetworkProvider: NetworkLoadable, TransactionsNetworkProviderP
                                                      limit: limit,
                                                      signHeader: signHeader)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
+                let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                if let txsJson = json.array {
-                    let txs = txsJson.compactMap { Transaction(json: $0) }
-                    completion(.success(txs))
-                } else {
-                    let apiError = TransactionsNetworkProviderError(code: response.responseStatusCode)
-                    completion(.failure(apiError))
+                guard code == 200, let txs = json.array?.compactMap({ Transaction(json: $0) }) else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
+                    return
                 }
+                
+                completion(.success(txs))
+                
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-
-enum TransactionsNetworkProviderError: LocalizedError, Error {
-    case unauthorized
-    case unknownError
-    case internalServer
-    
-    init(code: Int) {
-        switch code {
-        case 401:
-            self = .unauthorized
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .unauthorized:
-            return "User unauthorized"
-        case .unknownError, .internalServer:
-            return Constants.Errors.userFriendly
         }
     }
 }

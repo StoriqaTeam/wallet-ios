@@ -662,6 +662,18 @@
 		CEF02F8921C3DE60003D18FF /* Settings.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F8821C3DE60003D18FF /* Settings.strings */; };
 		CEF02F8B21C3DFB8003D18FF /* Strings+EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F8A21C3DFB8003D18FF /* Strings+EditProfile.swift */; };
 		CEF02F8D21C3DFC5003D18FF /* EditProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F8C21C3DFC5003D18FF /* EditProfile.strings */; };
+		CEF02F3921C1181A003D18FF /* NetworkErrorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */; };
+		CEF02F3B21C1189E003D18FF /* InitialNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */; };
+		CEF02F3D21C11E74003D18FF /* DeviceNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */; };
+		CEF02F3F21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */; };
+		CEF02F4121C12FF7003D18FF /* NetworkErrorResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */; };
+		CEF02F4321C13E79003D18FF /* EmailNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */; };
+		CEF02F4521C13EA8003D18FF /* SendNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */; };
+		CEF02F4721C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */; };
+		CEF02F4921C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */; };
+		CEF02F4B21C13F24003D18FF /* AuthNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */; };
+		CEF02F4D21C14211003D18FF /* NetworkUnknownErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */; };
+		CEF02F6721C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
@@ -1450,6 +1462,18 @@
 		CEF02F8821C3DE60003D18FF /* Settings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Settings.strings; sourceTree = "<group>"; };
 		CEF02F8A21C3DFB8003D18FF /* Strings+EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+EditProfile.swift"; sourceTree = "<group>"; };
 		CEF02F8C21C3DFC5003D18FF /* EditProfile.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = EditProfile.strings; sourceTree = "<group>"; };
+		CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolver.swift; sourceTree = "<group>"; };
+		CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRevokeNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolverFactory.swift; sourceTree = "<group>"; };
+		CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUnknownErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAccountListNetworkErrorParser.swift; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
@@ -2952,6 +2976,8 @@
 		A50086062150F94300C47015 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CEF02F3721C117F9003D18FF /* NetworkErrorParsers */,
+				CEF02F3621C117D4003D18FF /* NetworkErrorResolver */,
 				CE8E2E1B21A81BDE00F0B395 /* ResendConfirmEmailNetworkProvider */,
 				CE8E2E1421A7E70300F0B395 /* UpdateUserNetworkProvider */,
 				B870F1D321A31F8200BC53BE /* ConfirmAddDeviceNetworkProvider */,
@@ -4787,6 +4813,32 @@
 			path = ChangePasswordNetworkProvider;
 			sourceTree = "<group>";
 		};
+		CEF02F3621C117D4003D18FF /* NetworkErrorResolver */ = {
+			isa = PBXGroup;
+			children = (
+				CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */,
+				CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */,
+			);
+			path = NetworkErrorResolver;
+			sourceTree = "<group>";
+		};
+		CEF02F3721C117F9003D18FF /* NetworkErrorParsers */ = {
+			isa = PBXGroup;
+			children = (
+				CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */,
+				CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */,
+				CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */,
+				CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */,
+				CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */,
+				CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */,
+				CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */,
+				CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */,
+				CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */,
+				CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */,
+			);
+			path = NetworkErrorParsers;
+			sourceTree = "<group>";
+		};
 		CEFC9C872154E57B00962356 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -5685,6 +5737,7 @@
 				655663AF844FD6B0CB44B4C4 /* PasswordRecoveryConfirmModule.swift in Sources */,
 				03B8DF45D671EB1590F32163 /* PopUpViewInput.swift in Sources */,
 				CEE6730821A2B768008FAC09 /* SendTransactionService.swift in Sources */,
+				CEF02F4D21C14211003D18FF /* NetworkUnknownErrorParser.swift in Sources */,
 				70D0185949E966619D914F17 /* PopUpViewOutput.swift in Sources */,
 				B8C5EDE22189B3A700345B79 /* RatesDataStoreService.swift in Sources */,
 				C4685D4546664167C97555E2 /* PopUpViewController.swift in Sources */,
@@ -5706,6 +5759,7 @@
 				A56ED385216CD710009FA58B /* TransactionDetailsViewInput.swift in Sources */,
 				CD2529EF44F08CF6C8BDE01E /* QuickLaunchViewInput.swift in Sources */,
 				CE288A16219EAFCF0010FA3B /* FeeNetworkProvider.swift in Sources */,
+				CEF02F4121C12FF7003D18FF /* NetworkErrorResolverFactory.swift in Sources */,
 				45FACDCCDC36DDB4D6F0E6BC /* QuickLaunchViewOutput.swift in Sources */,
 				CEFC9CA221590DAA00962356 /* PopUpPasswordRecoveryConfirmSuccessVM.swift in Sources */,
 				7BB2AD26A425C207E35F2F71 /* QuickLaunchViewController.swift in Sources */,
@@ -5719,6 +5773,7 @@
 				A52FEB7D21A7FAB100DFA7BC /* OrderFactory.swift in Sources */,
 				A40E2F8BB4E10D0E0A388DCF /* QuickLaunchModuleInput.swift in Sources */,
 				A5C1875C21C0EF3800779D26 /* Strings+Exchange.swift in Sources */,
+				CEF02F4B21C13F24003D18FF /* AuthNetworkErrorParser.swift in Sources */,
 				0B71D203EA67FB0928D31D05 /* QuickLaunchModule.swift in Sources */,
 				A56B4C76215CD8F10017B337 /* Device.swift in Sources */,
 				A56ED383216CD70B009FA58B /* TransactionDetailsInteractorOutput.swift in Sources */,
@@ -5791,6 +5846,7 @@
 				CED822E0215BB8CE00693B92 /* Contact.swift in Sources */,
 				A6F5B3DAAEA6C2400283BAE8 /* PinSetupModuleInput.swift in Sources */,
 				F34BB7AD7D33FF940EFBBD05 /* PinSetupModuleOutput.swift in Sources */,
+				CEF02F4921C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift in Sources */,
 				E2ED95B2BB076E4FB9B465A9 /* PinSetupModule.swift in Sources */,
 				3D6198BCDDE3FB1DDD35D3FF /* MainTabBarViewInput.swift in Sources */,
 				A5743543217A2D3C006B4CAE /* LoginNetworkProvider.swift in Sources */,
@@ -5823,6 +5879,7 @@
 				CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */,
 				CE23D323215CB9F30016FEBD /* CustomSegmentedControl.swift in Sources */,
 				CE8CC99D216B7EE700EA9EED /* AccountTypeResolver.swift in Sources */,
+				CEF02F6721C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift in Sources */,
 				A52FEB7921A7F06A00DFA7BC /* OrderObserver.swift in Sources */,
 				A574353621789A03006B4CAE /* SessionsDataManager.swift in Sources */,
 				CE5F8302219DB98600A18324 /* BiometricAuthProviderFactory.swift in Sources */,
@@ -5922,14 +5979,17 @@
 				A52C66A72164C1450073071E /* SendTransactionBuilder.swift in Sources */,
 				B8D4D58E13E50746B516D91C /* SettingsModuleOutput.swift in Sources */,
 				CEE6731221A40EAA008FAC09 /* PopUpConfirmDeviceRegisterSucceedVM.swift in Sources */,
+				CEF02F4321C13E79003D18FF /* EmailNetworkErrorParser.swift in Sources */,
 				CEFC9CB6215A59E700962356 /* SendTransactionProvider.swift in Sources */,
 				A51CB5552158FF6300CDC80C /* AccountsLinker.swift in Sources */,
 				FD150ED3C6B8A12165E57D93 /* SettingsModule.swift in Sources */,
 				6C058C8AD6F82CA0A27040AC /* AccountsViewInput.swift in Sources */,
+				CEF02F3921C1181A003D18FF /* NetworkErrorResolver.swift in Sources */,
 				CE57C69B2165F83D00696FF7 /* AccountTableCell.swift in Sources */,
 				F4982C167CCC098B2C5C15BF /* AccountsViewOutput.swift in Sources */,
 				A51CB55821590F4700CDC80C /* TransactionTableViewCell.swift in Sources */,
 				A56ED387216CD715009FA58B /* TransactionDetailsViewController.swift in Sources */,
+				CEF02F4721C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift in Sources */,
 				A46ED52D7D6FB1332671B806 /* AccountsViewController.swift in Sources */,
 				A5F59AA721621968005F1765 /* TestConfigurator.swift in Sources */,
 				A54B5B1421B6B76200BDCC94 /* BlockchainExplorerLinkHandler.swift in Sources */,
@@ -6029,6 +6089,7 @@
 				46338A8E78AF151F358EA4EF /* ConnectPhoneRouterInput.swift in Sources */,
 				4A716DCE68EFC893326C5B35 /* ConnectPhoneRouter.swift in Sources */,
 				CE8E2E1321A7DBBA00F0B395 /* PopUpDefaultFailureVM.swift in Sources */,
+				CEF02F4521C13EA8003D18FF /* SendNetworkErrorParser.swift in Sources */,
 				41BE6CD39AB51A11D33C65CC /* ConnectPhoneModuleInput.swift in Sources */,
 				A5C1877321C0F01900779D26 /* Strings+PinQuickLaunch.swift in Sources */,
 				A522AAE4219980BB00C39826 /* PinSetupDataManager.swift in Sources */,
@@ -6039,6 +6100,7 @@
 				E48F38E3F6C54C04DF13180D /* TransactionFilterViewInput.swift in Sources */,
 				F686C7139F346CD48BB88FFC /* TransactionFilterViewOutput.swift in Sources */,
 				A5C1875121C0EEAF00779D26 /* Strings+PinInput.swift in Sources */,
+				CEF02F3D21C11E74003D18FF /* DeviceNetworkErrorParser.swift in Sources */,
 				B8C5EDDE2189ADE600345B79 /* RealmRate.swift in Sources */,
 				4C9AC1E9C6D0D8C5181C95BF /* TransactionFilterViewController.swift in Sources */,
 				A7B879DB4C2E78DC60D11D96 /* TransactionFilterModulePresenter.swift in Sources */,
@@ -6110,6 +6172,7 @@
 				EE23FBAB65FD97C4E132C71A /* DeviceRegisterConfirmViewController.swift in Sources */,
 				2F333C2C16D30A2FF5CB5320 /* DeviceRegisterConfirmPresenter.swift in Sources */,
 				D4AC6C331DAC82C09EC001E3 /* DeviceRegisterConfirmInteractorInput.swift in Sources */,
+				CEF02F3B21C1189E003D18FF /* InitialNetworkErrorParser.swift in Sources */,
 				CE83E24721BE5AF40067A779 /* BouncyLayout.swift in Sources */,
 				C869AF886C63B5DE00965A14 /* DeviceRegisterConfirmInteractorOutput.swift in Sources */,
 				CEB640B173F28C940EFB194F /* DeviceRegisterConfirmInteractor.swift in Sources */,
@@ -6120,6 +6183,7 @@
 				A322751EEA14E86AD51FCE56 /* DeviceRegisterConfirmModule.swift in Sources */,
 				BC7BDCC8E180102F19C4B6F9 /* ExchangeConfirmPopUpViewInput.swift in Sources */,
 				62295A6BD30145E40C1B3F63 /* ExchangeConfirmPopUpViewOutput.swift in Sources */,
+				CEF02F3F21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift in Sources */,
 				813F1B63E086DB044EF8B901 /* ExchangeConfirmPopUpViewController.swift in Sources */,
 				A5C1876421C0EF7200779D26 /* Strings+Send.swift in Sources */,
 				828D2A26236A08047E9D2065 /* ExchangeConfirmPopUpPresenter.swift in Sources */,

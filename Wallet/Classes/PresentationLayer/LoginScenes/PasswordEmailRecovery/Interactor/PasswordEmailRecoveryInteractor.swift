@@ -38,13 +38,10 @@ extension PasswordEmailRecoveryInteractor: PasswordEmailRecoveryInteractorInput 
             case .success:
                 self?.output.emailSentSuccessfully()
             case .failure(let error):
-                if let err = error as? ResetPasswordNetworkProviderError {
-                    switch err {
-                    case .emailNotVerified:
-                        self?.output.emailNotVerified()
-                        return
-                    default: break
-                    }
+                
+                if case EmailNetworkError.emailNotVerified = error {
+                    self?.output.emailNotVerified()
+                    return
                 }
                 
                 self?.output.emailSendingFailed(message: error.localizedDescription)
