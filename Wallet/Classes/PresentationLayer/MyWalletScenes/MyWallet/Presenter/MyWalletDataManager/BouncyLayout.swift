@@ -5,6 +5,7 @@
 //  Created by Storiqa on 10/12/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+//swiftlint:disable all
 
 import UIKit
 

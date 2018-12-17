@@ -30,7 +30,21 @@ class AccountViewCell: UICollectionViewCell {
         cryptoAmountLabel.text = cryptoAmount
         fiatAmountLabel.text = "≈" + fiatAmount
         holderNameLabel?.text = holderName
-        backgroundImageView.image = backgroundImage
+        
+        // FIXME: for debug only
+        backgroundImageView.image = nil //backgroundImage
+        backgroundImageView.backgroundColor = [UIColor.red,
+                                               UIColor.blue,
+                                               UIColor.orange,
+                                               UIColor.yellow,
+                                               UIColor.green,
+                                               UIColor.darkGray,
+                                               UIColor.lightGray,
+                                               UIColor.cyan,
+                                               UIColor.magenta,
+                                               UIColor.purple,
+                                               UIColor.brown].randomElement()
+        backgroundImageView.roundCorners(radius: 10)
         
         labels.forEach({ $0.textColor = textColor })
     }

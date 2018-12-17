@@ -633,6 +633,17 @@
 		CEF02F2F21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F2E21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift */; };
 		CEF02F3121C0F54F003D18FF /* PopUp.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F3021C0F54F003D18FF /* PopUp.strings */; };
 		CEF02F3321C0F564003D18FF /* Strings+PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3221C0F564003D18FF /* Strings+PopUp.swift */; };
+		CEF02F3921C1181A003D18FF /* NetworkErrorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */; };
+		CEF02F3B21C1189E003D18FF /* InitialNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */; };
+		CEF02F3D21C11E74003D18FF /* DeviceNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */; };
+		CEF02F3F21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */; };
+		CEF02F4121C12FF7003D18FF /* NetworkErrorResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */; };
+		CEF02F4321C13E79003D18FF /* EmailNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */; };
+		CEF02F4521C13EA8003D18FF /* SendNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */; };
+		CEF02F4721C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */; };
+		CEF02F4921C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */; };
+		CEF02F4B21C13F24003D18FF /* AuthNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */; };
+		CEF02F4D21C14211003D18FF /* NetworkUnknownErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */; };
 		CEF02F4F21C24976003D18FF /* Strings+PasswordRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4E21C24976003D18FF /* Strings+PasswordRecovery.swift */; };
 		CEF02F5121C24981003D18FF /* PasswordRecovery.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F5021C24981003D18FF /* PasswordRecovery.strings */; };
 		CEF02F5321C24F8E003D18FF /* Strings+EmailConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F5221C24F8E003D18FF /* Strings+EmailConfirm.swift */; };
@@ -645,6 +656,7 @@
 		CEF02F6121C254B4003D18FF /* TransactionFilter.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F6021C254B4003D18FF /* TransactionFilter.strings */; };
 		CEF02F6321C255BD003D18FF /* Strings+TransactionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6221C255BD003D18FF /* Strings+TransactionDetails.swift */; };
 		CEF02F6521C255C6003D18FF /* TransactionDetails.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F6421C255C6003D18FF /* TransactionDetails.strings */; };
+		CEF02F6721C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */; };
 		CEF02F6921C3974B003D18FF /* Strings+Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6821C3974B003D18FF /* Strings+Transactions.swift */; };
 		CEF02F6B21C39756003D18FF /* Transactions.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F6A21C39756003D18FF /* Transactions.strings */; };
 		CEF02F6D21C3AD62003D18FF /* Strings+Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6C21C3AD62003D18FF /* Strings+Accounts.swift */; };
@@ -663,18 +675,9 @@
 		CEF02F8921C3DE60003D18FF /* Settings.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F8821C3DE60003D18FF /* Settings.strings */; };
 		CEF02F8B21C3DFB8003D18FF /* Strings+EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F8A21C3DFB8003D18FF /* Strings+EditProfile.swift */; };
 		CEF02F8D21C3DFC5003D18FF /* EditProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F8C21C3DFC5003D18FF /* EditProfile.strings */; };
-		CEF02F3921C1181A003D18FF /* NetworkErrorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */; };
-		CEF02F3B21C1189E003D18FF /* InitialNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */; };
-		CEF02F3D21C11E74003D18FF /* DeviceNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */; };
-		CEF02F3F21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */; };
-		CEF02F4121C12FF7003D18FF /* NetworkErrorResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */; };
-		CEF02F4321C13E79003D18FF /* EmailNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */; };
-		CEF02F4521C13EA8003D18FF /* SendNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */; };
-		CEF02F4721C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */; };
-		CEF02F4921C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */; };
-		CEF02F4B21C13F24003D18FF /* AuthNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */; };
-		CEF02F4D21C14211003D18FF /* NetworkUnknownErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */; };
-		CEF02F6721C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */; };
+		CEF3A9A021C800D2000D0718 /* MyWalletFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF3A99F21C800D2000D0718 /* MyWalletFooter.xib */; };
+		CEF3A9A321C8035A000D0718 /* MyWalletFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3A9A221C8035A000D0718 /* MyWalletFooter.swift */; };
+		CEF3A9A521C8042D000D0718 /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3A9A421C8042D000D0718 /* SpringFlowLayout.swift */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
@@ -1434,6 +1437,17 @@
 		CEF02F2E21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenNetworkProvider.swift; sourceTree = "<group>"; };
 		CEF02F3021C0F54F003D18FF /* PopUp.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PopUp.strings; sourceTree = "<group>"; };
 		CEF02F3221C0F564003D18FF /* Strings+PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PopUp.swift"; sourceTree = "<group>"; };
+		CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolver.swift; sourceTree = "<group>"; };
+		CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRevokeNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolverFactory.swift; sourceTree = "<group>"; };
+		CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUnknownErrorParser.swift; sourceTree = "<group>"; };
 		CEF02F4E21C24976003D18FF /* Strings+PasswordRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PasswordRecovery.swift"; sourceTree = "<group>"; };
 		CEF02F5021C24981003D18FF /* PasswordRecovery.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PasswordRecovery.strings; sourceTree = "<group>"; };
 		CEF02F5221C24F8E003D18FF /* Strings+EmailConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+EmailConfirm.swift"; sourceTree = "<group>"; };
@@ -1446,6 +1460,7 @@
 		CEF02F6021C254B4003D18FF /* TransactionFilter.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = TransactionFilter.strings; sourceTree = "<group>"; };
 		CEF02F6221C255BD003D18FF /* Strings+TransactionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+TransactionDetails.swift"; sourceTree = "<group>"; };
 		CEF02F6421C255C6003D18FF /* TransactionDetails.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = TransactionDetails.strings; sourceTree = "<group>"; };
+		CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAccountListNetworkErrorParser.swift; sourceTree = "<group>"; };
 		CEF02F6821C3974B003D18FF /* Strings+Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Transactions.swift"; sourceTree = "<group>"; };
 		CEF02F6A21C39756003D18FF /* Transactions.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Transactions.strings; sourceTree = "<group>"; };
 		CEF02F6C21C3AD62003D18FF /* Strings+Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Accounts.swift"; sourceTree = "<group>"; };
@@ -1464,18 +1479,9 @@
 		CEF02F8821C3DE60003D18FF /* Settings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Settings.strings; sourceTree = "<group>"; };
 		CEF02F8A21C3DFB8003D18FF /* Strings+EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+EditProfile.swift"; sourceTree = "<group>"; };
 		CEF02F8C21C3DFC5003D18FF /* EditProfile.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = EditProfile.strings; sourceTree = "<group>"; };
-		CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolver.swift; sourceTree = "<group>"; };
-		CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRevokeNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolverFactory.swift; sourceTree = "<group>"; };
-		CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUnknownErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAccountListNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF3A99F21C800D2000D0718 /* MyWalletFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletFooter.xib; sourceTree = "<group>"; };
+		CEF3A9A221C8035A000D0718 /* MyWalletFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletFooter.swift; sourceTree = "<group>"; };
+		CEF3A9A421C8042D000D0718 /* SpringFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
@@ -4691,6 +4697,7 @@
 			children = (
 				CE8CC9992167D9C300EA9EED /* MyWalletDataManager.swift */,
 				CE83E24621BE5AF40067A779 /* BouncyLayout.swift */,
+				CEF3A9A421C8042D000D0718 /* SpringFlowLayout.swift */,
 			);
 			path = MyWalletDataManager;
 			sourceTree = "<group>";
@@ -4850,6 +4857,15 @@
 			path = NetworkErrorParsers;
 			sourceTree = "<group>";
 		};
+		CEF3A9A121C80341000D0718 /* MyWalletFooter */ = {
+			isa = PBXGroup;
+			children = (
+				CEF3A9A221C8035A000D0718 /* MyWalletFooter.swift */,
+				CEF3A99F21C800D2000D0718 /* MyWalletFooter.xib */,
+			);
+			path = MyWalletFooter;
+			sourceTree = "<group>";
+		};
 		CEFC9C872154E57B00962356 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -4881,6 +4897,7 @@
 		CEFC9C892154E8E400962356 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				CEF3A9A121C80341000D0718 /* MyWalletFooter */,
 				CE83E21C21B68EF50067A779 /* NotificationView */,
 				CEFC9C8A2154E8EF00962356 /* AccountViewCell */,
 			);
@@ -5362,6 +5379,7 @@
 				A5C1875521C0EED500779D26 /* Profile.strings in Resources */,
 				CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */,
 				A574350221776226006B4CAE /* EditProfile.storyboard in Resources */,
+				CEF3A9A021C800D2000D0718 /* MyWalletFooter.xib in Resources */,
 				CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */,
 				A5C1876C21C0EFB500779D26 /* Login.strings in Resources */,
 				A57434D42175E6DA006B4CAE /* TransactionFilter.storyboard in Resources */,
@@ -5708,9 +5726,11 @@
 				CFF9F4C159614776247E0C56 /* RegistrationModuleOutput.swift in Sources */,
 				E275BFADE175B146D991425C /* RegistrationModule.swift in Sources */,
 				CEF02F5B21C25164003D18FF /* Strings+SocialNetworkAuth.swift in Sources */,
+				CEF3A9A321C8035A000D0718 /* MyWalletFooter.swift in Sources */,
 				BEEDE5E6BEDC5F138D876770 /* PasswordEmailRecoveryViewInput.swift in Sources */,
 				21871BCFB964904C754FD3CF /* PasswordEmailRecoveryViewOutput.swift in Sources */,
 				A1895A9521B8A57EA1BC3561 /* PasswordEmailRecoveryViewController.swift in Sources */,
+				CEF3A9A521C8042D000D0718 /* SpringFlowLayout.swift in Sources */,
 				A57434FC21776226006B4CAE /* EditProfileModuleInput.swift in Sources */,
 				706656F7D7EBAF794948CC03 /* PasswordEmailRecoveryPresenter.swift in Sources */,
 				5DD81EF717C591E4F8D0D515 /* PasswordEmailRecoveryInteractorInput.swift in Sources */,

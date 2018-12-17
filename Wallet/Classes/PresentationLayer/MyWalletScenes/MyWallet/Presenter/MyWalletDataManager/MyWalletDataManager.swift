@@ -117,6 +117,30 @@ extension MyWalletDataManager: UICollectionViewDelegate {
     
 }
 
+extension MyWalletDataManager: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader, UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: "footerView",
+                                                                             for: indexPath)
+            return footerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForFooterInSection section: Int) -> CGSize {
+        let itemHeight = (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize.height ?? 200
+        let size = CGSize(width: 200, height: itemHeight + 50)
+        return size
+    }
+}
+
 
 // MARK: - Private methods
 
@@ -125,6 +149,9 @@ extension MyWalletDataManager {
     private func registerXib(identifier: String) {
         let nib = UINib(nibName: identifier, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: kAccountCellIdentifier)
+        collectionView.register(MyWalletFooter.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: "footerView")
     }
     
 }

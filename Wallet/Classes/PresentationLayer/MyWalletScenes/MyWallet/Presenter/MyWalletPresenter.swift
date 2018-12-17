@@ -60,6 +60,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
         view.setNavigationBarHorizontalSpace(xOrigin)
         
         collectionView.collectionViewLayout = collectionFlowLayout
+        collectionView.alwaysBounceVertical = true
         
         let allAccounts = interactor.getAccounts()
         let accountsManager = MyWalletDataManager(accounts: allAccounts,
@@ -188,7 +189,7 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         
         guard newValue > 0 else {
-            let newOffset = floor(newValue / 5)
+            let newOffset = newValue / 6
             view.setNavigationBarTopSpace(statusBarHeight - newOffset)
             return
         }
@@ -208,7 +209,7 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
 extension MyWalletPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .vertical)
-        let bounceLayout = BouncyLayout(style: .prominent)
+        let bounceLayout = SpringFlowLayout()
         bounceLayout.setConfigureFlow(flow: deviceLayout)
         
         return bounceLayout
@@ -216,7 +217,6 @@ extension MyWalletPresenter {
     
     private func addPullToRefresh(collectionView: UICollectionView) {
         pullToRefresh = UIRefreshControl()
-        collectionView.alwaysBounceVertical = true
         pullToRefresh.tintColor = .white
         pullToRefresh.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(pullToRefresh)

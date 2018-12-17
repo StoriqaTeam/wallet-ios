@@ -40,7 +40,6 @@ enum Device: CGFloat {
     
     func flowLayout(type: FlowLayoutType) -> UICollectionViewFlowLayout {
         let size: CGSize
-        let spacing: CGFloat
         let scrollDirection: UICollectionView.ScrollDirection = {
             switch type {
             case .horizontal, .horizontalSmall: return .horizontal
@@ -69,21 +68,18 @@ enum Device: CGFloat {
         
         switch scrollDirection {
         case .horizontal:
-            spacing = (Constants.Sizes.screenWidth - size.width) / 4
-            flowLayout.sectionInset = UIEdgeInsets(top: 0,
-                                                   left: spacing * 2,
-                                                   bottom: 0,
-                                                   right: spacing * 2)
+            let spacing: CGFloat = (Constants.Sizes.screenWidth - size.width) / 4
+            flowLayout.minimumInteritemSpacing = spacing
+            flowLayout.sectionInset = UIEdgeInsets(top: 0, left: spacing * 2, bottom: 0, right: spacing * 2)
         case .vertical:
-            spacing = self == .iPhoneSE ? 12 : 18
-            flowLayout.sectionInset = UIEdgeInsets(top: spacing / 2,
-                                                   left: 0,
-                                                   bottom: spacing / 2,
-                                                   right: 0)
+            let spacing: CGFloat = -(size.height * 0.74)
+            flowLayout.minimumLineSpacing = spacing
+            
+            let inset: CGFloat = self == .iPhoneSE ? 6 : 10
+            flowLayout.sectionInset = UIEdgeInsets(top: inset, left: 0, bottom: spacing, right: 0)
         }
         
-        flowLayout.minimumLineSpacing = spacing
-        flowLayout.minimumInteritemSpacing = spacing
+        
         flowLayout.itemSize = size
         flowLayout.scrollDirection = scrollDirection
         
