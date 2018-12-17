@@ -12,16 +12,19 @@ import Foundation
 class ChangePasswordInteractor {
     weak var output: ChangePasswordInteractorOutput!
     
+    private let authTokenDefaultsProvider: AuthTokenDefaultsProviderProtocol
     private let authTokenProvider: AuthTokenProviderProtocol
     private let networkProvider: ChangePasswordNetworkProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
     private let userDataStoreService: UserDataStoreServiceProtocol
     
-    init(authTokenProvider: AuthTokenProviderProtocol,
+    init(authTokenDefaultsProvider: AuthTokenDefaultsProviderProtocol,
+         authTokenProvider: AuthTokenProviderProtocol,
          networkProvider: ChangePasswordNetworkProviderProtocol,
          signHeaderFactory: SignHeaderFactoryProtocol,
          userDataStoreService: UserDataStoreServiceProtocol) {
         
+        self.authTokenDefaultsProvider = authTokenDefaultsProvider
         self.authTokenProvider = authTokenProvider
         self.networkProvider = networkProvider
         self.signHeaderFactory = signHeaderFactory
@@ -67,9 +70,9 @@ extension ChangePasswordInteractor {
             queue: .main,
             signHeader: signHeader) { [weak self] (result) in
                 switch result {
-                case .success:
+                case .success(let token):
                     self?.output.changePasswordSucceed()
-//                    self?.keychain.password = newPassword
+                    self?.authTokenDefaultsProvider.authToken = token
                 case .failure(let error):
                     if let error = error as? ChangePasswordNetworkError {
                         self?.output.formValidationFailed(oldPassword: error.oldPassword,
