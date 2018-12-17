@@ -15,7 +15,7 @@ protocol ChangePasswordNetworkProviderProtocol {
                         newPassword: String,
                         queue: DispatchQueue,
                         signHeader: SignHeader,
-                        completion: @escaping (Result<String?>) -> Void)
+                        completion: @escaping (Result<String>) -> Void)
 }
 
 class ChangePasswordNetworkProvider: NetworkLoadable, ChangePasswordNetworkProviderProtocol {
@@ -31,7 +31,7 @@ class ChangePasswordNetworkProvider: NetworkLoadable, ChangePasswordNetworkProvi
                         newPassword: String,
                         queue: DispatchQueue,
                         signHeader: SignHeader,
-                        completion: @escaping (Result<String?>) -> Void) {
+                        completion: @escaping (Result<String>) -> Void) {
         
         let request = API.Settings.changePassword(authToken: authToken,
                                                   currentPassword: currentPassword,
@@ -46,13 +46,13 @@ class ChangePasswordNetworkProvider: NetworkLoadable, ChangePasswordNetworkProvi
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                guard code == 200 else {
+                guard code == 200, let token = json.string else {
                     let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
                     completion(.failure(error))
                     return
                 }
                 
-                completion(.success(nil))
+                completion(.success(token))
                 
             case .failure(let error):
                 completion(.failure(error))

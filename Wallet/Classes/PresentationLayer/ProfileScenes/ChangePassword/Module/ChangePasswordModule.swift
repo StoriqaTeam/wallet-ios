@@ -11,7 +11,8 @@ class ChangePasswordModule {
     class func create(app: Application) -> ChangePasswordModuleInput {
         let router = ChangePasswordRouter()
         let presenter = ChangePasswordPresenter()
-        let interactor = ChangePasswordInteractor(authTokenProvider: app.authTokenProvider,
+        let interactor = ChangePasswordInteractor(authTokenDefaultsProvider: app.authTokenDefaultsProvider,
+                                                  authTokenProvider: app.authTokenProvider,
                                                   networkProvider: app.changePasswordNetworkProvider,
                                                   signHeaderFactory: app.signHeaderFactory,
                                                   userDataStoreService: app.userDataStoreService)
