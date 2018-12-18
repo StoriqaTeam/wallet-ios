@@ -41,6 +41,7 @@ class SocialNetworkAuthViewModel: NSObject {
     
     func signInWithFacebook(from viewController: UIViewController) {
         facebookLoginManager.loginBehavior = LoginBehavior.web
+        facebookLoginManager.logOut()
         
         let viewController = UIViewController()
         facebookLoginManager.logIn(
