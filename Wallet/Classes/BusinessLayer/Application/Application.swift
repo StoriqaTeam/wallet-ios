@@ -164,6 +164,7 @@ class Application {
     lazy var transactionOpponentResolver: TransactionOpponentResolverProtocol = TransactionOpponentResolver(transactionDirectionResolver: self.transactionDirectionResolver)
     lazy var cryptoAddressResolver: CryptoAddressResolverProtocol = CryptoAddressResolver(btcAddressValidator: self.btcAddressValidator,
                                                                                           ethAddressValidator: self.ethAddressValidator)
+    lazy var paymentRequestResolver: PaymentRequestResolverProtocol = PaymentRequestResolver(cryptoAddressResolver: self.cryptoAddressResolver)
     
     // MARK: - Sorters -
     lazy var contactsSorter: ContactsSorterProtocol = ContactsSorter()

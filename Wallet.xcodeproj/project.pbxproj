@@ -356,6 +356,8 @@
 		A5743540217A1B09006B4CAE /* API+Unauthorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574353F217A1B09006B4CAE /* API+Unauthorize.swift */; };
 		A5743543217A2D3C006B4CAE /* LoginNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743542217A2D3C006B4CAE /* LoginNetworkProvider.swift */; };
 		A5743546217A309D006B4CAE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743545217A309D006B4CAE /* SwiftyJSON.swift */; };
+		A579E77321C90A320077FCAE /* PaymentRequestResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579E77221C90A320077FCAE /* PaymentRequestResolver.swift */; };
+		A579E77521C90D450077FCAE /* PaymentRequestresolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579E77421C90D450077FCAE /* PaymentRequestresolverTests.swift */; };
 		A58DB4E5218346E80024E463 /* ShortPollingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DB4E4218346E80024E463 /* ShortPollingTimer.swift */; };
 		A58EE3BC2150037E0096C155 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BB2150037E0096C155 /* Presentable.swift */; };
 		A58EE3BF215003CE0096C155 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58EE3BE215003CE0096C155 /* Configurable.swift */; };
@@ -633,6 +635,17 @@
 		CEF02F2F21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F2E21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift */; };
 		CEF02F3121C0F54F003D18FF /* PopUp.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F3021C0F54F003D18FF /* PopUp.strings */; };
 		CEF02F3321C0F564003D18FF /* Strings+PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3221C0F564003D18FF /* Strings+PopUp.swift */; };
+		CEF02F3921C1181A003D18FF /* NetworkErrorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */; };
+		CEF02F3B21C1189E003D18FF /* InitialNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */; };
+		CEF02F3D21C11E74003D18FF /* DeviceNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */; };
+		CEF02F3F21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */; };
+		CEF02F4121C12FF7003D18FF /* NetworkErrorResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */; };
+		CEF02F4321C13E79003D18FF /* EmailNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */; };
+		CEF02F4521C13EA8003D18FF /* SendNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */; };
+		CEF02F4721C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */; };
+		CEF02F4921C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */; };
+		CEF02F4B21C13F24003D18FF /* AuthNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */; };
+		CEF02F4D21C14211003D18FF /* NetworkUnknownErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */; };
 		CEF02F4F21C24976003D18FF /* Strings+PasswordRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4E21C24976003D18FF /* Strings+PasswordRecovery.swift */; };
 		CEF02F5121C24981003D18FF /* PasswordRecovery.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F5021C24981003D18FF /* PasswordRecovery.strings */; };
 		CEF02F5321C24F8E003D18FF /* Strings+EmailConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F5221C24F8E003D18FF /* Strings+EmailConfirm.swift */; };
@@ -645,6 +658,7 @@
 		CEF02F6121C254B4003D18FF /* TransactionFilter.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F6021C254B4003D18FF /* TransactionFilter.strings */; };
 		CEF02F6321C255BD003D18FF /* Strings+TransactionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6221C255BD003D18FF /* Strings+TransactionDetails.swift */; };
 		CEF02F6521C255C6003D18FF /* TransactionDetails.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F6421C255C6003D18FF /* TransactionDetails.strings */; };
+		CEF02F6721C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */; };
 		CEF02F6921C3974B003D18FF /* Strings+Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6821C3974B003D18FF /* Strings+Transactions.swift */; };
 		CEF02F6B21C39756003D18FF /* Transactions.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F6A21C39756003D18FF /* Transactions.strings */; };
 		CEF02F6D21C3AD62003D18FF /* Strings+Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6C21C3AD62003D18FF /* Strings+Accounts.swift */; };
@@ -663,18 +677,6 @@
 		CEF02F8921C3DE60003D18FF /* Settings.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F8821C3DE60003D18FF /* Settings.strings */; };
 		CEF02F8B21C3DFB8003D18FF /* Strings+EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F8A21C3DFB8003D18FF /* Strings+EditProfile.swift */; };
 		CEF02F8D21C3DFC5003D18FF /* EditProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F8C21C3DFC5003D18FF /* EditProfile.strings */; };
-		CEF02F3921C1181A003D18FF /* NetworkErrorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */; };
-		CEF02F3B21C1189E003D18FF /* InitialNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */; };
-		CEF02F3D21C11E74003D18FF /* DeviceNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */; };
-		CEF02F3F21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */; };
-		CEF02F4121C12FF7003D18FF /* NetworkErrorResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */; };
-		CEF02F4321C13E79003D18FF /* EmailNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */; };
-		CEF02F4521C13EA8003D18FF /* SendNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */; };
-		CEF02F4721C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */; };
-		CEF02F4921C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */; };
-		CEF02F4B21C13F24003D18FF /* AuthNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */; };
-		CEF02F4D21C14211003D18FF /* NetworkUnknownErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */; };
-		CEF02F6721C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
@@ -1146,6 +1148,8 @@
 		A574353F217A1B09006B4CAE /* API+Unauthorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Unauthorize.swift"; sourceTree = "<group>"; };
 		A5743542217A2D3C006B4CAE /* LoginNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkProvider.swift; sourceTree = "<group>"; };
 		A5743545217A309D006B4CAE /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		A579E77221C90A320077FCAE /* PaymentRequestResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequestResolver.swift; sourceTree = "<group>"; };
+		A579E77421C90D450077FCAE /* PaymentRequestresolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequestresolverTests.swift; sourceTree = "<group>"; };
 		A58DB4E4218346E80024E463 /* ShortPollingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortPollingTimer.swift; sourceTree = "<group>"; };
 		A58EE3BB2150037E0096C155 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		A58EE3BE215003CE0096C155 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
@@ -1434,6 +1438,17 @@
 		CEF02F2E21C0EB83003D18FF /* RefreshTokenNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenNetworkProvider.swift; sourceTree = "<group>"; };
 		CEF02F3021C0F54F003D18FF /* PopUp.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PopUp.strings; sourceTree = "<group>"; };
 		CEF02F3221C0F564003D18FF /* Strings+PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PopUp.swift"; sourceTree = "<group>"; };
+		CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolver.swift; sourceTree = "<group>"; };
+		CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRevokeNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolverFactory.swift; sourceTree = "<group>"; };
+		CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkErrorParser.swift; sourceTree = "<group>"; };
+		CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUnknownErrorParser.swift; sourceTree = "<group>"; };
 		CEF02F4E21C24976003D18FF /* Strings+PasswordRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+PasswordRecovery.swift"; sourceTree = "<group>"; };
 		CEF02F5021C24981003D18FF /* PasswordRecovery.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PasswordRecovery.strings; sourceTree = "<group>"; };
 		CEF02F5221C24F8E003D18FF /* Strings+EmailConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+EmailConfirm.swift"; sourceTree = "<group>"; };
@@ -1446,6 +1461,7 @@
 		CEF02F6021C254B4003D18FF /* TransactionFilter.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = TransactionFilter.strings; sourceTree = "<group>"; };
 		CEF02F6221C255BD003D18FF /* Strings+TransactionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+TransactionDetails.swift"; sourceTree = "<group>"; };
 		CEF02F6421C255C6003D18FF /* TransactionDetails.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = TransactionDetails.strings; sourceTree = "<group>"; };
+		CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAccountListNetworkErrorParser.swift; sourceTree = "<group>"; };
 		CEF02F6821C3974B003D18FF /* Strings+Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Transactions.swift"; sourceTree = "<group>"; };
 		CEF02F6A21C39756003D18FF /* Transactions.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Transactions.strings; sourceTree = "<group>"; };
 		CEF02F6C21C3AD62003D18FF /* Strings+Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Accounts.swift"; sourceTree = "<group>"; };
@@ -1464,18 +1480,6 @@
 		CEF02F8821C3DE60003D18FF /* Settings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Settings.strings; sourceTree = "<group>"; };
 		CEF02F8A21C3DFB8003D18FF /* Strings+EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+EditProfile.swift"; sourceTree = "<group>"; };
 		CEF02F8C21C3DFC5003D18FF /* EditProfile.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = EditProfile.strings; sourceTree = "<group>"; };
-		CEF02F3821C1181A003D18FF /* NetworkErrorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolver.swift; sourceTree = "<group>"; };
-		CEF02F3A21C1189E003D18FF /* InitialNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F3C21C11E74003D18FF /* DeviceNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F3E21C12FD2003D18FF /* TokenRevokeNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRevokeNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4021C12FF7003D18FF /* NetworkErrorResolverFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResolverFactory.swift; sourceTree = "<group>"; };
-		CEF02F4221C13E79003D18FF /* EmailNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4421C13EA8003D18FF /* SendNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4621C13EE9003D18FF /* ChangePasswordNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4821C13F07003D18FF /* ConfirmResetPasswordErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4A21C13F24003D18FF /* AuthNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F4C21C14211003D18FF /* NetworkUnknownErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUnknownErrorParser.swift; sourceTree = "<group>"; };
-		CEF02F6621C27F4B003D18FF /* EmptyAccountListNetworkErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAccountListNetworkErrorParser.swift; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
@@ -3608,6 +3612,14 @@
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
+		A579E77121C90A150077FCAE /* PaymentRequestResolver */ = {
+			isa = PBXGroup;
+			children = (
+				A579E77221C90A320077FCAE /* PaymentRequestResolver.swift */,
+			);
+			path = PaymentRequestResolver;
+			sourceTree = "<group>";
+		};
 		A58DB4E3218346C10024E463 /* ShortPollingTimer */ = {
 			isa = PBXGroup;
 			children = (
@@ -3707,6 +3719,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A579E77121C90A150077FCAE /* PaymentRequestResolver */,
 				CE18FAE621B1680000A840C1 /* ReceivedTransactionProvider */,
 				A52FEB7A21A7FA8C00DFA7BC /* Orders */,
 				CE053AF021A5662300EA6E26 /* FeeLoader */,
@@ -3891,6 +3904,7 @@
 				CEE84EF52189D36C00AB85F3 /* DenominationUnitsConverterTests.swift */,
 				CEE84EF72189D4E000AB85F3 /* TxnUpdaterTests.swift */,
 				A5D4CE27219EE4B800317326 /* SignerTests.swift */,
+				A579E77421C90D450077FCAE /* PaymentRequestresolverTests.swift */,
 			);
 			path = WalletTests;
 			sourceTree = "<group>";
@@ -5540,6 +5554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A579E77521C90D450077FCAE /* PaymentRequestresolverTests.swift in Sources */,
 				A5C12E84217F261C00A7D68C /* JwtParcerTests.swift in Sources */,
 				A52FE2B221860D2300100E21 /* ChannelTests.swift in Sources */,
 				CEE84EF42189CACA00AB85F3 /* DecimalToStringTests.swift in Sources */,
@@ -5741,6 +5756,7 @@
 				2AB82AFB4252B3D2787F924C /* PasswordRecoveryConfirmInteractorInput.swift in Sources */,
 				1E6B3F5DDE41BEA1DC5FAD1D /* PasswordRecoveryConfirmInteractorOutput.swift in Sources */,
 				0AD8715BD2694513BA2BE25C /* PasswordRecoveryConfirmInteractor.swift in Sources */,
+				A579E77321C90A320077FCAE /* PaymentRequestResolver.swift in Sources */,
 				84B2977A83A4B35A6212A7F5 /* PasswordRecoveryConfirmRouterInput.swift in Sources */,
 				F0860FFB36B83A22321647FC /* PasswordRecoveryConfirmRouter.swift in Sources */,
 				CE18FAE821B1683C00A840C1 /* ReceivedTransactionProvider.swift in Sources */,
@@ -6402,6 +6418,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

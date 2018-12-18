@@ -90,6 +90,8 @@ extension QRScannerPresenter: AVCaptureMetadataOutputObjectsDelegate {
             case .wrongCurrency:
                 view.changeAimColor(.red)
                 view.changeMessage(LocalizedStrings.wrongQrMessage)
+            case .paymentrequest(let request):
+                found(paymentRequest: request)
             }
         }
     }
@@ -162,6 +164,12 @@ extension QRScannerPresenter {
     private func found(address: String) {
         log.debug("found address: " + address)
         interactor.setScannedAddress(address)
+        view.dismiss()
+    }
+    
+    private func found(paymentRequest: PaymentRequest) {
+        log.debug("found payment request: \(paymentRequest)")
+        interactor.setPaymentRequest(paymentRequest)
         view.dismiss()
     }
     
