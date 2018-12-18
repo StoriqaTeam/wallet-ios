@@ -72,11 +72,11 @@ enum Device: CGFloat {
             flowLayout.minimumInteritemSpacing = spacing
             flowLayout.sectionInset = UIEdgeInsets(top: 0, left: spacing * 2, bottom: 0, right: spacing * 2)
         case .vertical:
-            let spacing: CGFloat = -(size.height * 0.74)
+            let spacing: CGFloat = -(size.height * 0.72)
             flowLayout.minimumLineSpacing = spacing
             
             let inset: CGFloat = self == .iPhoneSE ? 6 : 10
-            flowLayout.sectionInset = UIEdgeInsets(top: inset, left: 0, bottom: spacing, right: 0)
+            flowLayout.sectionInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         }
         
         

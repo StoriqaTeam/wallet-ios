@@ -15,13 +15,13 @@ protocol MyWalletToAccountsAnimatorDelegate: class {
 
 class MyWalletToAccountsAnimator: NSObject {
     
-    private var initialFrame: CGRect?
+    private var initialView: UIView?
     private var destinationFrame: CGRect?
     
     weak var delegate: MyWalletToAccountsAnimatorDelegate?
     
-    func setInitialFrame(_ frame: CGRect) {
-        self.initialFrame = frame
+    func setInitialView(_ view: UIView) {
+        self.initialView = view
     }
     
     func setDestinationFrame(_ frame: CGRect) {
@@ -34,7 +34,7 @@ class MyWalletToAccountsAnimator: NSObject {
 
 extension MyWalletToAccountsAnimator: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        guard let fromFrame = initialFrame, let toFrame = destinationFrame else { return 0.4 }
+        guard let fromFrame = initialView?.frame, let toFrame = destinationFrame else { return 0.4 }
         
         let duration = log2(Double(abs(fromFrame.midY - toFrame.midY))) / 20
         return TimeInterval(duration)
@@ -42,21 +42,18 @@ extension MyWalletToAccountsAnimator: UIViewControllerAnimatedTransitioning {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        guard let fromVC = transitionContext.viewController(forKey: .from) else { return }
         guard let toVC = transitionContext.viewController(forKey: .to) else { return }
-        guard let fromFrame = initialFrame else { return }
         guard let toFrame = destinationFrame else { return }
-        guard let snapshot = fromVC.view.resizableSnapshotView(from: fromFrame,
-                                                               afterScreenUpdates: true,
-                                                               withCapInsets: UIEdgeInsets.zero) else { return }
+        guard let snapshot = initialView else { return }
         
+        let fromFrame = snapshot.frame
         let duration = transitionDuration(using: transitionContext)
         let container = transitionContext.containerView
         
         snapshot.frame = fromFrame
         snapshot.layer.cornerRadius = 10
         snapshot.layer.masksToBounds = true
-
+        
         container.addSubview(toVC.view)
         container.addSubview(snapshot)
         

@@ -11,7 +11,7 @@ import UIKit
 protocol MyWalletDataManagerDelegate: class {
     func selectAccount(_ account: Account)
     func didChangeOffset(_ newValue: CGFloat)
-    func rectOfSelectedItem(_ rect: CGRect?, in collectionView: UICollectionView)
+    func snapshotOfSelectedItem(_ snapshot: UIView)
 }
 
 class MyWalletDataManager: NSObject {
@@ -27,6 +27,7 @@ class MyWalletDataManager: NSObject {
     private let kAccountCellIdentifier = "AccountViewCell"
     private var accounts: [Account]
     private let accountDisplayer: AccountDisplayerProtocol
+    private var shouldUpdateCellsPositions = false
     
     init(accounts: [Account], accountDisplayer: AccountDisplayerProtocol) {
         self.accounts = accounts
@@ -91,7 +92,7 @@ extension MyWalletDataManager: UICollectionViewDataSource {
                            holderName: holderName,
                            textColor: textColor,
                            backgroundImage: backgroundImage)
-        
+//        cell.setTestColor(indexPath.row)
         return cell
     }
 }
@@ -103,10 +104,14 @@ extension MyWalletDataManager: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let account = accounts[indexPath.row]
-        let attributes = collectionView.layoutAttributesForItem(at: indexPath)
-        let frame = attributes?.frame
-        delegate?.rectOfSelectedItem(frame, in: collectionView)
         delegate?.selectAccount(account)
+        
+        if let cell = collectionView.cellForItem(at: indexPath),
+            let snapshot = cell.snapshotView(afterScreenUpdates: false) {
+            snapshot.frame = collectionView.convert(cell.frame, to: collectionView.superview!)
+            delegate?.snapshotOfSelectedItem(snapshot)
+        }
+        
         return true
     }
     
@@ -115,6 +120,36 @@ extension MyWalletDataManager: UICollectionViewDelegate {
         delegate?.didChangeOffset(newValue)
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let minVisibleRow = collectionView.indexPathsForVisibleItems.map({ return $0.row }).min() ?? 0
+        
+        if indexPath.row == minVisibleRow - 1 {
+            collectionView.sendSubviewToBack(cell)
+        }
+        
+        if shouldUpdateCellsPositions {
+            shouldUpdateCellsPositions = false
+            
+            let visiblePaths = collectionView.indexPathsForVisibleItems.sorted(by: { $0.row > $1.row })
+            let visibleCells = visiblePaths.compactMap { collectionView.cellForItem(at: $0) }
+            
+            var previousCell: UIView?
+            for cell in visibleCells {
+                guard let prevCell = previousCell else {
+                    previousCell = cell
+                    continue
+                }
+                
+                cell.removeFromSuperview()
+                collectionView.insertSubview(cell, belowSubview: prevCell)
+                previousCell = cell
+            }
+        }
+        
+        if indexPath.row < minVisibleRow {
+            shouldUpdateCellsPositions = true
+        }
+    }
 }
 
 extension MyWalletDataManager: UICollectionViewDelegateFlowLayout {
@@ -135,8 +170,7 @@ extension MyWalletDataManager: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForFooterInSection section: Int) -> CGSize {
-        let itemHeight = (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize.height ?? 200
-        let size = CGSize(width: 200, height: itemHeight + 50)
+        let size = CGSize(width: 200, height: 100)
         return size
     }
 }

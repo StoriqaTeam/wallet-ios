@@ -19,6 +19,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
     
     private var animator: UIDynamicAnimator!
     private var addedBehaviors = [IndexPath: UIAttachmentBehavior]()
+    private var topCellSnapshots = [IndexPath: UIView]()
     
     override init() {
         super.init()
@@ -60,6 +61,8 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
             self.animator.addBehavior(behavior)
             self.addedBehaviors[indexPath] = behavior
         }
+        
+        stopCellsOnTop()
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
@@ -71,6 +74,9 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        
+        stopCellsOnTop()
+        
         guard let collectionView = self.collectionView else { return false }
         
         let contentOffset = collectionView.contentOffset.y + collectionView.contentInset.top
@@ -120,5 +126,41 @@ extension SpringFlowLayout {
             return IndexPath(row: lastRow, section: 0)
         }
         return item.indexPath
+    }
+    
+    private func stopCellsOnTop() {
+        guard let collectionView = self.collectionView else { return }
+        
+        let contentOffset = collectionView.contentOffset.y + collectionView.contentInset.top
+        let contentInset = collectionView.contentInset.top
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        let maxInset = contentInset - statusBarHeight
+        
+        for behavior in self.animator.behaviors {
+            guard let behavior = behavior as? UIAttachmentBehavior,
+                let item = behavior.items.first as? UICollectionViewLayoutAttributes else { continue }
+            
+            let indexPath = resolveIndexPath(for: item, in: collectionView)
+            
+            if contentOffset - maxInset >= item.frame.origin.y {
+                if topCellSnapshots[indexPath] == nil,
+                    let cell = collectionView.cellForItem(at: indexPath),
+                    let snapshot = cell.snapshotView(afterScreenUpdates: false) {
+                    snapshot.center = item.center
+                    snapshot.frame.origin.y = statusBarHeight
+                    topCellSnapshots[indexPath] = snapshot
+                    collectionView.superview?.insertSubview(snapshot, belowSubview: collectionView)
+                }
+                
+                item.isHidden = true
+            } else if item.isHidden {
+                if let snapshot = topCellSnapshots[indexPath] {
+                    snapshot.removeFromSuperview()
+                    topCellSnapshots.removeValue(forKey: indexPath)
+                }
+                item.isHidden = false
+            }
+            self.animator.updateItem(usingCurrentState: item)
+        }
     }
 }

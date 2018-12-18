@@ -168,11 +168,8 @@ extension MyWalletPresenter: MyWalletModuleInput {
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletDataManagerDelegate {
-    func rectOfSelectedItem(_ rect: CGRect?, in collectionView: UICollectionView) {
-        guard let frame = rect else { return }
-        let accountFrame = collectionView.convert(frame, to: viewController.view)
-        animator.setInitialFrame(accountFrame)
-
+    func snapshotOfSelectedItem(_ snapshot: UIView) {
+        animator.setInitialView(snapshot)
     }
     
     
