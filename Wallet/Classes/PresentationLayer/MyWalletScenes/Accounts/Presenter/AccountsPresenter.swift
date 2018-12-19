@@ -23,6 +23,7 @@ class AccountsPresenter {
     private var transactionDataManager: TransactionsDataManager!
     private var animator: MyWalletToAccountsAnimator?
     private var didAppear = false
+    private let maxTxsCount = 10
     
     init(accountDisplayer: AccountDisplayerProtocol,
          transactionsMapper: TransactionMapperProtocol,
@@ -62,7 +63,7 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func transactionTableView(_ tableView: UITableView) {
-        let txDataManager = TransactionsDataManager(transactions: [], isHiddenSections: true, maxCount: 10)
+        let txDataManager = TransactionsDataManager(transactions: [], isHiddenSections: true)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
@@ -96,17 +97,6 @@ extension AccountsPresenter: AccountsViewOutput {
     func viewWillAppear() {
         view.viewController.setWhiteNavigationBarButtons()
     }
-    
-    func viewDidFinishTransitionAnimation() {
-        guard !didAppear else { return }
-        didAppear = true
-        
-        let transactions = interactor.getTransactionForCurrentAccount()
-        let account = interactor.getSelectedAccount()
-        transactionsMapper.map(from: transactions, account: account) { [weak self] (displayable) in
-            self?.transactionDataManager.firstUpdateTransactions(displayable)
-        }
-    }
 }
 
 
@@ -125,11 +115,9 @@ extension AccountsPresenter: AccountsInteractorOutput {
     func transactionsDidChange(_ txs: [Transaction]) {
         guard didAppear else { return }
         
-        let account = interactor.getSelectedAccount()
-        
-        transactionsMapper.map(from: txs, account: account) { [weak self] (displayable) in
+        getDisplayable(from: txs, completion: { [weak self] (displayable) in
             self?.transactionDataManager.updateTransactions(displayable)
-        }
+        })
     }
     
     func updateAccounts(accounts: [Account], index: Int) {
@@ -159,6 +147,16 @@ extension AccountsPresenter: AccountsModuleInput {
 // MARK: - MyWalletToAccountsAnimatorDelegate
 
 extension AccountsPresenter: MyWalletToAccountsAnimatorDelegate {
+    func viewDidBecomeVisible() {
+        guard !didAppear else { return }
+        didAppear = true
+        
+        let transactions = interactor.getTransactionForCurrentAccount()
+        getDisplayable(from: transactions, completion: { [weak self] (displayable) in
+            self?.transactionDataManager.firstUpdateTransactions(displayable)
+        })
+    }
+    
     func animationComplete(completion: @escaping (() -> Void)) {
         view.showAccounts(completion: completion)
     }
@@ -215,6 +213,15 @@ extension AccountsPresenter {
     private func resetAnimatorIfNeeded() {
         if let navigation = view.viewController.navigationController as? TransitionNavigationController {
             navigation.useDefaultTransitioningDelegate()
+        }
+    }
+    
+    private func getDisplayable(from txs: [Transaction], completion: @escaping ([TransactionDisplayable]) -> Void) {
+        let txs = txs.sorted { $0.createdAt > $1.createdAt }
+        let lastTxs = Array(txs.prefix(maxTxsCount))
+        let account = interactor.getSelectedAccount()
+        transactionsMapper.map(from: lastTxs, account: account) { (displayable) in
+            completion(displayable)
         }
     }
 }

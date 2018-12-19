@@ -45,8 +45,6 @@ class AccountsViewController: UIViewController {
         output.configureCollections()
         output.viewWillAppear()
         
-        self.output.viewDidFinishTransitionAnimation()
-        
         UIView.animate(withDuration: 0.25, delay: 0.2, options: [], animations: {
             self.lastTransactionsTitle.alpha = 1
             self.viewAllButton.alpha = 1

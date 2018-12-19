@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="336" height="198"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stqBlackCard" translatesAutoresizingMaskIntoConstraints="NO" id="meN-tH-Zba">
-                                <rect key="frame" x="-1" y="-1" width="338" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="336" height="198"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOl-f2-zCv">
                                 <rect key="frame" x="16" y="12" width="304" height="174"/>
@@ -72,12 +72,12 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DOl-f2-zCv" firstAttribute="centerX" secondItem="3qc-nx-Ad2" secondAttribute="centerX" id="6jH-zm-6S1"/>
-                            <constraint firstItem="meN-tH-Zba" firstAttribute="leading" secondItem="3qc-nx-Ad2" secondAttribute="leading" constant="-1" id="CZM-UT-egj"/>
-                            <constraint firstAttribute="trailing" secondItem="meN-tH-Zba" secondAttribute="trailing" constant="-1" id="Gfu-8R-kvQ"/>
-                            <constraint firstItem="meN-tH-Zba" firstAttribute="top" secondItem="3qc-nx-Ad2" secondAttribute="top" constant="-1" id="QAF-g5-iRL"/>
+                            <constraint firstItem="meN-tH-Zba" firstAttribute="leading" secondItem="3qc-nx-Ad2" secondAttribute="leading" id="CZM-UT-egj"/>
+                            <constraint firstAttribute="trailing" secondItem="meN-tH-Zba" secondAttribute="trailing" id="Gfu-8R-kvQ"/>
+                            <constraint firstItem="meN-tH-Zba" firstAttribute="top" secondItem="3qc-nx-Ad2" secondAttribute="top" id="QAF-g5-iRL"/>
                             <constraint firstItem="DOl-f2-zCv" firstAttribute="leading" secondItem="3qc-nx-Ad2" secondAttribute="leading" constant="16" id="T4O-lw-WK0"/>
                             <constraint firstItem="DOl-f2-zCv" firstAttribute="top" secondItem="3qc-nx-Ad2" secondAttribute="top" constant="12" id="gyI-e0-8CD"/>
-                            <constraint firstAttribute="bottom" secondItem="meN-tH-Zba" secondAttribute="bottom" constant="-1" id="ll7-tt-CSy"/>
+                            <constraint firstAttribute="bottom" secondItem="meN-tH-Zba" secondAttribute="bottom" id="ll7-tt-CSy"/>
                             <constraint firstItem="DOl-f2-zCv" firstAttribute="centerY" secondItem="3qc-nx-Ad2" secondAttribute="centerY" id="vmF-A1-peo"/>
                         </constraints>
                     </view>

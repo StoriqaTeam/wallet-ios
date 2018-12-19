@@ -11,7 +11,7 @@ import UIKit
 protocol MyWalletDataManagerDelegate: class {
     func selectAccount(_ account: Account)
     func didChangeOffset(_ newValue: CGFloat)
-    func rectOfSelectedItem(_ rect: CGRect?, in collectionView: UICollectionView)
+    func snapshotsForTransition(snapshots: [UIView], selectedIndex: Int)
 }
 
 class MyWalletDataManager: NSObject {
@@ -27,6 +27,7 @@ class MyWalletDataManager: NSObject {
     private let kAccountCellIdentifier = "AccountViewCell"
     private var accounts: [Account]
     private let accountDisplayer: AccountDisplayerProtocol
+    private var shouldUpdateCellsPositions = false
     
     init(accounts: [Account], accountDisplayer: AccountDisplayerProtocol) {
         self.accounts = accounts
@@ -56,6 +57,12 @@ class MyWalletDataManager: NSObject {
     
     func reloadData() {
         collectionView.reloadData()
+    }
+    
+    func restoreVisibility() {
+        collectionView.visibleCells.forEach { $0.isHidden = false }
+        collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).forEach { $0.isHidden = false }
+        (collectionView.collectionViewLayout as? SpringFlowLayout)?.getTopCellSnapshots().forEach { $0.isHidden = false }
     }
     
 }
@@ -91,7 +98,6 @@ extension MyWalletDataManager: UICollectionViewDataSource {
                            holderName: holderName,
                            textColor: textColor,
                            backgroundImage: backgroundImage)
-        
         return cell
     }
 }
@@ -102,11 +108,46 @@ extension MyWalletDataManager: UICollectionViewDataSource {
 extension MyWalletDataManager: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let visibleCells = collectionView.visibleCells.sorted(by: {
+            guard let firstRow = collectionView.indexPath(for: $0)?.row,
+                let secondRow = collectionView.indexPath(for: $1)?.row else {
+                    return true
+            }
+            
+            return firstRow < secondRow
+        })
+        
+        var snapshots = visibleCells.compactMap { (cell) -> UIView? in
+            cell.isHidden = true
+            let snapshot = cell.snapshotView(afterScreenUpdates: false)
+            snapshot?.frame = collectionView.convert(cell.frame, to: collectionView.superview!)
+            return snapshot
+        }
+        
+        if let layout = collectionView.collectionViewLayout as? SpringFlowLayout {
+            let topCellSnapshots = layout.getTopCellSnapshots()
+            
+            if let topCell = topCellSnapshots.last {
+                snapshots.insert(topCell, at: 0)
+            }
+            
+            topCellSnapshots.forEach { $0.isHidden = true }
+        }
+        
+        if let footer = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).first,
+            let snapshot = footer.snapshotView(afterScreenUpdates: false) {
+            footer.isHidden = true
+            snapshot.frame = collectionView.convert(footer.frame, to: collectionView.superview!)
+            snapshots.append(snapshot)
+        }
+        
+        if let selectedIndex = visibleCells.firstIndex(where: { collectionView.indexPath(for: $0) == indexPath }) {
+            delegate?.snapshotsForTransition(snapshots: snapshots, selectedIndex: selectedIndex)
+        }
+        
         let account = accounts[indexPath.row]
-        let attributes = collectionView.layoutAttributesForItem(at: indexPath)
-        let frame = attributes?.frame
-        delegate?.rectOfSelectedItem(frame, in: collectionView)
         delegate?.selectAccount(account)
+        
         return true
     }
     
@@ -115,6 +156,53 @@ extension MyWalletDataManager: UICollectionViewDelegate {
         delegate?.didChangeOffset(newValue)
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let minVisibleRow = collectionView.indexPathsForVisibleItems.map({ return $0.row }).min() ?? 0
+        
+        if indexPath.row == minVisibleRow - 1 {
+            collectionView.sendSubviewToBack(cell)
+        }
+        
+        if shouldUpdateCellsPositions {
+            shouldUpdateCellsPositions = false
+            
+            let visiblePaths = collectionView.indexPathsForVisibleItems.sorted(by: { $0.row > $1.row })
+            let visibleCells = visiblePaths.compactMap { collectionView.cellForItem(at: $0) }
+            
+            var previousCell: UIView?
+            for cell in visibleCells {
+                guard let prevCell = previousCell else {
+                    previousCell = cell
+                    continue
+                }
+                
+                cell.removeFromSuperview()
+                collectionView.insertSubview(cell, belowSubview: prevCell)
+                previousCell = cell
+            }
+        }
+        
+        if indexPath.row < minVisibleRow {
+            shouldUpdateCellsPositions = true
+        }
+    }
+}
+
+extension MyWalletDataManager: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader, UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: "footerView",
+                                                                             for: indexPath)
+            footerView.isHidden = false
+            return footerView
+        default:
+            fatalError("Unexpected element kind")
+        }
+    }
 }
 
 
@@ -125,6 +213,9 @@ extension MyWalletDataManager {
     private func registerXib(identifier: String) {
         let nib = UINib(nibName: identifier, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: kAccountCellIdentifier)
+        collectionView.register(MyWalletFooter.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: "footerView")
     }
     
 }

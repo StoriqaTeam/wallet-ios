@@ -21,13 +21,11 @@ class TransactionsDataManager: NSObject {
     private var transactionsSections = [[TransactionDisplayable]]()
     private let kCellId = "transactionCell"
     private let isHiddenSections: Bool
-    private let maxCount: Int?
     private var emptyViewPlaceholder: EmptyView?
     private var isAnimatingApperance: Bool = false
     
-    init(transactions: [TransactionDisplayable], isHiddenSections: Bool, maxCount: Int? = nil) {
+    init(transactions: [TransactionDisplayable], isHiddenSections: Bool) {
         self.isHiddenSections = isHiddenSections
-        self.maxCount = maxCount
         super.init()
         
         createSections(transactions)
@@ -45,7 +43,7 @@ class TransactionsDataManager: NSObject {
     func firstUpdateTransactions(_ transactions: [TransactionDisplayable]) {
         isAnimatingApperance = true
         
-        let duration = Double(lastTransactionsTableView.visibleCells.count) / 8 + 0.5
+        let duration = Double(lastTransactionsTableView.frame.height / lastTransactionsTableView.estimatedRowHeight * 0.05 + 0.5)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
             self?.isAnimatingApperance = false
@@ -163,8 +161,8 @@ extension TransactionsDataManager {
     }
     
     private func createSections(_ txs: [TransactionDisplayable]) {
-        if let maxCount = maxCount {
-            self.transactionsSections = getLastTransactions(txs, count: maxCount)
+        if isHiddenSections {
+            self.transactionsSections = getLastTransactions(txs)
         } else {
             self.transactionsSections = sortTransactionByDate(txs)
         }
@@ -189,12 +187,11 @@ extension TransactionsDataManager {
         return resultArray
     }
     
-    private func getLastTransactions(_ txs: [TransactionDisplayable], count: Int) -> [[TransactionDisplayable]] {
+    private func getLastTransactions(_ txs: [TransactionDisplayable]) -> [[TransactionDisplayable]] {
         guard !txs.isEmpty else { return [[]] }
         
         let inputArray = txs.sorted { $0.transaction.createdAt > $1.transaction.createdAt }
-        let lastTxsArray = Array(inputArray.prefix(10))
-        return [lastTxsArray]
+        return [inputArray]
     }
     
     

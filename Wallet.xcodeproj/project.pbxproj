@@ -696,6 +696,9 @@
 		CEF02F8921C3DE60003D18FF /* Settings.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F8821C3DE60003D18FF /* Settings.strings */; };
 		CEF02F8B21C3DFB8003D18FF /* Strings+EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF02F8A21C3DFB8003D18FF /* Strings+EditProfile.swift */; };
 		CEF02F8D21C3DFC5003D18FF /* EditProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF02F8C21C3DFC5003D18FF /* EditProfile.strings */; };
+		CEF3A9A021C800D2000D0718 /* MyWalletFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF3A99F21C800D2000D0718 /* MyWalletFooter.xib */; };
+		CEF3A9A321C8035A000D0718 /* MyWalletFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3A9A221C8035A000D0718 /* MyWalletFooter.swift */; };
+		CEF3A9A521C8042D000D0718 /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3A9A421C8042D000D0718 /* SpringFlowLayout.swift */; };
 		CEFC9C8D2154E96D00962356 /* AccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */; };
 		CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */; };
 		CEFC9C922155197B00962356 /* ResizableNavigationBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */; };
@@ -1518,6 +1521,9 @@
 		CEF02F8821C3DE60003D18FF /* Settings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Settings.strings; sourceTree = "<group>"; };
 		CEF02F8A21C3DFB8003D18FF /* Strings+EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+EditProfile.swift"; sourceTree = "<group>"; };
 		CEF02F8C21C3DFC5003D18FF /* EditProfile.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = EditProfile.strings; sourceTree = "<group>"; };
+		CEF3A99F21C800D2000D0718 /* MyWalletFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletFooter.xib; sourceTree = "<group>"; };
+		CEF3A9A221C8035A000D0718 /* MyWalletFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletFooter.swift; sourceTree = "<group>"; };
+		CEF3A9A421C8042D000D0718 /* SpringFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		CEFC9C8B2154E96D00962356 /* AccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewCell.swift; sourceTree = "<group>"; };
 		CEFC9C8C2154E96D00962356 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
 		CEFC9C912155197B00962356 /* ResizableNavigationBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableNavigationBarButton.swift; sourceTree = "<group>"; };
@@ -4778,6 +4784,7 @@
 			children = (
 				CE8CC9992167D9C300EA9EED /* MyWalletDataManager.swift */,
 				CE83E24621BE5AF40067A779 /* BouncyLayout.swift */,
+				CEF3A9A421C8042D000D0718 /* SpringFlowLayout.swift */,
 			);
 			path = MyWalletDataManager;
 			sourceTree = "<group>";
@@ -4937,6 +4944,15 @@
 			path = NetworkErrorParsers;
 			sourceTree = "<group>";
 		};
+		CEF3A9A121C80341000D0718 /* MyWalletFooter */ = {
+			isa = PBXGroup;
+			children = (
+				CEF3A9A221C8035A000D0718 /* MyWalletFooter.swift */,
+				CEF3A99F21C800D2000D0718 /* MyWalletFooter.xib */,
+			);
+			path = MyWalletFooter;
+			sourceTree = "<group>";
+		};
 		CEFC9C872154E57B00962356 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -4968,6 +4984,7 @@
 		CEFC9C892154E8E400962356 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				CEF3A9A121C80341000D0718 /* MyWalletFooter */,
 				CE83E21C21B68EF50067A779 /* NotificationView */,
 				CEFC9C8A2154E8EF00962356 /* AccountViewCell */,
 			);
@@ -5452,6 +5469,7 @@
 				A5C1875521C0EED500779D26 /* Profile.strings in Resources */,
 				CEFC9C8E2154E96D00962356 /* AccountViewCell.xib in Resources */,
 				A574350221776226006B4CAE /* EditProfile.storyboard in Resources */,
+				CEF3A9A021C800D2000D0718 /* MyWalletFooter.xib in Resources */,
 				CE5FAFBF2153949B009E707E /* PinSetup.storyboard in Resources */,
 				A5C1876C21C0EFB500779D26 /* Login.strings in Resources */,
 				A57434D42175E6DA006B4CAE /* TransactionFilter.storyboard in Resources */,
@@ -5815,9 +5833,11 @@
 				CFF9F4C159614776247E0C56 /* RegistrationModuleOutput.swift in Sources */,
 				E275BFADE175B146D991425C /* RegistrationModule.swift in Sources */,
 				CEF02F5B21C25164003D18FF /* Strings+SocialNetworkAuth.swift in Sources */,
+				CEF3A9A321C8035A000D0718 /* MyWalletFooter.swift in Sources */,
 				BEEDE5E6BEDC5F138D876770 /* PasswordEmailRecoveryViewInput.swift in Sources */,
 				21871BCFB964904C754FD3CF /* PasswordEmailRecoveryViewOutput.swift in Sources */,
 				A1895A9521B8A57EA1BC3561 /* PasswordEmailRecoveryViewController.swift in Sources */,
+				CEF3A9A521C8042D000D0718 /* SpringFlowLayout.swift in Sources */,
 				A57434FC21776226006B4CAE /* EditProfileModuleInput.swift in Sources */,
 				706656F7D7EBAF794948CC03 /* PasswordEmailRecoveryPresenter.swift in Sources */,
 				5DD81EF717C591E4F8D0D515 /* PasswordEmailRecoveryInteractorInput.swift in Sources */,

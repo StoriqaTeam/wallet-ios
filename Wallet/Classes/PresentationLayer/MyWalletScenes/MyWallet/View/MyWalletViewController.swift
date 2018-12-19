@@ -41,6 +41,10 @@ class MyWalletViewController: UIViewController {
         return .lightContent
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
+    }
     
     // FIXME: hidden before release
     
@@ -88,6 +92,11 @@ extension MyWalletViewController: MyWalletViewInput {
         navigationBarHorizontalConstraint.constant = horizontalSpace
     }
     
+    func setNavigationBarHidden(_ hidden: Bool) {
+        UIView.animate(withDuration: 0.25) {
+            self.navigationBar.alpha = hidden ? 0 : 1
+        }
+    }
     
     func setupInitialState() {
         
