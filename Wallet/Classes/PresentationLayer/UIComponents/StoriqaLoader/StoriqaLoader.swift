@@ -11,45 +11,52 @@ import Foundation
 class StoriqaLoader {
     
     private let parentView: UIView
-    private var dimView: UIView!
     private var loaderView: ActivityIndicatorView!
+    private var blurEffectView: UIVisualEffectView!
     
     init(parentView: UIView) {
         self.parentView = parentView
     }
     
-    
     func startLoader() {
-        addDimView()
+        addBlurView()
         addLoaderView()
-        dimView.addSubview(loaderView)
+        blurEffectView.contentView.addSubview(loaderView)
         loaderView.showActivityIndicator()
     }
     
     func stopLoader() {
-        guard let loaderView = loaderView, let dimView = dimView else {
+        guard let loaderView = loaderView else {
             return
         }
-
+        
         loaderView.hideActivityIndicator()
         loaderView.removeFromSuperview()
-        dimView.removeFromSuperview()
-        self.loaderView = nil
-    }    
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurEffectView.alpha = 0.0
+        }) { _ in
+            loaderView.removeFromSuperview()
+            self.blurEffectView.removeFromSuperview()
+            self.loaderView = nil
+        }
+    }
 }
 
 
 // MARK: Private methods
 
 extension StoriqaLoader {
-    private func addDimView() {
-        dimView = UIView(frame: parentView.frame)
-        dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        dimView.alpha = 0
-        parentView.addSubview(dimView)
+    private func addBlurView() {
+        let blurEffect = UIBlurEffect(style: .dark)
         
-        UIView.animate(withDuration: 0.25) {
-            self.dimView.alpha = 1
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = parentView.frame
+        parentView.addSubview(blurEffectView)
+        blurEffectView.alpha = 0
+        
+        UIView.animate(withDuration: 0.5) {
+            self.blurEffectView.alpha = 0.9
         }
     }
     
