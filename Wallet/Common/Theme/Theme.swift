@@ -13,6 +13,8 @@ import UIKit
 struct Theme {
     
     struct Color {
+        
+        static let brightOrange = UIColor(red: 200/255, green: 141/255, blue: 49/255, alpha: 1.0)
         static let brightSkyBlue = UIColor(red: 0.0, green: 178.0 / 255.0, blue: 1.0, alpha: 1.0)
         static let cloudyBlue = UIColor(red: 195.0 / 255.0, green: 206.0 / 255.0, blue: 220.0 / 255.0, alpha: 1.0)
         static let greyishBrown = UIColor(white: 80.0 / 255.0, alpha: 1.0)
@@ -66,6 +68,7 @@ struct Theme {
     }
     
     struct Font {
+        
         /** 17px bold */
         static let segmentTextFont = UIFont.systemFont(ofSize: 17, weight: .bold)
         /** 28px bold */
@@ -87,6 +90,35 @@ struct Theme {
         /** 12px regular */
         static let errorMessage = UIFont.systemFont(ofSize: 12)
     }
+}
+
+
+ private struct MontserratFont {
     
+    static let fontFamily = "Montserrat-"
     
+    static func font(ofSize: CGFloat, weight: UIFont.Weight) -> UIFont? {
+        switch weight {
+        case .ultraLight:
+            return UIFont(name: fontFamily+"Light", size: ofSize)
+        case .thin:
+            return UIFont(name: fontFamily+"Thin", size: ofSize)
+        case .light:
+            return UIFont(name: fontFamily+"Light", size: ofSize)
+        case .regular:
+            return UIFont(name: fontFamily+"Regular", size: ofSize)
+        case .medium:
+            return UIFont(name: fontFamily+"Medium", size: ofSize)
+        case .semibold:
+            return UIFont(name: fontFamily+"SemiBold", size: ofSize)
+        case .bold:
+             return UIFont(name: fontFamily+"SemiBold", size: ofSize)
+        case .heavy:
+             return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
+        case .black:
+             return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
+        default:
+             return UIFont(name: fontFamily+"Black", size: ofSize)
+        }
+    }
 }

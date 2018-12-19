@@ -16,9 +16,14 @@ class QRScannerInteractor {
     private let sendTransactionBuilder: SendProviderBuilderProtocol
     private let addressResolver: CryptoAddressResolverProtocol
     private var sendProvider: SendTransactionProviderProtocol!
+    private let paymentRequestResolver: PaymentRequestResolverProtocol
     
-    init(sendTransactionBuilder: SendProviderBuilderProtocol, addressResolver: CryptoAddressResolverProtocol) {
+    init(sendTransactionBuilder: SendProviderBuilderProtocol,
+         addressResolver: CryptoAddressResolverProtocol,
+         paymentRequestResolver: PaymentRequestResolverProtocol) {
+        
         self.sendTransactionBuilder = sendTransactionBuilder
+        self.paymentRequestResolver = paymentRequestResolver
         self.addressResolver = addressResolver
         self.sendProvider = sendTransactionBuilder.build()
     }
@@ -32,6 +37,12 @@ extension QRScannerInteractor: QRScannerInteractorInput {
     
     func validateAddress(_ address: String) -> QRCodeAddressValidationResult {
         let selectedCurrency = sendProvider.selectedAccount.currency
+        
+        if let paymentRequest = paymentRequestResolver.resolve(string: address) {
+            if selectedCurrency != .btc {
+                return .paymentrequest(request: paymentRequest)
+            }
+        }
         
         guard let scannedCurrency = addressResolver.resove(address: address) else {
             return .failed
@@ -51,4 +62,8 @@ extension QRScannerInteractor: QRScannerInteractorInput {
         sendTransactionBuilder.setScannedAddress(address)
     }
     
+    func setPaymentRequest(_ request: PaymentRequest) {
+        sendTransactionBuilder.setScannedAddress(request.address)
+        sendTransactionBuilder.set(cryptoAmount: request.amount)
+    }
 }

@@ -13,7 +13,8 @@ class QRScannerModule {
         let presenter = QRScannerPresenter()
         
         let interactor = QRScannerInteractor(sendTransactionBuilder: sendTransactionBuilder,
-                                             addressResolver: app.cryptoAddressResolver)
+                                             addressResolver: app.cryptoAddressResolver,
+                                             paymentRequestResolver: app.paymentRequestResolver)
         
         let loginSb = UIStoryboard(name: "QRScanner", bundle: nil)
         let viewController = loginSb.instantiateViewController(withIdentifier: "QRScannerVC") as! QRScannerViewController
