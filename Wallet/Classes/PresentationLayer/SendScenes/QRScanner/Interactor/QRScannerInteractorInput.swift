@@ -14,9 +14,11 @@ enum QRCodeAddressValidationResult {
     case succeed
     case wrongCurrency
     case failed
+    case paymentrequest(request: PaymentRequest)
 }
 
 protocol QRScannerInteractorInput: class {
     func setScannedAddress(_ address: String)
     func validateAddress(_ address: String) -> QRCodeAddressValidationResult
+    func setPaymentRequest(_ request: PaymentRequest)
 }

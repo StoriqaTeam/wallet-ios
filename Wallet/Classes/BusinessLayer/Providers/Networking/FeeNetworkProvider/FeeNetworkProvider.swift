@@ -18,6 +18,13 @@ protocol FeeNetworkProviderProtocol {
 }
 
 class FeeNetworkProvider: NetworkLoadable, FeeNetworkProviderProtocol {
+    
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createSendErrorResolver()
+    }
+    
     func getFees(authToken: String,
                  currency: Currency,
                  accountAddress: String,
@@ -26,31 +33,20 @@ class FeeNetworkProvider: NetworkLoadable, FeeNetworkProviderProtocol {
                  completion: @escaping (Result<[EstimatedFee]>) -> Void) {
         let request = API.Fees.getFees(authToken: authToken, currency: currency, accountAddress: accountAddress, signHeader: signHeader)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                guard code == 200 else {
-                    let error = FeeNetworkProviderError(code: code, json: json, currency: currency)
-                    completion(.failure(error))
-                    return
-                }
-                
-                guard let feesData = json["fees"].array,
-                    !feesData.isEmpty else {
-                    let error = FeeNetworkProviderError.parseJsonError
-                    completion(.failure(error))
-                    return
-                }
-                
-                let fees = feesData.compactMap { EstimatedFee(json: $0, currency: currency) }
-                
-                guard !fees.isEmpty else {
-                    let error = FeeNetworkProviderError.parseJsonError
-                    completion(.failure(error))
-                    return
+                guard code == 200,
+                    let fees = json["fees"].array?.compactMap({ EstimatedFee(json: $0, currency: currency) }),
+                    !fees.isEmpty else {
+                        let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                        completion(.failure(error))
+                        return
                 }
                 
                 completion(.success(fees))
@@ -59,32 +55,5 @@ class FeeNetworkProvider: NetworkLoadable, FeeNetworkProviderProtocol {
                 completion(.failure(error))
             }
         }
-    }
-}
-
-enum FeeNetworkProviderError: LocalizedError, Error {
-    case unknownError
-    case internalServer
-    case parseJsonError
-    case wrongCurrency(message: String)
-    
-    init(code: Int, json: JSON, currency: Currency) {
-        switch code {
-        case 422:
-            if let accountErrors = json["account"].array,
-                accountErrors.contains(where: { $0["code"] == "currency" }) {
-                self = .wrongCurrency(message: "\(currency.ISO) can be transferred only to \(currency.ISO) accounts.")
-            } else {
-                self = .unknownError
-            }
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        return Constants.Errors.userFriendly
     }
 }

@@ -10,6 +10,8 @@ import UIKit
 
 
 class EditProfileViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.EditProfile
 
     var output: EditProfileViewOutput!
 
@@ -55,6 +57,7 @@ extension EditProfileViewController: EditProfileViewInput {
     func setupInitialState(firstName: String, lastName: String) {
         configureInterface()
         addHideKeyboardGuesture()
+        localizeText()
         firstNameTextField.text = firstName
         lastNameTextField.text = lastName
     }
@@ -97,6 +100,13 @@ extension EditProfileViewController {
         
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
+    }
+    
+    private func localizeText() {
+        titleLabel.text = LocalizedStrings.personalInfoTitle
+        firstNameTextField.text = LocalizedStrings.firstNamePlaceholder
+        lastNameTextField.text = LocalizedStrings.lastNamePlaceholder
+        saveButton.setTitle(LocalizedStrings.saveButton, for: .normal)
     }
     
 }

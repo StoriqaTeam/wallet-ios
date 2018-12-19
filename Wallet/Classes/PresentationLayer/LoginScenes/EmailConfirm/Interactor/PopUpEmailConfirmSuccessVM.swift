@@ -18,9 +18,9 @@ class PopUpEmailConfirmSuccessVM: PopUpViewModelProtocol {
     
     init() {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
-                                   title: "Email was successfully confirmed",
+                                   title: Localization.emailConfirmTitle,
                                    text: "",
-                                   actionButtonTitle: "sign_in".localized(),
+                                   actionButtonTitle: Localization.signInButton,
                                    hasCloseButton: false)
     }
     

@@ -10,6 +10,8 @@ import UIKit
 
 
 class SendConfirmPopUpViewController: BasePopUpViewController {
+    
+    typealias LocalizedStrings = Strings.SendConfirmPopUp
 
     var output: SendConfirmPopUpViewOutput!
     
@@ -30,6 +32,7 @@ class SendConfirmPopUpViewController: BasePopUpViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInterface()
+        localizeText()
         output.viewIsReady()
     }
     
@@ -82,5 +85,14 @@ extension SendConfirmPopUpViewController {
         feeLabel.textColor = Theme.Text.Color.blackMain
         
         closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+    }
+    
+    private func localizeText() {
+        titleLabel.text = LocalizedStrings.screenTitle
+        addressTitle.text = LocalizedStrings.addressTitle
+        amountTitle.text = LocalizedStrings.amountTitle
+        feeTitle.text = LocalizedStrings.feeTitle
+        confirmButton.setTitle(LocalizedStrings.confirmButton, for: .normal)
+        closeButton.setTitle(LocalizedStrings.closeButton, for: .normal)
     }
 }

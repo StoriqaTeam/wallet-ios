@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol MainTabBarInteractorOutput: class {
-
+    func tokenDidExpire()
 }

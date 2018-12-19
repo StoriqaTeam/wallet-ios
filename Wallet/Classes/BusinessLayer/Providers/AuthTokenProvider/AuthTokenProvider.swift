@@ -5,7 +5,6 @@
 //  Created by Storiqa on 23/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-//swiftlint:disable function_body_length
 
 import Foundation
 
@@ -27,27 +26,24 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
     private var authToken: AuthToken?
     private let jwtParser: JwtTokenParserProtocol
     private let defaults: AuthTokenDefaultsProviderProtocol
-    private let loginNetworkProvider: LoginNetworkProviderProtocol
-    private let socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol
     private let authDataResolver: AuthDataResolverProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
+    private let refreshTokenNetworkProvider: RefreshTokenNetworkProviderProtocol
     
     private var now: Int {
         return Int(Date().timeIntervalSince1970)
     }
     
     init(defaults: AuthTokenDefaultsProviderProtocol,
-         loginNetworkProvider: LoginNetworkProviderProtocol,
-         socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol,
          authDataResolver: AuthDataResolverProtocol,
-         signHeaderFactory: SignHeaderFactoryProtocol) {
+         signHeaderFactory: SignHeaderFactoryProtocol,
+         refreshTokenNetworkProvider: RefreshTokenNetworkProviderProtocol) {
         
         self.defaults = defaults
         self.jwtParser = JwtTokenParser()
-        self.loginNetworkProvider = loginNetworkProvider
-        self.socialAuthNetworkProvider = socialAuthNetworkProvider
         self.authDataResolver = authDataResolver
         self.signHeaderFactory = signHeaderFactory
+        self.refreshTokenNetworkProvider = refreshTokenNetworkProvider
     }
     
     func currentAuthToken(completion: @escaping (Result<String>) -> Void) {
@@ -65,14 +61,14 @@ class AuthTokenProvider: AuthTokenProviderProtocol {
             return
         }
         
-        guard let loginData = authDataResolver.getAuthData() else {
+        guard let email = authDataResolver.getAuthData() else {
             let error = AuthTokenProviderError.invalidLoginData
             log.warn(error.localizedDescription)
             completion(.failure(error))
             return
         }
         
-        login(authData: loginData, completion: completion)
+        refreshToken(aToken, email: email, completion: completion)
     }
 }
 
@@ -94,70 +90,35 @@ extension AuthTokenProvider {
         return now >= expiredTime
     }
     
-    private func login(authData: AuthData, completion: @escaping (Result<String>) -> Void) {
+    private func refreshToken(_ authToken: AuthToken, email: String, completion: @escaping (Result<String>) -> Void) {
         
-        switch authData {
-        case .email(let email, let password):
-            let signHeader: SignHeader
-            
-            do {
-                signHeader = try signHeaderFactory.createSignHeader(email: email)
-            } catch {
-                completion(.failure(error))
-                return
-            }
-            
-            loginNetworkProvider.loginUser(email: email,
-                                           password: password,
-                                           queue: .main,
-                                           signHeader: signHeader) {[weak self] (result) in
-                guard let strongSelf = self else {
-                    let error = AuthTokenProviderError.failToGetTokenFromDefaults
-                    log.error("Auth Token provider release")
-                    completion(.failure(error))
-                    return
-                }
-                
-                switch result {
-                case .success(let token):
-                    log.info("Success update auth token")
-                    completion(.success(token))
-                    strongSelf.defaults.authToken = token
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        case .social(let provider, let token, let email):
-            
-            let signHeader: SignHeader
-            
-            do {
-                signHeader = try signHeaderFactory.createSignHeader(email: email)
-            } catch {
-                completion(.failure(error))
-                return
-            }
-            
-            socialAuthNetworkProvider.socialAuth(oauthToken: token,
-                                                 oauthProvider: provider,
-                                                 queue: .main,
-                                                 signHeader: signHeader) { [weak self] (result) in
-                guard let strongSelf = self else {
-                    let error = AuthTokenProviderError.failToGetTokenFromDefaults
-                    log.error("Auth Token provider release")
-                    completion(.failure(error))
-                    return
-                }
-                
-                switch result {
-                case .success(let token):
-                    log.info("Success update auth token")
-                    completion(.success(token))
-                    strongSelf.defaults.authToken = token
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
+        let signHeader: SignHeader
+        do {
+            signHeader = try signHeaderFactory.createSignHeader(email: email)
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        
+        refreshTokenNetworkProvider.refreshAuthToken(authToken: authToken.token,
+                                                     signHeader: signHeader,
+                                                     queue: .main) { [weak self] (result) in
+                                                        guard let strongSelf = self else {
+                                                            let error = AuthTokenProviderError.failToGetTokenFromDefaults
+                                                            log.error("Auth Token provider released")
+                                                            completion(.failure(error))
+                                                            return
+                                                        }
+                                                        
+                                                        switch result {
+                                                        case .success(let token):
+                                                            log.info("Success update auth token")
+                                                            strongSelf.defaults.authToken = token
+                                                            completion(.success(token))
+                                                        case .failure(let error):
+                                                            completion(.failure(error))
+                                                        }    
         }
     }
     

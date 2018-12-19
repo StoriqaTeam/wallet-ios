@@ -27,18 +27,13 @@ extension CrashlyticsLogable where Self: APIMethodProtocol {
     }
     
     func getParams() -> String {
-        guard let params = params else {
+        guard var params = params else {
             return ""
         }
         
-        guard let unloggedParams = unloggedParams else {
-            return paramsToString(params)
-        }
+        unloggedParams?.forEach { params[$0] = "***" }
         
-        var filtered = params.filter { !unloggedParams.contains($0.key) }
-        unloggedParams.forEach { filtered[$0] = "***" }
-        
-        return paramsToString(filtered)
+        return paramsToString(params)
     }
     
     private func paramsToString(_ params: Params?) -> String {

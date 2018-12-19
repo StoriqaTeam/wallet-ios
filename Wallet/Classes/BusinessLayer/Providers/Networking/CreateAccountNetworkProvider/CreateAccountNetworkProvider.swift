@@ -21,6 +21,13 @@ protocol CreateAccountNetworkProviderProtocol {
 }
 
 class CreateAccountNetworkProvider: NetworkLoadable, CreateAccountNetworkProviderProtocol {
+    
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createDefaultErrorResolver()
+    }
+    
     func createAccount(authToken: String,
                        userId: Int,
                        id: String,
@@ -36,21 +43,17 @@ class CreateAccountNetworkProvider: NetworkLoadable, CreateAccountNetworkProvide
             currency: currency,
             name: name, signHeader: signHeader)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
                 let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                guard code == 200 else {
-                    let apiError = CreateAccountNetworkProviderError(code: code)
-                    completion(.failure(apiError))
-                    return
-                }
-                
-                guard let account = Account(json: json) else {
-                    let apiError = CreateAccountNetworkProviderError.failToParseJson
-                    completion(.failure(apiError))
+                guard code == 200, let account = Account(json: json) else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
                     return
                 }
                 
@@ -59,38 +62,6 @@ class CreateAccountNetworkProvider: NetworkLoadable, CreateAccountNetworkProvide
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-
-enum CreateAccountNetworkProviderError: LocalizedError, Error {
-    case internalServer
-    case unauthorized
-    case unknownError
-    case failToParseJson
-    
-    init(code: Int) {
-        switch code {
-        case 401:
-            self = .unauthorized
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .unauthorized:
-            return "User unauthorized"
-        case .internalServer:
-            return "Internal server error"
-        case .unknownError:
-            return Constants.Errors.userFriendly
-        case .failToParseJson:
-            return "Failed to parse JSON"
         }
     }
 }

@@ -62,6 +62,24 @@ extension UIViewController {
         return navigation
     }
     
+    
+    func wrapToTransitiningNavigationController() -> TransitionNavigationController {
+        let navigation = TransitionNavigationController()
+        navigation.setViewControllers([self], animated: false)
+        navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigation.navigationBar.shadowImage = UIImage()
+        navigation.navigationBar.isTranslucent = true
+        navigation.navigationBar.backgroundColor = .clear
+        navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
+        navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
+        navigation.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "",
+                                                                              style: .plain,
+                                                                              target: nil,
+                                                                              action: nil)
+        return navigation
+        
+    }
+    
 }
 
 //Actions
@@ -97,6 +115,20 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
 
     }
+    
+    func showOkAlert(title: String = "", message: String = "", success: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            success?()
+        }
+        
+        alert.addAction(okAction)
+        alert.view.tintColor = Theme.Color.brightSkyBlue
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
 }
 
 // MARK: - Private methods

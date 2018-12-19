@@ -10,6 +10,7 @@ import UIKit
 
 
 class TransactionFilterViewController: UIViewController {
+    typealias LocalizedStrings = Strings.TransactionFilter
 
     var output: TransactionFilterViewOutput!
     
@@ -18,6 +19,7 @@ class TransactionFilterViewController: UIViewController {
     @IBOutlet private var okButton: DefaultButton!
     @IBOutlet private var clearFilterButton: UIButton!
     @IBOutlet private var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var dateLabel: UILabel!
     
     private var fromDatePickerView: UIDatePicker!
     private var toDatePickerView: UIDatePicker!
@@ -87,6 +89,12 @@ extension TransactionFilterViewController: TransactionFilterViewInput {
         configureDatePickers()
         addNotificationObservers()
         addTargetsTextField()
+        
+        fromTextField.placeholder = LocalizedStrings.fromPlaceholder
+        toTextField.placeholder = LocalizedStrings.toPlaceholder
+        okButton.setTitle(LocalizedStrings.okButton, for: .normal)
+        clearFilterButton.setTitle(LocalizedStrings.clearButtonTitle, for: .normal)
+        dateLabel.text = LocalizedStrings.dateLabel
     }
     
     func buttonsChangedState(isEnabled: Bool) {

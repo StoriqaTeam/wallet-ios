@@ -41,6 +41,7 @@ class SocialNetworkAuthViewModel: NSObject {
     
     func signInWithFacebook(from viewController: UIViewController) {
         facebookLoginManager.loginBehavior = LoginBehavior.web
+        facebookLoginManager.logOut()
         
         let viewController = UIViewController()
         facebookLoginManager.logIn(
@@ -126,7 +127,7 @@ enum SocialNetworkViewModelError: LocalizedError {
     var localizedDescription: String {
         switch self {
         case .failToSign(let error):
-            return "Failied signIn with account \(error.localizedDescription)"
+            return "Failed signIn with account \(error.localizedDescription)"
         case .userTokenIsEmpty:
             return "Failed signIn with account: user token empty"
         case .emptyUserEmail:

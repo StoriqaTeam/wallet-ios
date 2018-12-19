@@ -11,6 +11,8 @@ import UIKit
 
 class AppInfoPresenter {
     
+    typealias LocalizedStrings = Strings.AppInfo
+    
     weak var view: AppInfoViewInput!
     weak var output: AppInfoModuleOutput?
     var interactor: AppInfoInteractorInput!
@@ -59,6 +61,6 @@ extension AppInfoPresenter: AppInfoModuleInput {
 extension AppInfoPresenter {
     func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: "App info")
+        view.viewController.setDarkNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
 }

@@ -10,6 +10,8 @@ import UIKit
 
 protocol MyWalletDataManagerDelegate: class {
     func selectAccount(_ account: Account)
+    func didChangeOffset(_ newValue: CGFloat)
+    func rectOfSelectedItem(_ rect: CGRect?, in collectionView: UICollectionView)
 }
 
 class MyWalletDataManager: NSObject {
@@ -99,9 +101,18 @@ extension MyWalletDataManager: UICollectionViewDataSource {
 
 extension MyWalletDataManager: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let account = accounts[indexPath.row]
+        let attributes = collectionView.layoutAttributesForItem(at: indexPath)
+        let frame = attributes?.frame
+        delegate?.rectOfSelectedItem(frame, in: collectionView)
         delegate?.selectAccount(account)
+        return true
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let newValue = scrollView.contentOffset.y + scrollView.contentInset.top
+        delegate?.didChangeOffset(newValue)
     }
     
 }

@@ -17,6 +17,13 @@ protocol SocialAuthNetworkProviderProtocol {
 }
 
 class SocialAuthNetworkProvider: NetworkLoadable, SocialAuthNetworkProviderProtocol {
+    
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createSocialAuthErrorResolver()
+    }
+    
     func socialAuth(oauthToken: String,
                     oauthProvider: SocialNetworkTokenProvider,
                     queue: DispatchQueue,
@@ -33,17 +40,21 @@ class SocialAuthNetworkProvider: NetworkLoadable, SocialAuthNetworkProviderProto
                                                   deviceOs: deviceOs,
                                                   signHeader: signHeader)
         
-        loadObjectJSON(request: request, queue: queue) {(result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
+                let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                if let token = json["token"].string {
-                    completion(.success(token))
-                } else {
-                    let apiError = SocialAuthNetworkProviderError(code: response.responseStatusCode, json: json)
-                    completion(.failure(apiError))
+                guard code == 200, let token = json["token"].string else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
+                    return
                 }
+               
+                completion(.success(token))
                 
             case .failure(let error):
                 completion(.failure(error))
@@ -51,50 +62,5 @@ class SocialAuthNetworkProvider: NetworkLoadable, SocialAuthNetworkProviderProto
         }
         
         
-    }
-}
-
-
-enum SocialAuthNetworkProviderError: LocalizedError, Error {
-    case badRequest
-    case unauthorized
-    case unknownError
-    case internalServer
-    case deviceNotRegistered(userId: Int)
-    
-    init(code: Int, json: JSON) {
-        switch code {
-        case 400:
-            self = .badRequest
-        case 401:
-            self = .unauthorized
-        case 422:
-            guard let deviceErrors = json["device"].array,
-                let existsError = deviceErrors.first(where: { $0["code"] == "exists" }),
-                let params = existsError["params"].dictionary,
-                let userIdStr = params["user_id"]?.string,
-                let userId = Int(userIdStr) else {
-                    self = .unknownError
-                    return
-            }
-            self = .deviceNotRegistered(userId: userId)
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .badRequest:
-            return "Bad request"
-        case .unauthorized:
-            return "User unauthorized"
-        case .unknownError, .internalServer:
-            return Constants.Errors.userFriendly
-        case .deviceNotRegistered:
-            return "Device is not registered"
-        }
     }
 }

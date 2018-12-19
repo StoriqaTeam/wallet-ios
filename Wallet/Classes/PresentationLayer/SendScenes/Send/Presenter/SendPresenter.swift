@@ -11,6 +11,8 @@ import UIKit
 
 class SendPresenter {
     
+    typealias LocalizedStrings = Strings.Send
+    
     weak var view: SendViewInput!
     weak var output: SendModuleOutput?
     var interactor: SendInteractorInput!
@@ -138,7 +140,7 @@ extension SendPresenter: SendInteractorOutput {
     }
     
     func updateAddressIsValid(_ valid: Bool) {
-        view.setAddressError(valid ? nil : "Address is non-existent")
+        view.setAddressError(valid ? nil : LocalizedStrings.nonExistAddressTitle)
     }
     
     func updateAccounts(accounts: [Account], index: Int) {
@@ -166,7 +168,7 @@ extension SendPresenter: SendInteractorOutput {
         }
         
         guard !fee.isZero else {
-            view.setPaymentFee("FREE")
+            view.setPaymentFee(LocalizedStrings.freeFeeLabel)
             return
         }
         
@@ -220,7 +222,7 @@ extension SendPresenter: SendInteractorOutput {
         storiqaLoader.stopLoader()
         
         let limitStr = currencyFormatter.getStringFrom(amount: limit.decimalValue(), currency: currency)
-        let message = "You’ve exceeded you daily transaction limit of \(limitStr) for this account."
+        let message = String(format: LocalizedStrings.exceedDayLimitMessage, limitStr)
         
         router.showFailure(message: message, from: view.viewController)
     }
@@ -285,22 +287,12 @@ extension SendPresenter: PopUpSendConfirmSuccessVMDelegate {
 extension SendPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: "send".localized())
+        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.screenTitle)
     }
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .horizontalSmall)
-        
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = deviceLayout.spacing
-        flowLayout.itemSize = deviceLayout.size
-        flowLayout.sectionInset = UIEdgeInsets(top: 0,
-                                               left: deviceLayout.spacing * 2,
-                                               bottom: 0,
-                                               right: deviceLayout.spacing * 2)
-        flowLayout.scrollDirection = .horizontal
-        
-        return flowLayout
+        return deviceLayout
     }
     
     private func getStringFrom(amount: Decimal?, currency: Currency) -> String {

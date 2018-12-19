@@ -20,6 +20,12 @@ protocol RegistrationNetworkProviderProtocol {
 
 class RegistrationNetworkProvider: NetworkLoadable, RegistrationNetworkProviderProtocol {
     
+    private let networkErrorResolver: NetworkErrorResolverProtocol
+    
+    init(networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol) {
+        self.networkErrorResolver = networkErrorResolverFactory.createRegistrationErrorResolver()
+    }
+    
     func register(email: String,
                   password: String,
                   firstName: String,
@@ -39,79 +45,24 @@ class RegistrationNetworkProvider: NetworkLoadable, RegistrationNetworkProviderP
                                                 deviceOs: deviceOs,
                                                 signHeader: signHeader)
         
-        loadObjectJSON(request: request, queue: queue) { (result) in
+        loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success(let response):
+                let code = response.responseStatusCode
                 let json = JSON(response.value)
                 
-                if let user = User(json: json) {
-                    completion(.success(user))
-                } else {
-                    let apiError = RegistrationProviderError(code: response.responseStatusCode, json: json)
-                    completion(.failure(apiError))
+                guard code == 200, let user = User(json: json) else {
+                    let error = strongSelf.networkErrorResolver.resolve(code: code, json: json)
+                    completion(.failure(error))
+                    return
                 }
+                completion(.success(user))
+                
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-
-enum RegistrationProviderError: LocalizedError, Error {
-    case badRequest
-    case unknownError
-    case internalServer
-    case validationError(email: String?, password: String?)
-    
-    init(code: Int, json: JSON) {
-        switch code {
-        case 400:
-            self = .badRequest
-        case 422:
-            var emailMessage: String?
-            var passwordMessage: String?
-            
-            if let emailErrors = json["email"].array {
-                emailMessage = emailErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
-            }
-            if let passwordErrors = json["password"].array {
-                passwordMessage = passwordErrors.compactMap { $0["message"].string }.reduce("", { $0 + " " + $1 }).trim()
-            }
-            
-            let hasEmailError = emailMessage != nil && !emailMessage!.isEmpty
-            let hasPasswordError = passwordMessage != nil && !passwordMessage!.isEmpty
-            
-            if hasEmailError || hasPasswordError {
-                self = .validationError(email: emailMessage, password: passwordMessage)
-            } else {
-                self = .unknownError
-            }
-        case 500:
-            self = .internalServer
-        default:
-            self = .unknownError
-        }
-    }
-    
-    var errorDescription: String? {
-        switch self {
-        case .badRequest:
-            return "Bad request"
-        case .internalServer:
-            return "Internal server error"
-        case .unknownError:
-            return Constants.Errors.userFriendly
-        case .validationError(let email, let password):
-            var result = email ?? ""
-            if let password = password {
-                if !result.isEmpty {
-                    result += "\n"
-                }
-                result += password
-            }
-            
-            return result.trim()
         }
     }
 }

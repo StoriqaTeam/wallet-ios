@@ -21,11 +21,16 @@ class AccountsPresenter {
     private let transactionsMapper: TransactionMapperProtocol
     private var accountsDataManager: AccountsDataManager!
     private var transactionDataManager: TransactionsDataManager!
+    private var animator: MyWalletToAccountsAnimator?
+    private var didAppear = false
     
     init(accountDisplayer: AccountDisplayerProtocol,
-         transactionsMapper: TransactionMapperProtocol) {
+         transactionsMapper: TransactionMapperProtocol,
+         animator: MyWalletToAccountsAnimator?) {
+        
         self.accountDisplayer = accountDisplayer
         self.transactionsMapper = transactionsMapper
+        self.animator = animator
     }
 }
 
@@ -34,6 +39,8 @@ class AccountsPresenter {
 
 extension AccountsPresenter: AccountsViewOutput {
     func viewAllPressed() {
+        resetAnimatorIfNeeded()
+        
         let account = interactor.getSelectedAccount()
         router.showTransactions(from: view.viewController, account: account)
     }
@@ -55,22 +62,15 @@ extension AccountsPresenter: AccountsViewOutput {
     }
     
     func transactionTableView(_ tableView: UITableView) {
-        let transactions = interactor.getTransactionForCurrentAccount()
-        let account = interactor.getSelectedAccount()
-        let displayable = transactions.map { transactionsMapper.map(from: $0, account: account) }
-        let txDataManager = TransactionsDataManager(transactions: displayable, isHiddenSections: true, maxCount: 10)
+        let txDataManager = TransactionsDataManager(transactions: [], isHiddenSections: true, maxCount: 10)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
-        
-        if displayable.isEmpty {
-            transactionDataManager.updateEmpty(placeholderImage: UIImage(named: "noTxs")!,
-                                               placeholderText: "")
-        }
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
-        collectionView.collectionViewLayout = collectionFlowLayout
+        let collectionViewLayout = self.collectionFlowLayout
+        collectionView.collectionViewLayout = collectionViewLayout
         
         let allAccounts = interactor.getAccounts()
         let accountsManager = AccountsDataManager(accounts: allAccounts,
@@ -78,6 +78,11 @@ extension AccountsPresenter: AccountsViewOutput {
         accountsManager.setCollectionView(collectionView)
         accountsDataManager = accountsManager
         accountsDataManager.delegate = self
+        
+        let height = collectionViewLayout.itemSize.height + collectionViewLayout.minimumLineSpacing * 2
+        view.setCollectionHeight(height)
+        
+        setupAnimatior()
     }
     
     func viewIsReady() {
@@ -85,10 +90,22 @@ extension AccountsPresenter: AccountsViewOutput {
         view.setupInitialState(numberOfPages: numberOfPages)
         configureNavBar()
         interactor.startObservers()
+        animator?.delegate = self
     }
     
     func viewWillAppear() {
         view.viewController.setWhiteNavigationBarButtons()
+    }
+    
+    func viewDidFinishTransitionAnimation() {
+        guard !didAppear else { return }
+        didAppear = true
+        
+        let transactions = interactor.getTransactionForCurrentAccount()
+        let account = interactor.getSelectedAccount()
+        transactionsMapper.map(from: transactions, account: account) { [weak self] (displayable) in
+            self?.transactionDataManager.firstUpdateTransactions(displayable)
+        }
     }
 }
 
@@ -106,6 +123,8 @@ extension AccountsPresenter: AccountsInteractorOutput {
     }
     
     func transactionsDidChange(_ txs: [Transaction]) {
+        guard didAppear else { return }
+        
         let account = interactor.getSelectedAccount()
         
         transactionsMapper.map(from: txs, account: account) { [weak self] (displayable) in
@@ -137,6 +156,15 @@ extension AccountsPresenter: AccountsModuleInput {
 }
 
 
+// MARK: - MyWalletToAccountsAnimatorDelegate
+
+extension AccountsPresenter: MyWalletToAccountsAnimatorDelegate {
+    func animationComplete(completion: @escaping (() -> Void)) {
+        view.showAccounts(completion: completion)
+    }
+}
+
+
 // MARK: - AccountsDataManagerDelegate
 
 extension AccountsPresenter: AccountsDataManagerDelegate {
@@ -151,6 +179,7 @@ extension AccountsPresenter: AccountsDataManagerDelegate {
 
 extension AccountsPresenter: TransactionsDataManagerDelegate {
     func didChooseTransaction(_ transaction: TransactionDisplayable) {
+        resetAnimatorIfNeeded()
         router.showTransactionDetails(with: transaction, from: view.viewController)
     }
 }
@@ -161,22 +190,31 @@ extension AccountsPresenter: TransactionsDataManagerDelegate {
 extension AccountsPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .horizontal)
-        
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = deviceLayout.spacing
-        flowLayout.itemSize = deviceLayout.size
-        flowLayout.sectionInset = UIEdgeInsets(top: 0,
-                                               left: deviceLayout.spacing * 2,
-                                               bottom: 0,
-                                               right: deviceLayout.spacing * 2)
-        flowLayout.scrollDirection = .horizontal
-        
-        return flowLayout
+        return deviceLayout
     }
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
         let iso = interactor.getInitialCurrencyISO()
         view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
+    }
+    
+    private func setupAnimatior() {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        let navigationBarHeight = view.viewController.navigationController?.navigationBar.frame.height ?? 44
+        let itemX = (Constants.Sizes.screenWidth - collectionFlowLayout.itemSize.width) / 2
+        let itemY = statusBarHeight + navigationBarHeight + collectionFlowLayout.minimumLineSpacing
+        let newFrame = CGRect(x: itemX,
+                              y: itemY,
+                              width: collectionFlowLayout.itemSize.width,
+                              height: collectionFlowLayout.itemSize.height)
+        
+        animator?.setDestinationFrame(newFrame)
+    }
+    
+    private func resetAnimatorIfNeeded() {
+        if let navigation = view.viewController.navigationController as? TransitionNavigationController {
+            navigation.useDefaultTransitioningDelegate()
+        }
     }
 }

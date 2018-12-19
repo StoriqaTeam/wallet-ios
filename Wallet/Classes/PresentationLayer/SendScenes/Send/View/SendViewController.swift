@@ -10,6 +10,9 @@ import UIKit
 
 class SendViewController: UIViewController {
     
+    
+    typealias LocalizedStrings = Strings.Send
+    
     var output: SendViewOutput!
     
     // MARK: IBOutlets
@@ -113,6 +116,7 @@ extension SendViewController: SendViewInput {
         addNotificationObservers()
         configInterface()
         addHideKeyboardGuesture()
+        localizeText()
     }
     
     func setScannedAddress(_ address: String) {
@@ -180,9 +184,10 @@ extension SendViewController: SendViewInput {
                     self.view.layoutSubviews()
                 }
             })
+            
         } else {
             self.errorLabel.isHidden = false
-            self.errorLabel.text = "not_enough_funds".localized()
+            self.errorLabel.text = LocalizedStrings.notEnoughFundsErrorMessage
             
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.layoutSubviews()
@@ -284,14 +289,7 @@ extension SendViewController {
         receiverTextField.delegate = self
         scrollView.delegate = self
         
-        receiverTitleLabel.text = "receiver_address".localized()
-        amountTitleLabel.text = "amount".localized()
-        amountTextField.placeholder = "enter_amount".localized()
-        
-        receiverTextField.placeholder = "receiver_input_placeholder".localized()
         receiverTextField.autocorrectionType = .no
-        scanQRButton.setTitle("scan_QR".localized() + "   ", for: .normal)
-        sendButton.setTitle("send".localized(), for: .normal)
         
         receiverTitleLabel.font = Theme.Font.caption
         amountTitleLabel.font = Theme.Font.caption
@@ -318,6 +316,24 @@ extension SendViewController {
         
         sendButton.isEnabled = false
         loaderView.isUserInteractionEnabled = false
+    }
+    
+    private func localizeText() {
+        receiverTitleLabel.text = LocalizedStrings.recepientAddressTitle
+        receiverTextField.placeholder = LocalizedStrings.recepientInputPlaceholder
+        scanQRButton.setTitle(LocalizedStrings.scanButtonTitle + "   ", for: .normal)
+        
+        amountTitleLabel.text = LocalizedStrings.amountTitle
+        amountTextField.placeholder = LocalizedStrings.amountPlaceholder
+        
+        paymentFeeTitleLabel.text = LocalizedStrings.feeTitle
+        medianWaitTitleLabel.text = LocalizedStrings.medianWaitTitle
+        paymentFeeLowLabel.text = LocalizedStrings.lowFee
+        paymentFeeMediumLabel.text = LocalizedStrings.mediumFee
+        paymentFeeHighLabel.text = LocalizedStrings.highFee
+        
+        subtotalTitleLabel.text = LocalizedStrings.subtotalTitle
+        sendButton.setTitle(LocalizedStrings.screenTitle, for: .normal)
     }
     
     private func setNavBarTransparency() {

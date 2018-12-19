@@ -12,6 +12,8 @@ import AudioToolbox.AudioServices
 
 class MyWalletPresenter {
     
+    typealias LocalizedStrings = Strings.MyWallet
+    
     weak var view: MyWalletViewInput!
     weak var output: MyWalletModuleOutput?
     var interactor: MyWalletInteractorInput!
@@ -26,13 +28,17 @@ class MyWalletPresenter {
     private var hideNotificationAnimator: UIViewPropertyAnimator?
     private var notificationView: UIView?
     private var isPanGestureActive = false
+    private let animator: MyWalletToAccountsAnimator
     
     init(accountDisplayer: AccountDisplayerProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol,
-         currencyFormatter: CurrencyFormatterProtocol) {
+         currencyFormatter: CurrencyFormatterProtocol,
+         animator: MyWalletToAccountsAnimator) {
+        
         self.accountDisplayer = accountDisplayer
         self.denominationUnitsConverter = denominationUnitsConverter
         self.currencyFormatter = currencyFormatter
+        self.animator = animator
     }
 }
 
@@ -43,11 +49,16 @@ extension MyWalletPresenter: MyWalletViewOutput {
     
     func viewIsReady() {
         view.setupInitialState()
-        configureNavigationBar()
         interactor.startObservers()
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        view.setNavigationBarTopSpace(statusBarHeight)
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
+        let xOrigin = (Constants.Sizes.screenWidth - collectionFlowLayout.itemSize.width) / 2
+        view.setNavigationBarHorizontalSpace(xOrigin)
+        
         collectionView.collectionViewLayout = collectionFlowLayout
         
         let allAccounts = interactor.getAccounts()
@@ -57,6 +68,26 @@ extension MyWalletPresenter: MyWalletViewOutput {
         accountsManager.setCollectionView(collectionView)
         dataManager = accountsManager
         dataManager.delegate = self
+    }
+    
+    
+    func navigationBar(_ navigationBar: UINavigationBar) {
+        view.viewController.setWhiteNavigationBarButtons()
+        
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = .clear
+        navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
+        navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
+        
+        navigationBar.prefersLargeTitles = true
+        navigationBar.topItem?.title = LocalizedStrings.navigationBarTitle
+        
+        var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
+        titleTextAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
+        navigationBar.titleTextAttributes = titleTextAttributes
+        navigationBar.largeTitleTextAttributes = titleTextAttributes
     }
     
     func addNewTapped() {
@@ -111,10 +142,10 @@ extension MyWalletPresenter: MyWalletInteractorOutput {
         }
         
         if !notificationStr.isEmpty {
-            notificationStr = "You received " + notificationStr
+            let message = LocalizedStrings.newFundsReceivedMessage
+            notificationStr = message + notificationStr
             showReceivedNotification(message: notificationStr)
         }
-        
     }
     
 }
@@ -136,13 +167,37 @@ extension MyWalletPresenter: MyWalletModuleInput {
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletDataManagerDelegate {
+    func rectOfSelectedItem(_ rect: CGRect?, in collectionView: UICollectionView) {
+        guard let frame = rect else { return }
+        let accountFrame = collectionView.convert(frame, to: viewController.view)
+        animator.setInitialFrame(accountFrame)
+
+    }
+    
     
     func selectAccount(_ account: Account) {
         let accountWatcher = interactor.getAccountWatcher()
         accountWatcher.setAccount(account)
         router.showAccountsWith(accountWatcher: accountWatcher,
                                 from: view.viewController,
-                                tabBar: mainTabBar)
+                                tabBar: mainTabBar,
+                                animator: animator)
+    }
+    
+    func didChangeOffset(_ newValue: CGFloat) {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        
+        guard newValue > 0 else {
+            let newOffset = floor(newValue / 5)
+            view.setNavigationBarTopSpace(statusBarHeight - newOffset)
+            return
+        }
+        
+        guard newValue < 50 else {
+            return
+        }
+        
+        view.setNavigationBarTopSpace(statusBarHeight - newValue)
     }
     
 }
@@ -153,30 +208,10 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
 extension MyWalletPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .vertical)
-        let flowLayout = UICollectionViewFlowLayout()
+        let bounceLayout = BouncyLayout(style: .prominent)
+        bounceLayout.setConfigureFlow(flow: deviceLayout)
         
-        flowLayout.minimumLineSpacing = deviceLayout.spacing
-        flowLayout.minimumInteritemSpacing = deviceLayout.spacing
-        flowLayout.sectionInset = UIEdgeInsets(top: deviceLayout.spacing,
-                                               left: 0,
-                                               bottom: deviceLayout.spacing,
-                                               right: 0)
-        flowLayout.itemSize = deviceLayout.size
-        
-        return flowLayout
-    }
-    
-    private func configureNavigationBar() {
-        guard let navBar = view.viewController.navigationController?.navigationBar else { return }
-
-        navBar.prefersLargeTitles = true
-        navBar.topItem?.title = "my_wallet".localized()
-        
-        view.viewController.setWhiteNavigationBarButtons()
-        var titleTextAttributes = navBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
-        titleTextAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
-        navBar.titleTextAttributes = titleTextAttributes
-        navBar.largeTitleTextAttributes = titleTextAttributes
+        return bounceLayout
     }
     
     private func addPullToRefresh(collectionView: UICollectionView) {

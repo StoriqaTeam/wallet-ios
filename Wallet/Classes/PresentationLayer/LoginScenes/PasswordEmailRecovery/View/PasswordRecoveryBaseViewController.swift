@@ -10,6 +10,8 @@ import Foundation
 
 class PasswordRecoveryBaseViewController: UIViewController {
     
+    typealias LocalizedString = Strings.PasswordRecovery
+    
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var confirmButton: DefaultButton!
@@ -36,7 +38,7 @@ class PasswordRecoveryBaseViewController: UIViewController {
     }
     
     func configureInterface() {
-        titleLabel.text = "password_recovery".localized()
+        titleLabel.text = LocalizedString.screenTitle
         titleLabel.font = Theme.Font.title
         
         subtitleLabel.font = Theme.Font.subtitle

@@ -12,4 +12,6 @@ import UIKit
 protocol MyWalletViewInput: class, Presentable {
     func setupInitialState()
     func reloadWithAccounts()
+    func setNavigationBarTopSpace(_ topSpace: CGFloat)
+    func setNavigationBarHorizontalSpace(_ horizontalSpace: CGFloat)
 }

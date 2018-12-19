@@ -13,9 +13,9 @@ class PopUpDefaultFailureVM: PopUpViewModelProtocol {
     
     init(message: String) {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "generalErrorIcon"),
-                                   title: "smth_went_wrong".localized(),
+                                   title: Localization.failureTitle,
                                    text: message,
-                                   actionButtonTitle: "ok".localized(),
+                                   actionButtonTitle: Localization.okButton,
                                    hasCloseButton: false)
     }
     

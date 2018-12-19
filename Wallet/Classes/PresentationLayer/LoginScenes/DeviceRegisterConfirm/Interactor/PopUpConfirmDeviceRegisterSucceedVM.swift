@@ -15,9 +15,9 @@ protocol PopUpConfirmDeviceRegisterSucceedVMDelegate: class {
 class PopUpConfirmDeviceRegisterSucceedVM: PopUpViewModelProtocol {
     weak var delegate: PopUpConfirmDeviceRegisterSucceedVMDelegate?
     var apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
-                                   title: "Device was successfully registered",
+                                   title: Localization.deviceRegisterSuccessTitle,
                                    text: "",
-                                   actionButtonTitle: "sign_in".localized(),
+                                   actionButtonTitle: Localization.signInButton,
                                    hasCloseButton: false)
     
     func performAction() {

@@ -14,7 +14,6 @@ import Security
 
 protocol KeychainProviderProtocol: class {
     var pincode: String? { get set }
-    var password: String? { get set }
     var socialAuthToken: String? { get set }
     var privKeyEmail: [String: String]? { get set }
     
@@ -40,7 +39,6 @@ class KeychainProvider: KeychainProviderProtocol {
     
     enum KeychainKeys: String, CaseIterable {
         case pincode
-        case password
         case socialAuthToken
     }
     
@@ -53,16 +51,6 @@ class KeychainProvider: KeychainProviderProtocol {
         }
     }
     
-    var password: String? {
-        get {
-            return getString(for: .password)
-        }
-        
-        set {
-            return setString(newValue, for: .password)
-        }
-    }
-    
     var socialAuthToken: String? {
         get {
             return getString(for: .socialAuthToken)
@@ -72,7 +60,7 @@ class KeychainProvider: KeychainProviderProtocol {
             return setString(newValue, for: .socialAuthToken)
         }
     }
-    
+
     var privKeyEmail: [String: String]? {
         get {
             

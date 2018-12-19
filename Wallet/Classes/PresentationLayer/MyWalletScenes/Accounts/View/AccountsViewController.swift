@@ -10,6 +10,8 @@ import UIKit
 
 
 class AccountsViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.Accounts
 
     var output: AccountsViewOutput!
     
@@ -19,21 +21,36 @@ class AccountsViewController: UIViewController {
     @IBOutlet private var changeButton: RouteButton!
     @IBOutlet private var depositButton: RouteButton!
     @IBOutlet private var sendButton: RouteButton!
+    @IBOutlet private var collectionHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var lastTransactionsTitle: UILabel!
+    @IBOutlet private var viewAllButton: UIButton!
     
 
     // MARK: Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         output.accountsCollectionView(accountsCollectionView)
         output.transactionTableView(lastTransactionsTableView)
         output.viewIsReady()
+        
+        accountsCollectionView.alpha = 0
+        lastTransactionsTitle.alpha = 0
+        viewAllButton.alpha = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.configureCollections()
         output.viewWillAppear()
+        
+        self.output.viewDidFinishTransitionAnimation()
+        
+        UIView.animate(withDuration: 0.25, delay: 0.2, options: [], animations: {
+            self.lastTransactionsTitle.alpha = 1
+            self.viewAllButton.alpha = 1
+        }, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,6 +74,15 @@ class AccountsViewController: UIViewController {
 // MARK: - AccountsViewInput
 
 extension AccountsViewController: AccountsViewInput {
+    
+    func showAccounts(completion: @escaping (() -> Void)) {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.accountsCollectionView.alpha = 1
+        }, completion: {_ in
+            completion()
+        })
+    }
+    
     func updatePagesCount(_ count: Int) {
         accountsPageControl.numberOfPages = count
     }
@@ -70,6 +96,12 @@ extension AccountsViewController: AccountsViewInput {
         configureButtons()
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
+        lastTransactionsTitle.text = LocalizedStrings.lastTransactionsTitle
+        viewAllButton.setTitle(LocalizedStrings.viewAllButton, for: .normal)
+    }
+    
+    func setCollectionHeight(_ height: CGFloat) {
+        collectionHeightConstraint.constant = height
     }
 }
 

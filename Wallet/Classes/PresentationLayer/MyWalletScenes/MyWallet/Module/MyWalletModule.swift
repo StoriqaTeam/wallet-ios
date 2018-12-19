@@ -13,9 +13,11 @@ class MyWalletModule {
                       accountWatcher: CurrentAccountWatcherProtocol) -> MyWalletModuleInput {
         let router = MyWalletRouter(app: app)
         
+        let animator = MyWalletToAccountsAnimator()
         let presenter = MyWalletPresenter(accountDisplayer: app.accountDisplayer,
                                           denominationUnitsConverter: app.denominationUnitsConverter,
-                                          currencyFormatter: app.currencyFormatter)
+                                          currencyFormatter: app.currencyFormatter,
+                                          animator: animator)
         presenter.mainTabBar = tabBar
         
         let interactor = MyWalletInteractor(accountsProvider: app.accountsProvider,

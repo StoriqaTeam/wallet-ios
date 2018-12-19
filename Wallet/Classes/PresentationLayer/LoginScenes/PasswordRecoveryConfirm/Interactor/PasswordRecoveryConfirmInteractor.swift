@@ -46,14 +46,11 @@ extension PasswordRecoveryConfirmInteractor: PasswordRecoveryConfirmInteractorIn
             case .success:
                 self?.output.passwordRecoverySucceed()
             case .failure(let error):
-                if let error = error as? ConfirmResetPasswordNetworkProviderError {
-                    switch error {
-                    case .validationError(let password):
-                        self?.output.formValidationFailed(password: password)
-                        return
-                    default: break
-                    }
+                if let error = error as? ConfirmResetPasswordNetworkError {
+                    self?.output.formValidationFailed(password: error.password)
+                    return
                 }
+                
                 self?.output.passwordRecoveryFailed(message: error.localizedDescription)
             }
         }

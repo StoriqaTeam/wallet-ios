@@ -11,6 +11,8 @@ import UIKit
 
 class EditProfilePresenter {
     
+    typealias LocalizedStrings = Strings.EditProfile
+    
     weak var view: EditProfileViewInput!
     weak var output: EditProfileModuleOutput?
     var interactor: EditProfileInteractorInput!
@@ -83,7 +85,7 @@ extension EditProfilePresenter: EditProfileModuleInput {
 
 extension EditProfilePresenter {
     private func configureNavigtionBar() {
-        view.viewController.title = "Edit profile"
+        view.viewController.title = LocalizedStrings.navigationBarTitle
     }
     
     private func addLoader() {

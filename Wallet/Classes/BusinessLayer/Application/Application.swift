@@ -37,6 +37,7 @@ class Application {
                                                                               defaults: self.defaultsProvider,
                                                                               userkeyManager: self.userKeyManager)
     lazy var orderFactory: OrderFactoryProtocol = OrderFactory()
+    lazy var networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol = NetworkErrorResolverFactory(channelStorage: self.channelStorage)
     
     
     // MARK: - System store -
@@ -54,25 +55,26 @@ class Application {
     
     
     // MARK: - Network Providers -
-    lazy var loginNetworkProvider: LoginNetworkProviderProtocol = LoginNetworkProvider()
-    lazy var userNetworkProvider: CurrentUserNetworkProviderProtocol = CurrentUserNetworkProvider()
-    lazy var accountsNetworkProvider: AccountsNetworkProviderProtocol = AccountsNetworkProvider()
-    lazy var registrationNetworkProvider: RegistrationNetworkProviderProtocol = RegistrationNetworkProvider()
-    lazy var emailConfirmNetworkProvider: EmailConfirmNetworkProviderProtocol = EmailConfirmNetworkProvider()
-    lazy var transactionsNetworkProvider: TransactionsNetworkProviderProtocol = TransactionsNetworkProvider()
-    lazy var resetPasswordNetworkProvider: ResetPasswordNetworkProviderProtocol = ResetPasswordNetworkProvider()
-    lazy var confirmResetPasswordNetworkProvider: ConfirmResetPasswordNetworkProviderProtocol = ConfirmResetPasswordNetworkProvider()
-    lazy var sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol = SendTransactionNetworkProvider()
+    lazy var loginNetworkProvider: LoginNetworkProviderProtocol = LoginNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var userNetworkProvider: CurrentUserNetworkProviderProtocol = CurrentUserNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var accountsNetworkProvider: AccountsNetworkProviderProtocol = AccountsNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var registrationNetworkProvider: RegistrationNetworkProviderProtocol = RegistrationNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var emailConfirmNetworkProvider: EmailConfirmNetworkProviderProtocol = EmailConfirmNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var transactionsNetworkProvider: TransactionsNetworkProviderProtocol = TransactionsNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var resetPasswordNetworkProvider: ResetPasswordNetworkProviderProtocol = ResetPasswordNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var confirmResetPasswordNetworkProvider: ConfirmResetPasswordNetworkProviderProtocol = ConfirmResetPasswordNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var sendTransactionNetworkProvider: SendTransactionNetworkProviderProtocol = SendTransactionNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
     lazy var ratesNetworkProvider: RatesNetworkProviderProtocol = RatesNetworkProvider()
-    lazy var changePasswordNetworkProvider: ChangePasswordNetworkProviderProtocol = ChangePasswordNetworkProvider()
-    lazy var createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol = CreateAccountNetworkProvider()
-    lazy var socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol = SocialAuthNetworkProvider()
-    lazy var feeNetworkProvider: FeeNetworkProviderProtocol = FeeNetworkProvider()
-    lazy var addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol = AddDeviceNetworkProvider()
-    lazy var confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol = ConfirmAddDeviceNetworkProvider()
-    lazy var exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol = ExchangeRateNetworkProvider()
-    lazy var updateUserNetworkProvider: UpdateUserNetworkProviderProtocol = UpdateUserNetworkProvider()
-    lazy var resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol = ResendConfirmEmailNetworkProvider()
+    lazy var changePasswordNetworkProvider: ChangePasswordNetworkProviderProtocol = ChangePasswordNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var createAccountsNetworkProvider: CreateAccountNetworkProviderProtocol = CreateAccountNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol = SocialAuthNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var feeNetworkProvider: FeeNetworkProviderProtocol = FeeNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var addDeviceNetworkProvider: AddDeviceNetworkProviderProtocol = AddDeviceNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var confirmAddDeviceNetworkProvider: ConfirmAddDeviceNetworkProviderProtocol = ConfirmAddDeviceNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var exchangeRateNetworkProvider: ExchangeRateNetworkProviderProtocol = ExchangeRateNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var updateUserNetworkProvider: UpdateUserNetworkProviderProtocol = UpdateUserNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol = ResendConfirmEmailNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var refreshTokenNetworkProvider: RefreshTokenNetworkProviderProtocol = RefreshTokenNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
     
     
     // MARK: - Common Providers -
@@ -83,10 +85,9 @@ class Application {
     lazy var currencyImageProvider: CurrencyImageProviderProtocol = CurrencyImageProvider()
     lazy var authTokenDefaultsProvider: AuthTokenDefaultsProviderProtocol = AuthTokenDefaultsProvider()
     lazy var authTokenProvider: AuthTokenProviderProtocol = AuthTokenProvider(defaults: self.authTokenDefaultsProvider,
-                                                                              loginNetworkProvider: self.loginNetworkProvider,
-                                                                              socialAuthNetworkProvider: self.socialAuthNetworkProvider,
                                                                               authDataResolver: self.authDataResolver,
-                                                                              signHeaderFactory: self.signHeaderFactory)
+                                                                              signHeaderFactory: self.signHeaderFactory,
+                                                                              refreshTokenNetworkProvider: self.refreshTokenNetworkProvider)
     lazy var contactsProvider: ContactsProviderProtocol = ContactsProvider(dataStoreService: self.contactsDataStoreService)
     lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService)
     lazy var transactionsProvider: TransactionsProviderProtocol = TransactionsProvider(transactionDataStoreService:
@@ -137,9 +138,7 @@ class Application {
                                                                accountsNetworkProvider: self.accountsNetworkProvider,
                                                                accountsDataStore: self.accountsDataStoreService,
                                                                signHeaderFactory: self.signHeaderFactory)
-    lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(defaults: self.defaultsProvider,
-                                                                           keychain: self.keychainProvider,
-                                                                           userDataStoreService: self.userDataStoreService)
+    lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(userDataStoreService: self.userDataStoreService)
     lazy var sendTransactionService: SendTransactionServiceProtocol = SendTransactionService(sendNetworkProvider: self.sendTransactionNetworkProvider,
                                                                                              userDataStoreService: self.userDataStoreService,
                                                                                              authTokenProvider: self.authTokenProvider,
@@ -165,6 +164,7 @@ class Application {
     lazy var transactionOpponentResolver: TransactionOpponentResolverProtocol = TransactionOpponentResolver(transactionDirectionResolver: self.transactionDirectionResolver)
     lazy var cryptoAddressResolver: CryptoAddressResolverProtocol = CryptoAddressResolver(btcAddressValidator: self.btcAddressValidator,
                                                                                           ethAddressValidator: self.ethAddressValidator)
+    lazy var paymentRequestResolver: PaymentRequestResolverProtocol = PaymentRequestResolver(cryptoAddressResolver: self.cryptoAddressResolver)
     
     // MARK: - Sorters -
     lazy var contactsSorter: ContactsSorterProtocol = ContactsSorter()

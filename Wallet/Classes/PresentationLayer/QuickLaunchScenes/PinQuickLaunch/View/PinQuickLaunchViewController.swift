@@ -10,6 +10,8 @@ import UIKit
 
 
 class PinQuickLaunchViewController: BaseQuickLaunchViewController {
+    
+    typealias LocalizedStrings = Strings.PinQuickLaunch
 
     var output: PinQuickLaunchViewOutput!
 
@@ -22,8 +24,8 @@ class PinQuickLaunchViewController: BaseQuickLaunchViewController {
     }
     
     private func configureInterface() {
-        titleLabel.text = "pin_quick_launch_title".localized()
-        actionButton.setTitle("set_up_pin".localized(), for: .normal)
+        titleLabel.text = LocalizedStrings.title
+        actionButton.setTitle(LocalizedStrings.button, for: .normal)
     }
     
     // MARK: Actions
@@ -31,7 +33,6 @@ class PinQuickLaunchViewController: BaseQuickLaunchViewController {
     @IBAction func performAction(_ sender: UIButton) {
         output.performAction()
     }
-
 }
 
 

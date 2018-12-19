@@ -80,26 +80,31 @@ extension LoginInteractor: LoginInteractorInput {
         }
         
         loginService.signIn(email: email, password: password) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            
             switch result {
             case .success:
-                self?.loginSucceed()
+                strongSelf.loginSucceed()
             case .failure(let error):
-                if let error = error as? LoginProviderError {
-                    switch error {
-                    case .validationError(let email, let password):
-                        self?.output.formValidationFailed(email: email, password: password)
-                        return
-                    case .deviceNotRegistered(let userId):
-                        self?.deviceRegisterUserId = userId
-                        self?.output.deviceNotRegistered()
-                        return
-                    case .emailNotVerified:
-                        self?.output.emailNotVerified()
-                    default: break
-                    }
+                if let error = error as? AuthNetworkError {
+                    strongSelf.output.formValidationFailed(email: error.email, password: error.password)
+                    return
                 }
                 
-                self?.output.loginFailed(message: error.localizedDescription)
+                if let error = error as? DeviceNetworkError,
+                    case .deviceNotRegistered(let userId) = error {
+                    strongSelf.deviceRegisterUserId = userId
+                    strongSelf.output.deviceNotRegistered()
+                    return
+                }
+                
+                if let error = error as? EmailNetworkError,
+                    case .emailNotVerified = error {
+                    strongSelf.output.emailNotVerified()
+                    return
+                }
+                
+                strongSelf.output.loginFailed(message: error.localizedDescription)
             }
         }
     }
@@ -117,15 +122,13 @@ extension LoginInteractor: LoginInteractorInput {
             case .success:
                 self?.loginSucceed()
             case .failure(let error):
-                if let error = error as? SocialAuthNetworkProviderError {
-                    switch error {
-                    case .deviceNotRegistered(let userId):
-                        self?.deviceRegisterUserId = userId
-                        self?.output.deviceNotRegistered()
-                        return
-                    default: break
-                    }
+                if let error = error as? DeviceNetworkError,
+                    case .deviceNotRegistered(let userId) = error {
+                    self?.deviceRegisterUserId = userId
+                    self?.output.deviceNotRegistered()
+                    return
                 }
+                
                 self?.output.loginFailed(message: error.localizedDescription)
             }
         }

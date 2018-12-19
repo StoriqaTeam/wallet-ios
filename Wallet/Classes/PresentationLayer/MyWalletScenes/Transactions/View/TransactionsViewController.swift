@@ -10,6 +10,8 @@ import UIKit
 
 
 class TransactionsViewController: UIViewController {
+    
+    typealias LocalizedStrings = Strings.Transactions
 
     var output: TransactionsViewOutput!
 
@@ -85,6 +87,9 @@ extension TransactionsViewController {
         filterSegmentControl.setWidth(40, forSegmentAt: 0)
         filterSegmentControl.setWidth(90, forSegmentAt: 1)
         filterSegmentControl.setWidth(90, forSegmentAt: 2)
+        filterSegmentControl.setTitle(LocalizedStrings.allButton, forSegmentAt: 0)
+        filterSegmentControl.setTitle(LocalizedStrings.sentButton, forSegmentAt: 1)
+        filterSegmentControl.setTitle(LocalizedStrings.receivedButton, forSegmentAt: 2)
     }
     
     private func addFilterButton() {

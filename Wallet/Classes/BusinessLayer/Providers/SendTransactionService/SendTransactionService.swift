@@ -140,8 +140,7 @@ extension SendTransactionService {
                     completion(.success(nil))
                 case .failure(let error):
                     if retryCount > 0,
-                        let error = error as? SendTransactionNetworkProviderError,
-                        case .internalServer = error {
+                        case DefaultNetworkProviderError.internalServer = error {
                         self?.sendTransaction(retryCount: retryCount,
                                               authToken: authToken,
                                               userId: userId,
@@ -192,7 +191,7 @@ extension SendTransactionService {
                 log.warn("Send: Exchange rate id: \(exchangeId)")
                 log.warn("Send: From currency: \(fromAccount)")
                 log.warn("\n\n")
-            
+                
                 switch result {
                 case .success:
                     self?.accountsUpdater.update()

@@ -24,8 +24,8 @@ class LoginService: LoginServiceProtocol {
     private let socialAuthNetworkProvider: SocialAuthNetworkProviderProtocol
     private let userNetworkProvider: CurrentUserNetworkProviderProtocol
     private let userDataStore: UserDataStoreServiceProtocol
-    private let keychain: KeychainProviderProtocol
     private let defaults: DefaultsProviderProtocol
+    private let keychain: KeychainProviderProtocol
     private let accountsNetworkProvider: AccountsNetworkProviderProtocol
     private let accountsDataStore: AccountsDataStoreServiceProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
@@ -76,11 +76,10 @@ class LoginService: LoginServiceProtocol {
                 switch result {
                 case .success(let authToken):
                     strongSelf.authTokenDefaultsProvider.authToken = authToken
-                    strongSelf.keychain.password = password
                     strongSelf.defaults.socialAuthProvider = nil
                     strongSelf.keychain.socialAuthToken = nil
                     strongSelf.getUser(authToken: authToken,
-                                       authData: .email(email: email, password: password),
+                                       email: email,
                                        completion: completion)
                 case .failure(let error):
                     completion(Result.failure(error))
@@ -115,9 +114,8 @@ class LoginService: LoginServiceProtocol {
                     strongSelf.authTokenDefaultsProvider.authToken = authToken
                     strongSelf.defaults.socialAuthProvider = tokenProvider
                     strongSelf.keychain.socialAuthToken = oauthToken
-                    strongSelf.keychain.password = nil
                     strongSelf.getUser(authToken: authToken,
-                                       authData: AuthData.social(provider: tokenProvider, token: oauthToken, email: email),
+                                       email: email,
                                        completion: completion)
                 case .failure(let error):
                     completion(Result.failure(error))
@@ -130,14 +128,9 @@ class LoginService: LoginServiceProtocol {
 // MARK: - Private methods
 
 extension LoginService {
-    private func getUser(authToken: String, authData: AuthData, completion: @escaping (Result<String?>) -> Void) {
+    private func getUser(authToken: String, email: String, completion: @escaping (Result<String?>) -> Void) {
         
-        let currentEmail: String
-        
-        switch authData {
-        case .email(let email, _): currentEmail = email
-        case .social(_, _, let email): currentEmail = email
-        }
+        let currentEmail: String = email
         
         let signHeader: SignHeader 
         do {
@@ -158,7 +151,10 @@ extension LoginService {
                 switch result {
                 case .success(let user):
                     strongSelf.userDataStore.update(user)
-                    strongSelf.getAccounts(authToken: authToken, authData: authData, userId: user.id, completion: completion)
+                    strongSelf.getAccounts(authToken: authToken,
+                                           email: currentEmail,
+                                           userId: user.id,
+                                           completion: completion)
                     
                 case .failure(let error):
                     completion(.failure(error))
@@ -166,9 +162,8 @@ extension LoginService {
         }
     }
     
-    private func getAccounts(authToken: String, authData: AuthData, userId: Int, completion: @escaping (Result<String?>) -> Void) {
-        
-        let currentEmail = userDataStore.getCurrentUser().email
+    private func getAccounts(authToken: String, email: String, userId: Int, completion: @escaping (Result<String?>) -> Void) {
+        let currentEmail = email
         
         let signHeader: SignHeader
         do {

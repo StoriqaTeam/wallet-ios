@@ -10,6 +10,8 @@ import UIKit
 
 
 class ExchangeConfirmPopUpViewController: BasePopUpViewController {
+    
+    typealias LocalizedStrings = Strings.ExchangeConfirmPopUp
 
     var output: ExchangeConfirmPopUpViewOutput!
     
@@ -31,6 +33,7 @@ class ExchangeConfirmPopUpViewController: BasePopUpViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInterface()
+        localizeText()
         output.viewIsReady()
     }
     
@@ -86,4 +89,12 @@ extension ExchangeConfirmPopUpViewController {
         closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }
     
+    private func localizeText() {
+        titleLabel.text = LocalizedStrings.screenTitle
+        fromTitle.text = LocalizedStrings.fromTitle
+        toTitle.text = LocalizedStrings.toTitle
+        amountTitle.text = LocalizedStrings.amountTitle
+        confirmButton.setTitle(LocalizedStrings.confirmButton, for: .normal)
+        closeButton.setTitle(LocalizedStrings.closeButton, for: .normal)
+    }
 }

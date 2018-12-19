@@ -34,9 +34,11 @@ class MainTabBarModule {
         // MARK: - Channels
         let shortPollingChannel = app.channelStorage.shortPollingChannel
         let depositShortPollingChannel = app.channelStorage.depositShortPollingChannel
+        let tokenExpiredChannel = app.channelStorage.tokenExpiredChannel
         
         interactor.setShortPollingChannelInput(shortPollingChannel)
         interactor.setDepositShortPollingChannelInput(depositShortPollingChannel)
+        interactor.setTokenExpiredChannelInput(tokenExpiredChannel)
         
         return presenter
     }
