@@ -116,7 +116,6 @@ extension LoginPresenter: LoginInteractorOutput {
         router.showFailure(message: message,
                            from: view.viewController)
     }
-    
 }
 
 
