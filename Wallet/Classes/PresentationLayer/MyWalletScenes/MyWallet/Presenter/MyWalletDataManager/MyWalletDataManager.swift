@@ -195,7 +195,7 @@ extension MyWalletDataManager: UICollectionViewDelegateFlowLayout {
             footerView.isHidden = false
             return footerView
         default:
-            assert(false, "Unexpected element kind")
+            fatalError("Unexpected element kind")
         }
     }
 }
