@@ -13,6 +13,8 @@ import UIKit
 struct Theme {
     
     struct Color {
+        
+        static let brightOrange = UIColor(red: 200/255, green: 141/255, blue: 49/255, alpha: 1.0)
         static let brightSkyBlue = UIColor(red: 0.0, green: 178.0 / 255.0, blue: 1.0, alpha: 1.0)
         static let cloudyBlue = UIColor(red: 195.0 / 255.0, green: 206.0 / 255.0, blue: 220.0 / 255.0, alpha: 1.0)
         static let greyishBrown = UIColor(white: 80.0 / 255.0, alpha: 1.0)
