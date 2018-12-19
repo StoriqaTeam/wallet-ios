@@ -119,6 +119,16 @@ extension MyWalletDataManager: UICollectionViewDelegate {
             return snapshot
         }
         
+        if let layout = collectionView.collectionViewLayout as? SpringFlowLayout {
+            let topCellSnapshots = layout.getTopCellSnapshots()
+            
+            if let topCell = topCellSnapshots.last {
+                snapshots.insert(topCell, at: 0)
+            }
+            
+            topCellSnapshots.forEach { $0.removeFromSuperview() }
+        }
+        
         if let footer = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).first,
             let snapshot = footer.snapshotView(afterScreenUpdates: false) {
             footer.isHidden = true

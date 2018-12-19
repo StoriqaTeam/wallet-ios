@@ -41,6 +41,12 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         self.headerReferenceSize = flow.headerReferenceSize
     }
     
+    func getTopCellSnapshots() -> [UIView] {
+        let sortedKeys = topCellSnapshots.keys.sorted()
+        let sortedViews = sortedKeys.compactMap { topCellSnapshots[$0] }
+        return sortedViews
+    }
+    
     override func prepare() {
         super.prepare()
         
