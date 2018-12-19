@@ -92,6 +92,11 @@ extension MyWalletViewController: MyWalletViewInput {
         navigationBarHorizontalConstraint.constant = horizontalSpace
     }
     
+    func setNavigationBarHidden(_ hidden: Bool) {
+        UIView.animate(withDuration: 0.25) {
+            self.navigationBar.alpha = hidden ? 0 : 1
+        }
+    }
     
     func setupInitialState() {
         

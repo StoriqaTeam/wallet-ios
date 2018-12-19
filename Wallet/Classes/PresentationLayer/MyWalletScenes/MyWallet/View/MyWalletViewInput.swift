@@ -14,4 +14,5 @@ protocol MyWalletViewInput: class, Presentable {
     func reloadWithAccounts()
     func setNavigationBarTopSpace(_ topSpace: CGFloat)
     func setNavigationBarHorizontalSpace(_ horizontalSpace: CGFloat)
+    func setNavigationBarHidden(_ hidden: Bool)
 }

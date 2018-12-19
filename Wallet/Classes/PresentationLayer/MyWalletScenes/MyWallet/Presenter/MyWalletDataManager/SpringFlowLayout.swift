@@ -118,7 +118,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
 extension SpringFlowLayout {
     @objc private func handlePan(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
-        case .ended:
+        case .ended, .cancelled, .failed:
             self.animator.removeAllBehaviors()
             addedBehaviors.forEach { (_, value) in
                 self.animator.addBehavior(value)

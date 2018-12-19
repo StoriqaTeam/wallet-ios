@@ -59,6 +59,12 @@ class MyWalletDataManager: NSObject {
         collectionView.reloadData()
     }
     
+    func restoreVisibility() {
+        collectionView.visibleCells.forEach { $0.isHidden = false }
+        collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).forEach { $0.isHidden = false }
+        (collectionView.collectionViewLayout as? SpringFlowLayout)?.getTopCellSnapshots().forEach { $0.isHidden = false }
+    }
+    
 }
 
 
@@ -92,7 +98,6 @@ extension MyWalletDataManager: UICollectionViewDataSource {
                            holderName: holderName,
                            textColor: textColor,
                            backgroundImage: backgroundImage)
-        cell.isHidden = false
         return cell
     }
 }
@@ -126,7 +131,7 @@ extension MyWalletDataManager: UICollectionViewDelegate {
                 snapshots.insert(topCell, at: 0)
             }
             
-            topCellSnapshots.forEach { $0.removeFromSuperview() }
+            topCellSnapshots.forEach { $0.isHidden = true }
         }
         
         if let footer = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).first,

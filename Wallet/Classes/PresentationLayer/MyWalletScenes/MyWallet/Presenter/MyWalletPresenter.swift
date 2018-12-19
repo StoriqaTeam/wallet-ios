@@ -56,7 +56,8 @@ extension MyWalletPresenter: MyWalletViewOutput {
     }
     
     func viewWillAppear() {
-        dataManager?.reloadData()
+        dataManager?.restoreVisibility()
+        view.setNavigationBarHidden(false)
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
@@ -179,6 +180,7 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
     func selectAccount(_ account: Account) {
         let accountWatcher = interactor.getAccountWatcher()
         accountWatcher.setAccount(account)
+        view.setNavigationBarHidden(true)
         router.showAccountsWith(accountWatcher: accountWatcher,
                                 from: view.viewController,
                                 tabBar: mainTabBar,
