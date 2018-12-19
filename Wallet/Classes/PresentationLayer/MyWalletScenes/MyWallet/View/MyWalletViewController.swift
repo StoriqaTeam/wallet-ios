@@ -41,6 +41,10 @@ class MyWalletViewController: UIViewController {
         return .lightContent
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillAppear()
+    }
     
     // FIXME: hidden before release
     

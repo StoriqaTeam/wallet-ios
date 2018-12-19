@@ -11,7 +11,7 @@ import UIKit
 protocol MyWalletDataManagerDelegate: class {
     func selectAccount(_ account: Account)
     func didChangeOffset(_ newValue: CGFloat)
-    func snapshotOfSelectedItem(_ snapshot: UIView)
+    func snapshotsForTransition(snapshots: [UIView], selectedIndex: Int)
 }
 
 class MyWalletDataManager: NSObject {
@@ -92,7 +92,7 @@ extension MyWalletDataManager: UICollectionViewDataSource {
                            holderName: holderName,
                            textColor: textColor,
                            backgroundImage: backgroundImage)
-//        cell.setTestColor(indexPath.row)
+        cell.isHidden = false
         return cell
     }
 }
@@ -103,14 +103,35 @@ extension MyWalletDataManager: UICollectionViewDataSource {
 extension MyWalletDataManager: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let visibleCells = collectionView.visibleCells.sorted(by: {
+            guard let firstRow = collectionView.indexPath(for: $0)?.row,
+                let secondRow = collectionView.indexPath(for: $1)?.row else {
+                    return true
+            }
+            
+            return firstRow < secondRow
+        })
+        
+        var snapshots = visibleCells.compactMap { (cell) -> UIView? in
+            cell.isHidden = true
+            let snapshot = cell.snapshotView(afterScreenUpdates: false)
+            snapshot?.frame = collectionView.convert(cell.frame, to: collectionView.superview!)
+            return snapshot
+        }
+        
+        if let footer = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).first,
+            let snapshot = footer.snapshotView(afterScreenUpdates: false) {
+            footer.isHidden = true
+            snapshot.frame = collectionView.convert(footer.frame, to: collectionView.superview!)
+            snapshots.append(snapshot)
+        }
+        
+        if let selectedIndex = visibleCells.firstIndex(where: { collectionView.indexPath(for: $0) == indexPath }) {
+            delegate?.snapshotsForTransition(snapshots: snapshots, selectedIndex: selectedIndex)
+        }
+        
         let account = accounts[indexPath.row]
         delegate?.selectAccount(account)
-        
-        if let cell = collectionView.cellForItem(at: indexPath),
-            let snapshot = cell.snapshotView(afterScreenUpdates: false) {
-            snapshot.frame = collectionView.convert(cell.frame, to: collectionView.superview!)
-            delegate?.snapshotOfSelectedItem(snapshot)
-        }
         
         return true
     }
@@ -161,17 +182,11 @@ extension MyWalletDataManager: UICollectionViewDelegateFlowLayout {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: "footerView",
                                                                              for: indexPath)
+            footerView.isHidden = false
             return footerView
         default:
             assert(false, "Unexpected element kind")
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        referenceSizeForFooterInSection section: Int) -> CGSize {
-        let size = CGSize(width: 200, height: 100)
-        return size
     }
 }
 

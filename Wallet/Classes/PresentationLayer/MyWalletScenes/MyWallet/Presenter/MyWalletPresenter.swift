@@ -55,6 +55,10 @@ extension MyWalletPresenter: MyWalletViewOutput {
         view.setNavigationBarTopSpace(statusBarHeight)
     }
     
+    func viewWillAppear() {
+        dataManager?.reloadData()
+    }
+    
     func accountsCollectionView(_ collectionView: UICollectionView) {
         let xOrigin = (Constants.Sizes.screenWidth - collectionFlowLayout.itemSize.width) / 2
         view.setNavigationBarHorizontalSpace(xOrigin)
@@ -168,10 +172,9 @@ extension MyWalletPresenter: MyWalletModuleInput {
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletDataManagerDelegate {
-    func snapshotOfSelectedItem(_ snapshot: UIView) {
-        animator.setInitialView(snapshot)
+    func snapshotsForTransition(snapshots: [UIView], selectedIndex: Int) {
+        animator.setVisibleViews(snapshots, selectedIndex: selectedIndex)
     }
-    
     
     func selectAccount(_ account: Account) {
         let accountWatcher = interactor.getAccountWatcher()

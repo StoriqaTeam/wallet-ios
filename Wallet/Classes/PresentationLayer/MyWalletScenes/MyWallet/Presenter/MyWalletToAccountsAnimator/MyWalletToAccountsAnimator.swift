@@ -15,17 +15,24 @@ protocol MyWalletToAccountsAnimatorDelegate: class {
 
 class MyWalletToAccountsAnimator: NSObject {
     
-    private var initialView: UIView?
+    private var selectedIndex: Int?
+    private var selectedView: UIView?
+    private var visibleViews: [UIView]?
     private var destinationFrame: CGRect?
     
     weak var delegate: MyWalletToAccountsAnimatorDelegate?
     
-    func setInitialView(_ view: UIView) {
-        self.initialView = view
-    }
-    
     func setDestinationFrame(_ frame: CGRect) {
         self.destinationFrame = frame
+    }
+    
+    func setVisibleViews(_ views: [UIView], selectedIndex: Int) {
+        self.visibleViews = views
+        self.selectedIndex = selectedIndex
+        
+        if selectedIndex < views.count {
+            self.selectedView = views[selectedIndex]
+        }
     }
 }
 
@@ -34,36 +41,51 @@ class MyWalletToAccountsAnimator: NSObject {
 
 extension MyWalletToAccountsAnimator: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        guard let fromFrame = initialView?.frame, let toFrame = destinationFrame else { return 0.4 }
-        
-        let duration = log2(Double(abs(fromFrame.midY - toFrame.midY))) / 20
+        guard let toVC = transitionContext?.viewController(forKey: .to) else { return 0.67 }
+        let duration = TimeInterval(toVC.view.frame.height / 1200)
         return TimeInterval(duration)
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        
         guard let toVC = transitionContext.viewController(forKey: .to) else { return }
-        guard let toFrame = destinationFrame else { return }
-        guard let snapshot = initialView else { return }
+        guard let toFrame = destinationFrame,
+            let selectedIndex = selectedIndex,
+            let selectedView = selectedView,
+            var visibleViews = visibleViews else {
+                self.delegate?.animationComplete(completion: {})
+                transitionContext.containerView.addSubview(toVC.view)
+                transitionContext.completeTransition(true)
+                return
+        }
         
-        let fromFrame = snapshot.frame
-        let duration = transitionDuration(using: transitionContext)
+        let moveSelectedDuration = log2(Double(abs(selectedView.frame.midY - toFrame.midY))) / 18
         let container = transitionContext.containerView
+        let hideViewsDuration = transitionDuration(using: transitionContext)
         
-        snapshot.frame = fromFrame
-        snapshot.layer.cornerRadius = 10
-        snapshot.layer.masksToBounds = true
+        visibleViews.forEach { container.addSubview($0) }
+        visibleViews.remove(at: selectedIndex)
         
-        container.addSubview(toVC.view)
-        container.addSubview(snapshot)
+        toVC.view.alpha = 0
+        container.insertSubview(toVC.view, belowSubview: selectedView)
         
-        UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
-            snapshot.frame = toFrame
+        UIView.animate(withDuration: moveSelectedDuration, delay: 0, options: [.curveEaseOut], animations: {
+            selectedView.frame = toFrame
+        })
+        
+        UIView.animate(withDuration: hideViewsDuration/4, delay: hideViewsDuration/4*3, animations: {
+            toVC.view.alpha = 1
+        })
+        
+        UIView.animate(withDuration: hideViewsDuration, animations: {
+            visibleViews.forEach { $0.frame.origin.y += toVC.view.frame.height }
         }) { _ in
-            let success = !transitionContext.transitionWasCancelled
+            
             self.delegate?.animationComplete(completion: {
-                snapshot.removeFromSuperview()
+                selectedView.removeFromSuperview()
+                visibleViews.forEach { $0.removeFromSuperview() }
             })
+            
+            let success = !transitionContext.transitionWasCancelled
             if !success { toVC.view.removeFromSuperview() }
             transitionContext.completeTransition(success)
         }

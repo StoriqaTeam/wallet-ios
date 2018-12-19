@@ -37,6 +37,8 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         self.sectionInset = flow.sectionInset
         self.itemSize = flow.itemSize
         self.scrollDirection = flow.scrollDirection
+        self.footerReferenceSize = flow.footerReferenceSize
+        self.headerReferenceSize = flow.headerReferenceSize
     }
     
     override func prepare() {
