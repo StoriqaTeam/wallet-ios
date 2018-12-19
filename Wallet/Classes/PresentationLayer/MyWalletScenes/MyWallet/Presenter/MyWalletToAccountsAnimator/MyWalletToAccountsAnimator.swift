@@ -10,6 +10,7 @@
 import UIKit
 
 protocol MyWalletToAccountsAnimatorDelegate: class {
+    func viewDidBecomeVisible()
     func animationComplete(completion: @escaping (() -> Void))
 }
 
@@ -76,10 +77,13 @@ extension MyWalletToAccountsAnimator: UIViewControllerAnimatedTransitioning {
             toVC.view.alpha = 1
         })
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + hideViewsDuration/2) { [weak self] in
+            self?.delegate?.viewDidBecomeVisible()
+        }
+        
         UIView.animate(withDuration: hideViewsDuration, animations: {
             visibleViews.forEach { $0.frame.origin.y += toVC.view.frame.height }
         }) { _ in
-            
             self.delegate?.animationComplete(completion: {
                 selectedView.removeFromSuperview()
                 visibleViews.forEach { $0.removeFromSuperview() }
