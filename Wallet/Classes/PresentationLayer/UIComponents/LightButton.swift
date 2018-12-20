@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 class LightButton: BaseButton {
-    private var borderColor: UIColor = Theme.Color.brightSkyBlue
-    private var borderAlpha: CGFloat = 0.18
+    private var borderColor: UIColor = Theme.Color.Button.enabledBackground
+    private var borderAlpha: CGFloat = 1
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup(color: Theme.Color.brightSkyBlue)
-        titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        setup(color: borderColor)
+        titleLabel?.font = Theme.Font.buttonTitle
     }
     
     override var frame: CGRect {

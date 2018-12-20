@@ -93,12 +93,12 @@ struct Theme {
         static let smallText = MontserratFont.font(ofSize: 13.0, weight: .regular)
         /** 17px semibold */
         static let navigationBarTitle = MontserratFont.font(ofSize: 17.0, weight: .semibold)
-        /** 13px medium */
-        static let smallMediumWeightText = MontserratFont.font(ofSize: 13, weight: .medium)
+        /** 12px medium */
+        static let smallMediumWeightText = MontserratFont.font(ofSize: 12, weight: .medium)
         /** 12px regular */
         static let errorMessage = MontserratFont.font(ofSize: 12, weight: .regular)
-        /** 17px medium */
-        static let buttonTitle = MontserratFont.font(ofSize: 17, weight: .medium)
+        /** 16px medium */
+        static let buttonTitle = MontserratFont.font(ofSize: 16, weight: .medium)
         /** 13px medium */
         static let smallButtonTitle = MontserratFont.font(ofSize: 13, weight: .medium)
         /** 13px regular */

@@ -17,32 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPj-Se-nqY">
-                                <rect key="frame" x="0.0" y="110" width="375" height="467"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoTure" translatesAutoresizingMaskIntoConstraints="NO" id="fNH-pw-PHW">
-                                        <rect key="frame" x="74" y="120" width="227" height="227"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="227" id="780-SI-nKr"/>
-                                            <constraint firstAttribute="height" constant="227" id="9Y3-9E-wTb"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="fNH-pw-PHW" firstAttribute="centerX" secondItem="xPj-Se-nqY" secondAttribute="centerX" id="A2P-Uw-j6t"/>
-                                    <constraint firstItem="fNH-pw-PHW" firstAttribute="centerY" secondItem="xPj-Se-nqY" secondAttribute="centerY" id="Vkc-ke-3af"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="xPj-Se-nqY" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.7" id="Szv-HR-Zxp"/>
-                            <constraint firstItem="xPj-Se-nqY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pjB-iv-3Nc"/>
-                            <constraint firstItem="xPj-Se-nqY" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="uHB-Cy-dfR"/>
-                            <constraint firstItem="xPj-Se-nqY" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="10" id="xAl-I0-tJ6"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -51,7 +26,4 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="logoTure" width="156" height="159"/>
-    </resources>
 </document>
