@@ -19,8 +19,8 @@ class UnderlinedTextField: UITextField {
     @IBOutlet var bottomConstraint: NSLayoutConstraint?
 
     var lineView: UIView!
-    private let underlineColor = UIColor.lightGray
-    private let focusedColor = Theme.Color.brightSkyBlue
+    private let underlineColor = Theme.TextField.Color.underlineColor
+    private let focusedColor = Theme.TextField.Color.focusedColor
     
     private var messageLabel: UILabel?
     private let messageLabelVerticalMargin: CGFloat = 4
@@ -67,8 +67,18 @@ class UnderlinedTextField: UITextField {
         }
     }
     
+    override var placeholder: String? {
+        didSet {
+            if let placeholder = placeholder {
+                let textColorAttr = [NSAttributedString.Key.foregroundColor: Theme.TextField.Color.placeholder]
+                attributedPlaceholder = NSAttributedString(string: placeholder, attributes: textColorAttr)
+            }
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
+        fixColors()
         
         if let hintMessage = hintMessage,
             textFieldState == .idle {
@@ -81,7 +91,10 @@ class UnderlinedTextField: UITextField {
         
         lineView = underlineView(color: underlineColor)
         backgroundColor = .clear
-        font = Theme.Font.generalText
+        textColor = Theme.TextField.Color.input
+        font = Theme.Font.input
+        tintColor = Theme.Color.brightOrange
+        keyboardAppearance = .dark
         
         if let bottomConstraint = bottomConstraint {
             bottomConstraintBackup = bottomConstraint.constant
@@ -113,6 +126,7 @@ class UnderlinedTextField: UITextField {
         resolveUnderlineColor()
         return true
     }
+
 }
 
 
@@ -225,7 +239,7 @@ extension UnderlinedTextField {
         }
     }
     
-    func addDoneButtonOnKeyboard() {
+    private func addDoneButtonOnKeyboard() {
         let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: Constants.Sizes.screenWidth, height: 50))
         doneToolbar.barStyle = UIBarStyle.default
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -243,6 +257,15 @@ extension UnderlinedTextField {
     
     @objc private func doneButtonAction() {
         _ = resignFirstResponder()
+    }
+    
+    private func fixColors() {
+        // fixing clear button color, which is invisibe ob black background
+        if let clearButton = self.value(forKey: "_clearButton") as? UIButton,
+            let image = clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate) {
+            clearButton.setImage(image, for: .normal)
+            clearButton.tintColor = UIColor.white
+        }
     }
     
 }

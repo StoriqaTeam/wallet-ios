@@ -195,10 +195,6 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
     func socialNetworkAuthFailed(provider: SocialNetworkTokenProvider) {
         output.socialNetworkRegisterFailed(tokenProvider: provider)
     }
-    
-    func socialNetworkAuthViewDidTapFooterButton() {
-        showSignInViewController()
-    }
 }
 
 
@@ -285,10 +281,6 @@ extension RegistrationViewController {
         //hide password just in case
         passwordTextField.hidePassword()
         repeatPasswordTextField.hidePassword()
-    }
-    
-    private func showSignInViewController() {
-        output.showLogin()
     }
     
     private func setSocialView() {

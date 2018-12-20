@@ -21,10 +21,14 @@ extension Strings {
         static let signInButtonTitle = NSLocalizedString("Login.signInButtonTitle",
                                                          tableName: "Login",
                                                          value: "Sign in",
-                                                         comment: "Sign in button Title")
+                                                         comment: "Sign in button title")
+        static let signUpButtonTitle = NSLocalizedString("Login.signUpButtonTitle",
+                                                         tableName: "Login",
+                                                         value: "Sign up",
+                                                         comment: "Sign up button title")
         static let forgotButtonTitle = NSLocalizedString("Login.forgotButtonTitle",
                                                          tableName: "Login",
-                                                         value: "I forgot password",
+                                                         value: "Forgot password?",
                                                          comment: "Forgot password  button title")
         
     }

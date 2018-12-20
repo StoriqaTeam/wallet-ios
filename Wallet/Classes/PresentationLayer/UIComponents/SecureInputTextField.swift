@@ -15,7 +15,7 @@ class SecureInputTextField: UnderlinedTextField {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-     
+        toggleVisibilityButton.tintColor = Theme.Button.Color.enabledBackground
         toggleVisibilityButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
     }
     

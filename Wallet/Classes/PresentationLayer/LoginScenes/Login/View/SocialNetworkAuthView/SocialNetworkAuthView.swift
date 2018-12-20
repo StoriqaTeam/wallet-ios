@@ -44,7 +44,6 @@ enum SocialNetworkTokenProvider {
 }
 
 protocol SocialNetworkAuthViewDelegate: class {
-    func socialNetworkAuthViewDidTapFooterButton()
     func socialNetworkAuthSucceed(provider: SocialNetworkTokenProvider, token: String, email: String)
     func socialNetworkAuthFailed(provider: SocialNetworkTokenProvider)
 }
@@ -60,11 +59,12 @@ class SocialNetworkAuthView: LoadableFromXib {
     }
     
     // IBOutlet
-    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var orLabel: UILabel!
     @IBOutlet private var facebookButton: UIButton!
     @IBOutlet private var googleButton: UIButton!
-    @IBOutlet private var footerTitleLabel: UILabel!
-    @IBOutlet private var footerButton: UIButton!
+    @IBOutlet private var facebookTitle: UILabel!
+    @IBOutlet private var googleTitle: UILabel!
+    @IBOutlet private var separators: [UIView]!
     
     // Properties
     private var contentView: UIView?
@@ -73,13 +73,13 @@ class SocialNetworkAuthView: LoadableFromXib {
     private weak var fromViewController: UIViewController!
     
     // IBActions
-    @IBAction func footerButtonTapHandler(_ sender: UIButton) {
-        guard let delegate = delegate else { fatalError("delegate is nil") }
-        delegate.socialNetworkAuthViewDidTapFooterButton()
-    }
     
     @IBAction func facebookButtonTapHandler(_ sender: UIButton) {
         viewModel.signInWithFacebook(from: fromViewController)
+    }
+    
+    @IBAction func googleButtonTapHandler(_ sender: UIButton) {
+        viewModel.signWithGoogle()
     }
     
     func bindViewModel(_ viewModel: SocialNetworkAuthViewModel) {
@@ -88,25 +88,12 @@ class SocialNetworkAuthView: LoadableFromXib {
         self.viewModel.setUIGoogleDelegate(view: self)
     }
     
-    @IBAction func googleButtonTapHandler(_ sender: UIButton) {
-        viewModel.signWithGoogle()
-    }
-    
     func setUp(from viewController: UIViewController, delegate: SocialNetworkAuthViewDelegate, type: SocialNetworkAuthViewType) {
         self.delegate = delegate
         self.fromViewController = viewController
         self.formType = type
-
-        switch type {
-        case .login:
-            titleLabel.text = LocalizedStrings.signInTitle
-            footerTitleLabel.text = LocalizedStrings.signInFooter
-            footerButton.setTitle(LocalizedStrings.registerButton, for: .normal)
-        case .register:
-            titleLabel.text = LocalizedStrings.signUpTitle
-            footerTitleLabel.text = LocalizedStrings.signUpFooter
-            footerButton.setTitle(LocalizedStrings.signInButton, for: .normal)
-        }
+        
+        configureInterface()
     }
 }
 
@@ -147,5 +134,35 @@ extension SocialNetworkAuthView: GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
         log.debug("signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!)")
         //TODO: signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!)
+    }
+}
+
+
+// MARK: - Private methods
+
+extension SocialNetworkAuthView {
+    private func configureInterface() {
+        let buttonTitlePrefix: String = {
+            switch formType {
+            case .login: return LocalizedStrings.signInTitle
+            case .register: return LocalizedStrings.signUpTitle
+            }
+        }()
+        
+        backgroundColor = .clear
+        facebookTitle.text = buttonTitlePrefix + SocialNetworkTokenProvider.facebook.displayableName
+        googleTitle.text = buttonTitlePrefix + SocialNetworkTokenProvider.google.displayableName
+        orLabel.text = LocalizedStrings.orLabel
+        separators.forEach { $0.backgroundColor = Theme.SocialAuthView.Color.separators }
+        facebookButton.roundCorners(radius: 4, borderWidth: 1, borderColor: Theme.SocialAuthView.Color.borders)
+        googleButton.roundCorners(radius: 4, borderWidth: 1, borderColor: Theme.SocialAuthView.Color.borders)
+        
+        facebookTitle.font = Theme.Font.extraSmallButtonTitle
+        googleTitle.font = Theme.Font.extraSmallButtonTitle
+        orLabel.font = Theme.Font.smallButtonTitle
+        
+        facebookTitle.textColor = Theme.SocialAuthView.Color.text
+        googleTitle.textColor = Theme.SocialAuthView.Color.text
+        orLabel.textColor = Theme.SocialAuthView.Color.text
     }
 }

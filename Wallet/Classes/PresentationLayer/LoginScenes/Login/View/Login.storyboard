@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_5" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -9,17 +9,25 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="g3e-3R-iWn">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="9ol-tP-dQp" customClass="LoginViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9ol-tP-dQp" customClass="LoginViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zKv-ji-dEf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0j-ej-gyy" userLabel="header">
-                                <rect key="frame" x="132" y="80" width="150" height="54"/>
+                                <rect key="frame" x="112.66666666666669" y="80" width="150" height="54"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="storiqaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GFF-d8-QHQ">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="54"/>
@@ -38,10 +46,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjm-wb-IjY" userLabel="fields">
-                                <rect key="frame" x="26" y="164" width="362" height="224"/>
+                                <rect key="frame" x="26" y="164" width="323" height="224"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OUb-B4-Dho" customClass="SecureInputTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="60" width="362" height="40"/>
+                                        <rect key="frame" x="0.0" y="60" width="323" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="b37-bF-jdD"/>
                                         </constraints>
@@ -54,7 +62,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iek-9N-Svv">
-                                        <rect key="frame" x="337" y="60" width="25" height="40"/>
+                                        <rect key="frame" x="298" y="60" width="25" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="642-G7-I3u"/>
                                             <constraint firstAttribute="height" constant="40" id="d7C-Lc-33d"/>
@@ -63,17 +71,17 @@
                                         <state key="normal" image="eyeClosed"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxg-LK-ot9" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="129" width="362" height="45"/>
+                                        <rect key="frame" x="0.0" y="129" width="323" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="OFb-OY-k6H"/>
                                         </constraints>
-                                        <state key="normal" title="Get started"/>
+                                        <state key="normal" title="Sign in"/>
                                         <connections>
                                             <action selector="signIn" destination="9ol-tP-dQp" eventType="touchUpInside" id="CGK-QR-ucV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4Z-iV-lO4" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="105" y="184" width="152" height="40"/>
+                                        <rect key="frame" x="85.666666666666686" y="184" width="152" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="AUD-OS-Dev"/>
                                         </constraints>
@@ -84,7 +92,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8mO-PC-egc" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ylS-9Q-yux"/>
                                         </constraints>
@@ -115,7 +123,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLV-l3-0jE" customClass="SocialNetworkAuthView" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="687" width="374" height="175"/>
+                                <rect key="frame" x="20" y="603" width="335" height="175"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="175" id="xzr-UO-tz2"/>
@@ -150,11 +158,187 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eco-Mu-LwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4970" y="-1726"/>
+            <point key="canvasLocation" x="-4997" y="-1742"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="eqh-MS-7cn">
+            <objects>
+                <viewController storyboardIdentifier="LoginVC" id="U6Q-Gf-hfn" customClass="LoginViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Hk-Eg-CM8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CeY-K3-HXV" userLabel="header">
+                                <rect key="frame" x="28" y="44" width="319" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X79-YC-JK8">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="xvn-qi-HRx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="22"/>
+                                        <state key="normal" title="Sign in">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhj-uN-Wog">
+                                        <rect key="frame" x="120" y="2.3333333333333357" width="63" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ZfD-23-kTM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
+                                        <state key="normal" title="Sign up">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="registerButtonTapped" destination="U6Q-Gf-hfn" eventType="touchUpInside" id="e6t-eq-16a"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xf1-1Y-Cjc">
+                                        <rect key="frame" x="0.0" y="40" width="80" height="2"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="4G1-8x-t9E"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="xf1-1Y-Cjc" firstAttribute="width" secondItem="X79-YC-JK8" secondAttribute="width" id="1Dl-jk-VVc"/>
+                                    <constraint firstItem="Vhj-uN-Wog" firstAttribute="leading" secondItem="X79-YC-JK8" secondAttribute="trailing" constant="40" id="CSM-54-NKi"/>
+                                    <constraint firstItem="xf1-1Y-Cjc" firstAttribute="centerX" secondItem="X79-YC-JK8" secondAttribute="centerX" id="M1q-f8-QhH"/>
+                                    <constraint firstItem="xf1-1Y-Cjc" firstAttribute="top" secondItem="X79-YC-JK8" secondAttribute="bottom" id="NaK-gc-0FT"/>
+                                    <constraint firstAttribute="bottom" secondItem="X79-YC-JK8" secondAttribute="bottom" id="VLX-j2-iZZ"/>
+                                    <constraint firstItem="X79-YC-JK8" firstAttribute="leading" secondItem="CeY-K3-HXV" secondAttribute="leading" id="c2D-0F-jf3"/>
+                                    <constraint firstItem="Vhj-uN-Wog" firstAttribute="firstBaseline" secondItem="X79-YC-JK8" secondAttribute="firstBaseline" id="dE5-rV-jMb"/>
+                                    <constraint firstItem="X79-YC-JK8" firstAttribute="top" secondItem="CeY-K3-HXV" secondAttribute="top" id="x7S-Rh-U9j"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAt-g1-aop" userLabel="fields">
+                                <rect key="frame" x="28" y="134" width="319" height="229"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8Q-kv-LLc" customClass="SecureInputTextField" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="68" width="319" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="bjf-oI-AWY"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="toggleVisibilityButton" destination="Y4j-dA-whF" id="1sX-Jj-caf"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4j-dA-whF">
+                                        <rect key="frame" x="294" y="68" width="25" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="3Or-dq-aEC"/>
+                                            <constraint firstAttribute="height" constant="40" id="j2l-i7-86J"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="eyeClosed"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JB-nR-3za" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="178" width="319" height="51"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="HSf-9r-wja"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign in"/>
+                                        <connections>
+                                            <action selector="signIn" destination="U6Q-Gf-hfn" eventType="touchUpInside" id="s3x-Aj-9qZ"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0pb-ba-t1i" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="h9G-gd-CoQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="bottomConstraint" destination="s76-2N-6wv" id="0bJ-k0-cPS"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pK4-1L-cnw" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="118" width="135" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="eqx-Fp-Kd0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="13"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
+                                        <state key="normal" title="Forgot password?">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="forgotPasswordTapped" destination="U6Q-Gf-hfn" eventType="touchUpInside" id="wkx-dD-tWG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="w8Q-kv-LLc" secondAttribute="trailing" id="8yi-hq-Oqf"/>
+                                    <constraint firstAttribute="bottom" secondItem="3JB-nR-3za" secondAttribute="bottom" id="B48-uI-jU5"/>
+                                    <constraint firstItem="w8Q-kv-LLc" firstAttribute="leading" secondItem="DAt-g1-aop" secondAttribute="leading" id="IMn-L1-wv5"/>
+                                    <constraint firstItem="pK4-1L-cnw" firstAttribute="leading" secondItem="w8Q-kv-LLc" secondAttribute="leading" id="UtG-NM-u5q"/>
+                                    <constraint firstItem="0pb-ba-t1i" firstAttribute="leading" secondItem="DAt-g1-aop" secondAttribute="leading" id="Vg2-Tq-Chr"/>
+                                    <constraint firstItem="pK4-1L-cnw" firstAttribute="top" secondItem="w8Q-kv-LLc" secondAttribute="bottom" constant="10" id="WmP-Q1-rt2"/>
+                                    <constraint firstItem="3JB-nR-3za" firstAttribute="leading" secondItem="DAt-g1-aop" secondAttribute="leading" id="XSM-Eq-Cey"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y4j-dA-whF" secondAttribute="trailing" id="aGQ-Xd-Kle"/>
+                                    <constraint firstAttribute="trailing" secondItem="0pb-ba-t1i" secondAttribute="trailing" id="cxD-6Q-waU"/>
+                                    <constraint firstItem="0pb-ba-t1i" firstAttribute="top" secondItem="DAt-g1-aop" secondAttribute="top" id="kgY-Jl-qii"/>
+                                    <constraint firstItem="w8Q-kv-LLc" firstAttribute="top" secondItem="0pb-ba-t1i" secondAttribute="bottom" constant="28" id="s76-2N-6wv"/>
+                                    <constraint firstAttribute="trailing" secondItem="3JB-nR-3za" secondAttribute="trailing" id="sKc-HZ-IXd"/>
+                                    <constraint firstItem="3JB-nR-3za" firstAttribute="top" secondItem="pK4-1L-cnw" secondAttribute="bottom" constant="20" id="t4W-lQ-w0o"/>
+                                    <constraint firstItem="Y4j-dA-whF" firstAttribute="top" secondItem="w8Q-kv-LLc" secondAttribute="top" id="vyU-LN-ki5"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBs-Eb-qfU" customClass="SocialNetworkAuthView" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="28" y="666" width="319" height="112"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="3TE-QK-j5m"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CeY-K3-HXV" firstAttribute="top" secondItem="CrV-3D-Djp" secondAttribute="top" id="Epv-vp-fFG"/>
+                            <constraint firstItem="CrV-3D-Djp" firstAttribute="bottom" secondItem="mBs-Eb-qfU" secondAttribute="bottom" id="G1I-YW-ozq"/>
+                            <constraint firstItem="mBs-Eb-qfU" firstAttribute="leading" secondItem="DAt-g1-aop" secondAttribute="leading" priority="250" id="J7E-5D-20r"/>
+                            <constraint firstItem="CeY-K3-HXV" firstAttribute="leading" secondItem="DAt-g1-aop" secondAttribute="leading" id="NYP-4R-Tey"/>
+                            <constraint firstItem="DAt-g1-aop" firstAttribute="centerX" secondItem="0Hk-Eg-CM8" secondAttribute="centerX" id="V6e-sx-tN5"/>
+                            <constraint firstItem="mBs-Eb-qfU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DAt-g1-aop" secondAttribute="bottom" constant="16" id="gkW-Qd-fSi"/>
+                            <constraint firstItem="mBs-Eb-qfU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CrV-3D-Djp" secondAttribute="leading" constant="12" id="rwf-eg-OVA"/>
+                            <constraint firstItem="DAt-g1-aop" firstAttribute="top" secondItem="CeY-K3-HXV" secondAttribute="bottom" constant="50" id="ta1-wK-HiL"/>
+                            <constraint firstItem="DAt-g1-aop" firstAttribute="leading" secondItem="CrV-3D-Djp" secondAttribute="leading" constant="28" id="tz8-Mb-BMt"/>
+                            <constraint firstItem="mBs-Eb-qfU" firstAttribute="centerX" secondItem="0Hk-Eg-CM8" secondAttribute="centerX" id="vzp-wR-dfs"/>
+                            <constraint firstItem="CeY-K3-HXV" firstAttribute="centerX" secondItem="0Hk-Eg-CM8" secondAttribute="centerX" id="xY4-k2-l22"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CrV-3D-Djp"/>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="mzc-qb-cl8">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Hd9-Mk-eKp"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="0pb-ba-t1i" id="cew-PE-Oa3"/>
+                        <outlet property="forgotPasswordButton" destination="pK4-1L-cnw" id="lWW-hV-NBE"/>
+                        <outlet property="hederButtonUnderliner" destination="xf1-1Y-Cjc" id="rWC-ZY-XvC"/>
+                        <outlet property="passwordTextField" destination="w8Q-kv-LLc" id="zd4-u5-PXs"/>
+                        <outlet property="signInButton" destination="3JB-nR-3za" id="Rwj-a5-ePp"/>
+                        <outlet property="signInHeaderButton" destination="X79-YC-JK8" id="alr-fJ-T7l"/>
+                        <outlet property="signUpHeaderButton" destination="Vhj-uN-Wog" id="gZr-2N-xLh"/>
+                        <outlet property="socialNetworkAuthView" destination="mBs-Eb-qfU" id="RHk-wR-xAD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nss-8Z-9ir" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4129" y="-1742"/>
         </scene>
     </scenes>
     <resources>
         <image name="eyeClosed" width="26" height="10"/>
-        <image name="storiqaLogo" width="113" height="49"/>
+        <image name="storiqaLogo" width="157" height="39"/>
     </resources>
 </document>
