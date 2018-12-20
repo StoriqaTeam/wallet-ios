@@ -41,6 +41,15 @@ extension LoginPresenter: LoginViewOutput {
         interactor.viewIsReady()
     }
     
+    func viewDidAppear() {
+        view.viewController.navigationController?.isNavigationBarHidden = true
+    }
+    
+    func viewWillDisappear() {
+        view.viewController.navigationController?.isNavigationBarHidden = false
+        
+    }
+    
     func showRegistration() {
         router.showRegistration()
     }

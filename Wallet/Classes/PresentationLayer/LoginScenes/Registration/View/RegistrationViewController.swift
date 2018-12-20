@@ -11,7 +11,7 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
-    typealias LocalizedString = Strings.Registration
+    typealias LocalizedStrings = Strings.Registration
     
     var output: RegistrationViewOutput!
     
@@ -24,13 +24,16 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var repeatPasswordTextField: SecureInputTextField!
     @IBOutlet private var agreementTickImageView: UIImageView!
     @IBOutlet private var privacyPolicyTickImageView: UIImageView!
-    
     @IBOutlet private var signUpButton: DefaultButton!
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
     @IBOutlet private var textFields: [UnderlinedTextField]!
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var licenceAgreementTextView: UITextView!
     @IBOutlet private var privacyPolicyTextView: UITextView!
+    @IBOutlet private var signInHeaderButton: UIButton!
+    @IBOutlet private var signUpHeaderButton: UIButton!
+    @IBOutlet private var hederButtonUnderliner: UIView!
+    @IBOutlet private var topSpaceConstraint: NSLayoutConstraint!
     
     // MARK: - Variables
     
@@ -53,6 +56,10 @@ class RegistrationViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     // MARK: - Actions
@@ -84,6 +91,10 @@ class RegistrationViewController: UIViewController {
         isAcceptedPolicy.toggle()
         setPolicyTintColor()
         updateContinueButton()
+    }
+    
+    @IBAction func signInPressed(_ sender: UIButton) {
+        output.showLogin()
     }
     
     @objc private func textDidChange(_ notification: Notification) {
@@ -207,20 +218,20 @@ extension RegistrationViewController {
             self?.view.layoutIfNeeded()
         }
         
-        firstNameTextField.placeholder = LocalizedString.firstNamePlaceholder
+        firstNameTextField.placeholder = LocalizedStrings.firstNamePlaceholder
         firstNameTextField.layoutBlock = layoutBlock
         
-        lastNameTextField.placeholder = LocalizedString.lastNamePlaceholder
+        lastNameTextField.placeholder = LocalizedStrings.lastNamePlaceholder
         lastNameTextField.layoutBlock = layoutBlock
         
-        emailTextField.placeholder = LocalizedString.emailPlaceholder
+        emailTextField.placeholder = LocalizedStrings.emailPlaceholder
         emailTextField.layoutBlock = layoutBlock
         
-        passwordTextField.placeholder = LocalizedString.passwordPlaceholder
-        passwordTextField.hintMessage = LocalizedString.passwordHintTitle
+        passwordTextField.placeholder = LocalizedStrings.passwordPlaceholder
+        passwordTextField.hintMessage = LocalizedStrings.passwordHintTitle
         passwordTextField.layoutBlock = layoutBlock
         
-        repeatPasswordTextField.placeholder = LocalizedString.repeatPasswordPlaceholder
+        repeatPasswordTextField.placeholder = LocalizedStrings.repeatPasswordPlaceholder
         repeatPasswordTextField.layoutBlock = layoutBlock
         
         setAgreementTintColor()
@@ -229,7 +240,17 @@ extension RegistrationViewController {
         addLinkToPrivatePolicy()
         addLinkToLicenceAgreement()
         privacyPolicyTextView.isEditable = false
-        signUpButton.title = LocalizedString.signUpButtonTitle
+        signUpButton.title = LocalizedStrings.signUpButtonTitle
+        
+        signInHeaderButton.setTitle(LocalizedStrings.signInButtonTitle, for: .normal)
+        signUpHeaderButton.setTitle(LocalizedStrings.signUpButtonTitle, for: .normal)
+        signUpHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
+        signInHeaderButton.setTitleColor(Theme.Color.primaryGrey, for: .normal)
+        signUpHeaderButton.isUserInteractionEnabled = false
+        hederButtonUnderliner.backgroundColor = Theme.Color.Button.enabledBackground
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        topSpaceConstraint.constant = statusBarHeight * 2
     }
     
     private func updateContinueButton() {
@@ -252,7 +273,7 @@ extension RegistrationViewController {
     }
     
     private func addLinkToLicenceAgreement() {
-        let agreementString = LocalizedString.licenseAgreementString
+        let agreementString = LocalizedStrings.licenseAgreementString
         let attributedString = NSMutableAttributedString(string: agreementString)
         let linkRange = NSRange(location: 13, length: 17)
         let textRange = NSRange(location: 0, length: 13)
@@ -265,7 +286,7 @@ extension RegistrationViewController {
     }
     
     private func addLinkToPrivatePolicy() {
-        let privacyPolicyString = LocalizedString.privacyPolicyString
+        let privacyPolicyString = LocalizedStrings.privacyPolicyString
         let attributedString = NSMutableAttributedString(string: privacyPolicyString)
         let linkRange = NSRange(location: 13, length: 14)
         let textRange = NSRange(location: 0, length: 13)
