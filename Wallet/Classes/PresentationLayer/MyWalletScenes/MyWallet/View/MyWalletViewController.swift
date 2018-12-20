@@ -18,6 +18,7 @@ class MyWalletViewController: UIViewController {
     
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var navigationBar: UINavigationBar!
+    @IBOutlet private var collectionViewTopConstraint: NSLayoutConstraint!
     @IBOutlet private var navigationBarTopConstraint: NSLayoutConstraint!
     @IBOutlet private var navigationBarHorizontalConstraint: NSLayoutConstraint!
     
@@ -25,6 +26,7 @@ class MyWalletViewController: UIViewController {
     
     private let addNewButton = ResizableNavigationBarButton(title: LocalizedStrings.buttonTitle)
     private let accountCellIdentifier = "AccountViewCell"
+    private var didLayoutSubviews = false
     
     // MARK: Life cycle
 
@@ -60,6 +62,9 @@ class MyWalletViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        guard !didLayoutSubviews else { return }
+        didLayoutSubviews = true
         view.gradientView(colors: Theme.Color.Gradient.headerGradient,
                           frame: view.bounds,
                           startPoint: CGPoint(x: 0.0, y: 0.0),
@@ -134,11 +139,13 @@ extension MyWalletViewController {
     }
     
     private func setUpCollectionView() {
-        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
-        let topInset = navigationBar.frame.height + statusBarHeight
+        let topInset = navigationBar.frame.height
         collectionView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         collectionView.contentInsetAdjustmentBehavior = .never
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        collectionViewTopConstraint.constant = statusBarHeight
     }
     
 }
