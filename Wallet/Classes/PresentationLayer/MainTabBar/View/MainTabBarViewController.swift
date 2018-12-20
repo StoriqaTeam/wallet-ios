@@ -41,13 +41,13 @@ extension MainTabBarViewController {
     
     private func configureTabBar() {
         tabBar.isTranslucent = false
-        tabBar.barTintColor = Theme.TabBar.Color.background
+        tabBar.barTintColor = Theme.Color.TabBar.background
         tabBar.tintColor = Theme.Color.brightSkyBlue
-        tabBar.unselectedItemTintColor = Theme.Text.Color.captionGrey.withAlphaComponent(0.4)
+        tabBar.unselectedItemTintColor = Theme.Color.Text.captionGrey.withAlphaComponent(0.4)
         tabBar.backgroundColor = UIColor(white: 0.82, alpha: 1)
         tabBar.shadowImage = UIImage()
         tabBar.backgroundImage = UIImage()
-        tabBar.layer.shadowColor = Theme.TabBar.Color.shadow.cgColor
+        tabBar.layer.shadowColor = Theme.Color.TabBar.shadow.cgColor
         tabBar.layer.shadowOffset = CGSize(width: 0, height: -6)
         tabBar.layer.shadowRadius = 6
         tabBar.layer.shadowOpacity = 0.04

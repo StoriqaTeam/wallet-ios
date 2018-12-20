@@ -19,44 +19,35 @@ struct Theme {
         static let greyishBrown = UIColor(white: 80.0 / 255.0, alpha: 1.0)
         static let bluegrey = UIColor(red: 136.0 / 255.0, green: 158.0 / 255.0, blue: 186.0 / 255.0, alpha: 1.0)
         static let primaryGrey = UIColor(white: 140.0 / 255.0, alpha: 1.0)
-    }
-    
-    struct Button {
-        struct Color {
+        
+        struct Button {
             static let enabledTitle = UIColor.white
             static let disabledTitle = enabledTitle.withAlphaComponent(0.35)
             static let enabledBackground = UIColor(red: 165/255, green: 120/255, blue: 62/255, alpha: 1)
             static let disabledBackground = UIColor(red: 83/255, green: 60/255, blue: 31/255, alpha: 1)
             static let red = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
         }
-    }
-    
-    struct TabBar {
-        struct Color {
+        
+        
+        struct TabBar {
             static let background = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.82)
             static let shadow = UIColor(red: 189/255, green: 189/255, blue: 189/255, alpha: 0.30)
         }
-    }
-    
-    struct TextField {
-        struct Color {
+        
+        struct TextField {
             static let input = UIColor.white
             static let placeholder = UIColor(white: 175/255, alpha: 1.0)
             static let underlineColor = UIColor(white: 121/255, alpha: 1.0)
             static let focusedColor = UIColor(red: 175/255, green: 133/255, blue: 77/255, alpha: 1.0)
         }
-    }
-    
-    struct SocialAuthView {
-        struct Color {
+        
+        struct SocialAuthView {
             static let separators = UIColor(white: 121/255, alpha: 1.0)
             static let borders = UIColor(white: 49/255, alpha: 1.0)
             static let text = UIColor.white
         }
-    }
-    
-    struct Text {
-        struct Color {
+        
+        struct Text {
             static let blackMain = UIColor(white: 0.0, alpha: 1.0)
             static let captionGrey = UIColor(red: 135/255, green: 157/255, blue: 185/255, alpha: 1.0)
             static let grey = UIColor(red: 219/255, green: 225/255, blue: 234/255, alpha: 1.0)
@@ -65,22 +56,23 @@ struct Theme {
             static let errorRed = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
             static let lightGrey = UIColor(white: 191.0 / 255.0, alpha: 1.0)
         }
-    }
-    
-    struct Gradient {
-        struct Details {
-            static let detailsRedGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
-                                             UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+        
+        
+        struct Gradient {
+            struct Details {
+                static let detailsRedGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
+                                                 UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+                
+                static let detailsGreenGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
+                                                   UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+            }
             
-            static let detailsGreenGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
-                                               UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+            static let headerGradient = [UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
+                                         UIColor(red: 45/255, green: 100/255, blue: 194/255, alpha: 1).cgColor]
+            
+            static let sendingHeaderGradient = [UIColor(red: 55/255, green: 145/255, blue: 221/255, alpha: 1).cgColor,
+                                                UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor]
         }
-        
-        static let headerGradient = [UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
-                                     UIColor(red: 45/255, green: 100/255, blue: 194/255, alpha: 1).cgColor]
-        
-        static let sendingHeaderGradient = [UIColor(red: 55/255, green: 145/255, blue: 221/255, alpha: 1).cgColor,
-                                            UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor]
     }
     
     struct Font {
@@ -117,7 +109,7 @@ struct Theme {
 }
 
 
- private struct MontserratFont {
+private struct MontserratFont {
     
     static let fontFamily = "Montserrat-"
     
@@ -136,13 +128,13 @@ struct Theme {
         case .semibold:
             return UIFont(name: fontFamily+"SemiBold", size: ofSize)
         case .bold:
-             return UIFont(name: fontFamily+"SemiBold", size: ofSize)
+            return UIFont(name: fontFamily+"SemiBold", size: ofSize)
         case .heavy:
-             return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
+            return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
         case .black:
-             return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
+            return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
         default:
-             return UIFont(name: fontFamily+"Black", size: ofSize)
+            return UIFont(name: fontFamily+"Black", size: ofSize)
         }
     }
 }

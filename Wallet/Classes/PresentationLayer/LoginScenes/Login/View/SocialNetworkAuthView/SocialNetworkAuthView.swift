@@ -153,16 +153,16 @@ extension SocialNetworkAuthView {
         facebookTitle.text = buttonTitlePrefix + SocialNetworkTokenProvider.facebook.displayableName
         googleTitle.text = buttonTitlePrefix + SocialNetworkTokenProvider.google.displayableName
         orLabel.text = LocalizedStrings.orLabel
-        separators.forEach { $0.backgroundColor = Theme.SocialAuthView.Color.separators }
-        facebookButton.roundCorners(radius: 4, borderWidth: 1, borderColor: Theme.SocialAuthView.Color.borders)
-        googleButton.roundCorners(radius: 4, borderWidth: 1, borderColor: Theme.SocialAuthView.Color.borders)
+        separators.forEach { $0.backgroundColor = Theme.Color.SocialAuthView.separators }
+        facebookButton.roundCorners(radius: 4, borderWidth: 1, borderColor: Theme.Color.SocialAuthView.borders)
+        googleButton.roundCorners(radius: 4, borderWidth: 1, borderColor: Theme.Color.SocialAuthView.borders)
         
         facebookTitle.font = Theme.Font.extraSmallButtonTitle
         googleTitle.font = Theme.Font.extraSmallButtonTitle
         orLabel.font = Theme.Font.smallButtonTitle
         
-        facebookTitle.textColor = Theme.SocialAuthView.Color.text
-        googleTitle.textColor = Theme.SocialAuthView.Color.text
-        orLabel.textColor = Theme.SocialAuthView.Color.text
+        facebookTitle.textColor = Theme.Color.SocialAuthView.text
+        googleTitle.textColor = Theme.Color.SocialAuthView.text
+        orLabel.textColor = Theme.Color.SocialAuthView.text
     }
 }

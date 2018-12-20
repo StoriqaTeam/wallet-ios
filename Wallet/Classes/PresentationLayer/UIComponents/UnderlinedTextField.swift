@@ -19,8 +19,8 @@ class UnderlinedTextField: UITextField {
     @IBOutlet var bottomConstraint: NSLayoutConstraint?
 
     var lineView: UIView!
-    private let underlineColor = Theme.TextField.Color.underlineColor
-    private let focusedColor = Theme.TextField.Color.focusedColor
+    private let underlineColor = Theme.Color.TextField.underlineColor
+    private let focusedColor = Theme.Color.TextField.focusedColor
     
     private var messageLabel: UILabel?
     private let messageLabelVerticalMargin: CGFloat = 4
@@ -70,7 +70,7 @@ class UnderlinedTextField: UITextField {
     override var placeholder: String? {
         didSet {
             if let placeholder = placeholder {
-                let textColorAttr = [NSAttributedString.Key.foregroundColor: Theme.TextField.Color.placeholder]
+                let textColorAttr = [NSAttributedString.Key.foregroundColor: Theme.Color.TextField.placeholder]
                 attributedPlaceholder = NSAttributedString(string: placeholder, attributes: textColorAttr)
             }
         }
@@ -91,7 +91,7 @@ class UnderlinedTextField: UITextField {
         
         lineView = underlineView(color: underlineColor)
         backgroundColor = .clear
-        textColor = Theme.TextField.Color.input
+        textColor = Theme.Color.TextField.input
         font = Theme.Font.input
         tintColor = Theme.Color.brightOrange
         keyboardAppearance = .dark

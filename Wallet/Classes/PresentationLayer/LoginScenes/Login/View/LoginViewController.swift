@@ -171,10 +171,10 @@ extension LoginViewController {
         signUpHeaderButton.setTitle(LocalizedStrings.signUpButtonTitle, for: .normal)
         forgotPasswordButton.setTitle(LocalizedStrings.forgotButtonTitle, for: .normal)
         
-        signInHeaderButton.setTitleColor(Theme.Button.Color.enabledTitle, for: .normal)
+        signInHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
         signUpHeaderButton.setTitleColor(Theme.Color.primaryGrey, for: .normal)
         signInHeaderButton.isUserInteractionEnabled = false
-        hederButtonUnderliner.backgroundColor = Theme.Button.Color.enabledBackground
+        hederButtonUnderliner.backgroundColor = Theme.Color.Button.enabledBackground
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         topSpaceConstraint.constant = statusBarHeight * 2

@@ -94,9 +94,9 @@ extension EditProfileViewController {
         firstNameTextField.font = Theme.Font.generalText
         lastNameTextField.font = Theme.Font.generalText
         
-        titleLabel.textColor = Theme.Text.Color.captionGrey
-        firstNameTextField.textColor = Theme.Text.Color.blackMain
-        lastNameTextField.textColor = Theme.Text.Color.blackMain
+        titleLabel.textColor = Theme.Color.Text.captionGrey
+        firstNameTextField.textColor = Theme.Color.Text.blackMain
+        lastNameTextField.textColor = Theme.Color.Text.blackMain
         
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self

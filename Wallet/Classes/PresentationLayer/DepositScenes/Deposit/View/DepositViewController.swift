@@ -127,8 +127,8 @@ extension DepositViewController {
         qrCodeTitleLabel.font = Theme.Font.caption
         addressLabel.font = Theme.Font.generalText
         
-        addressTitleLabel.textColor = Theme.Text.Color.captionGrey
-        qrCodeTitleLabel.textColor = Theme.Text.Color.captionGrey
+        addressTitleLabel.textColor = Theme.Color.Text.captionGrey
+        qrCodeTitleLabel.textColor = Theme.Color.Text.captionGrey
         
         copyButton.titleLabel?.font = Theme.Font.smallText
         copyButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)

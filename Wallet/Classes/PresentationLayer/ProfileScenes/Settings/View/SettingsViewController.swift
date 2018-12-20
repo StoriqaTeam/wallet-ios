@@ -153,6 +153,6 @@ extension SettingsViewController {
     }
     
     func configureInterface() {
-        signOutButton.setup(color: Theme.Button.Color.red, borderAlpha: 0.1)
+        signOutButton.setup(color: Theme.Color.Button.red, borderAlpha: 0.1)
     }
 }

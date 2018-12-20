@@ -12,19 +12,22 @@ class BasePopUpViewController: UIViewController {
     
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var verticalCenterConstraint: NSLayoutConstraint!
+    private var blurEffectView: UIVisualEffectView?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         verticalCenterConstraint.constant = Constants.Sizes.screenHeight/2
         containerView.roundCorners(radius: 7)
+        addBlurBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
-            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
+            guard let blur = self.blurEffectView else { return }
+            blur.alpha = 0.9
         }, completion: nil)
     }
     
@@ -55,11 +58,27 @@ class BasePopUpViewController: UIViewController {
         })
         
         UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
-            self.view.backgroundColor = .clear
+            guard let blur = self.blurEffectView else { return }
+            blur.alpha = 0.0
         }, completion: { _ in
             self.dismiss(animated: false, completion: completion)
         })
     }
-    
-    
+}
+
+
+// MARK: - Private methods
+
+extension BasePopUpViewController {
+    func addBlurBackground() {
+        
+        let blurEffect = UIBlurEffect(style: .dark)
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView?.frame = view.frame
+        
+        guard let blur = blurEffectView else { return }
+        view.insertSubview(blur, at: 0)
+        blurEffectView?.alpha = 0
+        view.backgroundColor = .clear
+    }
 }
