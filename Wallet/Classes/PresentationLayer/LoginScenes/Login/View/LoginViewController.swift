@@ -36,7 +36,16 @@ class LoginViewController: UIViewController {
         setDelegates()
         setSocialView()
         output.viewIsReady()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.viewDidAppear()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        output.viewWillDisappear()
     }
     
     required init?(coder aDecoder: NSCoder) {

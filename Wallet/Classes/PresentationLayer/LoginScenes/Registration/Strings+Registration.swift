@@ -11,6 +11,14 @@ import Foundation
 extension Strings {
     
     enum Registration {
+        static let signInButtonTitle = NSLocalizedString("Registration.signInButtonTitle",
+                                                         tableName: "Registration",
+                                                         value: "Sign in",
+                                                         comment: "Sign in button title")
+        static let signUpButtonTitle = NSLocalizedString("Registration.signUpButtonTitle",
+                                                         tableName: "Registration",
+                                                         value: "Sign up",
+                                                         comment: "Sign up button title")
         static let firstNamePlaceholder = NSLocalizedString("Registration.firstNamePlaceholder",
                                                             tableName: "Registration",
                                                             value: "First name",
@@ -38,11 +46,6 @@ extension Strings {
                                                            tableName: "Registration",
                                                            value: "Repeat password",
                                                            comment: "Repeat password placeholder")
-        
-        static let signUpButtonTitle = NSLocalizedString("Registration.signUpButtonTitle",
-                                                         tableName: "Registration",
-                                                         value: "Sign up",
-                                                         comment: "Sign up button title")
         
         static let licenseAgreementString = NSLocalizedString("Registration.licenseAgreementString",
                                                               tableName: "Registration",
