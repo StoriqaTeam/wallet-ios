@@ -31,6 +31,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var licenceAgreementTextView: UITextView!
     @IBOutlet private var privacyPolicyTextView: UITextView!
+    @IBOutlet private var topSpaceConstraint: NSLayoutConstraint!
     
     // MARK: - Variables
     
@@ -53,6 +54,10 @@ class RegistrationViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     // MARK: - Actions
@@ -84,6 +89,10 @@ class RegistrationViewController: UIViewController {
         isAcceptedPolicy.toggle()
         setPolicyTintColor()
         updateContinueButton()
+    }
+    
+    @IBAction func signInPressed(_ sender: UIButton) {
+        output.showLogin()
     }
     
     @objc private func textDidChange(_ notification: Notification) {
@@ -230,6 +239,9 @@ extension RegistrationViewController {
         addLinkToLicenceAgreement()
         privacyPolicyTextView.isEditable = false
         signUpButton.title = LocalizedString.signUpButtonTitle
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        topSpaceConstraint.constant = statusBarHeight * 2
     }
     
     private func updateContinueButton() {

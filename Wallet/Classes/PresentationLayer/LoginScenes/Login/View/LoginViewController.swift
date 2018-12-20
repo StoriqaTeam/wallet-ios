@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
     @IBOutlet private var signInHeaderButton: UIButton!
     @IBOutlet private var signUpHeaderButton: UIButton!
     @IBOutlet private var hederButtonUnderliner: UIView!
+    @IBOutlet private var topSpaceConstraint: NSLayoutConstraint!
     
     // MARK: - Life cycle
     
@@ -165,6 +166,9 @@ extension LoginViewController {
         signUpHeaderButton.setTitleColor(Theme.Color.primaryGrey, for: .normal)
         signInHeaderButton.isUserInteractionEnabled = false
         hederButtonUnderliner.backgroundColor = Theme.Button.Color.enabledBackground
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        topSpaceConstraint.constant = statusBarHeight * 2
     }
     
     private func setSocialView() {
