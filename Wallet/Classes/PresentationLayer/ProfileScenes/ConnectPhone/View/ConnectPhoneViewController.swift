@@ -94,8 +94,8 @@ extension ConnectPhoneViewController {
         headerTextLabel.font = Theme.Font.smallText
         footerTextLabel.font = Theme.Font.smallText
         
-        headerTextLabel.textColor = Theme.Text.Color.captionGrey
-        footerTextLabel.textColor = Theme.Text.Color.captionGrey
+        headerTextLabel.textColor = Theme.Color.Text.captionGrey
+        footerTextLabel.textColor = Theme.Color.Text.captionGrey
         
         phoneTextField.placeholder = LocalizedStrings.phoneNumberPlaceholder
         headerTextLabel.text = LocalizedStrings.screenSubtitle

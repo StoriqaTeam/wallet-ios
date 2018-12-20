@@ -50,12 +50,12 @@ extension TransactionDetailView {
         let fiatAmountString: String
         
         if direction == .receive {
-            gradientColors = Theme.Gradient.Details.detailsGreenGradient
+            gradientColors = Theme.Color.Gradient.Details.detailsGreenGradient
             directionImage = UIImage(named: "ReceiveStatusImg")
             cryptoAmountString = "+ \(transaction.cryptoAmountString)"
             fiatAmountString = "+ \(transaction.fiatAmountString)"
         } else {
-            gradientColors = Theme.Gradient.Details.detailsRedGradient
+            gradientColors = Theme.Color.Gradient.Details.detailsRedGradient
             directionImage = UIImage(named: "SendStatusImg")
             cryptoAmountString = "- \(transaction.cryptoAmountString)"
             fiatAmountString = "- \(transaction.fiatAmountString)"
@@ -69,10 +69,10 @@ extension TransactionDetailView {
     }
 
     private func configureInterface() {
-        fiatAmountLabel.textColor = Theme.Text.Color.captionGrey
+        fiatAmountLabel.textColor = Theme.Color.Text.captionGrey
         timestampLabel.textColor = Theme.Color.cloudyBlue
         pendingLabel.textColor = Theme.Color.cloudyBlue
-        cryptoAmountLabel.textColor = Theme.Text.Color.blackMain
+        cryptoAmountLabel.textColor = Theme.Color.Text.blackMain
         
         fiatAmountLabel.font = Theme.Font.smallText
         timestampLabel.font = Theme.Font.smallText

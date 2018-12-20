@@ -79,12 +79,12 @@ extension ExchangeConfirmPopUpViewController {
         toLabel.font = Theme.Font.smallText
         amountLabel.font = Theme.Font.smallText
         
-        fromTitle.textColor = Theme.Text.Color.lightGrey
-        toTitle.textColor = Theme.Text.Color.lightGrey
-        amountTitle.textColor = Theme.Text.Color.lightGrey
-        fromLabel.textColor = Theme.Text.Color.blackMain
-        toLabel.textColor = Theme.Text.Color.blackMain
-        amountLabel.textColor = Theme.Text.Color.blackMain
+        fromTitle.textColor = Theme.Color.Text.lightGrey
+        toTitle.textColor = Theme.Color.Text.lightGrey
+        amountTitle.textColor = Theme.Color.Text.lightGrey
+        fromLabel.textColor = Theme.Color.Text.blackMain
+        toLabel.textColor = Theme.Color.Text.blackMain
+        amountLabel.textColor = Theme.Color.Text.blackMain
         
         closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }

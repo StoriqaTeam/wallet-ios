@@ -202,7 +202,7 @@ extension TransactionsDataManager {
         
         let label = UILabel(frame: CGRect(x: 20, y: 4, width: headerWidth, height: 40))
         label.text = title.uppercased()
-        label.textColor = Theme.Text.Color.captionGrey
+        label.textColor = Theme.Color.Text.captionGrey
         label.font = Theme.Font.smallText
         headerView.addSubview(label)
         

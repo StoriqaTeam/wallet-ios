@@ -158,7 +158,7 @@ extension TransactionFilterViewController {
     }
     
     private func configureClearButton(isEnable: Bool) {
-        let titleColor = isEnable ? Theme.Color.brightSkyBlue : Theme.Button.Color.disabledTitle
+        let titleColor = isEnable ? Theme.Color.brightSkyBlue : Theme.Color.Button.disabledTitle
         clearFilterButton.setTitleColor(titleColor, for: .normal)
         clearFilterButton.isEnabled = isEnable
     }

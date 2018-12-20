@@ -77,12 +77,12 @@ extension SendConfirmPopUpViewController {
         amountLabel.font = Theme.Font.smallText
         feeLabel.font = Theme.Font.smallText
         
-        addressTitle.textColor = Theme.Text.Color.lightGrey
-        amountTitle.textColor = Theme.Text.Color.lightGrey
-        feeTitle.textColor = Theme.Text.Color.lightGrey
-        addressLabel.textColor = Theme.Text.Color.blackMain
-        amountLabel.textColor = Theme.Text.Color.blackMain
-        feeLabel.textColor = Theme.Text.Color.blackMain
+        addressTitle.textColor = Theme.Color.Text.lightGrey
+        amountTitle.textColor = Theme.Color.Text.lightGrey
+        feeTitle.textColor = Theme.Color.Text.lightGrey
+        addressLabel.textColor = Theme.Color.Text.blackMain
+        amountLabel.textColor = Theme.Color.Text.blackMain
+        feeLabel.textColor = Theme.Color.Text.blackMain
         
         closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }

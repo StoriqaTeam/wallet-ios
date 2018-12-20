@@ -149,7 +149,7 @@ extension SendViewController: SendViewInput {
         if hidden {
             loaderView.hideActivityIndicator()
         } else {
-            loaderView.showActivityIndicator(linewidth: 2, color: Theme.Text.Color.captionGrey)
+            loaderView.showActivityIndicator(linewidth: 2, color: Theme.Color.Text.captionGrey)
         }
     }
     
@@ -300,17 +300,17 @@ extension SendViewController {
         paymentFeeMediumLabel.font = Theme.Font.smallText
         paymentFeeHighLabel.font = Theme.Font.smallText
         
-        receiverTitleLabel.textColor = Theme.Text.Color.captionGrey
-        amountTitleLabel.textColor = Theme.Text.Color.captionGrey
-        paymentFeeTitleLabel.textColor = Theme.Text.Color.captionGrey
-        medianWaitTitleLabel.textColor = Theme.Text.Color.captionGrey
-        subtotalTitleLabel.textColor = Theme.Text.Color.captionGrey
-        paymentFeeLowLabel.textColor = Theme.Text.Color.captionGrey
-        paymentFeeMediumLabel.textColor = Theme.Text.Color.captionGrey
-        paymentFeeHighLabel.textColor = Theme.Text.Color.captionGrey
+        receiverTitleLabel.textColor = Theme.Color.Text.captionGrey
+        amountTitleLabel.textColor = Theme.Color.Text.captionGrey
+        paymentFeeTitleLabel.textColor = Theme.Color.Text.captionGrey
+        medianWaitTitleLabel.textColor = Theme.Color.Text.captionGrey
+        subtotalTitleLabel.textColor = Theme.Color.Text.captionGrey
+        paymentFeeLowLabel.textColor = Theme.Color.Text.captionGrey
+        paymentFeeMediumLabel.textColor = Theme.Color.Text.captionGrey
+        paymentFeeHighLabel.textColor = Theme.Color.Text.captionGrey
         
         errorLabel.font = Theme.Font.smallText
-        errorLabel.textColor = Theme.Text.Color.errorRed
+        errorLabel.textColor = Theme.Color.Text.errorRed
         errorLabel.isHidden = true
         errorLabel.alpha = 0
         

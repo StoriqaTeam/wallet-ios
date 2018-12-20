@@ -18,7 +18,7 @@ class AccountTableCell: UITableViewCell {
         super.awakeFromNib()
         accountName.font = UIFont.systemFont(ofSize: 19)
         amountLabel.font = UIFont.systemFont(ofSize: 15)
-        amountLabel.textColor = Theme.Text.Color.captionGrey
+        amountLabel.textColor = Theme.Color.Text.captionGrey
         currencyImage.tintColor = Theme.Color.brightSkyBlue
     }
     

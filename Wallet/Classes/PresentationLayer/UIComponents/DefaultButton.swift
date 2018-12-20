@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 class DefaultButton: BaseButton {
-    private let enabledBackgroundColor = Theme.Button.Color.enabledBackground
-    private let disabledBackgroundColor = Theme.Button.Color.disabledBackground
-    private let enabledTitleColor = Theme.Button.Color.enabledTitle
-    private let disabledTitleColor = Theme.Button.Color.disabledTitle
+    private let enabledBackgroundColor = Theme.Color.Button.enabledBackground
+    private let disabledBackgroundColor = Theme.Color.Button.disabledBackground
+    private let enabledTitleColor = Theme.Color.Button.enabledTitle
+    private let disabledTitleColor = Theme.Color.Button.disabledTitle
     
     override var isEnabled: Bool {
         didSet {
