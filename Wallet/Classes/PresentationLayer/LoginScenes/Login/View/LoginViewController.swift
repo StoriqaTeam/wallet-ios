@@ -19,8 +19,11 @@ class LoginViewController: UIViewController {
     @IBOutlet private var emailTextField: UnderlinedTextField!
     @IBOutlet private var passwordTextField: SecureInputTextField!
     @IBOutlet private var signInButton: DefaultButton!
-    @IBOutlet private var forgotPasswordButton: UIButton!
+    @IBOutlet private var forgotPasswordButton: BaseButton!
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
+    @IBOutlet private var signInHeaderButton: UIButton!
+    @IBOutlet private var signUpHeaderButton: UIButton!
+    @IBOutlet private var hederButtonUnderliner: UIView!
     
     // MARK: - Life cycle
     
@@ -47,6 +50,10 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - Actions
     
     @IBAction private func signIn() {
@@ -64,6 +71,10 @@ class LoginViewController: UIViewController {
     
     @IBAction private func forgotPasswordTapped() {
         output.showPasswordRecovery()
+    }
+    
+    @IBAction private func registerButtonTapped() {
+        output.showRegistration()
     }
     
     @objc func textDidChange(_ notification: Notification) {
@@ -98,10 +109,6 @@ extension LoginViewController: SocialNetworkAuthViewDelegate {
 
     func socialNetworkAuthFailed(provider: SocialNetworkTokenProvider) {
         output.socialNetworkRegisterFailed(tokenProvider: provider)
-    }
-
-    func socialNetworkAuthViewDidTapFooterButton() {
-        output.showRegistration()
     }
 }
 
@@ -150,8 +157,14 @@ extension LoginViewController {
         }
         
         signInButton.title = LocalizedStrings.signInButtonTitle
-        forgotPasswordButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+        signInHeaderButton.setTitle(LocalizedStrings.signInButtonTitle, for: .normal)
+        signUpHeaderButton.setTitle(LocalizedStrings.signUpButtonTitle, for: .normal)
         forgotPasswordButton.setTitle(LocalizedStrings.forgotButtonTitle, for: .normal)
+        
+        signInHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
+        signUpHeaderButton.setTitleColor(Theme.Color.primaryGrey, for: .normal)
+        signInHeaderButton.isUserInteractionEnabled = false
+        hederButtonUnderliner.backgroundColor = Theme.Color.Button.enabledBackground
     }
     
     private func setSocialView() {

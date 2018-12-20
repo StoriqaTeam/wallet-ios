@@ -13,34 +13,41 @@ import UIKit
 struct Theme {
     
     struct Color {
-        
         static let brightOrange = UIColor(red: 200/255, green: 141/255, blue: 49/255, alpha: 1.0)
         static let brightSkyBlue = UIColor(red: 0.0, green: 178.0 / 255.0, blue: 1.0, alpha: 1.0)
         static let cloudyBlue = UIColor(red: 195.0 / 255.0, green: 206.0 / 255.0, blue: 220.0 / 255.0, alpha: 1.0)
         static let greyishBrown = UIColor(white: 80.0 / 255.0, alpha: 1.0)
         static let bluegrey = UIColor(red: 136.0 / 255.0, green: 158.0 / 255.0, blue: 186.0 / 255.0, alpha: 1.0)
         static let primaryGrey = UIColor(white: 140.0 / 255.0, alpha: 1.0)
-    }
-    
-    struct Button {
-        struct Color {
+        
+        struct Button {
             static let enabledTitle = UIColor.white
-            static let disabledTitle = Theme.Color.primaryGrey
-            static let enabledBackground = Theme.Color.brightSkyBlue
-            static let disabledBackground = UIColor(white: 242.0 / 255.0, alpha: 1.0)
+            static let disabledTitle = enabledTitle.withAlphaComponent(0.35)
+            static let enabledBackground = UIColor(red: 165/255, green: 120/255, blue: 62/255, alpha: 1)
+            static let disabledBackground = UIColor(red: 83/255, green: 60/255, blue: 31/255, alpha: 1)
             static let red = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
         }
-    }
-    
-    struct TabBar {
-        struct Color {
+        
+        
+        struct TabBar {
             static let background = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.82)
             static let shadow = UIColor(red: 189/255, green: 189/255, blue: 189/255, alpha: 0.30)
         }
-    }
-    
-    struct Text {
-        struct Color {
+        
+        struct TextField {
+            static let input = UIColor.white
+            static let placeholder = UIColor(white: 175/255, alpha: 1.0)
+            static let underlineColor = UIColor(white: 121/255, alpha: 1.0)
+            static let focusedColor = UIColor(red: 175/255, green: 133/255, blue: 77/255, alpha: 1.0)
+        }
+        
+        struct SocialAuthView {
+            static let separators = UIColor(white: 121/255, alpha: 1.0)
+            static let borders = UIColor(white: 49/255, alpha: 1.0)
+            static let text = UIColor.white
+        }
+        
+        struct Text {
             static let blackMain = UIColor(white: 0.0, alpha: 1.0)
             static let captionGrey = UIColor(red: 135/255, green: 157/255, blue: 185/255, alpha: 1.0)
             static let grey = UIColor(red: 219/255, green: 225/255, blue: 234/255, alpha: 1.0)
@@ -49,58 +56,67 @@ struct Theme {
             static let errorRed = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
             static let lightGrey = UIColor(white: 191.0 / 255.0, alpha: 1.0)
         }
-    }
-    
-    struct Gradient {
-        struct Details {
-            static let detailsRedGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
-                                             UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+        
+        
+        struct Gradient {
+            struct Details {
+                static let detailsRedGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
+                                                 UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+                
+                static let detailsGreenGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
+                                                   UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+            }
             
-            static let detailsGreenGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
-                                               UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+            static let headerGradient = [UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
+                                         UIColor(red: 45/255, green: 100/255, blue: 194/255, alpha: 1).cgColor]
+            
+            static let sendingHeaderGradient = [UIColor(red: 55/255, green: 145/255, blue: 221/255, alpha: 1).cgColor,
+                                                UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor]
         }
-        
-        static let headerGradient = [UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
-                                     UIColor(red: 45/255, green: 100/255, blue: 194/255, alpha: 1).cgColor]
-        
-        static let sendingHeaderGradient = [UIColor(red: 55/255, green: 145/255, blue: 221/255, alpha: 1).cgColor,
-                                            UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor]
     }
     
     struct Font {
         
         /** 17px bold */
-        static let segmentTextFont = UIFont.systemFont(ofSize: 17, weight: .bold)
+        static let segmentTextFont = MontserratFont.font(ofSize: 17, weight: .bold)
         /** 28px bold */
-        static let supertitle = UIFont.systemFont(ofSize: 28.0, weight: .bold)
+        static let supertitle = MontserratFont.font(ofSize: 28.0, weight: .bold)
         /** 24px light */
-        static let title = UIFont.systemFont(ofSize: 24.0, weight: .light)
+        static let title = MontserratFont.font(ofSize: 24.0, weight: .light)
         /** 17px regular */
-        static let generalText = UIFont.systemFont(ofSize: 17.0, weight: .regular)
+        static let generalText = MontserratFont.font(ofSize: 17.0, weight: .regular)
         /** 13px regular. Must be uppercase */
-        static let caption = UIFont.systemFont(ofSize: 13.0, weight: .regular)
+        static let caption = MontserratFont.font(ofSize: 13.0, weight: .regular)
         /** 13px regular */
-        static let subtitle = UIFont.systemFont(ofSize: 13.0, weight: .regular)
+        static let subtitle = MontserratFont.font(ofSize: 13.0, weight: .regular)
         /** 13px regular */
-        static let smallText = UIFont.systemFont(ofSize: 13.0, weight: .regular)
+        static let smallText = MontserratFont.font(ofSize: 13.0, weight: .regular)
         /** 17px semibold */
-        static let navigationBarTitle = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
+        static let navigationBarTitle = MontserratFont.font(ofSize: 17.0, weight: .semibold)
         /** 13px medium */
-        static let smallMediumWeightText = UIFont.systemFont(ofSize: 13, weight: .medium)
+        static let smallMediumWeightText = MontserratFont.font(ofSize: 13, weight: .medium)
         /** 12px regular */
-        static let errorMessage = UIFont.systemFont(ofSize: 12)
+        static let errorMessage = MontserratFont.font(ofSize: 12, weight: .regular)
+        /** 17px medium */
+        static let buttonTitle = MontserratFont.font(ofSize: 17, weight: .medium)
+        /** 13px medium */
+        static let smallButtonTitle = MontserratFont.font(ofSize: 13, weight: .medium)
+        /** 13px regular */
+        static let extraSmallButtonTitle = MontserratFont.font(ofSize: 10, weight: .regular)
+        /** 16 px regular */
+        static let input = MontserratFont.font(ofSize: 16, weight: .regular)
     }
 }
 
 
- private struct MontserratFont {
+private struct MontserratFont {
     
     static let fontFamily = "Montserrat-"
     
     static func font(ofSize: CGFloat, weight: UIFont.Weight) -> UIFont? {
         switch weight {
         case .ultraLight:
-            return UIFont(name: fontFamily+"Light", size: ofSize)
+            return UIFont(name: fontFamily+"ExtraLight", size: ofSize)
         case .thin:
             return UIFont(name: fontFamily+"Thin", size: ofSize)
         case .light:
@@ -112,13 +128,13 @@ struct Theme {
         case .semibold:
             return UIFont(name: fontFamily+"SemiBold", size: ofSize)
         case .bold:
-             return UIFont(name: fontFamily+"SemiBold", size: ofSize)
+            return UIFont(name: fontFamily+"SemiBold", size: ofSize)
         case .heavy:
-             return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
+            return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
         case .black:
-             return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
+            return UIFont(name: fontFamily+"ExtraBold", size: ofSize)
         default:
-             return UIFont(name: fontFamily+"Black", size: ofSize)
+            return UIFont(name: fontFamily+"Black", size: ofSize)
         }
     }
 }

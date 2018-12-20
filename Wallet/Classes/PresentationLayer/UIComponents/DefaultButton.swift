@@ -10,13 +10,10 @@ import Foundation
 import UIKit
 
 class DefaultButton: BaseButton {
-    private var needsShadow: Bool = false
-    private var shadowLayer: CAShapeLayer?
-
-    private let enabledBackgroundColor = Theme.Button.Color.enabledBackground
-    private let disabledBackgroundColor = Theme.Button.Color.disabledBackground
-    private let enabledTitleColor = Theme.Button.Color.enabledTitle
-    private let disabledTitleColor = Theme.Button.Color.disabledTitle
+    private let enabledBackgroundColor = Theme.Color.Button.enabledBackground
+    private let disabledBackgroundColor = Theme.Color.Button.disabledBackground
+    private let enabledTitleColor = Theme.Color.Button.enabledTitle
+    private let disabledTitleColor = Theme.Color.Button.disabledTitle
     
     override var isEnabled: Bool {
         didSet {
@@ -33,18 +30,7 @@ class DefaultButton: BaseButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         updateColors()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if needsShadow {
-            let offset = CGSize(width: 0, height: 12)
-            dropShadow(color: enabledBackgroundColor, opacity: 0.3, offSet: offset, radius: 10)
-        } else {
-            //hides shadow
-            layer.shadowOpacity = 0
-        }
+        titleLabel?.font = Theme.Font.buttonTitle
     }
 }
 
@@ -61,13 +47,11 @@ extension DefaultButton {
     }
     
     private func setEnabled() {
-        needsShadow = true
         backgroundColor = enabledBackgroundColor
         setTitleColor(enabledTitleColor, for: .normal)
     }
     
     private func setDisabled() {
-        needsShadow = false
         backgroundColor = disabledBackgroundColor
         setTitleColor(disabledTitleColor, for: .normal)
     }

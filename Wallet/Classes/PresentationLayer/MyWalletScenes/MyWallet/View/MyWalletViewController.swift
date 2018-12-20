@@ -60,7 +60,7 @@ class MyWalletViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.gradientView(colors: Theme.Gradient.headerGradient,
+        view.gradientView(colors: Theme.Color.Gradient.headerGradient,
                           frame: view.bounds,
                           startPoint: CGPoint(x: 0.0, y: 0.0),
                           endPoint: CGPoint(x: 1.0, y: 1.0),

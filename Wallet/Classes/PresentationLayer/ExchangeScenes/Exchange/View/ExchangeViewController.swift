@@ -251,11 +251,11 @@ extension ExchangeViewController {
         amountTitleLabel.textColor = Theme.Color.bluegrey
         subtotalTitleLabel.textColor = Theme.Color.bluegrey
         
-        recepientBalanceLabel.textColor = Theme.Text.Color.captionGrey
-        rateLabel.textColor = Theme.Text.Color.captionGrey
-        rateTimerLabel.textColor = Theme.Text.Color.captionGrey
+        recepientBalanceLabel.textColor = Theme.Color.Text.captionGrey
+        rateLabel.textColor = Theme.Color.Text.captionGrey
+        rateTimerLabel.textColor = Theme.Color.Text.captionGrey
         
-        errorLabel.textColor = Theme.Text.Color.errorRed
+        errorLabel.textColor = Theme.Color.Text.errorRed
         
         errorLabel.text = ""
         errorLabel.isHidden = true

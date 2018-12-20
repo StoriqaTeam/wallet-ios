@@ -57,21 +57,21 @@ extension AppInfoViewController {
     
     func configureInterface() {
         appVersionLabel.font = Theme.Font.smallText
-        appVersionLabel.textColor = Theme.Text.Color.blackMain
+        appVersionLabel.textColor = Theme.Color.Text.blackMain
         appVersionTitle.font = Theme.Font.smallText
-        appVersionTitle.textColor = Theme.Text.Color.captionGrey
+        appVersionTitle.textColor = Theme.Color.Text.captionGrey
         appVersionTitle.text = LocalizedStrings.appVersionTitle
         
         displayNameLabel.font = Theme.Font.smallText
-        displayNameLabel.textColor = Theme.Text.Color.blackMain
+        displayNameLabel.textColor = Theme.Color.Text.blackMain
         displayNameTitle.font = Theme.Font.smallText
-        displayNameTitle.textColor = Theme.Text.Color.captionGrey
+        displayNameTitle.textColor = Theme.Color.Text.captionGrey
         displayNameTitle.text = LocalizedStrings.displayNameTitle
         
         bundleIdLabel.font = Theme.Font.smallText
-        bundleIdLabel.textColor = Theme.Text.Color.blackMain
+        bundleIdLabel.textColor = Theme.Color.Text.blackMain
         bundleIdTitle.font = Theme.Font.smallText
-        bundleIdTitle.textColor = Theme.Text.Color.captionGrey
+        bundleIdTitle.textColor = Theme.Color.Text.captionGrey
         bundleIdTitle.text = LocalizedStrings.bundleIdTitle
     }
     

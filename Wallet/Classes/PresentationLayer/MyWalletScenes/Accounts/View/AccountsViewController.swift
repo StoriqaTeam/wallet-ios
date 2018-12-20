@@ -56,10 +56,6 @@ class AccountsViewController: UIViewController {
         output.configureCollections()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: - Actions
 
     @IBAction func viewAllPressed(_ sender: UIButton) {
