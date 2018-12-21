@@ -20,6 +20,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
     private var animator: UIDynamicAnimator!
     private var addedBehaviors = [IndexPath: UIAttachmentBehavior]()
     private var topCellSnapshots = [IndexPath: UIView]()
+    private var footerIndexPath: IndexPath?
     
     override init() {
         super.init()
@@ -51,6 +52,14 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
     
     func setSnapshotsHidden(_ hidden: Bool) {
         topCellSnapshots.values.forEach { $0.alpha = hidden ? 0 : 1 }
+    }
+    
+    func removeFooterBehavior() {
+        if let footerIndexPath = footerIndexPath,
+            let footerBehavior = addedBehaviors.removeValue(forKey: footerIndexPath) {
+            animator.removeBehavior(footerBehavior)
+        }
+        footerIndexPath = nil
     }
     
     override func prepare() {
@@ -136,8 +145,12 @@ extension SpringFlowLayout {
     
     private func resolveIndexPath(for item: UICollectionViewLayoutAttributes, in collectionView: UICollectionView) -> IndexPath {
         if item.representedElementKind == UICollectionView.elementKindSectionFooter {
-            let lastRow = collectionView.numberOfItems(inSection: 0)
-            return IndexPath(row: lastRow, section: 0)
+            if footerIndexPath == nil {
+                let lastRow = collectionView.numberOfItems(inSection: 0)
+                footerIndexPath = IndexPath(row: lastRow, section: 0)
+            }
+            
+            return footerIndexPath!
         }
         return item.indexPath
     }

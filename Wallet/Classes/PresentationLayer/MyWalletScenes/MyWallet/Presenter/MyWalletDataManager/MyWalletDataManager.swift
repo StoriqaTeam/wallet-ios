@@ -52,11 +52,12 @@ class MyWalletDataManager: NSObject {
     
     func updateAccounts(accounts: [Account]) {
         self.accounts = accounts
-        collectionView.reloadData()
+        reloadData()
     }
     
     func reloadData() {
         collectionView.reloadData()
+        (collectionView.collectionViewLayout as? SpringFlowLayout)?.removeFooterBehavior()
     }
     
     func restoreVisibility() {
