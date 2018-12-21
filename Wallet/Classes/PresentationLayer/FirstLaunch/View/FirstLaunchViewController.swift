@@ -75,38 +75,33 @@ extension FirstLaunchViewController {
         tureLogo.alpha = 0
         tureTitle.alpha = 0
         tureSubtitle.alpha = 0
-        // for fade only remove next line
-        tureLogo.transform = CGAffineTransform(scaleX: 10, y: 10)
-        getStartedButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        signInButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        getStartedButton.transform = CGAffineTransform(translationX: 0, y: 10)
+        signInButton.transform = CGAffineTransform(translationX: 0, y: 10)
     }
     
     private func performAnimations() {
-        let tureLogoAnimator = UIViewPropertyAnimator(duration: 0.8, curve: .easeIn) {
+        let tureLogoAnimator = UIViewPropertyAnimator(duration: 0.7, curve: .easeIn) {
             self.tureLogo.alpha = 1
-            self.tureLogo.transform = CGAffineTransform.identity
-        }
-        let tureTitleAnimator = UIViewPropertyAnimator(duration: 0.7, curve: .easeIn) {
             self.tureTitle.alpha = 1
         }
         let tureSubtitleAnimator = UIViewPropertyAnimator(duration: 0.35, curve: .easeIn) {
             self.tureSubtitle.alpha = 0.5
         }
-        let getStartedButtonAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {
+        let getStartedButtonAnimator = UIViewPropertyAnimator(duration: 0.35, curve: .easeIn) {
             self.getStartedButton.alpha = 1
             self.getStartedButton.transform = CGAffineTransform.identity
         }
-        let signInAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {
+        let signInAnimator = UIViewPropertyAnimator(duration: 0.35, curve: .easeIn) {
             self.signInButton.alpha = 1
             self.signInButton.transform = CGAffineTransform.identity
         }
         
-        tureLogoAnimator.addCompletion { _ in tureTitleAnimator.startAnimation(afterDelay: 0.5) }
-        tureTitleAnimator.addCompletion { _ in tureSubtitleAnimator.startAnimation(afterDelay: 0.3) }
-        tureSubtitleAnimator.addCompletion { _ in getStartedButtonAnimator.startAnimation(afterDelay: 0.5) }
-        getStartedButtonAnimator.addCompletion { _ in signInAnimator.startAnimation() }
-        
-        tureLogoAnimator.startAnimation()
+        tureLogoAnimator.addCompletion { _ in
+            tureSubtitleAnimator.startAnimation(afterDelay: 1.2)
+            getStartedButtonAnimator.startAnimation(afterDelay: 1.4)
+            signInAnimator.startAnimation(afterDelay: 1.6)
+        }
+        tureLogoAnimator.startAnimation(afterDelay: 0.5)
     }
     
 }
