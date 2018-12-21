@@ -109,7 +109,7 @@ struct Theme {
 }
 
 
-struct MontserratFont {
+private struct MontserratFont {
     
     static let fontFamily = "Montserrat-"
     
