@@ -182,11 +182,11 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhj-uN-Wog">
-                                        <rect key="frame" x="120" y="2.3333333333333321" width="63" height="40"/>
+                                        <rect key="frame" x="120" y="2.3333333333333321" width="64" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ZfD-23-kTM"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
                                         <state key="normal" title="Sign up">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -312,7 +312,7 @@
                             <constraint firstItem="mBs-Eb-qfU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DAt-g1-aop" secondAttribute="bottom" constant="16" id="gkW-Qd-fSi"/>
                             <constraint firstItem="mBs-Eb-qfU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CrV-3D-Djp" secondAttribute="leading" constant="12" id="rwf-eg-OVA"/>
                             <constraint firstItem="DAt-g1-aop" firstAttribute="top" secondItem="CeY-K3-HXV" secondAttribute="bottom" constant="40" id="ta1-wK-HiL"/>
-                            <constraint firstItem="DAt-g1-aop" firstAttribute="leading" secondItem="CrV-3D-Djp" secondAttribute="leading" constant="28" id="tz8-Mb-BMt"/>
+                            <constraint firstItem="DAt-g1-aop" firstAttribute="leading" secondItem="0Hk-Eg-CM8" secondAttribute="leading" constant="28" id="tz8-Mb-BMt"/>
                             <constraint firstItem="mBs-Eb-qfU" firstAttribute="centerX" secondItem="0Hk-Eg-CM8" secondAttribute="centerX" id="vzp-wR-dfs"/>
                             <constraint firstItem="CeY-K3-HXV" firstAttribute="centerX" secondItem="0Hk-Eg-CM8" secondAttribute="centerX" id="xY4-k2-l22"/>
                         </constraints>
@@ -324,6 +324,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="0pb-ba-t1i" id="cew-PE-Oa3"/>
                         <outlet property="forgotPasswordButton" destination="pK4-1L-cnw" id="lWW-hV-NBE"/>
+                        <outlet property="headerView" destination="CeY-K3-HXV" id="5XQ-lD-ZCA"/>
                         <outlet property="hederButtonUnderliner" destination="xf1-1Y-Cjc" id="rWC-ZY-XvC"/>
                         <outlet property="passwordTextField" destination="w8Q-kv-LLc" id="zd4-u5-PXs"/>
                         <outlet property="signInButton" destination="3JB-nR-3za" id="Rwj-a5-ePp"/>

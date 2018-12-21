@@ -52,6 +52,15 @@ class RegistrationViewController: UIViewController {
         addHideKeyboardGuesture()
         updateContinueButton()
         setSocialView()
+        hideContent(true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UIView.animate(withDuration: 0.2) {
+             self.hideContent(false)
+        }
     }
     
     deinit {
@@ -94,7 +103,9 @@ class RegistrationViewController: UIViewController {
     }
     
     @IBAction func signInPressed(_ sender: UIButton) {
-        output.showLogin()
+        swapButtonsFront(duration: 0.5) {
+            self.output.showLogin()
+        }
     }
     
     @objc private func textDidChange(_ notification: Notification) {
@@ -355,4 +366,61 @@ extension RegistrationViewController {
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.contentOffset = CGPoint.zero
     }
+    
+    private func swapButtonsFront(duration: Double, completion: @escaping () -> Void) {
+        
+        let initialSignInCenter = self.signInHeaderButton.center.x
+        let initialSignUpCenter = self.signUpHeaderButton.center.x
+        let translation = initialSignInCenter - initialSignUpCenter
+        
+        UIView.animate(withDuration: duration/2,
+                       animations: {
+                        self.signUpHeaderButton.center.x += translation/2
+                        self.signInHeaderButton.center.x -= translation/2
+                        self.signUpHeaderButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                        self.signInHeaderButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+                        self.hederButtonUnderliner.alpha = 0
+                        self.signUpHeaderButton.alpha = 0.5
+        }, completion: { (_) in
+            UIView.animate(withDuration: duration/2,
+                           animations: {
+                            self.signUpHeaderButton.center.x += translation/2
+                            self.signInHeaderButton.center.x -= translation/2
+                            self.signUpHeaderButton.transform = CGAffineTransform(scaleX: 0.73, y: 0.73)
+                            self.signInHeaderButton.transform = CGAffineTransform(scaleX: 1.38, y: 1.38)
+                            self.signUpHeaderButton.alpha = 1.0
+                            self.hideContent(true)
+            }, completion: { (_) in
+                self.signInHeaderButton.titleLabel?.textColor = .white
+                self.signUpHeaderButton.titleLabel?.textColor = .lightGray
+                let oldFrame = self.hederButtonUnderliner.frame
+                self.hederButtonUnderliner.frame = CGRect(x: oldFrame.origin.x,
+                                                          y: oldFrame.origin.y,
+                                                          width: self.signInHeaderButton.frame.width,
+                                                          height: oldFrame.height)
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.self.hederButtonUnderliner.alpha = 1.0
+                })
+                
+                completion()
+            })
+        })
+    }
+    
+    private func hideContent(_ isHidden: Bool) {
+        let alpha: CGFloat = isHidden ? 0 : 1
+        
+        self.firstNameTextField.alpha = alpha
+        self.lastNameTextField.alpha = alpha
+        self.emailTextField.alpha = alpha
+        self.passwordTextField.alpha = alpha
+        self.repeatPasswordTextField.alpha = alpha
+        self.agreementTickImageView.alpha = alpha
+        self.privacyPolicyTickImageView.alpha = alpha
+        self.signUpButton.alpha = alpha
+        self.socialNetworkAuthView.alpha = alpha
+        self.licenceAgreementTextView.alpha = alpha
+        self.privacyPolicyTextView.alpha = alpha
+    }
+    
 }

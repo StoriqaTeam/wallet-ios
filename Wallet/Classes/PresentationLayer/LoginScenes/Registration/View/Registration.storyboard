@@ -13,9 +13,6 @@
         <array key="Montserrat-Bold.ttf">
             <string>Montserrat-Bold</string>
         </array>
-        <array key="Montserrat-Medium.ttf">
-            <string>Montserrat-Medium</string>
-        </array>
     </customFonts>
     <scenes>
         <!--Registration View Controller-->
@@ -422,11 +419,11 @@
                                                                 </state>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOi-CS-kEW">
-                                                                <rect key="frame" x="128" y="2.3333333333333321" width="56" height="40"/>
+                                                                <rect key="frame" x="128" y="2.3333333333333321" width="58" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="gJr-HA-VHv"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
+                                                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
                                                                 <state key="normal" title="Sign in">
                                                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
