@@ -181,14 +181,14 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhj-uN-Wog">
+                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhj-uN-Wog">
                                         <rect key="frame" x="120" y="2.3333333333333321" width="64" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ZfD-23-kTM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
                                         <state key="normal" title="Sign up">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="registerButtonTapped" destination="U6Q-Gf-hfn" eventType="touchUpInside" id="e6t-eq-16a"/>
@@ -323,6 +323,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="0pb-ba-t1i" id="cew-PE-Oa3"/>
+                        <outlet property="fieldsContainer" destination="DAt-g1-aop" id="351-xL-71Z"/>
                         <outlet property="forgotPasswordButton" destination="pK4-1L-cnw" id="lWW-hV-NBE"/>
                         <outlet property="headerView" destination="CeY-K3-HXV" id="5XQ-lD-ZCA"/>
                         <outlet property="hederButtonUnderliner" destination="xf1-1Y-Cjc" id="rWC-ZY-XvC"/>

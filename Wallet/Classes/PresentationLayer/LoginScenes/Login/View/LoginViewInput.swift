@@ -13,4 +13,5 @@ protocol LoginViewInput: class, Presentable {
     func setupInitialState()
     func setSocialView(viewModel: SocialNetworkAuthViewModel)
     func showErrorMessage(email: String?, password: String?)
+    func setAnimatedApperance()
 }

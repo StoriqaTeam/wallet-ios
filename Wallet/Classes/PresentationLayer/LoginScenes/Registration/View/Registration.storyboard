@@ -395,6 +395,55 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxi-c7-ieW">
                                         <rect key="frame" x="28" y="0.0" width="358" height="842"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8i-RU-gI8" userLabel="header">
+                                                <rect key="frame" x="0.0" y="0.0" width="358" height="70"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptd-oS-8xq">
+                                                        <rect key="frame" x="0.0" y="0.0" width="88" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="N7H-9a-ciU"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="22"/>
+                                                        <state key="normal" title="Sign up">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOi-CS-kEW">
+                                                        <rect key="frame" x="128" y="2.3333333333333321" width="58" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="gJr-HA-VHv"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
+                                                        <state key="normal" title="Sign in">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="signInPressed:" destination="IAS-GM-X4o" eventType="touchUpInside" id="3w7-KU-aHd"/>
+                                                        </connections>
+                                                    </button>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YtF-n4-FaI">
+                                                        <rect key="frame" x="0.0" y="40" width="88" height="2"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="2" id="DHV-Je-Vdy"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="ptd-oS-8xq" secondAttribute="bottom" constant="30" id="1HL-uJ-FXp"/>
+                                                    <constraint firstItem="fOi-CS-kEW" firstAttribute="leading" secondItem="ptd-oS-8xq" secondAttribute="trailing" constant="40" id="1gY-La-dKj"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ptd-oS-8xq" secondAttribute="bottom" id="85D-93-7rw"/>
+                                                    <constraint firstItem="YtF-n4-FaI" firstAttribute="width" secondItem="ptd-oS-8xq" secondAttribute="width" id="9t2-Uz-azV"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ptd-oS-8xq" secondAttribute="bottom" priority="249" constant="30" id="A8o-n6-Tbj"/>
+                                                    <constraint firstItem="YtF-n4-FaI" firstAttribute="top" secondItem="ptd-oS-8xq" secondAttribute="bottom" id="B3g-um-iol"/>
+                                                    <constraint firstItem="ptd-oS-8xq" firstAttribute="leading" secondItem="P8i-RU-gI8" secondAttribute="leading" id="IMB-hV-XdM"/>
+                                                    <constraint firstItem="YtF-n4-FaI" firstAttribute="top" secondItem="ptd-oS-8xq" secondAttribute="bottom" id="VZN-vz-v3c"/>
+                                                    <constraint firstItem="ptd-oS-8xq" firstAttribute="top" secondItem="P8i-RU-gI8" secondAttribute="top" id="nMJ-Mw-dVD"/>
+                                                    <constraint firstItem="YtF-n4-FaI" firstAttribute="centerX" secondItem="ptd-oS-8xq" secondAttribute="centerX" id="pjR-Mf-jrr"/>
+                                                    <constraint firstItem="fOi-CS-kEW" firstAttribute="firstBaseline" secondItem="ptd-oS-8xq" secondAttribute="firstBaseline" id="r78-ti-nF7"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwG-Cs-Woj" customClass="SocialNetworkAuthView" customModule="Wallet" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="730" width="358" height="112"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -403,59 +452,10 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rGy-Yx-f5k">
-                                                <rect key="frame" x="0.0" y="0.0" width="358" height="469"/>
+                                                <rect key="frame" x="0.0" y="80" width="358" height="387"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8i-RU-gI8" userLabel="header">
-                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="70"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptd-oS-8xq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="40"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="N7H-9a-ciU"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="22"/>
-                                                                <state key="normal" title="Sign up">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </state>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOi-CS-kEW">
-                                                                <rect key="frame" x="128" y="2.3333333333333321" width="58" height="40"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="gJr-HA-VHv"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
-                                                                <state key="normal" title="Sign in">
-                                                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="signInPressed:" destination="IAS-GM-X4o" eventType="touchUpInside" id="3w7-KU-aHd"/>
-                                                                </connections>
-                                                            </button>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YtF-n4-FaI">
-                                                                <rect key="frame" x="0.0" y="40" width="88" height="2"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="2" id="DHV-Je-Vdy"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="ptd-oS-8xq" secondAttribute="bottom" constant="30" id="1HL-uJ-FXp"/>
-                                                            <constraint firstItem="fOi-CS-kEW" firstAttribute="leading" secondItem="ptd-oS-8xq" secondAttribute="trailing" constant="40" id="1gY-La-dKj"/>
-                                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ptd-oS-8xq" secondAttribute="bottom" id="85D-93-7rw"/>
-                                                            <constraint firstItem="YtF-n4-FaI" firstAttribute="width" secondItem="ptd-oS-8xq" secondAttribute="width" id="9t2-Uz-azV"/>
-                                                            <constraint firstAttribute="bottom" secondItem="ptd-oS-8xq" secondAttribute="bottom" priority="249" constant="30" id="A8o-n6-Tbj"/>
-                                                            <constraint firstItem="YtF-n4-FaI" firstAttribute="top" secondItem="ptd-oS-8xq" secondAttribute="bottom" id="B3g-um-iol"/>
-                                                            <constraint firstItem="ptd-oS-8xq" firstAttribute="leading" secondItem="P8i-RU-gI8" secondAttribute="leading" id="IMB-hV-XdM"/>
-                                                            <constraint firstItem="YtF-n4-FaI" firstAttribute="top" secondItem="ptd-oS-8xq" secondAttribute="bottom" id="VZN-vz-v3c"/>
-                                                            <constraint firstItem="ptd-oS-8xq" firstAttribute="top" secondItem="P8i-RU-gI8" secondAttribute="top" id="nMJ-Mw-dVD"/>
-                                                            <constraint firstItem="YtF-n4-FaI" firstAttribute="centerX" secondItem="ptd-oS-8xq" secondAttribute="centerX" id="pjR-Mf-jrr"/>
-                                                            <constraint firstItem="fOi-CS-kEW" firstAttribute="firstBaseline" secondItem="ptd-oS-8xq" secondAttribute="firstBaseline" id="r78-ti-nF7"/>
-                                                        </constraints>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gz1-Ks-03Y">
-                                                        <rect key="frame" x="0.0" y="82" width="358" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2IQ-dh-iPa" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="40"/>
@@ -481,7 +481,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ql-mk-WHZ">
-                                                        <rect key="frame" x="0.0" y="134" width="358" height="40"/>
+                                                        <rect key="frame" x="0.0" y="52" width="358" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6Ix-x2-Czh" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="40"/>
@@ -507,7 +507,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eg1-tG-zYQ">
-                                                        <rect key="frame" x="0.0" y="186" width="358" height="40"/>
+                                                        <rect key="frame" x="0.0" y="104" width="358" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mWX-kE-wLN" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="40"/>
@@ -533,7 +533,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybn-b2-vrz">
-                                                        <rect key="frame" x="0.0" y="238" width="358" height="40"/>
+                                                        <rect key="frame" x="0.0" y="156" width="358" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X73-gb-IZe" customClass="SecureInputTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="40"/>
@@ -571,7 +571,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KfM-NH-8s1">
-                                                        <rect key="frame" x="0.0" y="290" width="358" height="40"/>
+                                                        <rect key="frame" x="0.0" y="208" width="358" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jmh-ry-r3G" customClass="SecureInputTextField" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="40"/>
@@ -609,7 +609,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fm-ge-DEA">
-                                                        <rect key="frame" x="0.0" y="342" width="358" height="70"/>
+                                                        <rect key="frame" x="0.0" y="260" width="358" height="70"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Zb-1h-YVT">
                                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="30"/>
@@ -704,7 +704,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgR-6K-BDJ" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="424" width="358" height="45"/>
+                                                        <rect key="frame" x="0.0" y="342" width="358" height="45"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="Ncd-bQ-5kh"/>
                                                         </constraints>
@@ -722,12 +722,15 @@
                                         <constraints>
                                             <constraint firstItem="mwG-Cs-Woj" firstAttribute="leading" secondItem="nxi-c7-ieW" secondAttribute="leading" priority="250" id="9mH-Sr-oyG"/>
                                             <constraint firstAttribute="bottom" secondItem="mwG-Cs-Woj" secondAttribute="bottom" id="ACq-fv-BOA"/>
+                                            <constraint firstItem="P8i-RU-gI8" firstAttribute="leading" secondItem="nxi-c7-ieW" secondAttribute="leading" id="LZc-2Q-Acx"/>
+                                            <constraint firstAttribute="trailing" secondItem="P8i-RU-gI8" secondAttribute="trailing" id="Mgi-5i-Y5j"/>
+                                            <constraint firstItem="rGy-Yx-f5k" firstAttribute="top" secondItem="P8i-RU-gI8" secondAttribute="bottom" constant="10" id="OXi-yj-G1f"/>
                                             <constraint firstItem="mwG-Cs-Woj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="rGy-Yx-f5k" secondAttribute="bottom" constant="20" id="WH2-Za-xPA"/>
+                                            <constraint firstItem="P8i-RU-gI8" firstAttribute="top" secondItem="nxi-c7-ieW" secondAttribute="top" id="ZPa-d1-7y6"/>
                                             <constraint firstItem="rGy-Yx-f5k" firstAttribute="leading" secondItem="nxi-c7-ieW" secondAttribute="leading" id="dk5-XA-AWx"/>
                                             <constraint firstItem="mwG-Cs-Woj" firstAttribute="centerX" secondItem="nxi-c7-ieW" secondAttribute="centerX" id="oV6-cG-Upr"/>
                                             <constraint firstItem="mwG-Cs-Woj" firstAttribute="top" secondItem="rGy-Yx-f5k" secondAttribute="bottom" priority="250" constant="20" id="rUa-Cf-Jaq"/>
                                             <constraint firstAttribute="trailing" secondItem="rGy-Yx-f5k" secondAttribute="trailing" id="rw6-0G-c2P"/>
-                                            <constraint firstItem="rGy-Yx-f5k" firstAttribute="top" secondItem="nxi-c7-ieW" secondAttribute="top" id="tF8-wa-yVJ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -768,6 +771,7 @@
                         <outlet property="signUpButton" destination="zgR-6K-BDJ" id="Zku-dr-6a3"/>
                         <outlet property="signUpHeaderButton" destination="ptd-oS-8xq" id="aTz-ry-M78"/>
                         <outlet property="socialNetworkAuthView" destination="mwG-Cs-Woj" id="dRd-A7-EL8"/>
+                        <outlet property="stackView" destination="rGy-Yx-f5k" id="q3k-Qs-TG2"/>
                         <outlet property="topSpaceConstraint" destination="6BJ-Yu-DBo" id="pwD-bi-dCV"/>
                         <outletCollection property="textFields" destination="Jmh-ry-r3G" collectionClass="NSMutableArray" id="Gqn-NA-G7N"/>
                         <outletCollection property="textFields" destination="X73-gb-IZe" collectionClass="NSMutableArray" id="gOz-ty-ZLb"/>

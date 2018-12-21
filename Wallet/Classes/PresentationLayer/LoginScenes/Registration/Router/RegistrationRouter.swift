@@ -43,8 +43,12 @@ extension RegistrationRouter: RegistrationRouterInput {
         PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
-    func showLogin() {
-        LoginModule.create(app: app).present()
+    func showLogin(animated: Bool) {
+        if animated {
+            LoginModule.create(app: app).presentAnimated()
+        } else {
+            LoginModule.create(app: app).present()
+        }
     }
     
     func showQuickLaunch(from viewController: UIViewController) {
