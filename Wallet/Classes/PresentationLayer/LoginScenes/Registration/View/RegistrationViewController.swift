@@ -34,6 +34,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var signUpHeaderButton: UIButton!
     @IBOutlet private var hederButtonUnderliner: UIView!
     @IBOutlet private var topSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet private var stackView: UIStackView!
     
     // MARK: - Variables
     
@@ -52,6 +53,15 @@ class RegistrationViewController: UIViewController {
         addHideKeyboardGuesture()
         updateContinueButton()
         setSocialView()
+        hideContent(true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: 0.35) {
+             self.hideContent(false)
+        }
     }
     
     deinit {
@@ -94,7 +104,9 @@ class RegistrationViewController: UIViewController {
     }
     
     @IBAction func signInPressed(_ sender: UIButton) {
-        output.showLogin()
+        swapButtonsFront(duration: 0.5) {
+            self.output.showLogin()
+        }
     }
     
     @objc private func textDidChange(_ notification: Notification) {
@@ -245,7 +257,8 @@ extension RegistrationViewController {
         signInHeaderButton.setTitle(LocalizedStrings.signInButtonTitle, for: .normal)
         signUpHeaderButton.setTitle(LocalizedStrings.signUpButtonTitle, for: .normal)
         signUpHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
-        signInHeaderButton.setTitleColor(Theme.Color.primaryGrey, for: .normal)
+        signInHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
+        signInHeaderButton.alpha = 0.7
         signUpHeaderButton.isUserInteractionEnabled = false
         hederButtonUnderliner.backgroundColor = Theme.Color.Button.enabledBackground
         
@@ -355,4 +368,44 @@ extension RegistrationViewController {
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.contentOffset = CGPoint.zero
     }
+    
+    private func swapButtonsFront(duration: Double, completion: @escaping () -> Void) {
+        
+        let initialSignInCenter = self.signInHeaderButton.center
+        let initialSignUpCenter = self.signUpHeaderButton.center
+        let translationX = initialSignInCenter.x - initialSignUpCenter.x
+        let translationY = initialSignInCenter.y - initialSignUpCenter.y
+        
+        let animator = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
+            self.hederButtonUnderliner.alpha = 0
+            self.signUpHeaderButton.alpha = 0.3
+            self.signUpHeaderButton.center.x += translationX - 5
+            self.signInHeaderButton.center.x -= translationX + 3.5
+            self.signUpHeaderButton.center.y += translationY
+            self.signInHeaderButton.center.y -= translationY
+            self.signUpHeaderButton.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+            self.signInHeaderButton.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
+        }
+        
+        animator.addAnimations({
+            self.signUpHeaderButton.transform = CGAffineTransform(scaleX: 0.73, y: 0.73)
+            self.signInHeaderButton.transform = CGAffineTransform(scaleX: 1.38, y: 1.38)
+            self.signUpHeaderButton.alpha = 0.7
+            self.signInHeaderButton.alpha = 1.0
+            self.hideContent(true)
+        }, delayFactor: 0.4)
+            
+        animator.addCompletion { (_) in completion() }
+        
+        animator.startAnimation()
+    }
+    
+    private func hideContent(_ isHidden: Bool) {
+        let alpha: CGFloat = isHidden ? 0 : 1
+        
+        stackView.alpha = alpha
+        socialNetworkAuthView.alpha = alpha
+        hederButtonUnderliner.alpha = alpha
+    }
+    
 }

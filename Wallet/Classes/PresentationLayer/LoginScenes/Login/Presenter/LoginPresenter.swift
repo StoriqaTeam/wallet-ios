@@ -136,8 +136,9 @@ extension LoginPresenter: LoginModuleInput {
         view.presentAsNavController()
     }
     
-    func present(from viewController: UIViewController) {
-        view.present(from: viewController)
+    func presentAnimated() {
+        view.setAnimatedApperance()
+        present()
     }
 }
 

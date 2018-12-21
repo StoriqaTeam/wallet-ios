@@ -25,6 +25,10 @@ class LoginViewController: UIViewController {
     @IBOutlet private var signUpHeaderButton: UIButton!
     @IBOutlet private var hederButtonUnderliner: UIView!
     @IBOutlet private var topSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet private var headerView: UIView!
+    @IBOutlet private var fieldsContainer: UIView!
+    
+    private var shouldAnimateApperance = false
     
     // MARK: - Life cycle
     
@@ -36,11 +40,23 @@ class LoginViewController: UIViewController {
         setDelegates()
         setSocialView()
         output.viewIsReady()
+        
+        if shouldAnimateApperance {
+            hideContent(true)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         output.viewDidAppear()
+        
+        if shouldAnimateApperance {
+            shouldAnimateApperance = false
+            
+            UIView.animate(withDuration: 0.35) {
+                self.hideContent(false)
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,7 +100,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction private func registerButtonTapped() {
-        output.showRegistration()
+        swapButtonsFront(duration: 0.5) {
+            self.output.showRegistration()
+        }
     }
     
     @objc func textDidChange(_ notification: Notification) {
@@ -98,6 +116,10 @@ class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewInput {
     
     func setupInitialState() { }
+    
+    func setAnimatedApperance() {
+        shouldAnimateApperance = true
+    }
     
     func setSocialView(viewModel: SocialNetworkAuthViewModel) {
         socialNetworkAuthView.bindViewModel(viewModel)
@@ -172,7 +194,8 @@ extension LoginViewController {
         forgotPasswordButton.setTitle(LocalizedStrings.forgotButtonTitle, for: .normal)
         
         signInHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
-        signUpHeaderButton.setTitleColor(Theme.Color.primaryGrey, for: .normal)
+        signUpHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
+        signUpHeaderButton.alpha = 0.7
         signInHeaderButton.isUserInteractionEnabled = false
         hederButtonUnderliner.backgroundColor = Theme.Color.Button.enabledBackground
         
@@ -187,5 +210,44 @@ extension LoginViewController {
     private func setDelegates() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
+    }
+    
+    private func swapButtonsFront(duration: Double, completion: @escaping () -> Void) {
+        
+        let initialSignInCenter = self.signInHeaderButton.center
+        let initialSignUpCenter = self.signUpHeaderButton.center
+        let translationX = initialSignUpCenter.x - initialSignInCenter.x
+        let translationY = initialSignUpCenter.y - initialSignInCenter.y
+   
+        let animator = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
+            self.hederButtonUnderliner.alpha = 0
+            self.signInHeaderButton.alpha = 0.3
+            self.signInHeaderButton.center.x += translationX + 5
+            self.signUpHeaderButton.center.x -= translationX - 4
+            self.signInHeaderButton.center.y += translationY
+            self.signUpHeaderButton.center.y -= translationY
+            self.signInHeaderButton.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+            self.signUpHeaderButton.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
+        }
+
+        animator.addAnimations({
+            self.signInHeaderButton.transform = CGAffineTransform(scaleX: 0.73, y: 0.73)
+            self.signUpHeaderButton.transform = CGAffineTransform(scaleX: 1.38, y: 1.38)
+            self.signInHeaderButton.alpha = 0.7
+            self.signUpHeaderButton.alpha = 1
+            self.hideContent(true)
+        }, delayFactor: 0.4)
+
+        animator.addCompletion { (_) in completion() }
+
+        animator.startAnimation()
+    }
+    
+    private func hideContent(_ isHidden: Bool) {
+        let alpha: CGFloat = isHidden ? 0 : 1
+        
+        socialNetworkAuthView.alpha = alpha
+        hederButtonUnderliner.alpha = alpha
+        fieldsContainer.alpha = alpha
     }
 }

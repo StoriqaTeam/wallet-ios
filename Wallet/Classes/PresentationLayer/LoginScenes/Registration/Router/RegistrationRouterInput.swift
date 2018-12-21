@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol RegistrationRouterInput: class {
-    func showLogin()
+    func showLogin(animated: Bool)
     func showSuccess(email: String,
                      popUpDelegate: PopUpRegistrationSuccessVMDelegate,
                      from viewController: UIViewController)

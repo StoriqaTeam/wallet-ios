@@ -72,7 +72,7 @@ extension RegistrationPresenter: RegistrationViewOutput {
     }
     
     func showLogin() {
-        router.showLogin()
+        router.showLogin(animated: true)
     }
     
     func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
@@ -160,7 +160,7 @@ extension RegistrationPresenter: RegistrationModuleInput {
 
 extension RegistrationPresenter: PopUpRegistrationSuccessVMDelegate {
     func okButtonPressed() {
-        router.showLogin()
+        router.showLogin(animated: false)
     }
 }
 
