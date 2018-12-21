@@ -20,6 +20,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
     private var animator: UIDynamicAnimator!
     private var addedBehaviors = [IndexPath: UIAttachmentBehavior]()
     private var topCellSnapshots = [IndexPath: UIView]()
+    private var footerIndexPath: IndexPath?
     
     override init() {
         super.init()
@@ -41,10 +42,24 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         self.headerReferenceSize = flow.headerReferenceSize
     }
     
-    func getTopCellSnapshots() -> [UIView] {
-        let sortedKeys = topCellSnapshots.keys.sorted()
-        let sortedViews = sortedKeys.compactMap { topCellSnapshots[$0] }
-        return sortedViews
+    func getLastTopCellSnapshot() -> UIView? {
+        guard let maxKey = topCellSnapshots.keys.max(), 
+            let lastCellSnapshot = topCellSnapshots[maxKey] else {
+                return nil
+        }
+        return lastCellSnapshot
+    }
+    
+    func setSnapshotsHidden(_ hidden: Bool) {
+        topCellSnapshots.values.forEach { $0.alpha = hidden ? 0 : 1 }
+    }
+    
+    func removeFooterBehavior() {
+        if let footerIndexPath = footerIndexPath,
+            let footerBehavior = addedBehaviors.removeValue(forKey: footerIndexPath) {
+            animator.removeBehavior(footerBehavior)
+        }
+        footerIndexPath = nil
     }
     
     override func prepare() {
@@ -130,8 +145,12 @@ extension SpringFlowLayout {
     
     private func resolveIndexPath(for item: UICollectionViewLayoutAttributes, in collectionView: UICollectionView) -> IndexPath {
         if item.representedElementKind == UICollectionView.elementKindSectionFooter {
-            let lastRow = collectionView.numberOfItems(inSection: 0)
-            return IndexPath(row: lastRow, section: 0)
+            if footerIndexPath == nil {
+                let lastRow = collectionView.numberOfItems(inSection: 0)
+                footerIndexPath = IndexPath(row: lastRow, section: 0)
+            }
+            
+            return footerIndexPath!
         }
         return item.indexPath
     }
@@ -139,10 +158,7 @@ extension SpringFlowLayout {
     private func stopCellsOnTop() {
         guard let collectionView = self.collectionView else { return }
         
-        let contentOffset = collectionView.contentOffset.y + collectionView.contentInset.top
-        let contentInset = collectionView.contentInset.top
-        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
-        let maxInset = contentInset - statusBarHeight
+        let contentOffset = collectionView.contentOffset.y
         
         for behavior in self.animator.behaviors {
             guard let behavior = behavior as? UIAttachmentBehavior,
@@ -150,25 +166,26 @@ extension SpringFlowLayout {
             
             let indexPath = resolveIndexPath(for: item, in: collectionView)
             
-            if contentOffset - maxInset >= item.frame.origin.y {
+            if contentOffset >= item.frame.origin.y {
                 if topCellSnapshots[indexPath] == nil,
                     let cell = collectionView.cellForItem(at: indexPath),
                     let snapshot = cell.snapshotView(afterScreenUpdates: false) {
                     snapshot.center = item.center
-                    snapshot.frame.origin.y = statusBarHeight
+                    snapshot.frame.origin.y = collectionView.frame.minY
                     topCellSnapshots[indexPath] = snapshot
                     collectionView.superview?.insertSubview(snapshot, belowSubview: collectionView)
                 }
                 
                 item.isHidden = true
+                self.animator.updateItem(usingCurrentState: item)
             } else if item.isHidden {
                 if let snapshot = topCellSnapshots[indexPath] {
                     snapshot.removeFromSuperview()
                     topCellSnapshots.removeValue(forKey: indexPath)
                 }
                 item.isHidden = false
+                self.animator.updateItem(usingCurrentState: item)
             }
-            self.animator.updateItem(usingCurrentState: item)
         }
     }
 }
