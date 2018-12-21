@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mJD-0Y-fvL">
-                                <rect key="frame" x="12" y="0.0" width="351" height="96"/>
+                                <rect key="frame" x="18" y="0.0" width="339" height="96"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textAttributes key="titleTextAttributes">
                                     <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
@@ -28,9 +28,16 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="My Wallet" largeTitleDisplayMode="always" id="rZH-fA-Exz"/>
+                                    <navigationItem title="Accounts" largeTitleDisplayMode="always" id="rZH-fA-Exz"/>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="421-hT-Z8N">
+                                <rect key="frame" x="333" y="58" width="21" height="22"/>
+                                <state key="normal" image="addCart"/>
+                                <connections>
+                                    <action selector="addNew" destination="aZD-B3-BFA" eventType="touchUpInside" id="xcp-3I-unj"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Umq-MJ-m5j">
                                 <rect key="frame" x="67" y="269" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -60,11 +67,13 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mJD-0Y-fvL" firstAttribute="top" secondItem="IXN-jW-1ZI" secondAttribute="top" id="5c5-J3-eL8"/>
+                            <constraint firstItem="421-hT-Z8N" firstAttribute="bottom" secondItem="mJD-0Y-fvL" secondAttribute="bottom" constant="-16" id="80O-lZ-RPe"/>
                             <constraint firstItem="iyw-Od-pLW" firstAttribute="trailing" secondItem="Ii4-D4-aiR" secondAttribute="trailing" id="A4B-Yq-YeM"/>
-                            <constraint firstItem="mJD-0Y-fvL" firstAttribute="leading" secondItem="iyw-Od-pLW" secondAttribute="leading" constant="12" id="FEK-y1-qkO"/>
+                            <constraint firstItem="421-hT-Z8N" firstAttribute="trailing" secondItem="mJD-0Y-fvL" secondAttribute="trailing" constant="-3" id="Dsc-U9-372"/>
+                            <constraint firstItem="mJD-0Y-fvL" firstAttribute="leading" secondItem="iyw-Od-pLW" secondAttribute="leading" constant="18" id="FEK-y1-qkO"/>
                             <constraint firstItem="iyw-Od-pLW" firstAttribute="bottom" secondItem="Ii4-D4-aiR" secondAttribute="bottom" id="j7t-Bg-7y8"/>
                             <constraint firstItem="mJD-0Y-fvL" firstAttribute="centerX" secondItem="IXN-jW-1ZI" secondAttribute="centerX" id="mny-gg-CFH"/>
                             <constraint firstItem="Ii4-D4-aiR" firstAttribute="top" secondItem="IXN-jW-1ZI" secondAttribute="top" id="ud1-Lx-cua"/>
@@ -77,10 +86,10 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addCardNavigationButton" destination="421-hT-Z8N" id="oBn-04-vRB"/>
                         <outlet property="collectionView" destination="nxK-Lh-jgQ" id="0v7-vD-X2K"/>
                         <outlet property="collectionViewTopConstraint" destination="ud1-Lx-cua" id="oRD-Rj-FeB"/>
                         <outlet property="navigationBar" destination="mJD-0Y-fvL" id="wvZ-kb-0L5"/>
-                        <outlet property="navigationBarHorizontalConstraint" destination="FEK-y1-qkO" id="ut2-EF-IEh"/>
                         <outlet property="navigationBarTopConstraint" destination="5c5-J3-eL8" id="JKh-0i-nap"/>
                     </connections>
                 </viewController>
@@ -90,6 +99,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="walletTab" width="17" height="14"/>
+        <image name="addCart" width="21" height="21"/>
+        <image name="walletTab" width="21" height="17"/>
     </resources>
 </document>

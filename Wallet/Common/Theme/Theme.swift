@@ -28,10 +28,10 @@ struct Theme {
             static let red = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
         }
         
-        
         struct TabBar {
-            static let background = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.82)
-            static let shadow = UIColor(red: 189/255, green: 189/255, blue: 189/255, alpha: 0.30)
+            static let background = UIColor.black
+            static let selectedItem = Theme.Color.brightOrange
+            static let unselectedItem = UIColor(white: 128/255, alpha: 1)
         }
         
         struct TextField {
@@ -91,10 +91,14 @@ struct Theme {
         static let subtitle = MontserratFont.font(ofSize: 13.0, weight: .regular)
         /** 13px regular */
         static let smallText = MontserratFont.font(ofSize: 13.0, weight: .regular)
-        /** 17px semibold */
-        static let navigationBarTitle = MontserratFont.font(ofSize: 17.0, weight: .semibold)
+        /** 16px semibold */
+        static let navigationBarTitle = MontserratFont.font(ofSize: 16.0, weight: .semibold)
+        /** 28px bold */
+        static let largeNavigationBarTitle = MontserratFont.font(ofSize: 28.0, weight: .bold)
         /** 12px medium */
         static let smallMediumWeightText = MontserratFont.font(ofSize: 12, weight: .medium)
+        /** 12px semibold */
+        static let smallBoldText = MontserratFont.font(ofSize: 12, weight: .semibold)
         /** 12px regular */
         static let errorMessage = MontserratFont.font(ofSize: 12, weight: .regular)
         /** 16px medium */
@@ -105,6 +109,8 @@ struct Theme {
         static let extraSmallButtonTitle = MontserratFont.font(ofSize: 10, weight: .regular)
         /** 16 px regular */
         static let input = MontserratFont.font(ofSize: 16, weight: .regular)
+        /** 26 px regular */
+        static let largeText = MontserratFont.font(ofSize: 26, weight: .medium)
     }
 }
 

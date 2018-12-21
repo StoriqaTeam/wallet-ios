@@ -20,7 +20,7 @@ class MyWalletViewController: UIViewController {
     @IBOutlet private var navigationBar: UINavigationBar!
     @IBOutlet private var collectionViewTopConstraint: NSLayoutConstraint!
     @IBOutlet private var navigationBarTopConstraint: NSLayoutConstraint!
-    @IBOutlet private var navigationBarHorizontalConstraint: NSLayoutConstraint!
+    @IBOutlet private var addCardNavigationButton: UIButton!
     
     // MARK: variables
     
@@ -37,6 +37,9 @@ class MyWalletViewController: UIViewController {
         output.accountsCollectionView(collectionView)
         output.navigationBar(navigationBar)
         output.viewIsReady()
+        
+        // FIXME: подумать, как сделать лучше
+        self.addCardNavigationButton.isHidden = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -46,35 +49,6 @@ class MyWalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.viewWillAppear()
-    }
-    
-    // FIXME: hidden before release
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        showBarButton(true)
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        showBarButton(false)
-//    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        guard !didLayoutSubviews else { return }
-        didLayoutSubviews = true
-        view.gradientView(colors: Theme.Color.Gradient.headerGradient,
-                          frame: view.bounds,
-                          startPoint: CGPoint(x: 0.0, y: 0.0),
-                          endPoint: CGPoint(x: 1.0, y: 1.0),
-                          insertFirst: true)
-        
-        // FIXME: hidden before release
-        
-//        guard let height = navigationController?.navigationBar.frame.height else { return }
-//        addNewButton.moveAndResizeImage(for: height)
     }
     
     // MARK: Actions
@@ -93,13 +67,10 @@ extension MyWalletViewController: MyWalletViewInput {
         navigationBarTopConstraint.constant = topSpace
     }
     
-    func setNavigationBarHorizontalSpace(_ horizontalSpace: CGFloat) {
-        navigationBarHorizontalConstraint.constant = horizontalSpace
-    }
-    
     func setNavigationBarHidden(_ hidden: Bool) {
         UIView.animate(withDuration: 0.25) {
             self.navigationBar.alpha = hidden ? 0 : 1
+            self.addCardNavigationButton.alpha = hidden ? 0 : 1
         }
     }
     
