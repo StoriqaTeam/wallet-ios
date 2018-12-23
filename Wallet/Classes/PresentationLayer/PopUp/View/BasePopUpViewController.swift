@@ -13,7 +13,7 @@ class BasePopUpViewController: UIViewController {
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var verticalCenterConstraint: NSLayoutConstraint!
     private var blurEffectView: UIVisualEffectView?
-    
+    var blurBackImageView: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +24,7 @@ class BasePopUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
-            guard let blur = self.blurEffectView else { return }
-            blur.alpha = 0.9
-        }, completion: nil)
+        animateBlur()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,12 +53,7 @@ class BasePopUpViewController: UIViewController {
             }, completion: nil)
         })
         
-        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
-            guard let blur = self.blurEffectView else { return }
-            blur.alpha = 0.0
-        }, completion: { _ in
-            self.dismiss(animated: false, completion: completion)
-        })
+        dissmissBlur(completion: completion)
     }
 }
 
@@ -70,7 +61,14 @@ class BasePopUpViewController: UIViewController {
 // MARK: - Private methods
 
 extension BasePopUpViewController {
-    func addBlurBackground() {
+    private func addBlurBackground() {
+        
+        if let storiqaBlur = blurBackImageView {
+            storiqaBlur.alpha = 0
+            view.backgroundColor = .clear
+            view.insertSubview(storiqaBlur, at: 0)
+            return
+        }
         
         let blurEffect = UIBlurEffect(style: .dark)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -80,5 +78,36 @@ extension BasePopUpViewController {
         view.insertSubview(blur, at: 0)
         blurEffectView?.alpha = 0
         view.backgroundColor = .clear
+    }
+    
+    private func animateBlur() {
+        if let storiqaBlur = blurBackImageView {
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
+                self.view.backgroundColor = .clear
+                storiqaBlur.alpha = 1
+            }, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
+                guard let blur = self.blurEffectView else { return }
+                blur.alpha = 0.9
+            }, completion: nil)
+        }
+    }
+    
+    private func dissmissBlur(completion:  @escaping () -> Void) {
+        if let storiqaBlur = blurBackImageView {
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
+                storiqaBlur.alpha = 0.0
+            }, completion: { _ in
+                self.dismiss(animated: false, completion: completion)
+            })
+        } else {
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
+                guard let blur = self.blurEffectView else { return }
+                blur.alpha = 0.0
+            }, completion: { _ in
+                self.dismiss(animated: false, completion: completion)
+            })
+        }
     }
 }

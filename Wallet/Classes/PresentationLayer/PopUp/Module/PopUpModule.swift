@@ -33,13 +33,16 @@ struct PopUpApperance {
 
 class PopUpModule {
     
-    class func create(viewModel: PopUpViewModelProtocol) -> PopUpModuleInput {
+    class func create(viewModel: PopUpViewModelProtocol, backImage: UIImage?) -> PopUpModuleInput {
         let router = PopUpRouter()
         let presenter = PopUpPresenter()
         let interactor = PopUpInteractor(viewModel: viewModel)
         
         let storyboard = UIStoryboard(name: "PopUp", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PopUpVC") as! PopUpViewController
+        
+        let backImageView = UIImageView(image: backImage)
+        viewController.blurBackImageView = backImageView
 
         interactor.output = presenter
 

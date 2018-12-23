@@ -28,21 +28,24 @@ extension PasswordEmailRecoveryRouter: PasswordEmailRecoveryRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpPasswordEmailRecoverySuccessVM()
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showFailure(message: String, popUpDelegate: PopUpPasswordEmailRecoveryFailedVMDelegate,
                      from viewController: UIViewController) {
         let viewModel = PopUpPasswordEmailRecoveryFailedVM(message: message)
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showEmailNotVerified(popUpDelegate: PopUpResendConfirmEmailVMDelegate,
                               from viewController: UIViewController) {
         let viewModel = PopUpResendConfirmEmailVM()
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showEmailSengingSuccess(email: String,
@@ -50,13 +53,15 @@ extension PasswordEmailRecoveryRouter: PasswordEmailRecoveryRouterInput {
                                  from viewController: UIViewController) {
         let viewModel = PopUpRegistrationSuccessVM(email: email)
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showEmailSengingFailure(message: String,
                                  from viewController: UIViewController) {
         let viewModel = PopUpDefaultFailureVM(message: message)
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
 }

@@ -23,7 +23,8 @@ extension LoginRouter: LoginRouterInput {
     func showFailurePopup(message: String, popUpDelegate: PopUpRegistrationFailedVMDelegate, from viewController: UIViewController) {
         let viewModel = PopUpRegistrationFailedVM(message: message)
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showPasswordRecovery(from viewController: UIViewController) {
@@ -50,12 +51,14 @@ extension LoginRouter: LoginRouterInput {
                             from viewController: UIViewController) {
         let viewModel = PopUpDeviceRegisterVM()
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showDeviceRegisterEmailSent(from viewController: UIViewController) {
         let viewModel = PopUpDeviceRegisterEmailSentVM()
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showDeviceRegisterFailedSendEmail(message: String,
@@ -63,14 +66,16 @@ extension LoginRouter: LoginRouterInput {
                                            from viewController: UIViewController) {
         let viewModel = PopUpDeviceRegisterFailedSendEmailVM(message: message)
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showEmailNotVerified(popUpDelegate: PopUpResendConfirmEmailVMDelegate,
                               from viewController: UIViewController) {
         let viewModel = PopUpResendConfirmEmailVM()
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showEmailSengingSuccess(email: String,
@@ -78,12 +83,14 @@ extension LoginRouter: LoginRouterInput {
                                  from viewController: UIViewController) {
         let viewModel = PopUpRegistrationSuccessVM(email: email)
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showFailure(message: String,
                      from viewController: UIViewController) {
         let viewModel = PopUpDefaultFailureVM(message: message)
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
 }

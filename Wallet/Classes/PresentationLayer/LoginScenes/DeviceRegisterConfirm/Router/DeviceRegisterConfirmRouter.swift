@@ -27,7 +27,8 @@ extension DeviceRegisterConfirmRouter: DeviceRegisterConfirmRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpConfirmDeviceRegisterSucceedVM()
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showFailure(message: String,
@@ -35,7 +36,8 @@ extension DeviceRegisterConfirmRouter: DeviceRegisterConfirmRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpEmailConfirmFailedVM(message: message)
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showLogin() {

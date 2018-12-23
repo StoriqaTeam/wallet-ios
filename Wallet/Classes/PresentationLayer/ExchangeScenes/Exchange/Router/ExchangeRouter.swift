@@ -32,7 +32,8 @@ extension ExchangeRouter: ExchangeRouterInput {
     func showConfirmSucceed(popUpDelegate: PopUpSendConfirmSuccessVMDelegate, from viewController: UIViewController) {
         let viewModel = PopUpSendConfirmSuccessVM()
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
     
     func showConfirm(fromAccount: String,
@@ -50,6 +51,7 @@ extension ExchangeRouter: ExchangeRouterInput {
                            from viewController: UIViewController) {
         let viewModel = PopUpExchangeFailedVM(message: message)
         viewModel.delegate = popUpDelegate
-        PopUpModule.create(viewModel: viewModel).present(from: viewController)
+        let backBlur = captureScreen(view: viewController.view)
+        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
     }
 }
