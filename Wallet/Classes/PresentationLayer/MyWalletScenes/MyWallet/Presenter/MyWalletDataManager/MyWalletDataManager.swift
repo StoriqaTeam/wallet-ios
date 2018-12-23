@@ -29,6 +29,10 @@ class MyWalletDataManager: NSObject {
     private let accountDisplayer: AccountDisplayerProtocol
     private var shouldUpdateCellsPositions = false
     
+    var springFlowLayout: SpringFlowLayout? {
+        return collectionView.collectionViewLayout as? SpringFlowLayout
+    }
+    
     init(accounts: [Account], accountDisplayer: AccountDisplayerProtocol) {
         self.accounts = accounts
         self.accountDisplayer = accountDisplayer
@@ -57,12 +61,12 @@ class MyWalletDataManager: NSObject {
     
     func reloadData() {
         collectionView.reloadData()
-        (collectionView.collectionViewLayout as? SpringFlowLayout)?.removeFooterBehavior()
+        springFlowLayout?.removeFooterBehavior()
     }
     
     func restoreVisibility() {
         collectionView.alpha = 1
-        (collectionView.collectionViewLayout as? SpringFlowLayout)?.setSnapshotsHidden(false)
+        springFlowLayout?.setSnapshotsHidden(false)
     }
     
 }
@@ -121,6 +125,13 @@ extension MyWalletDataManager: UICollectionViewDelegate {
             return firstRow < secondRow
         })
         
+        let account = accounts[indexPath.row]
+        delegate?.selectAccount(account)
+        
+        guard var selectedIndex = visibleCells.firstIndex(where: { collectionView.indexPath(for: $0) == indexPath }) else {
+            return true
+        }
+        
         var snapshots = visibleCells.compactMap { (cell) -> UIView? in
             let snapshot = cell.snapshotView(afterScreenUpdates: false)
             snapshot?.frame = collectionView.convert(cell.frame, to: collectionView.superview!)
@@ -133,21 +144,16 @@ extension MyWalletDataManager: UICollectionViewDelegate {
             snapshots.append(snapshot)
         }
         
-        if let layout = collectionView.collectionViewLayout as? SpringFlowLayout {
+        if let layout = springFlowLayout {
             if let topCell = layout.getLastTopCellSnapshot() {
                 snapshots.insert(topCell, at: 0)
+                selectedIndex += 1
             }
             layout.setSnapshotsHidden(true)
         }
         
-        if let selectedIndex = visibleCells.firstIndex(where: { collectionView.indexPath(for: $0) == indexPath }) {
-            delegate?.snapshotsForTransition(snapshots: snapshots, selectedIndex: selectedIndex)
-        }
-        
+        delegate?.snapshotsForTransition(snapshots: snapshots, selectedIndex: selectedIndex)
         collectionView.alpha = 0
-
-        let account = accounts[indexPath.row]
-        delegate?.selectAccount(account)
         
         return true
     }
@@ -155,6 +161,7 @@ extension MyWalletDataManager: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let newValue = scrollView.contentOffset.y + scrollView.contentInset.top
         delegate?.didChangeOffset(newValue)
+        springFlowLayout?.collectionDidChangeOffset()
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
