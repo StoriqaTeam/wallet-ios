@@ -11,5 +11,5 @@ import UIKit
 
 protocol QuickLaunchModuleInput: class {
     var output: QuickLaunchModuleOutput? { get set }
-    func present(from viewController: UIViewController)
+    func presentAstTansitioningNavigationController()
 }

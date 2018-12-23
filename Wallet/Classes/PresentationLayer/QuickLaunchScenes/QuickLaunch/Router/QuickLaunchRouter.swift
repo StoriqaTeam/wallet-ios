@@ -24,7 +24,9 @@ class QuickLaunchRouter {
 
 extension QuickLaunchRouter: QuickLaunchRouterInput {
     
-    func showPinQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController) {
+    func showPinQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol,
+                            from viewController: UIViewController) {
+        
         PinSetupModule.create(app: app, qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
     }
     
