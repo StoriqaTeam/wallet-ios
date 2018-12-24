@@ -41,10 +41,6 @@ class MyWalletViewController: UIViewController {
         self.addCardNavigationButton.isHidden = true
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.viewWillAppear()

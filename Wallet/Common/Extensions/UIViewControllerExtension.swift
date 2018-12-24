@@ -137,10 +137,6 @@ extension UIViewController {
 }
 
 extension UINavigationController {
-    override open var childForStatusBarStyle: UIViewController? {
-        return self.topViewController
-    }
-    
     func configureDefaultNavigationBar() {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
@@ -154,3 +150,4 @@ extension UINavigationController {
         navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
+

@@ -14,13 +14,23 @@ extension Strings {
     enum PinSetup {
         static let enterPinTitle = NSLocalizedString("PinSetup.enterPinTitle",
                                                      tableName: "PinSetup",
-                                                     value: "Enter 4-digit PIN",
+                                                     value: "Set up PIN-code",
                                                      comment: "Pin setup view title")
         
         static let confirmPinTitle = NSLocalizedString("PinSetup.confirmPinTitle",
                                                        tableName: "PinSetup",
-                                                       value: "Confirm PIN",
+                                                       value: "Confirm PIN-code",
                                                        comment: "Confirm Pin view title")
+        
+        static let enterPinSubtitle = NSLocalizedString("PinSetup.enterPinSubtitle",
+                                                     tableName: "PinSetup",
+                                                     value: "Enter 4-digit PIN",
+                                                     comment: "Pin setup view subtitle")
+        
+        static let confirmPinSubtitle = NSLocalizedString("PinSetup.confirmPinSubtitle",
+                                                       tableName: "PinSetup",
+                                                       value: "Enter your PIN once more",
+                                                       comment: "Confirm Pin view subtitle")
         
         static let pinNotMatchAlert = NSLocalizedString("PinSetup.pinNotMatchAlert",
                                                         tableName: "PinSetup",

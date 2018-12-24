@@ -63,6 +63,7 @@ struct Theme {
         struct NavigationBar {
             static let title = UIColor.white
             static let buttons = UIColor.white
+            static let statusBar = UIColor.white
         }
         
         struct Gradient {
@@ -94,8 +95,8 @@ struct Theme {
         static let generalText = MontserratFont.font(ofSize: 17.0, weight: .regular)
         /** 13px regular. Must be uppercase */
         static let caption = MontserratFont.font(ofSize: 13.0, weight: .regular)
-        /** 13px regular */
-        static let subtitle = MontserratFont.font(ofSize: 13.0, weight: .regular)
+        /** 12px regular */
+        static let subtitle = MontserratFont.font(ofSize: 12.0, weight: .regular)
         /** 13px regular */
         static let smallText = MontserratFont.font(ofSize: 13.0, weight: .regular)
         /** 16px semibold */

@@ -23,6 +23,8 @@ class PinSetupPresenter {
     
     private let firstInputTitle = LocalizedStrings.enterPinTitle
     private let confirmInputTitle = LocalizedStrings.confirmPinTitle
+    private let firstInputSubtitle = LocalizedStrings.enterPinSubtitle
+    private let confirmInputSubtitle = LocalizedStrings.confirmPinSubtitle
 }
 
 
@@ -39,7 +41,7 @@ extension PinSetupPresenter: PinSetupViewOutput {
 
     func viewIsReady() {
         view.setupInitialState()
-        view.setTitle(title: firstInputTitle)
+        view.setTitle(title: firstInputTitle, subtitle: firstInputSubtitle)
     }
 
 }
@@ -58,13 +60,13 @@ extension PinSetupPresenter: PinSetupInteractorOutput {
     }
     
     func enterConfirmationPin() {
-        view.setTitle(title: confirmInputTitle)
+        view.setTitle(title: confirmInputTitle, subtitle: confirmInputSubtitle)
         pinSetupDataManager.scrollTo(state: .confirmPin)
     }
     
     func enterPinAgain() {
         view.viewController.showAlert(message: LocalizedStrings.pinNotMatchAlert)
-        view.setTitle(title: firstInputTitle)
+        view.setTitle(title: firstInputTitle, subtitle: firstInputSubtitle)
         pinSetupDataManager.scrollTo(state: .setPin)
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }

@@ -67,10 +67,6 @@ class SendViewController: UIViewController {
         output.configureCollections()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
