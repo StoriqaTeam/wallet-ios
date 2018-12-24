@@ -23,6 +23,7 @@ class TransactionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output.transactionTableView(transactionsTableView)
+        configureAppearence()
         output.viewIsReady()
     }
     
@@ -99,6 +100,11 @@ extension TransactionsViewController {
         filterButton.addTarget(self, action: #selector(self.filterByDateTapped), for: .touchUpInside)
         let rightItem = UIBarButtonItem(customView: filterButton)
         self.navigationItem.setRightBarButton(rightItem, animated: true)
+    }
+    
+    private func configureAppearence() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        transactionsTableView.backgroundColor = Theme.Color.backgroundColor
     }
     
 }

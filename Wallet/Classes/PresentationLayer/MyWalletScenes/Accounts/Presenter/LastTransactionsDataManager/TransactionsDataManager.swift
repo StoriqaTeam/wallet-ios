@@ -198,11 +198,11 @@ extension TransactionsDataManager {
     private func createHeaderView(with title: String) -> UIView {
         let headerWidth = UIScreen.main.bounds.width
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: headerWidth, height: 44))
-        headerView.backgroundColor = .white
+        headerView.backgroundColor = Theme.Color.backgroundColor
         
         let label = UILabel(frame: CGRect(x: 20, y: 4, width: headerWidth, height: 40))
         label.text = title.uppercased()
-        label.textColor = Theme.Color.Text.captionGrey
+        label.textColor = Theme.Color.Section.transactionSectionTitle
         label.font = Theme.Font.smallText
         headerView.addSubview(label)
         

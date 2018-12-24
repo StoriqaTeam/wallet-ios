@@ -18,10 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0u-Ov-ITA" customClass="HeaderGradientView" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="427.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GfI-G7-68y">
                                 <rect key="frame" x="0.0" y="64" width="375" height="215"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,7 +57,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="dfX-zu-jvq" firstAttribute="centerY" secondItem="QSS-QD-8hf" secondAttribute="centerY" id="EL1-Nh-t11"/>
                                     <constraint firstItem="O5L-Av-Ltk" firstAttribute="centerY" secondItem="QSS-QD-8hf" secondAttribute="centerY" id="eLD-z7-2CF"/>
@@ -112,8 +108,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="S0u-Ov-ITA" firstAttribute="top" secondItem="N1j-mm-DmY" secondAttribute="top" id="0vj-Dy-ERj"/>
-                            <constraint firstItem="S0u-Ov-ITA" firstAttribute="leading" secondItem="jhZ-Bu-8KV" secondAttribute="leading" id="2Hf-V0-G1B"/>
                             <constraint firstItem="8Xf-y0-eZb" firstAttribute="top" secondItem="JQk-CT-8tr" secondAttribute="bottom" id="2cM-eA-XlR"/>
                             <constraint firstItem="t8M-lF-stc" firstAttribute="top" secondItem="QSS-QD-8hf" secondAttribute="bottom" id="AEA-fc-3JX"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="QSS-QD-8hf" secondAttribute="trailing" id="APz-ES-R38"/>
@@ -121,7 +115,6 @@
                             <constraint firstItem="t8M-lF-stc" firstAttribute="leading" secondItem="jhZ-Bu-8KV" secondAttribute="leading" id="Eic-tP-AyV"/>
                             <constraint firstItem="JQk-CT-8tr" firstAttribute="top" secondItem="GfI-G7-68y" secondAttribute="bottom" id="L5v-ir-37H"/>
                             <constraint firstItem="QSS-QD-8hf" firstAttribute="top" secondItem="8Xf-y0-eZb" secondAttribute="bottom" id="P2F-Za-y0q"/>
-                            <constraint firstItem="S0u-Ov-ITA" firstAttribute="bottom" secondItem="QSS-QD-8hf" secondAttribute="bottom" id="UiG-hQ-27Q"/>
                             <constraint firstItem="8Xf-y0-eZb" firstAttribute="leading" secondItem="jhZ-Bu-8KV" secondAttribute="leading" id="WnU-FH-yny"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="GfI-G7-68y" secondAttribute="trailing" id="aT5-I2-aQJ"/>
                             <constraint firstItem="QSS-QD-8hf" firstAttribute="leading" secondItem="jhZ-Bu-8KV" secondAttribute="leading" id="g3f-lU-UkR"/>
@@ -129,7 +122,6 @@
                             <constraint firstItem="8Xf-y0-eZb" firstAttribute="centerX" secondItem="N1j-mm-DmY" secondAttribute="centerX" id="hG3-ex-fhh"/>
                             <constraint firstItem="JQk-CT-8tr" firstAttribute="centerX" secondItem="N1j-mm-DmY" secondAttribute="centerX" id="hpW-gJ-3TJ"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="8Xf-y0-eZb" secondAttribute="trailing" id="lXY-6e-2WV"/>
-                            <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="S0u-Ov-ITA" secondAttribute="trailing" id="nLh-GW-3GH"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="trailing" secondItem="t8M-lF-stc" secondAttribute="trailing" id="pVn-nc-c6b"/>
                             <constraint firstItem="GfI-G7-68y" firstAttribute="top" secondItem="jhZ-Bu-8KV" secondAttribute="top" id="sJH-9W-Zx1"/>
                             <constraint firstItem="jhZ-Bu-8KV" firstAttribute="bottom" secondItem="t8M-lF-stc" secondAttribute="bottom" id="vbY-pZ-Me3"/>

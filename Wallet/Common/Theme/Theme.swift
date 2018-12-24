@@ -65,6 +65,10 @@ struct Theme {
             static let buttons = UIColor.white
         }
         
+        struct Section {
+            static let transactionSectionTitle = UIColor(red: 165/255, green: 120/255, blue: 62/255, alpha: 1)
+        }
+        
         struct Gradient {
             struct Details {
                 static let detailsRedGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
@@ -125,6 +129,10 @@ struct Theme {
         struct PinInput {
             /** 36px light */
             static let number = MontserratFont.font(ofSize: 36.0, weight: .light)
+        }
+        
+        struct Label {
+            static let medium = MontserratFont.font(ofSize: 14.0, weight: .medium)
         }
         
     }
