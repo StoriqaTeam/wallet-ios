@@ -11,6 +11,7 @@ class LoginModule {
     
     class func create(app: Application) -> LoginModuleInput {
         let router = LoginRouter(app: app)
+        
         let presenter = LoginPresenter()
         
         let socialVM = SocialNetworkAuthViewModel(facebookLoginManager: app.facebookLoginManager)

@@ -10,7 +10,9 @@ class QuickLaunchModule {
     
     class func create(app: Application) -> QuickLaunchModuleInput {
         let router = QuickLaunchRouter(app: app)
-        let presenter = QuickLaunchPresenter()
+        
+        let baseFadeAnimator = app.transitionAnimatorFactory.createBaseFadeAnimator(duration: 1)
+        let presenter = QuickLaunchPresenter(baseFadeAnimator: baseFadeAnimator)
         
         let biometricAuthProvider = app.biometricAuthProviderFactory.create()
         let quickLaunchProvider = QuickLaunchProvider(defaultsProvider: app.defaultsProvider,

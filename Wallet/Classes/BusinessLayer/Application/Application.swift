@@ -214,6 +214,10 @@ class Application {
     lazy var channelStorage: ChannelStorage = ChannelStorage()
     
     
+    // MARK: - Animators -
+    lazy var transitionAnimatorFactory: TransitionAnimatorFactoryProtocol = TransitionAnimatorFactory()
+    
+    
     // MARK: - FakeProviders -
     lazy var fakeContactsNetworkProvider: ContactsNetworkProviderProtocol = FakeContactsNetworkProvider()
 }

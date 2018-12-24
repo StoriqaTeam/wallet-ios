@@ -61,7 +61,7 @@ class PinDotView: UIView {
             
             if index < inputDotCount {
                 let shadowOffset = CGSize(width: 0, height: 0)
-                let shadowBlurRadius: CGFloat = 10
+                let shadowBlurRadius: CGFloat = radius * 2
                 
                 if let context = UIGraphicsGetCurrentContext() {
                     context.setShadow(offset: shadowOffset, blur: shadowBlurRadius, color: fillColor.withAlphaComponent(0.8).cgColor)

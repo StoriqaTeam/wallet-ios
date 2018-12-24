@@ -35,7 +35,7 @@ extension LoginRouter: LoginRouterInput {
     }
     
     func showQuickLaunch() {
-        QuickLaunchModule.create(app: app).present()
+        QuickLaunchModule.create(app: app).presentAsTansitioningNavigationController()
     }
     
     func showPinQuickLaunch() {

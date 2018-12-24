@@ -17,7 +17,6 @@ class LoginPresenter {
     var router: LoginRouterInput!
     
     private var storiqaLoader: StoriqaLoader!
-    
 }
 
 
