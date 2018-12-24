@@ -13,6 +13,7 @@ class PinSetupViewController: UIViewController {
     var output: PinSetupViewOutput!
 
     @IBOutlet private var pinSetupCollectionView: UICollectionView!
+    @IBOutlet private var titleLabel: UILabel!
     
     // MARK: Life cycle
 
@@ -21,6 +22,10 @@ class PinSetupViewController: UIViewController {
         output.viewIsReady()
         disableBackNavigation()
         output.pinSetupCollectionView(pinSetupCollectionView)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     private func disableBackNavigation() {
@@ -36,10 +41,11 @@ extension PinSetupViewController: PinSetupViewInput {
     
     func setupInitialState() {
         view.backgroundColor = Theme.Color.backgroundColor
+        titleLabel.textColor = Theme.Color.Text.main
 
     }
 
     func setTitle(title: String) {
-        self.title = title
+        titleLabel.text = title
     }
 }

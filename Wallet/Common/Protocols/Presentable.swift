@@ -44,31 +44,13 @@ extension Presentable where Self: UIViewController {
     
     func presentAsNavController() {
         let navigation = UINavigationController(rootViewController: viewController)
-        
-        // Config nav bar
-        navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigation.navigationBar.shadowImage = UIImage()
-        navigation.navigationBar.isTranslucent = true
-        navigation.navigationBar.backgroundColor = .clear
-        navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
-        navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
-        navigation.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.Color.NavigationBar.title]
-        navigation.navigationBar.barTintColor = Theme.Color.NavigationBar.buttons
-        navigation.navigationBar.tintColor = Theme.Color.NavigationBar.buttons
-        
+        navigation.configureDefaultNavigationBar()
         AppDelegate.currentWindow.rootViewController = navigation
     }
     
     func presentAsTransitioningNavController() {
         let transitioningNav = TransitionNavigationController(rootViewController: viewController)
-        
-        transitioningNav.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        transitioningNav.navigationBar.shadowImage = UIImage()
-        transitioningNav.navigationBar.isTranslucent = true
-        transitioningNav.navigationBar.backgroundColor = .clear
-        transitioningNav.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
-        transitioningNav.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
-        
+        transitioningNav.configureDefaultNavigationBar()
         AppDelegate.currentWindow.rootViewController = transitioningNav
     }
     

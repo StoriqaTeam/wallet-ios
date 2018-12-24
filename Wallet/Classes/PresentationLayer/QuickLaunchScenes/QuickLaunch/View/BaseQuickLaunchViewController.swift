@@ -44,6 +44,7 @@ class BaseQuickLaunchViewController: UIViewController {
     
     private func disableBackNavigation() {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
     }
 }

@@ -49,16 +49,7 @@ extension UIViewController {
     
     func wrapToNavigationController() -> UINavigationController {
         let navigation = UINavigationController(rootViewController: self)
-        navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigation.navigationBar.shadowImage = UIImage()
-        navigation.navigationBar.isTranslucent = true
-        navigation.navigationBar.backgroundColor = .clear
-        navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
-        navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
-        navigation.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "",
-                                                                              style: .plain,
-                                                                              target: nil,
-                                                                              action: nil)
+        navigation.configureDefaultNavigationBar()
         return navigation
     }
     
@@ -66,18 +57,8 @@ extension UIViewController {
     func wrapToTransitiningNavigationController() -> TransitionNavigationController {
         let navigation = TransitionNavigationController()
         navigation.setViewControllers([self], animated: false)
-        navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigation.navigationBar.shadowImage = UIImage()
-        navigation.navigationBar.isTranslucent = true
-        navigation.navigationBar.backgroundColor = .clear
-        navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
-        navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
-        navigation.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "",
-                                                                              style: .plain,
-                                                                              target: nil,
-                                                                              action: nil)
+        navigation.configureDefaultNavigationBar()
         return navigation
-        
     }
     
 }
@@ -158,5 +139,18 @@ extension UIViewController {
 extension UINavigationController {
     override open var childForStatusBarStyle: UIViewController? {
         return self.topViewController
+    }
+    
+    func configureDefaultNavigationBar() {
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = .clear
+        navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
+        navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.Color.NavigationBar.title]
+        navigationBar.barTintColor = Theme.Color.NavigationBar.buttons
+        navigationBar.tintColor = Theme.Color.NavigationBar.buttons
+        navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
