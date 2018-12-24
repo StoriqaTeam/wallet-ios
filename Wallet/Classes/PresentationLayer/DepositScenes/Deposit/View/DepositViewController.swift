@@ -53,10 +53,6 @@ class DepositViewController: UIViewController {
         super.viewWillDisappear(animated)
         output.viewWillDisapear()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
 
     // MARK: IBActions
     

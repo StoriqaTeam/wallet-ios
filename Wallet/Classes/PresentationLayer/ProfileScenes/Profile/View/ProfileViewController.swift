@@ -50,10 +50,6 @@ class ProfileViewController: UIViewController {
         output.viewWillAppear()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: IBActions
 
     @IBAction func settingsButtonTapped(_ sender: UIBarButtonItem) {

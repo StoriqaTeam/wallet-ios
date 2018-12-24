@@ -35,10 +35,6 @@ class FirstLaunchViewController: UIViewController {
         performAnimations()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     @IBAction func getStartedPressed(_ sender: UIButton) {
         output.showRegistration()
     }

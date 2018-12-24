@@ -56,7 +56,7 @@ extension RegistrationRouter: RegistrationRouterInput {
     }
     
     func showPinQuickLaunch() {
-        PinQuickLaunchModule.create(app: app).present()
+        PinQuickLaunchModule.create(app: app).presentAsTansitioningNavigationController()
     }
     
     func showDeviceRegister(popUpDelegate: PopUpDeviceRegisterVMDelegate,

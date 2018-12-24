@@ -16,6 +16,11 @@ extension Strings {
                                                           value: "Hi, ",
                                                           comment: "Greeting label title")
         
+        static let subtitle = NSLocalizedString("PinInput.subtitle",
+                                                tableName: "PinInput",
+                                                value: "Enter your PIN-code",
+                                                comment: "Subtitle on pin input screen")
+        
         static let confirmPinResetMessage = NSLocalizedString("PinInput.confirmPinResetMessage",
                                                               tableName: "PinInput",
                                                               value: "Confirm PIN reset",
