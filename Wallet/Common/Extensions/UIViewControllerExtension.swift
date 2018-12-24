@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    func setDarkNavigationBarButtons() {
-        setNavigationBarButtonsColor(.black)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    }
+//    func setDarkNavigationBarButtons() {
+//        setNavigationBarButtonsColor(.black)
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+//    }
     
     func setWhiteNavigationBarButtons() {
         setNavigationBarButtonsColor(.white)

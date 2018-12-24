@@ -46,7 +46,7 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setDarkNavigationBarButtons()
+//        view.viewController.setDarkNavigationBarButtons()
     }
     
     func phoneChanged(_ phone: String) {

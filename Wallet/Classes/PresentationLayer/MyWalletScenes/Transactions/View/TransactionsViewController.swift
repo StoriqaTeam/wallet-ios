@@ -15,31 +15,23 @@ class TransactionsViewController: UIViewController {
 
     var output: TransactionsViewOutput!
 
+    @IBOutlet weak var directionFilterView: DirectionFilterView!
     @IBOutlet weak var transactionsTableView: UITableView!
-    @IBOutlet weak var filterSegmentControl: UISegmentedControl!
     
     // MARK: Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         output.transactionTableView(transactionsTableView)
-        configureAppearence()
         output.viewIsReady()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.viewWillAppear()
+        directionFilterView.setInitialFilter(position: .all)
     }
-    
-    
-    // MARK: - Actions
-    
-    @IBAction func filterTapped(_ sender: UISegmentedControl) {
-        output.didChooseSegment(at: sender.selectedSegmentIndex)
-    }
-    
-    
+
     @objc func filterByDateTapped() {
         output.filterByDateTapped()
     }
@@ -51,9 +43,19 @@ class TransactionsViewController: UIViewController {
 extension TransactionsViewController: TransactionsViewInput {
     
     func setupInitialState() {
+        setDelegates()
+        configureAppearence()
         configureTableView()
-        configiureSegmentControl()
         addFilterButton()
+    }
+}
+
+
+// MARK: - DirectionFilterDelegate
+
+extension TransactionsViewController: DirectionFilterDelegate {
+    func didSet(positionIndex: Int) {
+        output.didChooseSegment(at: positionIndex)
     }
 }
 
@@ -66,31 +68,8 @@ extension TransactionsViewController {
         transactionsTableView.tableFooterView = UIView()
     }
     
-    private func configiureSegmentControl() {
-        let normalTextAttributes = [NSAttributedString.Key.font: Theme.Font.segmentTextFont,
-                                    NSAttributedString.Key.foregroundColor: Theme.Color.Text.grey]
-        let selectedtextAttributes = [NSAttributedString.Key.font: Theme.Font.segmentTextFont,
-                                      NSAttributedString.Key.foregroundColor: Theme.Color.brightSkyBlue]
-        
-        let backgroundImageSize = filterSegmentControl.bounds.size
-        let backgroundImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: backgroundImageSize)
-        let dividerImageSize  = CGSize(width: 1.0, height: filterSegmentControl.bounds.size.height)
-        let deviderImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: dividerImageSize)
-        
-        filterSegmentControl.setBackgroundImage(backgroundImage, for: .highlighted, barMetrics: .default)
-        filterSegmentControl.setDividerImage(deviderImage,
-                                             forLeftSegmentState: .selected,
-                                             rightSegmentState: .normal,
-                                             barMetrics: .default)
-        
-        filterSegmentControl.setTitleTextAttributes(normalTextAttributes, for: .normal)
-        filterSegmentControl.setTitleTextAttributes(selectedtextAttributes, for: .selected)
-        filterSegmentControl.setWidth(40, forSegmentAt: 0)
-        filterSegmentControl.setWidth(90, forSegmentAt: 1)
-        filterSegmentControl.setWidth(90, forSegmentAt: 2)
-        filterSegmentControl.setTitle(LocalizedStrings.allButton, forSegmentAt: 0)
-        filterSegmentControl.setTitle(LocalizedStrings.sentButton, forSegmentAt: 1)
-        filterSegmentControl.setTitle(LocalizedStrings.receivedButton, forSegmentAt: 2)
+    private func setDelegates() {
+        directionFilterView.delegate = self
     }
     
     private func addFilterButton() {

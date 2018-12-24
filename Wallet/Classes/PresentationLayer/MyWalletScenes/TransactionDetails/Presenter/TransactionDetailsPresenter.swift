@@ -40,7 +40,7 @@ extension TransactionDetailsPresenter: TransactionDetailsViewOutput {
     }
 
     func viewWillAppear() {
-        view.viewController.setDarkNavigationBarButtons()
+//        view.viewController.setDarkNavigationBarButtons()
     }
     
     func addressTapped(_ address: String) {

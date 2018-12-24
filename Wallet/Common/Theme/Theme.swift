@@ -136,6 +136,9 @@ struct Theme {
             static let medium = MontserratFont.font(ofSize: 14.0, weight: .medium)
         }
         
+        struct FilterView {
+            static let filterLabel = MontserratFont.font(ofSize: 16.0, weight: .semibold)
+        }
     }
 }
 

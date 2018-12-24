@@ -19,39 +19,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F0X-ib-XLe">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qbl-cP-LI8">
-                                <rect key="frame" x="10" y="36" width="312.5" height="29"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <segments>
-                                    <segment title="All"/>
-                                    <segment title="Sent"/>
-                                    <segment title="Received">
-                                        <size key="contentOffset" width="0.0" height="1"/>
-                                    </segment>
-                                </segments>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="filterTapped:" destination="pbG-0L-5ie" eventType="valueChanged" id="7JR-0K-QpT"/>
-                                </connections>
-                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kK9-br-d0f" customClass="DirectionFilterView" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="36" width="375" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1RW-sr-Uc3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="qbl-cP-LI8" firstAttribute="width" secondItem="z6f-0o-7Z9" secondAttribute="width" multiplier="1:1.2" id="25U-Lm-1YV"/>
-                            <constraint firstItem="qbl-cP-LI8" firstAttribute="top" secondItem="e22-fd-p8U" secondAttribute="top" constant="16" id="4Te-l4-dKn"/>
                             <constraint firstItem="F0X-ib-XLe" firstAttribute="leading" secondItem="e22-fd-p8U" secondAttribute="leading" id="60y-Et-C3r"/>
                             <constraint firstItem="e22-fd-p8U" firstAttribute="trailing" secondItem="F0X-ib-XLe" secondAttribute="trailing" id="9xY-NV-rTT"/>
                             <constraint firstItem="e22-fd-p8U" firstAttribute="bottom" secondItem="F0X-ib-XLe" secondAttribute="bottom" id="DbR-NV-kg1"/>
-                            <constraint firstItem="qbl-cP-LI8" firstAttribute="leading" secondItem="e22-fd-p8U" secondAttribute="leading" constant="10" id="MsO-ge-Zlh"/>
-                            <constraint firstItem="F0X-ib-XLe" firstAttribute="top" secondItem="qbl-cP-LI8" secondAttribute="bottom" constant="10" id="MuZ-PG-hrL"/>
+                            <constraint firstItem="kK9-br-d0f" firstAttribute="leading" secondItem="e22-fd-p8U" secondAttribute="leading" id="KEl-Ab-SXm"/>
+                            <constraint firstItem="e22-fd-p8U" firstAttribute="trailing" secondItem="kK9-br-d0f" secondAttribute="trailing" id="P1R-LN-Z2j"/>
+                            <constraint firstItem="kK9-br-d0f" firstAttribute="top" secondItem="e22-fd-p8U" secondAttribute="top" constant="16" id="dD6-T1-wc7"/>
+                            <constraint firstItem="F0X-ib-XLe" firstAttribute="top" secondItem="kK9-br-d0f" secondAttribute="bottom" constant="10" id="erH-rp-8bz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e22-fd-p8U"/>
                     </view>
                     <connections>
-                        <outlet property="filterSegmentControl" destination="qbl-cP-LI8" id="y6W-M2-Qa3"/>
+                        <outlet property="directionFilterView" destination="kK9-br-d0f" id="TOd-kr-eRX"/>
                         <outlet property="transactionsTableView" destination="F0X-ib-XLe" id="VQR-za-Ram"/>
                     </connections>
                 </viewController>
