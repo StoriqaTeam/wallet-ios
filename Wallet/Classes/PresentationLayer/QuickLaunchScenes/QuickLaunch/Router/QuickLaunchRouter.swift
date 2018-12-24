@@ -25,7 +25,12 @@ class QuickLaunchRouter {
 extension QuickLaunchRouter: QuickLaunchRouterInput {
     
     func showPinQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol,
-                            from viewController: UIViewController) {
+                            from viewController: UIViewController,
+                            baseFadeAnimator: BaseFadeAnimator) {
+        
+        if let customNavigation = viewController.navigationController as? TransitionNavigationController {
+            customNavigation.setAnimator(animator: baseFadeAnimator)
+        }
         
         PinSetupModule.create(app: app, qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
     }
