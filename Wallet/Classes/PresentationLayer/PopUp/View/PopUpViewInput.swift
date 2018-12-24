@@ -11,4 +11,5 @@ import UIKit
 
 protocol PopUpViewInput: class, Presentable {
     func setupInitialState(viewModel: PopUpViewModelProtocol)
+    func setBackgroundBlur(image: UIImage)
 }

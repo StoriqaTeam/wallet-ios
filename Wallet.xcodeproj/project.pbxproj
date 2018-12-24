@@ -240,6 +240,7 @@
 		A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */; };
 		A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A512020B2153D68A00D44A22 /* MainTabBar.storyboard */; };
 		A519770921B13AA700515619 /* DepositShortPollingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519770821B13AA700515619 /* DepositShortPollingTimer.swift */; };
+		A51AF25121D01AA700B8D2B4 /* UIImage+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51AF25021D01AA700B8D2B4 /* UIImage+Blur.swift */; };
 		A51CB5472158E0DB00CDC80C /* TransactionsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */; };
 		A51CB5492158E60500CDC80C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB5482158E60500CDC80C /* Transaction.swift */; };
 		A51CB54B2158E80400CDC80C /* TransactionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB54A2158E80400CDC80C /* TransactionsProvider.swift */; };
@@ -1067,6 +1068,7 @@
 		A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthViewModel.swift; sourceTree = "<group>"; };
 		A512020B2153D68A00D44A22 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		A519770821B13AA700515619 /* DepositShortPollingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositShortPollingTimer.swift; sourceTree = "<group>"; };
+		A51AF25021D01AA700B8D2B4 /* UIImage+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Blur.swift"; sourceTree = "<group>"; };
 		A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDataManager.swift; sourceTree = "<group>"; };
 		A51CB5482158E60500CDC80C /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		A51CB54A2158E80400CDC80C /* TransactionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsProvider.swift; sourceTree = "<group>"; };
@@ -4707,6 +4709,7 @@
 				A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */,
 				A5B78212215E25A200EFD1A5 /* Array+Helper.swift */,
 				A52C66B721676AB70073071E /* Decimal+Helpers.swift */,
+				A51AF25021D01AA700B8D2B4 /* UIImage+Blur.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6327,6 +6330,7 @@
 				81CF806732A0FB3967B8B297 /* DeviceRegisterConfirmRouterInput.swift in Sources */,
 				A4586E72708D9B6D4660DA3E /* DeviceRegisterConfirmRouter.swift in Sources */,
 				37764CF0928FD1FE3203A060 /* DeviceRegisterConfirmModuleInput.swift in Sources */,
+				A51AF25121D01AA700B8D2B4 /* UIImage+Blur.swift in Sources */,
 				8682E1B3ED20AF23E0A152EB /* DeviceRegisterConfirmModuleOutput.swift in Sources */,
 				A322751EEA14E86AD51FCE56 /* DeviceRegisterConfirmModule.swift in Sources */,
 				BC7BDCC8E180102F19C4B6F9 /* ExchangeConfirmPopUpViewInput.swift in Sources */,
