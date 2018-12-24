@@ -55,8 +55,11 @@ extension PinSetupCollectionViewCell {
         pinSetupContainerView.totalDotCount = 4
         pinSetupContainerView.touchAuthenticationEnabled = false
         pinSetupContainerView.tintColor = Theme.Color.Text.main
-        pinSetupContainerView.highlightedColor = .clear
-        pinSetupContainerView.textFont = Theme.Font.supertitle
+        pinSetupContainerView.highlightedColor = Theme.Color.Text.main.withAlphaComponent(0.1)
+        pinSetupContainerView.unhighlightedColor = Theme.Color.Text.main.withAlphaComponent(0.2)
+        pinSetupContainerView.textFont = Theme.Font.PinInput.number
+        pinSetupContainerView.borderWidth = 0
+        pinSetupContainerView.dotStrokeColor = .clear
     }
     
     private func setDelegate() {

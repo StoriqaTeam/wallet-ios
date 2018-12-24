@@ -122,6 +122,11 @@ struct Theme {
             static let extraSmallButtonTitle = MontserratFont.font(ofSize: 10, weight: .regular)
         }
         
+        struct PinInput {
+            /** 36px light */
+            static let number = MontserratFont.font(ofSize: 36.0, weight: .light)
+        }
+        
     }
 }
 
