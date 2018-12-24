@@ -2,7 +2,7 @@
 //  UIImage+Blur.swift
 //  Wallet
 //
-//  Created by Daniil Miroshnichecko on 23/12/2018.
+//  Created by Storiqa on 23/12/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
 // swiftlint:disable all
@@ -155,7 +155,7 @@ extension UIImage {
 func captureScreen(view: UIView) -> UIImage {
     let image = view.makeSnapshot()
     guard let snapImage = image else { fatalError("Fail to snap image") }
-    let tintColor = UIColor.black.withAlphaComponent(0)
+    let tintColor = UIColor.black.withAlphaComponent(0.2)
     let bluredImage = snapImage.applyStoriqaBlur(radius: 20,
                                                  tintColor: tintColor,
                                                  saturationFactor: 1)

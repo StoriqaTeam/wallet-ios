@@ -27,8 +27,7 @@ extension EmailConfirmRouter: EmailConfirmRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpEmailConfirmSuccessVM()
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showFailure(message: String,
@@ -36,8 +35,7 @@ extension EmailConfirmRouter: EmailConfirmRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpEmailConfirmFailedVM(message: message)
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showLogin() {

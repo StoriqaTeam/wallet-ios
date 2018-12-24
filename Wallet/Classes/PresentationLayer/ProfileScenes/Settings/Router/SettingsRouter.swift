@@ -43,8 +43,7 @@ extension SettingsRouter: SettingsRouterInput {
     func signOutConfirmPopUp(popUpDelegate: PopUpSignOutVMDelegate, from viewController: UIViewController) {
         let viewModel = PopUpSignOutVM()
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showAppInfo(from viewController: UIViewController) {

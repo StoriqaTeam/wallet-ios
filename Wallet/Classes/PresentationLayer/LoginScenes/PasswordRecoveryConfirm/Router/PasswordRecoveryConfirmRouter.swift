@@ -27,8 +27,7 @@ extension PasswordRecoveryConfirmRouter: PasswordRecoveryConfirmRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpPasswordRecoveryConfirmSuccessVM()
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showFailure(message: String,
@@ -36,8 +35,7 @@ extension PasswordRecoveryConfirmRouter: PasswordRecoveryConfirmRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpPasswordRecoveryConfirmFailedVM(message: message)
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showLogin() {

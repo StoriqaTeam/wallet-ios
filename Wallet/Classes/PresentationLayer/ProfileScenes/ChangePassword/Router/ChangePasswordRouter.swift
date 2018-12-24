@@ -21,15 +21,13 @@ extension ChangePasswordRouter: ChangePasswordRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpChangePasswordSuccessVM()
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showFailure(message: String,
                      from viewController: UIViewController) {
         let viewModel = PopUpDefaultFailureVM(message: message)
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
 }

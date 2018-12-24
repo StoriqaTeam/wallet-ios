@@ -27,8 +27,7 @@ extension RegistrationRouter: RegistrationRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpRegistrationSuccessVM(email: email)
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showFailure(message: String,
@@ -36,14 +35,12 @@ extension RegistrationRouter: RegistrationRouterInput {
                      from viewController: UIViewController) {
         let viewModel = PopUpRegistrationFailedVM(message: message)
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showSocialNetworkFailure(message: String, from viewController: UIViewController) {
         let viewModel = PopUpDefaultFailureVM(message: message)
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showLogin(animated: Bool) {
@@ -66,14 +63,12 @@ extension RegistrationRouter: RegistrationRouterInput {
                             from viewController: UIViewController) {
         let viewModel = PopUpDeviceRegisterVM()
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showDeviceRegisterEmailSent(from viewController: UIViewController) {
         let viewModel = PopUpDeviceRegisterEmailSentVM()
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
     
     func showDeviceRegisterFailedSendEmail(message: String,
@@ -81,7 +76,6 @@ extension RegistrationRouter: RegistrationRouterInput {
                                            from viewController: UIViewController) {
         let viewModel = PopUpDeviceRegisterFailedSendEmailVM(message: message)
         viewModel.delegate = popUpDelegate
-        let backBlur = captureScreen(view: viewController.view)
-        PopUpModule.create(viewModel: viewModel, backImage: backBlur).present(from: viewController)
+        PopUpModule.create(viewModel: viewModel).present(from: viewController)
     }
 }
