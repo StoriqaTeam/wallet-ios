@@ -32,7 +32,6 @@ class MyWalletViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
         setUpCollectionView()
         output.accountsCollectionView(collectionView)
         output.navigationBar(navigationBar)
@@ -79,9 +78,6 @@ extension MyWalletViewController: MyWalletViewInput {
     }
 
     func reloadWithAccounts() {
-        
-        //TODO: что показывать, когда нет счетов
-        //TODO: что показывать, когда ошибка получения
         collectionView.reloadSections(IndexSet(integer: 0))
     }
     
@@ -91,23 +87,6 @@ extension MyWalletViewController: MyWalletViewInput {
 // MARK: - Private methods
 
 extension MyWalletViewController {
-    
-    private func configureNavBar() {
-        
-        // FIXME: hidden before release
-        
-//        addNewButton.addToNavigationBar(navigationBar)
-//        addNewButton.addTarget(self, action: #selector(addNew), for: .touchUpInside)
-    }
-    
-    /// Show or hide the image from NavBar while going to next screen or back to initial screen
-    ///
-    /// - Parameter show: show or hide the image from NavBar
-    private func showBarButton(_ show: Bool) {
-        UIView.animate(withDuration: 0.2) {
-            self.addNewButton.alpha = show ? 1.0 : 0.0
-        }
-    }
     
     private func setUpCollectionView() {
         let topInset = navigationBar.frame.height
