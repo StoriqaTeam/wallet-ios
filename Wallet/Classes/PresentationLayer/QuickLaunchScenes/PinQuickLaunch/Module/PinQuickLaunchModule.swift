@@ -10,7 +10,10 @@ class PinQuickLaunchModule {
     
     class func create(app: Application, qiuckLaunchProvider: QuickLaunchProviderProtocol) -> PinQuickLaunchModuleInput {
         let router = PinQuickLaunchRouter(app: app)
-        let presenter = PinQuickLaunchPresenter()
+        
+        let baseFadeAnimator = app.transitionAnimatorFactory.createBaseFadeAnimator(duration: 1)
+        let presenter = PinQuickLaunchPresenter(baseFadeAnimator: baseFadeAnimator)
+        
         let interactor = PinQuickLaunchInteractor(qiuckLaunchProvider: qiuckLaunchProvider)
         
         let storyboard = UIStoryboard(name: "PinQuickLaunch", bundle: nil)

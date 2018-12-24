@@ -39,7 +39,7 @@ extension LoginRouter: LoginRouterInput {
     }
     
     func showPinQuickLaunch() {
-        PinQuickLaunchModule.create(app: app).present()
+        PinQuickLaunchModule.create(app: app).presentAsTansitioningNavigationController()
     }
     
     func showAuthorizedZone() {

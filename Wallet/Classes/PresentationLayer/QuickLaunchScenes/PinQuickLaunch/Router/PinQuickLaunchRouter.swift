@@ -23,13 +23,15 @@ class PinQuickLaunchRouter {
 // MARK: - PinQuickLaunchRouterInput
 
 extension PinQuickLaunchRouter: PinQuickLaunchRouterInput {
-    
-    func showPinSetup(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController) {
+    func showPinSetup(qiuckLaunchProvider: QuickLaunchProviderProtocol,
+                      from viewController: UIViewController,
+                      baseFadeAnimator: BaseFadeAnimator) {
+        
+        if let customNavigation = viewController.navigationController as? TransitionNavigationController {
+            customNavigation.setAnimator(animator: baseFadeAnimator)
+        }
+        
         PinSetupModule.create(app: app, qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
-    }
-    
-    func showBiometryQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController) {
-        BiometryQuickLaunchModule.create(app: app, qiuckLaunchProvider: qiuckLaunchProvider).present(from: viewController)
     }
     
 }
