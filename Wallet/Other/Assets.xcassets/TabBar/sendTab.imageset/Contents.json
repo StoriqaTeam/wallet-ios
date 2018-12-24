@@ -6,12 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "sendTab@2x.png",
+      "filename" : "sendTabIconOff@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "sendTab@3x.png",
+      "filename" : "sendTabIconOff@3x.png",
       "scale" : "3x"
     }
   ],

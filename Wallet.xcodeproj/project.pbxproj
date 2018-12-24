@@ -240,6 +240,7 @@
 		A51202022152534100D44A22 /* SocialNetworkAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */; };
 		A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A512020B2153D68A00D44A22 /* MainTabBar.storyboard */; };
 		A519770921B13AA700515619 /* DepositShortPollingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519770821B13AA700515619 /* DepositShortPollingTimer.swift */; };
+		A51AF25121D01AA700B8D2B4 /* UIImage+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51AF25021D01AA700B8D2B4 /* UIImage+Blur.swift */; };
 		A51AF25421D0E64900B8D2B4 /* BaseFadeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51AF25321D0E64900B8D2B4 /* BaseFadeAnimator.swift */; };
 		A51AF25721D0F54900B8D2B4 /* TransitionAnimatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51AF25621D0F54900B8D2B4 /* TransitionAnimatorFactory.swift */; };
 		A51CB5472158E0DB00CDC80C /* TransactionsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */; };
@@ -574,6 +575,8 @@
 		CE526C68212471CE00A2EED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C67212471CE00A2EED2 /* Constants.swift */; };
 		CE57C6992165F83400696FF7 /* AccountTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57C6982165F83400696FF7 /* AccountTableCell.xib */; };
 		CE57C69B2165F83D00696FF7 /* AccountTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */; };
+		CE5F1F6621CD312F00B7BB13 /* Strings+MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F1F6521CD312F00B7BB13 /* Strings+MainTabBar.swift */; };
+		CE5F1F6821CD313E00B7BB13 /* MainTabBar.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE5F1F6721CD313E00B7BB13 /* MainTabBar.strings */; };
 		CE5F8302219DB98600A18324 /* BiometricAuthProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F8301219DB98600A18324 /* BiometricAuthProviderFactory.swift */; };
 		CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */; };
 		CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAF97215104B4009E707E /* Registration.storyboard */; };
@@ -1067,6 +1070,7 @@
 		A51202012152534100D44A22 /* SocialNetworkAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthViewModel.swift; sourceTree = "<group>"; };
 		A512020B2153D68A00D44A22 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		A519770821B13AA700515619 /* DepositShortPollingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositShortPollingTimer.swift; sourceTree = "<group>"; };
+		A51AF25021D01AA700B8D2B4 /* UIImage+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Blur.swift"; sourceTree = "<group>"; };
 		A51AF25321D0E64900B8D2B4 /* BaseFadeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFadeAnimator.swift; sourceTree = "<group>"; };
 		A51AF25621D0F54900B8D2B4 /* TransitionAnimatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimatorFactory.swift; sourceTree = "<group>"; };
 		A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDataManager.swift; sourceTree = "<group>"; };
@@ -1402,6 +1406,8 @@
 		CE526C67212471CE00A2EED2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE57C6982165F83400696FF7 /* AccountTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableCell.xib; sourceTree = "<group>"; };
 		CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableCell.swift; sourceTree = "<group>"; };
+		CE5F1F6521CD312F00B7BB13 /* Strings+MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+MainTabBar.swift"; sourceTree = "<group>"; };
+		CE5F1F6721CD313E00B7BB13 /* MainTabBar.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = MainTabBar.strings; sourceTree = "<group>"; };
 		CE5F8301219DB98600A18324 /* BiometricAuthProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthProviderFactory.swift; sourceTree = "<group>"; };
 		CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinValidationProvider.swift; sourceTree = "<group>"; };
 		CE5FAF97215104B4009E707E /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
@@ -1840,6 +1846,8 @@
 				88D2FAA0FC3A6DE0B7547B61 /* Interactor */,
 				446667D746A669ED6D552BD8 /* Router */,
 				005086C7E463F91AABB74171 /* Module */,
+				CE5F1F6521CD312F00B7BB13 /* Strings+MainTabBar.swift */,
+				CE5F1F6721CD313E00B7BB13 /* MainTabBar.strings */,
 			);
 			path = MainTabBar;
 			sourceTree = "<group>";
@@ -4716,6 +4724,7 @@
 				A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */,
 				A5B78212215E25A200EFD1A5 /* Array+Helper.swift */,
 				A52C66B721676AB70073071E /* Decimal+Helpers.swift */,
+				A51AF25021D01AA700B8D2B4 /* UIImage+Blur.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5498,6 +5507,7 @@
 				A5C1874E21C0EE8800779D26 /* QuickLaunch.strings in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
 				A50086012150BD2B00C47015 /* PinInput.storyboard in Resources */,
+				CE5F1F6821CD313E00B7BB13 /* MainTabBar.strings in Resources */,
 				CEF02F6F21C3AD6B003D18FF /* Accounts.strings in Resources */,
 				CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */,
 				A535BA0B21CA5B5600B0BAF8 /* Montserrat-LightItalic.ttf in Resources */,
@@ -5849,6 +5859,7 @@
 				E275BFADE175B146D991425C /* RegistrationModule.swift in Sources */,
 				CEF02F5B21C25164003D18FF /* Strings+SocialNetworkAuth.swift in Sources */,
 				CEF3A9A321C8035A000D0718 /* MyWalletFooter.swift in Sources */,
+				CE5F1F6621CD312F00B7BB13 /* Strings+MainTabBar.swift in Sources */,
 				BEEDE5E6BEDC5F138D876770 /* PasswordEmailRecoveryViewInput.swift in Sources */,
 				21871BCFB964904C754FD3CF /* PasswordEmailRecoveryViewOutput.swift in Sources */,
 				A1895A9521B8A57EA1BC3561 /* PasswordEmailRecoveryViewController.swift in Sources */,
@@ -6335,6 +6346,7 @@
 				81CF806732A0FB3967B8B297 /* DeviceRegisterConfirmRouterInput.swift in Sources */,
 				A4586E72708D9B6D4660DA3E /* DeviceRegisterConfirmRouter.swift in Sources */,
 				37764CF0928FD1FE3203A060 /* DeviceRegisterConfirmModuleInput.swift in Sources */,
+				A51AF25121D01AA700B8D2B4 /* UIImage+Blur.swift in Sources */,
 				8682E1B3ED20AF23E0A152EB /* DeviceRegisterConfirmModuleOutput.swift in Sources */,
 				A322751EEA14E86AD51FCE56 /* DeviceRegisterConfirmModule.swift in Sources */,
 				BC7BDCC8E180102F19C4B6F9 /* ExchangeConfirmPopUpViewInput.swift in Sources */,

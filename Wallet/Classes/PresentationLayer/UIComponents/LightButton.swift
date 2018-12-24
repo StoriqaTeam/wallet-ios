@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 class LightButton: BaseButton {
-    private var borderColor: UIColor = Theme.Color.Button.enabledBackground
-    private var borderAlpha: CGFloat = 1
+    private var borderColor: UIColor = Theme.Color.Button.border
+    private var titleColor: UIColor = Theme.Color.Button.enabledTitle
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup(color: borderColor)
-        titleLabel?.font = Theme.Font.buttonTitle
+        setup(color: borderColor, titleColor: titleColor)
+        titleLabel?.font = Theme.Font.Button.smallButtonTitle
     }
     
     override var frame: CGRect {
@@ -25,14 +25,12 @@ class LightButton: BaseButton {
         }
     }
     
-    func setup(color: UIColor, borderAlpha: CGFloat? = nil) {
-        if let borderAlpha = borderAlpha {
-            self.borderAlpha = borderAlpha
-        }
+    func setup(color: UIColor, titleColor: UIColor? = nil) {
+        self.borderColor = color
+        self.titleColor = titleColor ?? color
         
-        borderColor = color
         backgroundColor = .clear
-        setTitleColor(color, for: .normal)
+        setTitleColor(titleColor, for: .normal)
         roundView()
     }
 }
@@ -45,7 +43,7 @@ extension LightButton {
     private func roundView() {
         roundCorners(radius: frame.height/2,
                      borderWidth: 1,
-                     borderColor: borderColor.withAlphaComponent(borderAlpha))
+                     borderColor: borderColor)
     }
     
 }

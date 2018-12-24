@@ -157,9 +157,9 @@ extension SocialNetworkAuthView {
         facebookButton.roundCorners(radius: 4, borderWidth: 1, borderColor: Theme.Color.SocialAuthView.borders)
         googleButton.roundCorners(radius: 4, borderWidth: 1, borderColor: Theme.Color.SocialAuthView.borders)
         
-        facebookTitle.font = Theme.Font.extraSmallButtonTitle
-        googleTitle.font = Theme.Font.extraSmallButtonTitle
-        orLabel.font = Theme.Font.smallButtonTitle
+        facebookTitle.font = Theme.Font.Button.extraSmallButtonTitle
+        googleTitle.font = Theme.Font.Button.extraSmallButtonTitle
+        orLabel.font = Theme.Font.Button.smallButtonTitle
         
         facebookTitle.textColor = Theme.Color.SocialAuthView.text
         googleTitle.textColor = Theme.Color.SocialAuthView.text

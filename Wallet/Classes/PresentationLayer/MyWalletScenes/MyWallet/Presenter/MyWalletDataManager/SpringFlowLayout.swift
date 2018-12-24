@@ -62,6 +62,10 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         footerIndexPath = nil
     }
     
+    func collectionDidChangeOffset() {
+        stopCellsOnTop()
+    }
+    
     override func prepare() {
         super.prepare()
         
@@ -84,8 +88,6 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
             self.animator.addBehavior(behavior)
             self.addedBehaviors[indexPath] = behavior
         }
-        
-        stopCellsOnTop()
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
@@ -97,9 +99,6 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        
-        stopCellsOnTop()
-        
         guard let collectionView = self.collectionView else { return false }
         
         let contentOffset = collectionView.contentOffset.y + collectionView.contentInset.top
@@ -175,16 +174,15 @@ extension SpringFlowLayout {
                     topCellSnapshots[indexPath] = snapshot
                     collectionView.superview?.insertSubview(snapshot, belowSubview: collectionView)
                 }
-                
+
                 item.isHidden = true
                 self.animator.updateItem(usingCurrentState: item)
             } else if item.isHidden {
-                if let snapshot = topCellSnapshots[indexPath] {
-                    snapshot.removeFromSuperview()
-                    topCellSnapshots.removeValue(forKey: indexPath)
-                }
                 item.isHidden = false
                 self.animator.updateItem(usingCurrentState: item)
+            } else if let snapshot = topCellSnapshots[indexPath] {
+                snapshot.removeFromSuperview()
+                topCellSnapshots.removeValue(forKey: indexPath)
             }
         }
     }

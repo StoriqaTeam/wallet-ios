@@ -196,7 +196,6 @@ class Application {
     
     // MARK: - Displayers -
     lazy var accountDisplayer: AccountDisplayerProtocol = AccountDisplayer(
-        userDataStoreService: self.userDataStoreService,
         currencyFormatter: self.currencyFormatter,
         converterFactory: self.currencyConverterFactory,
         accountTypeResolver: self.accountTypeResolver,
