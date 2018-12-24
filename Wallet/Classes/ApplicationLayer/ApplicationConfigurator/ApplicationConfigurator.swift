@@ -39,6 +39,10 @@ class ApplicationConfigurator: Configurable {
 extension ApplicationConfigurator {
     
     private func setInitialVC() {
+        PinQuickLaunchModule.create(app: app).present()
+//        QuickLaunchModule.create(app: app).present()
+        return
+        
         if defaults.isFirstLaunch {
             
             defaults.isFirstLaunch = false

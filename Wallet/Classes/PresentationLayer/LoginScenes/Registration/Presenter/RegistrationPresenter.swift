@@ -128,12 +128,12 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     
     func showQuickLaunch() {
         storiqaLoader.stopLoader()
-        router.showQuickLaunch(from: view.viewController)
+        router.showQuickLaunch()
     }
     
     func showPinQuickLaunch() {
         storiqaLoader.stopLoader()
-        router.showPinQuickLaunch(from: view.viewController)
+        router.showPinQuickLaunch()
     }
     
     func socialAuthFailed(message: String) {

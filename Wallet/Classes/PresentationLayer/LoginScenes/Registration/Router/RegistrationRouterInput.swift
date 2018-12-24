@@ -18,8 +18,8 @@ protocol RegistrationRouterInput: class {
                      popUpDelegate: PopUpRegistrationFailedVMDelegate,
                      from viewController: UIViewController)
     func showSocialNetworkFailure(message: String, from viewController: UIViewController)
-    func showQuickLaunch(from viewController: UIViewController)
-    func showPinQuickLaunch(from viewController: UIViewController)
+    func showQuickLaunch()
+    func showPinQuickLaunch()
     func showDeviceRegister(popUpDelegate: PopUpDeviceRegisterVMDelegate,
                             from viewController: UIViewController)
     func showDeviceRegisterEmailSent(from viewController: UIViewController)

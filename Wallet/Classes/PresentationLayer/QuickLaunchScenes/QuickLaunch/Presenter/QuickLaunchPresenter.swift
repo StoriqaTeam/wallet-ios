@@ -45,7 +45,7 @@ extension QuickLaunchPresenter: QuickLaunchInteractorOutput {
 
 extension QuickLaunchPresenter: QuickLaunchModuleInput {
 
-    func present(from viewController: UIViewController) {
+    func present() {
         view.presentAsNavController()
     }
 }

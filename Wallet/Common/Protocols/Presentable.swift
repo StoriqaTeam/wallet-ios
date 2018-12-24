@@ -51,6 +51,9 @@ extension Presentable where Self: UIViewController {
         navigation.navigationBar.backgroundColor = .clear
         navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
         navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
+        navigation.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.Color.NavigationBar.title]
+        navigation.navigationBar.barTintColor = Theme.Color.NavigationBar.buttons
+        navigation.navigationBar.tintColor = Theme.Color.NavigationBar.buttons
         
         AppDelegate.currentWindow.rootViewController = navigation
     }

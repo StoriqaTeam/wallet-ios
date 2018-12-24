@@ -76,11 +76,11 @@ extension LoginPresenter: LoginInteractorOutput {
     }
     
     func showQuickLaunch() {
-        router.showQuickLaunch(from: view.viewController)
+        router.showQuickLaunch()
     }
     
     func showPinQuickLaunch() {
-        router.showPinQuickLaunch(from: view.viewController)
+        router.showPinQuickLaunch()
     }
     
     func loginFailed(message: String) {

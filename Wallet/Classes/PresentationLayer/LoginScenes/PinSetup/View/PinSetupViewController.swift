@@ -35,6 +35,7 @@ class PinSetupViewController: UIViewController {
 extension PinSetupViewController: PinSetupViewInput {
     
     func setupInitialState() {
+        view.backgroundColor = Theme.Color.backgroundColor
 
     }
 

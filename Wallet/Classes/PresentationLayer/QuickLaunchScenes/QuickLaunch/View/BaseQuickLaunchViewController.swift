@@ -26,11 +26,20 @@ class BaseQuickLaunchViewController: UIViewController {
         disableBackNavigation()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     private func configureInterface() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        title = ""
+        
         titleLabel.font = Theme.Font.title
         subtitleLabel?.font = Theme.Font.subtitle
-        subtitleLabel?.textColor = Theme.Color.greyishBrown
+        titleLabel.textColor = Theme.Color.Text.main
+        subtitleLabel?.textColor = Theme.Color.Text.main.withAlphaComponent(0.5)
         cancelButton?.setTitle(Strings.QuickLaunch.cancelButton, for: .normal)
+        cancelButton?.setTitleColor(Theme.Color.Button.enabledBackground, for: .normal)
     }
     
     private func disableBackNavigation() {

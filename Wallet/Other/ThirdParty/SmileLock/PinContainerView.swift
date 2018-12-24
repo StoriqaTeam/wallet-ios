@@ -42,6 +42,14 @@ class PinContainerView: LoadableFromXib {
         }
     }
     
+    var textFont: UIFont! {
+        didSet {
+            pinInputViews.forEach {
+                $0.labelFont = textFont
+            }
+        }
+    }
+    
     var highlightedColor: UIColor! {
         didSet {
             pinDotView.fillColor = highlightedColor

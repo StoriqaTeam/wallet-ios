@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,57 +27,47 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="rbh-eJ-5Ej">
-                                <rect key="frame" x="0.0" y="66.5" width="375" height="534"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Choose the way to confirm your identity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSD-dp-r8q">
+                                <rect key="frame" x="97" y="133.5" width="181" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="181" id="ZO2-YD-PEy"/>
+                                    <constraint firstAttribute="width" constant="181" id="hws-90-peq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="rbh-eJ-5Ej">
+                                <rect key="frame" x="0.0" y="171" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rbh-eJ-5Ej" secondAttribute="height" id="YKf-oN-aLB"/>
+                                </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eyK-a2-zp7">
-                                <rect key="frame" x="28" y="540" width="319" height="89"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev0-xC-A5j">
-                                        <rect key="frame" x="0.0" y="0.0" width="319" height="37"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Choose the way to confirm your identity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSD-dp-r8q">
-                                                <rect key="frame" x="69" y="0.0" width="181" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="181" id="hws-90-peq"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="RSD-dp-r8q" secondAttribute="bottom" constant="8" id="5sL-rl-tJ8"/>
-                                            <constraint firstItem="RSD-dp-r8q" firstAttribute="top" secondItem="ev0-xC-A5j" secondAttribute="top" id="D67-c3-X5d"/>
-                                            <constraint firstItem="RSD-dp-r8q" firstAttribute="centerX" secondItem="ev0-xC-A5j" secondAttribute="centerX" id="eJe-cm-Y4W"/>
-                                        </constraints>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NM-Ms-gHQ" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="45" width="319" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="b4r-TP-RdL"/>
-                                        </constraints>
-                                        <state key="normal" title="Set up quick launch">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="performAction:" destination="qxa-kj-BLd" eventType="touchUpInside" id="OCG-Wf-mu2"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NM-Ms-gHQ" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="28" y="578" width="319" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="b4r-TP-RdL"/>
+                                </constraints>
+                                <state key="normal" title="Set up quick launch">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="performAction:" destination="qxa-kj-BLd" eventType="touchUpInside" id="OCG-Wf-mu2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8aQ-4a-ati" firstAttribute="top" secondItem="gmk-lA-eDi" secondAttribute="top" constant="36" id="3ZW-cX-xUo"/>
-                            <constraint firstItem="rbh-eJ-5Ej" firstAttribute="centerY" secondItem="uhB-co-kKa" secondAttribute="centerY" id="VAt-c3-FUF"/>
-                            <constraint firstItem="eyK-a2-zp7" firstAttribute="centerX" secondItem="uhB-co-kKa" secondAttribute="centerX" id="Zsb-Jx-Z0R"/>
-                            <constraint firstItem="eyK-a2-zp7" firstAttribute="leading" secondItem="gmk-lA-eDi" secondAttribute="leading" constant="28" id="am0-Nc-4wS"/>
+                            <constraint firstItem="6NM-Ms-gHQ" firstAttribute="centerX" secondItem="uhB-co-kKa" secondAttribute="centerX" id="7ma-W3-fSn"/>
+                            <constraint firstItem="RSD-dp-r8q" firstAttribute="centerX" secondItem="8aQ-4a-ati" secondAttribute="centerX" id="HOy-vk-vz8"/>
+                            <constraint firstItem="6NM-Ms-gHQ" firstAttribute="leading" secondItem="gmk-lA-eDi" secondAttribute="leading" constant="28" id="IF4-TS-jY5"/>
+                            <constraint firstItem="rbh-eJ-5Ej" firstAttribute="centerY" secondItem="uhB-co-kKa" secondAttribute="centerY" constant="25" id="VAt-c3-FUF"/>
+                            <constraint firstItem="RSD-dp-r8q" firstAttribute="centerX" secondItem="uhB-co-kKa" secondAttribute="centerX" id="b47-Xf-quF"/>
                             <constraint firstItem="rbh-eJ-5Ej" firstAttribute="width" secondItem="uhB-co-kKa" secondAttribute="width" id="hnj-KZ-yTQ"/>
-                            <constraint firstItem="rbh-eJ-5Ej" firstAttribute="height" secondItem="uhB-co-kKa" secondAttribute="height" multiplier="0.8" id="i8U-Rh-3u5"/>
+                            <constraint firstItem="RSD-dp-r8q" firstAttribute="top" secondItem="8aQ-4a-ati" secondAttribute="bottom" constant="20" id="joC-Bd-yjz"/>
+                            <constraint firstItem="gmk-lA-eDi" firstAttribute="bottom" secondItem="6NM-Ms-gHQ" secondAttribute="bottom" constant="38" id="tex-he-RF8"/>
                             <constraint firstItem="8aQ-4a-ati" firstAttribute="centerX" secondItem="uhB-co-kKa" secondAttribute="centerX" id="xqU-r0-IeU"/>
-                            <constraint firstItem="gmk-lA-eDi" firstAttribute="bottom" secondItem="eyK-a2-zp7" secondAttribute="bottom" constant="38" id="ycz-Y4-0Tt"/>
                             <constraint firstItem="rbh-eJ-5Ej" firstAttribute="centerX" secondItem="uhB-co-kKa" secondAttribute="centerX" id="zRT-eF-yyZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gmk-lA-eDi"/>
@@ -95,6 +85,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="quickLaunch" width="377" height="428"/>
+        <image name="quickLaunch" width="376" height="447"/>
     </resources>
 </document>
