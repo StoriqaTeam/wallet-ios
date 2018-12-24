@@ -30,7 +30,7 @@ class DefaultButton: BaseButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         updateColors()
-        titleLabel?.font = Theme.Font.buttonTitle
+        titleLabel?.font = Theme.Font.Button.buttonTitle
     }
 }
 

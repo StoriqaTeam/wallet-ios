@@ -25,6 +25,7 @@ struct Theme {
             static let disabledTitle = enabledTitle.withAlphaComponent(0.35)
             static let enabledBackground = UIColor(red: 165/255, green: 120/255, blue: 62/255, alpha: 1)
             static let disabledBackground = UIColor(red: 83/255, green: 60/255, blue: 31/255, alpha: 1)
+            static let border = UIColor(red: 255/255, green: 180/255, blue: 62/255, alpha: 0.4)
             static let red = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
         }
         
@@ -101,16 +102,20 @@ struct Theme {
         static let smallBoldText = MontserratFont.font(ofSize: 12, weight: .semibold)
         /** 12px regular */
         static let errorMessage = MontserratFont.font(ofSize: 12, weight: .regular)
-        /** 16px medium */
-        static let buttonTitle = MontserratFont.font(ofSize: 16, weight: .medium)
-        /** 13px medium */
-        static let smallButtonTitle = MontserratFont.font(ofSize: 13, weight: .medium)
-        /** 13px regular */
-        static let extraSmallButtonTitle = MontserratFont.font(ofSize: 10, weight: .regular)
         /** 16 px regular */
         static let input = MontserratFont.font(ofSize: 16, weight: .regular)
         /** 26 px regular */
         static let largeText = MontserratFont.font(ofSize: 26, weight: .medium)
+        
+        struct Button {
+            /** 16px medium */
+            static let buttonTitle = MontserratFont.font(ofSize: 16, weight: .medium)
+            /** 12px medium */
+            static let smallButtonTitle = MontserratFont.font(ofSize: 12, weight: .medium)
+            /** 10px regular */
+            static let extraSmallButtonTitle = MontserratFont.font(ofSize: 10, weight: .regular)
+        }
+        
     }
 }
 
