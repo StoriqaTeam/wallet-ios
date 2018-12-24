@@ -40,41 +40,33 @@ enum Device: CGFloat {
     
     func flowLayout(type: FlowLayoutType) -> UICollectionViewFlowLayout {
         let flowLayout = UICollectionViewFlowLayout()
+        let inset = CGFloat(20)
+        let width = Constants.Sizes.screenWidth - inset * 2
         
         switch type {
         case .horizontal, .vertical:
-            switch self {
-            case .iPhoneSE:
-                flowLayout.itemSize = CGSize(width: 280, height: 165)
-            default:
-                flowLayout.itemSize = CGSize(width: 336, height: 198)
-            }
+            let height = width * 0.6
+            flowLayout.itemSize = CGSize(width: width, height: height)
         case .horizontalSmall, .verticalSmall:
-            switch self {
-            case .iPhoneSE:
-                flowLayout.itemSize = CGSize(width: 280, height: 85)
-            default:
-                flowLayout.itemSize = CGSize(width: 336, height: 102)
-            }
+            let height = width * 0.3
+            flowLayout.itemSize = CGSize(width: width, height: height)
         }
         
         switch type {
         case .horizontal, .horizontalSmall:
-            let spacing: CGFloat = (Constants.Sizes.screenWidth - flowLayout.itemSize.width) / 4
-            flowLayout.minimumInteritemSpacing = spacing
-            flowLayout.sectionInset = UIEdgeInsets(top: 0, left: spacing * 2, bottom: 0, right: spacing * 2)
+            flowLayout.minimumInteritemSpacing = inset / 2
+            flowLayout.minimumLineSpacing = inset / 2
+            flowLayout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
             flowLayout.scrollDirection = .horizontal
         case .vertical:
-            let spacing: CGFloat = -(flowLayout.itemSize.height * 0.72)
-            let inset: CGFloat = self == .iPhoneSE ? 6 : 10
+            let spacing: CGFloat = -(flowLayout.itemSize.height * 0.73)
             flowLayout.minimumLineSpacing = spacing
-            flowLayout.sectionInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
+            flowLayout.sectionInset = UIEdgeInsets(top: inset/2, left: 0, bottom: inset/2, right: 0)
             flowLayout.scrollDirection = .vertical
             flowLayout.footerReferenceSize = CGSize(width: 200, height: 100)
         case .verticalSmall:
-            let spacing: CGFloat = self == .iPhoneSE ? 12 : 20
-            flowLayout.minimumLineSpacing = spacing
-            flowLayout.sectionInset = UIEdgeInsets(top: spacing/2, left: 0, bottom: spacing/2, right: 0)
+            flowLayout.minimumLineSpacing = inset
+            flowLayout.sectionInset = UIEdgeInsets(top: inset/2, left: 0, bottom: inset/2, right: 0)
             flowLayout.scrollDirection = .vertical
         }
         

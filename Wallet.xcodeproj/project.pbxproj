@@ -572,6 +572,8 @@
 		CE526C68212471CE00A2EED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C67212471CE00A2EED2 /* Constants.swift */; };
 		CE57C6992165F83400696FF7 /* AccountTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57C6982165F83400696FF7 /* AccountTableCell.xib */; };
 		CE57C69B2165F83D00696FF7 /* AccountTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */; };
+		CE5F1F6621CD312F00B7BB13 /* Strings+MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F1F6521CD312F00B7BB13 /* Strings+MainTabBar.swift */; };
+		CE5F1F6821CD313E00B7BB13 /* MainTabBar.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE5F1F6721CD313E00B7BB13 /* MainTabBar.strings */; };
 		CE5F8302219DB98600A18324 /* BiometricAuthProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F8301219DB98600A18324 /* BiometricAuthProviderFactory.swift */; };
 		CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */; };
 		CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAF97215104B4009E707E /* Registration.storyboard */; };
@@ -1398,6 +1400,8 @@
 		CE526C67212471CE00A2EED2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE57C6982165F83400696FF7 /* AccountTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableCell.xib; sourceTree = "<group>"; };
 		CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableCell.swift; sourceTree = "<group>"; };
+		CE5F1F6521CD312F00B7BB13 /* Strings+MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+MainTabBar.swift"; sourceTree = "<group>"; };
+		CE5F1F6721CD313E00B7BB13 /* MainTabBar.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = MainTabBar.strings; sourceTree = "<group>"; };
 		CE5F8301219DB98600A18324 /* BiometricAuthProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthProviderFactory.swift; sourceTree = "<group>"; };
 		CE5FAF942150ED6E009E707E /* PinValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinValidationProvider.swift; sourceTree = "<group>"; };
 		CE5FAF97215104B4009E707E /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
@@ -1836,6 +1840,8 @@
 				88D2FAA0FC3A6DE0B7547B61 /* Interactor */,
 				446667D746A669ED6D552BD8 /* Router */,
 				005086C7E463F91AABB74171 /* Module */,
+				CE5F1F6521CD312F00B7BB13 /* Strings+MainTabBar.swift */,
+				CE5F1F6721CD313E00B7BB13 /* MainTabBar.strings */,
 			);
 			path = MainTabBar;
 			sourceTree = "<group>";
@@ -5484,6 +5490,7 @@
 				A5C1874E21C0EE8800779D26 /* QuickLaunch.strings in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
 				A50086012150BD2B00C47015 /* PinInput.storyboard in Resources */,
+				CE5F1F6821CD313E00B7BB13 /* MainTabBar.strings in Resources */,
 				CEF02F6F21C3AD6B003D18FF /* Accounts.strings in Resources */,
 				CE5FAF98215104B4009E707E /* Registration.storyboard in Resources */,
 				A535BA0B21CA5B5600B0BAF8 /* Montserrat-LightItalic.ttf in Resources */,
@@ -5834,6 +5841,7 @@
 				E275BFADE175B146D991425C /* RegistrationModule.swift in Sources */,
 				CEF02F5B21C25164003D18FF /* Strings+SocialNetworkAuth.swift in Sources */,
 				CEF3A9A321C8035A000D0718 /* MyWalletFooter.swift in Sources */,
+				CE5F1F6621CD312F00B7BB13 /* Strings+MainTabBar.swift in Sources */,
 				BEEDE5E6BEDC5F138D876770 /* PasswordEmailRecoveryViewInput.swift in Sources */,
 				21871BCFB964904C754FD3CF /* PasswordEmailRecoveryViewOutput.swift in Sources */,
 				A1895A9521B8A57EA1BC3561 /* PasswordEmailRecoveryViewController.swift in Sources */,

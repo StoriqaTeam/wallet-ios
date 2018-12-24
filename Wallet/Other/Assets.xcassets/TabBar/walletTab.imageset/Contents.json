@@ -6,12 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "walletTab@2x.png",
+      "filename" : "walletTabIconOff@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "walletTab@3x.png",
+      "filename" : "walletTabIconOff@3x.png",
       "scale" : "3x"
     }
   ],
