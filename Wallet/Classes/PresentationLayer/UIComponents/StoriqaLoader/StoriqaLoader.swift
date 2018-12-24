@@ -11,8 +11,9 @@ import Foundation
 class StoriqaLoader {
     
     private let parentView: UIView
+    private var dimView: UIView!
     private var loaderView: ActivityIndicatorView!
-    private var blurEffectView: UIVisualEffectView!
+    private var blurImageView: UIImageView!
     
     init(parentView: UIView) {
         self.parentView = parentView
@@ -21,8 +22,6 @@ class StoriqaLoader {
     func startLoader() {
         addBlurView()
         addLoaderView()
-        blurEffectView.contentView.addSubview(loaderView)
-        loaderView.showActivityIndicator()
     }
     
     func stopLoader() {
@@ -34,12 +33,12 @@ class StoriqaLoader {
         loaderView.removeFromSuperview()
         
         UIView.animate(withDuration: 0.5, animations: {
-            self.blurEffectView.alpha = 0.0
-        }, completion: { _ in
-            loaderView.removeFromSuperview()
-            self.blurEffectView.removeFromSuperview()
+            self.blurImageView.alpha = 0.0
+        }) { (_) in
+            self.loaderView.removeFromSuperview()
+            self.blurImageView.removeFromSuperview()
             self.loaderView = nil
-        })
+        }
     }
 }
 
@@ -48,16 +47,14 @@ class StoriqaLoader {
 
 extension StoriqaLoader {
     private func addBlurView() {
-        let blurEffect = UIBlurEffect(style: .dark)
+        let bluredImage = captureScreen(view: parentView)
+        blurImageView = UIImageView(image: bluredImage)
+        self.parentView.addSubview(blurImageView)
+        blurImageView.alpha = 0
         
-        blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = parentView.frame
-        parentView.addSubview(blurEffectView)
-        blurEffectView.alpha = 0
-        
-        UIView.animate(withDuration: 0.5) {
-            self.blurEffectView.alpha = 0.9
-        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurImageView.alpha = 1
+        })
     }
     
     private func addLoaderView() {
@@ -65,5 +62,7 @@ extension StoriqaLoader {
         loaderView.isUserInteractionEnabled = false
         loaderView.frame.size = CGSize(width: 80, height: 80)
         loaderView.center = parentView.convert(parentView.center, to: loaderView)
+        blurImageView.addSubview(loaderView)
+        loaderView.showActivityIndicator()
     }
 }

@@ -61,9 +61,6 @@ extension MyWalletPresenter: MyWalletViewOutput {
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
-        let xOrigin = (Constants.Sizes.screenWidth - collectionFlowLayout.itemSize.width) / 2
-        view.setNavigationBarHorizontalSpace(xOrigin)
-        
         collectionView.collectionViewLayout = collectionFlowLayout
         collectionView.alwaysBounceVertical = true
         
@@ -92,6 +89,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
         
         var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
         titleTextAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
+        titleTextAttributes[NSAttributedString.Key.font] = Theme.Font.largeNavigationBarTitle
         navigationBar.titleTextAttributes = titleTextAttributes
         navigationBar.largeTitleTextAttributes = titleTextAttributes
     }

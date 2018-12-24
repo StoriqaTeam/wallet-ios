@@ -10,6 +10,7 @@ import UIKit
 
 
 class MainTabBarPresenter {
+    typealias LocalizedStrings = Strings.MainTabBar
     
     weak var view: MainTabBarViewInput!
     weak var output: MainTabBarModuleOutput?
@@ -105,5 +106,17 @@ extension MainTabBarPresenter {
             depositModule.viewController.wrapToNavigationController(),
             settingsModule.viewController.wrapToNavigationController()
         ]
+        
+        guard let items = view.mainTabBar?.tabBar.items else { return }
+        
+        let titles = [ LocalizedStrings.wallet,
+                       LocalizedStrings.send,
+                       LocalizedStrings.exchange,
+                       LocalizedStrings.deposit,
+                       LocalizedStrings.menu ]
+        
+        for (index, item) in items.enumerated() where titles.count > index {
+            item.title = titles[index]
+        }
     }
 }
