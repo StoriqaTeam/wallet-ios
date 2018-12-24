@@ -241,6 +241,8 @@
 		A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A512020B2153D68A00D44A22 /* MainTabBar.storyboard */; };
 		A519770921B13AA700515619 /* DepositShortPollingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519770821B13AA700515619 /* DepositShortPollingTimer.swift */; };
 		A51AF25121D01AA700B8D2B4 /* UIImage+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51AF25021D01AA700B8D2B4 /* UIImage+Blur.swift */; };
+		A51AF25421D0E64900B8D2B4 /* BaseFadeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51AF25321D0E64900B8D2B4 /* BaseFadeAnimator.swift */; };
+		A51AF25721D0F54900B8D2B4 /* TransitionAnimatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51AF25621D0F54900B8D2B4 /* TransitionAnimatorFactory.swift */; };
 		A51CB5472158E0DB00CDC80C /* TransactionsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */; };
 		A51CB5492158E60500CDC80C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB5482158E60500CDC80C /* Transaction.swift */; };
 		A51CB54B2158E80400CDC80C /* TransactionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB54A2158E80400CDC80C /* TransactionsProvider.swift */; };
@@ -1069,6 +1071,8 @@
 		A512020B2153D68A00D44A22 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		A519770821B13AA700515619 /* DepositShortPollingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositShortPollingTimer.swift; sourceTree = "<group>"; };
 		A51AF25021D01AA700B8D2B4 /* UIImage+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Blur.swift"; sourceTree = "<group>"; };
+		A51AF25321D0E64900B8D2B4 /* BaseFadeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFadeAnimator.swift; sourceTree = "<group>"; };
+		A51AF25621D0F54900B8D2B4 /* TransitionAnimatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimatorFactory.swift; sourceTree = "<group>"; };
 		A51CB5462158E0DB00CDC80C /* TransactionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDataManager.swift; sourceTree = "<group>"; };
 		A51CB5482158E60500CDC80C /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		A51CB54A2158E80400CDC80C /* TransactionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsProvider.swift; sourceTree = "<group>"; };
@@ -3084,6 +3088,24 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		A51AF25521D0F52700B8D2B4 /* TransitionAnimatorFactory */ = {
+			isa = PBXGroup;
+			children = (
+				A51AF25621D0F54900B8D2B4 /* TransitionAnimatorFactory.swift */,
+			);
+			path = TransitionAnimatorFactory;
+			sourceTree = "<group>";
+		};
+		A51AF25821D0F55A00B8D2B4 /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				B8FFAD4021BEF3E5003F370F /* MyWalletToAccountsAnimator.swift */,
+				A51AF25321D0E64900B8D2B4 /* BaseFadeAnimator.swift */,
+				A51AF25521D0F52700B8D2B4 /* TransitionAnimatorFactory */,
+			);
+			path = Animators;
+			sourceTree = "<group>";
+		};
 		A51CB5452158E0C600CDC80C /* LastTransactionsDataManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -4248,14 +4270,6 @@
 			path = RatesProvider;
 			sourceTree = "<group>";
 		};
-		B8FFAD3F21BEF3BC003F370F /* MyWalletToAccountsAnimator */ = {
-			isa = PBXGroup;
-			children = (
-				B8FFAD4021BEF3E5003F370F /* MyWalletToAccountsAnimator.swift */,
-			);
-			path = MyWalletToAccountsAnimator;
-			sourceTree = "<group>";
-		};
 		B8FFAD4421BEF839003F370F /* NavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -4681,6 +4695,7 @@
 		CE526C6F21247F8500A2EED2 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A51AF25821D0F55A00B8D2B4 /* Animators */,
 				B8FFAD4421BEF839003F370F /* NavigationController */,
 				A5C12E46217B671400A7D68C /* StoriqaLoader */,
 				A51CB55B215942DA00CDC80C /* Xibs */,
@@ -5275,7 +5290,6 @@
 		F087D7C00C1F36868EFC0074 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				B8FFAD3F21BEF3BC003F370F /* MyWalletToAccountsAnimator */,
 				CE8CC9982167D9A700EA9EED /* MyWalletDataManager */,
 				30AD6C72FB789A35EDBD9F0F /* MyWalletPresenter.swift */,
 			);
@@ -5764,6 +5778,7 @@
 				00EAF6788F8B93E22E1921A7 /* LoginModuleInput.swift in Sources */,
 				85DE84599B70A7C4900FE60F /* LoginModuleOutput.swift in Sources */,
 				A574350521776226006B4CAE /* EditProfileInteractorInput.swift in Sources */,
+				A51AF25421D0E64900B8D2B4 /* BaseFadeAnimator.swift in Sources */,
 				A50086162151237B00C47015 /* Data+Helpers.swift in Sources */,
 				DCF2945472E263853448156F /* LoginModule.swift in Sources */,
 				B8241857219D55EC009000D4 /* PublicKey.swift in Sources */,
@@ -6118,6 +6133,7 @@
 				79A2AC994D7556E90171E7E5 /* SettingsPresenter.swift in Sources */,
 				BFD84DFE006F12E4358D8FB4 /* SettingsInteractorInput.swift in Sources */,
 				A56ED3A6216E2D36009FA58B /* TransactionOpponentResolver.swift in Sources */,
+				A51AF25721D0F54900B8D2B4 /* TransitionAnimatorFactory.swift in Sources */,
 				A57434FE21776226006B4CAE /* EditProfileModule.swift in Sources */,
 				A574351F21777383006B4CAE /* SessionsViewOutput.swift in Sources */,
 				A51CB54B2158E80400CDC80C /* TransactionsProvider.swift in Sources */,

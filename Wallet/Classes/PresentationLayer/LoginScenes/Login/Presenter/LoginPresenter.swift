@@ -17,7 +17,6 @@ class LoginPresenter {
     var router: LoginRouterInput!
     
     private var storiqaLoader: StoriqaLoader!
-    
 }
 
 
@@ -76,7 +75,7 @@ extension LoginPresenter: LoginInteractorOutput {
     }
     
     func showQuickLaunch() {
-        router.showQuickLaunch(from: view.viewController)
+        router.showQuickLaunch()
     }
     
     func showPinQuickLaunch() {

@@ -10,5 +10,7 @@ import UIKit
 
 
 protocol QuickLaunchRouterInput: class {
-    func showPinQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController)
+    func showPinQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol,
+                            from viewController: UIViewController,
+                            baseFadeAnimator: BaseFadeAnimator)
 }

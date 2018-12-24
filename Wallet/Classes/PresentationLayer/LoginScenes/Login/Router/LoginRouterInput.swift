@@ -11,10 +11,13 @@ import UIKit
 
 protocol LoginRouterInput: class {
     func showRegistration()
-    func showPasswordRecovery(from viewController: UIViewController)
-    func showQuickLaunch(from viewController: UIViewController)
-    func showPinQuickLaunch(from viewController: UIViewController)
     func showAuthorizedZone()
+    func showQuickLaunch()
+    
+    func showPasswordRecovery(from viewController: UIViewController)
+    func showPinQuickLaunch(from viewController: UIViewController)
+    
+    // Popups
     func showFailurePopup(message: String,
                           popUpDelegate: PopUpRegistrationFailedVMDelegate,
                           from viewController: UIViewController)

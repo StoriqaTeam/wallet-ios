@@ -128,7 +128,7 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     
     func showQuickLaunch() {
         storiqaLoader.stopLoader()
-        router.showQuickLaunch(from: view.viewController)
+        router.showQuickLaunch()
     }
     
     func showPinQuickLaunch() {
