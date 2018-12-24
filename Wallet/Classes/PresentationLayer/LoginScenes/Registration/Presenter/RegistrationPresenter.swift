@@ -133,7 +133,7 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     
     func showPinQuickLaunch() {
         storiqaLoader.stopLoader()
-        router.showPinQuickLaunch(from: view.viewController)
+        router.showPinQuickLaunch()
     }
     
     func socialAuthFailed(message: String) {

@@ -51,12 +51,7 @@ extension QuickLaunchPresenter: QuickLaunchInteractorOutput {
 // MARK: - QuickLaunchModuleInput
 
 extension QuickLaunchPresenter: QuickLaunchModuleInput {
-    func presentAstTansitioningNavigationController() {
+    func presentAsTansitioningNavigationController() {
         view.presentAsTransitioningNavController()
-    }
-
-    func present(from viewController: UIViewController) {
-        
-        view.presentAsNavController()
     }
 }

@@ -35,11 +35,11 @@ extension LoginRouter: LoginRouterInput {
     }
     
     func showQuickLaunch() {
-        QuickLaunchModule.create(app: app).presentAstTansitioningNavigationController()
+        QuickLaunchModule.create(app: app).presentAsTansitioningNavigationController()
     }
     
-    func showPinQuickLaunch(from viewController: UIViewController) {
-        PinQuickLaunchModule.create(app: app).present(from: viewController)
+    func showPinQuickLaunch() {
+        PinQuickLaunchModule.create(app: app).present()
     }
     
     func showAuthorizedZone() {

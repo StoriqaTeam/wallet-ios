@@ -79,7 +79,7 @@ extension LoginPresenter: LoginInteractorOutput {
     }
     
     func showPinQuickLaunch() {
-        router.showPinQuickLaunch(from: view.viewController)
+        router.showPinQuickLaunch()
     }
     
     func loginFailed(message: String) {

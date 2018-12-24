@@ -19,6 +19,7 @@ struct Theme {
         static let greyishBrown = UIColor(white: 80.0 / 255.0, alpha: 1.0)
         static let bluegrey = UIColor(red: 136.0 / 255.0, green: 158.0 / 255.0, blue: 186.0 / 255.0, alpha: 1.0)
         static let primaryGrey = UIColor(white: 140.0 / 255.0, alpha: 1.0)
+        static let backgroundColor = UIColor.black
         
         struct Button {
             static let enabledTitle = UIColor.white
@@ -49,6 +50,7 @@ struct Theme {
         }
         
         struct Text {
+            static let main = UIColor.white
             static let blackMain = UIColor(white: 0.0, alpha: 1.0)
             static let captionGrey = UIColor(red: 135/255, green: 157/255, blue: 185/255, alpha: 1.0)
             static let grey = UIColor(red: 219/255, green: 225/255, blue: 234/255, alpha: 1.0)
@@ -58,6 +60,10 @@ struct Theme {
             static let lightGrey = UIColor(white: 191.0 / 255.0, alpha: 1.0)
         }
         
+        struct NavigationBar {
+            static let title = UIColor.white
+            static let buttons = UIColor.white
+        }
         
         struct Gradient {
             struct Details {
@@ -82,8 +88,8 @@ struct Theme {
         static let segmentTextFont = MontserratFont.font(ofSize: 17, weight: .bold)
         /** 28px bold */
         static let supertitle = MontserratFont.font(ofSize: 28.0, weight: .bold)
-        /** 24px light */
-        static let title = MontserratFont.font(ofSize: 24.0, weight: .light)
+        /** 26px regular */
+        static let title = MontserratFont.font(ofSize: 26.0, weight: .regular)
         /** 17px regular */
         static let generalText = MontserratFont.font(ofSize: 17.0, weight: .regular)
         /** 13px regular. Must be uppercase */
@@ -114,6 +120,11 @@ struct Theme {
             static let smallButtonTitle = MontserratFont.font(ofSize: 12, weight: .medium)
             /** 10px regular */
             static let extraSmallButtonTitle = MontserratFont.font(ofSize: 10, weight: .regular)
+        }
+        
+        struct PinInput {
+            /** 36px light */
+            static let number = MontserratFont.font(ofSize: 36.0, weight: .light)
         }
         
     }

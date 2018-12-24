@@ -13,10 +13,9 @@ protocol LoginRouterInput: class {
     func showRegistration()
     func showAuthorizedZone()
     func showQuickLaunch()
+    func showPinQuickLaunch()
     
     func showPasswordRecovery(from viewController: UIViewController)
-    func showPinQuickLaunch(from viewController: UIViewController)
-    
     // Popups
     func showFailurePopup(message: String,
                           popUpDelegate: PopUpRegistrationFailedVMDelegate,

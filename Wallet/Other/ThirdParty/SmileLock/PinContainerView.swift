@@ -33,7 +33,7 @@ class PinContainerView: LoadableFromXib {
     
     override var tintColor: UIColor! {
         didSet {
-            pinDotView.strokeColor = tintColor
+            pinDotView.fillColor = tintColor
             touchAuthenticationButton.tintColor = tintColor
             pinInputViews.forEach {
                 $0.textColor = tintColor
@@ -42,12 +42,39 @@ class PinContainerView: LoadableFromXib {
         }
     }
     
+    var borderWidth: CGFloat! {
+        didSet {
+            pinInputViews.forEach {
+                $0.borderWidth = borderWidth
+            }
+        }
+    }
+    
+    var textFont: UIFont! {
+        didSet {
+            pinInputViews.forEach {
+                $0.labelFont = textFont
+            }
+        }
+    }
+    
     var highlightedColor: UIColor! {
         didSet {
-            pinDotView.fillColor = highlightedColor
             pinInputViews.forEach {
                 $0.highlightBackgroundColor = highlightedColor
             }
+        }
+    }
+    
+    var dotStrokeColor: UIColor! {
+        didSet {
+            pinDotView.strokeColor = highlightedColor
+        }
+    }
+    
+    var unhighlightedColor: UIColor! {
+        didSet {
+            pinDotView.emptyColor = unhighlightedColor
         }
     }
     

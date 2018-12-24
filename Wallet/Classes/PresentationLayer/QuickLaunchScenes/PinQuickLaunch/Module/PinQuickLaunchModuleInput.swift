@@ -11,5 +11,5 @@ import UIKit
 
 protocol PinQuickLaunchModuleInput: class {
     var output: PinQuickLaunchModuleOutput? { get set }
-    func present(from viewController: UIViewController)
+    func present()
 }

@@ -45,8 +45,8 @@ extension PinQuickLaunchPresenter: PinQuickLaunchInteractorOutput {
 
 extension PinQuickLaunchPresenter: PinQuickLaunchModuleInput {
 
-    func present(from viewController: UIViewController) {
-        view.present(from: viewController)
+    func present() {
+        view.presentAsNavController()
     }
     
 }
