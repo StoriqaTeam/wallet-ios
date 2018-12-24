@@ -26,10 +26,6 @@ class BaseQuickLaunchViewController: UIViewController {
         disableBackNavigation()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     private func configureInterface() {
         view.backgroundColor = Theme.Color.backgroundColor
         title = ""

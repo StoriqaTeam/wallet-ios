@@ -76,10 +76,6 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: - Actions
     
     @IBAction private func signIn() {
@@ -192,7 +188,7 @@ extension LoginViewController {
         signInHeaderButton.setTitle(LocalizedStrings.signInButtonTitle, for: .normal)
         signUpHeaderButton.setTitle(LocalizedStrings.signUpButtonTitle, for: .normal)
         forgotPasswordButton.setTitle(LocalizedStrings.forgotButtonTitle, for: .normal)
-        
+        forgotPasswordButton.titleLabel?.font = Theme.Font.Button.smallButtonTitle
         signInHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
         signUpHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
         signUpHeaderButton.alpha = 0.7

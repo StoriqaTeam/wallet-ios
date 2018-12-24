@@ -11,5 +11,5 @@ import UIKit
 
 protocol PinSetupViewInput: class, Presentable {
     func setupInitialState()
-    func setTitle(title: String)
+    func setTitle(title: String, subtitle: String)
 }

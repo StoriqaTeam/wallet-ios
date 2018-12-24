@@ -31,18 +31,18 @@
             <rect key="frame" x="0.0" y="0.0" width="366" height="620"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jjW-ce-0kS">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="jjW-ce-0kS">
                     <rect key="frame" x="0.0" y="0.0" width="366" height="620"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsH-wq-lrb">
-                            <rect key="frame" x="0.0" y="0.0" width="366" height="124.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="366" height="110"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIQ-hB-iq9">
-                                    <rect key="frame" x="0.0" y="0.0" width="366" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="366" height="42.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNd-Zg-ePe" customClass="PinDotView" customModule="Wallet" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="49.5" width="366" height="25"/>
+                                    <rect key="frame" x="0.0" y="42.5" width="366" height="25"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="h5N-dV-ayE"/>
@@ -54,7 +54,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ruo-tV-eZW">
-                                    <rect key="frame" x="0.0" y="74.5" width="366" height="50"/>
+                                    <rect key="frame" x="0.0" y="67.5" width="366" height="42.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </subviews>
@@ -75,7 +75,7 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uVh-VM-IQf">
-                            <rect key="frame" x="0.0" y="149.5" width="366" height="74"/>
+                            <rect key="frame" x="0.0" y="140" width="366" height="74"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mNO-I8-8HR" customClass="PinInputView" customModule="Wallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -111,7 +111,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="O9w-0G-0IG">
-                            <rect key="frame" x="0.0" y="248.5" width="366" height="74"/>
+                            <rect key="frame" x="0.0" y="244" width="366" height="74"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t6f-Qj-936" customClass="PinInputView" customModule="Wallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -143,7 +143,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="44G-t4-h3e">
-                            <rect key="frame" x="0.0" y="347.5" width="366" height="74"/>
+                            <rect key="frame" x="0.0" y="348" width="366" height="74"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRG-m3-KYK" customClass="PinInputView" customModule="Wallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -175,9 +175,9 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Rfs-SF-Ii0">
-                            <rect key="frame" x="0.0" y="446.5" width="366" height="74"/>
+                            <rect key="frame" x="0.0" y="452" width="366" height="74"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqj-3l-W1f">
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqj-3l-W1f">
                                     <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                     <state key="normal" image="touchId"/>
@@ -192,7 +192,7 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="numberString" value="0"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abs-RL-KN4">
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abs-RL-KN4">
                                     <rect key="frame" x="292" y="0.0" width="74" height="74"/>
                                     <state key="normal" image="backArrowDelete">
                                         <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -210,7 +210,7 @@
                             </constraints>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJl-mF-Ups">
-                            <rect key="frame" x="0.0" y="545.5" width="366" height="74.5"/>
+                            <rect key="frame" x="0.0" y="556" width="366" height="64"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>

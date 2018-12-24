@@ -22,10 +22,6 @@ class RecepientAccountsViewController: UIViewController {
         output.accountsCollectionView(collectionView)
         output.viewIsReady()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
-    }
 
 }
 
