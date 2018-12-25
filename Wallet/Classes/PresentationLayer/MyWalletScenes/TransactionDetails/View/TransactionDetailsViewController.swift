@@ -13,9 +13,13 @@ class TransactionDetailsViewController: UIViewController {
 
     var output: TransactionDetailsViewOutput!
 
-    @IBOutlet weak var detailView: TransactionDetailView!
+    @IBOutlet weak var directionImageView: UIImageView!
+    @IBOutlet weak var cryptoAmountLabel: UILabel!
     @IBOutlet weak var blockchainTransactionButton: UIButton!
-    
+    @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var fiatAmountLabel: UILabel!
+    @IBOutlet weak var feeAmountLabel: UILabel!
+    @IBOutlet weak var descriptionView: TransactionDescriptionView!
     
     // MARK: Life cycle
 
@@ -32,6 +36,10 @@ class TransactionDetailsViewController: UIViewController {
     @IBAction func viewOnBlockchainTapped(_ sender: UIButton) {
         output.viewInBlockchain()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
 }
 
 
@@ -40,8 +48,9 @@ class TransactionDetailsViewController: UIViewController {
 extension TransactionDetailsViewController: TransactionDetailsViewInput {
     
     func setupInitialState(transaction: TransactionDisplayable) {
-        detailView.configure(transaction: transaction)
-        addDescriptionView(for: transaction)
+        configureDefaultAppearence()
+        configureAppearence(transaction: transaction)
+        configureDescriptionView(transaction: transaction)
         view.layoutSubviews()
     }
     
@@ -56,9 +65,9 @@ extension TransactionDetailsViewController: TransactionDetailsViewInput {
 }
 
 
-// MARK: - TransactionDescriptionAddressViewDelegate
+// MARK: - TransactionDescriptionDelegate
 
-extension TransactionDetailsViewController: TransactionDescriptionAddressViewDelegate {
+extension TransactionDetailsViewController: TransactionDescriptionDelegate {
     func addressDidTapped(address: String) {
         output.addressTapped(address)
     }
@@ -70,36 +79,77 @@ extension TransactionDetailsViewController: TransactionDescriptionAddressViewDel
 
 extension TransactionDetailsViewController {
     
-    private func addDescriptionView(for transaction: TransactionDisplayable) {
+    private func configureDefaultAppearence() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        cryptoAmountLabel.font = Theme.Font.largeText
+        cryptoAmountLabel.tintColor = .white
+        fiatAmountLabel.font = Theme.Font.subtitle
+        fiatAmountLabel.tintColor = .white
+        feeAmountLabel.font = Theme.Font.smallText
+        feeAmountLabel.tintColor = Theme.Color.opaqueWhite
+        directionImageView.contentMode = .center
+    }
+    
+    private func configureAppearence(transaction: TransactionDisplayable) {
+        let direction = transaction.direction
+        let directionImage: UIImage?
+        let cryptoAmountString: String
+        let fiatAmountString: String
+        let gradientColors: [CGColor]
         
-        let descriptionView: UIView
-        
-        switch transaction.opponent {
-        case .address(let address):
-            let view = TransactionDescriptionAddressView()
-            view.configure(address: address,
-                           accountType: transaction.currency.ISO,
-                           feeAmount: transaction.feeAmountString)
-            descriptionView = view
-            view.delegate = self
-            
-        case .txAccount(let account, let address):
-            let view = TransactionDescriptionContactView()
-            view.configure(address: address,
-                           accountType: transaction.currency.ISO,
-                           contact: account.ownerName,
-                           feeAmount: transaction.feeAmountString)
-            descriptionView = view
-            view.delegate = self
+        if direction == .receive {
+            gradientColors = Theme.Color.Gradient.Details.detailBlueGradient
+            directionImage = UIImage(named: "receiveIconMedium")
+            cryptoAmountString = "+ \(transaction.cryptoAmountString)"
+            fiatAmountString = "+ \(transaction.fiatAmountString)"
+        } else {
+            gradientColors = Theme.Color.Gradient.Details.detailsRedGradient
+            directionImage = UIImage(named: "sendIconMedium")
+            cryptoAmountString = "- \(transaction.cryptoAmountString)"
+            fiatAmountString = "- \(transaction.fiatAmountString)"
         }
         
-        descriptionView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(descriptionView)
         
-        descriptionView.translatesAutoresizingMaskIntoConstraints = false
-        descriptionView.widthAnchor.constraint(equalTo: detailView.widthAnchor).isActive = true
-        descriptionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        descriptionView.topAnchor.constraint(equalTo: detailView.bottomAnchor, constant: 20).isActive = true
-        descriptionView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: 20).isActive = true
+        feeAmountLabel.text = "Fee \(transaction.feeAmountString)"
+        gradientView.alpha = 0.31
+        gradientView.gradientView(colors: gradientColors,
+                                  frame: view.bounds,
+                                  startPoint: CGPoint(x: 0.5, y: 0.0),
+                                  endPoint: CGPoint(x: 0.5, y: 1.0))
+        directionImageView.image = directionImage
+        cryptoAmountLabel.text = cryptoAmountString
+        fiatAmountLabel.text = fiatAmountString
     }
+    
+    func configureDescriptionView(transaction: TransactionDisplayable) {
+        descriptionView.delegate = self
+        
+        let isPending = transaction.transaction.status == .pending
+        let timestamp = "\(transaction.timestamp)"
+        let addr: String
+        let contact: String
+        switch transaction.opponent {
+            
+        case .address(let address):
+            addr = address
+            contact = ""
+        case .txAccount(let account, let address):
+            addr = address
+            contact = account.ownerName
+        }
+        
+        descriptionView.configure(address: addr,
+                                  contact: contact,
+                                  isPending: isPending,
+                                  timestamp: timestamp)
+        
+    }
+
+    private func configureGradientView() {
+        gradientView.gradientView(colors: Theme.Color.Gradient.Details.detailBlueGradient,
+                                  frame: view.bounds,
+                                  startPoint: CGPoint(x: 0.5, y: 0.0),
+                                  endPoint: CGPoint(x: 0.5, y: 1.0))
+        gradientView.alpha = 0.31
+     }
 }

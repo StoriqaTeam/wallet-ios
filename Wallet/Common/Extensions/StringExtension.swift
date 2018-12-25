@@ -119,10 +119,20 @@ extension String {
         }
         
     }
+    
+    func maskCryptoAddress() -> String {
+        guard count > 13 else { return self }
+        let prefix = self.prefix(8)
+        let middle = "....."
+        let suffix = self.suffix(5)
+        
+        return prefix+middle+suffix
+    }
 }
 
 private extension String {
     func matchesReqex(_ regex: String) -> Bool {
+        
         let test = NSPredicate(format: "SELF MATCHES %@", regex)
         let matches = test.evaluate(with: self)
         return matches

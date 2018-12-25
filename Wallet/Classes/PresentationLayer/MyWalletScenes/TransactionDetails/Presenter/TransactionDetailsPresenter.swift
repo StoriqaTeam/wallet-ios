@@ -40,7 +40,6 @@ extension TransactionDetailsPresenter: TransactionDetailsViewOutput {
     }
 
     func viewWillAppear() {
-//        view.viewController.setDarkNavigationBarButtons()
     }
     
     func addressTapped(_ address: String) {
@@ -78,7 +77,7 @@ extension TransactionDetailsPresenter: TransactionDetailsModuleInput {
 extension TransactionDetailsPresenter {
     private func configureNavigationBar(transaction: TransactionDisplayable) {
         let title = transaction.direction == .receive ? LocalizedStrings.navigationBarTitleDeposit : LocalizedStrings.navigationBarTitleSent
-        view.viewController.setDarkNavigationBar(title: title)
+        view.viewController.setWhiteNavigationBar(title: title)
         view.viewController.navigationItem.largeTitleDisplayMode = .never
     }
     
