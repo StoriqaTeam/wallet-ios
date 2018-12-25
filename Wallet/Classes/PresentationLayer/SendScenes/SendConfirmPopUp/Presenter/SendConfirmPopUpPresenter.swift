@@ -37,7 +37,8 @@ class SendConfirmPopUpPresenter {
 extension SendConfirmPopUpPresenter: SendConfirmPopUpViewOutput {
     
     func viewIsReady() {
-        view.setupInitialState(address: address, amount: amount, fee: fee, total: total)
+        let maskedAddress = address.maskCryptoAddress()
+        view.setupInitialState(address: maskedAddress, amount: amount, fee: fee, total: total)
     }
     
     func confirmButtonTapped() {
