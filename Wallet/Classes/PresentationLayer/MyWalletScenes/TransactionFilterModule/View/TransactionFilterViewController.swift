@@ -23,7 +23,7 @@ class TransactionFilterViewController: UIViewController {
     
     private var fromDatePickerView: UIDatePicker!
     private var toDatePickerView: UIDatePicker!
-    
+
     var isFirst = true
 
     // MARK: Life cycle
@@ -35,13 +35,6 @@ class TransactionFilterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        configureDatePickers()
-        addTargetsTextField()
-        
     }
     
     
@@ -149,6 +142,15 @@ extension TransactionFilterViewController {
         let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
         let tabBarHeight = tabBarController?.tabBar.bounds.height ?? 49
         let height = fromDatePickerView.bounds.height - tabBarHeight
+        
+        
+        if isFirst {
+            fromTextField.inputView = fromDatePickerView
+            fromTextField.inputView?.backgroundColor = .black
+            toTextField.inputView = toDatePickerView
+            toTextField.inputView?.backgroundColor = .black
+            isFirst = false
+        }
         
         var animationOptions = UIView.AnimationOptions()
         if let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
