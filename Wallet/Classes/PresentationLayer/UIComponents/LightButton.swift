@@ -16,7 +16,7 @@ class LightButton: BaseButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         setup(color: borderColor, titleColor: titleColor)
-        titleLabel?.font = Theme.Font.Button.smallButtonTitle
+        titleLabel?.font = Theme.Font.Button.buttonTitle
     }
     
     override var frame: CGRect {

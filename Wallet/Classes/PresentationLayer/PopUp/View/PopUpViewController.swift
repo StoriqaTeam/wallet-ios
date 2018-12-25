@@ -18,7 +18,7 @@ class PopUpViewController: BasePopUpViewController {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var textLabel: UILabel!
-    @IBOutlet private var actionButton: DefaultButton!
+    @IBOutlet private var actionButton: LightButton!
     @IBOutlet private var closeButton: BaseButton!
     
     // MARK: - Life cycle
@@ -49,11 +49,6 @@ class PopUpViewController: BasePopUpViewController {
 
 extension PopUpViewController: PopUpViewInput {
     
-    func setBackgroundBlur(image: UIImage) {
-        let blurImageView = UIImageView(image: image)
-        self.blurBackImageView = blurImageView
-    }
-    
     func setupInitialState(viewModel: PopUpViewModelProtocol) {
         self.viewModel = viewModel
         
@@ -70,7 +65,7 @@ extension PopUpViewController: PopUpViewInput {
         closeButton.setTitle(viewModel.apperance.closeButtonTitle, for: .normal)
         
         if !viewModel.apperance.hasCloseButton {
-            closeButton.removeFromSuperview()
+            closeButton.isHidden = true
         }
     }
 }
@@ -80,9 +75,12 @@ extension PopUpViewController: PopUpViewInput {
 
 extension PopUpViewController {
     private func configureInterface() {
-        titleLabel.font = Theme.Font.title
-        textLabel.font = Theme.Font.smallText
-        textLabel.textColor = Theme.Color.primaryGrey
-        closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+        titleLabel.font = Theme.Font.PopUp.title
+        textLabel.font = Theme.Font.PopUp.subtitle
+        titleLabel.textColor = Theme.Color.Text.main
+        textLabel.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        actionButton.setup(color: Theme.Color.Text.main.withAlphaComponent(0.5), titleColor: Theme.Color.Text.main)
+        actionButton.titleLabel?.font = Theme.Font.Button.buttonTitle
+        closeButton.setTitleColor(Theme.Color.Text.main, for: .normal)
     }
 }

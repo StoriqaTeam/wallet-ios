@@ -55,8 +55,15 @@ class MyWalletDataManager: NSObject {
     }
     
     func updateAccounts(accounts: [Account]) {
+        let accCount = self.accounts.count
         self.accounts = accounts
-        reloadData()
+        
+        // FIXME: compare prev and curr amount
+        collectionView.reloadData()
+        
+        if accCount != accounts.count {
+            springFlowLayout?.removeFooterBehavior()
+        }
     }
     
     func reloadData() {

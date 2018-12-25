@@ -34,11 +34,11 @@ class StoriqaLoader {
         
         UIView.animate(withDuration: 0.5, animations: {
             self.blurImageView.alpha = 0.0
-        }) { (_) in
+        }, completion: { (_) in
             self.loaderView.removeFromSuperview()
             self.blurImageView.removeFromSuperview()
             self.loaderView = nil
-        }
+        })
     }
 }
 

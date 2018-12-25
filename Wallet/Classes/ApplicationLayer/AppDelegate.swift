@@ -103,7 +103,7 @@ extension AppDelegate {
         return currentDelegate.window!
     }
     
-    static var currenctApplication: UIApplication {
+    static var currentApplication: UIApplication {
         return UIApplication.shared
     }
 }

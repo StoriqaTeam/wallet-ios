@@ -79,6 +79,9 @@ struct Theme {
                                                    UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
             }
             
+            static let detailsRedGradient = [UIColor(white: 200/255, alpha: 0.24).cgColor,
+                                             UIColor(white: 1, alpha: 0).cgColor]
+            
             static let headerGradient = [UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
                                          UIColor(red: 45/255, green: 100/255, blue: 194/255, alpha: 1).cgColor]
             
@@ -101,8 +104,8 @@ struct Theme {
         static let caption = MontserratFont.font(ofSize: 13.0, weight: .regular)
         /** 12px regular */
         static let subtitle = MontserratFont.font(ofSize: 12.0, weight: .regular)
-        /** 13px regular */
-        static let smallText = MontserratFont.font(ofSize: 13.0, weight: .regular)
+        /** 12px regular */
+        static let smallText = MontserratFont.font(ofSize: 12.0, weight: .regular)
         /** 16px semibold */
         static let navigationBarTitle = MontserratFont.font(ofSize: 16.0, weight: .semibold)
         /** 28px bold */
@@ -130,6 +133,17 @@ struct Theme {
         struct PinInput {
             /** 36px light */
             static let number = MontserratFont.font(ofSize: 36.0, weight: .light)
+        }
+        
+        struct PopUp {
+            /** 26px medium */
+            static let title = MontserratFont.font(ofSize: 26.0, weight: .medium)
+            /** 12px regular */
+            static let subtitle = MontserratFont.font(ofSize: 12.0, weight: .regular)
+            /** 16px medium */
+            static let text = MontserratFont.font(ofSize: 16.0, weight: .medium)
+            /** 20px medium */
+            static let bigText = MontserratFont.font(ofSize: 20.0, weight: .medium)
         }
         
         struct Label {
