@@ -66,7 +66,7 @@ extension TransactionTableViewCell {
         directionLabel.textColor = .white
         directionLabel.font = Theme.Font.Label.medium
         currencyLabel.textColor = .white
-        directionLabel.font = Theme.Font.Label.medium
+        currencyLabel.font = Theme.Font.Label.medium
         cryptoAmountLabel.textColor = .white
         cryptoAmountLabel.font = Theme.Font.Label.medium
         fiatAmountlabel.textColor = Theme.Color.Text.lightGrey
@@ -75,5 +75,7 @@ extension TransactionTableViewCell {
         directionOpponentLabel.font = Theme.Font.smallMediumWeightText
         opponentLabel.textColor = Theme.Color.Text.lightGrey
         opponentLabel.font = Theme.Font.smallMediumWeightText
+        timestampLabel.textColor = Theme.Color.Text.lightGrey
+        timestampLabel.font = Theme.Font.smallMediumWeightText
     }
 }

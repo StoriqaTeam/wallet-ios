@@ -18,6 +18,8 @@ protocol DirectionFilterDelegate: class {
 
 class DirectionFilterView: LoadableFromXib {
     
+    typealias LocalizedStrings = Strings.Transactions
+    
     weak var delegate: DirectionFilterDelegate!
     
     enum FilterPosition: Int {
@@ -64,11 +66,11 @@ extension DirectionFilterView {
     private func configureAppearence() {
         contentView.backgroundColor = Theme.Color.backgroundColor
         allLabel.font = Theme.Font.FilterView.filterLabel
-        allLabel.textColor = Theme.Color.Text.lightGrey
+        allLabel.textColor = Theme.Color.primaryGrey
         sentlabel.font = Theme.Font.FilterView.filterLabel
-        sentlabel.textColor = Theme.Color.Text.lightGrey
+        sentlabel.textColor = Theme.Color.primaryGrey
         receivelabel.font = Theme.Font.FilterView.filterLabel
-        receivelabel.textColor = Theme.Color.Text.lightGrey
+        receivelabel.textColor = Theme.Color.primaryGrey
         allUnderlineView.backgroundColor = Theme.Color.brightOrange
         sentUnderlineView.backgroundColor = Theme.Color.brightOrange
         receiveUnderlineView.backgroundColor = Theme.Color.brightOrange
@@ -76,64 +78,44 @@ extension DirectionFilterView {
         allLabel.isUserInteractionEnabled = true
         sentlabel.isUserInteractionEnabled = true
         receivelabel.isUserInteractionEnabled = true
+        
+        allLabel.text = LocalizedStrings.allButton
+        sentlabel.text = LocalizedStrings.sentButton
+        receivelabel.text = LocalizedStrings.receivedButton
     }
     
     private func setFilter(position: FilterPosition) {
+        self.allLabel.textColor = Theme.Color.primaryGrey
+        self.receivelabel.textColor = Theme.Color.primaryGrey
+        self.sentlabel.textColor = Theme.Color.primaryGrey
+        
+        self.allUnderlineView.alpha = 0.0
+        self.sentUnderlineView.alpha = 0.0
+        self.receiveUnderlineView.alpha = 0.0
+        
+        self.allLabel.transform = .identity
+        self.receivelabel.transform = .identity
+        self.sentlabel.transform = .identity
+        
         UIView.animate(withDuration: 0.2) {
             switch position {
             case .all:
-                self.allLabel.textColor = .white
-                self.receivelabel.textColor = Theme.Color.Text.lightGrey
-                self.sentlabel.textColor = Theme.Color.Text.lightGrey
-                
+                self.allLabel.textColor = Theme.Color.Text.main
+                self.allLabel.transform = CGAffineTransform(scaleX: comcom, y: 1.3)
                 self.allUnderlineView.alpha = 1.0
-                self.sentUnderlineView.alpha = 0.0
-                self.receiveUnderlineView.alpha = 0.0
-                
-                self.allLabel.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-                self.receivelabel.transform = .identity
-                self.sentlabel.transform = .identity
-                
-                self.allUnderlineView.frame = CGRect(x: self.allLabel.frame.origin.x,
-                                                     y: self.allUnderlineView.frame.origin.y,
-                                                     width: self.allLabel.frame.width,
-                                                     height: self.allUnderlineView.frame.height)
             
             case .sent:
-                self.allLabel.textColor = Theme.Color.Text.lightGrey
-                self.receivelabel.textColor = Theme.Color.Text.lightGrey
-                self.sentlabel.textColor = .white
-                self.allUnderlineView.alpha = 0.0
-                self.sentUnderlineView.alpha = 1.0
-                self.receiveUnderlineView.alpha = 0.0
-                
-                self.allLabel.transform = .identity
-                self.receivelabel.transform = .identity
+                self.sentlabel.textColor = Theme.Color.Text.main
                 self.sentlabel.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-                
-                self.sentUnderlineView.frame = CGRect(x: self.sentlabel.frame.origin.x,
-                                                      y: self.sentUnderlineView.frame.origin.y,
-                                                      width: self.sentlabel.frame.width,
-                                                      height: self.sentUnderlineView.frame.height)
+                self.sentUnderlineView.alpha = 1.0
                 
             case .receive:
-                self.allLabel.textColor = Theme.Color.Text.lightGrey
-                self.receivelabel.textColor = .white
-                self.sentlabel.textColor = Theme.Color.Text.lightGrey
-                
-                self.allUnderlineView.alpha = 0.0
-                self.sentUnderlineView.alpha = 0.0
-                self.receiveUnderlineView.alpha = 1.0
-                
-                self.allLabel.transform = .identity
+                self.receivelabel.textColor = Theme.Color.Text.main
                 self.receivelabel.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-                self.sentlabel.transform = .identity
-                
-                self.receiveUnderlineView.frame = CGRect(x: self.receivelabel.frame.origin.x,
-                                                         y: self.receiveUnderlineView.frame.origin.y,
-                                                         width: self.receivelabel.frame.width,
-                                                         height: self.receiveUnderlineView.frame.height)
+                self.receiveUnderlineView.alpha = 1.0
             }
         }
+        
+        
     }
 }
