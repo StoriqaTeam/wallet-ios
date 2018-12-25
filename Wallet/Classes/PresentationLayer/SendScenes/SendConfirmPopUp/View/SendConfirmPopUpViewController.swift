@@ -24,9 +24,12 @@ class SendConfirmPopUpViewController: BasePopUpViewController {
     @IBOutlet private var addressLabel: UILabel!
     @IBOutlet private var amountLabel: UILabel!
     @IBOutlet private var feeLabel: UILabel!
+    @IBOutlet private var totalToSendTitle: UILabel!
+    @IBOutlet private var totalToSendLabel: UILabel!
     @IBOutlet private var confirmButton: DefaultButton!
     @IBOutlet private var closeButton: BaseButton!
-
+    @IBOutlet private var separatorView: UIView!
+    
     // MARK: Life cycle
 
     override func viewDidLoad() {
@@ -34,6 +37,17 @@ class SendConfirmPopUpViewController: BasePopUpViewController {
         configureInterface()
         localizeText()
         output.viewIsReady()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        separatorView.gradientView(
+            colors: [UIColor.white.cgColor, UIColor.clear.cgColor],
+            frame: separatorView.frame,
+            startPoint: CGPoint(x: 0.0, y: 0.0),
+            endPoint: CGPoint(x: 0.0, y: 1.0))
+        
     }
     
     // MARK: - Action
@@ -76,6 +90,7 @@ extension SendConfirmPopUpViewController {
         addressLabel.font = Theme.Font.smallText
         amountLabel.font = Theme.Font.smallText
         feeLabel.font = Theme.Font.smallText
+        totalToSendTitle.font = Theme.Font.smallText
         
         addressTitle.textColor = Theme.Color.Text.lightGrey
         amountTitle.textColor = Theme.Color.Text.lightGrey
@@ -83,6 +98,7 @@ extension SendConfirmPopUpViewController {
         addressLabel.textColor = Theme.Color.Text.blackMain
         amountLabel.textColor = Theme.Color.Text.blackMain
         feeLabel.textColor = Theme.Color.Text.blackMain
+        totalToSendTitle.textColor = Theme.Color.Text.blackMain
         
         closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
     }
@@ -92,6 +108,7 @@ extension SendConfirmPopUpViewController {
         addressTitle.text = LocalizedStrings.addressTitle
         amountTitle.text = LocalizedStrings.amountTitle
         feeTitle.text = LocalizedStrings.feeTitle
+        totalToSendTitle.text = LocalizedStrings.totalTitle
         confirmButton.setTitle(LocalizedStrings.confirmButton, for: .normal)
         closeButton.setTitle(LocalizedStrings.closeButton, for: .normal)
     }

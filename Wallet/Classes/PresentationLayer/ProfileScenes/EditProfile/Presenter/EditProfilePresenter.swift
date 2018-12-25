@@ -39,7 +39,7 @@ extension EditProfilePresenter: EditProfileViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setDarkNavigationBarButtons()
+//        view.viewController.setDarkNavigationBarButtons()
     }
     
     func valuesChanged(firstName: String?, lastName: String?) {

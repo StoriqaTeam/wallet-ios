@@ -57,13 +57,17 @@ struct Theme {
             static let detailsGreen = UIColor(red: 11/255, green: 231/255, blue: 160/255, alpha: 1)
             static let detailsRed = UIColor(red: 238/255, green: 113/255, blue: 113/255, alpha: 1)
             static let errorRed = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
-            static let lightGrey = UIColor(white: 191.0 / 255.0, alpha: 1.0)
+            static let lightGrey = UIColor(white: 128.0 / 255.0, alpha: 1.0)
         }
         
         struct NavigationBar {
             static let title = UIColor.white
             static let buttons = UIColor.white
             static let statusBar = UIColor.white
+        }
+        
+        struct Section {
+            static let transactionSectionTitle = UIColor(red: 165/255, green: 120/255, blue: 62/255, alpha: 1)
         }
         
         struct Gradient {
@@ -137,6 +141,15 @@ struct Theme {
             
         }
         
+        struct Label {
+            /** 14px medium */
+            static let medium = MontserratFont.font(ofSize: 14.0, weight: .medium)
+        }
+        
+        struct FilterView {
+            /** 16px semibold */
+            static let filterLabel = MontserratFont.font(ofSize: 16.0, weight: .semibold)
+        }
     }
 }
 

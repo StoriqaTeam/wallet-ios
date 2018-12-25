@@ -17,7 +17,7 @@ extension Strings {
         static let screenTitle = NSLocalizedString(
             "SendConfirmPopUp.screenTitle",
             tableName: tableName,
-            value: "Confirm sending money",
+            value: "Confirm sending",
             comment: "Screen title. Displaying below the icon.")
 
         static let addressTitle = NSLocalizedString(
@@ -31,12 +31,18 @@ extension Strings {
             tableName: tableName,
             value: "Amount",
             comment: "Amount title")
-
+        
         static let feeTitle = NSLocalizedString(
             "SendConfirmPopUp.feeTitle",
             tableName: tableName,
             value: "Transaction fee",
             comment: "Transaction fee title")
+        
+        static let totalTitle = NSLocalizedString(
+            "SendConfirmPopUp.totalTitle",
+            tableName: tableName,
+            value: "Total to send",
+            comment: "Total to send title")
 
         static let confirmButton = NSLocalizedString(
             "SendConfirmPopUp.confirmButton",

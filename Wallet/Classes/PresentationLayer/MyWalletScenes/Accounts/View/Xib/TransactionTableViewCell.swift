@@ -21,6 +21,8 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var timestampLabel: UILabel!
     
     func configureWith(transaction: TransactionDisplayable) {
+        selectionStyle = .none
+        configureInterface()
         configureAppearence(transaction: transaction)
     }
 }
@@ -55,5 +57,25 @@ extension TransactionTableViewCell {
             fiatAmountlabel.text = "+\(transaction.fiatAmountString)"
             directionImageView.image = UIImage(named: "ReceiveStatusImg")
         }
+    }
+    
+    private func configureInterface() {
+        backgroundColor = Theme.Color.backgroundColor
+        contentView.backgroundColor = Theme.Color.backgroundColor
+        
+        directionLabel.textColor = .white
+        directionLabel.font = Theme.Font.Label.medium
+        currencyLabel.textColor = .white
+        currencyLabel.font = Theme.Font.Label.medium
+        cryptoAmountLabel.textColor = .white
+        cryptoAmountLabel.font = Theme.Font.Label.medium
+        fiatAmountlabel.textColor = Theme.Color.Text.lightGrey
+        fiatAmountlabel.font = Theme.Font.smallMediumWeightText
+        directionOpponentLabel.textColor = Theme.Color.Text.lightGrey
+        directionOpponentLabel.font = Theme.Font.smallMediumWeightText
+        opponentLabel.textColor = Theme.Color.Text.lightGrey
+        opponentLabel.font = Theme.Font.smallMediumWeightText
+        timestampLabel.textColor = Theme.Color.Text.lightGrey
+        timestampLabel.font = Theme.Font.smallMediumWeightText
     }
 }

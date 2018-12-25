@@ -11,7 +11,8 @@ import UIKit
 
 protocol PinQuickLaunchRouterInput: class {
     
-    func showPinSetup(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController)
-    func showBiometryQuickLaunch(qiuckLaunchProvider: QuickLaunchProviderProtocol, from viewController: UIViewController)
+    func showPinSetup(qiuckLaunchProvider: QuickLaunchProviderProtocol,
+                      from viewController: UIViewController,
+                      baseFadeAnimator: BaseFadeAnimator)
 
 }

@@ -68,7 +68,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="I5E-b2-s0y" firstAttribute="top" secondItem="nQn-DC-Y93" secondAttribute="top" id="34U-0K-6X4"/>
                     <constraint firstItem="91o-8T-wzl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZKQ-Zr-eqf" secondAttribute="trailing" constant="6" id="4O2-Lt-71m"/>
@@ -105,6 +105,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="SendStatusImg" width="29" height="29"/>
+        <image name="SendStatusImg" width="20" height="20"/>
     </resources>
 </document>
