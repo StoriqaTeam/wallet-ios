@@ -60,6 +60,7 @@ extension TransactionsPresenter: TransactionsViewOutput {
     }
     
     func viewWillAppear() {
+        view.viewController.setWhiteNavigationBarButtons()
         let transactions = interactor.getTransactions()
         let displayable = filteredDispayable(transactions)
         transactionDataManager.updateTransactions(displayable)
