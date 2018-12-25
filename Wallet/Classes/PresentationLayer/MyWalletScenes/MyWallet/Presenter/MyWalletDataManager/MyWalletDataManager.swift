@@ -58,7 +58,6 @@ class MyWalletDataManager: NSObject {
         let accCount = self.accounts.count
         self.accounts = accounts
         
-        // FIXME: compare prev and curr amount
         collectionView.reloadData()
         
         if accCount != accounts.count {
