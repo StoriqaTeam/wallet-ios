@@ -30,21 +30,20 @@ class SendViewController: UIViewController {
     @IBOutlet private var paymentFeeLabel: UILabel!
     @IBOutlet private var paymentFeeSlider: StepSlider!
     @IBOutlet private var paymentFeeLowLabel: UILabel!
-    @IBOutlet private var paymentFeeMediumLabel: UILabel!
     @IBOutlet private var paymentFeeHighLabel: UILabel!
     @IBOutlet private var medianWaitTitleLabel: UILabel!
     @IBOutlet private var medianWaitLabel: UILabel!
-    @IBOutlet private var subtotalTitleLabel: UILabel!
-    @IBOutlet private var subtotalLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var sendButton: DefaultButton!
     @IBOutlet private var loaderView: ActivityIndicatorView!
+    @IBOutlet private var paymentFeeHeightConsatraint: NSLayoutConstraint!
     
     
     // MARK: Variables
     
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
+    private var shouldAnimateLayuot = false
     private var currentSliderStep = 0
     
     // MARK: Life cycle
@@ -60,6 +59,11 @@ class SendViewController: UIViewController {
         output.configureCollections()
         output.viewWillAppear()
         setNavBarTransparency()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        shouldAnimateLayuot = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -111,16 +115,11 @@ extension SendViewController: SendViewInput {
         
         addNotificationObservers()
         configInterface()
-        addHideKeyboardGuesture()
         localizeText()
     }
     
     func setScannedAddress(_ address: String) {
         receiverTextField.text = address
-    }
-    
-    func setSubtotal(_ subtotal: String) {
-        subtotalLabel.text = subtotal
     }
     
     func setMedianWait(_ wait: String) {
@@ -134,9 +133,26 @@ extension SendViewController: SendViewInput {
     func setPaymentFee(count: Int, value: Int, enabled: Bool) {
         paymentFeeSlider.paymentFeeValuesCount = count
         paymentFeeSlider.updateCurrentValue(step: value)
-        paymentFeeView.alpha = enabled ? 1 : 0.22
-        paymentFeeView.isUserInteractionEnabled = enabled
         currentSliderStep = value
+        paymentFeeView.isUserInteractionEnabled = enabled
+    }
+    
+    func setPaymentFeeHidden(_ hidden: Bool) {
+        if hidden {
+            self.paymentFeeView.alpha = 0
+            self.paymentFeeHeightConsatraint.isActive = true
+        } else {
+            self.paymentFeeView.alpha = 1
+            self.paymentFeeHeightConsatraint.isActive = false
+        }
+        
+        if shouldAnimateLayuot {
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            self.view.layoutIfNeeded()
+        }
     }
     
     func setFeeUpdateIndicator(hidden: Bool) {
@@ -169,30 +185,21 @@ extension SendViewController: SendViewInput {
         sendButton.isEnabled = enabled
     }
     
-    func setEnoughFundsErrorHidden(_ errorHidden: Bool) {
-        if errorHidden {
-            UIView.animate(withDuration: 0.25, animations: {
-                self.errorLabel.alpha = 0
-            }, completion: { finished in
-                if finished {
-                    self.errorLabel.isHidden = true
-                    self.errorLabel.text = ""
-                    self.view.layoutSubviews()
-                }
-            })
-            
+    func setErrorMessage(_ message: String?) {
+        if let message = message {
+            self.errorLabel.text = message
+            self.errorLabel.alpha = 1
         } else {
-            self.errorLabel.isHidden = false
-            self.errorLabel.text = LocalizedStrings.notEnoughFundsErrorMessage
-            
-            UIView.animate(withDuration: 0.25, animations: {
-                self.view.layoutSubviews()
-                self.errorLabel.alpha = 1
-            }, completion: { finished in
-                if finished {
-                    self.errorLabel.isHidden = false
-                }
-            })
+            self.errorLabel.text = ""
+            self.errorLabel.alpha = 0
+        }
+        
+        if shouldAnimateLayuot {
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            self.view.layoutIfNeeded()
         }
     }
 }
@@ -281,34 +288,41 @@ extension SendViewController: UIScrollViewDelegate {
 extension SendViewController {
     
     private func configInterface() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        scrollView.backgroundColor = Theme.Color.backgroundColor
+        
         amountTextField.delegate = self
         receiverTextField.delegate = self
         scrollView.delegate = self
         
         receiverTextField.autocorrectionType = .no
         
-        receiverTitleLabel.font = Theme.Font.caption
-        amountTitleLabel.font = Theme.Font.caption
-        paymentFeeTitleLabel.font = Theme.Font.caption
-        medianWaitTitleLabel.font = Theme.Font.caption
-        subtotalTitleLabel.font = Theme.Font.caption
-        paymentFeeLowLabel.font = Theme.Font.smallText
-        paymentFeeMediumLabel.font = Theme.Font.smallText
-        paymentFeeHighLabel.font = Theme.Font.smallText
+        receiverTitleLabel.font = Theme.Font.smallMediumWeightText
+        amountTitleLabel.font = Theme.Font.smallMediumWeightText
+        paymentFeeTitleLabel.font = Theme.Font.smallMediumWeightText
+        medianWaitTitleLabel.font = Theme.Font.smallMediumWeightText
+        paymentFeeLowLabel.font = Theme.Font.smallMediumWeightText
+        paymentFeeHighLabel.font = Theme.Font.smallMediumWeightText
+        paymentFeeLabel.font = Theme.Font.smallMediumWeightText
+        medianWaitLabel.font = Theme.Font.smallMediumWeightText
         
-        receiverTitleLabel.textColor = Theme.Color.Text.captionGrey
-        amountTitleLabel.textColor = Theme.Color.Text.captionGrey
-        paymentFeeTitleLabel.textColor = Theme.Color.Text.captionGrey
-        medianWaitTitleLabel.textColor = Theme.Color.Text.captionGrey
-        subtotalTitleLabel.textColor = Theme.Color.Text.captionGrey
-        paymentFeeLowLabel.textColor = Theme.Color.Text.captionGrey
-        paymentFeeMediumLabel.textColor = Theme.Color.Text.captionGrey
-        paymentFeeHighLabel.textColor = Theme.Color.Text.captionGrey
+        receiverTitleLabel.textColor = Theme.Color.Text.lightGrey
+        amountTitleLabel.textColor = Theme.Color.Text.lightGrey
+        paymentFeeTitleLabel.textColor = Theme.Color.Text.lightGrey
+        medianWaitTitleLabel.textColor = Theme.Color.Text.lightGrey
+        paymentFeeLowLabel.textColor = Theme.Color.Text.lightGrey
+        paymentFeeHighLabel.textColor = Theme.Color.Text.lightGrey
+        paymentFeeLabel.textColor = Theme.Color.Text.main
+        medianWaitLabel.textColor = Theme.Color.Text.main
         
         errorLabel.font = Theme.Font.smallText
         errorLabel.textColor = Theme.Color.Text.errorRed
-        errorLabel.isHidden = true
         errorLabel.alpha = 0
+        errorLabel.text = ""
+        
+        paymentFeeView.alpha = 0
+        paymentFeeHeightConsatraint.constant = 0
+        paymentFeeHeightConsatraint.isActive = true
         
         sendButton.isEnabled = false
         loaderView.isUserInteractionEnabled = false
@@ -317,7 +331,6 @@ extension SendViewController {
     private func localizeText() {
         receiverTitleLabel.text = LocalizedStrings.recepientAddressTitle
         receiverTextField.placeholder = LocalizedStrings.recepientInputPlaceholder
-        scanQRButton.setTitle(LocalizedStrings.scanButtonTitle + "   ", for: .normal)
         
         amountTitleLabel.text = LocalizedStrings.amountTitle
         amountTextField.placeholder = LocalizedStrings.amountPlaceholder
@@ -325,10 +338,8 @@ extension SendViewController {
         paymentFeeTitleLabel.text = LocalizedStrings.feeTitle
         medianWaitTitleLabel.text = LocalizedStrings.medianWaitTitle
         paymentFeeLowLabel.text = LocalizedStrings.lowFee
-        paymentFeeMediumLabel.text = LocalizedStrings.mediumFee
         paymentFeeHighLabel.text = LocalizedStrings.highFee
         
-        subtotalTitleLabel.text = LocalizedStrings.subtotalTitle
         sendButton.setTitle(LocalizedStrings.screenTitle, for: .normal)
     }
     

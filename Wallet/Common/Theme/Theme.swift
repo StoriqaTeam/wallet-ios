@@ -14,6 +14,7 @@ struct Theme {
     
     struct Color {
         static let brightOrange = UIColor(red: 200/255, green: 141/255, blue: 49/255, alpha: 1.0)
+        static let mainOrange = UIColor(red: 165/255, green: 120/255, blue: 62/255, alpha: 1)
         static let brightSkyBlue = UIColor(red: 0.0, green: 178.0 / 255.0, blue: 1.0, alpha: 1.0)
         static let cloudyBlue = UIColor(red: 195.0 / 255.0, green: 206.0 / 255.0, blue: 220.0 / 255.0, alpha: 1.0)
         static let greyishBrown = UIColor(white: 80.0 / 255.0, alpha: 1.0)
@@ -24,7 +25,7 @@ struct Theme {
         struct Button {
             static let enabledTitle = UIColor.white
             static let disabledTitle = enabledTitle.withAlphaComponent(0.35)
-            static let enabledBackground = UIColor(red: 165/255, green: 120/255, blue: 62/255, alpha: 1)
+            static let enabledBackground = mainOrange
             static let disabledBackground = UIColor(red: 83/255, green: 60/255, blue: 31/255, alpha: 1)
             static let border = UIColor(red: 255/255, green: 180/255, blue: 62/255, alpha: 0.4)
             static let red = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
@@ -67,7 +68,11 @@ struct Theme {
         }
         
         struct Section {
-            static let transactionSectionTitle = UIColor(red: 165/255, green: 120/255, blue: 62/255, alpha: 1)
+            static let transactionSectionTitle = mainOrange
+        }
+        
+        struct Slider {
+            static let track = UIColor(white: 116/255, alpha: 0.52)
         }
         
         struct Gradient {

@@ -241,7 +241,7 @@ extension UnderlinedTextField {
     
     private func addDoneButtonOnKeyboard() {
         let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: Constants.Sizes.screenWidth, height: 50))
-        doneToolbar.barStyle = UIBarStyle.default
+        doneToolbar.barStyle = UIBarStyle.black
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonAction))
         

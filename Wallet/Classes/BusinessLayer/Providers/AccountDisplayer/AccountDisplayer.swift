@@ -77,12 +77,12 @@ class AccountDisplayer: AccountDisplayerProtocol {
             return UIImage(named: "smallBtcCard")!
         case .eth:
             return UIImage(named: "smallEthCard")!
-        case .stq:
+        case .stq, .stqGold, .stqBlack:
             return UIImage(named: "smallStqCard")!
-        case .stqBlack:
-            return UIImage(named: "smallStqBlackCard")!
-        case .stqGold:
-            return UIImage(named: "smallStqGoldCard")!
+//        case .stqBlack:
+//            return UIImage(named: "smallStqBlackCard")!
+//        case .stqGold:
+//            return UIImage(named: "smallStqGoldCard")!
         }
     }
     
