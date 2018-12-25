@@ -314,10 +314,8 @@
 		A56B4C78215CE1B80017B337 /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B4C77215CE1B80017B337 /* Transactions.storyboard */; };
 		A56B4C7C215CFE080017B337 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56B4C7B215CFE080017B337 /* EmptyView.xib */; };
 		A56B4C7E215D00DC0017B337 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B4C7D215D00DC0017B337 /* EmptyView.swift */; };
-		A56ED373216C9F6F009FA58B /* TransactionDescriptionAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56ED372216C9F6F009FA58B /* TransactionDescriptionAddressView.xib */; };
-		A56ED377216CA429009FA58B /* TransactionDescriptionVeiw.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED376216CA429009FA58B /* TransactionDescriptionVeiw.swift */; };
-		A56ED379216CAE27009FA58B /* TransactionDescriptionContactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56ED378216CAE27009FA58B /* TransactionDescriptionContactView.xib */; };
-		A56ED37B216CAE37009FA58B /* TransactionDescriptionContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED37A216CAE37009FA58B /* TransactionDescriptionContactView.swift */; };
+		A56ED379216CAE27009FA58B /* TransactionDescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56ED378216CAE27009FA58B /* TransactionDescriptionView.xib */; };
+		A56ED37B216CAE37009FA58B /* TransactionDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED37A216CAE37009FA58B /* TransactionDescriptionView.swift */; };
 		A56ED37F216CD6F1009FA58B /* TransactionDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD116B1BF602F3FE5ABD0E /* TransactionDetailsModule.swift */; };
 		A56ED380216CD6F4009FA58B /* TransactionDetailsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA51F76BDB2864BF60E66AB9 /* TransactionDetailsModuleOutput.swift */; };
 		A56ED381216CD6F6009FA58B /* TransactionDetailsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B384185E28E51E830A7B3A42 /* TransactionDetailsModuleInput.swift */; };
@@ -396,8 +394,6 @@
 		A597577A21A6E4540036C7E8 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597577921A6E4540036C7E8 /* Order.swift */; };
 		A5A20BB7215E77F800001340 /* CrashTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */; };
 		A5A52854216B940200DB03B6 /* TransactionDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */; };
-		A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */; };
-		A5A52859216BA86500DB03B6 /* TransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A52858216BA86500DB03B6 /* TransactionDetailsView.swift */; };
 		A5B78205215E214A00EFD1A5 /* AddressValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78204215E214A00EFD1A5 /* AddressValidatorProtocol.swift */; };
 		A5B7820A215E22FD00EFD1A5 /* Base59Encode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B78209215E22FD00EFD1A5 /* Base59Encode.swift */; };
 		A5B7820D215E236F00EFD1A5 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B7820C215E236F00EFD1A5 /* Network.swift */; };
@@ -1145,10 +1141,8 @@
 		A56B4C77215CE1B80017B337 /* Transactions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
 		A56B4C7B215CFE080017B337 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		A56B4C7D215D00DC0017B337 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
-		A56ED372216C9F6F009FA58B /* TransactionDescriptionAddressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDescriptionAddressView.xib; sourceTree = "<group>"; };
-		A56ED376216CA429009FA58B /* TransactionDescriptionVeiw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDescriptionVeiw.swift; sourceTree = "<group>"; };
-		A56ED378216CAE27009FA58B /* TransactionDescriptionContactView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDescriptionContactView.xib; sourceTree = "<group>"; };
-		A56ED37A216CAE37009FA58B /* TransactionDescriptionContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDescriptionContactView.swift; sourceTree = "<group>"; };
+		A56ED378216CAE27009FA58B /* TransactionDescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDescriptionView.xib; sourceTree = "<group>"; };
+		A56ED37A216CAE37009FA58B /* TransactionDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDescriptionView.swift; sourceTree = "<group>"; };
 		A56ED38D216CD7E2009FA58B /* TransactionDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsPresenter.swift; sourceTree = "<group>"; };
 		A56ED390216CD825009FA58B /* TransactionDetailsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsRouter.swift; sourceTree = "<group>"; };
 		A56ED391216CD825009FA58B /* TransactionDetailsRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsRouterInput.swift; sourceTree = "<group>"; };
@@ -1218,8 +1212,6 @@
 		A597577921A6E4540036C7E8 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		A5A20BB6215E77F800001340 /* CrashTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashTrackerConfigurator.swift; sourceTree = "<group>"; };
 		A5A52853216B940200DB03B6 /* TransactionDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TransactionDetails.storyboard; sourceTree = "<group>"; };
-		A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDetailView.xib; sourceTree = "<group>"; };
-		A5A52858216BA86500DB03B6 /* TransactionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsView.swift; sourceTree = "<group>"; };
 		A5B78204215E214A00EFD1A5 /* AddressValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressValidatorProtocol.swift; sourceTree = "<group>"; };
 		A5B78209215E22FD00EFD1A5 /* Base59Encode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base59Encode.swift; sourceTree = "<group>"; };
 		A5B7820C215E236F00EFD1A5 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -3410,22 +3402,11 @@
 			path = XIb;
 			sourceTree = "<group>";
 		};
-		A56ED374216C9F76009FA58B /* TransactionDetailsView */ = {
-			isa = PBXGroup;
-			children = (
-				A5A52856216BA79500DB03B6 /* TransactionDetailView.xib */,
-				A5A52858216BA86500DB03B6 /* TransactionDetailsView.swift */,
-			);
-			path = TransactionDetailsView;
-			sourceTree = "<group>";
-		};
 		A56ED375216C9F86009FA58B /* TransactionDescriptionView */ = {
 			isa = PBXGroup;
 			children = (
-				A56ED372216C9F6F009FA58B /* TransactionDescriptionAddressView.xib */,
-				A56ED376216CA429009FA58B /* TransactionDescriptionVeiw.swift */,
-				A56ED378216CAE27009FA58B /* TransactionDescriptionContactView.xib */,
-				A56ED37A216CAE37009FA58B /* TransactionDescriptionContactView.swift */,
+				A56ED378216CAE27009FA58B /* TransactionDescriptionView.xib */,
+				A56ED37A216CAE37009FA58B /* TransactionDescriptionView.swift */,
 			);
 			path = TransactionDescriptionView;
 			sourceTree = "<group>";
@@ -3963,7 +3944,6 @@
 			isa = PBXGroup;
 			children = (
 				A56ED375216C9F86009FA58B /* TransactionDescriptionView */,
-				A56ED374216C9F76009FA58B /* TransactionDetailsView */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -5520,7 +5500,7 @@
 				A535BA1B21CA5B5600B0BAF8 /* Montserrat-Italic.ttf in Resources */,
 				A535BA0F21CA5B5600B0BAF8 /* Montserrat-ThinItalic.ttf in Resources */,
 				CEF02F8121C3DA2C003D18FF /* AppInfo.strings in Resources */,
-				A56ED379216CAE27009FA58B /* TransactionDescriptionContactView.xib in Resources */,
+				A56ED379216CAE27009FA58B /* TransactionDescriptionView.xib in Resources */,
 				A5C1874E21C0EE8800779D26 /* QuickLaunch.strings in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
 				A50086012150BD2B00C47015 /* PinInput.storyboard in Resources */,
@@ -5540,7 +5520,6 @@
 				A512020C2153D68A00D44A22 /* MainTabBar.storyboard in Resources */,
 				CEF02F5521C24F97003D18FF /* EmailConfirm.strings in Resources */,
 				CE41F3462181AAF900070D5D /* EmailConfirm.storyboard in Resources */,
-				A56ED373216C9F6F009FA58B /* TransactionDescriptionAddressView.xib in Resources */,
 				A535BA0E21CA5B5600B0BAF8 /* Montserrat-Light.ttf in Resources */,
 				A5C1877021C0EFE500779D26 /* QRScanner.strings in Resources */,
 				CE185494214BE558009D1360 /* Localizable.strings in Resources */,
@@ -5581,7 +5560,6 @@
 				A5C12E5D217DF65300A7D68C /* MyWallet.strings in Resources */,
 				CEF02F6121C254B4003D18FF /* TransactionFilter.strings in Resources */,
 				A5C1875A21C0EF2800779D26 /* Exchange.strings in Resources */,
-				A5A52857216BA79500DB03B6 /* TransactionDetailView.xib in Resources */,
 				A535BA1321CA5B5600B0BAF8 /* Montserrat-MediumItalic.ttf in Resources */,
 				A5C1876821C0EF9200779D26 /* PinSetup.strings in Resources */,
 				A535BA1A21CA5B5600B0BAF8 /* Montserrat-Regular.ttf in Resources */,
@@ -5777,7 +5755,6 @@
 				CED822E7215BDF3B00693B92 /* CurrecncyConverterFactory.swift in Sources */,
 				210AB6BCC83B235B9CA055B9 /* LoginViewInput.swift in Sources */,
 				C479078B225F756B4A8BD97E /* LoginViewOutput.swift in Sources */,
-				A56ED377216CA429009FA58B /* TransactionDescriptionVeiw.swift in Sources */,
 				AAF839BB8A7DB1396F7FAC33 /* LoginViewController.swift in Sources */,
 				5DE6ED8A9BE6136BA743C454 /* LoginPresenter.swift in Sources */,
 				DFDE5A674BD838BB7BB04166 /* LoginInteractorInput.swift in Sources */,
@@ -6051,7 +6028,6 @@
 				2A54B35D5547E88D673E83CB /* MainTabBarRouter.swift in Sources */,
 				F9E1E2A5FDFCDE04A10EBF47 /* MainTabBarModuleInput.swift in Sources */,
 				1AB7CDBED5FDA6EC39631D91 /* MainTabBarModuleOutput.swift in Sources */,
-				A5A52859216BA86500DB03B6 /* TransactionDetailsView.swift in Sources */,
 				AA6D33F045D1085DB5FDD1CC /* MainTabBarModule.swift in Sources */,
 				CAAB484F397C75347D8B8009 /* MyWalletViewInput.swift in Sources */,
 				4C0507FF9CBC5622BB373D27 /* MyWalletViewOutput.swift in Sources */,
@@ -6196,7 +6172,7 @@
 				E317F70565563E6720331762 /* AccountsModule.swift in Sources */,
 				CE1E3491217F1464001B1477 /* AccountsUpdater.swift in Sources */,
 				A574350421776226006B4CAE /* EditProfileInteractor.swift in Sources */,
-				A56ED37B216CAE37009FA58B /* TransactionDescriptionContactView.swift in Sources */,
+				A56ED37B216CAE37009FA58B /* TransactionDescriptionView.swift in Sources */,
 				B8C5EDE82189D7E200345B79 /* RatesProvider.swift in Sources */,
 				A574352221777383006B4CAE /* SessionsInteractor.swift in Sources */,
 				B8241853219D497D009000D4 /* Signature.swift in Sources */,

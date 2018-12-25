@@ -18,7 +18,7 @@ extension Strings {
         static let navigationBarTitleDeposit = NSLocalizedString(
             "TransactionDetails.navigationBarTitleDeposit",
             tableName: "TransactionDetails",
-            value: "Deposit transaction",
+            value: "Received transaction",
             comment: "Navigation bar title when transaction is received")
         static let navigationBarTitleSent = NSLocalizedString(
             "TransactionDetails.navigationBarTitleSent",

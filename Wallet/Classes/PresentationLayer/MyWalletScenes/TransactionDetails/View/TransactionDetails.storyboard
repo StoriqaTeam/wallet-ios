@@ -18,11 +18,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fq1-BZ-0SN" customClass="TransactionDetailView" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="21.5" y="70" width="332" height="102"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQr-lG-fh7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fq1-BZ-0SN">
+                                <rect key="frame" x="21.5" y="134" width="332" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="14V-hZ-So2">
+                                        <rect key="frame" x="147.5" y="25" width="37" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="37" id="B8m-q0-MaN"/>
+                                            <constraint firstAttribute="height" constant="37" id="D6a-QB-ll3"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="120.00010 STQ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Bb-fn-GBT">
+                                        <rect key="frame" x="0.0" y="94" width="332" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="2$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj4-9t-fAp">
+                                        <rect key="frame" x="150.5" y="124" width="21" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNU-pm-kVe">
+                                        <rect key="frame" x="145" y="172" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="102" id="FjL-s9-b8w"/>
+                                    <constraint firstItem="2Bb-fn-GBT" firstAttribute="top" secondItem="14V-hZ-So2" secondAttribute="bottom" constant="32" id="32Q-0K-x1f"/>
+                                    <constraint firstItem="bj4-9t-fAp" firstAttribute="top" secondItem="2Bb-fn-GBT" secondAttribute="bottom" constant="9" id="5Ej-MU-ITo"/>
+                                    <constraint firstItem="14V-hZ-So2" firstAttribute="centerX" secondItem="fq1-BZ-0SN" secondAttribute="centerX" id="DCW-Id-vUO"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Bb-fn-GBT" secondAttribute="trailing" id="FZJ-Bb-EOq"/>
+                                    <constraint firstAttribute="height" constant="200" id="FjL-s9-b8w"/>
+                                    <constraint firstItem="2Bb-fn-GBT" firstAttribute="leading" secondItem="fq1-BZ-0SN" secondAttribute="leading" id="HFy-as-H31"/>
+                                    <constraint firstItem="bj4-9t-fAp" firstAttribute="centerX" secondItem="fq1-BZ-0SN" secondAttribute="centerX" constant="-5" id="Ka9-Ti-dH3"/>
+                                    <constraint firstItem="14V-hZ-So2" firstAttribute="top" secondItem="fq1-BZ-0SN" secondAttribute="top" constant="25" id="TWL-vO-jpb"/>
+                                    <constraint firstItem="aNU-pm-kVe" firstAttribute="top" secondItem="bj4-9t-fAp" secondAttribute="bottom" constant="27" id="ZQr-pJ-RzT"/>
+                                    <constraint firstItem="aNU-pm-kVe" firstAttribute="centerX" secondItem="fq1-BZ-0SN" secondAttribute="centerX" id="tgd-yp-mU0"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -30,6 +70,13 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8L6-JE-r53" customClass="TransactionDescriptionView" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="21.5" y="399" width="332" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="2Ej-1S-zxp"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Boe-Pj-Hk7">
                                 <rect key="frame" x="124" y="616" width="127" height="30"/>
@@ -41,12 +88,22 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="WQr-lG-fh7" firstAttribute="leading" secondItem="FVB-ad-Uub" secondAttribute="leading" id="0Ky-mU-t6E"/>
                             <constraint firstItem="fq1-BZ-0SN" firstAttribute="centerX" secondItem="zaS-uj-CHD" secondAttribute="centerX" id="3MT-P2-dlX"/>
+                            <constraint firstItem="FVB-ad-Uub" firstAttribute="trailing" secondItem="WQr-lG-fh7" secondAttribute="trailing" id="3gA-VA-qcX"/>
                             <constraint firstItem="fq1-BZ-0SN" firstAttribute="width" secondItem="zaS-uj-CHD" secondAttribute="width" multiplier="1:1.13" id="62D-0Y-g36"/>
+                            <constraint firstItem="WQr-lG-fh7" firstAttribute="top" secondItem="zaS-uj-CHD" secondAttribute="top" id="6PO-8z-RQD"/>
+                            <constraint firstItem="FVB-ad-Uub" firstAttribute="bottom" secondItem="WQr-lG-fh7" secondAttribute="bottom" id="9eI-bG-W1X"/>
                             <constraint firstItem="Boe-Pj-Hk7" firstAttribute="centerX" secondItem="zaS-uj-CHD" secondAttribute="centerX" id="Fxd-H4-xm2"/>
-                            <constraint firstItem="fq1-BZ-0SN" firstAttribute="top" secondItem="FVB-ad-Uub" secondAttribute="top" constant="6" id="pGC-NA-d0R"/>
+                            <constraint firstItem="8L6-JE-r53" firstAttribute="centerX" secondItem="fq1-BZ-0SN" secondAttribute="centerX" id="LcI-e6-h1e"/>
+                            <constraint firstItem="fq1-BZ-0SN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FVB-ad-Uub" secondAttribute="top" id="NFG-qL-wnZ"/>
+                            <constraint firstItem="8L6-JE-r53" firstAttribute="width" secondItem="fq1-BZ-0SN" secondAttribute="width" id="Rkb-nH-Pen"/>
+                            <constraint firstItem="Boe-Pj-Hk7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8L6-JE-r53" secondAttribute="bottom" constant="16" id="csy-LX-Ih7"/>
+                            <constraint firstItem="fq1-BZ-0SN" firstAttribute="top" secondItem="FVB-ad-Uub" secondAttribute="top" priority="500" constant="70" id="pGC-NA-d0R"/>
+                            <constraint firstItem="WQr-lG-fh7" firstAttribute="centerX" secondItem="zaS-uj-CHD" secondAttribute="centerX" id="yFF-4K-vlp"/>
+                            <constraint firstItem="8L6-JE-r53" firstAttribute="top" secondItem="fq1-BZ-0SN" secondAttribute="bottom" constant="65" id="zlQ-A6-yGV"/>
                             <constraint firstItem="FVB-ad-Uub" firstAttribute="bottom" secondItem="Boe-Pj-Hk7" secondAttribute="bottom" constant="21" id="zqi-5M-6de"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FVB-ad-Uub"/>
@@ -54,12 +111,17 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="blockchainTransactionButton" destination="Boe-Pj-Hk7" id="JYl-qt-eJs"/>
-                        <outlet property="detailView" destination="fq1-BZ-0SN" id="HXq-Cm-u2L"/>
+                        <outlet property="cryptoAmountLabel" destination="2Bb-fn-GBT" id="tm7-0Y-mpe"/>
+                        <outlet property="descriptionView" destination="8L6-JE-r53" id="Q3f-SO-BUL"/>
+                        <outlet property="directionImageView" destination="14V-hZ-So2" id="HG1-vy-RJt"/>
+                        <outlet property="feeAmountLabel" destination="aNU-pm-kVe" id="9ig-tc-qxX"/>
+                        <outlet property="fiatAmountLabel" destination="bj4-9t-fAp" id="yQU-3K-9gM"/>
+                        <outlet property="gradientView" destination="WQr-lG-fh7" id="R3T-7E-hmm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMi-oW-HC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1324" y="-146"/>
+            <point key="canvasLocation" x="-1324" y="-146.17691154422789"/>
         </scene>
     </scenes>
 </document>

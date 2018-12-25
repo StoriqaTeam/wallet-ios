@@ -14,12 +14,14 @@ struct Theme {
     
     struct Color {
         static let brightOrange = UIColor(red: 200/255, green: 141/255, blue: 49/255, alpha: 1.0)
+        static let mainOrange = UIColor(red: 165/255, green: 120/255, blue: 62/255, alpha: 1)
         static let brightSkyBlue = UIColor(red: 0.0, green: 178.0 / 255.0, blue: 1.0, alpha: 1.0)
         static let cloudyBlue = UIColor(red: 195.0 / 255.0, green: 206.0 / 255.0, blue: 220.0 / 255.0, alpha: 1.0)
         static let greyishBrown = UIColor(white: 80.0 / 255.0, alpha: 1.0)
         static let bluegrey = UIColor(red: 136.0 / 255.0, green: 158.0 / 255.0, blue: 186.0 / 255.0, alpha: 1.0)
         static let primaryGrey = UIColor(white: 140.0 / 255.0, alpha: 1.0)
         static let backgroundColor = UIColor.black
+        static let opaqueWhite = UIColor(white: 1, alpha: 0.5)
         
         struct Button {
             static let enabledTitle = UIColor.white
@@ -71,12 +73,13 @@ struct Theme {
         }
         
         struct Gradient {
+            
             struct Details {
-                static let detailsRedGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
-                                                 UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+                static let detailBlueGradient = [UIColor(red: 97/255, green: 92/255, blue: 251/255, alpha: 1).cgColor,
+                                                 UIColor.black.cgColor]
                 
-                static let detailsGreenGradient = [UIColor(red: 249/255, green: 250/255, blue: 251/255, alpha: 0.43).cgColor,
-                                                   UIColor(red: 234/255, green: 237/255, blue: 241/255, alpha: 0.43).cgColor]
+                static let detailsRedGradient = [UIColor(red: 198/255, green: 86/255, blue: 94/255, alpha: 1).cgColor,
+                                                 UIColor.black.cgColor]
             }
             
             static let detailsRedGradient = [UIColor(white: 200/255, alpha: 0.24).cgColor,
@@ -149,6 +152,9 @@ struct Theme {
         struct Label {
             /** 14px medium */
             static let medium = MontserratFont.font(ofSize: 14.0, weight: .medium)
+            
+            /** 12px regular */
+            static let regular = MontserratFont.font(ofSize: 14, weight: .regular)
         }
         
         struct FilterView {
