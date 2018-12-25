@@ -101,7 +101,7 @@ extension DirectionFilterView {
             switch position {
             case .all:
                 self.allLabel.textColor = Theme.Color.Text.main
-                self.allLabel.transform = CGAffineTransform(scaleX: comcom, y: 1.3)
+                self.allLabel.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
                 self.allUnderlineView.alpha = 1.0
             
             case .sent:
@@ -115,7 +115,5 @@ extension DirectionFilterView {
                 self.receiveUnderlineView.alpha = 1.0
             }
         }
-        
-        
     }
 }
