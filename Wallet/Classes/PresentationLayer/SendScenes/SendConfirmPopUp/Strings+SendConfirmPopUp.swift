@@ -43,11 +43,17 @@ extension Strings {
             tableName: tableName,
             value: "Total to send",
             comment: "Total to send title")
+        
+        static let freeFeeLabel = NSLocalizedString(
+            "SendConfirmPopUp.freeFeeLabel",
+            tableName: tableName,
+            value: "Free",
+            comment: "Free fee label text")
 
         static let confirmButton = NSLocalizedString(
             "SendConfirmPopUp.confirmButton",
             tableName: tableName,
-            value: "Confirm transaction",
+            value: "Confirm",
             comment: "Confirm transaction button title")
 
         static let closeButton = NSLocalizedString(

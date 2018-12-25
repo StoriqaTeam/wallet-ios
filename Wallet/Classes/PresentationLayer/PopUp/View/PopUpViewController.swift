@@ -49,11 +49,6 @@ class PopUpViewController: BasePopUpViewController {
 
 extension PopUpViewController: PopUpViewInput {
     
-    func setBackgroundBlur(image: UIImage) {
-        let blurImageView = UIImageView(image: image)
-        self.blurBackImageView = blurImageView
-    }
-    
     func setupInitialState(viewModel: PopUpViewModelProtocol) {
         self.viewModel = viewModel
         

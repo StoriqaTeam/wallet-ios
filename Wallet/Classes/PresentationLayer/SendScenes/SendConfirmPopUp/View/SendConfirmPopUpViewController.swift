@@ -28,7 +28,6 @@ class SendConfirmPopUpViewController: BasePopUpViewController {
     @IBOutlet private var totalToSendLabel: UILabel!
     @IBOutlet private var confirmButton: DefaultButton!
     @IBOutlet private var closeButton: BaseButton!
-    @IBOutlet private var separatorView: UIView!
     
     // MARK: Life cycle
 
@@ -37,17 +36,6 @@ class SendConfirmPopUpViewController: BasePopUpViewController {
         configureInterface()
         localizeText()
         output.viewIsReady()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        separatorView.gradientView(
-            colors: [UIColor.white.cgColor, UIColor.clear.cgColor],
-            frame: separatorView.frame,
-            startPoint: CGPoint(x: 0.0, y: 0.0),
-            endPoint: CGPoint(x: 0.0, y: 1.0))
-        
     }
     
     // MARK: - Action
@@ -69,10 +57,17 @@ class SendConfirmPopUpViewController: BasePopUpViewController {
 
 extension SendConfirmPopUpViewController: SendConfirmPopUpViewInput {
     
-    func setupInitialState(address: String, amount: String, fee: String) {
+    func setupInitialState(address: String, amount: String, fee: String, total: String) {
         addressLabel.text = address
         amountLabel.text = amount
-        feeLabel.text = fee
+        totalToSendLabel.text = total
+        
+        if fee.isEmpty {
+            feeLabel.text = LocalizedStrings.freeFeeLabel
+            feeLabel.textColor = Theme.Color.Button.enabledBackground
+        } else {
+            feeLabel.text = fee
+        }
     }
 
 }
@@ -82,25 +77,28 @@ extension SendConfirmPopUpViewController: SendConfirmPopUpViewInput {
 
 extension SendConfirmPopUpViewController {
     private func configureInterface() {
-        titleLabel.font = Theme.Font.title
+        titleLabel.font = Theme.Font.PopUp.title
 
-        addressTitle.font = Theme.Font.smallText
-        amountTitle.font = Theme.Font.smallText
-        feeTitle.font = Theme.Font.smallText
-        addressLabel.font = Theme.Font.smallText
-        amountLabel.font = Theme.Font.smallText
-        feeLabel.font = Theme.Font.smallText
-        totalToSendTitle.font = Theme.Font.smallText
+        addressTitle.font = Theme.Font.PopUp.subtitle
+        amountTitle.font = Theme.Font.PopUp.subtitle
+        feeTitle.font = Theme.Font.PopUp.subtitle
+        totalToSendTitle.font = Theme.Font.PopUp.subtitle
+        addressLabel.font = Theme.Font.PopUp.text
+        amountLabel.font = Theme.Font.PopUp.text
+        feeLabel.font = Theme.Font.PopUp.text
+        totalToSendLabel.font = Theme.Font.PopUp.bigText
         
-        addressTitle.textColor = Theme.Color.Text.lightGrey
-        amountTitle.textColor = Theme.Color.Text.lightGrey
-        feeTitle.textColor = Theme.Color.Text.lightGrey
-        addressLabel.textColor = Theme.Color.Text.blackMain
-        amountLabel.textColor = Theme.Color.Text.blackMain
-        feeLabel.textColor = Theme.Color.Text.blackMain
-        totalToSendTitle.textColor = Theme.Color.Text.blackMain
+        titleLabel.textColor = Theme.Color.Text.main
+        addressTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        amountTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        feeTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        totalToSendTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        addressLabel.textColor = Theme.Color.Text.main
+        amountLabel.textColor = Theme.Color.Text.main
+        feeLabel.textColor = Theme.Color.Text.main
+        totalToSendLabel.textColor = Theme.Color.Text.main
         
-        closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+        closeButton.setTitleColor(Theme.Color.Text.main, for: .normal)
     }
     
     private func localizeText() {

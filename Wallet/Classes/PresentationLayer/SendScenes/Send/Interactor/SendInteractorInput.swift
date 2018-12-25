@@ -16,6 +16,7 @@ protocol SendInteractorInput: class {
     func getAccountIndex() -> Int
     func getAmount() -> Decimal?
     func getFee() -> Decimal?
+    func getTotal() -> Decimal
     func getCurrency() -> Currency
     func getAddress() -> String
     

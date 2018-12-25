@@ -59,6 +59,7 @@ class SendInteractor {
 // MARK: - SendInteractorInput
 
 extension SendInteractor: SendInteractorInput {
+    
     func setAddress(_ address: String) {
         setAddress(address, updateFeesIfNeeded: true)
     }
@@ -89,6 +90,10 @@ extension SendInteractor: SendInteractorInput {
     func getFee() -> Decimal? {
         let estimatedFee = sendProvider.getFeeAndWait()
         return estimatedFee.fee
+    }
+    
+    func getTotal() -> Decimal {
+        return sendProvider.getSubtotal()
     }
     
     func getCurrency() -> Currency {

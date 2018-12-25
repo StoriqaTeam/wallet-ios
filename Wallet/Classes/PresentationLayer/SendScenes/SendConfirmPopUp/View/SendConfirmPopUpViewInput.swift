@@ -10,5 +10,6 @@ import UIKit
 
 
 protocol SendConfirmPopUpViewInput: class, Presentable {
-    func setupInitialState(address: String, amount: String, fee: String)
+    func setupInitialState(address: String, amount: String, fee: String, total: String)
+    func setBackgroundBlur(image: UIImage)
 }

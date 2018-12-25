@@ -637,6 +637,7 @@
 		CED822E3215BC33000693B92 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822E2215BC33000693B92 /* CurrencyConverter.swift */; };
 		CED822E7215BDF3B00693B92 /* CurrecncyConverterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822E6215BDF3B00693B92 /* CurrecncyConverterFactory.swift */; };
 		CED822EA215BE09F00693B92 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822E9215BE09F00693B92 /* CurrencyFormatter.swift */; };
+		CEDD7F7121D22EF8003D1157 /* GradientSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD7F7021D22EF8003D1157 /* GradientSeparatorView.swift */; };
 		CEDDDEFC21302D9400490781 /* SocialNetworkAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */; };
 		CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */; };
 		CEE6185D29797AA8B105A1D9 /* AppInfoInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFB0BDACBE50995ABDF8906 /* AppInfoInteractorOutput.swift */; };
@@ -1469,6 +1470,7 @@
 		CED822E2215BC33000693B92 /* CurrencyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
 		CED822E6215BDF3B00693B92 /* CurrecncyConverterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrecncyConverterFactory.swift; sourceTree = "<group>"; };
 		CED822E9215BE09F00693B92 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
+		CEDD7F7021D22EF8003D1157 /* GradientSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientSeparatorView.swift; sourceTree = "<group>"; };
 		CEDDDEFA21302D9300490781 /* SocialNetworkAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAuthView.swift; sourceTree = "<group>"; };
 		CEDDDEFB21302D9400490781 /* SocialNetworkAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNetworkAuthView.xib; sourceTree = "<group>"; };
 		CEDDDF002133EF4700490781 /* Wallet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Wallet-Bridging-Header.h"; path = "Wallet/Other/Wallet-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -4715,6 +4717,7 @@
 				A51CB55B215942DA00CDC80C /* Xibs */,
 				CE64515A212FF33B00C1ABB0 /* ActivityIndicatorView.swift */,
 				CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */,
+				CEDD7F7021D22EF8003D1157 /* GradientSeparatorView.swift */,
 				CE8F3EDA212BF20600FF1639 /* UnderlinedTextField.swift */,
 				CEE84EFD218B272200AB85F3 /* SecureInputTextField.swift */,
 				CE25B7292125A2E00097230A /* DefaultButton.swift */,
@@ -5919,6 +5922,7 @@
 				655663AF844FD6B0CB44B4C4 /* PasswordRecoveryConfirmModule.swift in Sources */,
 				03B8DF45D671EB1590F32163 /* PopUpViewInput.swift in Sources */,
 				CEE6730821A2B768008FAC09 /* SendTransactionService.swift in Sources */,
+				CEDD7F7121D22EF8003D1157 /* GradientSeparatorView.swift in Sources */,
 				CEF02F4D21C14211003D18FF /* NetworkUnknownErrorParser.swift in Sources */,
 				70D0185949E966619D914F17 /* PopUpViewOutput.swift in Sources */,
 				B8C5EDE22189B3A700345B79 /* RatesDataStoreService.swift in Sources */,

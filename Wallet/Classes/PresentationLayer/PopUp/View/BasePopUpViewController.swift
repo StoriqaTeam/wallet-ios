@@ -41,6 +41,11 @@ class BasePopUpViewController: UIViewController {
         }, completion: nil)
     }
     
+    func setBackgroundBlur(image: UIImage) {
+        let blurImageView = UIImageView(image: image)
+        self.blurBackImageView = blurImageView
+    }
+    
     func animateDismiss(completion: @escaping () -> Void) {
         verticalCenterConstraint.constant = -Constants.Sizes.screenHeight/17
         

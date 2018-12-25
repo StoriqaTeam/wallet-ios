@@ -15,6 +15,7 @@ protocol SendRouterInput: class {
     func showConfirm(address: String,
                      amount: String,
                      fee: String,
+                     total: String,
                      confirmTxBlock: @escaping (() -> Void),
                      from viewController: UIViewController)
     func showFailure(message: String,

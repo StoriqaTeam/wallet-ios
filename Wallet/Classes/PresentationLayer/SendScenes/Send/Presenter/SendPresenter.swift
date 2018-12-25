@@ -113,9 +113,11 @@ extension SendPresenter: SendViewOutput {
     func sendButtonPressed() {
         let amount = interactor.getAmount()
         let fee = interactor.getFee() ?? 0
+        let total = interactor.getTotal()
         let currency = interactor.getCurrency()
         let amountString = getStringFrom(amount: amount, currency: currency)
-        let feeString = currencyFormatter.getStringFrom(amount: fee, currency: currency)
+        let feeString = getStringFrom(amount: fee, currency: currency)
+        let totalString = getStringFrom(amount: total, currency: currency)
         let address = interactor.getAddress()
         let confirmTxBlock = { [weak self] in
             self?.storiqaLoader.startLoader()
@@ -125,6 +127,7 @@ extension SendPresenter: SendViewOutput {
         router.showConfirm(address: address,
                            amount: amountString,
                            fee: feeString,
+                           total: totalString,
                            confirmTxBlock: confirmTxBlock,
                            from: view.viewController)
     }
