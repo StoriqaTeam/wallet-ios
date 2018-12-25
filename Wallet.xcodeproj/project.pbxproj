@@ -546,7 +546,7 @@
 		CE25B74E2126BEDB0097230A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25B74D2126BEDB0097230A /* UserInfo.swift */; };
 		CE288A07219E9E2A0010FA3B /* FeeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A06219E9E2A0010FA3B /* FeeProvider.swift */; };
 		CE288A0C219EA1EA0010FA3B /* EstimatedFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A0B219EA1EA0010FA3B /* EstimatedFee.swift */; };
-		CE288A13219EACF30010FA3B /* MedianWaitFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A12219EACF30010FA3B /* MedianWaitFormatter.swift */; };
+		CE288A13219EACF30010FA3B /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A12219EACF30010FA3B /* TimeFormatter.swift */; };
 		CE288A16219EAFCF0010FA3B /* FeeNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A15219EAFCF0010FA3B /* FeeNetworkProvider.swift */; };
 		CE288A18219EB02B0010FA3B /* API+Fees.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A17219EB02B0010FA3B /* API+Fees.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
@@ -1374,7 +1374,7 @@
 		CE25B74D2126BEDB0097230A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		CE288A06219E9E2A0010FA3B /* FeeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeProvider.swift; sourceTree = "<group>"; };
 		CE288A0B219EA1EA0010FA3B /* EstimatedFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimatedFee.swift; sourceTree = "<group>"; };
-		CE288A12219EACF30010FA3B /* MedianWaitFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedianWaitFormatter.swift; sourceTree = "<group>"; };
+		CE288A12219EACF30010FA3B /* TimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
 		CE288A15219EAFCF0010FA3B /* FeeNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeNetworkProvider.swift; sourceTree = "<group>"; };
 		CE288A17219EB02B0010FA3B /* API+Fees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Fees.swift"; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -3832,7 +3832,7 @@
 				CEE672FE21A2AEB3008FAC09 /* ExchangeProvider */,
 				B870F1D621A3248F00BC53BE /* UserKeyManager */,
 				B870F1CD21A2FAA700BC53BE /* SignHeaderFactory */,
-				CE288A11219EACE50010FA3B /* MedianWaitFormatter */,
+				CE288A11219EACE50010FA3B /* TimeFormatter */,
 				CE288A05219E9E0E0010FA3B /* FeeProvider */,
 				CE1008A72191C8E50068010A /* AuthDataResolver */,
 				CE1008A42191B4C10068010A /* LoginService */,
@@ -4589,12 +4589,12 @@
 			path = FeeProvider;
 			sourceTree = "<group>";
 		};
-		CE288A11219EACE50010FA3B /* MedianWaitFormatter */ = {
+		CE288A11219EACE50010FA3B /* TimeFormatter */ = {
 			isa = PBXGroup;
 			children = (
-				CE288A12219EACF30010FA3B /* MedianWaitFormatter.swift */,
+				CE288A12219EACF30010FA3B /* TimeFormatter.swift */,
 			);
-			path = MedianWaitFormatter;
+			path = TimeFormatter;
 			sourceTree = "<group>";
 		};
 		CE288A14219EAFB90010FA3B /* FeeNetworkProvider */ = {
@@ -5998,7 +5998,7 @@
 				D8725E388DDC6EC37245C900 /* PinSetupPresenter.swift in Sources */,
 				DB0167269CDCA1A26EFD340D /* PinSetupInteractorInput.swift in Sources */,
 				A52C66B821676AB70073071E /* Decimal+Helpers.swift in Sources */,
-				CE288A13219EACF30010FA3B /* MedianWaitFormatter.swift in Sources */,
+				CE288A13219EACF30010FA3B /* TimeFormatter.swift in Sources */,
 				DBDC98669AC4320EAFC55E3F /* PinSetupInteractorOutput.swift in Sources */,
 				CE1008A32191AF0D0068010A /* SocialAuthNetworkProvider.swift in Sources */,
 				7B69B52D9D87B8566F124536 /* PinSetupInteractor.swift in Sources */,

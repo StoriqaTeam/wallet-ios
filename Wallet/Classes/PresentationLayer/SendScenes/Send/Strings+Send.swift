@@ -19,43 +19,37 @@ extension Strings {
         static let recepientAddressTitle = NSLocalizedString(
             "Send.recepientAddressTitle",
             tableName: "Send",
-            value: "RECEPIENT'S ADDRESS",
+            value: "Recepient's address",
             comment: "Recepient address label title")
         
         static let recepientInputPlaceholder = NSLocalizedString(
             "Send.recepientAddressTitle",
             tableName: "Send",
-            value: "Recepient's address",
+            value: "Enter address here",
             comment: "Recepient address label placeholder")
-        
-        static let scanButtonTitle = NSLocalizedString(
-            "Send.scanButtonTitle",
-            tableName: "Send",
-            value: "Scan QR-code",
-            comment: "Scan Qr button title")
         
         static let amountTitle = NSLocalizedString(
             "Send.amountTitle",
             tableName: "Send",
-            value: "AMOUNT",
+            value: "Amount",
             comment: "Amount input title")
 
         static let amountPlaceholder = NSLocalizedString(
             "Send.amountPlaceholder",
             tableName: "Send",
-            value: "Enter amount",
+            value: "Enter amount here",
             comment: "Amount input placeholder")
         
         static let feeTitle = NSLocalizedString(
             "Send.feeTitle",
             tableName: "Send",
-            value: "PAYMENT FEE:",
+            value: "Fee",
             comment: "Payment fee title")
         
         static let medianWaitTitle = NSLocalizedString(
             "Send.medianWaitTitle",
             tableName: "Send",
-            value: "MEDIAN WAIT:",
+            value: "Estimated time",
             comment: "Median wait title")
 
         static let lowFee = NSLocalizedString(
@@ -64,23 +58,11 @@ extension Strings {
             value: "Low",
             comment: "Low fee slider position label")
 
-        static let mediumFee = NSLocalizedString(
-            "Send.mediumFee",
-            tableName: "Send",
-            value: "Medium",
-            comment: "Medium fee slider position label")
-
         static let highFee = NSLocalizedString(
             "Send.highFee",
             tableName: "Send",
             value: "High",
             comment: "High fee slider position label")
-
-        static let subtotalTitle = NSLocalizedString(
-            "Send.subtotalTitle",
-            tableName: "Send",
-            value: "SUBTOTAL TO SEND",
-            comment: "Subtotal to send title")
 
         static let sendButton = NSLocalizedString(
             "Send.sendButton",
@@ -100,18 +82,10 @@ extension Strings {
             value: "Address is non-existent",
             comment: "Address non-exist label text")
         
-        static let freeFeeLabel = NSLocalizedString(
-            "Send.freeFeeLabel",
-            tableName: "Send",
-            value: "FREE",
-            comment: "Free fee label text")
-        
         static let exceedDayLimitMessage = NSLocalizedString(
             "Send.exceedDayLimitMessage",
             tableName: "Send",
             value: "You’ve exceeded you daily transaction limit of %@ for this account.",
             comment: "Exceed dayly limit message")
-        
-        
     }
 }

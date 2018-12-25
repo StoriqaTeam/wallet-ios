@@ -27,6 +27,7 @@ class SendPresenter {
     private var storiqaLoader: StoriqaLoader!
     private var address: String = ""
     private var isEditingAmount = false
+    private var feesError: String?
     
     init(currencyFormatter: CurrencyFormatterProtocol,
          currencyImageProvider: CurrencyImageProviderProtocol,
@@ -170,31 +171,26 @@ extension SendPresenter: SendInteractorOutput {
             return
         }
         
-        guard !fee.isZero else {
-            view.setPaymentFee(LocalizedStrings.freeFeeLabel)
-            return
-        }
-        
         let currency = interactor.getCurrency()
         let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency, maxFractionDigits: 8)
         view.setPaymentFee(formatted)
     }
     
     func updatePaymentFees(count: Int, selected: Int) {
-        view.setPaymentFee(count: count, value: selected, enabled: count > 1)
+        let hidden = count <= 1
+        
+        view.setPaymentFee(count: count, value: selected, enabled: !hidden)
+        view.setPaymentFeeHidden(hidden)
     }
     
     func updateMedianWait(_ wait: String) {
         view.setMedianWait(wait)
     }
     
-    func updateTotal(_ total: Decimal, currency: Currency) {
-        let totalAmountString = currencyFormatter.getStringFrom(amount: total, currency: currency)
-        view.setSubtotal(totalAmountString)
-    }
-    
     func updateIsEnoughFunds(_ enough: Bool) {
-        view.setEnoughFundsErrorHidden(enough)
+        if !enough {
+            view.setErrorMessage(LocalizedStrings.notEnoughFundsErrorMessage)
+        }
     }
     
     func updateFormIsValid(_ valid: Bool) {
@@ -228,6 +224,11 @@ extension SendPresenter: SendInteractorOutput {
         let message = String(format: LocalizedStrings.exceedDayLimitMessage, limitStr)
         
         router.showFailure(message: message, from: view.viewController)
+    }
+    
+    func setFeesError(_ message: String?) {
+        feesError = message
+        view.setErrorMessage(message)
     }
 }
 

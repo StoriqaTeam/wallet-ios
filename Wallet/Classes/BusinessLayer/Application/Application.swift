@@ -95,7 +95,7 @@ class Application {
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
     lazy var appLockerProvider: AppLockerProviderProtocol = AppLockerProvider(app: self)
     lazy var ratesProvider: RatesProviderProtocol = RatesProvider(ratesDataStoreService: self.ratesDataStoreService)
-    lazy var feeProvider: FeeProviderProtocol = FeeProvider(medianWaitFormatter: medianWaitFormatter)
+    lazy var feeProvider: FeeProviderProtocol = FeeProvider(timeFormatter: timeFormatter)
     lazy var defaultAccountsProvider: DefaultAccountsProviderProtocol = DefaultAccountsProvider(userDataStore: self.userDataStoreService,
                                                                                                 authTokenProvider: self.authTokenProvider,
                                                                                                 createAccountsNetworkProvider: self.createAccountsNetworkProvider,
@@ -150,7 +150,7 @@ class Application {
     // MARK: - Converters and formatters -
     lazy var currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatter()
     lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
-    lazy var medianWaitFormatter: MedianWaitFormatterProtocol = MedianWaitFormatter()
+    lazy var timeFormatter: TimeFormatterProtocol = TimeFormatter()
     lazy var constantRateFiatConverterFactory: ConstantRateFiatConverterFactoryProtocol = ConstantRateFiatConverterFactory(ratesProvider: self.ratesProvider)
     
     // MARK: - Validators -
