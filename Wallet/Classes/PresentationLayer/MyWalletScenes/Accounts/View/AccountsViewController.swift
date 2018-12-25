@@ -88,6 +88,7 @@ extension AccountsViewController: AccountsViewInput {
     func setupInitialState(numberOfPages: Int) {
         configureTableView()
         configureButtons()
+        configureAppearence()
         accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
         lastTransactionsTitle.text = LocalizedStrings.lastTransactionsTitle
@@ -115,6 +116,11 @@ extension AccountsViewController {
     private func configureTableView() {
         lastTransactionsTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         lastTransactionsTableView.tableFooterView = UIView()
+        lastTransactionsTableView.backgroundColor = Theme.Color.backgroundColor
+    }
+    
+    private func configureAppearence() {
+        view.backgroundColor = .black
     }
 }
 

@@ -36,7 +36,7 @@ extension RecepientAccountsPresenter: RecepientAccountsViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setDarkNavigationBarButtons()
+//        view.viewController.setDarkNavigationBarButtons()
     }
     
     func accountsCollectionView(_ collectionView: UICollectionView) {
