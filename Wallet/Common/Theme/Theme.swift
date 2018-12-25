@@ -128,6 +128,15 @@ struct Theme {
             static let number = MontserratFont.font(ofSize: 36.0, weight: .light)
         }
         
+        struct PopUp {
+            /** 26px medium */
+            static let title = MontserratFont.font(ofSize: 26.0, weight: .medium)
+            /** 12px regular */
+            static let subtitle = MontserratFont.font(ofSize: 12.0, weight: .regular)
+            
+            
+        }
+        
     }
 }
 

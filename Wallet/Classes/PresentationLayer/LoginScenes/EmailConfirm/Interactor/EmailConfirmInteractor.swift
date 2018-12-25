@@ -35,7 +35,7 @@ class EmailConfirmInteractor {
 
 extension EmailConfirmInteractor: EmailConfirmInteractorInput {
     @objc func confirmEmail() {
-        guard case .active = AppDelegate.currenctApplication.applicationState else {
+        guard case .active = AppDelegate.currentApplication.applicationState else {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(confirmEmail),
                                                    name: UIApplication.didBecomeActiveNotification,

@@ -9,17 +9,19 @@
 import Foundation
 
 class MyWalletFooter: UICollectionReusableView {
+    @IBOutlet var addNewButton: LightButton!
+    
     var view: UIView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()
-        view.backgroundColor = .clear
+        configureInterface()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetup()
-        view.backgroundColor = .clear
+        configureInterface()
     }
     
     @IBAction func buttonHandler(_ sender: Any) {
@@ -31,6 +33,11 @@ class MyWalletFooter: UICollectionReusableView {
 // MARK: - Private methods
 
 extension MyWalletFooter {
+    private func configureInterface() {
+        view.backgroundColor = .clear
+        addNewButton.titleLabel?.font = Theme.Font.Button.smallButtonTitle
+    }
+    
     private func xibSetup() {
         backgroundColor = UIColor.clear
         view = loadNib()

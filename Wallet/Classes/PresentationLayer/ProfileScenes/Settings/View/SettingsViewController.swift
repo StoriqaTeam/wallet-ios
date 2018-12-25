@@ -154,5 +154,6 @@ extension SettingsViewController {
     
     func configureInterface() {
         signOutButton.setup(color: Theme.Color.Button.red.withAlphaComponent(0.1))
+        view.backgroundColor = Theme.Color.backgroundColor
     }
 }
