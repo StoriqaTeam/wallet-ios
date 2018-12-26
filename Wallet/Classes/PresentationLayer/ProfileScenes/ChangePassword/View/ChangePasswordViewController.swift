@@ -145,6 +145,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
 
 extension ChangePasswordViewController {
     private func configFields() {
+        view.backgroundColor = Theme.Color.backgroundColor
         
         let layoutBlock: (() -> Void) = {[weak self] in
             self?.view.layoutIfNeeded()
@@ -163,6 +164,7 @@ extension ChangePasswordViewController {
         
         titleLabel.font = Theme.Font.title
         titleLabel.text = LocalizedStrings.screenTitle
+        titleLabel.textColor = Theme.Color.Text.main
     }
     
     private func updateContinueButton() {
