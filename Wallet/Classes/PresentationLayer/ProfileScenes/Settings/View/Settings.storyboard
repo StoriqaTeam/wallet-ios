@@ -23,10 +23,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NT5-xI-5vz" customClass="LightButton" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="18" y="552" width="339" height="45"/>
+                                <rect key="frame" x="18" y="546" width="339" height="51"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="4AM-6a-he5"/>
+                                    <constraint firstAttribute="height" constant="51" id="4AM-6a-he5"/>
                                 </constraints>
                                 <state key="normal" title="Sign out">
                                     <color key="titleColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

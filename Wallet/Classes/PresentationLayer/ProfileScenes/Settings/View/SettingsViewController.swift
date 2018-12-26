@@ -42,11 +42,9 @@ class SettingsViewController: UIViewController {
         output.viewWillAppear()
     }
     
-    
     @IBAction func signOutButtonTapped(_ sender: UIButton) {
         output.signOutButtonTapped()
     }
-    
 }
 
 
@@ -89,7 +87,7 @@ extension SettingsViewController: UITableViewDelegate {
         default: break
         }
         
-        return 44
+        return 75
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -153,7 +151,13 @@ extension SettingsViewController {
     }
     
     func configureInterface() {
-        signOutButton.setup(color: Theme.Color.Button.red.withAlphaComponent(0.1))
+        signOutButton.setup(color: Theme.Color.Button.red)
+        signOutButton.setTitleColor(Theme.Color.Button.red, for: .normal)
+        
         view.backgroundColor = Theme.Color.backgroundColor
+        
+        settingsTableView.backgroundColor = Theme.Color.backgroundColor
+        settingsTableView.backgroundView?.backgroundColor = Theme.Color.backgroundColor
+        settingsTableView.separatorStyle = .none
     }
 }

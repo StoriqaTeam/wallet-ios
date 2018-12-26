@@ -29,7 +29,7 @@ struct Theme {
             static let enabledBackground = mainOrange
             static let disabledBackground = UIColor(red: 83/255, green: 60/255, blue: 31/255, alpha: 1)
             static let border = UIColor(red: 255/255, green: 180/255, blue: 62/255, alpha: 0.4)
-            static let red = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
+            static let red = UIColor(red: 245/255, green: 81/255, blue: 95/255, alpha: 1)
         }
         
         struct TabBar {
@@ -84,9 +84,10 @@ struct Theme {
                 
                 static let detailsRedGradient = [UIColor(red: 198/255, green: 86/255, blue: 94/255, alpha: 1).cgColor,
                                                  UIColor.clear.cgColor]
+                
             }
             
-            static let detailsRedGradient = [UIColor(white: 200/255, alpha: 0.24).cgColor,
+            static let separator = [UIColor(white: 200/255, alpha: 1).cgColor,
                                              UIColor(white: 1, alpha: 0).cgColor]
             
             static let headerGradient = [UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
@@ -94,6 +95,9 @@ struct Theme {
             
             static let sendingHeaderGradient = [UIColor(red: 55/255, green: 145/255, blue: 221/255, alpha: 1).cgColor,
                                                 UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor]
+            
+            static let underlineGradient = [UIColor.white.cgColor,
+                                            UIColor.clear.cgColor]
         }
     }
     
@@ -164,6 +168,10 @@ struct Theme {
         struct FilterView {
             /** 16px semibold */
             static let filterLabel = MontserratFont.font(ofSize: 16.0, weight: .semibold)
+        }
+        
+        struct SettingsTableView {
+            static let cellTitle = MontserratFont.font(ofSize: 16.0, weight: .regular)
         }
     }
 }
