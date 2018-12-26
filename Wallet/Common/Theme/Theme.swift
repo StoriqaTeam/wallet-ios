@@ -84,6 +84,7 @@ struct Theme {
                 
                 static let detailsRedGradient = [UIColor(red: 198/255, green: 86/255, blue: 94/255, alpha: 1).cgColor,
                                                  UIColor.clear.cgColor]
+                
             }
             
             static let detailsRedGradient = [UIColor(white: 200/255, alpha: 0.24).cgColor,
@@ -94,6 +95,9 @@ struct Theme {
             
             static let sendingHeaderGradient = [UIColor(red: 55/255, green: 145/255, blue: 221/255, alpha: 1).cgColor,
                                                 UIColor(red: 46/255, green: 103/255, blue: 196/255, alpha: 1).cgColor]
+            
+            static let underlineGradient = [UIColor.white.cgColor,
+                                            UIColor.clear.cgColor]
         }
     }
     
@@ -164,6 +168,10 @@ struct Theme {
         struct FilterView {
             /** 16px semibold */
             static let filterLabel = MontserratFont.font(ofSize: 16.0, weight: .semibold)
+        }
+        
+        struct SettingsTableView {
+            static let cellTitle = MontserratFont.font(ofSize: 16.0, weight: .regular)
         }
     }
 }

@@ -14,7 +14,7 @@ extension Strings {
         static let navigationBarTitle = NSLocalizedString(
             "Settings.navigationBarTitle",
             tableName: "Settings",
-            value: "Settings",
+            value: "Menu",
             comment: "Screen title")
 
         static let editProfile = NSLocalizedString(
