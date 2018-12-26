@@ -135,16 +135,17 @@ extension DepositViewController {
         
         addressTitleLabel.font = Theme.Font.smallMediumWeightText
         addressTitleLabel.textColor = Theme.Color.Text.lightGrey
+    
         
         addressLabel.font = Theme.Font.input
         addressLabel.tintColor = .white
         
         copyButton.setImage(UIImage(named: "copyIcon"), for: .normal)
-        copyButton.tintColor = Theme.Color.Text.lightGrey
+        copyButton.tintColor = Theme.Color.opaqueWhite
         copyButton.titleLabel?.font = Theme.Font.smallText
         
         shareDescriptionLabel.font = Theme.Font.smallMediumWeightText
-        shareDescriptionLabel.tintColor = Theme.Color.opaqueWhite
+        shareDescriptionLabel.tintColor = Theme.Color.Text.lightGrey
         
         qrCodeContainerView.roundCorners(radius: 9)
     }
