@@ -120,6 +120,10 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         return exchangeProvider.amount
     }
     
+    func getGiveAmount() -> Decimal {
+        return exchangeProvider.getSubtotal()
+    }
+    
     func getAccountCurrency() -> Currency {
         let account = exchangeProvider.selectedAccount
         let currency = account.currency

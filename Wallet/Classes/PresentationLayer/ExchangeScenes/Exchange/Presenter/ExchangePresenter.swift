@@ -107,8 +107,8 @@ extension ExchangePresenter: ExchangeViewOutput {
     func exchangeButtonPressed() {
         let fromAccount = interactor.getAccountName()
         let toAccount = interactor.getRecepientAccountName()
-        let currency = interactor.getRecepientCurrency()
-        let decimalAmount = interactor.getAmount()
+        let currency = interactor.getAccountCurrency()
+        let decimalAmount = interactor.getGiveAmount()
         let amountStr = currencyFormatter.getStringFrom(amount: decimalAmount, currency: currency)
         let confirmTxBlock = { [weak self] in
             self?.storiqaLoader.startLoader()
