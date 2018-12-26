@@ -55,10 +55,10 @@
                                                         <rect key="frame" x="305" y="22.5" width="30" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <state key="normal">
-                                                            <color key="titleColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="copyButtonPressed:" destination="Ppg-vA-m6c" eventType="touchUpInside" id="WLz-RR-y73"/>
+                                                            <action selector="copyButtonPressed:" destination="Ppg-vA-m6c" eventType="touchUpInside" id="Tuz-DD-AZK"/>
                                                         </connections>
                                                     </button>
                                                     <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBn-b5-fNn">

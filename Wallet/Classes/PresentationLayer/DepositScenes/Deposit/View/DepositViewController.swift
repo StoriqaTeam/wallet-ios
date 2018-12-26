@@ -25,10 +25,10 @@ class DepositViewController: UIViewController {
     @IBOutlet private var copyButton: UIButton!
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var shareDescriptionLabel: UILabel!
-    @IBOutlet weak var shareTapView: UIView!
+    @IBOutlet private var shareTapView: UIView!
     
     @IBOutlet private var addressContainerView: UIView!
-    @IBOutlet weak var qrCodeContainerView: UIView!
+    @IBOutlet private var qrCodeContainerView: UIView!
     
     // MARK: Life cycle
 
@@ -58,6 +58,10 @@ class DepositViewController: UIViewController {
     }
 
     // MARK: IBActions
+    
+    @IBAction func copyButtonPressed(_ sender: UIButton) {
+        output.copyButtonPressed()
+    }
     
     @IBAction func shareLongPressed(_ sender: UILongPressGestureRecognizer) {
         switch sender.state {
@@ -131,7 +135,6 @@ extension DepositViewController {
         
         addressTitleLabel.font = Theme.Font.smallMediumWeightText
         addressTitleLabel.textColor = Theme.Color.Text.lightGrey
-    
         
         addressLabel.font = Theme.Font.input
         addressLabel.tintColor = .white
@@ -139,10 +142,9 @@ extension DepositViewController {
         copyButton.setImage(UIImage(named: "copyIcon"), for: .normal)
         copyButton.tintColor = Theme.Color.Text.lightGrey
         copyButton.titleLabel?.font = Theme.Font.smallText
-        copyButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
         
         shareDescriptionLabel.font = Theme.Font.smallMediumWeightText
-        shareDescriptionLabel.tintColor = Theme.Color.Text.lightGrey
+        shareDescriptionLabel.tintColor = Theme.Color.opaqueWhite
         
         qrCodeContainerView.roundCorners(radius: 9)
     }
