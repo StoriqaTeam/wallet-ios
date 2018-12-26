@@ -143,7 +143,6 @@ extension TransactionFilterViewController {
         let tabBarHeight = tabBarController?.tabBar.bounds.height ?? 49
         let height = fromDatePickerView.bounds.height - tabBarHeight
         
-        
         if isFirst {
             fromTextField.inputView = fromDatePickerView
             fromTextField.inputView?.backgroundColor = .black

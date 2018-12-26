@@ -81,6 +81,7 @@ extension TransactionDetailsViewController {
     
     private func configureDefaultAppearence() {
         view.backgroundColor = Theme.Color.backgroundColor
+        gradientView.backgroundColor = .clear
         cryptoAmountLabel.font = Theme.Font.largeText
         cryptoAmountLabel.tintColor = .white
         fiatAmountLabel.font = Theme.Font.subtitle
@@ -144,12 +145,4 @@ extension TransactionDetailsViewController {
                                   timestamp: timestamp)
         
     }
-
-    private func configureGradientView() {
-        gradientView.gradientView(colors: Theme.Color.Gradient.Details.detailBlueGradient,
-                                  frame: view.bounds,
-                                  startPoint: CGPoint(x: 0.5, y: 0.0),
-                                  endPoint: CGPoint(x: 0.5, y: 1.0))
-        gradientView.alpha = 0.31
-     }
 }
