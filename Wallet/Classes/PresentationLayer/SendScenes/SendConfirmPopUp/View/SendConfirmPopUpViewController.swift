@@ -78,7 +78,6 @@ extension SendConfirmPopUpViewController: SendConfirmPopUpViewInput {
 extension SendConfirmPopUpViewController {
     private func configureInterface() {
         titleLabel.font = Theme.Font.PopUp.title
-
         addressTitle.font = Theme.Font.PopUp.subtitle
         amountTitle.font = Theme.Font.PopUp.subtitle
         feeTitle.font = Theme.Font.PopUp.subtitle

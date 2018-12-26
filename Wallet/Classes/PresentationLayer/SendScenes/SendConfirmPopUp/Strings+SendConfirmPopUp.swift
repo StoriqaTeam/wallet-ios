@@ -59,7 +59,7 @@ extension Strings {
         static let closeButton = NSLocalizedString(
             "SendConfirmPopUp.closeButton",
             tableName: tableName,
-            value: "Close",
+            value: "Cancel",
             comment: "Close button title")
 
     }

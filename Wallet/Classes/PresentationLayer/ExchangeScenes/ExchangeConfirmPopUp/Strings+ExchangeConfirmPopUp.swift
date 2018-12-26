@@ -16,7 +16,7 @@ extension Strings {
         static let screenTitle = NSLocalizedString(
             "ExchangeConfirmPopUp.screenTitle",
             tableName: tableName,
-            value: "Confirm exhanging money",
+            value: "Confirm exchanging",
             comment: "Screen title. Displaying below the icon.")
         
         static let fromTitle = NSLocalizedString(
@@ -40,13 +40,13 @@ extension Strings {
         static let confirmButton = NSLocalizedString(
             "ExchangeConfirmPopUp.confirmButton",
             tableName: tableName,
-            value: "Confirm transaction",
+            value: "Confirm",
             comment: "Confirm transaction button title")
         
         static let closeButton = NSLocalizedString(
             "ExchangeConfirmPopUp.closeButton",
             tableName: tableName,
-            value: "Close",
+            value: "Cancel",
             comment: "Close button title")
         
     }

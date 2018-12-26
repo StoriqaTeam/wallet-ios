@@ -70,23 +70,23 @@ extension ExchangeConfirmPopUpViewController: ExchangeConfirmPopUpViewInput {
 extension ExchangeConfirmPopUpViewController {
     
     private func configureInterface() {
-        titleLabel.font = Theme.Font.title
+        titleLabel.font = Theme.Font.PopUp.title
+        fromTitle.font = Theme.Font.PopUp.subtitle
+        toTitle.font = Theme.Font.PopUp.subtitle
+        amountTitle.font = Theme.Font.PopUp.subtitle
+        fromLabel.font = Theme.Font.PopUp.text
+        toLabel.font = Theme.Font.PopUp.text
+        amountLabel.font = Theme.Font.PopUp.text
         
-        fromTitle.font = Theme.Font.smallText
-        toTitle.font = Theme.Font.smallText
-        amountTitle.font = Theme.Font.smallText
-        fromLabel.font = Theme.Font.smallText
-        toLabel.font = Theme.Font.smallText
-        amountLabel.font = Theme.Font.smallText
+        titleLabel.textColor = Theme.Color.Text.main
+        fromTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        toTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        amountTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        fromLabel.textColor = Theme.Color.Text.main
+        toLabel.textColor = Theme.Color.Text.main
+        amountLabel.textColor = Theme.Color.Text.main
         
-        fromTitle.textColor = Theme.Color.Text.lightGrey
-        toTitle.textColor = Theme.Color.Text.lightGrey
-        amountTitle.textColor = Theme.Color.Text.lightGrey
-        fromLabel.textColor = Theme.Color.Text.blackMain
-        toLabel.textColor = Theme.Color.Text.blackMain
-        amountLabel.textColor = Theme.Color.Text.blackMain
-        
-        closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+        closeButton.setTitleColor(Theme.Color.Text.main, for: .normal)
     }
     
     private func localizeText() {
