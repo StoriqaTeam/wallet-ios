@@ -106,10 +106,7 @@ extension UIViewController {
         alert.addAction(okAction)
         alert.view.tintColor = Theme.Color.brightSkyBlue
         self.present(alert, animated: true, completion: nil)
-        
     }
-    
-    
 }
 
 // MARK: - Private methods

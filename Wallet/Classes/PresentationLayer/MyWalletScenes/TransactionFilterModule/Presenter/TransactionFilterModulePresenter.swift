@@ -86,7 +86,8 @@ extension TransactionFilterPresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: LocalizedStrings.navigationTitle)
+        view.viewController.navigationItem.largeTitleDisplayMode = .never
+        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationTitle)
     }
     
     private func configureViewWithFilter() {

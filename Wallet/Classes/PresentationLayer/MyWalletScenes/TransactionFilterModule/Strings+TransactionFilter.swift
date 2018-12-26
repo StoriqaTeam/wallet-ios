@@ -16,7 +16,7 @@ extension Strings {
         static let navigationTitle = NSLocalizedString(
             "TransactionFilter.navigationTitle",
             tableName: tableName,
-            value: "Filter",
+            value: "Transaction Filter",
             comment: "Navigation bar title on transaction filter screen")
         static let fromPlaceholder = NSLocalizedString(
             "TransactionFilter.fromPlaceholder",
@@ -43,6 +43,11 @@ extension Strings {
             tableName: tableName,
             value: "DATE",
             comment: "Date label above input fields")
+        static let description = NSLocalizedString(
+            "TransactionFilter.description",
+            tableName: tableName,
+            value: "Select a period",
+            comment: "Screen description above input fields")
     }
     
 }
