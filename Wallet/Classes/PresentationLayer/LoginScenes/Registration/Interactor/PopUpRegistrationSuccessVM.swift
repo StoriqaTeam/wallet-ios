@@ -17,9 +17,16 @@ class PopUpRegistrationSuccessVM: PopUpViewModelProtocol {
     weak var delegate: PopUpRegistrationSuccessVMDelegate?
     
     init(email: String) {
-        apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
+        let attrText = NSMutableAttributedString(string: Localization.registrationMessage,
+                                                 attributes: [.font: Theme.Font.PopUp.subtitle!,
+                                                              .foregroundColor: Theme.Color.Text.main.withAlphaComponent(0.7)])
+        attrText.append(NSAttributedString(string: email,
+                                           attributes: [.font: Theme.Font.smallMediumWeightText!,
+                                                        .foregroundColor: Theme.Color.Text.main]))
+        
+        apperance = PopUpApperance(image: #imageLiteral(resourceName: "mailIcon"),
                                    title: Localization.emailSentTitle,
-                                   text: Localization.registrationMessage + email,
+                                   attributedText: attrText,
                                    actionButtonTitle: Localization.okButton,
                                    hasCloseButton: false)
     }

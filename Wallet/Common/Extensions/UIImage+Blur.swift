@@ -155,8 +155,8 @@ extension UIImage {
 func captureScreen(view: UIView) -> UIImage {
     let image = view.makeSnapshot()
     guard let snapImage = image else { fatalError("Fail to snap image") }
-    let tintColor = UIColor.black.withAlphaComponent(0.2)
-    let bluredImage = snapImage.applyStoriqaBlur(radius: 20,
+    let tintColor = UIColor.black.withAlphaComponent(0.6)
+    let bluredImage = snapImage.applyStoriqaBlur(radius: 30,
                                                  tintColor: tintColor,
                                                  saturationFactor: 1)
     guard let bluredImg = bluredImage else { fatalError("Fail to blur image") }
