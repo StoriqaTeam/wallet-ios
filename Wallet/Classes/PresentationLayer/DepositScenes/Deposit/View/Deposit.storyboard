@@ -222,11 +222,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FfY-Rw-cc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="QBE-Ke-44a">
-                    <connections>
-                        <action selector="shareTapped:" destination="Ppg-vA-m6c" id="eDU-77-0zO"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="QBE-Ke-44a"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="1nu-Ni-XsK">
                     <connections>
                         <action selector="shareLongPressed:" destination="Ppg-vA-m6c" id="J5U-36-nMe"/>
