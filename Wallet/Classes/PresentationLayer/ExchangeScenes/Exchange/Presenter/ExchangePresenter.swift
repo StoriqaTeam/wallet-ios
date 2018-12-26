@@ -50,7 +50,6 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
         interactor.updateState()
     }
     
@@ -298,7 +297,7 @@ extension ExchangePresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
+        view.viewController.setHidableNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
     
     private func getStringFrom(amount: Decimal?, currency: Currency) -> String {

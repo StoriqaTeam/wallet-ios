@@ -11,7 +11,6 @@ import UIKit
 
 protocol EditProfileViewOutput: class {
     func viewIsReady()
-    func viewWillAppear()
     func saveButtonTapped(firstName: String, lastName: String)
     func valuesChanged(firstName: String?, lastName: String?)
 }

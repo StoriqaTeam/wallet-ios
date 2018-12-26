@@ -44,8 +44,6 @@ extension ProfilePresenter: ProfileViewOutput {
         
         view.setPhone(hasPhone: hasPhone, phone: user.phone)
         view.setName(name: name)
-        
-        view.viewController.setWhiteNavigationBarButtons()
     }
     
     func settingsButtonTapped() {
@@ -144,7 +142,7 @@ extension ProfilePresenter {
     
     private func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: "Profile")
+        view.viewController.title = "Profile"
         
         guard let navigationBar = view.viewController.navigationController?.navigationBar else {
             return

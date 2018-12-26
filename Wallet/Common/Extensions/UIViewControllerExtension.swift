@@ -10,35 +10,27 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-//    func setDarkNavigationBarButtons() {
-//        setNavigationBarButtonsColor(.black)
-//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-//    }
-    
-    func setWhiteNavigationBarButtons() {
-        setNavigationBarButtonsColor(.white)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    }
     
     func setNavigationBarAlpha(_ alpha: CGFloat) {
-        guard let navigationBar = navigationController?.navigationBar else {
-            log.warn("navigationBar is nil")
-            return
+        guard let navigationBar = navigationController?.navigationBar,
+            let navLabel = navigationItem.titleView as? UILabel else {
+                log.warn("navigationBar is nil")
+                return
         }
-        let color = navigationBar.tintColor.withAlphaComponent(alpha)
-        setNavigationBarButtonsColor(color)
         
-        if let navLabel = navigationItem.titleView as? UILabel {
-            navLabel.textColor = color
-        }
+        let color = navigationBar.tintColor.withAlphaComponent(alpha)
+        navLabel.textColor = color
     }
     
-    func setDarkNavigationBar(title: String) {
-        setNavigationBar(title: title, color: .black)
-    }
-    
-    func setWhiteNavigationBar(title: String) {
-        setNavigationBar(title: title, color: .white)
+    func setHidableNavigationBar(title: String) {
+        let navLabel = UILabel()
+        navLabel.backgroundColor = .clear
+        navLabel.textColor = Theme.Color.NavigationBar.title
+        navLabel.font = Theme.Font.navigationBarTitle
+        navLabel.text = title
+        navLabel.textAlignment = .center
+        navLabel.sizeToFit()
+        navigationItem.titleView = navLabel
     }
     
     func addHideKeyboardGuesture() {
@@ -109,30 +101,6 @@ extension UIViewController {
     }
 }
 
-// MARK: - Private methods
-
-extension UIViewController {
-    
-    private func setNavigationBarButtonsColor(_ color: UIColor) {
-        navigationController?.navigationBar.barTintColor = color
-        navigationController?.navigationBar.tintColor = color
-    }
-    
-    private func setNavigationBar(title: String, color: UIColor) {
-        let navLabel = UILabel()
-        navLabel.backgroundColor = .clear
-        navLabel.textColor = color
-        navLabel.font = Theme.Font.navigationBarTitle
-        navLabel.text = title
-        navLabel.textAlignment = .center
-        navLabel.sizeToFit()
-        navigationItem.titleView = navLabel
-        
-        setNavigationBarButtonsColor(color)
-    }
-    
-}
-
 extension UINavigationController {
     func configureDefaultNavigationBar() {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -141,9 +109,11 @@ extension UINavigationController {
         navigationBar.backgroundColor = .clear
         navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
         navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
-        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.Color.NavigationBar.title]
+        navigationBar.titleTextAttributes = [.foregroundColor: Theme.Color.NavigationBar.title,
+                                             .font: Theme.Font.navigationBarTitle!]
         navigationBar.barTintColor = Theme.Color.NavigationBar.buttons
         navigationBar.tintColor = Theme.Color.NavigationBar.buttons
         navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem?.title = " "
     }
 }

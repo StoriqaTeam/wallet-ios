@@ -81,10 +81,6 @@ extension AccountsPresenter: AccountsViewOutput {
         interactor.startObservers()
         animator?.delegate = self
     }
-    
-    func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
-    }
 }
 
 
@@ -96,7 +92,7 @@ extension AccountsPresenter: AccountsInteractorOutput {
         if view.viewController.isViewLoaded && view.viewController.view?.window != nil {
             // viewController is visible
             // to prevent changing bar color on other controllers in stack
-            view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
+            view.viewController.title = "Account \(iso)"
         }
     }
     
@@ -185,7 +181,7 @@ extension AccountsPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
         let iso = interactor.getInitialCurrencyISO()
-        view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
+        view.viewController.title = "Account \(iso)"
     }
     
     private func setupAnimatior() {

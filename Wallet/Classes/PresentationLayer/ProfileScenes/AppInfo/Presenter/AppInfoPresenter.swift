@@ -61,6 +61,6 @@ extension AppInfoPresenter: AppInfoModuleInput {
 extension AppInfoPresenter {
     func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: LocalizedStrings.navigationBarTitle)
+        view.viewController.title = LocalizedStrings.navigationBarTitle
     }
 }

@@ -31,6 +31,7 @@ class ApplicationConfigurator: Configurable {
         setInitialVC()
         setGID()
         setupChannel()
+        setApperance()
     }
 }
 
@@ -69,5 +70,18 @@ extension ApplicationConfigurator {
         self.shortPollingTimer.setOutputChannel(shortPollingChannel)
         self.depositShortPollingtimer.setOutputChannel(depositShortPollingChannel)
         self.shortPollingTimer.startPolling()
+    }
+    
+    private func setApperance() {
+        for state: UIControl.State in [.normal, .highlighted, .disabled, .selected, .focused, .application, .reserved] {
+            UIBarButtonItem.appearance().setTitleTextAttributes(
+                [.foregroundColor: UIColor.clear, .font: UIFont.systemFont(ofSize: 0.001)],
+                for: state)
+        }
+        
+        if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
+            statusBar.tintColor = Theme.Color.NavigationBar.statusBar
+            statusBar.setValue(Theme.Color.NavigationBar.statusBar, forKey: "foregroundColor")
+        }
     }
 }

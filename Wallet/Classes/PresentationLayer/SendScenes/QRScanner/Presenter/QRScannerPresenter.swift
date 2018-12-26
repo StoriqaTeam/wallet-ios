@@ -40,10 +40,6 @@ extension QRScannerPresenter: QRScannerViewOutput {
         view.setPreviewLayer(previewLayer)
     }
     
-    func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
-    }
-    
 }
 
 
@@ -104,7 +100,7 @@ extension QRScannerPresenter {
     
     private func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
+        view.viewController.title = LocalizedStrings.navigationBarTitle
     }
     
     private func createCaptureSession() {

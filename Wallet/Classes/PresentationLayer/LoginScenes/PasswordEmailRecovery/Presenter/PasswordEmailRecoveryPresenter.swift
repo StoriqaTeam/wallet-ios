@@ -31,7 +31,6 @@ extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryViewOutput {
 
     func viewIsReady() {
         view.setupInitialState()
-//        view.viewController.setDarkNavigationBarButtons()
         addLoader()
     }
     

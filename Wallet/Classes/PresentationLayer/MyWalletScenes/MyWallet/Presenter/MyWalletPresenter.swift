@@ -75,8 +75,6 @@ extension MyWalletPresenter: MyWalletViewOutput {
     
     
     func navigationBar(_ navigationBar: UINavigationBar) {
-        view.viewController.setWhiteNavigationBarButtons()
-        
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
