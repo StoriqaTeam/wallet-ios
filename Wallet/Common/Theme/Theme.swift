@@ -80,10 +80,10 @@ struct Theme {
             
             struct Details {
                 static let detailBlueGradient = [UIColor(red: 97/255, green: 92/255, blue: 251/255, alpha: 1).cgColor,
-                                                 UIColor.black.cgColor]
+                                                 UIColor.clear.cgColor]
                 
                 static let detailsRedGradient = [UIColor(red: 198/255, green: 86/255, blue: 94/255, alpha: 1).cgColor,
-                                                 UIColor.black.cgColor]
+                                                 UIColor.clear.cgColor]
             }
             
             static let detailsRedGradient = [UIColor(white: 200/255, alpha: 0.24).cgColor,
@@ -131,8 +131,8 @@ struct Theme {
         struct Button {
             /** 16px medium */
             static let buttonTitle = MontserratFont.font(ofSize: 16, weight: .medium)
-            /** 12px medium */
-            static let smallButtonTitle = MontserratFont.font(ofSize: 12, weight: .medium)
+            /** 12px semibold */
+            static let smallButtonTitle = MontserratFont.font(ofSize: 12, weight: .semibold)
             /** 10px regular */
             static let extraSmallButtonTitle = MontserratFont.font(ofSize: 10, weight: .regular)
         }

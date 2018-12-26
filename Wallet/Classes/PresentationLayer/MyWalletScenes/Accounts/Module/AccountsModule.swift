@@ -10,14 +10,12 @@ class AccountsModule {
     
     class func create(app: Application,
                       accountWatcher: CurrentAccountWatcherProtocol,
-                      tabBar: UITabBarController,
                       animator: MyWalletToAccountsAnimator?) -> AccountsModuleInput {
         
         let router = AccountsRouter(app: app)
         let presenter = AccountsPresenter(accountDisplayer: app.accountDisplayer,
                                           transactionsMapper: app.transactionMapper,
                                           animator: animator)
-        presenter.mainTabBar = tabBar
         let interactor = AccountsInteractor(accountLinker: app.accountLinker,
                                             accountWatcher: accountWatcher,
                                             transactionsProvider: app.transactionsProvider)
@@ -26,9 +24,7 @@ class AccountsModule {
         let viewController = accountsVC.instantiateViewController(withIdentifier: "accountsVC") as! AccountsViewController
 
         interactor.output = presenter
-
         viewController.output = presenter
-
         presenter.view = viewController
         presenter.router = router
         presenter.interactor = interactor

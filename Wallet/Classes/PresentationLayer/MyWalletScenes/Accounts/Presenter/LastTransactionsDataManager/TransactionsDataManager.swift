@@ -17,12 +17,15 @@ protocol TransactionsDataManagerDelegate: class {
 class TransactionsDataManager: NSObject {
     
     weak var delegate: TransactionsDataManagerDelegate?
-    private var lastTransactionsTableView: UITableView!
+    private var tableView: UITableView!
     private var transactionsSections = [[TransactionDisplayable]]()
     private let kCellId = "transactionCell"
     private let isHiddenSections: Bool
     private var emptyViewPlaceholder: EmptyView?
     private var isAnimatingApperance: Bool = false
+    private var animationDuration: Double {
+        return Double(tableView.frame.height / tableView.estimatedRowHeight * 0.05 + 0.5)
+    }
     
     init(transactions: [TransactionDisplayable], isHiddenSections: Bool) {
         self.isHiddenSections = isHiddenSections
@@ -32,30 +35,29 @@ class TransactionsDataManager: NSObject {
     }
     
     func setTableView(_ view: UITableView) {
-        lastTransactionsTableView = view
-        lastTransactionsTableView.dataSource = self
-        lastTransactionsTableView.delegate = self
-        lastTransactionsTableView.separatorStyle = .none
-        lastTransactionsTableView.estimatedRowHeight = 70
+        tableView = view
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 70
         registerXib()
     }
     
     func firstUpdateTransactions(_ transactions: [TransactionDisplayable]) {
+        updateTransactions(transactions)
+        
         isAnimatingApperance = true
         
-        let duration = Double(lastTransactionsTableView.frame.height / lastTransactionsTableView.estimatedRowHeight * 0.05 + 0.5)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) { [weak self] in
             self?.isAnimatingApperance = false
         }
         
-        updateTransactions(transactions)
     }
     
     func updateTransactions(_ transactions: [TransactionDisplayable]) {
         if transactions.isEmpty {
             transactionsSections.removeAll()
-            lastTransactionsTableView.reloadData()
+            tableView.reloadData()
             updateEmpty(placeholderImage: UIImage(named: "noTxs")!, placeholderText: "")
             return
         }
@@ -63,25 +65,33 @@ class TransactionsDataManager: NSObject {
         createSections(transactions)
         
         if let _ = emptyViewPlaceholder {
-            lastTransactionsTableView.tableFooterView = nil
-            lastTransactionsTableView.backgroundView = nil
-            lastTransactionsTableView.tableFooterView?.removeFromSuperview()
+            tableView.backgroundView = nil
         }
         
-        UIView.transition(with: lastTransactionsTableView,
-                          duration: 0.2,
-                          options: .transitionCrossDissolve,
-                          animations: { self.lastTransactionsTableView.reloadData() })
-
+        // to prevent double animation when txs update during first table appear
+        
+        let reloadBlock = { [weak self] in
+            guard let tableView = self?.tableView else { return }
+            
+            UIView.transition(with: tableView,
+                              duration: 0.2,
+                              options: .transitionCrossDissolve,
+                              animations: { tableView.reloadData() })
+        }
+        
+        if isAnimatingApperance {
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) { reloadBlock() }
+        } else {
+            reloadBlock()
+        }
     }
     
     func updateEmpty(placeholderImage: UIImage, placeholderText: String) {        
-        emptyViewPlaceholder = EmptyView(frame: lastTransactionsTableView.frame)
+        emptyViewPlaceholder = EmptyView(frame: tableView.frame)
         emptyViewPlaceholder!.setup(image: placeholderImage)
 
-        lastTransactionsTableView.tableFooterView = UIView()
-        lastTransactionsTableView.backgroundView = emptyViewPlaceholder
-        lastTransactionsTableView.reloadData()
+        tableView.backgroundView = emptyViewPlaceholder
+        tableView.reloadData()
     }
 }
 
@@ -106,7 +116,7 @@ extension TransactionsDataManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let mounthTransactions = transactionsSections[indexPath.section]
         let transaction = mounthTransactions[indexPath.row]
-        let cell = lastTransactionsTableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! TransactionTableViewCell
         cell.configureWith(transaction: transaction)
         return cell
     }
@@ -157,7 +167,7 @@ extension TransactionsDataManager: UITableViewDelegate {
 extension TransactionsDataManager {
     private func registerXib() {
         let nib = UINib(nibName: "TransactionCell", bundle: nil)
-        lastTransactionsTableView.register(nib, forCellReuseIdentifier: kCellId)
+        tableView.register(nib, forCellReuseIdentifier: kCellId)
     }
     
     private func createSections(_ txs: [TransactionDisplayable]) {

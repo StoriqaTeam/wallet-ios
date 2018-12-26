@@ -181,7 +181,6 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
         view.setNavigationBarHidden(true)
         router.showAccountsWith(accountWatcher: accountWatcher,
                                 from: view.viewController,
-                                tabBar: mainTabBar,
                                 animator: animator)
     }
     

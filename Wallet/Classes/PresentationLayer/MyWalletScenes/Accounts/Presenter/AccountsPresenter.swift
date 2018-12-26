@@ -15,7 +15,6 @@ class AccountsPresenter {
     weak var output: AccountsModuleOutput?
     var interactor: AccountsInteractorInput!
     var router: AccountsRouterInput!
-    weak var mainTabBar: UITabBarController!
     
     private let accountDisplayer: AccountDisplayerProtocol
     private let transactionsMapper: TransactionMapperProtocol
@@ -49,17 +48,6 @@ extension AccountsPresenter: AccountsViewOutput {
     func configureCollections() {
         let index = interactor.getAccountIndex()
         accountsDataManager.scrollTo(index: index)
-    }
-    
-    func handleCustomButton(type: RouteButtonType) {
-        switch type {
-        case .change:
-            mainTabBar.selectedIndex = 2
-        case .deposit:
-            mainTabBar.selectedIndex = 3
-        case .send:
-            mainTabBar.selectedIndex = 1
-        }
     }
     
     func transactionTableView(_ tableView: UITableView) {
@@ -114,6 +102,7 @@ extension AccountsPresenter: AccountsInteractorOutput {
     
     func transactionsDidChange(_ txs: [Transaction]) {
         guard didAppear else { return }
+        view.setViewAllButtonHidden(txs.isEmpty)
         
         getDisplayable(from: txs, completion: { [weak self] (displayable) in
             self?.transactionDataManager.updateTransactions(displayable)
@@ -152,6 +141,8 @@ extension AccountsPresenter: MyWalletToAccountsAnimatorDelegate {
         didAppear = true
         
         let transactions = interactor.getTransactionForCurrentAccount()
+        view.setViewAllButtonHidden(transactions.isEmpty)
+        
         getDisplayable(from: transactions, completion: { [weak self] (displayable) in
             self?.transactionDataManager.firstUpdateTransactions(displayable)
         })

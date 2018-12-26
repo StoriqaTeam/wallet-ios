@@ -18,12 +18,10 @@ class AccountsViewController: UIViewController {
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
     @IBOutlet private var lastTransactionsTableView: UITableView!
-    @IBOutlet private var changeButton: RouteButton!
-    @IBOutlet private var depositButton: RouteButton!
-    @IBOutlet private var sendButton: RouteButton!
     @IBOutlet private var collectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var lastTransactionsTitle: UILabel!
-    @IBOutlet private var viewAllButton: UIButton!
+    @IBOutlet private var viewAllButton: LightButton!
+    @IBOutlet private var viewAllHeightConstraint: NSLayoutConstraint!
     
 
     // MARK: Life cycle
@@ -47,7 +45,6 @@ class AccountsViewController: UIViewController {
         
         UIView.animate(withDuration: 0.25, delay: 0.2, options: [], animations: {
             self.lastTransactionsTitle.alpha = 1
-            self.viewAllButton.alpha = 1
         }, completion: nil)
     }
     
@@ -73,6 +70,9 @@ extension AccountsViewController: AccountsViewInput {
         UIView.animate(withDuration: 0.25, animations: {
             self.accountsCollectionView.alpha = 1
         }, completion: {_ in
+            UIView.animate(withDuration: 0.25) {
+                self.viewAllButton.alpha = 1
+            }
             completion()
         })
     }
@@ -86,17 +86,18 @@ extension AccountsViewController: AccountsViewInput {
     }
 
     func setupInitialState(numberOfPages: Int) {
-        configureTableView()
-        configureButtons()
         configureAppearence()
-        accountsPageControl.isUserInteractionEnabled = false
         accountsPageControl.numberOfPages = numberOfPages
-        lastTransactionsTitle.text = LocalizedStrings.lastTransactionsTitle
-        viewAllButton.setTitle(LocalizedStrings.viewAllButton, for: .normal)
     }
     
     func setCollectionHeight(_ height: CGFloat) {
         collectionHeightConstraint.constant = height
+    }
+    
+    func setViewAllButtonHidden(_ hidden: Bool) {
+        viewAllButton.isHidden = hidden
+        viewAllHeightConstraint.constant = 0
+        viewAllHeightConstraint.isActive = hidden
     }
 }
 
@@ -104,31 +105,24 @@ extension AccountsViewController: AccountsViewInput {
 // MARK: - Private methods
 
 extension AccountsViewController {
-    private func configureButtons() {
-        changeButton.configure(.change)
-        changeButton.delegate = self
-        sendButton.configure(.send)
-        sendButton.delegate = self
-        depositButton.configure(.deposit)
-        depositButton.delegate = self
-    }
-    
-    private func configureTableView() {
-        lastTransactionsTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        lastTransactionsTableView.tableFooterView = UIView()
-        lastTransactionsTableView.backgroundColor = Theme.Color.backgroundColor
-    }
     
     private func configureAppearence() {
-        view.backgroundColor = .black
-    }
-}
-
-
-// MARK: - RouteButtonDelegate
-
-extension AccountsViewController: RouteButtonDelegate {
-    func didTap(type: RouteButtonType) {
-       output.handleCustomButton(type: type)
+        view.backgroundColor = Theme.Color.backgroundColor
+        lastTransactionsTitle.font = Theme.Font.smallMediumWeightText
+        lastTransactionsTitle.textColor = Theme.Color.Text.lightGrey
+        lastTransactionsTitle.text = LocalizedStrings.lastTransactionsTitle
+        accountsPageControl.isUserInteractionEnabled = false
+        
+        viewAllButton.title = LocalizedStrings.viewAllButton
+        viewAllButton.titleLabel?.font = Theme.Font.Button.smallButtonTitle
+        
+        let gradientHeight: CGFloat = 12
+        viewAllButton.superview?.backgroundColor = Theme.Color.backgroundColor
+        viewAllButton.superview?.gradientView(
+            colors: [UIColor.clear.cgColor, Theme.Color.backgroundColor.cgColor],
+            frame: CGRect(x: 0, y: -gradientHeight, width: Constants.Sizes.screenWidth, height: gradientHeight),
+            startPoint: CGPoint(x: 0.5, y: 0.0),
+            endPoint: CGPoint(x: 0.5, y: 1.0))
+        lastTransactionsTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: gradientHeight, right: 0)
     }
 }

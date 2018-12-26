@@ -34,7 +34,7 @@ extension Strings {
         static let viewAllButton = NSLocalizedString(
             "Accounts.viewAllButton",
             tableName: tableName,
-            value: "View all",
+            value: "View all transactions",
             comment: "View all button")
     }
 }
