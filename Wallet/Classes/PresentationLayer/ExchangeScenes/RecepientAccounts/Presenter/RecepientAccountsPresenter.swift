@@ -35,10 +35,6 @@ extension RecepientAccountsPresenter: RecepientAccountsViewOutput {
         configureNavigationBar()
     }
     
-    func viewWillAppear() {
-//        view.viewController.setDarkNavigationBarButtons()
-    }
-    
     func accountsCollectionView(_ collectionView: UICollectionView) {
         collectionView.collectionViewLayout = collectionFlowLayout
         
@@ -95,7 +91,7 @@ extension RecepientAccountsPresenter {
     
     private func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: "Choose account")
+        view.viewController.title = "Choose account"
     }
     
 }
