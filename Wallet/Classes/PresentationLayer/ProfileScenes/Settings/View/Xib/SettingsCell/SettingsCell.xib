@@ -24,9 +24,19 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQ2-U1-Fq8" customClass="GradientSeparatorView" customModule="Wallet" customModuleProvider="target">
+                        <rect key="frame" x="20" y="55.5" width="321" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="PUM-Ao-jx5"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="sQ2-U1-Fq8" secondAttribute="trailing" id="GGJ-r6-tAc"/>
+                    <constraint firstAttribute="bottom" secondItem="sQ2-U1-Fq8" secondAttribute="bottom" id="bsP-qr-Di5"/>
                     <constraint firstItem="j7b-wm-H9B" firstAttribute="centerY" secondItem="vTr-hK-fuE" secondAttribute="centerY" id="gEA-Xb-DZx"/>
+                    <constraint firstItem="sQ2-U1-Fq8" firstAttribute="leading" secondItem="j7b-wm-H9B" secondAttribute="leading" id="hY7-Vu-xfH"/>
                     <constraint firstItem="j7b-wm-H9B" firstAttribute="leading" secondItem="vTr-hK-fuE" secondAttribute="leading" constant="20" id="otQ-SW-skF"/>
                 </constraints>
             </tableViewCellContentView>

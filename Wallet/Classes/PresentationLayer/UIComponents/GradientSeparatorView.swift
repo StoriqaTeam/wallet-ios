@@ -23,11 +23,13 @@ class GradientSeparatorView: UIView {
     private func setGradient() {
         backgroundColor = UIColor.clear
         var frame = self.bounds
-        frame.size.height = 1.4
+        frame.size.height = 1
         
-        gradientView(colors: Theme.Color.Gradient.detailsRedGradient,
+        gradientView(colors: Theme.Color.Gradient.separator,
                      frame: frame,
                      startPoint: CGPoint(x: 0.0, y: 0.5),
-                     endPoint: CGPoint(x: 1.0, y: 0.5))
+                     endPoint: CGPoint(x: 0.75, y: 0.5))
+        
+        alpha = 0.24
     }
 }

@@ -29,7 +29,7 @@ struct Theme {
             static let enabledBackground = mainOrange
             static let disabledBackground = UIColor(red: 83/255, green: 60/255, blue: 31/255, alpha: 1)
             static let border = UIColor(red: 255/255, green: 180/255, blue: 62/255, alpha: 0.4)
-            static let red = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
+            static let red = UIColor(red: 245/255, green: 81/255, blue: 95/255, alpha: 1)
         }
         
         struct TabBar {
@@ -87,7 +87,7 @@ struct Theme {
                 
             }
             
-            static let detailsRedGradient = [UIColor(white: 200/255, alpha: 0.24).cgColor,
+            static let separator = [UIColor(white: 200/255, alpha: 1).cgColor,
                                              UIColor(white: 1, alpha: 0).cgColor]
             
             static let headerGradient = [UIColor(red: 65/255, green: 183/255, blue: 244/255, alpha: 1).cgColor,
