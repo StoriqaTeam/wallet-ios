@@ -20,12 +20,15 @@ class DepositViewController: UIViewController {
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
     @IBOutlet private var addressTitleLabel: UILabel!
-    @IBOutlet private var qrCodeTitleLabel: UILabel!
     @IBOutlet private var addressLabel: UILabel!
     @IBOutlet private var qrCodeImageView: UIImageView!
     @IBOutlet private var copyButton: UIButton!
-    @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var shareDescriptionLabel: UILabel!
+    @IBOutlet weak var shareTapView: UIView!
+    
+    @IBOutlet private var addressContainerView: UIView!
+    @IBOutlet weak var qrCodeContainerView: UIView!
     
     // MARK: Life cycle
 
@@ -56,12 +59,15 @@ class DepositViewController: UIViewController {
 
     // MARK: IBActions
     
-    @IBAction func copyButtonPressed(_ sender: UIButton) {
-        output.copyButtonPressed()
-    }
-    
-    @IBAction func shareButtonPressed(_ sender: UIButton) {
-        output.shareButtonPressed()
+    @IBAction func shareLongPressed(_ sender: UILongPressGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            shareTapView.backgroundColor = Theme.Color.Text.lightGrey
+            shareTapView.alpha = 0.3
+        default:
+            shareTapView.backgroundColor = .clear
+            output.shareButtonPressed()
+        }
     }
 }
 
@@ -119,24 +125,31 @@ extension DepositViewController {
     private func configureInterface() {
         scrollView.delegate = self
         
-        addressTitleLabel.font = Theme.Font.caption
-        qrCodeTitleLabel.font = Theme.Font.caption
-        addressLabel.font = Theme.Font.generalText
+        view.backgroundColor = Theme.Color.backgroundColor
+        scrollView.backgroundColor = Theme.Color.backgroundColor
+        addressContainerView.backgroundColor = Theme.Color.backgroundColor
         
-        addressTitleLabel.textColor = Theme.Color.Text.captionGrey
-        qrCodeTitleLabel.textColor = Theme.Color.Text.captionGrey
+        addressTitleLabel.font = Theme.Font.smallMediumWeightText
+        addressTitleLabel.textColor = Theme.Color.Text.lightGrey
+    
         
+        addressLabel.font = Theme.Font.input
+        addressLabel.tintColor = .white
+        
+        copyButton.setImage(UIImage(named: "copyIcon"), for: .normal)
+        copyButton.tintColor = Theme.Color.Text.lightGrey
         copyButton.titleLabel?.font = Theme.Font.smallText
         copyButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
-        shareButton.titleLabel?.font = Theme.Font.smallText
-        shareButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+        
+        shareDescriptionLabel.font = Theme.Font.smallMediumWeightText
+        shareDescriptionLabel.tintColor = Theme.Color.Text.lightGrey
+        
+        qrCodeContainerView.roundCorners(radius: 9)
     }
     
     private func localizeText() {
         addressTitleLabel.text = LocalizedStrings.addressTitle
-        qrCodeTitleLabel.text = LocalizedStrings.qrCodeTitle
-        copyButton.setTitle(LocalizedStrings.copyButton, for: .normal)
-        shareButton.setTitle(LocalizedStrings.shareButton, for: .normal)
+        shareDescriptionLabel.text = LocalizedStrings.shareButton
     }
     
     private func setNavBarTransparency() {

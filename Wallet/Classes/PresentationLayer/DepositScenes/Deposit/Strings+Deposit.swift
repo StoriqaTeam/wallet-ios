@@ -19,7 +19,7 @@ extension Strings {
         static let addressTitle = NSLocalizedString(
             "Deposit.addressTitle",
             tableName: "Deposit",
-            value: "ADDRESS",
+            value: "Your address",
             comment: "Address title")
 
         static let copyButton = NSLocalizedString(
@@ -37,7 +37,7 @@ extension Strings {
         static let shareButton = NSLocalizedString(
             "Deposit.shareButton",
             tableName: "Deposit",
-            value: "Share",
+            value: "Tap & hold to share",
             comment: "Share button title")
         
         static let addressCopiedMessage = NSLocalizedString(
