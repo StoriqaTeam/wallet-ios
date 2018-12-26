@@ -15,7 +15,6 @@ class EditProfileViewController: UIViewController {
 
     var output: EditProfileViewOutput!
 
-    @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var firstNameTextField: UITextField!
     @IBOutlet private var lastNameTextField: UITextField!
     @IBOutlet private var saveButton: UIButton!
@@ -85,22 +84,14 @@ extension EditProfileViewController: UITextFieldDelegate {
 extension EditProfileViewController {
     
     private func configureInterface() {
-        titleLabel.font = Theme.Font.caption
-        firstNameTextField.font = Theme.Font.generalText
-        lastNameTextField.font = Theme.Font.generalText
-        
-        titleLabel.textColor = Theme.Color.Text.captionGrey
-        firstNameTextField.textColor = Theme.Color.Text.blackMain
-        lastNameTextField.textColor = Theme.Color.Text.blackMain
-        
+        view.backgroundColor = Theme.Color.backgroundColor
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
     }
     
     private func localizeText() {
-        titleLabel.text = LocalizedStrings.personalInfoTitle
-        firstNameTextField.text = LocalizedStrings.firstNamePlaceholder
-        lastNameTextField.text = LocalizedStrings.lastNamePlaceholder
+        firstNameTextField.placeholder = LocalizedStrings.firstNamePlaceholder
+        lastNameTextField.placeholder = LocalizedStrings.lastNamePlaceholder
         saveButton.setTitle(LocalizedStrings.saveButton, for: .normal)
     }
     
