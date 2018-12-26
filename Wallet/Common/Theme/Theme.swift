@@ -157,7 +157,7 @@ struct Theme {
             /** 14px medium */
             static let medium = MontserratFont.font(ofSize: 14.0, weight: .medium)
             
-            /** 12px regular */
+            /** 14px regular */
             static let regular = MontserratFont.font(ofSize: 14, weight: .regular)
         }
         
