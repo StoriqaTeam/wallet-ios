@@ -74,7 +74,7 @@ extension ApplicationConfigurator {
     
     private func setApperance() {
         for state: UIControl.State in [.normal, .highlighted, .disabled, .selected, .focused, .application, .reserved] {
-            UIBarButtonItem.appearance().setTitleTextAttributes(
+            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).setTitleTextAttributes(
                 [.foregroundColor: UIColor.clear, .font: UIFont.systemFont(ofSize: 0.001)],
                 for: state)
         }

@@ -51,10 +51,13 @@
                                                         <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZX-bP-quV">
-                                                        <rect key="frame" x="305" y="22.5" width="30" height="28"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <state key="normal">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZX-bP-quV">
+                                                        <rect key="frame" x="295" y="14.5" width="40" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="40" id="ZfX-wP-1Ld"/>
+                                                            <constraint firstAttribute="height" constant="40" id="kBF-5x-2Ql"/>
+                                                        </constraints>
+                                                        <state key="normal" image="copyIcon">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -75,12 +78,12 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="PZX-bP-quV" firstAttribute="centerY" secondItem="Dze-XN-re0" secondAttribute="centerY" constant="2" id="3wc-Tw-z4z"/>
-                                                    <constraint firstAttribute="trailing" secondItem="kBn-b5-fNn" secondAttribute="trailing" constant="40" id="57l-TX-Rjm"/>
+                                                    <constraint firstItem="PZX-bP-quV" firstAttribute="centerY" secondItem="Dze-XN-re0" secondAttribute="centerY" id="3wc-Tw-z4z"/>
                                                     <constraint firstAttribute="bottom" secondItem="kBn-b5-fNn" secondAttribute="bottom" id="LHf-Hm-FX2"/>
                                                     <constraint firstItem="Dze-XN-re0" firstAttribute="top" secondItem="D8K-sU-fgF" secondAttribute="bottom" constant="8" id="RjF-3J-Nru"/>
+                                                    <constraint firstItem="PZX-bP-quV" firstAttribute="leading" secondItem="Dze-XN-re0" secondAttribute="trailing" id="T1N-KI-5Kk"/>
                                                     <constraint firstItem="D8K-sU-fgF" firstAttribute="top" secondItem="Lwe-nA-DeR" secondAttribute="top" id="VaI-Ni-Es6"/>
                                                     <constraint firstAttribute="trailing" secondItem="PZX-bP-quV" secondAttribute="trailing" id="Vka-wR-bLe"/>
                                                     <constraint firstItem="kBn-b5-fNn" firstAttribute="leading" secondItem="Lwe-nA-DeR" secondAttribute="leading" id="Ynd-Zf-oAi"/>
@@ -234,6 +237,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="copyIcon" width="16" height="18"/>
         <image name="depositTab" width="12" height="16"/>
     </resources>
 </document>
