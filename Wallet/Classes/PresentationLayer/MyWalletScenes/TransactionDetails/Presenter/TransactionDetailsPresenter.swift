@@ -77,7 +77,7 @@ extension TransactionDetailsPresenter: TransactionDetailsModuleInput {
 extension TransactionDetailsPresenter {
     private func configureNavigationBar(transaction: TransactionDisplayable) {
         let title = transaction.direction == .receive ? LocalizedStrings.navigationBarTitleDeposit : LocalizedStrings.navigationBarTitleSent
-        view.viewController.setWhiteNavigationBar(title: title)
+        view.viewController.title = title
         view.viewController.navigationItem.largeTitleDisplayMode = .never
     }
     

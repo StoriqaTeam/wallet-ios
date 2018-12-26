@@ -27,16 +27,19 @@ class ExchangeViewController: UIViewController {
     @IBOutlet private var amountTextField: UITextField!
     @IBOutlet private var rateLabel: UILabel!
     @IBOutlet private var rateTimerLabel: UILabel!
-    @IBOutlet private var rateBackgroundView: UIView!
-    @IBOutlet private var subtotalTitleLabel: UILabel!
-    @IBOutlet private var subtotalLabel: UILabel!
+    @IBOutlet private var giveTitleLabel: UILabel!
+    @IBOutlet private var giveLabel: UILabel!
+    @IBOutlet private var getTitleLabel: UILabel!
+    @IBOutlet private var getLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var exchangeButton: DefaultButton!
+    @IBOutlet private var dataContainerBackground: UIView!
     
     // MARK: Variables
 
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
+    private var shouldAnimateLayuot = false
     
     
     // MARK: Life cycle
@@ -52,6 +55,11 @@ class ExchangeViewController: UIViewController {
         output.configureCollections()
         output.viewWillAppear()
         setNavBarTransparency()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        shouldAnimateLayuot = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -98,48 +106,47 @@ extension ExchangeViewController: ExchangeViewInput {
         accountsPageControl.numberOfPages = count
     }
     
-    func setSubtotal(_ subtotal: String) {
-        subtotalLabel.text = subtotal
+    func setGive(_ amount: String) {
+        UIView.transition(with: giveLabel, duration: 0.2, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
+            self.giveLabel.text = amount
+        })
+    }
+    
+    func setGet(_ amount: String) {
+        UIView.transition(with: getLabel, duration: 0.2, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
+            self.getLabel.text = amount
+        })
     }
     
     func setErrorHidden(_ hidden: Bool) {
         if hidden {
-            UIView.animate(withDuration: 0.25, animations: {
-                self.errorLabel.alpha = 0
-            }, completion: { finished in
-                if finished {
-                    self.errorLabel.isHidden = true
-                    self.errorLabel.text = ""
-                    self.view.layoutSubviews()
-                }
-            })
+            self.errorLabel.alpha = 0
+            self.errorLabel.text = ""
         } else {
-            self.errorLabel.isHidden = false
+            self.errorLabel.alpha = 1
             self.errorLabel.text = LocalizedStrings.notEnoughFundsErrorLabel
-            
-            UIView.animate(withDuration: 0.25, animations: {
-                self.view.layoutSubviews()
-                self.errorLabel.alpha = 1
-            }, completion: { finished in
-                if finished {
-                    self.errorLabel.isHidden = false
-                }
-            })
+        }
+        
+        if shouldAnimateLayuot {
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            self.view.layoutIfNeeded()
         }
     }
     
-    func showEchangeRateError(message: String) {
-        self.errorLabel.isHidden = false
+    func showExchangeRateError(message: String) {
+        self.errorLabel.alpha = 1
         self.errorLabel.text = message
         
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.layoutSubviews()
-            self.errorLabel.alpha = 1
-        }, completion: { finished in
-            if finished {
-                self.errorLabel.isHidden = false
+        if shouldAnimateLayuot {
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
             }
-        })
+        } else {
+            self.view.layoutIfNeeded()
+        }
     }
     
     func setNewPage(_ index: Int) {
@@ -167,9 +174,10 @@ extension ExchangeViewController: ExchangeViewInput {
     }
     
     func updateRateLabel(text: String) {
-        rateLabel.text = text
+        UIView.transition(with: rateLabel, duration: 0.2, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
+            self.rateLabel.text = text
+        })
     }
-    
 }
 
 
@@ -228,41 +236,46 @@ extension ExchangeViewController {
     }
     
     private func configInterface() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        dataContainerBackground.backgroundColor = Theme.Color.Text.main.withAlphaComponent(0.05)
+
         scrollView.delegate = self
         amountTextField.delegate = self
         
-        recepientAccountTitleLabel.font = Theme.Font.caption
-        amountTitleLabel.font = Theme.Font.caption
-        subtotalTitleLabel.font = Theme.Font.caption
-        
+        recepientAccountTitleLabel.font = Theme.Font.smallMediumWeightText
+        amountTitleLabel.font = Theme.Font.smallMediumWeightText
+        giveTitleLabel.font = Theme.Font.smallMediumWeightText
+        getTitleLabel.font = Theme.Font.smallMediumWeightText
+        recepientBalanceLabel.font = Theme.Font.smallMediumWeightText
         errorLabel.font = Theme.Font.smallText
-        recepientBalanceLabel.font = Theme.Font.smallText
-        rateLabel.font = Theme.Font.smallText
-        rateTimerLabel.font = Theme.Font.smallMediumWeightText
+        rateLabel.font = Theme.Font.Label.medium
+        rateTimerLabel.font = Theme.Font.Label.medium
+        recepientAccountLabel.font = Theme.Font.input
+        amountTextField.font = Theme.Font.input
+        giveLabel.font = Theme.Font.input
+        getLabel.font = Theme.Font.input
         
-        recepientAccountLabel.font = Theme.Font.generalText
-        amountTextField.font = Theme.Font.generalText
-        
-        recepientAccountTitleLabel.textColor = Theme.Color.bluegrey
-        amountTitleLabel.textColor = Theme.Color.bluegrey
-        subtotalTitleLabel.textColor = Theme.Color.bluegrey
-        
-        recepientBalanceLabel.textColor = Theme.Color.Text.captionGrey
-        rateLabel.textColor = Theme.Color.Text.captionGrey
-        rateTimerLabel.textColor = Theme.Color.Text.captionGrey
-        
+        recepientAccountTitleLabel.textColor = Theme.Color.Text.lightGrey
+        amountTitleLabel.textColor = Theme.Color.Text.lightGrey
+        giveTitleLabel.textColor = Theme.Color.Text.lightGrey
+        getTitleLabel.textColor = Theme.Color.Text.lightGrey
+        recepientBalanceLabel.textColor = Theme.Color.Text.lightGrey.withAlphaComponent(0.8)
+        rateLabel.textColor = Theme.Color.mainOrange
         errorLabel.textColor = Theme.Color.Text.errorRed
+        rateTimerLabel.textColor = Theme.Color.Text.main
+        recepientAccountLabel.textColor = Theme.Color.Text.main
+        giveLabel.textColor = Theme.Color.Text.main
+        getLabel.textColor = Theme.Color.Text.main
         
         errorLabel.text = ""
-        errorLabel.isHidden = true
+        errorLabel.alpha = 0
         exchangeButton.isEnabled = false
-        
-        rateBackgroundView.roundCorners(radius: 10)
     }
     
     private func localizeText() {
         recepientAccountTitleLabel.text = LocalizedStrings.toAccountTitle
-        subtotalTitleLabel.text = LocalizedStrings.subtotalTitle
+        giveTitleLabel.text = LocalizedStrings.giveTitle
+        getTitleLabel.text = LocalizedStrings.getTitle
         amountTitleLabel.text = LocalizedStrings.amountTitle
         amountTextField.placeholder = LocalizedStrings.amountPlaceholder
         exchangeButton.setTitle(LocalizedStrings.exchangeButton, for: .normal)

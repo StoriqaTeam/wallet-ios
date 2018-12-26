@@ -31,7 +31,7 @@ class RecepientAccountsViewController: UIViewController {
 extension RecepientAccountsViewController: RecepientAccountsViewInput {
     
     func setupInitialState() {
-
+        view.backgroundColor = Theme.Color.backgroundColor
     }
 
 }

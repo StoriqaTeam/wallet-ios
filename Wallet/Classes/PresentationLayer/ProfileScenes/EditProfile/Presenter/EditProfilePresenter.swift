@@ -38,10 +38,6 @@ extension EditProfilePresenter: EditProfileViewOutput {
         interactor.updateUser(firstName: firstName, lastName: lastName)
     }
     
-    func viewWillAppear() {
-//        view.viewController.setDarkNavigationBarButtons()
-    }
-    
     func valuesChanged(firstName: String?, lastName: String?) {
         guard let firstName = firstName,
             let lastName = lastName else {

@@ -16,10 +16,11 @@ protocol ExchangeViewInput: class, Presentable {
     func setRecepientBalance(_ balance: String)
     func setAmount(_ amount: String)
     func setNewPage(_ index: Int)
-    func setSubtotal(_ subtotal: String)
+    func setGive(_ amount: String)
+    func setGet(_ amount: String)
     func setErrorHidden(_ hidden: Bool)
     func setButtonEnabled(_ enabled: Bool)
     func updateExpiredTimeLabel(_ time: String)
     func updateRateLabel(text: String)
-    func showEchangeRateError(message: String)
+    func showExchangeRateError(message: String)
 }

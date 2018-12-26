@@ -19,19 +19,25 @@ extension Strings {
         static let amountTitle = NSLocalizedString(
             "Exchange.amountTitle",
             tableName: "Exchange",
-            value: "AMOUNT",
+            value: "Amount",
             comment: "Amount input title")
         
         static let toAccountTitle = NSLocalizedString(
             "Exchange.toAccountTitle",
             tableName: "Exchange",
-            value: "TO ACCOUNT",
+            value: "To account",
             comment: "To account input title")
         
-        static let subtotalTitle = NSLocalizedString(
-            "Exchange.subtotalTitle",
+        static let giveTitle = NSLocalizedString(
+            "Exchange.giveTitle",
             tableName: "Exchange",
-            value: "SUBTOTAL TO SEND",
+            value: "You'll give",
+            comment: "Subtotal title input title")
+        
+        static let getTitle = NSLocalizedString(
+            "Exchange.getTitle",
+            tableName: "Exchange",
+            value: "You'll get",
             comment: "Subtotal title input title")
         
         static let amountPlaceholder = NSLocalizedString(

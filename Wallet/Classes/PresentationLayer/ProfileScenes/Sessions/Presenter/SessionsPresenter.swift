@@ -84,6 +84,6 @@ extension SessionsPresenter: SessionsDataManagerDelegate {
 extension SessionsPresenter {
     func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: "Sessions")
+        view.viewController.title = "Sessions"
     }
 }

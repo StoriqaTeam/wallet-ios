@@ -27,11 +27,6 @@ class EditProfileViewController: UIViewController {
         super.viewDidLoad()
         output.viewIsReady()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        output.viewWillAppear()
-    }
 
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         guard let firstName = firstNameTextField.text,

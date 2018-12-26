@@ -50,7 +50,6 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
         interactor.updateState()
     }
     
@@ -175,7 +174,7 @@ extension ExchangePresenter: ExchangeInteractorOutput {
     }
     
     func exchangeRateError(_ error: Error) {
-        view.showEchangeRateError(message: error.localizedDescription)
+        view.showExchangeRateError(message: error.localizedDescription)
     }
     
     func updateAmount(_ amount: Decimal, currency: Currency) {
@@ -189,9 +188,14 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setAmount(amountString)
     }
     
-    func updateTotal(_ total: Decimal, currency: Currency) {
+    func updateGet(_ amount: Decimal, currency: Currency) {
+        let amountString = currencyFormatter.getStringFrom(amount: amount, currency: currency)
+        view.setGet(amountString)
+    }
+    
+    func updateGive(_ total: Decimal, currency: Currency) {
         let totalAmountString = currencyFormatter.getStringFrom(amount: total, currency: currency)
-        view.setSubtotal(totalAmountString)
+        view.setGive(totalAmountString)
     }
     
     func updateIsEnoughFunds(_ enough: Bool) {
@@ -293,7 +297,7 @@ extension ExchangePresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
+        view.viewController.setHidableNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
     
     private func getStringFrom(amount: Decimal?, currency: Currency) -> String {

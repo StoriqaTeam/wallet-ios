@@ -52,7 +52,6 @@ extension SendPresenter: SendViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
         interactor.updateState(receiverAddress: address)
     }
     
@@ -291,7 +290,7 @@ extension SendPresenter: PopUpSendConfirmSuccessVMDelegate {
 extension SendPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.screenTitle)
+        view.viewController.setHidableNavigationBar(title: LocalizedStrings.screenTitle)
     }
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {

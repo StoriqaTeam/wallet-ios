@@ -41,7 +41,6 @@ class AccountsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.configureCollections()
-        output.viewWillAppear()
         
         UIView.animate(withDuration: 0.25, delay: 0.2, options: [], animations: {
             self.lastTransactionsTitle.alpha = 1
@@ -116,7 +115,7 @@ extension AccountsViewController {
         viewAllButton.title = LocalizedStrings.viewAllButton
         viewAllButton.titleLabel?.font = Theme.Font.Button.smallButtonTitle
         
-        let gradientHeight: CGFloat = 12
+        let gradientHeight: CGFloat = 20
         viewAllButton.superview?.backgroundColor = Theme.Color.backgroundColor
         viewAllButton.superview?.gradientView(
             colors: [UIColor.clear.cgColor, Theme.Color.backgroundColor.cgColor],

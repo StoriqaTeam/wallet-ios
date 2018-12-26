@@ -76,7 +76,6 @@ extension DepositPresenter: DepositViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
         depositShortPollingTimer.startPolling()
     }
     
@@ -144,6 +143,6 @@ extension DepositPresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
+        view.viewController.setHidableNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
 }

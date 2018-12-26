@@ -11,6 +11,5 @@ import UIKit
 
 protocol RecepientAccountsViewOutput: class {
     func viewIsReady()
-    func viewWillAppear()
     func accountsCollectionView(_ collectionView: UICollectionView)
 }

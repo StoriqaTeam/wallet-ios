@@ -15,5 +15,4 @@ protocol AccountsViewOutput: class {
     func viewIsReady()
     func configureCollections()
     func viewAllPressed()
-    func viewWillAppear()
 }

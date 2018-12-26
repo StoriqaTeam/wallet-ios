@@ -60,7 +60,6 @@ extension TransactionsPresenter: TransactionsViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
         let transactions = interactor.getTransactions()
         let displayable = filteredDispayable(transactions)
         transactionDataManager.updateTransactions(displayable)
@@ -114,7 +113,7 @@ extension TransactionsPresenter: TransactionsDataManagerDelegate {
 extension TransactionsPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
+        view.viewController.title = LocalizedStrings.navigationBarTitle
     }
     
     func filteredDispayable(_ txs: [Transaction]) -> [TransactionDisplayable] {

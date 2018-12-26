@@ -92,7 +92,7 @@ extension EmailConfirmPresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: LocalizedString.navigationTitle)
+        view.viewController.title = LocalizedString.navigationTitle
     }
     
     private func confirmEmail() {

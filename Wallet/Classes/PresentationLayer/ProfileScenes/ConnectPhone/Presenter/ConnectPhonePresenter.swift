@@ -45,10 +45,6 @@ extension ConnectPhonePresenter: ConnectPhoneViewOutput {
         addLoader()
     }
     
-    func viewWillAppear() {
-//        view.viewController.setDarkNavigationBarButtons()
-    }
-    
     func phoneChanged(_ phone: String) {
         view.setConnectButtonEnabled(phone.isValidPhone(hasPlusPrefix: true))
     }
@@ -99,7 +95,7 @@ extension ConnectPhonePresenter: ConnectPhoneModuleInput {
 extension ConnectPhonePresenter {
     
     private func configureNavigationBar(title: String) {
-        view.viewController.setDarkNavigationBar(title: title)
+        view.viewController.title = title
         view.viewController.navigationItem.largeTitleDisplayMode = .never
     }
     
