@@ -14,7 +14,7 @@ protocol PopUpPasswordEmailRecoverySuccessVMDelegate: class {
 
 class PopUpPasswordEmailRecoverySuccessVM: PopUpViewModelProtocol {
     weak var delegate: PopUpPasswordEmailRecoverySuccessVMDelegate?
-    var apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
+    var apperance = PopUpApperance(image: #imageLiteral(resourceName: "mailIcon"),
                                    title: Localization.emailSentTitle,
                                    text: Localization.passwordEmailRecoveryMessage,
                                    actionButtonTitle: Localization.okButton,

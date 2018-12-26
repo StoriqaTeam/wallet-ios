@@ -12,7 +12,7 @@ class PopUpDeviceRegisterEmailSentVM: PopUpViewModelProtocol {
     var apperance: PopUpApperance
     
     init() {
-        apperance = PopUpApperance(image: #imageLiteral(resourceName: "successIcon"),
+        apperance = PopUpApperance(image: #imageLiteral(resourceName: "mailIcon"),
                                    title: Localization.emailSentTitle,
                                    text: Localization.registerDeviceEmailMessage,
                                    actionButtonTitle: Localization.okButton,
