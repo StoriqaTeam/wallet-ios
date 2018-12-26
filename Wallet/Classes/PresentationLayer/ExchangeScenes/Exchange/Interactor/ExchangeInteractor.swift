@@ -146,12 +146,13 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         
         updateRecepientAccount()
         updateAmount()
+        updateGet()
         updateTotal()
     }
     
     func setAmount(_ amount: Decimal) {
         exchangeProviderBuilder.set(cryptoAmount: amount)
-        
+        updateGet()
         updateTotal()
     }
     
@@ -164,6 +165,8 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         exchangeProviderBuilder.set(account: account)
         
         updateRecepientAccount()
+        updateGet()
+        updateGive()
         updateAmount()
         updateTotal()
     }
@@ -287,6 +290,22 @@ extension ExchangeInteractor {
         output.updateAmount(amount, currency: currency)
     }
     
+    private func updateGet() {
+        guard let recepientAccount = exchangeProvider.recepientAccount else {
+            return
+        }
+        
+        let amount = exchangeProvider.amount
+        let currency = recepientAccount.currency
+        output.updateGet(amount, currency: currency)
+    }
+    
+    private func updateGive() {
+        let currency = accountWatcher.getAccount().currency
+        let amount = exchangeProvider.getSubtotal()
+        output.updateGive(amount, currency: currency)
+    }
+    
     private func updateTotal() {
         let accountCurrency = accountWatcher.getAccount().currency
         let amount = exchangeProvider.getAmountInMinUnits()
@@ -318,7 +337,7 @@ extension ExchangeInteractor {
                     let isEnough = strongSelf.exchangeProvider.isEnoughFunds()
                     let hasAmount = !strongSelf.exchangeProvider.amount.isZero
                     
-                    strongSelf.output.updateTotal(total, currency: accountCurrency)
+                    strongSelf.output.updateGive(total, currency: accountCurrency)
                     strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
                     strongSelf.output.updateFormIsValid(formIsValid)
                     strongSelf.updateRateForOneUnit(from: accountCurrency, to: recepientCurrency)
@@ -328,7 +347,7 @@ extension ExchangeInteractor {
                     log.error(error)
                     guard let strongSelf = self else { return }
                     
-                    strongSelf.output.updateTotal(0, currency: accountCurrency)
+                    strongSelf.output.updateGive(0, currency: accountCurrency)
                     strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
                     strongSelf.output.updateFormIsValid(false)
                     strongSelf.output.exchangeRateError(error)
