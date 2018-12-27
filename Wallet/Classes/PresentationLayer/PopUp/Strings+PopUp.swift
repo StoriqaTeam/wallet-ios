@@ -87,7 +87,7 @@ extension Strings {
         static let passwordRecoveryConfirmTitle = NSLocalizedString(
             "PopUp.passwordRecoveryConfirmTitle",
             tableName: tableName,
-            value: "Password reset complete.",
+            value: "Password reset complete",
             comment: "Shown when password was successfully reset")
 
         static let passwordRecoveryConfirmMessage = NSLocalizedString(

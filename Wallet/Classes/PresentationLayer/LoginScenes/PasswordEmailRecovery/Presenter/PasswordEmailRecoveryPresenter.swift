@@ -40,6 +40,11 @@ extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryViewOutput {
 // MARK: - PasswordEmailRecoveryInteractorOutput
 
 extension PasswordEmailRecoveryPresenter: PasswordEmailRecoveryInteractorOutput {
+    func formValidationFailed(_ message: String) {
+        storiqaLoader.stopLoader()
+        view.showErrorMessage(message)
+    }
+    
     func confirmEmailSentSuccessfully(email: String) {
         storiqaLoader.stopLoader()
         router.showEmailSengingSuccess(email: email,

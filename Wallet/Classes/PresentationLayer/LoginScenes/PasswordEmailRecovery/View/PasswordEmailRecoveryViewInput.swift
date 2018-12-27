@@ -12,4 +12,5 @@ import UIKit
 protocol PasswordEmailRecoveryViewInput: class, Presentable {
     func setupInitialState()
     func setButtonEnabled(_ enabled: Bool)
+    func showErrorMessage(_ message: String)
 }
