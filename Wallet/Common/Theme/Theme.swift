@@ -175,6 +175,14 @@ struct Theme {
         struct SettingsTableView {
             static let cellTitle = MontserratFont.font(ofSize: 16.0, weight: .regular)
         }
+        
+        struct AccountCards {
+            /** 26 px regular */
+            static let bigCardAmount = MontserratFont.font(ofSize: 26, weight: .medium)
+            
+            /** 22 px regular */
+            static let smallCardAmount = MontserratFont.font(ofSize: 22, weight: .medium)
+        }
     }
 }
 
