@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 class LightButton: BaseButton {
+    
+    var buttonHeight: CGFloat {
+        return Constants.Sizes.buttonHeight
+    }
+    
     private var borderColor: UIColor = Theme.Color.Button.border
     private var titleColor: UIColor = Theme.Color.Button.enabledTitle
     
@@ -44,6 +49,14 @@ extension LightButton {
         roundCorners(radius: frame.height/2,
                      borderWidth: 1,
                      borderColor: borderColor)
+    }
+    
+    private func setHeight() {
+        let height = self.constraints.first { (constraint) -> Bool in
+            return constraint.firstAttribute == NSLayoutConstraint.Attribute.height
+        }
+        
+        height?.constant = buttonHeight
     }
     
 }

@@ -12,7 +12,7 @@ import UIKit
 class SeparatorView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = UIColor.lightGray
+        backgroundColor = Theme.Color.TextField.underlineColor
         
         let height = self.constraints.first { (constraint) -> Bool in
             return constraint.firstAttribute == NSLayoutConstraint.Attribute.height

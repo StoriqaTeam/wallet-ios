@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7P-xM-NGB" customClass="LightButton" customModule="Wallet" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7P-xM-NGB" customClass="SmallHeightButton" customModule="Wallet" customModuleProvider="target">
                     <rect key="frame" x="20" y="19" width="335" height="41"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="41" id="meU-AX-qlU"/>

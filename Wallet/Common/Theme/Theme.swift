@@ -28,7 +28,7 @@ struct Theme {
             static let disabledTitle = enabledTitle.withAlphaComponent(0.35)
             static let enabledBackground = mainOrange
             static let disabledBackground = UIColor(red: 83/255, green: 60/255, blue: 31/255, alpha: 1)
-            static let border = UIColor(red: 255/255, green: 180/255, blue: 62/255, alpha: 0.4)
+            static let border = UIColor(red: 176/255, green: 133/255, blue: 77/255, alpha: 1)
             static let red = UIColor(red: 245/255, green: 81/255, blue: 95/255, alpha: 1)
         }
         
@@ -42,7 +42,7 @@ struct Theme {
             static let input = UIColor.white
             static let placeholder = UIColor(white: 173/255, alpha: 1.0)
             static let underlineColor = UIColor(white: 121/255, alpha: 1.0)
-            static let focusedColor = UIColor(red: 175/255, green: 133/255, blue: 77/255, alpha: 1.0)
+            static let focusedColor = UIColor(red: 176/255, green: 133/255, blue: 77/255, alpha: 1.0)
         }
         
         struct SocialAuthView {

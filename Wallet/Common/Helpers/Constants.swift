@@ -58,6 +58,8 @@ struct Constants {
 struct SizeConstants {
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
+    static let buttonHeight: CGFloat = 51
+    static let smallButtonHeight: CGFloat = 41
     
     /** For separators. Depends on screen scale */
     static let lineWidth = 1.0 / UIScreen.main.scale
