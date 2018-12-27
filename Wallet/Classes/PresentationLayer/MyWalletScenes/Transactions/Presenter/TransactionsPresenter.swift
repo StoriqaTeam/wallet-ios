@@ -61,8 +61,7 @@ extension TransactionsPresenter: TransactionsViewOutput {
     
     func viewWillAppear() {
         let transactions = interactor.getTransactions()
-        let displayable = filteredDispayable(transactions)
-        transactionDataManager.updateTransactions(displayable)
+        updateTransactions(transactions)
     }
     
     func didChooseSegment(at index: Int) {
@@ -84,7 +83,7 @@ extension TransactionsPresenter: TransactionsInteractorOutput {
         let displayable = filteredDispayable(txs)
         self.transactions = displayable
         
-        let directionFilteredTxs = filterTransactionsByDirection()
+        let directionFilteredTxs = filterTransactionsByDirection(displayable)
         transactionDataManager.updateTransactions(directionFilteredTxs)
     }
 }
@@ -127,12 +126,12 @@ extension TransactionsPresenter {
         guard let filter = DirectionFilter(rawValue: index) else { return [] }
         transactionDirectionFilter = filter
         
-        let filteredTransactions = filterTransactionsByDirection()
+        let filteredTransactions = filterTransactionsByDirection(transactions)
         return filteredTransactions
     }
     
-    private func filterTransactionsByDirection() -> [TransactionDisplayable] {
-        let directionFilteredTxs = transactionsDateFilter.applyFilter(for: transactions)
+    private func filterTransactionsByDirection(_ txs: [TransactionDisplayable]) -> [TransactionDisplayable] {
+        let directionFilteredTxs = transactionsDateFilter.applyFilter(for: txs)
         switch transactionDirectionFilter {
         case .all:
             return directionFilteredTxs

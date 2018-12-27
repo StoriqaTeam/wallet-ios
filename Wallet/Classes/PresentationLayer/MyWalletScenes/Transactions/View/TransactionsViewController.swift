@@ -29,7 +29,6 @@ class TransactionsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.viewWillAppear()
-        directionFilterView.setInitialFilter(position: .all)
     }
 
     @objc func filterByDateTapped() {
@@ -47,6 +46,7 @@ extension TransactionsViewController: TransactionsViewInput {
         configureAppearence()
         configureTableView()
         addFilterButton()
+        directionFilterView.setInitialFilter(position: .all)
     }
 }
 
