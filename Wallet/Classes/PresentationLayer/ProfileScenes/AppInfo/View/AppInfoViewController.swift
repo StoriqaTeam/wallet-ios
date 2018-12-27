@@ -75,6 +75,11 @@ extension AppInfoViewController {
         appVersionTitle.text = LocalizedStrings.appVersionTitle
         displayNameTitle.text = LocalizedStrings.displayNameTitle
         bundleIdTitle.text = LocalizedStrings.bundleIdTitle
+        
+        #if DEBUG
+        #else
+        bundleIdTitle.superview?.removeFromSuperview()
+        #endif
     }
     
 }
