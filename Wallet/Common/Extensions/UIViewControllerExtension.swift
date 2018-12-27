@@ -36,6 +36,7 @@ extension UIViewController {
     func addHideKeyboardGuesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
+        tap.delegate = self
         view.addGestureRecognizer(tap)
     }
     
@@ -54,6 +55,17 @@ extension UIViewController {
     }
     
 }
+
+
+extension UIViewController: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.superview is UITextField {
+            return false
+        }
+        return true
+    }
+}
+
 
 //Actions
 extension UIViewController {
