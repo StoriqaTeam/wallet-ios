@@ -9,7 +9,8 @@
 import Foundation
 
 class MyWalletFooter: UICollectionReusableView {
-    @IBOutlet var addNewButton: LightButton!
+    @IBOutlet private var addNewButton: LightButton!
+    @IBOutlet private var widthConstraint: NSLayoutConstraint!
     
     var view: UIView!
     override init(frame: CGRect) {
@@ -22,6 +23,10 @@ class MyWalletFooter: UICollectionReusableView {
         super.init(coder: aDecoder)
         xibSetup()
         configureInterface()
+    }
+    
+    func setWidth(_ width: CGFloat) {
+        widthConstraint.constant = width
     }
     
     @IBAction func buttonHandler(_ sender: Any) {

@@ -96,14 +96,16 @@ extension MyWalletDataManager: UICollectionViewDataSource {
         let currency = accountDisplayer.currency(for: account)
         let textColor = accountDisplayer.textColor(for: account)
         let backgroundImage: UIImage
+        let amountFont: UIFont
         
         switch cellType {
         case .small:
             backgroundImage = accountDisplayer.smallImage(for: account)
+            amountFont = Theme.Font.AccountCards.smallCardAmount!
         case .regular:
             backgroundImage = accountDisplayer.image(for: account)
+            amountFont = Theme.Font.AccountCards.bigCardAmount!
         }
-        
         
         cell.configureWith(cryptoAmount: cryptoAmount,
                            cryptoAmountWithoutCurrency: cryptoAmountWithoutCurrency,
@@ -111,7 +113,8 @@ extension MyWalletDataManager: UICollectionViewDataSource {
                            accountName: accountName,
                            currency: currency,
                            textColor: textColor,
-                           backgroundImage: backgroundImage)
+                           backgroundImage: backgroundImage,
+                           bigAmountFont: amountFont)
         return cell
     }
 }
@@ -206,15 +209,17 @@ extension MyWalletDataManager: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader, UICollectionView.elementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: "footerView",
-                                                                             for: indexPath)
-            return footerView
-        default:
-            fatalError("Unexpected element kind")
+        guard kind == UICollectionView.elementKindSectionFooter,
+            let footerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind, withReuseIdentifier: "footerView", for: indexPath) as? MyWalletFooter else {
+                    fatalError("Unexpected element kind")
         }
+        
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            footerView.setWidth(layout.itemSize.width)
+        }
+        
+        return footerView
     }
 }
 

@@ -11,11 +11,11 @@ import UIKit
 class AccountViewCell: UICollectionViewCell {
 
     @IBOutlet private var backgroundImageView: UIImageView!
-    @IBOutlet private var smallCryptoAmountLabel: UILabel!
-    @IBOutlet private var bigCryptoAmountLabel: UILabel?
+    @IBOutlet private var smallCryptoAmountLabel: UILabel?
+    @IBOutlet private var bigCryptoAmountLabel: UILabel!
     @IBOutlet private var fiatAmountLabel: UILabel!
-    @IBOutlet private var accountNameLabel: UILabel?
-    @IBOutlet private var currencyNameLabel: UILabel?
+    @IBOutlet private var accountNameLabel: UILabel!
+    @IBOutlet private var currencyNameLabel: UILabel!
     
     func configureWith(cryptoAmount: String,
                        cryptoAmountWithoutCurrency: String,
@@ -23,15 +23,16 @@ class AccountViewCell: UICollectionViewCell {
                        accountName: String,
                        currency: String,
                        textColor: UIColor,
-                       backgroundImage: UIImage) {
-        smallCryptoAmountLabel.text = cryptoAmount
+                       backgroundImage: UIImage,
+                       bigAmountFont: UIFont) {
+        smallCryptoAmountLabel?.text = cryptoAmount
         bigCryptoAmountLabel?.text = cryptoAmountWithoutCurrency
-        fiatAmountLabel.text = fiatAmount
+        fiatAmountLabel?.text = fiatAmount
         accountNameLabel?.text = accountName
         currencyNameLabel?.text = currency
         backgroundImageView.image = backgroundImage
         
-        configureInterface(textColor: textColor)
+        configureInterface(textColor: textColor, amountFont: bigAmountFont)
         roundCorners(radius: 12)
     }
     
@@ -73,16 +74,16 @@ class AccountViewCell: UICollectionViewCell {
 // MARK: Private methods
 
 extension AccountViewCell {
-    func configureInterface(textColor: UIColor) {
-        smallCryptoAmountLabel.textColor = textColor
+    func configureInterface(textColor: UIColor, amountFont: UIFont) {
+        smallCryptoAmountLabel?.textColor = textColor
         bigCryptoAmountLabel?.textColor = textColor
-        fiatAmountLabel.textColor = textColor
+        fiatAmountLabel?.textColor = textColor
         accountNameLabel?.textColor = textColor
         currencyNameLabel?.textColor = textColor
         
-        smallCryptoAmountLabel.font = Theme.Font.smallBoldText
-        bigCryptoAmountLabel?.font = Theme.Font.largeText
-        fiatAmountLabel.font = Theme.Font.smallMediumWeightText
+        smallCryptoAmountLabel?.font = Theme.Font.smallBoldText
+        bigCryptoAmountLabel?.font = amountFont
+        fiatAmountLabel?.font = Theme.Font.smallMediumWeightText
         accountNameLabel?.font = Theme.Font.smallMediumWeightText
         currencyNameLabel?.font = Theme.Font.smallMediumWeightText
     }
