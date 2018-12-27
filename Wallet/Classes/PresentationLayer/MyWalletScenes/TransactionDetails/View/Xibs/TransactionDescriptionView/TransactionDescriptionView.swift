@@ -36,7 +36,8 @@ class TransactionDescriptionView: LoadableFromXib {
     func configure(address: String,
                    contact: String,
                    isPending: Bool,
-                   timestamp: String) {
+                   timestamp: String,
+                   directionLabel: String) {
         
         self.addressToCopy = address
         self.addresslabel.text = address.maskCryptoAddress()
@@ -44,6 +45,7 @@ class TransactionDescriptionView: LoadableFromXib {
         self.timestampLabel.text = timestamp
         self.pendingView.isHidden = !isPending
         self.pendingLabel.isHidden = !isPending
+        self.fromLabel.text = directionLabel
     }
     
     @IBAction func copyAddress(_ sender: Any) {

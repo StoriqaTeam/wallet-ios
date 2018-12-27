@@ -38,7 +38,7 @@ extension TransactionTableViewCell {
         
         switch transaction.opponent {
         case .address(let address):
-            opponentLabel.text = address
+            opponentLabel.text = address.maskCryptoAddress()
         case .txAccount(let account, _):
             opponentLabel.text = account.ownerName
         }

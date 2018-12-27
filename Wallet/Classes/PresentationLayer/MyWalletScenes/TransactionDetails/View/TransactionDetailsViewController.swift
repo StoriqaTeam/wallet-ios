@@ -11,6 +11,8 @@ import UIKit
 
 class TransactionDetailsViewController: UIViewController {
 
+    typealias LocalizedStrings = Strings.TransactionDetails
+    
     var output: TransactionDetailsViewOutput!
 
     @IBOutlet weak var directionImageView: UIImageView!
@@ -127,10 +129,19 @@ extension TransactionDetailsViewController {
         
         let isPending = transaction.transaction.status == .pending
         let timestamp = "\(transaction.timestamp)"
+        let direction: String
+        
+        switch transaction.direction {
+        case .receive:
+            direction = LocalizedStrings.fromLabel
+        case .send:
+            direction = LocalizedStrings.toLabel
+        }
+        
         let addr: String
         let contact: String
+        
         switch transaction.opponent {
-            
         case .address(let address):
             addr = address
             contact = ""
@@ -142,7 +153,8 @@ extension TransactionDetailsViewController {
         descriptionView.configure(address: addr,
                                   contact: contact,
                                   isPending: isPending,
-                                  timestamp: timestamp)
+                                  timestamp: timestamp,
+                                  directionLabel: direction)
         
     }
 }
