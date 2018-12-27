@@ -96,12 +96,15 @@ extension AccountsDataManager: UICollectionViewDataSource {
         let currency = accountDisplayer.currency(for: account)
         let textColor = accountDisplayer.textColor(for: account)
         let backgroundImage: UIImage
+        let amountFont: UIFont
         
         switch cellType {
         case .small:
             backgroundImage = accountDisplayer.smallImage(for: account)
+            amountFont = Theme.Font.AccountCards.smallCardAmount!
         case .regular:
             backgroundImage = accountDisplayer.image(for: account)
+            amountFont = Theme.Font.AccountCards.bigCardAmount!
         }
         
         cell.configureWith(cryptoAmount: cryptoAmount,
@@ -110,7 +113,8 @@ extension AccountsDataManager: UICollectionViewDataSource {
                            accountName: accountName,
                            currency: currency,
                            textColor: textColor,
-                           backgroundImage: backgroundImage)
+                           backgroundImage: backgroundImage,
+                           bigAmountFont: amountFont)
         cell.dropShadow()
         
         return cell

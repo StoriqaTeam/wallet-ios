@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyWalletFooter" customModule="Wallet" customModuleProvider="target">
             <connections>
                 <outlet property="addNewButton" destination="q7P-xM-NGB" id="wGY-kh-ylF"/>
+                <outlet property="widthConstraint" destination="rmh-a3-E0h" id="1hq-HN-2rB"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -23,7 +24,8 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7P-xM-NGB" customClass="LightButton" customModule="Wallet" customModuleProvider="target">
                     <rect key="frame" x="20" y="19" width="335" height="41"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="41" id="2Hv-9h-mL2"/>
+                        <constraint firstAttribute="height" constant="41" id="meU-AX-qlU"/>
+                        <constraint firstAttribute="width" constant="335" id="rmh-a3-E0h"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                     <color key="tintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -36,7 +38,6 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="q7P-xM-NGB" secondAttribute="bottom" constant="25" id="CeL-Wi-mlA"/>
-                <constraint firstItem="q7P-xM-NGB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="h6F-db-gHH"/>
                 <constraint firstItem="q7P-xM-NGB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hs2-6j-rYo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
