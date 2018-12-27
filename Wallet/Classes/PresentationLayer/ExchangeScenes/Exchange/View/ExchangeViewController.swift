@@ -83,6 +83,7 @@ class ExchangeViewController: UIViewController {
     
     @IBAction func exchangeButtonPressed(_ sender: UIButton) {
         output.exchangeButtonPressed()
+        view.endEditing(true)
     }
 
 }

@@ -88,10 +88,12 @@ class SendViewController: UIViewController {
     
     @IBAction func sendButtonTapped(_ sender: UIButton) {
         output.sendButtonPressed()
+        view.endEditing(true)
     }
     
     @IBAction func scanButtonTapped(_ sender: UIButton) {
         output.scanButtonPressed()
+        view.endEditing(true)
     }
     
     @IBAction private func sliderMoved(_ sender: StepSlider) {
@@ -115,6 +117,7 @@ extension SendViewController: SendViewInput {
         
         addNotificationObservers()
         configInterface()
+        addHideKeyboardGuesture()
         localizeText()
     }
     

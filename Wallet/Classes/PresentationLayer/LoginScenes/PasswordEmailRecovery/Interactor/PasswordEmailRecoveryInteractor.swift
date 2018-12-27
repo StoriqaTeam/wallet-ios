@@ -39,6 +39,11 @@ extension PasswordEmailRecoveryInteractor: PasswordEmailRecoveryInteractorInput 
                 self?.output.emailSentSuccessfully()
             case .failure(let error):
                 
+                if let error = error as? AuthNetworkError, let message = error.email {
+                    self?.output?.formValidationFailed(message)
+                    return
+                }
+                
                 if case EmailNetworkError.emailNotVerified = error {
                     self?.output.emailNotVerified()
                     return

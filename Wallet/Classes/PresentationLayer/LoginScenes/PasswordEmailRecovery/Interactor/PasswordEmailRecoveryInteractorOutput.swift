@@ -16,4 +16,5 @@ protocol PasswordEmailRecoveryInteractorOutput: class {
     func emailNotVerified()
     func confirmEmailSentSuccessfully(email: String)
     func confirmEmailSendingFailed(message: String)
+    func formValidationFailed(_ message: String)
 }
