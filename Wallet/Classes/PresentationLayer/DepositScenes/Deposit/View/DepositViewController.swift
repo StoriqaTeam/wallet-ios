@@ -30,6 +30,8 @@ class DepositViewController: UIViewController {
     @IBOutlet private var addressContainerView: UIView!
     @IBOutlet private var qrCodeContainerView: UIView!
     
+    private var storiqaHandler: StoriqaAlertHandler!
+    
     // MARK: Life cycle
 
     override func viewDidLoad() {
@@ -60,7 +62,9 @@ class DepositViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func copyButtonPressed(_ sender: UIButton) {
-        output.copyButtonPressed()
+        storiqaHandler = StoriqaAlertHandler(parentView: self.view)
+        storiqaHandler.showAlert(title: "Address Copied", message: "", alertType: .success)
+//        output.copyButtonPressed()
     }
     
     @IBAction func shareLongPressed(_ sender: UILongPressGestureRecognizer) {
