@@ -115,6 +115,7 @@ class UnderlinedTextField: UITextField {
         
         textFieldState = errorText != nil ? .error : .editing
         resolveUnderlineColor()
+        fixColors()
         return true
     }
     
