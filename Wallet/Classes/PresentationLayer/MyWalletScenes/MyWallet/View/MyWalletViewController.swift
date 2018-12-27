@@ -70,7 +70,7 @@ extension MyWalletViewController: MyWalletViewInput {
     }
     
     func setupInitialState() {
-        
+        view.backgroundColor = Theme.Color.backgroundColor
     }
 
     func reloadWithAccounts() {

@@ -174,6 +174,8 @@ extension LoginViewController {
     }
     
     private func configureControls() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        
         emailTextField.placeholder = LocalizedStrings.emailPlaceholder
         emailTextField.layoutBlock = {[weak self] in
             self?.view.layoutIfNeeded()

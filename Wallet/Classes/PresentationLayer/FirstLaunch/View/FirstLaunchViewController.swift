@@ -50,6 +50,7 @@ class FirstLaunchViewController: UIViewController {
 extension FirstLaunchViewController: FirstLaunchViewInput {
     
     func setupInitialState() {
+        view.backgroundColor = Theme.Color.backgroundColor
         getStartedButton.setup(color: Theme.Color.Button.enabledBackground)
         getStartedButton.setTitle(LocalizedStrings.getStartedButton, for: .normal)
         signInButton.setTitle(LocalizedStrings.signInButton, for: .normal)

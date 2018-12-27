@@ -221,6 +221,7 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
 
 extension RegistrationViewController {
     private func configFields() {
+        view.backgroundColor = Theme.Color.backgroundColor
         
         let layoutBlock: (() -> Void) = {[weak self] in
             self?.view.layoutIfNeeded()

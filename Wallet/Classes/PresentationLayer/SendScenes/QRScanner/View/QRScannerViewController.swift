@@ -63,6 +63,7 @@ extension QRScannerViewController: QRScannerViewInput {
     
     func setupInitialState(message: String) {
         configureAimView()
+        view.backgroundColor = Theme.Color.backgroundColor
         messageLabel.text = message
     }
 }
