@@ -59,7 +59,7 @@ extension UIViewController {
 
 extension UIViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if touch.view?.superview is UITextField {
+        if touch.view is UIButton {
             return false
         }
         return true
