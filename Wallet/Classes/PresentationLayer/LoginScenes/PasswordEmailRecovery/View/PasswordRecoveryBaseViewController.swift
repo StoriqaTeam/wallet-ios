@@ -79,15 +79,15 @@ extension PasswordRecoveryBaseViewController {
         }
         
         let keyboardHeight = keyboardFrame.cgRectValue.height
+        let safeAreaBottom = AppDelegate.currentWindow.safeAreaInsets.bottom
         let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
         
         var animationOptions = UIView.AnimationOptions()
         if let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
             animationOptions.insert(UIView.AnimationOptions(rawValue: curve))
         }
-        print(keyboardHeight)
-        print(keyboardHeight + buttonBottomSpace)
-        resetPasswordButtonBottomConstraint.constant = keyboardHeight + buttonBottomSpace
+        
+        resetPasswordButtonBottomConstraint.constant = keyboardHeight + buttonBottomSpace - safeAreaBottom
         
         UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: {[weak self] in
             self?.view.layoutIfNeeded()

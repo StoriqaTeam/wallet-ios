@@ -122,6 +122,7 @@ class NetworkErrorResolverFactory: NetworkErrorResolverFactoryProtocol {
         let parsers: [NetworkErrorParserProtocol] = [
             InitialNetworkErrorParser(),
             EmailNetworkErrorParser(),
+            AuthNetworkErrorParser(),
             NetworkUnknownErrorParser()
         ]
         return NetworkErrorResolver(parsers: parsers)
