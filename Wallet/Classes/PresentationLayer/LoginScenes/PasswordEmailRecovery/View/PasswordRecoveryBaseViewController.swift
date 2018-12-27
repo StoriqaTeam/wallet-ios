@@ -38,11 +38,13 @@ class PasswordRecoveryBaseViewController: UIViewController {
     }
     
     func configureInterface() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        
         titleLabel.text = LocalizedString.screenTitle
         titleLabel.font = Theme.Font.title
-        
         subtitleLabel.font = Theme.Font.subtitle
-        subtitleLabel.textColor = Theme.Color.primaryGrey
+        titleLabel.textColor = Theme.Color.Text.main
+        subtitleLabel.textColor = Theme.Color.opaqueWhite
         
         resetPasswordButtonBottomConstraint.constant = buttonBottomSpace
         if Device.model == .iPhoneSE {
@@ -83,7 +85,8 @@ extension PasswordRecoveryBaseViewController {
         if let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
             animationOptions.insert(UIView.AnimationOptions(rawValue: curve))
         }
-        
+        print(keyboardHeight)
+        print(keyboardHeight + buttonBottomSpace)
         resetPasswordButtonBottomConstraint.constant = keyboardHeight + buttonBottomSpace
         
         UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: {[weak self] in
