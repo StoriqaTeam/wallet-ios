@@ -70,7 +70,8 @@ class UnderlinedTextField: UITextField {
     override var placeholder: String? {
         didSet {
             if let placeholder = placeholder {
-                let textColorAttr = [NSAttributedString.Key.foregroundColor: Theme.Color.TextField.placeholder]
+                let textColorAttr = [NSAttributedString.Key.foregroundColor: Theme.Color.TextField.placeholder,
+                                     NSAttributedString.Key.font: Theme.Font.placeholder!]
                 attributedPlaceholder = NSAttributedString(string: placeholder, attributes: textColorAttr)
             }
         }

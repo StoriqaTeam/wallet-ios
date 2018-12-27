@@ -40,7 +40,7 @@ struct Theme {
         
         struct TextField {
             static let input = UIColor.white
-            static let placeholder = UIColor(white: 175/255, alpha: 1.0)
+            static let placeholder = UIColor(white: 173/255, alpha: 1.0)
             static let underlineColor = UIColor(white: 121/255, alpha: 1.0)
             static let focusedColor = UIColor(red: 175/255, green: 133/255, blue: 77/255, alpha: 1.0)
         }
@@ -129,6 +129,8 @@ struct Theme {
         static let errorMessage = MontserratFont.font(ofSize: 12, weight: .regular)
         /** 16 px medium */
         static let input = MontserratFont.font(ofSize: 16, weight: .medium)
+        /** 16 px regular */
+        static let placeholder = MontserratFont.font(ofSize: 16, weight: .regular)
         /** 26 px regular */
         static let largeText = MontserratFont.font(ofSize: 26, weight: .medium)
         

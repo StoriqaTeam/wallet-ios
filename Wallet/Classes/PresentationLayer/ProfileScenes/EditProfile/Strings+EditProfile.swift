@@ -17,12 +17,6 @@ extension Strings {
             value: "Edit profile",
             comment: "Screen title")
         
-        static let personalInfoTitle = NSLocalizedString(
-            "EditProfile.personalInfoTitle",
-            tableName: "EditProfile",
-            value: "PERSONAL INFORMATION",
-            comment: "Input title")
-        
         static let firstNamePlaceholder = NSLocalizedString(
             "EditProfile.firstNamePlaceholder",
             tableName: "EditProfile",

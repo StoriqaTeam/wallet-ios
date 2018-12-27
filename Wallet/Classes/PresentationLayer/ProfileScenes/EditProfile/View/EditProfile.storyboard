@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,16 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erJ-qf-we5">
-                                <rect key="frame" x="19" y="40" width="337" height="116"/>
+                                <rect key="frame" x="19" y="40" width="337" height="105"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PERSONAL INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO9-9c-JBL">
-                                        <rect key="frame" x="0.0" y="0.0" width="337" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ygd-zx-b9Y" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="26" width="337" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="337" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="w3O-87-jbG"/>
                                         </constraints>
@@ -40,7 +35,8 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Qp-MK-aqu" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="76" width="337" height="40"/>
+                                        <rect key="frame" x="0.0" y="65" width="337" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ylb-Bl-jKB"/>
                                         </constraints>
@@ -52,25 +48,22 @@
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="bO9-9c-JBL" firstAttribute="leading" secondItem="erJ-qf-we5" secondAttribute="leading" id="7VH-Xj-Y5w"/>
                                     <constraint firstAttribute="trailing" secondItem="9Qp-MK-aqu" secondAttribute="trailing" id="8Vq-S5-TQa"/>
                                     <constraint firstItem="9Qp-MK-aqu" firstAttribute="leading" secondItem="erJ-qf-we5" secondAttribute="leading" id="9Lx-Mm-tGa"/>
-                                    <constraint firstItem="9Qp-MK-aqu" firstAttribute="top" secondItem="ygd-zx-b9Y" secondAttribute="bottom" constant="10" id="OgX-MT-ZJK"/>
+                                    <constraint firstItem="9Qp-MK-aqu" firstAttribute="top" secondItem="ygd-zx-b9Y" secondAttribute="bottom" constant="25" id="OgX-MT-ZJK"/>
                                     <constraint firstItem="ygd-zx-b9Y" firstAttribute="leading" secondItem="erJ-qf-we5" secondAttribute="leading" id="S5J-gW-eLH"/>
                                     <constraint firstAttribute="bottom" secondItem="9Qp-MK-aqu" secondAttribute="bottom" id="Uyk-N6-Nwc"/>
-                                    <constraint firstItem="bO9-9c-JBL" firstAttribute="top" secondItem="erJ-qf-we5" secondAttribute="top" id="cK5-Fo-LFb"/>
-                                    <constraint firstItem="ygd-zx-b9Y" firstAttribute="top" secondItem="bO9-9c-JBL" secondAttribute="bottom" constant="10" id="cRN-rT-EE0"/>
-                                    <constraint firstAttribute="trailing" secondItem="bO9-9c-JBL" secondAttribute="trailing" id="dyc-1i-vZT"/>
                                     <constraint firstAttribute="trailing" secondItem="ygd-zx-b9Y" secondAttribute="trailing" id="zCA-ZB-3jO"/>
+                                    <constraint firstItem="ygd-zx-b9Y" firstAttribute="top" secondItem="erJ-qf-we5" secondAttribute="top" id="zIx-SS-N5K"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbD-Ki-eEX" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="594" width="335" height="45"/>
+                                <rect key="frame" x="20" y="588" width="335" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="750" constant="336" id="5fM-Oz-Qfj"/>
-                                    <constraint firstAttribute="height" constant="45" id="sgH-sE-HIi"/>
+                                    <constraint firstAttribute="height" constant="51" id="sgH-sE-HIi"/>
                                 </constraints>
                                 <state key="normal" title="Save"/>
                                 <connections>
@@ -93,7 +86,6 @@
                         <outlet property="firstNameTextField" destination="ygd-zx-b9Y" id="Zdy-vX-aS4"/>
                         <outlet property="lastNameTextField" destination="9Qp-MK-aqu" id="FJL-oq-cAl"/>
                         <outlet property="saveButton" destination="xbD-Ki-eEX" id="DgX-lE-Fy3"/>
-                        <outlet property="titleLabel" destination="bO9-9c-JBL" id="FGW-Zk-vCC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkx-pB-dvX" userLabel="First Responder" sceneMemberID="firstResponder"/>
