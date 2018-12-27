@@ -52,6 +52,12 @@ class AlertView: LoadableFromXib {
     func setMessage(_ message: String) {
         text.text = message
     }
+    
+    func setAlertImage(_ image: UIImage?) {
+        if let alertImage = image {
+            typeImageView.image = alertImage
+        }
+    }
 }
 
 // MARK: Private methods

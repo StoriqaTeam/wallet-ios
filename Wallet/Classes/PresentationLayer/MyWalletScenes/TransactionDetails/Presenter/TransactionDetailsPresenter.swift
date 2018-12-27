@@ -20,6 +20,7 @@ class TransactionDetailsPresenter {
     
     private var blockchainExplorerLinkGenerator: BlockchainExplorerLinkGeneratorProtocol
     private var transactionLink: URL?
+    private var storiqaAlertHandler: StoriqaAlertHandler?
     
     init(blockchainExplorerLinkGenerator: BlockchainExplorerLinkGeneratorProtocol) {
         self.blockchainExplorerLinkGenerator = blockchainExplorerLinkGenerator
@@ -39,12 +40,14 @@ extension TransactionDetailsPresenter: TransactionDetailsViewOutput {
         fetchTxHashes(transaction: transaction.transaction)
     }
 
-    func viewWillAppear() {
-    }
+    func viewWillAppear() {}
     
     func addressTapped(_ address: String) {
         UIPasteboard.general.string = address
-        view.viewController.showAlert(title: "", message: LocalizedStrings.addressCopiedMessage)
+        storiqaAlertHandler = StoriqaAlertHandler(parentView: view.viewController.view)
+        storiqaAlertHandler?.showAlert(title: LocalizedStrings.addressCopiedMessage,
+                                       message: "",
+                                       alertType: .success)
     }
     
     func viewInBlockchain() {

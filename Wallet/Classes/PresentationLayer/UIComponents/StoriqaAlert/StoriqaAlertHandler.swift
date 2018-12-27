@@ -24,8 +24,18 @@ class StoriqaAlertHandler {
     }
     
     func showAlert(title: String, message: String, alertType: AlertType) {
+        let alertImage: UIImage?
+        
+        switch alertType {
+        case .success:
+            alertImage = UIImage(named: "successIcon")
+        case .attension:
+            alertImage = UIImage(named: "signConfirm")
+        }
+        
         addBlurView()
         alertView.setTitle(title)
+        alertView.setAlertImage(alertImage)
         parentView.addSubview(alertView)
         alertView.delegate = self
     }
@@ -57,6 +67,7 @@ extension StoriqaAlertHandler {
         let bluredImage = captureScreen(view: parentView)
         blurImageView = UIImageView(image: bluredImage)
         self.parentView.addSubview(blurImageView)
+
         blurImageView.alpha = 0
         
         UIView.animate(withDuration: 0.2, animations: {
