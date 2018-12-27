@@ -187,9 +187,8 @@ extension SendPresenter: SendInteractorOutput {
     }
     
     func updateIsEnoughFunds(_ enough: Bool) {
-        if !enough {
-            view.setErrorMessage(LocalizedStrings.notEnoughFundsErrorMessage)
-        }
+        let message = !enough ? LocalizedStrings.notEnoughFundsErrorMessage : feesError
+        view.setErrorMessage(message)
     }
     
     func updateFormIsValid(_ valid: Bool) {
