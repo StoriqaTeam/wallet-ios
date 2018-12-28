@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsRouterInput.swift
+//  RecipientAccountsRouterInput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,6 +9,6 @@
 import UIKit
 
 
-protocol RecepientAccountsRouterInput: class {
+protocol RecipientAccountsRouterInput: class {
 
 }

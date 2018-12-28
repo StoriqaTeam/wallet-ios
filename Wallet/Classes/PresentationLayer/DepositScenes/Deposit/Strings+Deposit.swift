@@ -28,12 +28,6 @@ extension Strings {
             value: "Copy",
             comment: "Copy button title")
 
-        static let qrCodeTitle = NSLocalizedString(
-            "Deposit.qrCodeTitle",
-            tableName: "Deposit",
-            value: "QR-CODE FOR TRANSACTION",
-            comment: "QR-code title")
-
         static let shareButton = NSLocalizedString(
             "Deposit.shareButton",
             tableName: "Deposit",

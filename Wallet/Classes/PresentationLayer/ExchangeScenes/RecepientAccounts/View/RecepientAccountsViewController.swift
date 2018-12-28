@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsViewController.swift
+//  RecipientAccountsViewController.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,9 +9,9 @@
 import UIKit
 
 
-class RecepientAccountsViewController: UIViewController {
+class RecipientAccountsViewController: UIViewController {
 
-    var output: RecepientAccountsViewOutput!
+    var output: RecipientAccountsViewOutput!
     
     @IBOutlet private var collectionView: UICollectionView!
     
@@ -26,9 +26,9 @@ class RecepientAccountsViewController: UIViewController {
 }
 
 
-// MARK: - RecepientAccountsViewInput
+// MARK: - RecipientAccountsViewInput
 
-extension RecepientAccountsViewController: RecepientAccountsViewInput {
+extension RecipientAccountsViewController: RecipientAccountsViewInput {
     
     func setupInitialState() {
         view.backgroundColor = Theme.Color.backgroundColor

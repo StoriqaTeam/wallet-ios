@@ -65,7 +65,7 @@ class AlertView: LoadableFromXib {
 extension AlertView {
     func configureAppearence() {
         cancelActionButton.isHidden = true
-        cancelActionButton.setTitle("Ok", for: .normal)
+        cancelActionButton.setTitle(Strings.PopUp.okButton, for: .normal)
         
         title.textColor = .white
         title.font = Theme.Font.title

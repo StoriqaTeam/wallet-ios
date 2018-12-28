@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsInteractorInput.swift
+//  RecipientAccountsInteractorInput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol RecepientAccountsInteractorInput: class {
+protocol RecipientAccountsInteractorInput: class {
     func getAccounts() -> [Account]
     func setSelected(account: Account)
 }

@@ -612,7 +612,7 @@
 		CEC06EB0212AEDD700D0DC97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */; };
 		CED76F4621C3EDDE001117A8 /* Strings+ConnectPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED76F4521C3EDDE001117A8 /* Strings+ConnectPhone.swift */; };
 		CED76F4821C3EDEA001117A8 /* ConnectPhone.strings in Resources */ = {isa = PBXBuildFile; fileRef = CED76F4721C3EDEA001117A8 /* ConnectPhone.strings */; };
-		CED76F4A21C3F556001117A8 /* String+FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED76F4921C3F556001117A8 /* String+FirstLaunch.swift */; };
+		CED76F4A21C3F556001117A8 /* Strings+FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED76F4921C3F556001117A8 /* Strings+FirstLaunch.swift */; };
 		CED76F4C21C3F561001117A8 /* FirstLaunch.strings in Resources */ = {isa = PBXBuildFile; fileRef = CED76F4B21C3F561001117A8 /* FirstLaunch.strings */; };
 		CED822D4215A796500693B92 /* QRScanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED822D3215A796500693B92 /* QRScanner.storyboard */; };
 		CED822E0215BB8CE00693B92 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED822DF215BB8CE00693B92 /* Contact.swift */; };
@@ -627,7 +627,7 @@
 		CEE6730321A2AEE4008FAC09 /* ExchangeProviderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730221A2AEE4008FAC09 /* ExchangeProviderBuilder.swift */; };
 		CEE6730521A2AEF3008FAC09 /* ExchangeProviderBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730421A2AEF3008FAC09 /* ExchangeProviderBuilderFactory.swift */; };
 		CEE6730821A2B768008FAC09 /* SendTransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730721A2B768008FAC09 /* SendTransactionService.swift */; };
-		CEE6730A21A2E8B2008FAC09 /* RecepientAccounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE6730921A2E8B2008FAC09 /* RecepientAccounts.storyboard */; };
+		CEE6730A21A2E8B2008FAC09 /* RecipientAccounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE6730921A2E8B2008FAC09 /* RecipientAccounts.storyboard */; };
 		CEE6730C21A3E94C008FAC09 /* PopUpDeviceRegisterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730B21A3E94C008FAC09 /* PopUpDeviceRegisterVM.swift */; };
 		CEE6730E21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730D21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift */; };
 		CEE6731021A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6730F21A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift */; };
@@ -1445,7 +1445,7 @@
 		CEC06EAF212AEDD700D0DC97 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CED76F4521C3EDDE001117A8 /* Strings+ConnectPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+ConnectPhone.swift"; sourceTree = "<group>"; };
 		CED76F4721C3EDEA001117A8 /* ConnectPhone.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ConnectPhone.strings; sourceTree = "<group>"; };
-		CED76F4921C3F556001117A8 /* String+FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+FirstLaunch.swift"; sourceTree = "<group>"; };
+		CED76F4921C3F556001117A8 /* Strings+FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+FirstLaunch.swift"; sourceTree = "<group>"; };
 		CED76F4B21C3F561001117A8 /* FirstLaunch.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = FirstLaunch.strings; sourceTree = "<group>"; };
 		CED822D3215A796500693B92 /* QRScanner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRScanner.storyboard; sourceTree = "<group>"; };
 		CED822DF215BB8CE00693B92 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
@@ -1460,7 +1460,7 @@
 		CEE6730221A2AEE4008FAC09 /* ExchangeProviderBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeProviderBuilder.swift; sourceTree = "<group>"; };
 		CEE6730421A2AEF3008FAC09 /* ExchangeProviderBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeProviderBuilderFactory.swift; sourceTree = "<group>"; };
 		CEE6730721A2B768008FAC09 /* SendTransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionService.swift; sourceTree = "<group>"; };
-		CEE6730921A2E8B2008FAC09 /* RecepientAccounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecepientAccounts.storyboard; sourceTree = "<group>"; };
+		CEE6730921A2E8B2008FAC09 /* RecipientAccounts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecipientAccounts.storyboard; sourceTree = "<group>"; };
 		CEE6730B21A3E94C008FAC09 /* PopUpDeviceRegisterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDeviceRegisterVM.swift; sourceTree = "<group>"; };
 		CEE6730D21A3F37A008FAC09 /* PopUpDeviceRegisterEmailSentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDeviceRegisterEmailSentVM.swift; sourceTree = "<group>"; };
 		CEE6730F21A3F5EC008FAC09 /* PopUpDeviceRegisterFailedSendEmailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDeviceRegisterFailedSendEmailVM.swift; sourceTree = "<group>"; };
@@ -1924,7 +1924,7 @@
 				D091D2624CFD0805ED34AB9B /* Interactor */,
 				A534883D230884E6416A5516 /* Router */,
 				635FD9F8E978B3274FBF2056 /* Module */,
-				CED76F4921C3F556001117A8 /* String+FirstLaunch.swift */,
+				CED76F4921C3F556001117A8 /* Strings+FirstLaunch.swift */,
 				CED76F4B21C3F561001117A8 /* FirstLaunch.strings */,
 			);
 			path = FirstLaunch;
@@ -2867,7 +2867,7 @@
 				B47A2E9D8F7B0491EC86237F /* RecepientAccountsViewInput.swift */,
 				CAA1CB3464C5A38FB9B04B5D /* RecepientAccountsViewOutput.swift */,
 				35F9B20AA95103F156AE1823 /* RecepientAccountsViewController.swift */,
-				CEE6730921A2E8B2008FAC09 /* RecepientAccounts.storyboard */,
+				CEE6730921A2E8B2008FAC09 /* RecipientAccounts.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5516,7 +5516,7 @@
 				A522AAEB219AF7D300C39826 /* SettingsCell.xib in Resources */,
 				A5C1877421C0F01900779D26 /* PinQuickLaunch.strings in Resources */,
 				A5E8D9A62153EB3900AC6A7E /* Send.storyboard in Resources */,
-				CEE6730A21A2E8B2008FAC09 /* RecepientAccounts.storyboard in Resources */,
+				CEE6730A21A2E8B2008FAC09 /* RecipientAccounts.storyboard in Resources */,
 				A535BA1B21CA5B5600B0BAF8 /* Montserrat-Italic.ttf in Resources */,
 				A535BA0F21CA5B5600B0BAF8 /* Montserrat-ThinItalic.ttf in Resources */,
 				CEF02F8121C3DA2C003D18FF /* AppInfo.strings in Resources */,
@@ -5735,7 +5735,7 @@
 				CE8CC99A2167D9C300EA9EED /* MyWalletDataManager.swift in Sources */,
 				CE5FAFB3215286D8009E707E /* QuickLaunchProvider.swift in Sources */,
 				A522AAE121997ED600C39826 /* PinSetupCollectionViewCell.swift in Sources */,
-				CED76F4A21C3F556001117A8 /* String+FirstLaunch.swift in Sources */,
+				CED76F4A21C3F556001117A8 /* Strings+FirstLaunch.swift in Sources */,
 				A56ED392216CD825009FA58B /* TransactionDetailsRouter.swift in Sources */,
 				CE1A47DC212E9C5400418C11 /* PinDotView.swift in Sources */,
 				CE5FAF952150ED6E009E707E /* PinValidationProvider.swift in Sources */,

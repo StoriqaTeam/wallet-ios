@@ -64,7 +64,7 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>Authentication is needed to access your account</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Photo library is used to save QR-codes</string>
+	<string>Photo library is used to save QR codes</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-LightItalic.ttf</string>

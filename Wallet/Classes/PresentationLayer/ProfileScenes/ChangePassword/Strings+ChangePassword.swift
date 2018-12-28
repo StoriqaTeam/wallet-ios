@@ -44,7 +44,7 @@ extension Strings {
         static let newPasswordHint = NSLocalizedString(
             "ChangePassword.newPasswordHint",
             tableName: "ChangePassword",
-            value: "At least: 8 characters, 1 capital, 1 digit",
+            value: "At least 8 characters, 1 capital, 1 digit",
             comment: "New password input hint. Shown below text field")
         
         static let passwordsNotMatchMessage = NSLocalizedString(

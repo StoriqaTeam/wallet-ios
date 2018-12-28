@@ -84,7 +84,7 @@ extension ExchangePresenter: ExchangeViewOutput {
     func amountDidBeginEditing() {
         isEditingAmount = true
         let amount = interactor.getAmount()
-        let currency = interactor.getRecepientCurrency()
+        let currency = interactor.getRecipientCurrency()
         let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
         view.setAmount(formatted)
     }
@@ -92,25 +92,25 @@ extension ExchangePresenter: ExchangeViewOutput {
     func amountDidEndEditing() {
         isEditingAmount = false
         let amount = interactor.getAmount()
-        let currency = interactor.getRecepientCurrency()
+        let currency = interactor.getRecipientCurrency()
         let formatted = getStringFrom(amount: amount, currency: currency)
         view.setAmount(formatted)
     }
     
-    func recepientAccountPressed() {
-        let accounts = interactor.getRecepientAccounts()
+    func recipientAccountPressed() {
+        let accounts = interactor.getRecipientAccounts()
         
         guard !accounts.isEmpty else {
             return
         }
         
         let builder = interactor.getTransactionBuilder()
-        router.showRecepientAccountSelection(exchangeProviderBuilder: builder, from: view.viewController)
+        router.showRecipientAccountSelection(exchangeProviderBuilder: builder, from: view.viewController)
     }
     
     func exchangeButtonPressed() {
         let fromAccount = interactor.getAccountName()
-        let toAccount = interactor.getRecepientAccountName()
+        let toAccount = interactor.getRecipientAccountName()
         let currency = interactor.getAccountCurrency()
         let decimalAmount = interactor.getGiveAmount()
         let amountStr = currencyFormatter.getStringFrom(amount: decimalAmount, currency: currency)
@@ -164,17 +164,17 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setNewPage(index)
     }
     
-    func updateRecepientAccount(_ account: Account?) {
+    func updateRecipientAccount(_ account: Account?) {
         guard let account = account else {
-            view.setRecepientAccount(LocalizedStrings.noAccountsAvailable)
-            view.setRecepientBalance("")
+            view.setRecipientAccount(LocalizedStrings.noAccountsAvailable)
+            view.setRecipientBalance("")
             return
         }
         
         let balance = accountDisplayer.cryptoAmount(for: account)
         
-        view.setRecepientAccount(account.name)
-        view.setRecepientBalance(String(format: LocalizedStrings.balanceLabel, balance))
+        view.setRecipientAccount(account.name)
+        view.setRecipientBalance(String(format: LocalizedStrings.balanceLabel, balance))
     }
     
     func exchangeRateError(_ error: Error) {

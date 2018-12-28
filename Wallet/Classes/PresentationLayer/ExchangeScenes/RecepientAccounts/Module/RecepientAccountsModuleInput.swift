@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsModuleInput.swift
+//  RecipientAccountsModuleInput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol RecepientAccountsModuleInput: class {
-    var output: RecepientAccountsModuleOutput? { get set }
+protocol RecipientAccountsModuleInput: class {
+    var output: RecipientAccountsModuleOutput? { get set }
     func present(from viewController: UIViewController)
 }
