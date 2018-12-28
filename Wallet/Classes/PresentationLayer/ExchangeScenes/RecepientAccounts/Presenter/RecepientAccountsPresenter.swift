@@ -60,6 +60,7 @@ extension RecipientAccountsPresenter: RecipientAccountsInteractorOutput {
 // MARK: - MyWalletViewOutput
 
 extension RecipientAccountsPresenter: MyWalletDataManagerDelegate {
+    
     func snapshotsForTransition(snapshots: [UIView], selectedIndex: Int) { }
 
     func didChangeOffset(_ newValue: CGFloat) { }
@@ -69,6 +70,7 @@ extension RecipientAccountsPresenter: MyWalletDataManagerDelegate {
         view.dismiss()
     }
     
+    func addNewAccountButtonTapped() { }
 }
 
 

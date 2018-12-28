@@ -26,5 +26,9 @@ extension Strings {
                                                            tableName: "MyWallet",
                                                            value: "+ Add new account",
                                                            comment: "Add new account button")
+        static let addNewAccountAlert = NSLocalizedString("MyWallet.addNewAccountAlert",
+                                                           tableName: "MyWallet",
+                                                           value: "Will be available soon",
+                                                           comment: "Add new account button alert")
     }
 }

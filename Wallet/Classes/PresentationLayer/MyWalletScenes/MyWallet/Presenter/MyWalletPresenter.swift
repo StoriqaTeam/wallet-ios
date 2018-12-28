@@ -30,6 +30,7 @@ class MyWalletPresenter {
     private var isPanGestureActive = false
     private let animator: MyWalletToAccountsAnimator
     private let haptic: HapticServiceProtocol
+    private var storiqaHandler: StoriqaAlertHandler?
     
     init(accountDisplayer: AccountDisplayerProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol,
@@ -172,6 +173,13 @@ extension MyWalletPresenter: MyWalletModuleInput {
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletDataManagerDelegate {
+    func addNewAccountButtonTapped() {
+        storiqaHandler = StoriqaAlertHandler(parentView: view.viewController.view)
+        storiqaHandler?.showAlert(title: LocalizedStrings.addNewAccountAlert,
+                                  message: "",
+                                  alertType: .attention)
+    }
+    
     func snapshotsForTransition(snapshots: [UIView], selectedIndex: Int) {
         animator.setVisibleViews(snapshots, selectedIndex: selectedIndex)
     }
