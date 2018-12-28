@@ -17,8 +17,8 @@ class ActivityIndicatorView: UIView {
             let radius = self.frame.height / 2
             circleLayer = WCGraintCircleLayer(bounds: self.bounds,
                                               position: CGPoint(x: radius, y: radius),
-                                              fromColor: color,
-                                              toColor: UIColor.white.withAlphaComponent(0),
+                                              fromColor: UIColor.white.withAlphaComponent(0),
+                                              toColor: color,
                                               linewidth: linewidth,
                                               toValue: 0.98)
         }
@@ -121,7 +121,7 @@ private class WCGraintCircleLayer: CALayer {
     func animateRotation() {
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotationAnimation.fromValue = 0.0
-        rotationAnimation.toValue = Double.pi * -2
+        rotationAnimation.toValue = Double.pi * 2
         rotationAnimation.duration = 1.5
         rotationAnimation.repeatCount = Float.infinity
         rotationAnimation.isRemovedOnCompletion = false
