@@ -16,17 +16,17 @@ extension Strings {
             value: "Send",
             comment: "Send screen title")
         
-        static let recepientAddressTitle = NSLocalizedString(
-            "Send.recepientAddressTitle",
+        static let recipientAddressTitle = NSLocalizedString(
+            "Send.recipientAddressTitle",
             tableName: "Send",
-            value: "Recepient's address",
-            comment: "Recepient address label title")
+            value: "Recipient's address",
+            comment: "Recipient address label title")
         
-        static let recepientInputPlaceholder = NSLocalizedString(
-            "Send.recepientAddressTitle",
+        static let recipientInputPlaceholder = NSLocalizedString(
+            "Send.recipientAddressTitle",
             tableName: "Send",
             value: "Enter address here",
-            comment: "Recepient address label placeholder")
+            comment: "Recipient address label placeholder")
         
         static let amountTitle = NSLocalizedString(
             "Send.amountTitle",

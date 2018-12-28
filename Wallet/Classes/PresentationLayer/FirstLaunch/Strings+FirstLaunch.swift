@@ -1,5 +1,5 @@
 //
-//  String+FirstLaunch.swift
+//  Strings+FirstLaunch.swift
 //  Wallet
 //
 //  Created by Storiqa on 14/12/2018.
@@ -26,7 +26,7 @@ extension Strings {
         static let subtitle = NSLocalizedString(
             "FirstLaunch.subtitle",
             tableName: "FirstLaunch",
-            value: "Multicurrency tool for easy operating with your fiat & crypto funds",
+            value: "Multicurrency wallet for easy operations with your fiat & crypto funds",
             comment: "First launch screen subtitle")
     }
 }

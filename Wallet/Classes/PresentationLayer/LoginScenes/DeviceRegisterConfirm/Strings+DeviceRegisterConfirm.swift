@@ -14,7 +14,7 @@ extension Strings {
         static let navigationTitle = NSLocalizedString(
             "DeviceRegisterConfirm.navigationTitle",
             tableName: "DeviceRegisterConfirm",
-            value: "Registring device",
+            value: "Registering device",
             comment: "Navigation bar title on device registration confirmation screen")
     }
     

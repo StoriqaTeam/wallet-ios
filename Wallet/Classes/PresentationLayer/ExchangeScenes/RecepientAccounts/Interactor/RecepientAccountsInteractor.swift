@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsInteractor.swift
+//  RecipientAccountsInteractor.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,8 +9,8 @@
 import Foundation
 
 
-class RecepientAccountsInteractor {
-    weak var output: RecepientAccountsInteractorOutput!
+class RecipientAccountsInteractor {
+    weak var output: RecipientAccountsInteractorOutput!
     
     private let exchangeProviderBuilder: ExchangeProviderBuilderProtocol
     private var exchangeProvider: ExchangeProviderProtocol
@@ -22,14 +22,14 @@ class RecepientAccountsInteractor {
 }
 
 
-// MARK: - RecepientAccountsInteractorInput
+// MARK: - RecipientAccountsInteractorInput
 
-extension RecepientAccountsInteractor: RecepientAccountsInteractorInput {
+extension RecipientAccountsInteractor: RecipientAccountsInteractorInput {
     func setSelected(account: Account) {
-        exchangeProviderBuilder.set(recepientAccount: account)
+        exchangeProviderBuilder.set(recipientAccount: account)
     }
     
     func getAccounts() -> [Account] {
-        return exchangeProvider.getRecepientAccounts()
+        return exchangeProvider.getRecipientAccounts()
     }
 }

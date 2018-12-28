@@ -20,9 +20,9 @@ class ExchangeViewController: UIViewController {
     @IBOutlet private var accountsCollectionView: UICollectionView!
     @IBOutlet private var accountsPageControl: UIPageControl!
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var recepientAccountTitleLabel: UILabel!
-    @IBOutlet private var recepientAccountLabel: UILabel!
-    @IBOutlet private var recepientBalanceLabel: UILabel!
+    @IBOutlet private var recipientAccountTitleLabel: UILabel!
+    @IBOutlet private var recipientAccountLabel: UILabel!
+    @IBOutlet private var recipientBalanceLabel: UILabel!
     @IBOutlet private var amountTitleLabel: UILabel!
     @IBOutlet private var amountTextField: UITextField!
     @IBOutlet private var rateLabel: UILabel!
@@ -76,8 +76,8 @@ class ExchangeViewController: UIViewController {
         output.amountChanged(sender.text ?? "")
     }
     
-    @IBAction private func recepientAccountPressed(_ sender: UIButton) {
-        output.recepientAccountPressed()
+    @IBAction private func recipientAccountPressed(_ sender: UIButton) {
+        output.recipientAccountPressed()
     }
     
     @IBAction func exchangeButtonPressed(_ sender: UIButton) {
@@ -157,12 +157,12 @@ extension ExchangeViewController: ExchangeViewInput {
         amountTextField.text = amount
     }
     
-    func setRecepientAccount(_ recepient: String) {
-        recepientAccountLabel.text = recepient
+    func setRecipientAccount(_ recipient: String) {
+        recipientAccountLabel.text = recipient
     }
     
-    func setRecepientBalance(_ balance: String) {
-        recepientBalanceLabel.text = balance
+    func setRecipientBalance(_ balance: String) {
+        recipientBalanceLabel.text = balance
     }
     
     func setButtonEnabled(_ enabled: Bool) {
@@ -241,28 +241,28 @@ extension ExchangeViewController {
         scrollView.delegate = self
         amountTextField.delegate = self
         
-        recepientAccountTitleLabel.font = Theme.Font.smallMediumWeightText
+        recipientAccountTitleLabel.font = Theme.Font.smallMediumWeightText
         amountTitleLabel.font = Theme.Font.smallMediumWeightText
         giveTitleLabel.font = Theme.Font.smallMediumWeightText
         getTitleLabel.font = Theme.Font.smallMediumWeightText
-        recepientBalanceLabel.font = Theme.Font.smallMediumWeightText
+        recipientBalanceLabel.font = Theme.Font.smallMediumWeightText
         errorLabel.font = Theme.Font.smallText
         rateLabel.font = Theme.Font.regularMedium
         rateTimerLabel.font = Theme.Font.regularMedium
-        recepientAccountLabel.font = Theme.Font.input
+        recipientAccountLabel.font = Theme.Font.input
         amountTextField.font = Theme.Font.input
         giveLabel.font = Theme.Font.input
         getLabel.font = Theme.Font.input
         
-        recepientAccountTitleLabel.textColor = Theme.Color.Text.lightGrey
+        recipientAccountTitleLabel.textColor = Theme.Color.Text.lightGrey
         amountTitleLabel.textColor = Theme.Color.Text.lightGrey
         giveTitleLabel.textColor = Theme.Color.Text.lightGrey
         getTitleLabel.textColor = Theme.Color.Text.lightGrey
-        recepientBalanceLabel.textColor = Theme.Color.Text.lightGrey.withAlphaComponent(0.8)
+        recipientBalanceLabel.textColor = Theme.Color.Text.lightGrey.withAlphaComponent(0.8)
         rateLabel.textColor = Theme.Color.mainOrange
         errorLabel.textColor = Theme.Color.Text.errorRed
         rateTimerLabel.textColor = Theme.Color.Text.main
-        recepientAccountLabel.textColor = Theme.Color.Text.main
+        recipientAccountLabel.textColor = Theme.Color.Text.main
         giveLabel.textColor = Theme.Color.Text.main
         getLabel.textColor = Theme.Color.Text.main
         
@@ -272,7 +272,7 @@ extension ExchangeViewController {
     }
     
     private func localizeText() {
-        recepientAccountTitleLabel.text = LocalizedStrings.toAccountTitle
+        recipientAccountTitleLabel.text = LocalizedStrings.toAccountTitle
         giveTitleLabel.text = LocalizedStrings.giveTitle
         getTitleLabel.text = LocalizedStrings.getTitle
         amountTitleLabel.text = LocalizedStrings.amountTitle

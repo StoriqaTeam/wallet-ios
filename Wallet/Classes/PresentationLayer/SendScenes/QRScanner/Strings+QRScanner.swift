@@ -14,25 +14,26 @@ extension Strings {
         static let qrCodeHintMessage = NSLocalizedString(
             "QRScanner.qrCodeHintMessage",
             tableName: "QRScanner",
-            value: "Place QR-code inside the white frame. \nTry not to shake your phone.",
+            value: "Position QR code inside the white frame. \nTry not to shake your phone.",
             comment: "QR code hint message label title")
         
         static let wrongQrMessage = NSLocalizedString(
             "QRScanner.wrongQrMessage",
             tableName: "QRScanner",
+            // FIXME: display currency name instaed
             value: "Currency of scanned address doesn't match the currency you are trying to transfer.",
             comment: "QR code hint message label title")
         
         static let navigationBarTitle = NSLocalizedString(
             "QRScanner.navigationBarTitle",
             tableName: "QRScanner",
-            value: "Scan QR-code",
+            value: "Scan QR code",
             comment: "Navigation bar title")
         
         static let okMessage = NSLocalizedString(
             "QRScanner.okMessage",
             tableName: "QRScanner",
-            value: "Ok",
+            value: "OK",
             comment: "Okey message")
         
         static let cancelButton = NSLocalizedString(
@@ -40,6 +41,7 @@ extension Strings {
             tableName: "QRScanner",
             value: "Cancel",
             comment: "Cancel button")
+        
         static let settingsButton = NSLocalizedString(
             "QRScanner.settingsButton",
             tableName: "QRScanner",
@@ -55,7 +57,7 @@ extension Strings {
         static let scanningNotSupportMessage = NSLocalizedString(
             "QRScanner.scanningNotSupportMessage",
             tableName: "QRScanner",
-            value: "It seems your device does not support QR-code scanning.",
+            value: "It seems your device does not support QR code scanning.",
             comment: "Alert Scan not support message")
         
         static let noCameraAccessTitle = NSLocalizedString(

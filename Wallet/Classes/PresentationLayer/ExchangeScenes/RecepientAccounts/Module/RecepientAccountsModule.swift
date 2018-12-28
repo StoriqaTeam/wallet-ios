@@ -6,17 +6,17 @@
 import UIKit
 
 
-class RecepientAccountsModule {
+class RecipientAccountsModule {
     
-    class func create(app: Application, exchangeProviderBuilder: ExchangeProviderBuilderProtocol) -> RecepientAccountsModuleInput {
-        let router = RecepientAccountsRouter()
+    class func create(app: Application, exchangeProviderBuilder: ExchangeProviderBuilderProtocol) -> RecipientAccountsModuleInput {
+        let router = RecipientAccountsRouter()
         
-        let presenter = RecepientAccountsPresenter(accountDisplayer: app.accountDisplayer)
-        let interactor = RecepientAccountsInteractor(exchangeProviderBuilder: exchangeProviderBuilder)
+        let presenter = RecipientAccountsPresenter(accountDisplayer: app.accountDisplayer)
+        let interactor = RecipientAccountsInteractor(exchangeProviderBuilder: exchangeProviderBuilder)
         
-        let storyboard = UIStoryboard(name: "RecepientAccounts", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "RecepientAccountsVC")
-            as! RecepientAccountsViewController
+        let storyboard = UIStoryboard(name: "RecipientAccounts", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "RecipientAccountsVC")
+            as! RecipientAccountsViewController
         
         interactor.output = presenter
 
