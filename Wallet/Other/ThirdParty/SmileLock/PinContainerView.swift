@@ -21,6 +21,8 @@ class PinContainerView: LoadableFromXib {
     @IBOutlet private var deleteButton: UIButton!
     @IBOutlet private var touchAuthenticationButton: UIButton!
     
+    private let haptic: HapticServiceProtocol = HapticService()
+    
     // MARK: Property
     
     weak var delegate: PinInputCompleteProtocol?
@@ -112,6 +114,7 @@ class PinContainerView: LoadableFromXib {
     
     // MARK: Input Wrong
     func wrongPassword() {
+        haptic.performNotificationHaptic(feedbackType: .error)
         pinDotView.shakeAnimationWithCompletion {
             self.clearInput()
         }
@@ -168,6 +171,7 @@ extension PinContainerView {
 
 extension PinContainerView: PinInputViewTappedDelegate {
     public func pinInputView(_ pinInputView: PinInputView, tappedString: String) {
+        haptic.performImpactHaptic(style: .medium)
         guard inputString.count < pinDotView.totalDotCount else {
             return
         }

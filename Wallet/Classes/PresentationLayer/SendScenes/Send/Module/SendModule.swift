@@ -14,7 +14,8 @@ class SendModule {
         let router = SendRouter(app: app)
         let presenter = SendPresenter(currencyFormatter: app.currencyFormatter,
                                       currencyImageProvider: app.currencyImageProvider,
-                                      accountDisplayer: app.accountDisplayer)
+                                      accountDisplayer: app.accountDisplayer,
+                                      haptic: app.hapticService)
         presenter.mainTabBar = tabBar
         
         let sendTransactionBuilder = app.sendTransactionBuilderFactory.create()

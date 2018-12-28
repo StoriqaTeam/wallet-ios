@@ -17,7 +17,8 @@ class MyWalletModule {
         let presenter = MyWalletPresenter(accountDisplayer: app.accountDisplayer,
                                           denominationUnitsConverter: app.denominationUnitsConverter,
                                           currencyFormatter: app.currencyFormatter,
-                                          animator: animator)
+                                          animator: animator,
+                                          haptic: app.hapticService)
         presenter.mainTabBar = tabBar
         
         let interactor = MyWalletInteractor(accountsProvider: app.accountsProvider,

@@ -75,6 +75,7 @@ class Application {
     lazy var updateUserNetworkProvider: UpdateUserNetworkProviderProtocol = UpdateUserNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
     lazy var resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol = ResendConfirmEmailNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
     lazy var refreshTokenNetworkProvider: RefreshTokenNetworkProviderProtocol = RefreshTokenNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var hapticService: HapticServiceProtocol = HapticService()
     
     
     // MARK: - Common Providers -

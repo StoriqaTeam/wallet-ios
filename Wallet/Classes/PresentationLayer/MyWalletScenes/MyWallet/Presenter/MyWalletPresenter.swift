@@ -29,15 +29,18 @@ class MyWalletPresenter {
     private var notificationView: UIView?
     private var isPanGestureActive = false
     private let animator: MyWalletToAccountsAnimator
+    private let haptic: HapticServiceProtocol
     
     init(accountDisplayer: AccountDisplayerProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
-         animator: MyWalletToAccountsAnimator) {
+         animator: MyWalletToAccountsAnimator,
+         haptic: HapticServiceProtocol) {
         
         self.accountDisplayer = accountDisplayer
         self.denominationUnitsConverter = denominationUnitsConverter
         self.currencyFormatter = currencyFormatter
+        self.haptic = haptic
         self.animator = animator
     }
 }
@@ -227,6 +230,7 @@ extension MyWalletPresenter {
     }
     
     private func showReceivedNotification(message: String) {
+        
         if notificationView != nil {
             self.notificationView?.removeFromSuperview()
             self.notificationView = nil
@@ -236,6 +240,7 @@ extension MyWalletPresenter {
         }
         
         addNotificationView(message: message)
+        haptic.performNotificationHaptic(feedbackType: .success)
         
         guard let notificationView = notificationView else {
             return

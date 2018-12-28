@@ -22,16 +22,20 @@ class ExchangePresenter {
     private let currencyFormatter: CurrencyFormatterProtocol
     private let accountDisplayer: AccountDisplayerProtocol
     private var accountsDataManager: AccountsDataManager!
+    private let haptic: HapticServiceProtocol
     
     private var storiqaLoader: StoriqaLoader!
     private var isEditingAmount = false
     
     init(converterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
-         accountDisplayer: AccountDisplayerProtocol) {
+         accountDisplayer: AccountDisplayerProtocol,
+         haptic: HapticServiceProtocol) {
+        
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
         self.accountDisplayer = accountDisplayer
+        self.haptic = haptic
     }
 }
 
@@ -227,11 +231,13 @@ extension ExchangePresenter: ExchangeInteractorOutput {
     
     func exchangeTxFailed(message: String) {
         storiqaLoader.stopLoader()
+        haptic.performNotificationHaptic(feedbackType: .error)
         router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
     }
     
     func exchangeTxSucceed() {
         storiqaLoader.stopLoader()
+        haptic.performNotificationHaptic(feedbackType: .success)
         router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
     }
 
