@@ -38,6 +38,7 @@ class Application {
                                                                               userkeyManager: self.userKeyManager)
     lazy var orderFactory: OrderFactoryProtocol = OrderFactory()
     lazy var networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol = NetworkErrorResolverFactory(channelStorage: self.channelStorage)
+    lazy var shortPollingTimerFactory: ShortPollingTimerFactoryProtocol = ShortPollingTimerFactory()
     
     
     // MARK: - System store -
@@ -205,11 +206,6 @@ class Application {
     
     // MARK: - Social Networks -
     lazy var facebookLoginManager: LoginManager = LoginManager()
-    
-    
-    // MARK: - Global services -
-    lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 60)
-    lazy var depositShortPollintTimer: DepositShortPollingTimerProtocol = DepositShortPollingTimer(timeout: 10)
     
     // MARK: - Channels -
     lazy var channelStorage: ChannelStorage = ChannelStorage()
