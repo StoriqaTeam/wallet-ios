@@ -65,14 +65,14 @@ extension TransactionDescriptionView {
         fromLabel.textColor = Theme.Color.Text.lightGrey
         fromLabel.font = Theme.Font.smallMediumWeightText
         
-        addresslabel.font = Theme.Font.Label.medium
+        addresslabel.font = Theme.Font.regularMedium
         addresslabel.textColor = .white
         
-        contactLabel.font = Theme.Font.Label.regular
-        contactLabel.textColor = Theme.Color.Button.enabledBackground
+        contactLabel.font = Theme.Font.regular
+        contactLabel.textColor = Theme.Color.Button.tintColor
         
         timestampLabel.font = Theme.Font.smallMediumWeightText
-        timestampLabel.textColor = Theme.Color.Text.lightGrey
+        timestampLabel.textColor = Theme.Color.mainOrange
         
         pendingLabel.font = Theme.Font.smallMediumWeightText
         pendingLabel.textColor = Theme.Color.mainOrange

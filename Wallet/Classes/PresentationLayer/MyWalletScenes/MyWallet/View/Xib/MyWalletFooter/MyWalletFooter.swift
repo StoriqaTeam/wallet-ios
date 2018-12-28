@@ -9,7 +9,10 @@
 import Foundation
 
 class MyWalletFooter: UICollectionReusableView {
-    @IBOutlet private var addNewButton: LightButton!
+    
+    typealias LocalizedStrings = Strings.MyWallet
+    
+    @IBOutlet private var addNewButton: ThinButton!
     @IBOutlet private var widthConstraint: NSLayoutConstraint!
     
     var view: UIView!
@@ -40,7 +43,7 @@ class MyWalletFooter: UICollectionReusableView {
 extension MyWalletFooter {
     private func configureInterface() {
         view.backgroundColor = .clear
-        addNewButton.titleLabel?.font = Theme.Font.Button.smallButtonTitle
+        addNewButton.title = LocalizedStrings.addNewAccountButton
     }
     
     private func xibSetup() {

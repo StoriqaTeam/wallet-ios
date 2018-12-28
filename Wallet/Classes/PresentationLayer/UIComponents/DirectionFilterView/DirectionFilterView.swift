@@ -71,9 +71,9 @@ extension DirectionFilterView {
         sentlabel.textColor = Theme.Color.primaryGrey
         receivelabel.font = Theme.Font.FilterView.filterLabel
         receivelabel.textColor = Theme.Color.primaryGrey
-        allUnderlineView.backgroundColor = Theme.Color.brightOrange
-        sentUnderlineView.backgroundColor = Theme.Color.brightOrange
-        receiveUnderlineView.backgroundColor = Theme.Color.brightOrange
+        allUnderlineView.backgroundColor = Theme.Color.mainOrange
+        sentUnderlineView.backgroundColor = Theme.Color.mainOrange
+        receiveUnderlineView.backgroundColor = Theme.Color.mainOrange
         
         allLabel.isUserInteractionEnabled = true
         sentlabel.isUserInteractionEnabled = true

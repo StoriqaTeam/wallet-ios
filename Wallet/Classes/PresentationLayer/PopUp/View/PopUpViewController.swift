@@ -18,7 +18,7 @@ class PopUpViewController: BasePopUpViewController {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var textLabel: UILabel!
-    @IBOutlet private var actionButton: LightButton!
+    @IBOutlet private var actionButton: GradientButton!
     @IBOutlet private var closeButton: BaseButton!
     
     // MARK: - Life cycle
@@ -79,8 +79,5 @@ extension PopUpViewController {
         textLabel.font = Theme.Font.PopUp.subtitle
         titleLabel.textColor = Theme.Color.Text.main
         textLabel.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
-        actionButton.setup(color: Theme.Color.Text.main.withAlphaComponent(0.5), titleColor: Theme.Color.Text.main)
-        actionButton.titleLabel?.font = Theme.Font.Button.buttonTitle
-        closeButton.setTitleColor(Theme.Color.Text.main, for: .normal)
     }
 }

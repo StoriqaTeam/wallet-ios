@@ -90,7 +90,7 @@ extension PinInputPresenter: PinInputViewOutput {
         
         alertController.addAction(resetPin)
         alertController.addAction(cancelAction)
-        alertController.view.tintColor = Theme.Color.brightSkyBlue
+        alertController.view.tintColor = Theme.Color.mainOrange
         
         view.viewController.present(alertController, animated: true, completion: nil)
     }

@@ -24,7 +24,7 @@ class ExchangeConfirmPopUpViewController: BasePopUpViewController {
     @IBOutlet private var fromLabel: UILabel!
     @IBOutlet private var toLabel: UILabel!
     @IBOutlet private var amountLabel: UILabel!
-    @IBOutlet private var confirmButton: DefaultButton!
+    @IBOutlet private var confirmButton: GradientButton!
     @IBOutlet private var closeButton: BaseButton!
 
 
@@ -85,8 +85,6 @@ extension ExchangeConfirmPopUpViewController {
         fromLabel.textColor = Theme.Color.Text.main
         toLabel.textColor = Theme.Color.Text.main
         amountLabel.textColor = Theme.Color.Text.main
-        
-        closeButton.setTitleColor(Theme.Color.Text.main, for: .normal)
     }
     
     private func localizeText() {

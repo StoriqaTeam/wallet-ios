@@ -34,12 +34,12 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="T8w-o0-Yxg">
-                                <rect key="frame" x="28" y="585" width="319" height="44"/>
+                                <rect key="frame" x="28" y="578" width="319" height="51"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGE-C4-pzr" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="319" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGE-C4-pzr" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="51"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="43i-e6-bKv"/>
+                                            <constraint firstAttribute="height" constant="51" id="43i-e6-bKv"/>
                                         </constraints>
                                         <state key="normal" title="Set up PIN code">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -76,6 +76,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pinQuickLaunch" width="375" height="448"/>
+        <image name="pinQuickLaunch" width="376" height="397"/>
     </resources>
 </document>

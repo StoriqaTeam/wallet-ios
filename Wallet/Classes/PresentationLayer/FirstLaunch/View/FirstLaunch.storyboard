@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="674"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Er1-GH-KNz">
-                                        <rect key="frame" x="116.66666666666669" y="196.99999999999997" width="181" height="280.33333333333326"/>
+                                        <rect key="frame" x="116.66666666666669" y="197.66666666666663" width="181" height="279"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOA-9K-F2f">
                                                 <rect key="frame" x="0.0" y="0.0" width="181" height="211"/>
@@ -43,7 +43,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" image="titleTure" translatesAutoresizingMaskIntoConstraints="NO" id="8Di-F1-yUC">
-                                                        <rect key="frame" x="0.0" y="181" width="181" height="30"/>
+                                                        <rect key="frame" x="0.0" y="181.00000000000003" width="181" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="B7o-pE-44Z"/>
                                                         </constraints>
@@ -61,7 +61,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mal-DX-jFs">
-                                                <rect key="frame" x="-34.666666666666671" y="251.00000000000003" width="250" height="29.333333333333343"/>
+                                                <rect key="frame" x="-34.666666666666671" y="251" width="250" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="250" id="thv-sA-gPo"/>
                                                 </constraints>
@@ -92,7 +92,7 @@ with your fiat &amp; crypto funds</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLy-W4-uNU">
                                 <rect key="frame" x="47" y="718" width="320" height="114"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjw-WQ-0cb" customClass="LightButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjw-WQ-0cb" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="7AM-9T-r6P"/>
@@ -104,7 +104,7 @@ with your fiat &amp; crypto funds</string>
                                             <action selector="getStartedPressed:" destination="1ZA-KR-Ckj" eventType="touchUpInside" id="0nq-jc-T50"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-MI-siA">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-MI-siA" customClass="ColoredFramelessButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="63" width="320" height="51"/>
                                         <state key="normal" title="Sign in">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -16,7 +16,7 @@ class BaseQuickLaunchViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var subtitleLabel: UILabel?
     @IBOutlet var actionButton: UIButton!
-    @IBOutlet var cancelButton: UIButton?
+    @IBOutlet var cancelButton: ColoredFramelessButton?
     
     // MARK: Life cycle
     
@@ -35,7 +35,6 @@ class BaseQuickLaunchViewController: UIViewController {
         titleLabel.textColor = Theme.Color.Text.main
         subtitleLabel?.textColor = Theme.Color.Text.main.withAlphaComponent(0.5)
         cancelButton?.setTitle(Strings.QuickLaunch.cancelButton, for: .normal)
-        cancelButton?.setTitleColor(Theme.Color.Button.enabledBackground, for: .normal)
     }
     
     private func disableBackNavigation() {

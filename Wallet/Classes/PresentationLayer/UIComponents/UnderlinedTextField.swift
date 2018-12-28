@@ -144,7 +144,7 @@ extension UnderlinedTextField {
                                                y: self.frame.height + messageLabelVerticalMargin,
                                                width: width,
                                                height: 20))
-            messageLabel!.font = Theme.Font.errorMessage
+            messageLabel!.font = Theme.Font.smallText
             messageLabel!.numberOfLines = 0
             self.addSubview(messageLabel!)
         }

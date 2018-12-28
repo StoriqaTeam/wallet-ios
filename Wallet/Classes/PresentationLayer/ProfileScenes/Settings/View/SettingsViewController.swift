@@ -25,7 +25,7 @@ class SettingsViewController: UIViewController {
     var output: SettingsViewOutput!
     
     @IBOutlet private var settingsTableView: UITableView!
-    @IBOutlet private var signOutButton: LightButton!
+    @IBOutlet private var signOutButton: GradientButton!
     
     private var changePhoneTitle: String = ""
     private var hasChangePassword = true
@@ -151,8 +151,8 @@ extension SettingsViewController {
     }
     
     func configureInterface() {
-        signOutButton.setup(color: Theme.Color.Button.red)
-        signOutButton.setTitleColor(Theme.Color.Button.red, for: .normal)
+        signOutButton.setup(colors: [Theme.Color.Button.red.cgColor],
+                            titleColor:  Theme.Color.Button.red)
         
         view.backgroundColor = Theme.Color.backgroundColor
         

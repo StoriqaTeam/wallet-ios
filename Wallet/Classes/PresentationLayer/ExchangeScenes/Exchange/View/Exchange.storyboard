@@ -165,15 +165,11 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NCJ-gl-dYj">
                                                         <rect key="frame" x="0.0" y="192" width="337" height="204"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykT-Ni-br4">
-                                                                <rect key="frame" x="0.0" y="0.0" width="337" height="204"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="csF-TA-Ken">
-                                                                <rect key="frame" x="16" y="15" width="305" height="174"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="337" height="204"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36X-A0-Kaj">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="337" height="25"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WvV-fs-r5i">
                                                                                 <rect key="frame" x="0.0" y="12.5" width="0.0" height="0.0"/>
@@ -182,7 +178,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMV-F2-sgc">
-                                                                                <rect key="frame" x="305" y="12.5" width="0.0" height="0.0"/>
+                                                                                <rect key="frame" x="337" y="12.5" width="0.0" height="0.0"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
@@ -199,7 +195,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9YM-Pg-aSn">
-                                                                        <rect key="frame" x="0.0" y="37" width="305" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="37" width="337" height="80"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUBTOTAL TO SEND" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldn-dH-1qC">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="126.5" height="22"/>
@@ -211,7 +207,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omF-pp-fEK">
-                                                                                <rect key="frame" x="0.0" y="26" width="305" height="24"/>
+                                                                                <rect key="frame" x="0.0" y="26" width="337" height="54"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -228,7 +224,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fx4-Co-gPZ">
-                                                                        <rect key="frame" x="0.0" y="99" width="305" height="75"/>
+                                                                        <rect key="frame" x="0.0" y="129" width="337" height="75"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUBTOTAL TO SEND" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XB-8D-Zj1">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="126.5" height="22"/>
@@ -240,7 +236,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3A-RQ-7NX">
-                                                                                <rect key="frame" x="0.0" y="26" width="305" height="49"/>
+                                                                                <rect key="frame" x="0.0" y="26" width="337" height="49"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -261,14 +257,10 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="ykT-Ni-br4" secondAttribute="trailing" id="O0u-8d-Mk1"/>
-                                                            <constraint firstItem="csF-TA-Ken" firstAttribute="leading" secondItem="NCJ-gl-dYj" secondAttribute="leading" constant="16" id="aKh-Do-sh0"/>
+                                                            <constraint firstItem="csF-TA-Ken" firstAttribute="leading" secondItem="NCJ-gl-dYj" secondAttribute="leading" id="aKh-Do-sh0"/>
                                                             <constraint firstItem="csF-TA-Ken" firstAttribute="centerX" secondItem="NCJ-gl-dYj" secondAttribute="centerX" id="cQR-rU-dpz"/>
-                                                            <constraint firstItem="ykT-Ni-br4" firstAttribute="top" secondItem="NCJ-gl-dYj" secondAttribute="top" id="cpF-8L-GkZ"/>
                                                             <constraint firstItem="csF-TA-Ken" firstAttribute="centerY" secondItem="NCJ-gl-dYj" secondAttribute="centerY" id="j5u-nA-tPm"/>
-                                                            <constraint firstItem="ykT-Ni-br4" firstAttribute="leading" secondItem="NCJ-gl-dYj" secondAttribute="leading" id="qKw-zF-Rfb"/>
-                                                            <constraint firstAttribute="bottom" secondItem="ykT-Ni-br4" secondAttribute="bottom" id="scF-jz-mYU"/>
-                                                            <constraint firstItem="csF-TA-Ken" firstAttribute="top" secondItem="NCJ-gl-dYj" secondAttribute="top" constant="15" id="t8f-Hk-R0r"/>
+                                                            <constraint firstItem="csF-TA-Ken" firstAttribute="top" secondItem="NCJ-gl-dYj" secondAttribute="top" id="t8f-Hk-R0r"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL0-9D-3pi">
@@ -283,7 +275,7 @@
                                                                 <color key="textColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVT-bQ-Teq" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVT-bQ-Teq" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="43.5" width="337" height="51"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" priority="751" constant="334" id="056-bq-ajj"/>
@@ -360,7 +352,6 @@
                         <outlet property="accountsPageControl" destination="HVb-uQ-Pi1" id="izz-UW-HEx"/>
                         <outlet property="amountTextField" destination="bCX-31-KOE" id="RuI-kA-aRM"/>
                         <outlet property="amountTitleLabel" destination="KhJ-DL-2Be" id="FsQ-se-JGg"/>
-                        <outlet property="dataContainerBackground" destination="ykT-Ni-br4" id="yBP-yq-CLW"/>
                         <outlet property="errorLabel" destination="i6w-Ir-eix" id="acL-RU-skd"/>
                         <outlet property="exchangeButton" destination="yVT-bQ-Teq" id="NFe-zP-pL7"/>
                         <outlet property="getLabel" destination="D3A-RQ-7NX" id="9vI-CK-a1J"/>

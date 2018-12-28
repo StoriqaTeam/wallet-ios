@@ -63,7 +63,7 @@ enum Device: CGFloat {
             flowLayout.minimumLineSpacing = spacing
             flowLayout.sectionInset = UIEdgeInsets(top: inset/2, left: 0, bottom: inset/2, right: 0)
             flowLayout.scrollDirection = .vertical
-            flowLayout.footerReferenceSize = CGSize(width: width, height: 100)
+            flowLayout.footerReferenceSize = CGSize(width: width, height: 80)
         case .verticalSmall:
             flowLayout.minimumLineSpacing = inset
             flowLayout.sectionInset = UIEdgeInsets(top: inset/2, left: 0, bottom: inset/2, right: 0)

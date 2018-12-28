@@ -179,7 +179,7 @@ extension QRScannerPresenter {
             self?.view.dismiss()
         }
         alertVC.addAction(action)
-        alertVC.view.tintColor = Theme.Color.brightSkyBlue
+        alertVC.view.tintColor = Theme.Color.mainOrange
         
         view.viewController.present(alertVC, animated: true)
     }
@@ -200,7 +200,7 @@ extension QRScannerPresenter {
         
         alertVC.addAction(cancel)
         alertVC.addAction(showSettings)
-        alertVC.view.tintColor = Theme.Color.brightSkyBlue
+        alertVC.view.tintColor = Theme.Color.mainOrange
         
         view.viewController.present(alertVC, animated: true)
     }

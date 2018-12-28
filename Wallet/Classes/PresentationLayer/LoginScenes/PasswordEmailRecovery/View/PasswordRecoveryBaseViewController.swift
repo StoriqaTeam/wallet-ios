@@ -14,7 +14,7 @@ class PasswordRecoveryBaseViewController: UIViewController {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
-    @IBOutlet var confirmButton: DefaultButton!
+    @IBOutlet var confirmButton: GradientButton!
     @IBOutlet private var resetPasswordButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet private var headerVerticalSpaceConstraint: NSLayoutConstraint!
     @IBOutlet private var subtitleTopSpaceConstraint: NSLayoutConstraint!

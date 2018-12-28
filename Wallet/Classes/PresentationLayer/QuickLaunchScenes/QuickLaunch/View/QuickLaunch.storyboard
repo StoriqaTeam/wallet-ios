@@ -43,7 +43,7 @@
                                     <constraint firstAttribute="width" secondItem="rbh-eJ-5Ej" secondAttribute="height" id="YKf-oN-aLB"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NM-Ms-gHQ" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NM-Ms-gHQ" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
                                 <rect key="frame" x="28" y="578" width="319" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="b4r-TP-RdL"/>

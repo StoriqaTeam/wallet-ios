@@ -24,7 +24,7 @@ class PinInputViewController: UIViewController {
     @IBOutlet private var userPhotoImageView: UIImageView?
     @IBOutlet private var userPhotoContainerView: ActivityIndicatorView?
     @IBOutlet private var pinContainerView: PinContainerView!
-    @IBOutlet private var forgotPinButton: UIButton!
+    @IBOutlet private var forgotPinButton: BaseButton!
     
 
     // MARK: Life cycle

@@ -32,8 +32,7 @@ class ExchangeViewController: UIViewController {
     @IBOutlet private var getTitleLabel: UILabel!
     @IBOutlet private var getLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
-    @IBOutlet private var exchangeButton: DefaultButton!
-    @IBOutlet private var dataContainerBackground: UIView!
+    @IBOutlet private var exchangeButton: GradientButton!
     
     // MARK: Variables
 
@@ -238,7 +237,6 @@ extension ExchangeViewController {
     
     private func configInterface() {
         view.backgroundColor = Theme.Color.backgroundColor
-        dataContainerBackground.backgroundColor = Theme.Color.Text.main.withAlphaComponent(0.05)
 
         scrollView.delegate = self
         amountTextField.delegate = self
@@ -249,8 +247,8 @@ extension ExchangeViewController {
         getTitleLabel.font = Theme.Font.smallMediumWeightText
         recepientBalanceLabel.font = Theme.Font.smallMediumWeightText
         errorLabel.font = Theme.Font.smallText
-        rateLabel.font = Theme.Font.Label.medium
-        rateTimerLabel.font = Theme.Font.Label.medium
+        rateLabel.font = Theme.Font.regularMedium
+        rateTimerLabel.font = Theme.Font.regularMedium
         recepientAccountLabel.font = Theme.Font.input
         amountTextField.font = Theme.Font.input
         giveLabel.font = Theme.Font.input

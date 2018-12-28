@@ -20,7 +20,7 @@ class AccountsViewController: UIViewController {
     @IBOutlet private var lastTransactionsTableView: UITableView!
     @IBOutlet private var collectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var lastTransactionsTitle: UILabel!
-    @IBOutlet private var viewAllButton: LightButton!
+    @IBOutlet private var viewAllButton: ThinButton!
     @IBOutlet private var viewAllHeightConstraint: NSLayoutConstraint!
     
 
@@ -113,9 +113,8 @@ extension AccountsViewController {
         accountsPageControl.isUserInteractionEnabled = false
         
         viewAllButton.title = LocalizedStrings.viewAllButton
-        viewAllButton.titleLabel?.font = Theme.Font.Button.smallButtonTitle
         
-        let gradientHeight: CGFloat = 20
+        let gradientHeight: CGFloat = 34
         viewAllButton.superview?.backgroundColor = Theme.Color.backgroundColor
         viewAllButton.superview?.gradientView(
             colors: [UIColor.clear.cgColor, Theme.Color.backgroundColor.cgColor],

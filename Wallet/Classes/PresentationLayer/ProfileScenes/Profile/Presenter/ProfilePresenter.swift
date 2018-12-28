@@ -153,7 +153,7 @@ extension ProfilePresenter {
     }
     
     private func showAlertVC(_ alert: UIAlertController) {
-        alert.view.tintColor = Theme.Color.brightSkyBlue
+        alert.view.tintColor = Theme.Color.mainOrange
         view.viewController.present(alert, animated: true, completion: nil)
     }
     
