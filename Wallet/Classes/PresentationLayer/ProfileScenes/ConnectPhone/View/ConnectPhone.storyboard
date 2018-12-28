@@ -66,7 +66,7 @@
                                 <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0F-ZR-xEU" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0F-ZR-xEU" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
                                 <rect key="frame" x="28.5" y="596" width="318" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="PZV-aF-hRW"/>

@@ -38,7 +38,7 @@ launch?</string>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PoN-le-L3Z">
                                 <rect key="frame" x="28" y="556" width="319" height="103"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOt-zw-a0e" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOt-zw-a0e" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="319" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="F6F-d0-S7M"/>
@@ -50,7 +50,7 @@ launch?</string>
                                             <action selector="performAction:" destination="jNQ-Ub-hGR" eventType="touchUpInside" id="b3H-bn-xcd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVE-jD-zYe" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVE-jD-zYe" customClass="ColoredFramelessButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="59" width="319" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="GdO-hy-mf1"/>

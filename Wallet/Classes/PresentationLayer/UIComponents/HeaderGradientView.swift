@@ -40,7 +40,7 @@ extension HeaderGradientView {
         
         layer.sublayers?.removeAll()
         
-        gradientView(colors: Theme.Color.Gradient.headerGradient,
+        gradientView(colors: Theme.Color.Gradient.detailBlueGradient,
                      frame: layerFrame,
                      startPoint: CGPoint(x: 0.0, y: 0.0),
                      endPoint: CGPoint(x: 1.0, y: 1.0))

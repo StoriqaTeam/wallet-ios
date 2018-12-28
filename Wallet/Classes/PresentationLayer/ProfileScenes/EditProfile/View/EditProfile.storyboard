@@ -59,7 +59,7 @@
                                     <constraint firstItem="ygd-zx-b9Y" firstAttribute="top" secondItem="erJ-qf-we5" secondAttribute="top" id="zIx-SS-N5K"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbD-Ki-eEX" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbD-Ki-eEX" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
                                 <rect key="frame" x="20" y="588" width="335" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="750" constant="336" id="5fM-Oz-Qfj"/>

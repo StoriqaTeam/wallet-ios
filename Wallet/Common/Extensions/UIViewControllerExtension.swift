@@ -26,7 +26,7 @@ extension UIViewController {
         let navLabel = UILabel()
         navLabel.backgroundColor = .clear
         navLabel.textColor = Theme.Color.NavigationBar.title
-        navLabel.font = Theme.Font.navigationBarTitle
+        navLabel.font = Theme.Font.NavigationBar.title
         navLabel.text = title
         navLabel.textAlignment = .center
         navLabel.sizeToFit()
@@ -83,7 +83,7 @@ extension UIViewController {
     func showAlert(title: String = "", message: String = "") {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        alert.view.tintColor = Theme.Color.brightSkyBlue
+        alert.view.tintColor = Theme.Color.mainOrange
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -96,7 +96,7 @@ extension UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
-        alert.view.tintColor = Theme.Color.brightSkyBlue
+        alert.view.tintColor = Theme.Color.mainOrange
         self.present(alert, animated: true, completion: nil)
 
     }
@@ -108,7 +108,7 @@ extension UIViewController {
         }
         
         alert.addAction(okAction)
-        alert.view.tintColor = Theme.Color.brightSkyBlue
+        alert.view.tintColor = Theme.Color.mainOrange
         self.present(alert, animated: true, completion: nil)
     }
 }
@@ -122,7 +122,7 @@ extension UINavigationController {
         navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
         navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
         navigationBar.titleTextAttributes = [.foregroundColor: Theme.Color.NavigationBar.title,
-                                             .font: Theme.Font.navigationBarTitle!]
+                                             .font: Theme.Font.NavigationBar.title!]
         navigationBar.barTintColor = Theme.Color.NavigationBar.buttons
         navigationBar.tintColor = Theme.Color.NavigationBar.buttons
         navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

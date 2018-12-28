@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet private var emailTextField: UnderlinedTextField!
     @IBOutlet private var passwordTextField: SecureInputTextField!
-    @IBOutlet private var signInButton: DefaultButton!
+    @IBOutlet private var signInButton: GradientButton!
     @IBOutlet private var forgotPasswordButton: BaseButton!
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
     @IBOutlet private var signInHeaderButton: UIButton!
@@ -195,7 +195,7 @@ extension LoginViewController {
         signUpHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
         signUpHeaderButton.alpha = 0.7
         signInHeaderButton.isUserInteractionEnabled = false
-        hederButtonUnderliner.backgroundColor = Theme.Color.Button.enabledBackground
+        hederButtonUnderliner.backgroundColor = Theme.Color.Button.tintColor
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         topSpaceConstraint.constant = statusBarHeight * 2

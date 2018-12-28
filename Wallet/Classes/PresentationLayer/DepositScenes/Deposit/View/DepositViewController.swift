@@ -142,7 +142,6 @@ extension DepositViewController {
         
         copyButton.setImage(UIImage(named: "copyIcon"), for: .normal)
         copyButton.tintColor = Theme.Color.opaqueWhite
-        copyButton.titleLabel?.font = Theme.Font.smallText
         
         shareDescriptionLabel.font = Theme.Font.smallMediumWeightText
         shareDescriptionLabel.tintColor = Theme.Color.Text.lightGrey

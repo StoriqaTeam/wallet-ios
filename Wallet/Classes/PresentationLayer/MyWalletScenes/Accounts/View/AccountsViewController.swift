@@ -20,7 +20,7 @@ class AccountsViewController: UIViewController {
     @IBOutlet private var lastTransactionsTableView: UITableView!
     @IBOutlet private var collectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var lastTransactionsTitle: UILabel!
-    @IBOutlet private var viewAllButton: SmallHeightButton!
+    @IBOutlet private var viewAllButton: ThinButton!
     @IBOutlet private var viewAllHeightConstraint: NSLayoutConstraint!
     
 

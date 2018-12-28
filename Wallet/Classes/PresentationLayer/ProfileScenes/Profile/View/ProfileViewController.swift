@@ -23,8 +23,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var emailLabel: UILabel!
     @IBOutlet private var phoneTitleLabel: UILabel!
     @IBOutlet private var phoneLabel: UILabel!
-    @IBOutlet private var connectPhoneButton: DefaultButton!
-    @IBOutlet private var signOutButton: LightButton!
+    @IBOutlet private var connectPhoneButton: GradientButton!
+    @IBOutlet private var signOutButton: GradientButton!
     @IBOutlet private var changePhoneButton: UIButton!
     
     
@@ -122,8 +122,7 @@ extension ProfileViewController: ProfileViewInput {
 extension ProfileViewController {
     
     func configureInterface() {
-        signOutButton.setup(color: Theme.Color.Button.red.withAlphaComponent(0.1))
-        
+        signOutButton.setup(colors: [Theme.Color.Button.red.cgColor], titleColor:  Theme.Color.Button.red)
     }
     
     func roundPhotoContainerViews() {

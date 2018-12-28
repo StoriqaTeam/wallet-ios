@@ -275,7 +275,7 @@
                                                                 <color key="textColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVT-bQ-Teq" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVT-bQ-Teq" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="43.5" width="337" height="51"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" priority="751" constant="334" id="056-bq-ajj"/>

@@ -1,5 +1,5 @@
 //
-//  SmallHeightButton.swift
+//  ThinButton.swift
 //  Wallet
 //
 //  Created by Storiqa on 27/12/2018.
@@ -10,9 +10,7 @@
 import Foundation
 import UIKit
 
-// FIXME: заменить суперкласс на DefaultButton, если будет базовая кнопка с обводкой
-
-class SmallHeightButton: LightButton {
+class ThinButton: GradientButton {
     override var buttonHeight: CGFloat {
         return Constants.Sizes.smallButtonHeight
     }

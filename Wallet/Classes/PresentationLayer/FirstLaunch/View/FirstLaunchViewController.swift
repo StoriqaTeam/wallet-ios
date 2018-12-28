@@ -15,8 +15,8 @@ class FirstLaunchViewController: UIViewController {
     
     var output: FirstLaunchViewOutput!
     
-    @IBOutlet private var getStartedButton: LightButton!
-    @IBOutlet private var signInButton: UIButton!
+    @IBOutlet private var getStartedButton: GradientButton!
+    @IBOutlet private var signInButton: ColoredFramelessButton!
     @IBOutlet private var tureLogo: UIImageView!
     @IBOutlet private var tureTitle: UIImageView!
     @IBOutlet private var tureSubtitle: UILabel!
@@ -51,14 +51,8 @@ extension FirstLaunchViewController: FirstLaunchViewInput {
     
     func setupInitialState() {
         view.backgroundColor = Theme.Color.backgroundColor
-        getStartedButton.setup(color: Theme.Color.Button.enabledBackground)
         getStartedButton.setTitle(LocalizedStrings.getStartedButton, for: .normal)
         signInButton.setTitle(LocalizedStrings.signInButton, for: .normal)
-        
-        signInButton.titleLabel?.font = Theme.Font.Button.buttonTitle
-        getStartedButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
-        signInButton.setTitleColor(Theme.Color.Button.enabledBackground, for: .normal)
-        tureSubtitle.font = Theme.Font.smallMediumWeightText
     }
 }
 

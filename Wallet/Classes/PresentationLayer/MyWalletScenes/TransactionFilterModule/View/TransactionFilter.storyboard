@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tZ-ra-MGH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tZ-ra-MGH" customClass="ColoredFramelessButton" customModule="Wallet" customModuleProvider="target">
                                 <rect key="frame" x="151.5" y="561" width="72" height="30"/>
                                 <state key="normal" title="Clear filter">
                                     <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
@@ -27,7 +27,7 @@
                                     <action selector="clearFilterPressed:" destination="p5G-at-zJb" eventType="touchUpInside" id="5Fj-WG-IJf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8HR-UQ-gY2" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8HR-UQ-gY2" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
                                 <rect key="frame" x="20.5" y="490" width="334" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="L5V-dN-Q0n"/>

@@ -21,13 +21,12 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7P-xM-NGB" customClass="SmallHeightButton" customModule="Wallet" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7P-xM-NGB" customClass="ThinButton" customModule="Wallet" customModuleProvider="target">
                     <rect key="frame" x="20" y="19" width="335" height="41"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="41" id="meU-AX-qlU"/>
                         <constraint firstAttribute="width" constant="335" id="rmh-a3-E0h"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
                     <color key="tintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="+ Add new account"/>
                     <connections>

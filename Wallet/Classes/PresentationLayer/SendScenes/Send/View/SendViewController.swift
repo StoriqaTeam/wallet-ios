@@ -34,7 +34,7 @@ class SendViewController: UIViewController {
     @IBOutlet private var medianWaitTitleLabel: UILabel!
     @IBOutlet private var medianWaitLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
-    @IBOutlet private var sendButton: DefaultButton!
+    @IBOutlet private var sendButton: GradientButton!
     @IBOutlet private var loaderView: ActivityIndicatorView!
     @IBOutlet private var paymentFeeHeightConsatraint: NSLayoutConstraint!
     
@@ -164,7 +164,7 @@ extension SendViewController: SendViewInput {
         if hidden {
             loaderView.hideActivityIndicator()
         } else {
-            loaderView.showActivityIndicator(linewidth: 2, color: Theme.Color.Text.captionGrey)
+            loaderView.showActivityIndicator(linewidth: 2, color: Theme.Color.primaryGrey)
         }
     }
     
@@ -329,6 +329,7 @@ extension SendViewController {
         
         sendButton.isEnabled = false
         loaderView.isUserInteractionEnabled = false
+        scanQRButton.tintColor = Theme.Color.brightOrange
     }
     
     private func localizeText() {

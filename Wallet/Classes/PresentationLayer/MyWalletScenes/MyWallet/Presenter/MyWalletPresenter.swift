@@ -87,7 +87,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
         
         var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
         titleTextAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
-        titleTextAttributes[NSAttributedString.Key.font] = Theme.Font.largeNavigationBarTitle
+        titleTextAttributes[NSAttributedString.Key.font] = Theme.Font.NavigationBar.largeTitle
         navigationBar.titleTextAttributes = titleTextAttributes
         navigationBar.largeTitleTextAttributes = titleTextAttributes
     }

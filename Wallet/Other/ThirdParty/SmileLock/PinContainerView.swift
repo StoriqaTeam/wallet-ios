@@ -34,7 +34,6 @@ class PinContainerView: LoadableFromXib {
     override var tintColor: UIColor! {
         didSet {
             pinDotView.fillColor = tintColor
-            touchAuthenticationButton.tintColor = tintColor
             pinInputViews.forEach {
                 $0.textColor = tintColor
                 $0.borderColor = tintColor
@@ -108,6 +107,8 @@ class PinContainerView: LoadableFromXib {
             $0.delegate = self
         }
         checkInputEmpty()
+        
+        touchAuthenticationButton.tintColor = Theme.Color.brightOrange
     }
     
     // MARK: Input Wrong

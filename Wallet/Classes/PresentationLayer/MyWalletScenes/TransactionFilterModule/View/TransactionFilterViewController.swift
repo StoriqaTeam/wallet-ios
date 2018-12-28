@@ -16,8 +16,8 @@ class TransactionFilterViewController: UIViewController {
     
     @IBOutlet private var fromTextField: UnderlinedTextField!
     @IBOutlet private var toTextField: UnderlinedTextField!
-    @IBOutlet private var okButton: DefaultButton!
-    @IBOutlet private var clearFilterButton: UIButton!
+    @IBOutlet private var okButton: GradientButton!
+    @IBOutlet private var clearFilterButton: ColoredFramelessButton!
     @IBOutlet private var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private var descriptionLabel: UILabel!
     
@@ -183,7 +183,7 @@ extension TransactionFilterViewController {
     }
     
     private func configureClearButton(isEnable: Bool) {
-        let titleColor = isEnable ? Theme.Color.Button.enabledBackground: Theme.Color.Button.disabledBackground
+        let titleColor = isEnable ? Theme.Color.Button.tintColor : Theme.Color.Button.tintColor.withAlphaComponent(0.4)
         clearFilterButton.setTitleColor(titleColor, for: .normal)
         clearFilterButton.isEnabled = isEnable
     }

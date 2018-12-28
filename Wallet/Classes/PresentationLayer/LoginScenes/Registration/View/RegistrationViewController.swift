@@ -24,7 +24,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var repeatPasswordTextField: SecureInputTextField!
     @IBOutlet private var agreementTickImageView: UIImageView!
     @IBOutlet private var privacyPolicyTickImageView: UIImageView!
-    @IBOutlet private var signUpButton: DefaultButton!
+    @IBOutlet private var signUpButton: GradientButton!
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
     @IBOutlet private var textFields: [UnderlinedTextField]!
     @IBOutlet private var scrollView: UIScrollView!
@@ -41,8 +41,6 @@ class RegistrationViewController: UIViewController {
     private var activeTextField: UITextField?
     private var isAcceptedAgreement = false
     private var isAcceptedPolicy = false
-    private let acceptedAgreementColor = Theme.Color.brightSkyBlue
-    private let nonAcceptedAgreementColor = UIColor.lightGray
     
     // MARK: - Life cycle
     
@@ -257,7 +255,7 @@ extension RegistrationViewController {
         signInHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
         signInHeaderButton.alpha = 0.7
         signUpHeaderButton.isUserInteractionEnabled = false
-        hederButtonUnderliner.backgroundColor = Theme.Color.Button.enabledBackground
+        hederButtonUnderliner.backgroundColor = Theme.Color.Button.tintColor
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         topSpaceConstraint.constant = statusBarHeight * 2
@@ -284,11 +282,12 @@ extension RegistrationViewController {
     
     private func addLinkToLicenceAgreement() {
         let agreementString = LocalizedStrings.licenseAgreementString
-        let attributedString = NSMutableAttributedString(string: agreementString)
+        let attributedString = NSMutableAttributedString(string: agreementString,
+                                                         attributes: [.font: Theme.Font.extraSmallMediumText!])
         let linkRange = NSRange(location: 13, length: 17)
         let textRange = NSRange(location: 0, length: 13)
         attributedString.addAttribute(.link, value: "https://storiqa.com/turewallet/terms_of_use.pdf", range: linkRange)
-        attributedString.addAttribute(.foregroundColor, value: Theme.Color.primaryGrey, range: textRange)
+        attributedString.addAttribute(.foregroundColor, value: Theme.Color.Text.lightGrey, range: textRange)
         
         self.licenceAgreementTextView.attributedText = attributedString
         self.licenceAgreementTextView.isUserInteractionEnabled = true
@@ -297,11 +296,12 @@ extension RegistrationViewController {
     
     private func addLinkToPrivatePolicy() {
         let privacyPolicyString = LocalizedStrings.privacyPolicyString
-        let attributedString = NSMutableAttributedString(string: privacyPolicyString)
+        let attributedString = NSMutableAttributedString(string: privacyPolicyString,
+                                                         attributes: [.font: Theme.Font.extraSmallMediumText!])
         let linkRange = NSRange(location: 13, length: 14)
         let textRange = NSRange(location: 0, length: 13)
         attributedString.addAttribute(.link, value: "https://storiqa.com/turewallet/privacy_policy.pdf", range: linkRange)
-        attributedString.addAttribute(.foregroundColor, value: Theme.Color.primaryGrey, range: textRange)
+        attributedString.addAttribute(.foregroundColor, value: Theme.Color.Text.lightGrey, range: textRange)
         
         self.privacyPolicyTextView.attributedText = attributedString
         self.privacyPolicyTextView.isUserInteractionEnabled = true

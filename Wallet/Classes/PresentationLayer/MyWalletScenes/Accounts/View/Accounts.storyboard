@@ -61,12 +61,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sye-37-dWG">
                                 <rect key="frame" x="0.0" y="608" width="375" height="59"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0O-fp-acF" customClass="SmallHeightButton" customModule="Wallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0O-fp-acF" customClass="ThinButton" customModule="Wallet" customModuleProvider="target">
                                         <rect key="frame" x="26" y="10" width="323" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="T4e-is-Jzk"/>
                                         </constraints>
-                                        <state key="normal" title="See all transactions"/>
+                                        <state key="normal" title="See all transactions">
+                                            <color key="titleColor" red="0.16078431369999999" green="0.69803921570000005" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="viewAllPressed:" destination="ARJ-pW-IrG" eventType="touchUpInside" id="htG-ba-nmy"/>
                                         </connections>

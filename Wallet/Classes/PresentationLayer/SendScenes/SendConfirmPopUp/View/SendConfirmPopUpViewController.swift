@@ -26,7 +26,7 @@ class SendConfirmPopUpViewController: BasePopUpViewController {
     @IBOutlet private var feeLabel: UILabel!
     @IBOutlet private var totalToSendTitle: UILabel!
     @IBOutlet private var totalToSendLabel: UILabel!
-    @IBOutlet private var confirmButton: DefaultButton!
+    @IBOutlet private var confirmButton: GradientButton!
     @IBOutlet private var closeButton: BaseButton!
     
     // MARK: Life cycle
@@ -64,7 +64,7 @@ extension SendConfirmPopUpViewController: SendConfirmPopUpViewInput {
         
         if fee.isEmpty {
             feeLabel.text = LocalizedStrings.freeFeeLabel
-            feeLabel.textColor = Theme.Color.Button.enabledBackground
+            feeLabel.textColor = Theme.Color.mainOrange
         } else {
             feeLabel.text = fee
         }
@@ -96,8 +96,6 @@ extension SendConfirmPopUpViewController {
         amountLabel.textColor = Theme.Color.Text.main
         feeLabel.textColor = Theme.Color.Text.main
         totalToSendLabel.textColor = Theme.Color.Text.main
-        
-        closeButton.setTitleColor(Theme.Color.Text.main, for: .normal)
     }
     
     private func localizeText() {

@@ -12,7 +12,7 @@ class MyWalletFooter: UICollectionReusableView {
     
     typealias LocalizedStrings = Strings.MyWallet
     
-    @IBOutlet private var addNewButton: SmallHeightButton!
+    @IBOutlet private var addNewButton: ThinButton!
     @IBOutlet private var widthConstraint: NSLayoutConstraint!
     
     var view: UIView!
