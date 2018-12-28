@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsPresenter.swift
+//  RecipientAccountsPresenter.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,12 +9,12 @@
 import UIKit
 
 
-class RecepientAccountsPresenter {
+class RecipientAccountsPresenter {
     
-    weak var view: RecepientAccountsViewInput!
-    weak var output: RecepientAccountsModuleOutput?
-    var interactor: RecepientAccountsInteractorInput!
-    var router: RecepientAccountsRouterInput!
+    weak var view: RecipientAccountsViewInput!
+    weak var output: RecipientAccountsModuleOutput?
+    var interactor: RecipientAccountsInteractorInput!
+    var router: RecipientAccountsRouterInput!
     
     
     private let accountDisplayer: AccountDisplayerProtocol
@@ -26,9 +26,9 @@ class RecepientAccountsPresenter {
 }
 
 
-// MARK: - RecepientAccountsViewOutput
+// MARK: - RecipientAccountsViewOutput
 
-extension RecepientAccountsPresenter: RecepientAccountsViewOutput {
+extension RecipientAccountsPresenter: RecipientAccountsViewOutput {
 
     func viewIsReady() {
         view.setupInitialState()
@@ -50,16 +50,16 @@ extension RecepientAccountsPresenter: RecepientAccountsViewOutput {
 }
 
 
-// MARK: - RecepientAccountsInteractorOutput
+// MARK: - RecipientAccountsInteractorOutput
 
-extension RecepientAccountsPresenter: RecepientAccountsInteractorOutput {
+extension RecipientAccountsPresenter: RecipientAccountsInteractorOutput {
 
 }
 
 
 // MARK: - MyWalletViewOutput
 
-extension RecepientAccountsPresenter: MyWalletDataManagerDelegate {
+extension RecipientAccountsPresenter: MyWalletDataManagerDelegate {
     func snapshotsForTransition(snapshots: [UIView], selectedIndex: Int) { }
 
     func didChangeOffset(_ newValue: CGFloat) { }
@@ -72,9 +72,9 @@ extension RecepientAccountsPresenter: MyWalletDataManagerDelegate {
 }
 
 
-// MARK: - RecepientAccountsModuleInput
+// MARK: - RecipientAccountsModuleInput
 
-extension RecepientAccountsPresenter: RecepientAccountsModuleInput {
+extension RecipientAccountsPresenter: RecipientAccountsModuleInput {
 
     func present(from viewController: UIViewController) {
         view.present(from: viewController)
@@ -83,7 +83,7 @@ extension RecepientAccountsPresenter: RecepientAccountsModuleInput {
 
 // MARK: - Private methods
 
-extension RecepientAccountsPresenter {
+extension RecipientAccountsPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .verticalSmall)
         return deviceLayout

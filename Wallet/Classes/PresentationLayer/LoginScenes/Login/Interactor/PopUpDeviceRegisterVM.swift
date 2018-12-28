@@ -20,7 +20,7 @@ class PopUpDeviceRegisterVM: PopUpViewModelProtocol {
         apperance = PopUpApperance(image: #imageLiteral(resourceName: "signConfirm"),
                                    title: Localization.deviceRegisterTitle,
                                    text: Localization.deviceRegisterMessage,
-                                   actionButtonTitle: Localization.okButton,
+                                   actionButtonTitle: Localization.yesButton,
                                    hasCloseButton: true)
     }
     

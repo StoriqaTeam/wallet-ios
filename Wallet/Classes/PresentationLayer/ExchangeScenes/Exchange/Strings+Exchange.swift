@@ -55,7 +55,7 @@ extension Strings {
         static let notEnoughFundsErrorLabel = NSLocalizedString(
             "Exchange.notEnoughFundsErrorLabel",
             tableName: "Exchange",
-            value: "You haven’t got enough funds. Try to set lower amount.",
+            value: "You don't have enough funds. Try to set lower amount.",
             comment: "Not enough error label text")
         
         static let noAccountsAvailable = NSLocalizedString(
@@ -68,7 +68,7 @@ extension Strings {
             "Exchange.balanceLabel",
             tableName: "Exchange",
             value: "Balance: %@",
-            comment: "Label shown with recepient account balance")
+            comment: "Label shown with recipient account balance")
 
         static let exceedDayLimitMessage = NSLocalizedString(
             "Send.exceedDayLimitMessage",
@@ -79,7 +79,7 @@ extension Strings {
         static let amountOutOfBounds = NSLocalizedString(
             "Exchange.amountOutOfBounds",
             tableName: "Exchange",
-            value: "Transaction amount should be between %@ and %@",
+            value: "Transaction amount should be between %@ and %@.",
             comment: "Transaction amount out of bounds message")
     }
 }

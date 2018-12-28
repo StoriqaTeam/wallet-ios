@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsViewOutput.swift
+//  RecipientAccountsViewOutput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol RecepientAccountsViewOutput: class {
+protocol RecipientAccountsViewOutput: class {
     func viewIsReady()
     func accountsCollectionView(_ collectionView: UICollectionView)
 }

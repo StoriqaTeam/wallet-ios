@@ -333,8 +333,8 @@ extension SendViewController {
     }
     
     private func localizeText() {
-        receiverTitleLabel.text = LocalizedStrings.recepientAddressTitle
-        receiverTextField.placeholder = LocalizedStrings.recepientInputPlaceholder
+        receiverTitleLabel.text = LocalizedStrings.recipientAddressTitle
+        receiverTextField.placeholder = LocalizedStrings.recipientInputPlaceholder
         
         amountTitleLabel.text = LocalizedStrings.amountTitle
         amountTextField.placeholder = LocalizedStrings.amountPlaceholder

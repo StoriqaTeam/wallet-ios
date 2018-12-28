@@ -23,7 +23,7 @@ extension Strings {
         static let fromGalleryButton = NSLocalizedString(
             "Profile.fromGalleryButton",
             tableName: "Profile",
-            value: "Take from gallery",
+            value: "Choose from gallery",
             comment: "Take photo from gallery alert action title")
         static let cancelButton = NSLocalizedString(
             "Profile.cancelButton",

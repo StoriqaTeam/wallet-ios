@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsRouter.swift
+//  RecipientAccountsRouter.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,13 +9,13 @@
 import Foundation
 
 
-class RecepientAccountsRouter {
+class RecipientAccountsRouter {
 
 }
 
 
-// MARK: - RecepientAccountsRouterInput
+// MARK: - RecipientAccountsRouterInput
 
-extension RecepientAccountsRouter: RecepientAccountsRouterInput {
+extension RecipientAccountsRouter: RecipientAccountsRouterInput {
     
 }

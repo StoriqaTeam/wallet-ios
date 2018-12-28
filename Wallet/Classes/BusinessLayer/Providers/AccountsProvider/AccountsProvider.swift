@@ -15,10 +15,12 @@ protocol AccountsProviderProtocol: class {
 
 class AccountsProvider: AccountsProviderProtocol {
     private let dataStoreService: AccountsDataStoreServiceProtocol
+    private let accountsSorter: AccountsSorterProtocol
     private var accountsUpadateChannelOutput: AccountsUpdateChannel?
     
-    init(dataStoreService: AccountsDataStoreServiceProtocol) {
+    init(dataStoreService: AccountsDataStoreServiceProtocol, accountsSorter: AccountsSorterProtocol) {
         self.dataStoreService = dataStoreService
+        self.accountsSorter = accountsSorter
     }
     
     func setAccountsUpdaterChannel(_ channel: AccountsUpdateChannel) {
@@ -30,13 +32,16 @@ class AccountsProvider: AccountsProviderProtocol {
         
         dataStoreService.observe { [weak self] (accounts) in
             log.debug("Accounts updated: \(accounts.map { $0.id })", "count: \(accounts.count)")
-            
-            self?.accountsUpadateChannelOutput?.send(accounts)
+            if let sortedAccounts = self?.accountsSorter.sortAccounts(accounts, visibleCurrency: .stq) {
+                self?.accountsUpadateChannelOutput?.send(sortedAccounts)
+            } else {
+                self?.accountsUpadateChannelOutput?.send(accounts)
+            }
         }
     }
     
     func getAllAccounts() -> [Account] {
         let allAccounts = dataStoreService.getAllAccounts()
-        return allAccounts
+        return accountsSorter.sortAccounts(allAccounts, visibleCurrency: .stq) 
     }
 }

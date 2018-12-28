@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsViewInput.swift
+//  RecipientAccountsViewInput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,6 +9,6 @@
 import UIKit
 
 
-protocol RecepientAccountsViewInput: class, Presentable {
+protocol RecipientAccountsViewInput: class, Presentable {
     func setupInitialState()
 }

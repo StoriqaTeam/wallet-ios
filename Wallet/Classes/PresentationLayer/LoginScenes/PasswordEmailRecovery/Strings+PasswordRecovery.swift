@@ -60,8 +60,8 @@ extension Strings {
         static let passwordFieldHint = NSLocalizedString(
             "PasswordRecovery.passwordFieldHint",
             tableName: tableName,
-            value: "At least: 8 characters, 1 capital, 1 digit",
-            comment: "Password text firld hint. Shown below the field")
+            value: "At least 8 characters, 1 capital, 1 digit",
+            comment: "Password text field hint. Shown below the field")
 
         static let repeatPasswordFieldPlaceholder = NSLocalizedString(
             "PasswordRecovery.repeatPasswordFieldPlaceholder",

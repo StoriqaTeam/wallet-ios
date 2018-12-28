@@ -18,7 +18,7 @@ extension Strings {
         
         static let subtitle = NSLocalizedString("PinInput.subtitle",
                                                 tableName: "PinInput",
-                                                value: "Enter your PIN-code",
+                                                value: "Enter your PIN code",
                                                 comment: "Subtitle on pin input screen")
         
         static let confirmPinResetMessage = NSLocalizedString("PinInput.confirmPinResetMessage",
@@ -39,7 +39,7 @@ extension Strings {
         static let touchIdFailedMessage = NSLocalizedString("PinInput.touchIdFailedMessage",
                                                             tableName: "PinInput",
                                                             value: "Touch ID failed",
-                                                            comment: "Touch ID failed alert  title")
+                                                            comment: "Touch ID failed alert title")
         
         
     }

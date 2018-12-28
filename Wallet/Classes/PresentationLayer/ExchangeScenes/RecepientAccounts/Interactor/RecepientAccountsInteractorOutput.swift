@@ -1,5 +1,5 @@
 //
-//  RecepientAccountsInteractorOutput.swift
+//  RecipientAccountsInteractorOutput.swift
 //  wallet-ios
 //
 //  Created by Storiqa on 19/11/2018.
@@ -9,6 +9,6 @@
 import Foundation
 
 
-protocol RecepientAccountsInteractorOutput: class {
+protocol RecipientAccountsInteractorOutput: class {
 
 }

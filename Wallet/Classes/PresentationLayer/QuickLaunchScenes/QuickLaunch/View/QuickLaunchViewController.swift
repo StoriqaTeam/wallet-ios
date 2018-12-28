@@ -23,7 +23,7 @@ class QuickLaunchViewController: BaseQuickLaunchViewController {
     }
     
     private func configureInterface() {
-        titleLabel.text = LocalizedStrings.setUpButton
+        titleLabel.text = LocalizedStrings.title
         subtitleLabel?.text = LocalizedStrings.subtitle
         actionButton.setTitle(LocalizedStrings.setUpButton, for: .normal)
     }
