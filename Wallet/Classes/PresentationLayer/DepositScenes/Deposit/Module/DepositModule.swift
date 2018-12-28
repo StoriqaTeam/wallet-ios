@@ -12,8 +12,10 @@ class DepositModule {
                       accountWatcher: CurrentAccountWatcherProtocol) -> DepositModuleInput {
         
         let router = DepositRouter(app: app)
+        let depositShortPollintTimer = app.shortPollingTimerFactory.createDepositShortPollingTimer(timeout: 7)
+        
         let presenter = DepositPresenter(accountDisplayer: app.accountDisplayer,
-                                         depositShortPollingTimer: app.depositShortPollintTimer)
+                                         depositShortPollingTimer: depositShortPollintTimer)
         let interactor = DepositInteractor(qrProvider: app.qrCodeProvider,
                                            accountsProvider: app.accountsProvider,
                                            accountWatcher: accountWatcher)
@@ -28,10 +30,14 @@ class DepositModule {
         presenter.router = router
         presenter.interactor = interactor
         
+        
         // MARK: - Channels
         let accountsUpadteChannel = app.channelStorage.accountsUpadteChannel
+        let depositShortPollingChannel = app.channelStorage.depositShortPollingChannel
+        
         app.accountsProvider.setAccountsUpdaterChannel(accountsUpadteChannel)
         interactor.setAccountsUpdateChannelInput(accountsUpadteChannel)
+        depositShortPollintTimer.setOutputChannel(depositShortPollingChannel)
         
         return presenter
     }

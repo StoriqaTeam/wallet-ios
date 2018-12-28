@@ -252,6 +252,7 @@
 		A51CB561215945A200CDC80C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB560215945A200CDC80C /* UIView+Helpers.swift */; };
 		A51CB56321594E4A00CDC80C /* LoadableFromXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */; };
 		A51E852A21D6270000B0E3CE /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E852921D6270000B0E3CE /* HapticService.swift */; };
+		A51E852F21D68F4000B0E3CE /* ShortPollingTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E852E21D68F4000B0E3CE /* ShortPollingTimerFactory.swift */; };
 		A51E852D21D67EF400B0E3CE /* AccountsSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E852C21D67EF400B0E3CE /* AccountsSorter.swift */; };
 		A521D4702163716900E5D51C /* CurrentAccountWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */; };
 		A522AADF21997DE400C39826 /* PinSetupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A522AADE21997DE400C39826 /* PinSetupCell.xib */; };
@@ -1074,6 +1075,7 @@
 		A51CB560215945A200CDC80C /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableFromXib.swift; sourceTree = "<group>"; };
 		A51E852921D6270000B0E3CE /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
+		A51E852E21D68F4000B0E3CE /* ShortPollingTimerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortPollingTimerFactory.swift; sourceTree = "<group>"; };
 		A51E852C21D67EF400B0E3CE /* AccountsSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsSorter.swift; sourceTree = "<group>"; };
 		A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAccountWatcher.swift; sourceTree = "<group>"; };
 		A522AADE21997DE400C39826 /* PinSetupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinSetupCell.xib; sourceTree = "<group>"; };
@@ -3737,6 +3739,7 @@
 			children = (
 				A58DB4E4218346E80024E463 /* ShortPollingTimer.swift */,
 				A519770821B13AA700515619 /* DepositShortPollingTimer.swift */,
+				A51E852E21D68F4000B0E3CE /* ShortPollingTimerFactory.swift */,
 			);
 			path = ShortPollingTimer;
 			sourceTree = "<group>";
@@ -6347,6 +6350,7 @@
 				CE83E24721BE5AF40067A779 /* BouncyLayout.swift in Sources */,
 				C869AF886C63B5DE00965A14 /* DeviceRegisterConfirmInteractorOutput.swift in Sources */,
 				CEB640B173F28C940EFB194F /* DeviceRegisterConfirmInteractor.swift in Sources */,
+				A51E852F21D68F4000B0E3CE /* ShortPollingTimerFactory.swift in Sources */,
 				81CF806732A0FB3967B8B297 /* DeviceRegisterConfirmRouterInput.swift in Sources */,
 				A4586E72708D9B6D4660DA3E /* DeviceRegisterConfirmRouter.swift in Sources */,
 				37764CF0928FD1FE3203A060 /* DeviceRegisterConfirmModuleInput.swift in Sources */,
