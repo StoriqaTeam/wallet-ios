@@ -28,10 +28,14 @@ class SendPresenter {
     private var address: String = ""
     private var isEditingAmount = false
     private var feesError: String?
+    private var haptic: HapticServiceProtocol
     
     init(currencyFormatter: CurrencyFormatterProtocol,
          currencyImageProvider: CurrencyImageProviderProtocol,
-         accountDisplayer: AccountDisplayerProtocol) {
+         accountDisplayer: AccountDisplayerProtocol,
+         haptic: HapticServiceProtocol) {
+        
+        self.haptic = haptic
         self.currencyFormatter = currencyFormatter
         self.currencyImageProvider = currencyImageProvider
         self.accountDisplayer = accountDisplayer
@@ -207,11 +211,13 @@ extension SendPresenter: SendInteractorOutput {
     
     func sendTxFailed(message: String) {
         storiqaLoader.stopLoader()
+        haptic.performNotificationHaptic(feedbackType: .error)
         router.showFailure(message: message, from: view.viewController)
     }
     
     func sendTxSucceed() {
         storiqaLoader.stopLoader()
+        haptic.performNotificationHaptic(feedbackType: .success)
         router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
     }
     
