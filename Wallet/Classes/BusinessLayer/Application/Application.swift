@@ -90,7 +90,7 @@ class Application {
                                                                               signHeaderFactory: self.signHeaderFactory,
                                                                               refreshTokenNetworkProvider: self.refreshTokenNetworkProvider)
     lazy var contactsProvider: ContactsProviderProtocol = ContactsProvider(dataStoreService: self.contactsDataStoreService)
-    lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService)
+    lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService, accountsSorter: self.accountsSorter)
     lazy var transactionsProvider: TransactionsProviderProtocol = TransactionsProvider(transactionDataStoreService:
         self.transactionDataStoreService)
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
@@ -170,6 +170,7 @@ class Application {
     // MARK: - Sorters -
     lazy var contactsSorter: ContactsSorterProtocol = ContactsSorter()
     lazy var sessionDateSorter: SessionDateSorterProtocol = SessionDateSorter()
+    lazy var accountsSorter: AccountsSorterProtocol = AccountsSorter()
     
     
     // MARK: - Linkers -

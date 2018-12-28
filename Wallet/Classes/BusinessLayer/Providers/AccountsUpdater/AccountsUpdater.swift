@@ -22,6 +22,7 @@ class AccountsUpdater: AccountsUpdaterProtocol {
     
     private var isUpdating = false
     
+    
     init(accountsNetworkProvider: AccountsNetworkProviderProtocol,
          accountsDataStore: AccountsDataStoreServiceProtocol,
          authTokenProvider: AuthTokenProviderProtocol,
