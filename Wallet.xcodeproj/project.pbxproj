@@ -252,6 +252,7 @@
 		A51CB561215945A200CDC80C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB560215945A200CDC80C /* UIView+Helpers.swift */; };
 		A51CB56321594E4A00CDC80C /* LoadableFromXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */; };
 		A51E852A21D6270000B0E3CE /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E852921D6270000B0E3CE /* HapticService.swift */; };
+		A51E852D21D67EF400B0E3CE /* AccountsSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E852C21D67EF400B0E3CE /* AccountsSorter.swift */; };
 		A521D4702163716900E5D51C /* CurrentAccountWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */; };
 		A522AADF21997DE400C39826 /* PinSetupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A522AADE21997DE400C39826 /* PinSetupCell.xib */; };
 		A522AAE121997ED600C39826 /* PinSetupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522AAE021997ED600C39826 /* PinSetupCollectionViewCell.swift */; };
@@ -1073,6 +1074,7 @@
 		A51CB560215945A200CDC80C /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		A51CB56221594E4A00CDC80C /* LoadableFromXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableFromXib.swift; sourceTree = "<group>"; };
 		A51E852921D6270000B0E3CE /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
+		A51E852C21D67EF400B0E3CE /* AccountsSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsSorter.swift; sourceTree = "<group>"; };
 		A521D46F2163716900E5D51C /* CurrentAccountWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAccountWatcher.swift; sourceTree = "<group>"; };
 		A522AADE21997DE400C39826 /* PinSetupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinSetupCell.xib; sourceTree = "<group>"; };
 		A522AAE021997ED600C39826 /* PinSetupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -3174,6 +3176,14 @@
 			path = Haptic;
 			sourceTree = "<group>";
 		};
+		A51E852B21D67ED300B0E3CE /* AccountsSorter */ = {
+			isa = PBXGroup;
+			children = (
+				A51E852C21D67EF400B0E3CE /* AccountsSorter.swift */,
+			);
+			path = AccountsSorter;
+			sourceTree = "<group>";
+		};
 		A521D46E21636FF900E5D51C /* CurrentAccountWatcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -3821,6 +3831,7 @@
 		A58EE3B7214FFE130096C155 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				A51E852B21D67ED300B0E3CE /* AccountsSorter */,
 				A51E852821D626E500B0E3CE /* Haptic */,
 				A579E77121C90A150077FCAE /* PaymentRequestResolver */,
 				CE18FAE621B1680000A840C1 /* ReceivedTransactionProvider */,
@@ -6132,6 +6143,7 @@
 				B5A1F3DA30062BA22A89D136 /* DepositModule.swift in Sources */,
 				B50FF909921B25C1CF5C6045 /* SettingsViewInput.swift in Sources */,
 				B634E43D645E9DBCE791CD75 /* SettingsViewOutput.swift in Sources */,
+				A51E852D21D67EF400B0E3CE /* AccountsSorter.swift in Sources */,
 				D412B0E68A6387EFF7083DD5 /* SettingsViewController.swift in Sources */,
 				79A2AC994D7556E90171E7E5 /* SettingsPresenter.swift in Sources */,
 				BFD84DFE006F12E4358D8FB4 /* SettingsInteractorInput.swift in Sources */,
