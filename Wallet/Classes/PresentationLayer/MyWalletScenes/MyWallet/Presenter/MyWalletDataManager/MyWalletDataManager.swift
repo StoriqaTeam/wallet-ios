@@ -9,6 +9,7 @@
 import UIKit
 
 protocol MyWalletDataManagerDelegate: class {
+    func addNewAccountButtonTapped()
     func selectAccount(_ account: Account)
     func didChangeOffset(_ newValue: CGFloat)
     func snapshotsForTransition(snapshots: [UIView], selectedIndex: Int)
@@ -215,11 +216,20 @@ extension MyWalletDataManager: UICollectionViewDelegateFlowLayout {
                     fatalError("Unexpected element kind")
         }
         
+        footerView.delegate = self
+        
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             footerView.setWidth(layout.itemSize.width)
         }
         
         return footerView
+    }
+}
+
+
+extension MyWalletDataManager: MyWalletFooterDelegate {
+    func buttonTapped() {
+        delegate?.addNewAccountButtonTapped()
     }
 }
 

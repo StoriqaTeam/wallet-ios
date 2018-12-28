@@ -11,7 +11,7 @@ import UIKit
 class StoriqaAlertHandler {
     
     enum AlertType {
-        case success, attension
+        case success, attention
     }
     
     private let parentView: UIView
@@ -29,7 +29,7 @@ class StoriqaAlertHandler {
         switch alertType {
         case .success:
             alertImage = UIImage(named: "successIcon")
-        case .attension:
+        case .attention:
             alertImage = UIImage(named: "signConfirm")
         }
         
@@ -69,9 +69,11 @@ extension StoriqaAlertHandler {
         self.parentView.addSubview(blurImageView)
 
         blurImageView.alpha = 0
+        alertView.alpha = 0
         
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.blurImageView.alpha = 1
+            self.alertView.alpha = 1
         })
     }
 }

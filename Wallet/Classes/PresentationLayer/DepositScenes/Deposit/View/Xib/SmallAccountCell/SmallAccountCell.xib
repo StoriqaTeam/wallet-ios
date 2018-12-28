@@ -90,7 +90,7 @@
                             <constraint firstAttribute="trailing" secondItem="cHd-ps-VNU" secondAttribute="trailing" id="irf-T6-TXJ"/>
                             <constraint firstItem="cHd-ps-VNU" firstAttribute="leading" secondItem="JlA-tB-ylI" secondAttribute="leading" id="ogU-A7-iOl"/>
                             <constraint firstItem="ZQu-yy-LYa" firstAttribute="centerX" secondItem="JlA-tB-ylI" secondAttribute="centerX" id="p4e-5z-Zcc"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9kV-9M-W44" secondAttribute="trailing" constant="8" id="q6R-Qb-Wdx"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9kV-9M-W44" secondAttribute="trailing" constant="16" id="q6R-Qb-Wdx"/>
                         </constraints>
                     </view>
                 </subviews>
