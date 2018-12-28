@@ -53,6 +53,7 @@ extension FirstLaunchViewController: FirstLaunchViewInput {
         view.backgroundColor = Theme.Color.backgroundColor
         getStartedButton.setTitle(LocalizedStrings.getStartedButton, for: .normal)
         signInButton.setTitle(LocalizedStrings.signInButton, for: .normal)
+        tureSubtitle.text = LocalizedStrings.subtitle
     }
 }
 

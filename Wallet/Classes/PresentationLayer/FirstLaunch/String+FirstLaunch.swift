@@ -22,5 +22,11 @@ extension Strings {
             tableName: "FirstLaunch",
             value: "Sign in",
             comment: "Sign in button. Routes to login screen")
-}
+        
+        static let subtitle = NSLocalizedString(
+            "FirstLaunch.subtitle",
+            tableName: "FirstLaunch",
+            value: "Multicurrency tool for easy operating with your fiat & crypto funds",
+            comment: "First launch screen subtitle")
+    }
 }
