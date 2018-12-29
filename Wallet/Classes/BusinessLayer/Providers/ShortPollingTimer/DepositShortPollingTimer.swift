@@ -10,7 +10,6 @@ import Foundation
 
 protocol DepositShortPollingTimerProtocol {
     func startPolling()
-    func invalidate()
     func pause()
     func resume()
     func setOutputChannel(_ channel: DepositShortPollingChannel)
@@ -38,12 +37,15 @@ class DepositShortPollingTimer: DepositShortPollingTimerProtocol {
     }
     
     deinit {
-        self.invalidate()
+        timer?.cancel()
+        resume()
+        timer = nil
         NotificationCenter.default.removeObserver(self)
     }
     
     func startPolling() {
         timer?.cancel()
+        resume()
         timer = Timer.createDispatchTimer(interval: .seconds(timeout),
                                           leeway: .seconds(0),
                                           queue: pollingQueue) { [weak self] in
@@ -72,6 +74,7 @@ class DepositShortPollingTimer: DepositShortPollingTimerProtocol {
     
     func invalidate() {
         timer?.cancel()
+        print("Timer state is \(state)")
         timer = nil
         log.debug("Deposit Polling timer invalidated")
     }
