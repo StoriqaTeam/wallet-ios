@@ -29,7 +29,7 @@ class DepositPresenter {
     }
     
     deinit {
-        depositShortPollingTimer.invalidate()
+//        depositShortPollingTimer.invalidate()
     }
 }
 
@@ -89,7 +89,7 @@ extension DepositPresenter: DepositViewOutput {
     }
     
     func viewWillDisapear() {
-        depositShortPollingTimer.invalidate()
+        depositShortPollingTimer.pause()
     }
 }
 
