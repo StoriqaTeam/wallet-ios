@@ -10,6 +10,7 @@ import UIKit
 
 
 class RecipientAccountsPresenter {
+    typealias LocalizedStrings = Strings.RecipientAccounts
     
     weak var view: RecipientAccountsViewInput!
     weak var output: RecipientAccountsModuleOutput?
@@ -93,7 +94,7 @@ extension RecipientAccountsPresenter {
     
     private func configureNavigationBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.title = "Choose account"
+        view.viewController.title = LocalizedStrings.navigationTitle
     }
     
 }

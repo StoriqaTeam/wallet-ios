@@ -169,7 +169,18 @@ extension MyWalletDataManager: UICollectionViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let newValue = scrollView.contentOffset.y + scrollView.contentInset.top
+        let topInset = scrollView.contentInset.top
+        var newValue = scrollView.contentOffset.y + topInset
+        
+        if let springFlowLayout = springFlowLayout {
+            let maxOffset = scrollView.contentSize.height + topInset -
+                springFlowLayout.itemSize.height - springFlowLayout.footerReferenceSize.height
+            if newValue >= maxOffset {
+                newValue = maxOffset - topInset
+                scrollView.setContentOffset(CGPoint(x: 0, y: newValue), animated: false)
+            }
+        }
+        
         delegate?.didChangeOffset(newValue)
         springFlowLayout?.collectionDidChangeOffset()
     }

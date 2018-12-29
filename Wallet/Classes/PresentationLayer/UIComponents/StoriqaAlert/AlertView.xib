@@ -60,9 +60,6 @@
                                     <state key="normal" title="OK">
                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </state>
-                                    <connections>
-                                        <action selector="okActionWithSender:" destination="-1" eventType="touchUpInside" id="0jh-5Y-kYT"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eL9-Ba-pVx" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
                                     <rect key="frame" x="20" y="329.5" width="250" height="40"/>
@@ -77,6 +74,14 @@
                                         <action selector="cancelActionWithSender:" destination="-1" eventType="touchUpInside" id="8Xs-yG-Aer"/>
                                     </connections>
                                 </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sA-uw-qoy">
+                                    <rect key="frame" x="-42.5" y="-144" width="375" height="667"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="TTt-ru-xoc" appends="YES" id="ESt-Sh-A6Z"/>
+                                    </connections>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -104,6 +109,10 @@
                         <constraint firstItem="F5A-Jo-yIV" firstAttribute="centerX" secondItem="eNy-Sq-0ud" secondAttribute="centerX" id="6Je-nc-PIH"/>
                         <constraint firstItem="F5A-Jo-yIV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3bW-Z3-nuK" secondAttribute="leading" constant="16" id="DFc-PH-jky"/>
                         <constraint firstItem="F5A-Jo-yIV" firstAttribute="centerY" secondItem="eNy-Sq-0ud" secondAttribute="centerY" id="F1m-X4-A0Q"/>
+                        <constraint firstItem="6sA-uw-qoy" firstAttribute="centerX" secondItem="3bW-Z3-nuK" secondAttribute="centerX" id="HVW-SE-miR"/>
+                        <constraint firstItem="6sA-uw-qoy" firstAttribute="centerY" secondItem="3bW-Z3-nuK" secondAttribute="centerY" id="PMA-rn-BvE"/>
+                        <constraint firstItem="6sA-uw-qoy" firstAttribute="height" secondItem="eNy-Sq-0ud" secondAttribute="height" id="aal-Ig-rs3"/>
+                        <constraint firstItem="6sA-uw-qoy" firstAttribute="width" secondItem="eNy-Sq-0ud" secondAttribute="width" id="hl0-wr-uR5"/>
                         <constraint firstItem="F5A-Jo-yIV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3bW-Z3-nuK" secondAttribute="top" constant="16" id="oiV-GO-xRB"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="3bW-Z3-nuK"/>
@@ -120,6 +129,11 @@
             <viewLayoutGuide key="safeArea" id="FBB-rb-vAt"/>
             <point key="canvasLocation" x="-329" y="-219"/>
         </view>
+        <tapGestureRecognizer id="TTt-ru-xoc">
+            <connections>
+                <action selector="viewTapped:" destination="-1" id="WDF-XH-uRq"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="successIcon" width="124" height="111"/>

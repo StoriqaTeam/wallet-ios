@@ -23,7 +23,7 @@ class StoriqaAlertHandler {
         self.alertView = AlertView(frame: parentView.bounds)
     }
     
-    func showAlert(title: String, message: String, alertType: AlertType) {
+    func showAlert(title: String, message: String, alertType: AlertType, duration: Double? = nil) {
         let alertImage: UIImage?
         
         switch alertType {
@@ -38,6 +38,12 @@ class StoriqaAlertHandler {
         alertView.setAlertImage(alertImage)
         parentView.addSubview(alertView)
         alertView.delegate = self
+        
+        if let duration = duration {
+            DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
+                self?.dismiss()
+            }
+        }
     }
     
     func dismiss() {

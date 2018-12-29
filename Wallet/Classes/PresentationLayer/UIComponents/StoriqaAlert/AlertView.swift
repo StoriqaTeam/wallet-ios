@@ -41,7 +41,7 @@ class AlertView: LoadableFromXib {
     
     // MARK: - IBActions
     
-    @IBAction func okAction(sender: UIButton) {
+    @IBAction func viewTapped(_ sender: Any) {
         delegate?.didTapOkAction()
     }
     
@@ -65,6 +65,7 @@ class AlertView: LoadableFromXib {
 extension AlertView {
     func configureAppearence() {
         cancelActionButton.isHidden = true
+        okActionButton.isHidden = true
         cancelActionButton.setTitle(Strings.PopUp.okButton, for: .normal)
         
         title.textColor = .white

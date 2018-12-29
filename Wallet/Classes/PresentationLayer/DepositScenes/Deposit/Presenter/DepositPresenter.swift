@@ -39,7 +39,8 @@ extension DepositPresenter: DepositViewOutput {
         storiqaHandler = StoriqaAlertHandler(parentView: view.viewController.view)
         storiqaHandler?.showAlert(title: LocalizedStrings.addressCopiedMessage,
                                   message: "",
-                                  alertType: .success)
+                                  alertType: .success,
+                                  duration: 2)
         
     }
     
