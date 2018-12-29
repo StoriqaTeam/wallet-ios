@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol MyWalletFooterDelegate: class {
+    func buttonTapped()
+}
+
 class MyWalletFooter: UICollectionReusableView {
     
     typealias LocalizedStrings = Strings.MyWallet
@@ -15,7 +19,10 @@ class MyWalletFooter: UICollectionReusableView {
     @IBOutlet private var addNewButton: ThinButton!
     @IBOutlet private var widthConstraint: NSLayoutConstraint!
     
-    var view: UIView!
+    weak var delegate: MyWalletFooterDelegate?
+    
+    private var view: UIView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()
@@ -33,7 +40,7 @@ class MyWalletFooter: UICollectionReusableView {
     }
     
     @IBAction func buttonHandler(_ sender: Any) {
-        print("----- МЕНЯ НАЖАЛИ -----")
+        delegate?.buttonTapped()
     }
 }
 

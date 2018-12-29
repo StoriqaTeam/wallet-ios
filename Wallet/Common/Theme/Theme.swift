@@ -66,6 +66,10 @@ struct Theme {
             static let track = UIColor(white: 116/255, alpha: 0.52)
         }
         
+        struct Notification {
+            static let background = UIColor(red: 27/255, green: 26/255, blue: 31/255, alpha: 1)
+        }
+        
         struct Gradient {
             
             struct Details {

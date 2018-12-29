@@ -13,11 +13,13 @@ class MainTabBarModule {
         let presenter = MainTabBarPresenter()
         
         let accountWatcher = app.accountWatcherFactory.create()
+        let shortPollingTimer = app.shortPollingTimerFactory.createShortPollingTimer(timeout: 40)
         let interactor = MainTabBarInteractor(accountWatcher: accountWatcher,
                                               userDataStoreService: app.userDataStoreService,
                                               accountsUpdater: app.accountsUpdater,
                                               txsUpdater: app.transactionsUpdater,
                                               ratesUpdater: app.ratesUpdater,
+                                              shortPollingTimer: shortPollingTimer,
                                               app: app)
         
         let storyboard = UIStoryboard(name: "MainTabBar", bundle: nil)
@@ -31,8 +33,16 @@ class MainTabBarModule {
         presenter.router = router
         presenter.interactor = interactor
         
-        // MARK: - Channels
+        
+        // MARK: Channels output
+        
         let shortPollingChannel = app.channelStorage.shortPollingChannel
+        shortPollingTimer.setOutputChannel(shortPollingChannel)
+        shortPollingTimer.startPolling()
+        
+
+        // MARK: - Channels input
+        
         let depositShortPollingChannel = app.channelStorage.depositShortPollingChannel
         let tokenExpiredChannel = app.channelStorage.tokenExpiredChannel
         

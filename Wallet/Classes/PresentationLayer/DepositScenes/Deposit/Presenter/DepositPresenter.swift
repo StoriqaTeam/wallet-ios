@@ -85,7 +85,7 @@ extension DepositPresenter: DepositViewOutput {
     }
     
     func viewWillDisapear() {
-        depositShortPollingTimer.invalidate()
+        depositShortPollingTimer.pause()
     }
 }
 

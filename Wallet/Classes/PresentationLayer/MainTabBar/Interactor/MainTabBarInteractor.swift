@@ -17,6 +17,7 @@ class MainTabBarInteractor {
     private let accountsUpdater: AccountsUpdaterProtocol
     private let txsUpdater: TransactionsUpdaterProtocol
     private let ratesUpdater: RatesUpdaterProtocol
+    private let shortPollingTimer: ShortPollingTimerProtocol
     private let app: Application
     
     private var shortPollingChannelInput: ShortPollingChannel?
@@ -29,6 +30,7 @@ class MainTabBarInteractor {
          accountsUpdater: AccountsUpdaterProtocol,
          txsUpdater: TransactionsUpdaterProtocol,
          ratesUpdater: RatesUpdaterProtocol,
+         shortPollingTimer: ShortPollingTimerProtocol,
          app: Application) {
         
         self.accountWatcher = accountWatcher
@@ -36,6 +38,7 @@ class MainTabBarInteractor {
         self.accountsUpdater = accountsUpdater
         self.txsUpdater = txsUpdater
         self.ratesUpdater = ratesUpdater
+        self.shortPollingTimer = shortPollingTimer
         self.app = app
         
         update()
@@ -46,11 +49,10 @@ class MainTabBarInteractor {
         self.shortPollingChannelInput?.removeObserver(withId: self.objId)
         self.shortPollingChannelInput = nil
         
-        self.depositShortPollingChannelInput?.removeObserver(withId: self.objId)
-        self.depositShortPollingChannelInput = nil
-        
         self.tokenExpiredChannelInput?.removeObserver(withId: self.objId)
         self.tokenExpiredChannelInput = nil
+        
+        self.shortPollingTimer.invalidate()
     }
     
     // MARK: - Channels
@@ -70,13 +72,13 @@ class MainTabBarInteractor {
     
     func setDepositShortPollingChannelInput(_ channel: DepositShortPollingChannel) {
         self.depositShortPollingChannelInput = channel
-        
+
         let observer = Observer<String?>(id: self.objId) { [weak self] (_) in
             self?.updateDepositInfo()
         }
-        
+
         self.depositShortPollingChannelInput?.addObserver(observer)
-        
+
     }
     
     func setTokenExpiredChannelInput(_ channel: TokenExpiredChannel) {

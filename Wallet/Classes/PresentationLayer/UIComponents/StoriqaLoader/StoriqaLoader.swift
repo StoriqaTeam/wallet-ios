@@ -32,7 +32,7 @@ class StoriqaLoader {
         loaderView.hideActivityIndicator()
         loaderView.removeFromSuperview()
         
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.blurImageView.alpha = 0.0
         }, completion: { (_) in
             self.loaderView.removeFromSuperview()
