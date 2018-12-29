@@ -78,7 +78,8 @@ class AccountDisplayer: AccountDisplayerProtocol {
         case .eth:
             return UIImage(named: "smallEthCard")!
         case .stq, .stqGold, .stqBlack:
-            return UIImage(named: "smallStqCard")!
+            return UIImage(named: "smallStqCard-red")!
+//            return UIImage(named: "smallStqCard-black")!
 //        case .stqBlack:
 //            return UIImage(named: "smallStqBlackCard")!
 //        case .stqGold:
@@ -95,7 +96,8 @@ class AccountDisplayer: AccountDisplayerProtocol {
         case .eth:
             return UIImage(named: "ethCard")!
         case .stq, .stqGold, .stqBlack:
-            return UIImage(named: "stqCard")!
+            return UIImage(named: "stqCard-red")!
+//            return UIImage(named: "stqCard-black")!
 //        case .stqGold:
 //            return UIImage(named: "stqGoldCard")!
 //        case .stqBlack:
