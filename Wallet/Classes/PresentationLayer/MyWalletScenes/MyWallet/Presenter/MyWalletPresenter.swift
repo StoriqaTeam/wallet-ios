@@ -116,41 +116,33 @@ extension MyWalletPresenter: MyWalletInteractorOutput {
     }
     
     func receivedNewTxs(stq: Decimal, eth: Decimal, btc: Decimal) {
-        var notificationStr = ""
+        let stqStr: String?
+        let ethStr: String?
+        let btcStr: String?
         
         if !stq.isZero {
             let maxStq = denominationUnitsConverter.amountToMaxUnits(stq, currency: .stq)
-            let stqStr = currencyFormatter.getStringFrom(amount: maxStq, currency: .stq)
-            
-            notificationStr += stqStr
+            stqStr = currencyFormatter.getStringFrom(amount: maxStq, currency: .stq)
+        } else {
+            stqStr = nil
         }
         
         if !eth.isZero {
             let maxEth = denominationUnitsConverter.amountToMaxUnits(eth, currency: .eth)
-            let ethStr = currencyFormatter.getStringFrom(amount: maxEth, currency: .eth)
-            
-            if !notificationStr.isEmpty {
-                notificationStr += ", "
-            }
-            
-            notificationStr += ethStr
+            ethStr = currencyFormatter.getStringFrom(amount: maxEth, currency: .eth)
+        } else {
+            ethStr = nil
         }
         
         if !btc.isZero {
             let maxBtc = denominationUnitsConverter.amountToMaxUnits(btc, currency: .btc)
-            let btcStr = currencyFormatter.getStringFrom(amount: maxBtc, currency: .btc)
-            
-            if !notificationStr.isEmpty {
-                notificationStr += ", "
-            }
-            
-            notificationStr += btcStr
+            btcStr = currencyFormatter.getStringFrom(amount: maxBtc, currency: .btc)
+        } else {
+            btcStr = nil
         }
         
-        if !notificationStr.isEmpty {
-            let message = LocalizedStrings.newFundsReceivedMessage
-            notificationStr = message + notificationStr
-            showReceivedNotification(message: notificationStr)
+        if stqStr != nil || ethStr != nil || btcStr != nil {
+            showReceivedNotification(stq: stqStr, eth: ethStr, btc: btcStr)
         }
     }
     
@@ -237,7 +229,7 @@ extension MyWalletPresenter {
         }
     }
     
-    private func showReceivedNotification(message: String) {
+    private func showReceivedNotification(stq: String?, eth: String?, btc: String?) {
         
         if notificationView != nil {
             self.notificationView?.removeFromSuperview()
@@ -247,7 +239,7 @@ extension MyWalletPresenter {
             isPanGestureActive = false
         }
         
-        addNotificationView(message: message)
+        addNotificationView(stq: stq, eth: eth, btc: btc)
         haptic.performNotificationHaptic(feedbackType: .success)
         
         guard let notificationView = notificationView else {
@@ -310,12 +302,12 @@ extension MyWalletPresenter {
         }
     }
     
-    private func addNotificationView(message: String) {
+    private func addNotificationView(stq: String?, eth: String?, btc: String?) {
         let window = AppDelegate.currentWindow
         let viewWidth = Constants.Sizes.screenWidth
         let hiddenOrigin = CGPoint(x: 0, y: -200)
         let txNotificationView = NotificationView(frame: CGRect(origin: hiddenOrigin, size: CGSize(width: viewWidth, height: 200)))
-        txNotificationView.setMessage(message)
+        txNotificationView.setAmounts(stq: stq, eth: eth, btc: btc)
         txNotificationView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([txNotificationView.widthAnchor.constraint(equalToConstant: viewWidth)])
         txNotificationView.layoutIfNeeded()
