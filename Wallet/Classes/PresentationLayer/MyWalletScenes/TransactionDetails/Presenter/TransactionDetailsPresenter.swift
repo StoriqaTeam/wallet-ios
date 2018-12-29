@@ -47,7 +47,8 @@ extension TransactionDetailsPresenter: TransactionDetailsViewOutput {
         storiqaAlertHandler = StoriqaAlertHandler(parentView: view.viewController.view)
         storiqaAlertHandler?.showAlert(title: LocalizedStrings.addressCopiedMessage,
                                        message: "",
-                                       alertType: .success)
+                                       alertType: .success,
+                                       duration: 2)
     }
     
     func viewInBlockchain() {

@@ -12,12 +12,12 @@ protocol AccountsSorterProtocol {
     func sortAccounts(_ accounts: [Account], visibleCurrency: Currency  ) -> [Account]
 }
 
-class AccountsSorter: AccountsSorterProtocol {
 
+class AccountsSorter: AccountsSorterProtocol {
     
     func sortAccounts(_ accounts: [Account], visibleCurrency: Currency) -> [Account] {
-        var sortedAccounts = accounts
         
+        var sortedAccounts = accounts
         guard let lastAccountCurrency = accounts.last?.currency,
                   lastAccountCurrency != visibleCurrency else { return sortedAccounts }
         

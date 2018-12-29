@@ -169,7 +169,8 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
         storiqaHandler = StoriqaAlertHandler(parentView: view.viewController.view)
         storiqaHandler?.showAlert(title: LocalizedStrings.addNewAccountAlert,
                                   message: "",
-                                  alertType: .attention)
+                                  alertType: .attention,
+                                  duration: 2)
     }
     
     func snapshotsForTransition(snapshots: [UIView], selectedIndex: Int) {
