@@ -27,10 +27,6 @@ class DepositPresenter {
         self.accountDisplayer = accountDisplayer
         self.depositShortPollingTimer = depositShortPollingTimer
     }
-    
-    deinit {
-//        depositShortPollingTimer.invalidate()
-    }
 }
 
 

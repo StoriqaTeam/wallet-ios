@@ -12,7 +12,7 @@ class DepositModule {
                       accountWatcher: CurrentAccountWatcherProtocol) -> DepositModuleInput {
         
         let router = DepositRouter(app: app)
-        let depositShortPollintTimer = app.shortPollingTimerFactory.createDepositShortPollingTimer(timeout: 3)
+        let depositShortPollintTimer = app.shortPollingTimerFactory.createDepositShortPollingTimer(timeout: 7)
         
         let presenter = DepositPresenter(accountDisplayer: app.accountDisplayer,
                                          depositShortPollingTimer: depositShortPollintTimer)

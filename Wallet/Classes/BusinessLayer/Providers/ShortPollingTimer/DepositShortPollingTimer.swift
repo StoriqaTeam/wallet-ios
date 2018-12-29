@@ -10,7 +10,6 @@ import Foundation
 
 protocol DepositShortPollingTimerProtocol {
     func startPolling()
-//    func invalidate()
     func pause()
     func resume()
     func setOutputChannel(_ channel: DepositShortPollingChannel)
@@ -38,7 +37,6 @@ class DepositShortPollingTimer: DepositShortPollingTimerProtocol {
     }
     
     deinit {
-//        self.invalidate()
         timer?.cancel()
         resume()
         timer = nil
