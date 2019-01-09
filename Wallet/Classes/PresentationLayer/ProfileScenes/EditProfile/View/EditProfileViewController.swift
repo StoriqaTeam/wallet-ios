@@ -96,6 +96,13 @@ extension EditProfileViewController {
         view.backgroundColor = Theme.Color.backgroundColor
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
+        
+        firstNameTextField.autocorrectionType = .no
+        firstNameTextField.smartDashesType = .no
+        firstNameTextField.smartQuotesType = .no
+        lastNameTextField.autocorrectionType = .no
+        lastNameTextField.smartDashesType = .no
+        lastNameTextField.smartQuotesType = .no
     }
     
     private func localizeText() {
