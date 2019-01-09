@@ -92,6 +92,11 @@ extension String {
         return number != nil
     }
     
+    func isValidName() -> Bool {
+        let nameRegEx = "[a-zA-Zа-яА-я0-9'\\- ]{0,30}"
+        return self.matchesReqex(nameRegEx)
+    }
+    
     func isValidPhone(hasPlusPrefix: Bool, unfinished: Bool = false) -> Bool {
         let trimmed = self.trim()
         

@@ -39,9 +39,10 @@ extension QRScannerInteractor: QRScannerInteractorInput {
         let selectedCurrency = sendProvider.selectedAccount.currency
         
         if let paymentRequest = paymentRequestResolver.resolve(string: address) {
-            if selectedCurrency != .btc {
-                return .paymentrequest(request: paymentRequest)
+            guard selectedCurrency != .btc else {
+                return .wrongCurrency
             }
+            return .paymentrequest(request: paymentRequest)
         }
         
         guard let scannedCurrency = addressResolver.resove(address: address) else {
