@@ -11,6 +11,8 @@ import UIKit
 
 protocol LoginViewOutput: class {
     func viewIsReady()
+    func viewDidAppear()
+    func viewWillDisappear()
     func showRegistration()
     func showPasswordRecovery()
     func socialNetworkRegisterFailed(tokenProvider: SocialNetworkTokenProvider)

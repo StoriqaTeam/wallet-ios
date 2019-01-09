@@ -18,7 +18,7 @@ extension Strings {
         static let title = NSLocalizedString(
             "QuickLaunch.title",
             tableName: "QuickLaunch",
-            value: "Wanna use quick launch?",
+            value: "Quick launch",
             comment: "Quick launch screen title")
         static let subtitle = NSLocalizedString(
             "QuickLaunch.subtitle",

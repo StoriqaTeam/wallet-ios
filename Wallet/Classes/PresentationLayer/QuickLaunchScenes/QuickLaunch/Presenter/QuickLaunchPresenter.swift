@@ -15,7 +15,12 @@ class QuickLaunchPresenter {
     weak var output: QuickLaunchModuleOutput?
     var interactor: QuickLaunchInteractorInput!
     var router: QuickLaunchRouterInput!
-
+    
+    private let baseFadeAnimator: BaseFadeAnimator
+    
+    init(baseFadeAnimator: BaseFadeAnimator) {
+        self.baseFadeAnimator = baseFadeAnimator
+    }
 }
 
 
@@ -28,7 +33,9 @@ extension QuickLaunchPresenter: QuickLaunchViewOutput {
     }
 
     func performAction() {
-        router.showPinQuickLaunch(qiuckLaunchProvider: interactor.getProvider(), from: view.viewController)
+        router.showPinQuickLaunch(qiuckLaunchProvider: interactor.getProvider(),
+                                  from: view.viewController,
+                                  baseFadeAnimator: baseFadeAnimator)
     }
     
 }
@@ -37,15 +44,14 @@ extension QuickLaunchPresenter: QuickLaunchViewOutput {
 // MARK: - QuickLaunchInteractorOutput
 
 extension QuickLaunchPresenter: QuickLaunchInteractorOutput {
-
+    
 }
 
 
 // MARK: - QuickLaunchModuleInput
 
 extension QuickLaunchPresenter: QuickLaunchModuleInput {
-
-    func present(from viewController: UIViewController) {
-        view.presentAsNavController()
+    func presentAsTansitioningNavigationController() {
+        view.presentAsTransitioningNavController()
     }
 }

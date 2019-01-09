@@ -15,7 +15,6 @@ protocol SendInteractorOutput: class {
     func updatePaymentFee(_ fee: Decimal?)
     func updatePaymentFees(count: Int, selected: Int)
     func updateMedianWait(_ wait: String)
-    func updateTotal(_ total: Decimal, currency: Currency)
     func updateIsEnoughFunds(_ enough: Bool)
     func updateFormIsValid(_ valid: Bool)
     func updateAddressIsValid(_ valid: Bool)
@@ -24,4 +23,5 @@ protocol SendInteractorOutput: class {
     func sendTxFailed(message: String)
     func sendTxSucceed()
     func exceededDayLimit(limit: String, currency: Currency)
+    func setFeesError(_ message: String?)
 }

@@ -19,12 +19,14 @@ class SendConfirmPopUpPresenter {
     private let address: String
     private let amount: String
     private let fee: String
+    private let total: String
     private let confirmTxBlock: (() -> Void)
     
-    init(address: String, amount: String, fee: String, confirmTxBlock: @escaping (() -> Void)) {
+    init(address: String, amount: String, fee: String, total: String, confirmTxBlock: @escaping (() -> Void)) {
         self.address = address
         self.amount = amount
         self.fee = fee
+        self.total = total
         self.confirmTxBlock = confirmTxBlock
     }
 }
@@ -35,7 +37,8 @@ class SendConfirmPopUpPresenter {
 extension SendConfirmPopUpPresenter: SendConfirmPopUpViewOutput {
     
     func viewIsReady() {
-        view.setupInitialState(address: address, amount: amount, fee: fee)
+        let maskedAddress = address.maskCryptoAddress()
+        view.setupInitialState(address: maskedAddress, amount: amount, fee: fee, total: total)
     }
     
     func confirmButtonTapped() {
@@ -57,6 +60,9 @@ extension SendConfirmPopUpPresenter: SendConfirmPopUpInteractorOutput {
 extension SendConfirmPopUpPresenter: SendConfirmPopUpModuleInput {
 
     func present(from viewController: UIViewController) {
+        let backBlur = captureScreen(view: AppDelegate.currentWindow)
+        view.setBackgroundBlur(image: backBlur)
+        
         view.viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         view.presentModal(from: viewController)
     }

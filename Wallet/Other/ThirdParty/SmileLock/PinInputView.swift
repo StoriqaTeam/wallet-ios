@@ -78,6 +78,7 @@ class PinInputView: UIView {
     @objc func touchDown() {
         //delegate callback
         if let delegate = delegate {
+            
             delegate.pinInputView(self, tappedString: numberString)
         } else {
             log.warn("delegate is nil")

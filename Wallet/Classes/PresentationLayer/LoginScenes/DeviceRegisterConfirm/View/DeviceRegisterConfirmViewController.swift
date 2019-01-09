@@ -29,7 +29,7 @@ class DeviceRegisterConfirmViewController: UIViewController {
 extension DeviceRegisterConfirmViewController: DeviceRegisterConfirmViewInput {
     
     func setupInitialState() {
-
+        view.backgroundColor = Theme.Color.backgroundColor
     }
 
 }

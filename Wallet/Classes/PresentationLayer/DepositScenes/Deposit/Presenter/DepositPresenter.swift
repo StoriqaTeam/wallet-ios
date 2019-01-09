@@ -21,6 +21,7 @@ class DepositPresenter {
     private let accountDisplayer: AccountDisplayerProtocol
     private var accountsDataManager: AccountsDataManager!
     private let depositShortPollingTimer: DepositShortPollingTimerProtocol
+    private var storiqaHandler: StoriqaAlertHandler?
     
     init(accountDisplayer: AccountDisplayerProtocol, depositShortPollingTimer: DepositShortPollingTimerProtocol) {
         self.accountDisplayer = accountDisplayer
@@ -35,7 +36,12 @@ extension DepositPresenter: DepositViewOutput {
     func copyButtonPressed() {
         let address = interactor.getAddress()
         UIPasteboard.general.string = address
-        view.viewController.showAlert(message: LocalizedStrings.addressCopiedMessage)
+        storiqaHandler = StoriqaAlertHandler(parentView: view.viewController.view)
+        storiqaHandler?.showAlert(title: LocalizedStrings.addressCopiedMessage,
+                                  message: "",
+                                  alertType: .success,
+                                  duration: 2)
+        
     }
     
     func shareButtonPressed() {
@@ -76,12 +82,11 @@ extension DepositPresenter: DepositViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
         depositShortPollingTimer.startPolling()
     }
     
     func viewWillDisapear() {
-        depositShortPollingTimer.invalidate()
+        depositShortPollingTimer.pause()
     }
 }
 
@@ -144,6 +149,6 @@ extension DepositPresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
+        view.viewController.setHidableNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
 }

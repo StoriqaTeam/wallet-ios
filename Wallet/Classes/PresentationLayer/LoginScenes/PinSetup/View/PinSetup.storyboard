@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,15 +11,42 @@
             <objects>
                 <viewController storyboardIdentifier="PinSetupVC" title="Enter 4-digit PIN" id="DpD-qI-S3Y" customClass="PinSetupViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pgj-H0-C7e">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xO-S6-Zv8">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGB-ZT-BWE">
+                                        <rect key="frame" x="0.0" y="36" width="600" height="58"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="1000" text="Set up PIN code" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sg-XW-1md">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="31.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="1000" text="Enter your PIN code" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMM-5H-vf0">
+                                                <rect key="frame" x="0.0" y="43.5" width="600" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="2Sg-XW-1md" firstAttribute="leading" secondItem="jGB-ZT-BWE" secondAttribute="leading" id="Lqe-Zj-KWI"/>
+                                            <constraint firstItem="2Sg-XW-1md" firstAttribute="top" secondItem="jGB-ZT-BWE" secondAttribute="top" id="P3Q-3C-tyN"/>
+                                            <constraint firstItem="mMM-5H-vf0" firstAttribute="leading" secondItem="jGB-ZT-BWE" secondAttribute="leading" id="QWE-mX-gMp"/>
+                                            <constraint firstItem="mMM-5H-vf0" firstAttribute="centerX" secondItem="jGB-ZT-BWE" secondAttribute="centerX" id="fvw-hk-a47"/>
+                                            <constraint firstAttribute="bottom" secondItem="mMM-5H-vf0" secondAttribute="bottom" id="s43-Xn-SgQ"/>
+                                            <constraint firstItem="2Sg-XW-1md" firstAttribute="centerX" secondItem="jGB-ZT-BWE" secondAttribute="centerX" id="tzs-zk-M8Q"/>
+                                            <constraint firstItem="mMM-5H-vf0" firstAttribute="top" secondItem="2Sg-XW-1md" secondAttribute="bottom" constant="12" id="vgB-WU-J1B"/>
+                                        </constraints>
+                                    </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sGT-so-ypb">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="94" width="600" height="486"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="K99-na-u0g">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -33,11 +56,14 @@
                                         <cells/>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="jGB-ZT-BWE" firstAttribute="top" secondItem="2xO-S6-Zv8" secondAttribute="top" constant="36" id="B4b-10-fpf"/>
                                     <constraint firstItem="sGT-so-ypb" firstAttribute="leading" secondItem="2xO-S6-Zv8" secondAttribute="leading" id="Org-bt-Ji4"/>
+                                    <constraint firstItem="jGB-ZT-BWE" firstAttribute="leading" secondItem="2xO-S6-Zv8" secondAttribute="leading" id="YlI-JV-AlZ"/>
+                                    <constraint firstItem="jGB-ZT-BWE" firstAttribute="centerX" secondItem="2xO-S6-Zv8" secondAttribute="centerX" id="dPG-3S-FDB"/>
                                     <constraint firstAttribute="bottom" secondItem="sGT-so-ypb" secondAttribute="bottom" id="iOf-Cn-JD4"/>
-                                    <constraint firstItem="sGT-so-ypb" firstAttribute="top" secondItem="2xO-S6-Zv8" secondAttribute="top" id="zVb-aA-vfx"/>
+                                    <constraint firstItem="sGT-so-ypb" firstAttribute="top" secondItem="jGB-ZT-BWE" secondAttribute="bottom" id="vRx-t3-QvC"/>
                                     <constraint firstAttribute="trailing" secondItem="sGT-so-ypb" secondAttribute="trailing" id="zY5-ou-hmp"/>
                                 </constraints>
                             </view>
@@ -54,6 +80,8 @@
                     <navigationItem key="navigationItem" title="Enter Pin" id="hJ9-Re-AeR"/>
                     <connections>
                         <outlet property="pinSetupCollectionView" destination="sGT-so-ypb" id="Qeu-qn-kzr"/>
+                        <outlet property="subtitleLabel" destination="mMM-5H-vf0" id="ALA-yX-h56"/>
+                        <outlet property="titleLabel" destination="2Sg-XW-1md" id="bFU-d4-PvR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tu1-fd-iaX" userLabel="First Responder" sceneMemberID="firstResponder"/>

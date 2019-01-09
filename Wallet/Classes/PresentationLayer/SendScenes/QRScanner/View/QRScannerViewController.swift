@@ -32,16 +32,11 @@ class QRScannerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-        output.viewWillAppear()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 }
 
@@ -68,6 +63,7 @@ extension QRScannerViewController: QRScannerViewInput {
     
     func setupInitialState(message: String) {
         configureAimView()
+        view.backgroundColor = Theme.Color.backgroundColor
         messageLabel.text = message
     }
 }

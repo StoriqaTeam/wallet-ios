@@ -16,7 +16,7 @@ class BaseQuickLaunchViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var subtitleLabel: UILabel?
     @IBOutlet var actionButton: UIButton!
-    @IBOutlet var cancelButton: UIButton?
+    @IBOutlet var cancelButton: ColoredFramelessButton?
     
     // MARK: Life cycle
     
@@ -27,14 +27,19 @@ class BaseQuickLaunchViewController: UIViewController {
     }
     
     private func configureInterface() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        title = ""
+        
         titleLabel.font = Theme.Font.title
         subtitleLabel?.font = Theme.Font.subtitle
-        subtitleLabel?.textColor = Theme.Color.greyishBrown
+        titleLabel.textColor = Theme.Color.Text.main
+        subtitleLabel?.textColor = Theme.Color.Text.main.withAlphaComponent(0.5)
         cancelButton?.setTitle(Strings.QuickLaunch.cancelButton, for: .normal)
     }
     
     private func disableBackNavigation() {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
     }
 }

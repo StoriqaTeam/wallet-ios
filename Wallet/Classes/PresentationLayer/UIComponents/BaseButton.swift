@@ -18,7 +18,24 @@ class BaseButton: UIButton {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+        titleLabel?.font = Theme.Font.Button.buttonTitle
+        setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
+        
+        let alphaColor = Theme.Color.Button.enabledTitle.withAlphaComponent(0.3)
+        setTitleColor(alphaColor, for: .disabled)
+        setTitleColor(alphaColor, for: .highlighted)
+        setTitleColor(alphaColor, for: .selected)
+    }
+}
+
+class ColoredFramelessButton: BaseButton {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setTitleColor(Theme.Color.Button.tintColor, for: .normal)
+        
+        let alphaColor = Theme.Color.Button.tintColor.withAlphaComponent(0.3)
+        setTitleColor(alphaColor, for: .disabled)
+        setTitleColor(alphaColor, for: .highlighted)
+        setTitleColor(alphaColor, for: .selected)
     }
 }

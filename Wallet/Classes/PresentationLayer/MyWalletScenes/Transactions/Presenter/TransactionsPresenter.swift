@@ -60,10 +60,8 @@ extension TransactionsPresenter: TransactionsViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setDarkNavigationBarButtons()
         let transactions = interactor.getTransactions()
-        let displayable = filteredDispayable(transactions)
-        transactionDataManager.updateTransactions(displayable)
+        updateTransactions(transactions)
     }
     
     func didChooseSegment(at index: Int) {
@@ -85,7 +83,7 @@ extension TransactionsPresenter: TransactionsInteractorOutput {
         let displayable = filteredDispayable(txs)
         self.transactions = displayable
         
-        let directionFilteredTxs = filterTransactionsByDirection()
+        let directionFilteredTxs = filterTransactionsByDirection(displayable)
         transactionDataManager.updateTransactions(directionFilteredTxs)
     }
 }
@@ -114,7 +112,7 @@ extension TransactionsPresenter: TransactionsDataManagerDelegate {
 extension TransactionsPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setDarkNavigationBar(title: LocalizedStrings.navigationBarTitle)
+        view.viewController.title = LocalizedStrings.navigationBarTitle
     }
     
     func filteredDispayable(_ txs: [Transaction]) -> [TransactionDisplayable] {
@@ -128,12 +126,12 @@ extension TransactionsPresenter {
         guard let filter = DirectionFilter(rawValue: index) else { return [] }
         transactionDirectionFilter = filter
         
-        let filteredTransactions = filterTransactionsByDirection()
+        let filteredTransactions = filterTransactionsByDirection(transactions)
         return filteredTransactions
     }
     
-    private func filterTransactionsByDirection() -> [TransactionDisplayable] {
-        let directionFilteredTxs = transactionsDateFilter.applyFilter(for: transactions)
+    private func filterTransactionsByDirection(_ txs: [TransactionDisplayable]) -> [TransactionDisplayable] {
+        let directionFilteredTxs = transactionsDateFilter.applyFilter(for: txs)
         switch transactionDirectionFilter {
         case .all:
             return directionFilteredTxs

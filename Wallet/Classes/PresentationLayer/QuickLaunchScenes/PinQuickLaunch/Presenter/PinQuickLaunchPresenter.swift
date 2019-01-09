@@ -16,6 +16,11 @@ class PinQuickLaunchPresenter {
     var interactor: PinQuickLaunchInteractorInput!
     var router: PinQuickLaunchRouterInput!
     
+    private let baseFadeAnimator: BaseFadeAnimator
+    
+    init(baseFadeAnimator: BaseFadeAnimator) {
+        self.baseFadeAnimator = baseFadeAnimator
+    }
 }
 
 
@@ -28,7 +33,9 @@ extension PinQuickLaunchPresenter: PinQuickLaunchViewOutput {
     }
     
     func performAction() {
-        router.showPinSetup(qiuckLaunchProvider: interactor.getProvider(), from: view.viewController)
+        router.showPinSetup(qiuckLaunchProvider: interactor.getProvider(),
+                            from: view.viewController,
+                            baseFadeAnimator: baseFadeAnimator)
     }
     
 }
@@ -45,8 +52,8 @@ extension PinQuickLaunchPresenter: PinQuickLaunchInteractorOutput {
 
 extension PinQuickLaunchPresenter: PinQuickLaunchModuleInput {
 
-    func present(from viewController: UIViewController) {
-        view.present(from: viewController)
+    func presentAsTansitioningNavigationController() {
+        view.presentAsTransitioningNavController()
     }
     
 }

@@ -12,7 +12,8 @@ class ExchangeModule {
         let router = ExchangeRouter(app: app)
         let presenter = ExchangePresenter(converterFactory: app.currencyConverterFactory,
                                           currencyFormatter: app.currencyFormatter,
-                                          accountDisplayer: app.accountDisplayer)
+                                          accountDisplayer: app.accountDisplayer,
+                                          haptic: app.hapticService)
         
         let exchangeProviderBuilder = app.exchangeProviderBuilderFactory.create()
         let interactor = ExchangeInteractor(accountsProvider: app.accountsProvider,

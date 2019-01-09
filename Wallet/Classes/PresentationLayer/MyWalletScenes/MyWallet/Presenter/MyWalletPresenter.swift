@@ -29,15 +29,19 @@ class MyWalletPresenter {
     private var notificationView: UIView?
     private var isPanGestureActive = false
     private let animator: MyWalletToAccountsAnimator
+    private let haptic: HapticServiceProtocol
+    private var storiqaHandler: StoriqaAlertHandler?
     
     init(accountDisplayer: AccountDisplayerProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
-         animator: MyWalletToAccountsAnimator) {
+         animator: MyWalletToAccountsAnimator,
+         haptic: HapticServiceProtocol) {
         
         self.accountDisplayer = accountDisplayer
         self.denominationUnitsConverter = denominationUnitsConverter
         self.currencyFormatter = currencyFormatter
+        self.haptic = haptic
         self.animator = animator
     }
 }
@@ -55,11 +59,14 @@ extension MyWalletPresenter: MyWalletViewOutput {
         view.setNavigationBarTopSpace(statusBarHeight)
     }
     
+    func viewWillAppear() {
+        dataManager?.restoreVisibility()
+        view.setNavigationBarHidden(false)
+    }
+    
     func accountsCollectionView(_ collectionView: UICollectionView) {
-        let xOrigin = (Constants.Sizes.screenWidth - collectionFlowLayout.itemSize.width) / 2
-        view.setNavigationBarHorizontalSpace(xOrigin)
-        
         collectionView.collectionViewLayout = collectionFlowLayout
+        collectionView.alwaysBounceVertical = true
         
         let allAccounts = interactor.getAccounts()
         let accountsManager = MyWalletDataManager(accounts: allAccounts,
@@ -72,8 +79,6 @@ extension MyWalletPresenter: MyWalletViewOutput {
     
     
     func navigationBar(_ navigationBar: UINavigationBar) {
-        view.viewController.setWhiteNavigationBarButtons()
-        
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
@@ -86,6 +91,7 @@ extension MyWalletPresenter: MyWalletViewOutput {
         
         var titleTextAttributes = navigationBar.titleTextAttributes ?? [NSAttributedString.Key: Any]()
         titleTextAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
+        titleTextAttributes[NSAttributedString.Key.font] = Theme.Font.NavigationBar.largeTitle
         navigationBar.titleTextAttributes = titleTextAttributes
         navigationBar.largeTitleTextAttributes = titleTextAttributes
     }
@@ -110,41 +116,33 @@ extension MyWalletPresenter: MyWalletInteractorOutput {
     }
     
     func receivedNewTxs(stq: Decimal, eth: Decimal, btc: Decimal) {
-        var notificationStr = ""
+        let stqStr: String?
+        let ethStr: String?
+        let btcStr: String?
         
         if !stq.isZero {
             let maxStq = denominationUnitsConverter.amountToMaxUnits(stq, currency: .stq)
-            let stqStr = currencyFormatter.getStringFrom(amount: maxStq, currency: .stq)
-            
-            notificationStr += stqStr
+            stqStr = currencyFormatter.getStringFrom(amount: maxStq, currency: .stq)
+        } else {
+            stqStr = nil
         }
         
         if !eth.isZero {
             let maxEth = denominationUnitsConverter.amountToMaxUnits(eth, currency: .eth)
-            let ethStr = currencyFormatter.getStringFrom(amount: maxEth, currency: .eth)
-            
-            if !notificationStr.isEmpty {
-                notificationStr += ", "
-            }
-            
-            notificationStr += ethStr
+            ethStr = currencyFormatter.getStringFrom(amount: maxEth, currency: .eth)
+        } else {
+            ethStr = nil
         }
         
         if !btc.isZero {
             let maxBtc = denominationUnitsConverter.amountToMaxUnits(btc, currency: .btc)
-            let btcStr = currencyFormatter.getStringFrom(amount: maxBtc, currency: .btc)
-            
-            if !notificationStr.isEmpty {
-                notificationStr += ", "
-            }
-            
-            notificationStr += btcStr
+            btcStr = currencyFormatter.getStringFrom(amount: maxBtc, currency: .btc)
+        } else {
+            btcStr = nil
         }
         
-        if !notificationStr.isEmpty {
-            let message = LocalizedStrings.newFundsReceivedMessage
-            notificationStr = message + notificationStr
-            showReceivedNotification(message: notificationStr)
+        if stqStr != nil || ethStr != nil || btcStr != nil {
+            showReceivedNotification(stq: stqStr, eth: ethStr, btc: btcStr)
         }
     }
     
@@ -167,20 +165,24 @@ extension MyWalletPresenter: MyWalletModuleInput {
 // MARK: - MyWalletViewOutput
 
 extension MyWalletPresenter: MyWalletDataManagerDelegate {
-    func rectOfSelectedItem(_ rect: CGRect?, in collectionView: UICollectionView) {
-        guard let frame = rect else { return }
-        let accountFrame = collectionView.convert(frame, to: viewController.view)
-        animator.setInitialFrame(accountFrame)
-
+    func addNewAccountButtonTapped() {
+        storiqaHandler = StoriqaAlertHandler(parentView: view.viewController.view)
+        storiqaHandler?.showAlert(title: LocalizedStrings.addNewAccountAlert,
+                                  message: "",
+                                  alertType: .attention,
+                                  duration: 2)
     }
     
+    func snapshotsForTransition(snapshots: [UIView], selectedIndex: Int) {
+        animator.setVisibleViews(snapshots, selectedIndex: selectedIndex)
+    }
     
     func selectAccount(_ account: Account) {
         let accountWatcher = interactor.getAccountWatcher()
         accountWatcher.setAccount(account)
+        view.setNavigationBarHidden(true)
         router.showAccountsWith(accountWatcher: accountWatcher,
                                 from: view.viewController,
-                                tabBar: mainTabBar,
                                 animator: animator)
     }
     
@@ -188,7 +190,7 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         
         guard newValue > 0 else {
-            let newOffset = floor(newValue / 5)
+            let newOffset = newValue / 6
             view.setNavigationBarTopSpace(statusBarHeight - newOffset)
             return
         }
@@ -208,7 +210,7 @@ extension MyWalletPresenter: MyWalletDataManagerDelegate {
 extension MyWalletPresenter {
     private var collectionFlowLayout: UICollectionViewFlowLayout {
         let deviceLayout = Device.model.flowLayout(type: .vertical)
-        let bounceLayout = BouncyLayout(style: .prominent)
+        let bounceLayout = SpringFlowLayout()
         bounceLayout.setConfigureFlow(flow: deviceLayout)
         
         return bounceLayout
@@ -216,7 +218,6 @@ extension MyWalletPresenter {
     
     private func addPullToRefresh(collectionView: UICollectionView) {
         pullToRefresh = UIRefreshControl()
-        collectionView.alwaysBounceVertical = true
         pullToRefresh.tintColor = .white
         pullToRefresh.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(pullToRefresh)
@@ -229,7 +230,8 @@ extension MyWalletPresenter {
         }
     }
     
-    private func showReceivedNotification(message: String) {
+    private func showReceivedNotification(stq: String?, eth: String?, btc: String?) {
+        
         if notificationView != nil {
             self.notificationView?.removeFromSuperview()
             self.notificationView = nil
@@ -238,7 +240,8 @@ extension MyWalletPresenter {
             isPanGestureActive = false
         }
         
-        addNotificationView(message: message)
+        addNotificationView(stq: stq, eth: eth, btc: btc)
+        haptic.performNotificationHaptic(feedbackType: .success)
         
         guard let notificationView = notificationView else {
             return
@@ -300,12 +303,12 @@ extension MyWalletPresenter {
         }
     }
     
-    private func addNotificationView(message: String) {
+    private func addNotificationView(stq: String?, eth: String?, btc: String?) {
         let window = AppDelegate.currentWindow
         let viewWidth = Constants.Sizes.screenWidth
         let hiddenOrigin = CGPoint(x: 0, y: -200)
         let txNotificationView = NotificationView(frame: CGRect(origin: hiddenOrigin, size: CGSize(width: viewWidth, height: 200)))
-        txNotificationView.setMessage(message)
+        txNotificationView.setAmounts(stq: stq, eth: eth, btc: btc)
         txNotificationView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([txNotificationView.widthAnchor.constraint(equalToConstant: viewWidth)])
         txNotificationView.layoutIfNeeded()

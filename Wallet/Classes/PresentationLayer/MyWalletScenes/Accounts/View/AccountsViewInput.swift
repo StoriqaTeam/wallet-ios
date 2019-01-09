@@ -15,4 +15,5 @@ protocol AccountsViewInput: class, Presentable {
     func updatePagesCount(_ count: Int)
     func showAccounts(completion: @escaping (() -> Void))
     func setCollectionHeight(_ height: CGFloat)
+    func setViewAllButtonHidden(_ hidden: Bool)
 }

@@ -29,7 +29,7 @@ class EmailConfirmViewController: UIViewController {
 extension EmailConfirmViewController: EmailConfirmViewInput {
     
     func setupInitialState() {
-
+        view.backgroundColor = Theme.Color.backgroundColor
     }
 
 }

@@ -15,7 +15,6 @@ class AccountsPresenter {
     weak var output: AccountsModuleOutput?
     var interactor: AccountsInteractorInput!
     var router: AccountsRouterInput!
-    weak var mainTabBar: UITabBarController!
     
     private let accountDisplayer: AccountDisplayerProtocol
     private let transactionsMapper: TransactionMapperProtocol
@@ -23,6 +22,7 @@ class AccountsPresenter {
     private var transactionDataManager: TransactionsDataManager!
     private var animator: MyWalletToAccountsAnimator?
     private var didAppear = false
+    private let maxTxsCount = 10
     
     init(accountDisplayer: AccountDisplayerProtocol,
          transactionsMapper: TransactionMapperProtocol,
@@ -50,19 +50,8 @@ extension AccountsPresenter: AccountsViewOutput {
         accountsDataManager.scrollTo(index: index)
     }
     
-    func handleCustomButton(type: RouteButtonType) {
-        switch type {
-        case .change:
-            mainTabBar.selectedIndex = 2
-        case .deposit:
-            mainTabBar.selectedIndex = 3
-        case .send:
-            mainTabBar.selectedIndex = 1
-        }
-    }
-    
     func transactionTableView(_ tableView: UITableView) {
-        let txDataManager = TransactionsDataManager(transactions: [], isHiddenSections: true, maxCount: 10)
+        let txDataManager = TransactionsDataManager(transactions: [], isHiddenSections: true)
         txDataManager.setTableView(tableView)
         transactionDataManager = txDataManager
         transactionDataManager.delegate = self
@@ -92,21 +81,6 @@ extension AccountsPresenter: AccountsViewOutput {
         interactor.startObservers()
         animator?.delegate = self
     }
-    
-    func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
-    }
-    
-    func viewDidFinishTransitionAnimation() {
-        guard !didAppear else { return }
-        didAppear = true
-        
-        let transactions = interactor.getTransactionForCurrentAccount()
-        let account = interactor.getSelectedAccount()
-        transactionsMapper.map(from: transactions, account: account) { [weak self] (displayable) in
-            self?.transactionDataManager.firstUpdateTransactions(displayable)
-        }
-    }
 }
 
 
@@ -118,18 +92,17 @@ extension AccountsPresenter: AccountsInteractorOutput {
         if view.viewController.isViewLoaded && view.viewController.view?.window != nil {
             // viewController is visible
             // to prevent changing bar color on other controllers in stack
-            view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
+            view.viewController.title = "\(iso) account"
         }
     }
     
     func transactionsDidChange(_ txs: [Transaction]) {
         guard didAppear else { return }
+        view.setViewAllButtonHidden(txs.isEmpty)
         
-        let account = interactor.getSelectedAccount()
-        
-        transactionsMapper.map(from: txs, account: account) { [weak self] (displayable) in
+        getDisplayable(from: txs, completion: { [weak self] (displayable) in
             self?.transactionDataManager.updateTransactions(displayable)
-        }
+        })
     }
     
     func updateAccounts(accounts: [Account], index: Int) {
@@ -159,6 +132,18 @@ extension AccountsPresenter: AccountsModuleInput {
 // MARK: - MyWalletToAccountsAnimatorDelegate
 
 extension AccountsPresenter: MyWalletToAccountsAnimatorDelegate {
+    func viewDidBecomeVisible() {
+        guard !didAppear else { return }
+        didAppear = true
+        
+        let transactions = interactor.getTransactionForCurrentAccount()
+        view.setViewAllButtonHidden(transactions.isEmpty)
+        
+        getDisplayable(from: transactions, completion: { [weak self] (displayable) in
+            self?.transactionDataManager.firstUpdateTransactions(displayable)
+        })
+    }
+    
     func animationComplete(completion: @escaping (() -> Void)) {
         view.showAccounts(completion: completion)
     }
@@ -196,7 +181,7 @@ extension AccountsPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
         let iso = interactor.getInitialCurrencyISO()
-        view.viewController.setWhiteNavigationBar(title: "Account \(iso)")
+        view.viewController.title = "\(iso) account"
     }
     
     private func setupAnimatior() {
@@ -215,6 +200,15 @@ extension AccountsPresenter {
     private func resetAnimatorIfNeeded() {
         if let navigation = view.viewController.navigationController as? TransitionNavigationController {
             navigation.useDefaultTransitioningDelegate()
+        }
+    }
+    
+    private func getDisplayable(from txs: [Transaction], completion: @escaping ([TransactionDisplayable]) -> Void) {
+        let txs = txs.sorted { $0.createdAt > $1.createdAt }
+        let lastTxs = Array(txs.prefix(maxTxsCount))
+        let account = interactor.getSelectedAccount()
+        transactionsMapper.map(from: lastTxs, account: account) { (displayable) in
+            completion(displayable)
         }
     }
 }

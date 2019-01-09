@@ -35,7 +35,7 @@ class DeviceRegisterConfirmInteractor {
 
 extension DeviceRegisterConfirmInteractor: DeviceRegisterConfirmInteractorInput {
     @objc func registerDevice() {
-        guard case .active = AppDelegate.currenctApplication.applicationState else {
+        guard case .active = AppDelegate.currentApplication.applicationState else {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(registerDevice),
                                                    name: UIApplication.didBecomeActiveNotification,

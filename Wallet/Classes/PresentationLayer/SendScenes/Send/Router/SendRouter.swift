@@ -29,10 +29,11 @@ extension SendRouter: SendRouterInput {
     func showConfirm(address: String,
                      amount: String,
                      fee: String,
+                     total: String,
                      confirmTxBlock: @escaping (() -> Void),
                      from viewController: UIViewController) {
         SendConfirmPopUpModule
-            .create(address: address, amount: amount, fee: fee, confirmTxBlock: confirmTxBlock)
+            .create(address: address, amount: amount, fee: fee, total: total, confirmTxBlock: confirmTxBlock)
             .present(from: viewController)
     }
     

@@ -6,12 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Set_fingerprint@2x.png",
+      "filename" : "setFingerprint@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Set_fingerprint@3x.png",
+      "filename" : "setFingerprint@3x.png",
       "scale" : "3x"
     }
   ],

@@ -13,44 +13,48 @@ class StoriqaLoader {
     private let parentView: UIView
     private var dimView: UIView!
     private var loaderView: ActivityIndicatorView!
+    private var blurImageView: UIImageView!
     
     init(parentView: UIView) {
         self.parentView = parentView
     }
     
-    
     func startLoader() {
-        addDimView()
+        addBlurView()
         addLoaderView()
-        dimView.addSubview(loaderView)
-        loaderView.showActivityIndicator()
     }
     
     func stopLoader() {
-        guard let loaderView = loaderView, let dimView = dimView else {
+        guard let loaderView = loaderView else {
             return
         }
-
+        
         loaderView.hideActivityIndicator()
         loaderView.removeFromSuperview()
-        dimView.removeFromSuperview()
-        self.loaderView = nil
-    }    
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.blurImageView.alpha = 0.0
+        }, completion: { (_) in
+            self.loaderView.removeFromSuperview()
+            self.blurImageView.removeFromSuperview()
+            self.loaderView = nil
+        })
+    }
 }
 
 
 // MARK: Private methods
 
 extension StoriqaLoader {
-    private func addDimView() {
-        dimView = UIView(frame: parentView.frame)
-        dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        dimView.alpha = 0
-        parentView.addSubview(dimView)
+    private func addBlurView() {
+        let bluredImage = captureScreen(view: parentView)
+        blurImageView = UIImageView(image: bluredImage)
+        self.parentView.addSubview(blurImageView)
+        blurImageView.alpha = 0
         
-        UIView.animate(withDuration: 0.25) {
-            self.dimView.alpha = 1
-        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurImageView.alpha = 1
+        })
     }
     
     private func addLoaderView() {
@@ -58,5 +62,7 @@ extension StoriqaLoader {
         loaderView.isUserInteractionEnabled = false
         loaderView.frame.size = CGSize(width: 80, height: 80)
         loaderView.center = parentView.convert(parentView.center, to: loaderView)
+        blurImageView.addSubview(loaderView)
+        loaderView.showActivityIndicator()
     }
 }

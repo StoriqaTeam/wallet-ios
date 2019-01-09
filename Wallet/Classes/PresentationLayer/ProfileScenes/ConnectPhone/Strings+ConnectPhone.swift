@@ -26,7 +26,7 @@ extension Strings {
         static let screenSubtitle = NSLocalizedString(
             "ConnectPhone.screenSubtitle",
             tableName: "ConnectPhone",
-            value: "You can attach telephone number to protect your account.",
+            value: "You can link phone number to protect your account.",
             comment: "Shown on the top of the screen")
         
         static let phoneNumberPlaceholder = NSLocalizedString(
@@ -38,7 +38,7 @@ extension Strings {
         static let phoneNumberHint = NSLocalizedString(
             "ConnectPhone.phoneNumberHint",
             tableName: "ConnectPhone",
-            value: "Enter your number starting form country code. Example for US: +1-541-754-3010",
+            value: "Enter your number starting with country code. Example for US: +1-541-754-3010",
             comment: "Phone number input hint")
         
         static let connetButton = NSLocalizedString(

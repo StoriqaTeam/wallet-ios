@@ -72,7 +72,7 @@ extension RegistrationPresenter: RegistrationViewOutput {
     }
     
     func showLogin() {
-        router.showLogin()
+        router.showLogin(animated: true)
     }
     
     func socialNetworkRegisterSucceed(provider: SocialNetworkTokenProvider, token: String, email: String) {
@@ -128,12 +128,12 @@ extension RegistrationPresenter: RegistrationInteractorOutput {
     
     func showQuickLaunch() {
         storiqaLoader.stopLoader()
-        router.showQuickLaunch(from: view.viewController)
+        router.showQuickLaunch()
     }
     
     func showPinQuickLaunch() {
         storiqaLoader.stopLoader()
-        router.showPinQuickLaunch(from: view.viewController)
+        router.showPinQuickLaunch()
     }
     
     func socialAuthFailed(message: String) {
@@ -160,7 +160,7 @@ extension RegistrationPresenter: RegistrationModuleInput {
 
 extension RegistrationPresenter: PopUpRegistrationSuccessVMDelegate {
     func okButtonPressed() {
-        router.showLogin()
+        router.showLogin(animated: false)
     }
 }
 

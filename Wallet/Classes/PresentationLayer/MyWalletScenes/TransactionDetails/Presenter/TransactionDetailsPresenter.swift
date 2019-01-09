@@ -20,6 +20,7 @@ class TransactionDetailsPresenter {
     
     private var blockchainExplorerLinkGenerator: BlockchainExplorerLinkGeneratorProtocol
     private var transactionLink: URL?
+    private var storiqaAlertHandler: StoriqaAlertHandler?
     
     init(blockchainExplorerLinkGenerator: BlockchainExplorerLinkGeneratorProtocol) {
         self.blockchainExplorerLinkGenerator = blockchainExplorerLinkGenerator
@@ -39,13 +40,15 @@ extension TransactionDetailsPresenter: TransactionDetailsViewOutput {
         fetchTxHashes(transaction: transaction.transaction)
     }
 
-    func viewWillAppear() {
-        view.viewController.setDarkNavigationBarButtons()
-    }
+    func viewWillAppear() {}
     
     func addressTapped(_ address: String) {
         UIPasteboard.general.string = address
-        view.viewController.showAlert(title: "", message: LocalizedStrings.addressCopiedMessage)
+        storiqaAlertHandler = StoriqaAlertHandler(parentView: view.viewController.view)
+        storiqaAlertHandler?.showAlert(title: LocalizedStrings.addressCopiedMessage,
+                                       message: "",
+                                       alertType: .success,
+                                       duration: 2)
     }
     
     func viewInBlockchain() {
@@ -78,7 +81,7 @@ extension TransactionDetailsPresenter: TransactionDetailsModuleInput {
 extension TransactionDetailsPresenter {
     private func configureNavigationBar(transaction: TransactionDisplayable) {
         let title = transaction.direction == .receive ? LocalizedStrings.navigationBarTitleDeposit : LocalizedStrings.navigationBarTitleSent
-        view.viewController.setDarkNavigationBar(title: title)
+        view.viewController.title = title
         view.viewController.navigationItem.largeTitleDisplayMode = .never
     }
     

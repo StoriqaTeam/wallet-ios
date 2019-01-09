@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol RegistrationRouterInput: class {
-    func showLogin()
+    func showLogin(animated: Bool)
     func showSuccess(email: String,
                      popUpDelegate: PopUpRegistrationSuccessVMDelegate,
                      from viewController: UIViewController)
@@ -18,8 +18,8 @@ protocol RegistrationRouterInput: class {
                      popUpDelegate: PopUpRegistrationFailedVMDelegate,
                      from viewController: UIViewController)
     func showSocialNetworkFailure(message: String, from viewController: UIViewController)
-    func showQuickLaunch(from viewController: UIViewController)
-    func showPinQuickLaunch(from viewController: UIViewController)
+    func showQuickLaunch()
+    func showPinQuickLaunch()
     func showDeviceRegister(popUpDelegate: PopUpDeviceRegisterVMDelegate,
                             from viewController: UIViewController)
     func showDeviceRegisterEmailSent(from viewController: UIViewController)

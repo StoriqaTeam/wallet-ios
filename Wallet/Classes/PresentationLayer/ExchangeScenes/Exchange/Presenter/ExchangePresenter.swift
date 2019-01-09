@@ -22,16 +22,20 @@ class ExchangePresenter {
     private let currencyFormatter: CurrencyFormatterProtocol
     private let accountDisplayer: AccountDisplayerProtocol
     private var accountsDataManager: AccountsDataManager!
+    private let haptic: HapticServiceProtocol
     
     private var storiqaLoader: StoriqaLoader!
     private var isEditingAmount = false
     
     init(converterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
-         accountDisplayer: AccountDisplayerProtocol) {
+         accountDisplayer: AccountDisplayerProtocol,
+         haptic: HapticServiceProtocol) {
+        
         self.converterFactory = converterFactory
         self.currencyFormatter = currencyFormatter
         self.accountDisplayer = accountDisplayer
+        self.haptic = haptic
     }
 }
 
@@ -50,7 +54,6 @@ extension ExchangePresenter: ExchangeViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
         interactor.updateState()
     }
     
@@ -81,7 +84,7 @@ extension ExchangePresenter: ExchangeViewOutput {
     func amountDidBeginEditing() {
         isEditingAmount = true
         let amount = interactor.getAmount()
-        let currency = interactor.getRecepientCurrency()
+        let currency = interactor.getRecipientCurrency()
         let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
         view.setAmount(formatted)
     }
@@ -89,27 +92,27 @@ extension ExchangePresenter: ExchangeViewOutput {
     func amountDidEndEditing() {
         isEditingAmount = false
         let amount = interactor.getAmount()
-        let currency = interactor.getRecepientCurrency()
+        let currency = interactor.getRecipientCurrency()
         let formatted = getStringFrom(amount: amount, currency: currency)
         view.setAmount(formatted)
     }
     
-    func recepientAccountPressed() {
-        let accounts = interactor.getRecepientAccounts()
+    func recipientAccountPressed() {
+        let accounts = interactor.getRecipientAccounts()
         
         guard !accounts.isEmpty else {
             return
         }
         
         let builder = interactor.getTransactionBuilder()
-        router.showRecepientAccountSelection(exchangeProviderBuilder: builder, from: view.viewController)
+        router.showRecipientAccountSelection(exchangeProviderBuilder: builder, from: view.viewController)
     }
     
     func exchangeButtonPressed() {
         let fromAccount = interactor.getAccountName()
-        let toAccount = interactor.getRecepientAccountName()
-        let currency = interactor.getRecepientCurrency()
-        let decimalAmount = interactor.getAmount()
+        let toAccount = interactor.getRecipientAccountName()
+        let currency = interactor.getAccountCurrency()
+        let decimalAmount = interactor.getGiveAmount()
         let amountStr = currencyFormatter.getStringFrom(amount: decimalAmount, currency: currency)
         let confirmTxBlock = { [weak self] in
             self?.storiqaLoader.startLoader()
@@ -161,21 +164,21 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setNewPage(index)
     }
     
-    func updateRecepientAccount(_ account: Account?) {
+    func updateRecipientAccount(_ account: Account?) {
         guard let account = account else {
-            view.setRecepientAccount(LocalizedStrings.noAccountsAvailable)
-            view.setRecepientBalance("")
+            view.setRecipientAccount(LocalizedStrings.noAccountsAvailable)
+            view.setRecipientBalance("")
             return
         }
         
         let balance = accountDisplayer.cryptoAmount(for: account)
         
-        view.setRecepientAccount(account.name)
-        view.setRecepientBalance(String(format: LocalizedStrings.balanceLabel, balance))
+        view.setRecipientAccount(account.name)
+        view.setRecipientBalance(String(format: LocalizedStrings.balanceLabel, balance))
     }
     
     func exchangeRateError(_ error: Error) {
-        view.showEchangeRateError(message: error.localizedDescription)
+        view.showExchangeRateError(message: error.localizedDescription)
     }
     
     func updateAmount(_ amount: Decimal, currency: Currency) {
@@ -189,9 +192,14 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.setAmount(amountString)
     }
     
-    func updateTotal(_ total: Decimal, currency: Currency) {
+    func updateGet(_ amount: Decimal, currency: Currency) {
+        let amountString = currencyFormatter.getStringFrom(amount: amount, currency: currency)
+        view.setGet(amountString)
+    }
+    
+    func updateGive(_ total: Decimal, currency: Currency) {
         let totalAmountString = currencyFormatter.getStringFrom(amount: total, currency: currency)
-        view.setSubtotal(totalAmountString)
+        view.setGive(totalAmountString)
     }
     
     func updateIsEnoughFunds(_ enough: Bool) {
@@ -223,11 +231,13 @@ extension ExchangePresenter: ExchangeInteractorOutput {
     
     func exchangeTxFailed(message: String) {
         storiqaLoader.stopLoader()
+        haptic.performNotificationHaptic(feedbackType: .error)
         router.showConfirmFailed(popUpDelegate: self, message: message, from: view.viewController)
     }
     
     func exchangeTxSucceed() {
         storiqaLoader.stopLoader()
+        haptic.performNotificationHaptic(feedbackType: .success)
         router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
     }
 
@@ -293,7 +303,7 @@ extension ExchangePresenter {
     
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.navigationBarTitle)
+        view.viewController.setHidableNavigationBar(title: LocalizedStrings.navigationBarTitle)
     }
     
     private func getStringFrom(amount: Decimal?, currency: Currency) -> String {

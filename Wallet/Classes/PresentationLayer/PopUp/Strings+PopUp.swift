@@ -21,13 +21,13 @@ extension Strings {
         static let deviceRegisterMessage = NSLocalizedString(
             "PopUp.deviceRegisterMessage",
             tableName: tableName,
-            value: "Do you want to register this device to your account?",
+            value: "Do you want to allow your account to be accessible from this device?",
             comment: "Shown when user tries to sing in on not registered device.")
         
         static let okButton = NSLocalizedString(
             "PopUp.okButton",
             tableName: tableName,
-            value: "Ok",
+            value: "OK",
             comment: "Just ok button")
         
         static let emailSentTitle = NSLocalizedString(
@@ -63,7 +63,7 @@ extension Strings {
         static let resendConfirmEmailMessage = NSLocalizedString(
             "PopUp.resendConfirmEmailMessage",
             tableName: tableName,
-            value: "The link we’ve sent you has been expired. Tap ‘Resend’ to get a new link to verify your account.",
+            value: "The link we’ve sent you has expired. Tap ‘Resend’ to get a new link to verify your account.",
             comment: "Message. Shown when user tries to confirm registration with expired link from letter.")
         
         static let resendButton = NSLocalizedString(
@@ -75,7 +75,7 @@ extension Strings {
         static let registrationMessage = NSLocalizedString(
             "PopUp.registrationMessage",
             tableName: tableName,
-            value: "Check your mailbox! We've sent you the email address confirmation link to ",
+            value: "Check your mailbox! We've sent you an email address confirmation link to ",
             comment: "Text shown when email is send on user registration")
         
         static let passwordEmailRecoveryMessage = NSLocalizedString(
@@ -87,7 +87,7 @@ extension Strings {
         static let passwordRecoveryConfirmTitle = NSLocalizedString(
             "PopUp.passwordRecoveryConfirmTitle",
             tableName: tableName,
-            value: "Password reset complete.",
+            value: "Password reset complete",
             comment: "Shown when password was successfully reset")
 
         static let passwordRecoveryConfirmMessage = NSLocalizedString(
@@ -129,13 +129,13 @@ extension Strings {
         static let signOutTitle = NSLocalizedString(
             "PopUp.signOutTitle",
             tableName: tableName,
-            value: "Want to sign out?",
+            value: "Would like to sign out?",
             comment: "Title. Shown to confirm that user wants to sign out")
 
         static let signOutMessage = NSLocalizedString(
             "PopUp.signOutMessage",
             tableName: tableName,
-            value: "After signing out you won’t be able to receive notifications from TURE app",
+            value: "After signing out you won’t be able to receive notifications from TURE.",
             comment: "Message. Shown to confirm that user wants to sign out")
 
         static let signOutButton = NSLocalizedString(
@@ -149,6 +149,12 @@ extension Strings {
             tableName: tableName,
             value: "No",
             comment: "Button to cancel sign out")
+        
+        static let yesButton = NSLocalizedString(
+            "PopUp.yesButton",
+            tableName: tableName,
+            value: "Yes",
+            comment: "Yes button")
 
         static let cancelButton = NSLocalizedString(
             "PopUp.cancelButton",

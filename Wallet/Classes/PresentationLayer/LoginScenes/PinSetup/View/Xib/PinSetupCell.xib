@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,17 +20,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWi-85-b7J" customClass="PinContainerView" customModule="Wallet" customModuleProvider="target">
-                        <rect key="frame" x="57" y="0.0" width="261" height="667"/>
+                        <rect key="frame" x="30" y="0.0" width="315" height="667"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="261" id="jXp-A4-dAf"/>
+                            <constraint firstAttribute="width" priority="250" constant="261" id="jXp-A4-dAf"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="qWi-85-b7J" firstAttribute="centerX" secondItem="8AO-Eb-Hmg" secondAttribute="centerX" id="Bua-Wf-JOf"/>
-                <constraint firstItem="qWi-85-b7J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8AO-Eb-Hmg" secondAttribute="leading" id="EOT-X4-Rap"/>
+                <constraint firstItem="qWi-85-b7J" firstAttribute="leading" secondItem="8AO-Eb-Hmg" secondAttribute="leading" constant="30" id="EOT-X4-Rap"/>
                 <constraint firstItem="qWi-85-b7J" firstAttribute="centerY" secondItem="8AO-Eb-Hmg" secondAttribute="centerY" id="MRz-o1-AsD"/>
                 <constraint firstItem="qWi-85-b7J" firstAttribute="top" secondItem="8AO-Eb-Hmg" secondAttribute="top" id="TRi-Qm-iQv"/>
             </constraints>

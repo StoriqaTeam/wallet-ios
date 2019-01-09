@@ -20,9 +20,11 @@ class PinInputViewController: UIViewController {
     @IBOutlet private var greetingContainerView: UIView!
     @IBOutlet private var greetingVerticalSpacingConstraint: NSLayoutConstraint!
     @IBOutlet private var greetingLabel: UILabel!
+    @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var userPhotoImageView: UIImageView?
     @IBOutlet private var userPhotoContainerView: ActivityIndicatorView?
     @IBOutlet private var pinContainerView: PinContainerView!
+    @IBOutlet private var forgotPinButton: BaseButton!
     
 
     // MARK: Life cycle
@@ -65,6 +67,7 @@ extension PinInputViewController: PinInputViewInput {
     func setupInitialState(userPhoto: UIImage, userName: String) {
         configureUserPhoto(photo: userPhoto)
         configureGreeting(name: userName)
+        configureInterface()
     }
     
     func inputSucceed() {
@@ -85,6 +88,15 @@ extension PinInputViewController: PinInputViewInput {
 // MARK: - Private methods
 
 extension PinInputViewController {
+    
+    private func configureInterface() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        subtitleLabel.text = LocalizedString.subtitle
+        greetingLabel.font = Theme.Font.title
+        subtitleLabel.font = Theme.Font.subtitle
+        greetingLabel.textColor = Theme.Color.Text.main
+        subtitleLabel.textColor = Theme.Color.Text.main.withAlphaComponent(0.5)
+    }
     
     private func configureGreeting(name: String) {
         let greeting = LocalizedString.greetingLabelTitle

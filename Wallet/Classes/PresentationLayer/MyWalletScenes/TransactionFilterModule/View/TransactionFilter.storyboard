@@ -18,14 +18,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Pz-O5-NC3">
-                                <rect key="frame" x="19" y="89" width="32.5" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.52941176470588236" green="0.61960784310000006" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tZ-ra-MGH" customClass="ColoredFramelessButton" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="145.5" y="557" width="84" height="34"/>
+                                <state key="normal" title="Clear filter">
+                                    <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearFilterPressed:" destination="p5G-at-zJb" eventType="touchUpInside" id="5Fj-WG-IJf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8HR-UQ-gY2" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
+                                <rect key="frame" x="20.5" y="486" width="334" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="L5V-dN-Q0n"/>
+                                    <constraint firstAttribute="width" priority="750" constant="334" id="WqY-Jl-PsR"/>
+                                </constraints>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="okButtonPressed:" destination="p5G-at-zJb" eventType="touchUpInside" id="QSi-wx-6oy"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJo-PI-NJa">
+                                <rect key="frame" x="27" y="84" width="321" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PKE-M9-Sxe" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="19" y="125" width="163" height="40"/>
+                                <rect key="frame" x="19" y="168" width="163" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="0Dl-xz-u5o"/>
                                 </constraints>
@@ -37,7 +57,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="To" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cjS-a9-vgN" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="193" y="125" width="163" height="40"/>
+                                <rect key="frame" x="193" y="168" width="163" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="k7X-fs-oxh"/>
                                 </constraints>
@@ -48,39 +68,21 @@
                                     <action selector="toTextFieldEditing:" destination="p5G-at-zJb" eventType="editingDidBegin" id="ak6-yc-8ge"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tZ-ra-MGH">
-                                <rect key="frame" x="151.5" y="561" width="72" height="30"/>
-                                <state key="normal" title="Clear filter">
-                                    <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="clearFilterPressed:" destination="p5G-at-zJb" eventType="touchUpInside" id="5Fj-WG-IJf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8HR-UQ-gY2" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                <rect key="frame" x="20.5" y="496" width="334" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="L5V-dN-Q0n"/>
-                                    <constraint firstAttribute="width" priority="750" constant="334" id="WqY-Jl-PsR"/>
-                                </constraints>
-                                <state key="normal" title="OK"/>
-                                <connections>
-                                    <action selector="okButtonPressed:" destination="p5G-at-zJb" eventType="touchUpInside" id="QSi-wx-6oy"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="PKE-M9-Sxe" firstAttribute="top" secondItem="9Pz-O5-NC3" secondAttribute="bottom" constant="20" id="3FI-ku-MEJ"/>
                             <constraint firstItem="cjS-a9-vgN" firstAttribute="width" secondItem="PKE-M9-Sxe" secondAttribute="width" id="AOt-S9-UHd"/>
                             <constraint firstItem="PKE-M9-Sxe" firstAttribute="width" secondItem="ksd-vL-ia3" secondAttribute="width" multiplier="1:2.3" id="BOy-6B-90O"/>
-                            <constraint firstItem="9Pz-O5-NC3" firstAttribute="leading" secondItem="OFF-0j-4cM" secondAttribute="leading" constant="19" id="N9K-Hp-Gwf"/>
+                            <constraint firstItem="FJo-PI-NJa" firstAttribute="centerX" secondItem="ksd-vL-ia3" secondAttribute="centerX" id="L3B-Wv-zCM"/>
+                            <constraint firstItem="FJo-PI-NJa" firstAttribute="top" secondItem="OFF-0j-4cM" secondAttribute="top" constant="20" id="Pqt-0O-DTp"/>
                             <constraint firstItem="OFF-0j-4cM" firstAttribute="trailing" secondItem="cjS-a9-vgN" secondAttribute="trailing" constant="19" id="Rpc-al-NGL"/>
                             <constraint firstItem="4tZ-ra-MGH" firstAttribute="top" secondItem="8HR-UQ-gY2" secondAttribute="bottom" constant="20" id="V4C-XV-yEI"/>
                             <constraint firstItem="OFF-0j-4cM" firstAttribute="bottom" secondItem="4tZ-ra-MGH" secondAttribute="bottom" constant="27" id="XDE-go-sYE"/>
-                            <constraint firstItem="9Pz-O5-NC3" firstAttribute="top" secondItem="OFF-0j-4cM" secondAttribute="top" constant="25" id="f1d-Sx-Oqf"/>
+                            <constraint firstItem="PKE-M9-Sxe" firstAttribute="top" secondItem="FJo-PI-NJa" secondAttribute="bottom" constant="63" id="XZs-bu-qKS"/>
+                            <constraint firstItem="FJo-PI-NJa" firstAttribute="leading" secondItem="OFF-0j-4cM" secondAttribute="leading" constant="27" id="hEV-56-xX4"/>
                             <constraint firstItem="PKE-M9-Sxe" firstAttribute="leading" secondItem="OFF-0j-4cM" secondAttribute="leading" constant="19" id="hne-9s-K3g"/>
                             <constraint firstItem="8HR-UQ-gY2" firstAttribute="centerX" secondItem="ksd-vL-ia3" secondAttribute="centerX" id="jeN-pq-Kav"/>
+                            <constraint firstItem="OFF-0j-4cM" firstAttribute="trailing" secondItem="FJo-PI-NJa" secondAttribute="trailing" constant="27" id="lID-me-l2A"/>
                             <constraint firstItem="8HR-UQ-gY2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OFF-0j-4cM" secondAttribute="leading" constant="20" id="pjd-Uf-8Ik"/>
                             <constraint firstItem="cjS-a9-vgN" firstAttribute="top" secondItem="PKE-M9-Sxe" secondAttribute="top" id="qJy-ui-ScI"/>
                             <constraint firstItem="4tZ-ra-MGH" firstAttribute="centerX" secondItem="ksd-vL-ia3" secondAttribute="centerX" id="rdE-bH-Rmi"/>
@@ -94,7 +96,7 @@
                     <connections>
                         <outlet property="bottomConstraint" destination="XDE-go-sYE" id="AzX-td-Ccu"/>
                         <outlet property="clearFilterButton" destination="4tZ-ra-MGH" id="uTG-jg-Pv7"/>
-                        <outlet property="dateLabel" destination="9Pz-O5-NC3" id="rSN-Op-q4s"/>
+                        <outlet property="descriptionLabel" destination="FJo-PI-NJa" id="c8h-KV-Zbf"/>
                         <outlet property="fromTextField" destination="PKE-M9-Sxe" id="V4C-NV-JKk"/>
                         <outlet property="okButton" destination="8HR-UQ-gY2" id="HBQ-ew-dwq"/>
                         <outlet property="toTextField" destination="cjS-a9-vgN" id="RHK-B3-5CF"/>
@@ -102,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqT-yM-yew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="145" y="-294"/>
+            <point key="canvasLocation" x="81" y="-322"/>
         </scene>
     </scenes>
 </document>

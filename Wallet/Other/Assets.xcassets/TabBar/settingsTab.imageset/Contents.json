@@ -6,12 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "settingsTab@2x.png",
+      "filename" : "menuTabIconOff@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "settingsTab@3x.png",
+      "filename" : "menuTabIconOff@3x.png",
       "scale" : "3x"
     }
   ],

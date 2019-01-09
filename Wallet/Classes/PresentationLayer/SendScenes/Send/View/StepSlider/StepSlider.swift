@@ -36,6 +36,12 @@ class StepSlider: UISlider {
         configure()
     }
     
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
+        var newBounds = super.trackRect(forBounds: bounds)
+        newBounds.size.height = 1
+        return newBounds
+    }
+    
     func updateCurrentValue(step: Int) {
         if paymentFeeValuesCount <= 1 {
             setValue(0.5, animated: false)
@@ -69,10 +75,14 @@ extension StepSlider {
 extension StepSlider {
     
     private func configure() {
-        minimumTrackTintColor = Theme.Color.brightSkyBlue
-        maximumTrackTintColor = Theme.Color.brightSkyBlue
+        minimumTrackTintColor = Theme.Color.Slider.track
+        maximumTrackTintColor = Theme.Color.Slider.track
         
-        let thumbImage = #imageLiteral(resourceName: "thumbImage")
+        let thumbView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 20))
+        thumbView.backgroundColor = Theme.Color.mainOrange
+        thumbView.roundCorners(radius: 10)
+        
+        let thumbImage = asImage(view: thumbView)
         for state: UIControl.State in  [.normal, .selected, .application, .reserved, .highlighted] {
             setThumbImage(thumbImage, for: state)
         }
@@ -81,5 +91,12 @@ extension StepSlider {
     private func calculateCurrentValue() {
         let step = Int(round(value / stepLength))
         currentSliderStep = step
+    }
+    
+    private func asImage(view: UIView) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
+        return renderer.image { rendererContext in
+            view.layer.render(in: rendererContext.cgContext)
+        }
     }
 }

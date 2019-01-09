@@ -11,14 +11,15 @@ import Foundation
 
 protocol ExchangeInteractorInput: class {
     func getAccounts() -> [Account]
-    func getRecepientAccounts() -> [Account]
+    func getRecipientAccounts() -> [Account]
     func getAccountIndex() -> Int
     func getAccountsCount() -> Int
     func getAmount() -> Decimal
+    func getGiveAmount() -> Decimal
     func getAccountCurrency() -> Currency
-    func getRecepientCurrency() -> Currency
+    func getRecipientCurrency() -> Currency
     func getAccountName() -> String
-    func getRecepientAccountName() -> String
+    func getRecipientAccountName() -> String
     
     func setCurrentAccount(index: Int)
     func setAmount(_ amount: Decimal)

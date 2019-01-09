@@ -12,7 +12,7 @@ extension Strings {
     enum MyWallet {
         static let navigationBarTitle = NSLocalizedString("MyWallet.navigationBarTitle",
                                                           tableName: "MyWallet",
-                                                          value: "My wallet",
+                                                          value: "Accounts",
                                                           comment: "Navigation bar title on my wallet screen")
         static let buttonTitle = NSLocalizedString("MyWallet.buttonTitle",
                                                    tableName: "MyWallet",
@@ -22,5 +22,13 @@ extension Strings {
                                                                tableName: "MyWallet",
                                                                value: "You received ",
                                                                comment: "Notification message abount new received funds")
+        static let addNewAccountButton = NSLocalizedString("MyWallet.addNewAccountButton",
+                                                           tableName: "MyWallet",
+                                                           value: "+ Add new account",
+                                                           comment: "Add new account button")
+        static let addNewAccountAlert = NSLocalizedString("MyWallet.addNewAccountAlert",
+                                                           tableName: "MyWallet",
+                                                           value: "Will be available soon",
+                                                           comment: "Add new account button alert")
     }
 }

@@ -30,11 +30,6 @@ class ChangePasswordViewController: UIViewController {
         output.viewIsReady()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        output.viewWillAppear()
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self,
@@ -150,6 +145,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
 
 extension ChangePasswordViewController {
     private func configFields() {
+        view.backgroundColor = Theme.Color.backgroundColor
         
         let layoutBlock: (() -> Void) = {[weak self] in
             self?.view.layoutIfNeeded()
@@ -168,6 +164,7 @@ extension ChangePasswordViewController {
         
         titleLabel.font = Theme.Font.title
         titleLabel.text = LocalizedStrings.screenTitle
+        titleLabel.textColor = Theme.Color.Text.main
     }
     
     private func updateContinueButton() {

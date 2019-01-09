@@ -25,7 +25,7 @@ class SettingsViewController: UIViewController {
     var output: SettingsViewOutput!
     
     @IBOutlet private var settingsTableView: UITableView!
-    @IBOutlet private var signOutButton: LightButton!
+    @IBOutlet private var signOutButton: GradientButton!
     
     private var changePhoneTitle: String = ""
     private var hasChangePassword = true
@@ -42,11 +42,9 @@ class SettingsViewController: UIViewController {
         output.viewWillAppear()
     }
     
-    
     @IBAction func signOutButtonTapped(_ sender: UIButton) {
         output.signOutButtonTapped()
     }
-    
 }
 
 
@@ -89,7 +87,7 @@ extension SettingsViewController: UITableViewDelegate {
         default: break
         }
         
-        return 44
+        return 75
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -153,6 +151,13 @@ extension SettingsViewController {
     }
     
     func configureInterface() {
-        signOutButton.setup(color: Theme.Button.Color.red, borderAlpha: 0.1)
+        signOutButton.setup(colors: [Theme.Color.Button.red.cgColor],
+                            titleColor:  Theme.Color.Button.red)
+        
+        view.backgroundColor = Theme.Color.backgroundColor
+        
+        settingsTableView.backgroundColor = Theme.Color.backgroundColor
+        settingsTableView.backgroundView?.backgroundColor = Theme.Color.backgroundColor
+        settingsTableView.separatorStyle = .none
     }
 }

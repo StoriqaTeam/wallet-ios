@@ -20,6 +20,6 @@ protocol ExchangeViewOutput: class {
     func amountDidBeginEditing()
     func amountDidEndEditing()
     
-    func recepientAccountPressed()
+    func recipientAccountPressed()
     func exchangeButtonPressed()
 }

@@ -11,7 +11,6 @@ import UIKit
 
 protocol ChangePasswordViewOutput: class {
     func viewIsReady()
-    func viewWillAppear()
     func validateFields(currentPassword: String?,
                         newPassword: String?,
                         repeatPassword: String?)

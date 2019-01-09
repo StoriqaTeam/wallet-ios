@@ -11,12 +11,14 @@ class SendConfirmPopUpModule {
     class func create(address: String,
                       amount: String,
                       fee: String,
+                      total: String,
                       confirmTxBlock: @escaping (() -> Void)) -> SendConfirmPopUpModuleInput {
         
         let router = SendConfirmPopUpRouter()
         let presenter = SendConfirmPopUpPresenter(address: address,
                                                   amount: amount,
                                                   fee: fee,
+                                                  total: total,
                                                   confirmTxBlock: confirmTxBlock)
         let interactor = SendConfirmPopUpInteractor()
         

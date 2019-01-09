@@ -27,10 +27,15 @@ class SendPresenter {
     private var storiqaLoader: StoriqaLoader!
     private var address: String = ""
     private var isEditingAmount = false
+    private var feesError: String?
+    private var haptic: HapticServiceProtocol
     
     init(currencyFormatter: CurrencyFormatterProtocol,
          currencyImageProvider: CurrencyImageProviderProtocol,
-         accountDisplayer: AccountDisplayerProtocol) {
+         accountDisplayer: AccountDisplayerProtocol,
+         haptic: HapticServiceProtocol) {
+        
+        self.haptic = haptic
         self.currencyFormatter = currencyFormatter
         self.currencyImageProvider = currencyImageProvider
         self.accountDisplayer = accountDisplayer
@@ -51,7 +56,6 @@ extension SendPresenter: SendViewOutput {
     }
     
     func viewWillAppear() {
-        view.viewController.setWhiteNavigationBarButtons()
         interactor.updateState(receiverAddress: address)
     }
     
@@ -113,9 +117,11 @@ extension SendPresenter: SendViewOutput {
     func sendButtonPressed() {
         let amount = interactor.getAmount()
         let fee = interactor.getFee() ?? 0
+        let total = interactor.getTotal()
         let currency = interactor.getCurrency()
         let amountString = getStringFrom(amount: amount, currency: currency)
-        let feeString = currencyFormatter.getStringFrom(amount: fee, currency: currency)
+        let feeString = getStringFrom(amount: fee, currency: currency)
+        let totalString = getStringFrom(amount: total, currency: currency)
         let address = interactor.getAddress()
         let confirmTxBlock = { [weak self] in
             self?.storiqaLoader.startLoader()
@@ -125,6 +131,7 @@ extension SendPresenter: SendViewOutput {
         router.showConfirm(address: address,
                            amount: amountString,
                            fee: feeString,
+                           total: totalString,
                            confirmTxBlock: confirmTxBlock,
                            from: view.viewController)
     }
@@ -167,31 +174,25 @@ extension SendPresenter: SendInteractorOutput {
             return
         }
         
-        guard !fee.isZero else {
-            view.setPaymentFee(LocalizedStrings.freeFeeLabel)
-            return
-        }
-        
         let currency = interactor.getCurrency()
         let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency, maxFractionDigits: 8)
         view.setPaymentFee(formatted)
     }
     
     func updatePaymentFees(count: Int, selected: Int) {
-        view.setPaymentFee(count: count, value: selected, enabled: count > 1)
+        let hidden = count <= 1
+        
+        view.setPaymentFee(count: count, value: selected, enabled: !hidden)
+        view.setPaymentFeeHidden(hidden)
     }
     
     func updateMedianWait(_ wait: String) {
         view.setMedianWait(wait)
     }
     
-    func updateTotal(_ total: Decimal, currency: Currency) {
-        let totalAmountString = currencyFormatter.getStringFrom(amount: total, currency: currency)
-        view.setSubtotal(totalAmountString)
-    }
-    
     func updateIsEnoughFunds(_ enough: Bool) {
-        view.setEnoughFundsErrorHidden(enough)
+        let message = !enough ? LocalizedStrings.notEnoughFundsErrorMessage : feesError
+        view.setErrorMessage(message)
     }
     
     func updateFormIsValid(_ valid: Bool) {
@@ -210,11 +211,13 @@ extension SendPresenter: SendInteractorOutput {
     
     func sendTxFailed(message: String) {
         storiqaLoader.stopLoader()
+        haptic.performNotificationHaptic(feedbackType: .error)
         router.showFailure(message: message, from: view.viewController)
     }
     
     func sendTxSucceed() {
         storiqaLoader.stopLoader()
+        haptic.performNotificationHaptic(feedbackType: .success)
         router.showConfirmSucceed(popUpDelegate: self, from: view.viewController)
     }
     
@@ -225,6 +228,11 @@ extension SendPresenter: SendInteractorOutput {
         let message = String(format: LocalizedStrings.exceedDayLimitMessage, limitStr)
         
         router.showFailure(message: message, from: view.viewController)
+    }
+    
+    func setFeesError(_ message: String?) {
+        feesError = message
+        view.setErrorMessage(message)
     }
 }
 
@@ -287,7 +295,7 @@ extension SendPresenter: PopUpSendConfirmSuccessVMDelegate {
 extension SendPresenter {
     private func configureNavBar() {
         view.viewController.navigationItem.largeTitleDisplayMode = .never
-        view.viewController.setWhiteNavigationBar(title: LocalizedStrings.screenTitle)
+        view.viewController.setHidableNavigationBar(title: LocalizedStrings.screenTitle)
     }
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {

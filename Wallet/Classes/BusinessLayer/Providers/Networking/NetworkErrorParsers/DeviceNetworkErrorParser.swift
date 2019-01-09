@@ -20,15 +20,16 @@ class DeviceNetworkErrorParser: NetworkErrorParserProtocol {
             return DeviceNetworkError.deviceDiffers
         }
         
-        if let deviceErrors = json["device"].array,
-            let existsError = deviceErrors.first(where: { $0["code"] == "exists" }) {
-            if let params = existsError["params"].dictionary,
-                let userIdStr = params["user_id"]?.string,
-                let userId = Int(userIdStr) {
-                return DeviceNetworkError.deviceNotRegistered(userId: userId)
-            }
-            
+        if containsError(json: json, key: "device", code: "exists") {
             return DeviceNetworkError.deviceAlreadyExists
+        }
+        
+        if let deviceErrors = json["device"].array,
+            let existsError = deviceErrors.first(where: { $0["code"] == "not_exists" }),
+            let params = existsError["params"].dictionary,
+            let userIdStr = params["user_id"]?.string,
+            let userId = Int(userIdStr) {
+            return DeviceNetworkError.deviceNotRegistered(userId: userId)
         }
         
         return next!.parse(code: code, json: json)

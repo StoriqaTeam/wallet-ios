@@ -23,9 +23,9 @@ class ExchangeRouter {
 // MARK: - ExchangeRouterInput
 
 extension ExchangeRouter: ExchangeRouterInput {
-    func showRecepientAccountSelection(exchangeProviderBuilder: ExchangeProviderBuilderProtocol,
+    func showRecipientAccountSelection(exchangeProviderBuilder: ExchangeProviderBuilderProtocol,
                                        from fromViewController: UIViewController) {
-        RecepientAccountsModule.create(app: app,
+        RecipientAccountsModule.create(app: app,
                                        exchangeProviderBuilder: exchangeProviderBuilder).present(from: fromViewController)
     }
     

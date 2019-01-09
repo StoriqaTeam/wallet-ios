@@ -19,8 +19,8 @@ class UnderlinedTextField: UITextField {
     @IBOutlet var bottomConstraint: NSLayoutConstraint?
 
     var lineView: UIView!
-    private let underlineColor = UIColor.lightGray
-    private let focusedColor = Theme.Color.brightSkyBlue
+    private let underlineColor = Theme.Color.TextField.underlineColor
+    private let focusedColor = Theme.Color.TextField.focusedColor
     
     private var messageLabel: UILabel?
     private let messageLabelVerticalMargin: CGFloat = 4
@@ -67,8 +67,19 @@ class UnderlinedTextField: UITextField {
         }
     }
     
+    override var placeholder: String? {
+        didSet {
+            if let placeholder = placeholder {
+                let textColorAttr = [NSAttributedString.Key.foregroundColor: Theme.Color.TextField.placeholder,
+                                     NSAttributedString.Key.font: Theme.Font.placeholder!]
+                attributedPlaceholder = NSAttributedString(string: placeholder, attributes: textColorAttr)
+            }
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
+        fixColors()
         
         if let hintMessage = hintMessage,
             textFieldState == .idle {
@@ -81,7 +92,10 @@ class UnderlinedTextField: UITextField {
         
         lineView = underlineView(color: underlineColor)
         backgroundColor = .clear
-        font = Theme.Font.generalText
+        textColor = Theme.Color.TextField.input
+        font = Theme.Font.input
+        tintColor = Theme.Color.brightOrange
+        keyboardAppearance = .dark
         
         if let bottomConstraint = bottomConstraint {
             bottomConstraintBackup = bottomConstraint.constant
@@ -101,6 +115,7 @@ class UnderlinedTextField: UITextField {
         
         textFieldState = errorText != nil ? .error : .editing
         resolveUnderlineColor()
+        fixColors()
         return true
     }
     
@@ -113,6 +128,7 @@ class UnderlinedTextField: UITextField {
         resolveUnderlineColor()
         return true
     }
+
 }
 
 
@@ -128,7 +144,7 @@ extension UnderlinedTextField {
                                                y: self.frame.height + messageLabelVerticalMargin,
                                                width: width,
                                                height: 20))
-            messageLabel!.font = Theme.Font.errorMessage
+            messageLabel!.font = Theme.Font.smallText
             messageLabel!.numberOfLines = 0
             self.addSubview(messageLabel!)
         }
@@ -225,9 +241,9 @@ extension UnderlinedTextField {
         }
     }
     
-    func addDoneButtonOnKeyboard() {
+    private func addDoneButtonOnKeyboard() {
         let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: Constants.Sizes.screenWidth, height: 50))
-        doneToolbar.barStyle = UIBarStyle.default
+        doneToolbar.barStyle = UIBarStyle.black
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonAction))
         
@@ -243,6 +259,15 @@ extension UnderlinedTextField {
     
     @objc private func doneButtonAction() {
         _ = resignFirstResponder()
+    }
+    
+    private func fixColors() {
+        // fixing clear button color, which is invisibe ob black background
+        if let clearButton = self.value(forKey: "_clearButton") as? UIButton,
+            let image = clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate) {
+            clearButton.setImage(image, for: .normal)
+            clearButton.tintColor = UIColor.white
+        }
     }
     
 }

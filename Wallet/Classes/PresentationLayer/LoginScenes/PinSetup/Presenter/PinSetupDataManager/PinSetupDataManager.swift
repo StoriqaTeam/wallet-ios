@@ -67,8 +67,7 @@ extension PinSetupDataManager: UICollectionViewDelegateFlowLayout, UICollectionV
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let screenSize = UIScreen.main.bounds.size
-        return screenSize
+        return collectionView.frame.size
     }
     
     func collectionView(_ collectionView: UICollectionView,

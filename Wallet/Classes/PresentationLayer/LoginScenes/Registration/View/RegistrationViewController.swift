@@ -11,7 +11,7 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
-    typealias LocalizedString = Strings.Registration
+    typealias LocalizedStrings = Strings.Registration
     
     var output: RegistrationViewOutput!
     
@@ -24,21 +24,23 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var repeatPasswordTextField: SecureInputTextField!
     @IBOutlet private var agreementTickImageView: UIImageView!
     @IBOutlet private var privacyPolicyTickImageView: UIImageView!
-    
-    @IBOutlet private var signUpButton: DefaultButton!
+    @IBOutlet private var signUpButton: GradientButton!
     @IBOutlet private var socialNetworkAuthView: SocialNetworkAuthView!
     @IBOutlet private var textFields: [UnderlinedTextField]!
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var licenceAgreementTextView: UITextView!
     @IBOutlet private var privacyPolicyTextView: UITextView!
+    @IBOutlet private var signInHeaderButton: UIButton!
+    @IBOutlet private var signUpHeaderButton: UIButton!
+    @IBOutlet private var hederButtonUnderliner: UIView!
+    @IBOutlet private var topSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet private var stackView: UIStackView!
     
     // MARK: - Variables
     
     private var activeTextField: UITextField?
     private var isAcceptedAgreement = false
     private var isAcceptedPolicy = false
-    private let acceptedAgreementColor = Theme.Color.brightSkyBlue
-    private let nonAcceptedAgreementColor = UIColor.lightGray
     
     // MARK: - Life cycle
     
@@ -49,6 +51,15 @@ class RegistrationViewController: UIViewController {
         addHideKeyboardGuesture()
         updateContinueButton()
         setSocialView()
+        hideContent(true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: 0.35) {
+             self.hideContent(false)
+        }
     }
     
     deinit {
@@ -84,6 +95,12 @@ class RegistrationViewController: UIViewController {
         isAcceptedPolicy.toggle()
         setPolicyTintColor()
         updateContinueButton()
+    }
+    
+    @IBAction func signInPressed(_ sender: UIButton) {
+        swapButtonsFront(duration: 0.5) {
+            self.output.showLogin()
+        }
     }
     
     @objc private func textDidChange(_ notification: Notification) {
@@ -183,6 +200,19 @@ extension RegistrationViewController: UITextFieldDelegate {
                                      repeatPassword: repeatPasswordTextField.text)
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard textField == firstNameTextField || textField == lastNameTextField else {
+            return true
+        }
+        
+        if let text = textField.text as NSString? {
+            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+            return txtAfterUpdate.isValidName()
+        }
+        
+        return false
+    }
 }
 
 // MARK: - SocialNetworkAuthViewDelegate
@@ -195,10 +225,6 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
     func socialNetworkAuthFailed(provider: SocialNetworkTokenProvider) {
         output.socialNetworkRegisterFailed(tokenProvider: provider)
     }
-    
-    func socialNetworkAuthViewDidTapFooterButton() {
-        showSignInViewController()
-    }
 }
 
 
@@ -206,25 +232,26 @@ extension RegistrationViewController: SocialNetworkAuthViewDelegate {
 
 extension RegistrationViewController {
     private func configFields() {
+        view.backgroundColor = Theme.Color.backgroundColor
         
         let layoutBlock: (() -> Void) = {[weak self] in
             self?.view.layoutIfNeeded()
         }
         
-        firstNameTextField.placeholder = LocalizedString.firstNamePlaceholder
+        firstNameTextField.placeholder = LocalizedStrings.firstNamePlaceholder
         firstNameTextField.layoutBlock = layoutBlock
         
-        lastNameTextField.placeholder = LocalizedString.lastNamePlaceholder
+        lastNameTextField.placeholder = LocalizedStrings.lastNamePlaceholder
         lastNameTextField.layoutBlock = layoutBlock
         
-        emailTextField.placeholder = LocalizedString.emailPlaceholder
+        emailTextField.placeholder = LocalizedStrings.emailPlaceholder
         emailTextField.layoutBlock = layoutBlock
         
-        passwordTextField.placeholder = LocalizedString.passwordPlaceholder
-        passwordTextField.hintMessage = LocalizedString.passwordHintTitle
+        passwordTextField.placeholder = LocalizedStrings.passwordPlaceholder
+        passwordTextField.hintMessage = LocalizedStrings.passwordHintTitle
         passwordTextField.layoutBlock = layoutBlock
         
-        repeatPasswordTextField.placeholder = LocalizedString.repeatPasswordPlaceholder
+        repeatPasswordTextField.placeholder = LocalizedStrings.repeatPasswordPlaceholder
         repeatPasswordTextField.layoutBlock = layoutBlock
         
         setAgreementTintColor()
@@ -233,7 +260,25 @@ extension RegistrationViewController {
         addLinkToPrivatePolicy()
         addLinkToLicenceAgreement()
         privacyPolicyTextView.isEditable = false
-        signUpButton.title = LocalizedString.signUpButtonTitle
+        signUpButton.title = LocalizedStrings.signUpButtonTitle
+        
+        signInHeaderButton.setTitle(LocalizedStrings.signInButtonTitle, for: .normal)
+        signUpHeaderButton.setTitle(LocalizedStrings.signUpButtonTitle, for: .normal)
+        signUpHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
+        signInHeaderButton.setTitleColor(Theme.Color.Button.enabledTitle, for: .normal)
+        signInHeaderButton.alpha = 0.7
+        signUpHeaderButton.isUserInteractionEnabled = false
+        hederButtonUnderliner.backgroundColor = Theme.Color.Button.tintColor
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        topSpaceConstraint.constant = statusBarHeight * 2
+        
+        firstNameTextField.autocorrectionType = .no
+        firstNameTextField.smartDashesType = .no
+        firstNameTextField.smartQuotesType = .no
+        lastNameTextField.autocorrectionType = .no
+        lastNameTextField.smartDashesType = .no
+        lastNameTextField.smartQuotesType = .no
     }
     
     private func updateContinueButton() {
@@ -256,12 +301,13 @@ extension RegistrationViewController {
     }
     
     private func addLinkToLicenceAgreement() {
-        let agreementString = LocalizedString.licenseAgreementString
-        let attributedString = NSMutableAttributedString(string: agreementString)
+        let agreementString = LocalizedStrings.licenseAgreementString
+        let attributedString = NSMutableAttributedString(string: agreementString,
+                                                         attributes: [.font: Theme.Font.extraSmallMediumText!])
         let linkRange = NSRange(location: 13, length: 17)
         let textRange = NSRange(location: 0, length: 13)
         attributedString.addAttribute(.link, value: "https://storiqa.com/turewallet/terms_of_use.pdf", range: linkRange)
-        attributedString.addAttribute(.foregroundColor, value: Theme.Color.primaryGrey, range: textRange)
+        attributedString.addAttribute(.foregroundColor, value: Theme.Color.Text.lightGrey, range: textRange)
         
         self.licenceAgreementTextView.attributedText = attributedString
         self.licenceAgreementTextView.isUserInteractionEnabled = true
@@ -269,12 +315,13 @@ extension RegistrationViewController {
     }
     
     private func addLinkToPrivatePolicy() {
-        let privacyPolicyString = LocalizedString.privacyPolicyString
-        let attributedString = NSMutableAttributedString(string: privacyPolicyString)
+        let privacyPolicyString = LocalizedStrings.privacyPolicyString
+        let attributedString = NSMutableAttributedString(string: privacyPolicyString,
+                                                         attributes: [.font: Theme.Font.extraSmallMediumText!])
         let linkRange = NSRange(location: 13, length: 14)
         let textRange = NSRange(location: 0, length: 13)
         attributedString.addAttribute(.link, value: "https://storiqa.com/turewallet/privacy_policy.pdf", range: linkRange)
-        attributedString.addAttribute(.foregroundColor, value: Theme.Color.primaryGrey, range: textRange)
+        attributedString.addAttribute(.foregroundColor, value: Theme.Color.Text.lightGrey, range: textRange)
         
         self.privacyPolicyTextView.attributedText = attributedString
         self.privacyPolicyTextView.isUserInteractionEnabled = true
@@ -285,10 +332,6 @@ extension RegistrationViewController {
         //hide password just in case
         passwordTextField.hidePassword()
         repeatPasswordTextField.hidePassword()
-    }
-    
-    private func showSignInViewController() {
-        output.showLogin()
     }
     
     private func setSocialView() {
@@ -342,4 +385,44 @@ extension RegistrationViewController {
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.contentOffset = CGPoint.zero
     }
+    
+    private func swapButtonsFront(duration: Double, completion: @escaping () -> Void) {
+        
+        let initialSignInCenter = self.signInHeaderButton.center
+        let initialSignUpCenter = self.signUpHeaderButton.center
+        let translationX = initialSignInCenter.x - initialSignUpCenter.x
+        let translationY = initialSignInCenter.y - initialSignUpCenter.y
+        
+        let animator = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
+            self.hederButtonUnderliner.alpha = 0
+            self.signUpHeaderButton.alpha = 0.3
+            self.signUpHeaderButton.center.x += translationX - 5
+            self.signInHeaderButton.center.x -= translationX + 3.5
+            self.signUpHeaderButton.center.y += translationY
+            self.signInHeaderButton.center.y -= translationY
+            self.signUpHeaderButton.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+            self.signInHeaderButton.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
+        }
+        
+        animator.addAnimations({
+            self.signUpHeaderButton.transform = CGAffineTransform(scaleX: 0.73, y: 0.73)
+            self.signInHeaderButton.transform = CGAffineTransform(scaleX: 1.38, y: 1.38)
+            self.signUpHeaderButton.alpha = 0.7
+            self.signInHeaderButton.alpha = 1.0
+            self.hideContent(true)
+        }, delayFactor: 0.4)
+            
+        animator.addCompletion { (_) in completion() }
+        
+        animator.startAnimation()
+    }
+    
+    private func hideContent(_ isHidden: Bool) {
+        let alpha: CGFloat = isHidden ? 0 : 1
+        
+        stackView.alpha = alpha
+        socialNetworkAuthView.alpha = alpha
+        hederButtonUnderliner.alpha = alpha
+    }
+    
 }

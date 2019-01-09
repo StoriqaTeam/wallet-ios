@@ -15,6 +15,7 @@ protocol Presentable {
     
     func present()
     func presentAsNavController()
+    func presentAsTransitioningNavController()
     func presentAsRoot()
     func present(from viewController: UIViewController)
     func presentModal(from viewController: UIViewController)
@@ -43,16 +44,14 @@ extension Presentable where Self: UIViewController {
     
     func presentAsNavController() {
         let navigation = UINavigationController(rootViewController: viewController)
-        
-        // Config nav bar
-        navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigation.navigationBar.shadowImage = UIImage()
-        navigation.navigationBar.isTranslucent = true
-        navigation.navigationBar.backgroundColor = .clear
-        navigation.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "BackBarButton")
-        navigation.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "BackBarButton")
-        
+        navigation.configureDefaultNavigationBar()
         AppDelegate.currentWindow.rootViewController = navigation
+    }
+    
+    func presentAsTransitioningNavController() {
+        let transitioningNav = TransitionNavigationController(rootViewController: viewController)
+        transitioningNav.configureDefaultNavigationBar()
+        AppDelegate.currentWindow.rootViewController = transitioningNav
     }
     
     func presentAsRoot() {
@@ -64,6 +63,7 @@ extension Presentable where Self: UIViewController {
     }
     
     func presentModal(from viewController: UIViewController) {
+        viewController.presentedViewController?.dismiss(animated: false, completion: nil)
         viewController.present(self, animated: false, completion: nil)
     }
     

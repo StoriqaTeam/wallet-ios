@@ -59,6 +59,7 @@ class SendInteractor {
 // MARK: - SendInteractorInput
 
 extension SendInteractor: SendInteractorInput {
+    
     func setAddress(_ address: String) {
         setAddress(address, updateFeesIfNeeded: true)
     }
@@ -89,6 +90,10 @@ extension SendInteractor: SendInteractorInput {
     func getFee() -> Decimal? {
         let estimatedFee = sendProvider.getFeeAndWait()
         return estimatedFee.fee
+    }
+    
+    func getTotal() -> Decimal {
+        return sendProvider.getSubtotal()
     }
     
     func getCurrency() -> Currency {
@@ -192,6 +197,7 @@ extension SendInteractor {
             sendTransactionBuilder.setAddress("")
             output.updateAddressIsValid(true)
             output.updateFormIsValid(false)
+            output.setFeesError(nil)
             updateEmptyFees()
             return
         }
@@ -200,6 +206,7 @@ extension SendInteractor {
             sendTransactionBuilder.setAddress("")
             output.updateAddressIsValid(false)
             output.updateFormIsValid(false)
+            output.setFeesError(nil)
             updateEmptyFees()
             return
         }
@@ -238,6 +245,8 @@ extension SendInteractor {
         sendTransactionBuilder.setFees(nil)
         
         feeLoader.getFees(currency: currency, accountAddress: accountAddress) { [weak self] (result) in
+            var errorMessage: String?
+            
             switch result {
             case .success(let fees):
                 self?.sendTransactionBuilder.setFees(fees)
@@ -245,9 +254,12 @@ extension SendInteractor {
             case .failure(let error):
                 if case SendNetworkError.wrongCurrency(let message) = error {
                     self?.output.setWrongCurrency(message: message)
+                } else {
+                    errorMessage = error.localizedDescription
                 }
             }
             
+            self?.output.setFeesError(errorMessage)
             self?.output.setFeeUpdating(false)
             self?.updateFeeCount()
             self?.updateFeeAndWait()
@@ -318,13 +330,10 @@ extension SendInteractor {
     }
     
     private func updateTotal() {
-        let accountCurrency = accountWatcher.getAccount().currency
-        let total = sendProvider.getSubtotal()
         let formIsValid = isFormValid()
         let isEnough = sendProvider.isEnoughFunds()
         let hasAmount = !sendProvider.amount.isZero
         
-        output.updateTotal(total, currency: accountCurrency)
         output.updateIsEnoughFunds(!hasAmount || isEnough)
         output.updateFormIsValid(formIsValid)
     }

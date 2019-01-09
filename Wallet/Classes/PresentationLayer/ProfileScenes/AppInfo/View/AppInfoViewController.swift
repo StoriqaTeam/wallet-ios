@@ -56,23 +56,30 @@ extension AppInfoViewController: AppInfoViewInput {
 extension AppInfoViewController {
     
     func configureInterface() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        
         appVersionLabel.font = Theme.Font.smallText
-        appVersionLabel.textColor = Theme.Text.Color.blackMain
         appVersionTitle.font = Theme.Font.smallText
-        appVersionTitle.textColor = Theme.Text.Color.captionGrey
-        appVersionTitle.text = LocalizedStrings.appVersionTitle
-        
         displayNameLabel.font = Theme.Font.smallText
-        displayNameLabel.textColor = Theme.Text.Color.blackMain
         displayNameTitle.font = Theme.Font.smallText
-        displayNameTitle.textColor = Theme.Text.Color.captionGrey
-        displayNameTitle.text = LocalizedStrings.displayNameTitle
-        
         bundleIdLabel.font = Theme.Font.smallText
-        bundleIdLabel.textColor = Theme.Text.Color.blackMain
         bundleIdTitle.font = Theme.Font.smallText
-        bundleIdTitle.textColor = Theme.Text.Color.captionGrey
+        
+        appVersionLabel.textColor = Theme.Color.Text.main
+        displayNameLabel.textColor = Theme.Color.Text.main
+        bundleIdLabel.textColor = Theme.Color.Text.main
+        appVersionTitle.textColor = Theme.Color.Text.lightGrey
+        displayNameTitle.textColor = Theme.Color.Text.lightGrey
+        bundleIdTitle.textColor = Theme.Color.Text.lightGrey
+        
+        appVersionTitle.text = LocalizedStrings.appVersionTitle
+        displayNameTitle.text = LocalizedStrings.displayNameTitle
         bundleIdTitle.text = LocalizedStrings.bundleIdTitle
+        
+        #if DEBUG
+        #else
+        bundleIdTitle.superview?.removeFromSuperview()
+        #endif
     }
     
 }

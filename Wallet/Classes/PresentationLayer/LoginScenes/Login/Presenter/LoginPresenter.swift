@@ -17,7 +17,6 @@ class LoginPresenter {
     var router: LoginRouterInput!
     
     private var storiqaLoader: StoriqaLoader!
-    
 }
 
 
@@ -39,6 +38,15 @@ extension LoginPresenter: LoginViewOutput {
         view.setSocialView(viewModel: viewModel)
         addLoader()
         interactor.viewIsReady()
+    }
+    
+    func viewDidAppear() {
+        view.viewController.navigationController?.isNavigationBarHidden = true
+    }
+    
+    func viewWillDisappear() {
+        view.viewController.navigationController?.isNavigationBarHidden = false
+        
     }
     
     func showRegistration() {
@@ -67,11 +75,11 @@ extension LoginPresenter: LoginInteractorOutput {
     }
     
     func showQuickLaunch() {
-        router.showQuickLaunch(from: view.viewController)
+        router.showQuickLaunch()
     }
     
     func showPinQuickLaunch() {
-        router.showPinQuickLaunch(from: view.viewController)
+        router.showPinQuickLaunch()
     }
     
     func loginFailed(message: String) {
@@ -126,8 +134,9 @@ extension LoginPresenter: LoginModuleInput {
         view.presentAsNavController()
     }
     
-    func present(from viewController: UIViewController) {
-        view.present(from: viewController)
+    func presentAnimated() {
+        view.setAnimatedApperance()
+        present()
     }
 }
 

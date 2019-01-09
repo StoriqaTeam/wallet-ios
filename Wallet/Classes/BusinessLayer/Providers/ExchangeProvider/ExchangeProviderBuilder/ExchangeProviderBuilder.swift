@@ -10,7 +10,7 @@ import Foundation
 
 protocol ExchangeProviderBuilderProtocol: class {
     func set(account: Account)
-    func set(recepientAccount: Account)
+    func set(recipientAccount: Account)
     func set(cryptoAmount: Decimal)
     func set(order: Order)
     func build() -> ExchangeProvider
@@ -45,8 +45,8 @@ class ExchangeProviderBuilder: ExchangeProviderBuilderProtocol {
         exchangeProvider.selectedAccount = account
     }
     
-    func set(recepientAccount: Account) {
-        exchangeProvider.recepientAccount = recepientAccount
+    func set(recipientAccount: Account) {
+        exchangeProvider.recipientAccount = recipientAccount
     }
     
     func set(cryptoAmount: Decimal) {

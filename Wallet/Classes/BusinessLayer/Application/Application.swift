@@ -38,6 +38,7 @@ class Application {
                                                                               userkeyManager: self.userKeyManager)
     lazy var orderFactory: OrderFactoryProtocol = OrderFactory()
     lazy var networkErrorResolverFactory: NetworkErrorResolverFactoryProtocol = NetworkErrorResolverFactory(channelStorage: self.channelStorage)
+    lazy var shortPollingTimerFactory: ShortPollingTimerFactoryProtocol = ShortPollingTimerFactory()
     
     
     // MARK: - System store -
@@ -75,6 +76,7 @@ class Application {
     lazy var updateUserNetworkProvider: UpdateUserNetworkProviderProtocol = UpdateUserNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
     lazy var resendConfirmEmailNetworkProvider: ResendConfirmEmailNetworkProviderProtocol = ResendConfirmEmailNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
     lazy var refreshTokenNetworkProvider: RefreshTokenNetworkProviderProtocol = RefreshTokenNetworkProvider(networkErrorResolverFactory: self.networkErrorResolverFactory)
+    lazy var hapticService: HapticServiceProtocol = HapticService()
     
     
     // MARK: - Common Providers -
@@ -89,13 +91,13 @@ class Application {
                                                                               signHeaderFactory: self.signHeaderFactory,
                                                                               refreshTokenNetworkProvider: self.refreshTokenNetworkProvider)
     lazy var contactsProvider: ContactsProviderProtocol = ContactsProvider(dataStoreService: self.contactsDataStoreService)
-    lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService)
+    lazy var accountsProvider: AccountsProviderProtocol = AccountsProvider(dataStoreService: self.accountsDataStoreService, accountsSorter: self.accountsSorter)
     lazy var transactionsProvider: TransactionsProviderProtocol = TransactionsProvider(transactionDataStoreService:
         self.transactionDataStoreService)
     lazy var qrCodeProvider: QRCodeProviderProtocol = QRCodeProvider()
     lazy var appLockerProvider: AppLockerProviderProtocol = AppLockerProvider(app: self)
     lazy var ratesProvider: RatesProviderProtocol = RatesProvider(ratesDataStoreService: self.ratesDataStoreService)
-    lazy var feeProvider: FeeProviderProtocol = FeeProvider(medianWaitFormatter: medianWaitFormatter)
+    lazy var feeProvider: FeeProviderProtocol = FeeProvider(timeFormatter: timeFormatter)
     lazy var defaultAccountsProvider: DefaultAccountsProviderProtocol = DefaultAccountsProvider(userDataStore: self.userDataStoreService,
                                                                                                 authTokenProvider: self.authTokenProvider,
                                                                                                 createAccountsNetworkProvider: self.createAccountsNetworkProvider,
@@ -150,7 +152,7 @@ class Application {
     // MARK: - Converters and formatters -
     lazy var currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatter()
     lazy var denominationUnitsConverter: DenominationUnitsConverterProtocol = DenominationUnitsConverter()
-    lazy var medianWaitFormatter: MedianWaitFormatterProtocol = MedianWaitFormatter()
+    lazy var timeFormatter: TimeFormatterProtocol = TimeFormatter()
     lazy var constantRateFiatConverterFactory: ConstantRateFiatConverterFactoryProtocol = ConstantRateFiatConverterFactory(ratesProvider: self.ratesProvider)
     
     // MARK: - Validators -
@@ -169,6 +171,7 @@ class Application {
     // MARK: - Sorters -
     lazy var contactsSorter: ContactsSorterProtocol = ContactsSorter()
     lazy var sessionDateSorter: SessionDateSorterProtocol = SessionDateSorter()
+    lazy var accountsSorter: AccountsSorterProtocol = AccountsSorter()
     
     
     // MARK: - Linkers -
@@ -196,7 +199,6 @@ class Application {
     
     // MARK: - Displayers -
     lazy var accountDisplayer: AccountDisplayerProtocol = AccountDisplayer(
-        userDataStoreService: self.userDataStoreService,
         currencyFormatter: self.currencyFormatter,
         converterFactory: self.currencyConverterFactory,
         accountTypeResolver: self.accountTypeResolver,
@@ -206,13 +208,12 @@ class Application {
     // MARK: - Social Networks -
     lazy var facebookLoginManager: LoginManager = LoginManager()
     
-    
-    // MARK: - Global services -
-    lazy var shortPollingTimer: ShortPollingTimerProtocol = ShortPollingTimer(timeout: 60)
-    lazy var depositShortPollintTimer: DepositShortPollingTimerProtocol = DepositShortPollingTimer(timeout: 10)
-    
     // MARK: - Channels -
     lazy var channelStorage: ChannelStorage = ChannelStorage()
+    
+    
+    // MARK: - Animators -
+    lazy var transitionAnimatorFactory: TransitionAnimatorFactoryProtocol = TransitionAnimatorFactory()
     
     
     // MARK: - FakeProviders -

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,11 +15,11 @@
             <objects>
                 <viewController storyboardIdentifier="BiometryQuickLaunchVC" title="Quick launch" id="jNQ-Ub-hGR" customClass="BiometryQuickLaunchViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7m8-go-uNv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXf-T8-lEf">
-                                <rect key="frame" x="180" y="56" width="240" height="57.5"/>
+                                <rect key="frame" x="67.5" y="56" width="240" height="57.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="cJo-Mh-FB0"/>
                                 </constraints>
@@ -25,16 +29,19 @@ launch?</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touchIdQuickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="R11-Wv-KYj">
-                                <rect key="frame" x="0.0" y="60" width="600" height="480"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touchIdQuickLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="R11-Wv-KYj">
+                                <rect key="frame" x="0.0" y="171" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="R11-Wv-KYj" secondAttribute="height" id="B8z-Fg-WRd"/>
+                                </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PoN-le-L3Z">
-                                <rect key="frame" x="28" y="496" width="544" height="96"/>
+                                <rect key="frame" x="28" y="556" width="319" height="103"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOt-zw-a0e" customClass="DefaultButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="544" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOt-zw-a0e" customClass="GradientButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="51"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="F6F-d0-S7M"/>
+                                            <constraint firstAttribute="height" constant="51" id="F6F-d0-S7M"/>
                                         </constraints>
                                         <state key="normal" title="Use Touch ID">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -43,8 +50,8 @@ launch?</string>
                                             <action selector="performAction:" destination="jNQ-Ub-hGR" eventType="touchUpInside" id="b3H-bn-xcd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVE-jD-zYe" customClass="BaseButton" customModule="Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="52" width="544" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVE-jD-zYe" customClass="ColoredFramelessButton" customModule="Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="59" width="319" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="GdO-hy-mf1"/>
                                         </constraints>
@@ -60,11 +67,10 @@ launch?</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="R11-Wv-KYj" firstAttribute="centerY" secondItem="7m8-go-uNv" secondAttribute="centerY" id="7lS-aC-ebn"/>
+                            <constraint firstItem="R11-Wv-KYj" firstAttribute="centerY" secondItem="7m8-go-uNv" secondAttribute="centerY" constant="25" id="7lS-aC-ebn"/>
                             <constraint firstItem="rXf-T8-lEf" firstAttribute="top" secondItem="NqV-of-sy3" secondAttribute="top" constant="36" id="CGs-bl-Jcv"/>
                             <constraint firstItem="PoN-le-L3Z" firstAttribute="centerX" secondItem="7m8-go-uNv" secondAttribute="centerX" id="HIJ-Rc-5gz"/>
                             <constraint firstItem="rXf-T8-lEf" firstAttribute="centerX" secondItem="7m8-go-uNv" secondAttribute="centerX" id="dy6-8C-35W"/>
-                            <constraint firstItem="R11-Wv-KYj" firstAttribute="height" secondItem="7m8-go-uNv" secondAttribute="height" multiplier="0.8" id="sQA-Ao-1dr"/>
                             <constraint firstItem="NqV-of-sy3" firstAttribute="bottom" secondItem="PoN-le-L3Z" secondAttribute="bottom" constant="8" id="sw6-Rj-i7E"/>
                             <constraint firstItem="R11-Wv-KYj" firstAttribute="centerX" secondItem="7m8-go-uNv" secondAttribute="centerX" id="vTD-AU-FQ0"/>
                             <constraint firstItem="PoN-le-L3Z" firstAttribute="leading" secondItem="NqV-of-sy3" secondAttribute="leading" constant="28" id="wxU-Wi-ed9"/>
@@ -85,6 +91,6 @@ launch?</string>
         </scene>
     </scenes>
     <resources>
-        <image name="touchIdQuickLaunch" width="16" height="16"/>
+        <image name="touchIdQuickLaunch" width="376" height="397"/>
     </resources>
 </document>

@@ -30,8 +30,9 @@ class EmptyView: LoadableFromXib {
 
 extension EmptyView {
     private func configInterface() {
-        image.tintColor = Theme.Color.cloudyBlue
-        titleLabel.textColor = Theme.Color.bluegrey
+        image.alpha = 0.37
+        image.tintColor = Theme.Color.mainOrange
+        titleLabel.textColor = Theme.Color.opaqueWhite
         titleLabel.font = Theme.Font.smallText
     }
 }

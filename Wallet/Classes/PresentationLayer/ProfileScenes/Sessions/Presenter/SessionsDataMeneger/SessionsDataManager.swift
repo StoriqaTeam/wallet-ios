@@ -122,11 +122,11 @@ extension SessionDataManager {
     private func createHeaderView(with title: String) -> UIView {
         let headerWidth = UIScreen.main.bounds.width
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: headerWidth, height: 50))
-        headerView.backgroundColor = .white
+        headerView.backgroundColor = Theme.Color.backgroundColor
         
         let label = UILabel(frame: CGRect(x: 17, y: 4, width: headerWidth, height: 40))
         label.text = title.uppercased()
-        label.textColor = Theme.Text.Color.captionGrey
+        label.textColor = Theme.Color.Text.main
         label.font = Theme.Font.smallText
         headerView.addSubview(label)
         

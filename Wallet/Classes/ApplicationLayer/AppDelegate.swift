@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    
     func applicationWillEnterForeground(_ application: UIApplication) {
          app.appLockerProvider.autolock()
     }
@@ -98,7 +97,7 @@ extension AppDelegate {
         return currentDelegate.window!
     }
     
-    static var currenctApplication: UIApplication {
+    static var currentApplication: UIApplication {
         return UIApplication.shared
     }
 }

@@ -43,6 +43,9 @@ extension PopUpPresenter: PopUpInteractorOutput {
 extension PopUpPresenter: PopUpModuleInput {
 
     func present(from viewController: UIViewController) {
+        let backBlur = captureScreen(view: AppDelegate.currentWindow)
+        view.setBackgroundBlur(image: backBlur)
+        
         view.viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         view.presentModal(from: viewController)
     }

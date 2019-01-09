@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -31,21 +31,21 @@
             <rect key="frame" x="0.0" y="0.0" width="366" height="620"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jjW-ce-0kS">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="jjW-ce-0kS">
                     <rect key="frame" x="0.0" y="0.0" width="366" height="620"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsH-wq-lrb">
-                            <rect key="frame" x="0.0" y="0.0" width="366" height="135.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="366" height="110"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIQ-hB-iq9">
-                                    <rect key="frame" x="0.0" y="0.0" width="366" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="366" height="42.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNd-Zg-ePe" customClass="PinDotView" customModule="Wallet" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="59" width="366" height="17"/>
+                                    <rect key="frame" x="0.0" y="42.5" width="366" height="25"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="17" id="h5N-dV-ayE"/>
+                                        <constraint firstAttribute="height" constant="25" id="h5N-dV-ayE"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="inputDotCount">
@@ -54,7 +54,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ruo-tV-eZW">
-                                    <rect key="frame" x="0.0" y="76" width="366" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="67.5" width="366" height="42.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </subviews>
@@ -75,7 +75,7 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uVh-VM-IQf">
-                            <rect key="frame" x="0.0" y="155.5" width="366" height="74"/>
+                            <rect key="frame" x="0.0" y="140" width="366" height="74"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mNO-I8-8HR" customClass="PinInputView" customModule="Wallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -111,7 +111,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="O9w-0G-0IG">
-                            <rect key="frame" x="0.0" y="249.5" width="366" height="74"/>
+                            <rect key="frame" x="0.0" y="244" width="366" height="74"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t6f-Qj-936" customClass="PinInputView" customModule="Wallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -143,7 +143,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="44G-t4-h3e">
-                            <rect key="frame" x="0.0" y="343.5" width="366" height="74"/>
+                            <rect key="frame" x="0.0" y="348" width="366" height="74"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRG-m3-KYK" customClass="PinInputView" customModule="Wallet" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -175,9 +175,9 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Rfs-SF-Ii0">
-                            <rect key="frame" x="0.0" y="437.5" width="366" height="74"/>
+                            <rect key="frame" x="0.0" y="452" width="366" height="74"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqj-3l-W1f">
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqj-3l-W1f">
                                     <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                     <state key="normal" image="touchId"/>
@@ -192,7 +192,7 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="numberString" value="0"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abs-RL-KN4">
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abs-RL-KN4">
                                     <rect key="frame" x="292" y="0.0" width="74" height="74"/>
                                     <state key="normal" image="backArrowDelete">
                                         <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -210,7 +210,7 @@
                             </constraints>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJl-mF-Ups">
-                            <rect key="frame" x="0.0" y="531.5" width="366" height="88.5"/>
+                            <rect key="frame" x="0.0" y="556" width="366" height="64"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
@@ -237,7 +237,7 @@
         </view>
     </objects>
     <resources>
-        <image name="backArrowDelete" width="21" height="15"/>
+        <image name="backArrowDelete" width="29" height="22"/>
         <image name="touchId" width="32" height="40"/>
     </resources>
 </document>

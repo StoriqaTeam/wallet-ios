@@ -19,11 +19,11 @@ protocol FeeProviderProtocol {
 
 class FeeProvider: FeeProviderProtocol {
     
-    private let medianWaitFormatter: MedianWaitFormatterProtocol
+    private let timeFormatter: TimeFormatterProtocol
     private var fees: [EstimatedFee]?
     
-    init(medianWaitFormatter: MedianWaitFormatterProtocol) {
-        self.medianWaitFormatter = medianWaitFormatter
+    init(timeFormatter: TimeFormatterProtocol) {
+        self.timeFormatter = timeFormatter
     }
     
     func updateFees(fees: [EstimatedFee]?) {
@@ -65,7 +65,7 @@ class FeeProvider: FeeProviderProtocol {
             return ""
         }
         
-        let formatted = medianWaitFormatter.stringValue(from: wait)
+        let formatted = timeFormatter.stringValue(from: wait)
         return formatted
     }
 }

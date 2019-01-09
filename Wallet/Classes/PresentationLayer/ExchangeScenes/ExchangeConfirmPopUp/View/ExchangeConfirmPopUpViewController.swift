@@ -24,7 +24,7 @@ class ExchangeConfirmPopUpViewController: BasePopUpViewController {
     @IBOutlet private var fromLabel: UILabel!
     @IBOutlet private var toLabel: UILabel!
     @IBOutlet private var amountLabel: UILabel!
-    @IBOutlet private var confirmButton: DefaultButton!
+    @IBOutlet private var confirmButton: GradientButton!
     @IBOutlet private var closeButton: BaseButton!
 
 
@@ -70,23 +70,21 @@ extension ExchangeConfirmPopUpViewController: ExchangeConfirmPopUpViewInput {
 extension ExchangeConfirmPopUpViewController {
     
     private func configureInterface() {
-        titleLabel.font = Theme.Font.title
+        titleLabel.font = Theme.Font.PopUp.title
+        fromTitle.font = Theme.Font.PopUp.subtitle
+        toTitle.font = Theme.Font.PopUp.subtitle
+        amountTitle.font = Theme.Font.PopUp.subtitle
+        fromLabel.font = Theme.Font.PopUp.text
+        toLabel.font = Theme.Font.PopUp.text
+        amountLabel.font = Theme.Font.PopUp.text
         
-        fromTitle.font = Theme.Font.smallText
-        toTitle.font = Theme.Font.smallText
-        amountTitle.font = Theme.Font.smallText
-        fromLabel.font = Theme.Font.smallText
-        toLabel.font = Theme.Font.smallText
-        amountLabel.font = Theme.Font.smallText
-        
-        fromTitle.textColor = Theme.Text.Color.lightGrey
-        toTitle.textColor = Theme.Text.Color.lightGrey
-        amountTitle.textColor = Theme.Text.Color.lightGrey
-        fromLabel.textColor = Theme.Text.Color.blackMain
-        toLabel.textColor = Theme.Text.Color.blackMain
-        amountLabel.textColor = Theme.Text.Color.blackMain
-        
-        closeButton.setTitleColor(Theme.Color.brightSkyBlue, for: .normal)
+        titleLabel.textColor = Theme.Color.Text.main
+        fromTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        toTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        amountTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
+        fromLabel.textColor = Theme.Color.Text.main
+        toLabel.textColor = Theme.Color.Text.main
+        amountLabel.textColor = Theme.Color.Text.main
     }
     
     private func localizeText() {

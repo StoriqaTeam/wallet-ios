@@ -90,23 +90,31 @@ extension AccountsDataManager: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kAccountCellIdentifier, for: indexPath) as! AccountViewCell
         
         let cryptoAmount = accountDisplayer.cryptoAmount(for: account)
+        let cryptoAmountWithoutCurrency = accountDisplayer.cryptoAmountWithoutCurrency(for: account)
         let fiatAmount = accountDisplayer.fiatAmount(for: account)
-        let holderName = accountDisplayer.holderName()
+        let accountName = accountDisplayer.accountName(for: account)
+        let currency = accountDisplayer.currency(for: account)
         let textColor = accountDisplayer.textColor(for: account)
         let backgroundImage: UIImage
+        let amountFont: UIFont
         
         switch cellType {
         case .small:
             backgroundImage = accountDisplayer.smallImage(for: account)
+            amountFont = Theme.Font.AccountCards.smallCardAmount!
         case .regular:
             backgroundImage = accountDisplayer.image(for: account)
+            amountFont = Theme.Font.AccountCards.bigCardAmount!
         }
         
         cell.configureWith(cryptoAmount: cryptoAmount,
+                           cryptoAmountWithoutCurrency: cryptoAmountWithoutCurrency,
                            fiatAmount: fiatAmount,
-                           holderName: holderName,
+                           accountName: accountName,
+                           currency: currency,
                            textColor: textColor,
-                           backgroundImage: backgroundImage)
+                           backgroundImage: backgroundImage,
+                           bigAmountFont: amountFont)
         cell.dropShadow()
         
         return cell

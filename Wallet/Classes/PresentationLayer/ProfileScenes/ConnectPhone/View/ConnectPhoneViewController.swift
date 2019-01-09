@@ -20,18 +20,13 @@ class ConnectPhoneViewController: UIViewController {
     @IBOutlet private var headerTextLabel: UILabel!
     @IBOutlet private var phoneTextField: UITextField!
     @IBOutlet private var footerTextLabel: UILabel!
-    @IBOutlet private var connectButton: DefaultButton!
+    @IBOutlet private var connectButton: GradientButton!
     
     // MARK: Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        output.viewWillAppear()
     }
     
     @IBAction func connectButtonPressed(_ sender: UIButton) {
@@ -94,8 +89,8 @@ extension ConnectPhoneViewController {
         headerTextLabel.font = Theme.Font.smallText
         footerTextLabel.font = Theme.Font.smallText
         
-        headerTextLabel.textColor = Theme.Text.Color.captionGrey
-        footerTextLabel.textColor = Theme.Text.Color.captionGrey
+        headerTextLabel.textColor = Theme.Color.Text.lightGrey
+        footerTextLabel.textColor = Theme.Color.Text.lightGrey
         
         phoneTextField.placeholder = LocalizedStrings.phoneNumberPlaceholder
         headerTextLabel.text = LocalizedStrings.screenSubtitle

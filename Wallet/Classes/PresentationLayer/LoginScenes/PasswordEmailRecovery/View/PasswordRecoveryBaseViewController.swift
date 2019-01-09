@@ -14,7 +14,7 @@ class PasswordRecoveryBaseViewController: UIViewController {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
-    @IBOutlet var confirmButton: DefaultButton!
+    @IBOutlet var confirmButton: GradientButton!
     @IBOutlet private var resetPasswordButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet private var headerVerticalSpaceConstraint: NSLayoutConstraint!
     @IBOutlet private var subtitleTopSpaceConstraint: NSLayoutConstraint!
@@ -38,11 +38,13 @@ class PasswordRecoveryBaseViewController: UIViewController {
     }
     
     func configureInterface() {
+        view.backgroundColor = Theme.Color.backgroundColor
+        
         titleLabel.text = LocalizedString.screenTitle
         titleLabel.font = Theme.Font.title
-        
         subtitleLabel.font = Theme.Font.subtitle
-        subtitleLabel.textColor = Theme.Color.primaryGrey
+        titleLabel.textColor = Theme.Color.Text.main
+        subtitleLabel.textColor = Theme.Color.opaqueWhite
         
         resetPasswordButtonBottomConstraint.constant = buttonBottomSpace
         if Device.model == .iPhoneSE {
@@ -77,6 +79,7 @@ extension PasswordRecoveryBaseViewController {
         }
         
         let keyboardHeight = keyboardFrame.cgRectValue.height
+        let safeAreaBottom = AppDelegate.currentWindow.safeAreaInsets.bottom
         let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double) ?? 0.2
         
         var animationOptions = UIView.AnimationOptions()
@@ -84,7 +87,7 @@ extension PasswordRecoveryBaseViewController {
             animationOptions.insert(UIView.AnimationOptions(rawValue: curve))
         }
         
-        resetPasswordButtonBottomConstraint.constant = keyboardHeight + buttonBottomSpace
+        resetPasswordButtonBottomConstraint.constant = keyboardHeight + buttonBottomSpace - safeAreaBottom
         
         UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: {[weak self] in
             self?.view.layoutIfNeeded()

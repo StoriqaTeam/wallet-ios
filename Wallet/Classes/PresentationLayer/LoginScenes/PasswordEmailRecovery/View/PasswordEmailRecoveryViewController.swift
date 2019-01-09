@@ -72,6 +72,10 @@ extension PasswordEmailRecoveryViewController: PasswordEmailRecoveryViewInput {
         confirmButton.isEnabled = enabled
     }
     
+    func showErrorMessage(_ message: String) {
+        emailTextField.errorText = message
+    }
+    
 }
 
 
@@ -81,5 +85,9 @@ extension PasswordEmailRecoveryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dismissKeyboard()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        emailTextField.errorText = nil
     }
 }
