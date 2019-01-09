@@ -200,6 +200,19 @@ extension RegistrationViewController: UITextFieldDelegate {
                                      repeatPassword: repeatPasswordTextField.text)
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard textField == firstNameTextField || textField == lastNameTextField else {
+            return true
+        }
+        
+        if let text = textField.text as NSString? {
+            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+            return txtAfterUpdate.isValidName()
+        }
+        
+        return false
+    }
 }
 
 // MARK: - SocialNetworkAuthViewDelegate
@@ -259,6 +272,13 @@ extension RegistrationViewController {
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         topSpaceConstraint.constant = statusBarHeight * 2
+        
+        firstNameTextField.autocorrectionType = .no
+        firstNameTextField.smartDashesType = .no
+        firstNameTextField.smartQuotesType = .no
+        lastNameTextField.autocorrectionType = .no
+        lastNameTextField.smartDashesType = .no
+        lastNameTextField.smartQuotesType = .no
     }
     
     private func updateContinueButton() {

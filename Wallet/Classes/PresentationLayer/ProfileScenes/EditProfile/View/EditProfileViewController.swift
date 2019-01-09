@@ -76,6 +76,15 @@ extension EditProfileViewController: UITextFieldDelegate {
         
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text as NSString? {
+            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+            return txtAfterUpdate.isValidName()
+        }
+        
+        return false
+    }
 }
 
 
