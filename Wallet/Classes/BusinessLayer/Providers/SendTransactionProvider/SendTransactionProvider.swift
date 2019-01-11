@@ -163,7 +163,9 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
                                       blockchainIds: [],
                                       createdAt: timestamp,
                                       updatedAt: timestamp,
-                                      status: .pending)
+                                      status: .pending,
+                                      fiatValue: nil,
+                                      fiatCurrency: nil)
         return transaction
     }
     

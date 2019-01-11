@@ -5,7 +5,7 @@
 //  Created by Storiqa on 24.09.2018.r
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-// swiftlint:disable identifier_name
+// swiftlint:disable identifier_name function_body_length
 
 import Foundation
 
@@ -39,6 +39,8 @@ struct Transaction {
     let createdAt: Date
     let updatedAt: Date
     let status: TransactionStatus
+    let fiatValue: String?
+    let fiatCurrency: Currency?
 }
 
 
@@ -70,6 +72,13 @@ extension Transaction: RealmMappable {
         self.createdAt = Date(timeIntervalSince1970: object.createdAt)
         self.updatedAt = Date(timeIntervalSince1970: object.updatedAt)
         self.status = TransactionStatus(string: object.status)
+        self.fiatValue = object.fiatValue
+        
+        if let fiatCurrency = object.fiatCurrency {
+            self.fiatCurrency = Currency(string: fiatCurrency)
+        } else {
+            self.fiatCurrency = nil
+        }
     }
     
     func mapToRealmObject() -> RealmTransaction {
@@ -94,6 +103,8 @@ extension Transaction: RealmMappable {
         object.updatedAt = Double(updatedAt)
         
         object.status = self.status.rawValue
+        object.fiatValue = self.fiatValue
+        object.fiatCurrency = self.fiatCurrency?.ISO
         
         return object
     }
@@ -127,6 +138,16 @@ extension Transaction: RealmMappable {
         guard let toAddress = to["blockchain_address"].string,
             !fromAddress.isEmpty else {
                 return nil
+        }
+        
+        if let fiatValue = json["fiatValue"].string,
+            let fiatCurrencyStr = json["fiatCurrency"].string {
+            let fiatCurrency = Currency(string: fiatCurrencyStr)
+            self.fiatCurrency = fiatCurrency
+            self.fiatValue = fiatValue
+        } else {
+            self.fiatCurrency = nil
+            self.fiatValue = nil
         }
         
         self.id = id

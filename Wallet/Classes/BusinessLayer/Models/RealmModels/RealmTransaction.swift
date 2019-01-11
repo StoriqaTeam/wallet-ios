@@ -27,6 +27,8 @@ class RealmTransaction: Object {
     dynamic var createdAt: Double = 0
     dynamic var updatedAt: Double = 0
     dynamic var status: String = ""
+    dynamic var fiatValue: String?
+    dynamic var fiatCurrency: String?
     
     override class func primaryKey() -> String? {
         return "id"
