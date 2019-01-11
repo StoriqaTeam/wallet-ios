@@ -88,13 +88,13 @@ class SendViewController: UIViewController {
     }
     
     @IBAction func sendButtonTapped(_ sender: UIButton) {
-        output.sendButtonPressed()
         view.endEditing(true)
+        output.sendButtonPressed()
     }
     
     @IBAction func scanButtonTapped(_ sender: UIButton) {
-        output.scanButtonPressed()
         view.endEditing(true)
+        output.scanButtonPressed()
     }
     
     @IBAction private func sliderMoved(_ sender: StepSlider) {
