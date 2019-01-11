@@ -9,11 +9,11 @@
 import Foundation
 
 
-enum Currency: String {
+enum Currency {
     case btc
     case eth
     case stq
-    case fiat
+    case fiat(ISO: String)
     
     var ISO: String {
         switch self {
@@ -23,8 +23,8 @@ enum Currency: String {
             return "ETH"
         case .stq:
             return "STQ"
-        case .fiat:
-            return getFiatISO()
+        case .fiat(let fiatISO):
+            return fiatISO
         }
     }
     
@@ -41,6 +41,12 @@ enum Currency: String {
         }
     }
     
+    static var defaultFiat: Currency {
+        let defaults = DefaultsProvider()
+        let fiatISO = defaults.fiatISO
+        return Currency.fiat(ISO: fiatISO)
+    }
+    
     init(string: String) {
         switch string.uppercased() {
         case "ETH":
@@ -50,10 +56,16 @@ enum Currency: String {
         case "BTC":
             self = .btc
         default:
-            self = .fiat
+            self = .fiat(ISO: string)
         }
     }
     
+}
+
+extension Currency: Equatable {
+    public static func == (lhs: Currency, rhs: Currency) -> Bool {
+        return lhs.ISO == rhs.ISO
+    }
 }
 
 

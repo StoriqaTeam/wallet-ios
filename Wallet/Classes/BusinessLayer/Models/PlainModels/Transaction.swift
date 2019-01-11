@@ -40,7 +40,7 @@ struct Transaction {
     let updatedAt: Date
     let status: TransactionStatus
     let fiatValue: String?
-    let fiatCurrency: String?
+    let fiatCurrency: Currency?
 }
 
 
@@ -73,7 +73,12 @@ extension Transaction: RealmMappable {
         self.updatedAt = Date(timeIntervalSince1970: object.updatedAt)
         self.status = TransactionStatus(string: object.status)
         self.fiatValue = object.fiatValue
-        self.fiatCurrency = object.fiatCurrency
+        
+        if let fiatCurrency = object.fiatCurrency {
+            self.fiatCurrency = Currency(string: fiatCurrency)
+        } else {
+            self.fiatCurrency = nil
+        }
     }
     
     func mapToRealmObject() -> RealmTransaction {
@@ -99,7 +104,7 @@ extension Transaction: RealmMappable {
         
         object.status = self.status.rawValue
         object.fiatValue = self.fiatValue
-        object.fiatCurrency = self.fiatCurrency
+        object.fiatCurrency = self.fiatCurrency?.ISO
         
         return object
     }
@@ -129,12 +134,20 @@ extension Transaction: RealmMappable {
         let toAccount = TransactionAccount(json: to)
         let fromAddress = from.compactMap { $0["blockchain_address"].string }
         let fromAccounts = from.compactMap { TransactionAccount(json: $0) }
-        let fiatValue = json["fiatValue"].string
-        let fiatCurrency = json["fiatCurrency"].string
         
         guard let toAddress = to["blockchain_address"].string,
             !fromAddress.isEmpty else {
                 return nil
+        }
+        
+        if let fiatValue = json["fiatValue"].string,
+            let fiatCurrencyStr = json["fiatCurrency"].string {
+            let fiatCurrency = Currency(string: fiatCurrencyStr)
+            self.fiatCurrency = fiatCurrency
+            self.fiatValue = fiatValue
+        } else {
+            self.fiatCurrency = nil
+            self.fiatValue = nil
         }
         
         self.id = id
@@ -151,7 +164,5 @@ extension Transaction: RealmMappable {
         self.toCurrency = Currency(string: toCurrencyStr)
         self.fromCurrency = Currency(string: fromCurrencyStr)
         self.fee = fee.decimalValue()
-        self.fiatValue = fiatValue
-        self.fiatCurrency = fiatCurrency
     }
 }

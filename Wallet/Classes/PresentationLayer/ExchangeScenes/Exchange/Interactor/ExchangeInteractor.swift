@@ -318,7 +318,7 @@ extension ExchangeInteractor {
         guard let recipientCurrency = exchangeProvider.recipientAccount?.currency else {
             log.error("Recipient account not found")
             output.updateFormIsValid(false)
-            output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
+            output.updateEmptyRate()
             return
         }
         
@@ -355,7 +355,7 @@ extension ExchangeInteractor {
                     strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
                     strongSelf.output.updateFormIsValid(false)
                     strongSelf.output.exchangeRateError(error)
-                    strongSelf.output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
+                    strongSelf.output.updateEmptyRate()
                 }
         }
     }
@@ -375,7 +375,7 @@ extension ExchangeInteractor {
     
     private func updateRateForOneUnit(from: Currency, to: Currency) {
         guard let rate = exchangeProvider.getRateForCurrentOrder() else {
-            output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
+            output.updateEmptyRate()
             return
         }
         

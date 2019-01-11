@@ -55,8 +55,8 @@ extension ExchangeRate {
     // Default init
     init() {
         self.init(id: "0",
-                  from: .fiat,
-                  to: .fiat,
+                  from: .stq,
+                  to: .stq,
                   rate: 1488,
                   amount: 1488,
                   expiration: Date(),

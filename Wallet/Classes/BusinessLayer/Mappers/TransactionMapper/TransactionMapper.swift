@@ -17,19 +17,16 @@ protocol TransactionMapperProtocol {
 class TransactionMapper: TransactionMapperProtocol {
     
     private let currencyFormatter: CurrencyFormatterProtocol
-    private let converterFactory: ConstantRateFiatConverterFactoryProtocol
     private let transactionDirectionResolver: TransactionDirectionResolverProtocol
     private let transactionOpponentResolver: TransactionOpponentResolverProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
     
     init(currencyFormatter: CurrencyFormatterProtocol,
-         converterFactory: ConstantRateFiatConverterFactoryProtocol,
          transactionDirectionResolver: TransactionDirectionResolverProtocol,
          transactionOpponentResolver: TransactionOpponentResolverProtocol,
          denominationUnitsConverter: DenominationUnitsConverterProtocol) {
         
         self.currencyFormatter = currencyFormatter
-        self.converterFactory = converterFactory
         self.transactionDirectionResolver = transactionDirectionResolver
         self.transactionOpponentResolver = transactionOpponentResolver
         self.denominationUnitsConverter = denominationUnitsConverter
@@ -38,7 +35,6 @@ class TransactionMapper: TransactionMapperProtocol {
     func map(from objs: [Transaction], account: Account, completion: @escaping (([TransactionDisplayable]) -> Void)) {
         
         let currency = account.currency
-        let converter = converterFactory.createConverter(from: currency)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
@@ -49,22 +45,32 @@ class TransactionMapper: TransactionMapperProtocol {
                 let timestamp = strongSelf.date(from: obj)
                 
                 let amountInMinUnits: Decimal
+                let amountPrefix: String
                 
                 switch direction {
                 case .send:
                     amountInMinUnits = obj.fromValue
+                    amountPrefix = "-"
                 case .receive:
                     amountInMinUnits = obj.toValue
+                    amountPrefix = "+"
                 }
                 
                 let cryptoAmountDecimal = strongSelf.denominationUnitsConverter.amountToMaxUnits(amountInMinUnits, currency: currency)
                 let feeAmountDecimal = strongSelf.denominationUnitsConverter.amountToMaxUnits(obj.fee, currency: obj.fromCurrency)
-                let fiatAmoutDecimal = converter.convert(amount: cryptoAmountDecimal)
                 
-                let cryptoAmountString = strongSelf.currencyFormatter.getStringFrom(amount: cryptoAmountDecimal, currency: currency)
+                let cryptoAmountString = amountPrefix + " " +
+                    strongSelf.currencyFormatter.getStringFrom(amount: cryptoAmountDecimal, currency: currency)
                 let feeAmountString = strongSelf.currencyFormatter.getStringFrom(amount: feeAmountDecimal, currency: currency)
-                let fiatAmountString = strongSelf.currencyFormatter.getStringFrom(amount: fiatAmoutDecimal, currency: .fiat)
                 
+                let fiatAmountString: String
+                if let fiatAmount = obj.fiatValue, let fiatCurrency = obj.fiatCurrency {
+                    let fiatAmoutDecimal = fiatAmount.decimalValue()
+                    fiatAmountString = amountPrefix +
+                        strongSelf.currencyFormatter.getStringFrom(amount: fiatAmoutDecimal, currency: fiatCurrency)
+                } else {
+                    fiatAmountString = ""
+                }
                 
                 return TransactionDisplayable(transaction: obj,
                                               cryptoAmountString: cryptoAmountString,
@@ -89,25 +95,34 @@ class TransactionMapper: TransactionMapperProtocol {
         
         let currency: Currency
         let amountInMinUnits: Decimal
+        let amountPrefix: String
         
         switch direction {
         case .send:
             currency = obj.fromCurrency
             amountInMinUnits = obj.fromValue
+            amountPrefix = "-"
         case .receive:
             currency = obj.toCurrency
             amountInMinUnits = obj.toValue
+            amountPrefix = "+"
         }
         
         let cryptoAmountDecimal = denominationUnitsConverter.amountToMaxUnits(amountInMinUnits, currency: currency)
         let feeAmountDecimal = denominationUnitsConverter.amountToMaxUnits(obj.fee, currency: obj.fromCurrency)
-        let converter = converterFactory.createConverter(from: currency)
-        let fiatAmoutDecimal = converter.convert(amount: cryptoAmountDecimal)
         
-        let cryptoAmountString = currencyFormatter.getStringFrom(amount: cryptoAmountDecimal, currency: currency)
+        let cryptoAmountString = amountPrefix + " " +
+            currencyFormatter.getStringFrom(amount: cryptoAmountDecimal, currency: currency)
         let feeAmountString = currencyFormatter.getStringFrom(amount: feeAmountDecimal, currency: currency)
-        let fiatAmountString = currencyFormatter.getStringFrom(amount: fiatAmoutDecimal, currency: .fiat)
         
+        let fiatAmountString: String
+        if let fiatAmount = obj.fiatValue, let fiatCurrency = obj.fiatCurrency {
+            let fiatAmoutDecimal = fiatAmount.decimalValue()
+            fiatAmountString = amountPrefix +
+                currencyFormatter.getStringFrom(amount: fiatAmoutDecimal, currency: fiatCurrency)
+        } else {
+            fiatAmountString = ""
+        }
         
         return TransactionDisplayable(transaction: obj,
                                       cryptoAmountString: cryptoAmountString,

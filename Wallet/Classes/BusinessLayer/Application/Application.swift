@@ -181,7 +181,6 @@ class Application {
     // MARK: - Mappers -
     lazy var contactsMapper: ContactsMapper = ContactsMapper()
     lazy var transactionMapper: TransactionMapperProtocol = TransactionMapper(currencyFormatter: self.currencyFormatter,
-                                                                              converterFactory: self.constantRateFiatConverterFactory,
                                                                               transactionDirectionResolver: self.transactionDirectionResolver,
                                                                               transactionOpponentResolver: self.transactionOpponentResolver,
                                                                               denominationUnitsConverter: self.denominationUnitsConverter)

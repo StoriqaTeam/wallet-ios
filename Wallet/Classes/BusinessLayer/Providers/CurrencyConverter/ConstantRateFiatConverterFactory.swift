@@ -22,7 +22,7 @@ class ConstantRateFiatConverterFactory: ConstantRateFiatConverterFactoryProtocol
     }
     
     func createConverter(from currency: Currency) -> ConstantRateFiatConverterProtocol {
-        let rate = ratesProvider.getRate(criptoISO: currency.ISO, in: .USD)
+        let rate = ratesProvider.getRate(cripto: currency, in: Currency.defaultFiat)
         return ConstantRateFiatConverter(rate: rate)
     }
     
