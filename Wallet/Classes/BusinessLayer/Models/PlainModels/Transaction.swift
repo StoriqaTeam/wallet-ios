@@ -5,7 +5,7 @@
 //  Created by Storiqa on 24.09.2018.r
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-// swiftlint:disable identifier_name
+// swiftlint:disable identifier_name function_body_length
 
 import Foundation
 
@@ -39,6 +39,8 @@ struct Transaction {
     let createdAt: Date
     let updatedAt: Date
     let status: TransactionStatus
+    let fiatValue: String?
+    let fiatCurrency: String?
 }
 
 
@@ -70,6 +72,8 @@ extension Transaction: RealmMappable {
         self.createdAt = Date(timeIntervalSince1970: object.createdAt)
         self.updatedAt = Date(timeIntervalSince1970: object.updatedAt)
         self.status = TransactionStatus(string: object.status)
+        self.fiatValue = object.fiatValue
+        self.fiatCurrency = object.fiatCurrency
     }
     
     func mapToRealmObject() -> RealmTransaction {
@@ -94,6 +98,8 @@ extension Transaction: RealmMappable {
         object.updatedAt = Double(updatedAt)
         
         object.status = self.status.rawValue
+        object.fiatValue = self.fiatValue
+        object.fiatCurrency = self.fiatCurrency
         
         return object
     }
@@ -123,6 +129,8 @@ extension Transaction: RealmMappable {
         let toAccount = TransactionAccount(json: to)
         let fromAddress = from.compactMap { $0["blockchain_address"].string }
         let fromAccounts = from.compactMap { TransactionAccount(json: $0) }
+        let fiatValue = json["fiatValue"].string
+        let fiatCurrency = json["fiatCurrency"].string
         
         guard let toAddress = to["blockchain_address"].string,
             !fromAddress.isEmpty else {
@@ -143,5 +151,7 @@ extension Transaction: RealmMappable {
         self.toCurrency = Currency(string: toCurrencyStr)
         self.fromCurrency = Currency(string: fromCurrencyStr)
         self.fee = fee.decimalValue()
+        self.fiatValue = fiatValue
+        self.fiatCurrency = fiatCurrency
     }
 }

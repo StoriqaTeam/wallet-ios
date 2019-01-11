@@ -73,7 +73,7 @@ extension Strings {
         static let notEnoughFundsErrorMessage = NSLocalizedString(
             "Send.notEnoughFundsErrorMessage",
             tableName: "Send",
-            value: "You haven’t got enough funds. Try to set lower amount.",
+            value: "You don't have enough funds. \nTry to set lower amount.",
             comment: "Not enough funds error message")
         
         static let nonExistAddressTitle = NSLocalizedString(
