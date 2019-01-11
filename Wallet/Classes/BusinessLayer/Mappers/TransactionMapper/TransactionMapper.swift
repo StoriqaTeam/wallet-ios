@@ -64,7 +64,7 @@ class TransactionMapper: TransactionMapperProtocol {
                 let feeAmountString = strongSelf.currencyFormatter.getStringFrom(amount: feeAmountDecimal, currency: currency)
                 
                 let fiatAmountString: String
-                if let fiatAmount = obj.fiatValue, let fiatCurrency = obj.fiatCurrency {
+                if let fiatAmount = obj.fiatValue, let fiatCurrency = obj.fiatCurrency, !fiatAmount.decimalValue().isZero {
                     let fiatAmoutDecimal = fiatAmount.decimalValue()
                     fiatAmountString = amountPrefix +
                         strongSelf.currencyFormatter.getStringFrom(amount: fiatAmoutDecimal, currency: fiatCurrency)
@@ -116,7 +116,7 @@ class TransactionMapper: TransactionMapperProtocol {
         let feeAmountString = currencyFormatter.getStringFrom(amount: feeAmountDecimal, currency: currency)
         
         let fiatAmountString: String
-        if let fiatAmount = obj.fiatValue, let fiatCurrency = obj.fiatCurrency {
+        if let fiatAmount = obj.fiatValue, let fiatCurrency = obj.fiatCurrency, !fiatAmount.decimalValue().isZero {
             let fiatAmoutDecimal = fiatAmount.decimalValue()
             fiatAmountString = amountPrefix +
                 currencyFormatter.getStringFrom(amount: fiatAmoutDecimal, currency: fiatCurrency)

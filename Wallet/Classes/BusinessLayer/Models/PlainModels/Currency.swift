@@ -56,7 +56,7 @@ enum Currency {
         case "BTC":
             self = .btc
         default:
-            self = .fiat(ISO: string)
+            self = .fiat(ISO: string.uppercased())
         }
     }
     
@@ -72,12 +72,6 @@ extension Currency: Equatable {
 // MARK: - Private methods
 
 private extension Currency {
-    
-    func getFiatISO() -> String {
-        let defaults = DefaultsProvider()
-        let fiatISO = defaults.fiatISO
-        return fiatISO
-    }
     
     func currencySymbol(ISO: String) -> String {
         let locale = Locale.availableIdentifiers.map { Locale(identifier: $0) }.first { $0.currencyCode == ISO }
