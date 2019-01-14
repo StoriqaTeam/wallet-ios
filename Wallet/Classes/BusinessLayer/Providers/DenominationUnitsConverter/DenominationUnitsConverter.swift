@@ -42,6 +42,6 @@ class DenominationUnitsConverter: DenominationUnitsConverterProtocol {
             value = amount * fiatUnits
         }
         
-        return Decimal(round(value.double))
+        return value.rounded()
     }
 }
