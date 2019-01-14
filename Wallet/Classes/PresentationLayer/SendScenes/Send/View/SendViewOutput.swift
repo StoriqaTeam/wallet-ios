@@ -16,9 +16,12 @@ protocol SendViewOutput: class {
     func configureCollections()
     
     func isValidAmount(_ amount: String) -> Bool
-    func amountChanged(_ amount: String)
-    func amountDidBeginEditing()
-    func amountDidEndEditing()
+    func cryptoAmountChanged(_ amount: String)
+    func fiatAmountChanged(_ amount: String)
+    func cryptoAmountDidBeginEditing()
+    func cryptoAmountDidEndEditing()
+    func fiatAmountDidBeginEditing()
+    func fiatAmountDidEndEditing()
     func receiverAddressDidChange(_ address: String)
     func newFeeSelected(_ index: Int)
     

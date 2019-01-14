@@ -17,6 +17,7 @@ protocol DenominationUnitsConverterProtocol {
 class DenominationUnitsConverter: DenominationUnitsConverterProtocol {
     private let ethUnits = pow(10, 18)
     private let btcUnits = pow(10, 8)
+    private let fiatUnits = pow(10, 2)
     
     func amountToMaxUnits(_ amount: Decimal, currency: Currency) -> Decimal {
         switch currency {
@@ -25,18 +26,22 @@ class DenominationUnitsConverter: DenominationUnitsConverterProtocol {
         case .btc:
             return amount / btcUnits
         case .fiat:
-            return amount
+            return amount / fiatUnits
         }
     }
     
     func amountToMinUnits(_ amount: Decimal, currency: Currency) -> Decimal {
+        let value: Decimal
+        
         switch currency {
         case .eth, .stq:
-            return amount * ethUnits
+            value = amount * ethUnits
         case .btc:
-            return amount * btcUnits
+            value = amount * btcUnits
         case .fiat:
-            return amount
+            value = amount * fiatUnits
         }
+        
+        return Decimal(round(value.double))
     }
 }

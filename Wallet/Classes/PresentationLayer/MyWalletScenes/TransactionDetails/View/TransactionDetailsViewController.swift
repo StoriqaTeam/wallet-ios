@@ -114,7 +114,7 @@ extension TransactionDetailsViewController {
                                   endPoint: CGPoint(x: 0.5, y: 1.0))
         directionImageView.image = directionImage
         cryptoAmountLabel.text = transaction.cryptoAmountString
-        fiatAmountLabel.text = transaction.fiatAmountString
+        fiatAmountLabel.text = transaction.secondAmountString
     }
     
     func configureDescriptionView(transaction: TransactionDisplayable) {
