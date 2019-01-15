@@ -33,10 +33,10 @@ class StoriqaLoader {
         loaderView.removeFromSuperview()
         
         UIView.animate(withDuration: 0.2, animations: {
-            self.blurImageView.alpha = 0.0
+            self.blurImageView?.alpha = 0.0
         }, completion: { (_) in
-            self.loaderView.removeFromSuperview()
-            self.blurImageView.removeFromSuperview()
+            self.loaderView?.removeFromSuperview()
+            self.blurImageView?.removeFromSuperview()
             self.loaderView = nil
         })
     }

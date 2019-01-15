@@ -34,6 +34,7 @@ class SendViewController: UIViewController {
     @IBOutlet private var paymentFeeHighLabel: UILabel!
     @IBOutlet private var medianWaitTitleLabel: UILabel!
     @IBOutlet private var medianWaitLabel: UILabel!
+    @IBOutlet private var fiatAmountTitleLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var sendButton: GradientButton!
     @IBOutlet private var loaderView: ActivityIndicatorView!
@@ -42,6 +43,7 @@ class SendViewController: UIViewController {
     
     // MARK: Variables
     
+    private var editedTextField: UITextField?
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
     private var shouldAnimateLayuot = false
@@ -235,6 +237,8 @@ extension SendViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        editedTextField = textField
+        
         switch textField {
         case cryptoAmountTextField:
             output.cryptoAmountDidBeginEditing()
@@ -246,6 +250,8 @@ extension SendViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        editedTextField = nil
+        
         switch textField {
         case cryptoAmountTextField:
             output.cryptoAmountDidEndEditing()
@@ -319,6 +325,7 @@ extension SendViewController {
         
         receiverTitleLabel.font = Theme.Font.smallMediumWeightText
         amountTitleLabel.font = Theme.Font.smallMediumWeightText
+        fiatAmountTitleLabel.font = Theme.Font.smallMediumWeightText
         paymentFeeTitleLabel.font = Theme.Font.smallMediumWeightText
         medianWaitTitleLabel.font = Theme.Font.smallMediumWeightText
         paymentFeeLowLabel.font = Theme.Font.smallMediumWeightText
@@ -328,6 +335,7 @@ extension SendViewController {
         
         receiverTitleLabel.textColor = Theme.Color.Text.lightGrey
         amountTitleLabel.textColor = Theme.Color.Text.lightGrey
+        fiatAmountTitleLabel.textColor = Theme.Color.Text.lightGrey
         paymentFeeTitleLabel.textColor = Theme.Color.Text.lightGrey
         medianWaitTitleLabel.textColor = Theme.Color.Text.lightGrey
         paymentFeeLowLabel.textColor = Theme.Color.Text.lightGrey
@@ -355,7 +363,10 @@ extension SendViewController {
         
         amountTitleLabel.text = LocalizedStrings.amountTitle
         cryptoAmountTextField.placeholder = LocalizedStrings.amountPlaceholder
-        // TODO: fiat amount placeholder
+        // FIXME: localize fiat amount title and placeholder
+        let fiatISO = Currency.defaultFiat.ISO
+        fiatAmountTitleLabel.text = "Amount in \(fiatISO)"
+        fiatAmountTextField.placeholder = "Enter amount in \(fiatISO)"
         
         paymentFeeTitleLabel.text = LocalizedStrings.feeTitle
         medianWaitTitleLabel.text = LocalizedStrings.medianWaitTitle
@@ -397,9 +408,7 @@ extension SendViewController {
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
-        // FIXME: scroll to fiat amount
-        
-        guard cryptoAmountTextField.isFirstResponder,
+        guard let editedTextField = editedTextField,
             let scrollView = scrollView, 
             let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
                 return
@@ -408,7 +417,7 @@ extension SendViewController {
         isKeyboardAnimating = true
         
         let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
-        let textFieldOrigin = cryptoAmountTextField.convert(cryptoAmountTextField.bounds, to: view).maxY + scrollView.contentOffset.y
+        let textFieldOrigin = editedTextField.convert(editedTextField.bounds, to: view).maxY + scrollView.contentOffset.y
         var delta = textFieldOrigin - keyboardOrigin + 8
         
         guard delta > 0 else { return }

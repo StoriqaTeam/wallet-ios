@@ -415,6 +415,7 @@
                         <outlet property="cryptoAmountTextField" destination="W2m-iJ-38i" id="T5J-ee-Bjd"/>
                         <outlet property="errorLabel" destination="ghi-D2-tYq" id="IM4-WU-uXk"/>
                         <outlet property="fiatAmountTextField" destination="Xhn-Io-xGL" id="CKV-pT-IYU"/>
+                        <outlet property="fiatAmountTitleLabel" destination="d3C-Gk-gSt" id="93J-aj-92R"/>
                         <outlet property="loaderView" destination="nmH-Af-S9A" id="yhv-30-HBS"/>
                         <outlet property="medianWaitLabel" destination="i0o-nu-tyy" id="7UD-sV-wSu"/>
                         <outlet property="medianWaitTitleLabel" destination="B0d-3j-T5L" id="eCf-7X-8Hu"/>
