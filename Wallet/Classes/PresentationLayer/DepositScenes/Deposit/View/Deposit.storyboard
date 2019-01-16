@@ -96,15 +96,6 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9n-hd-tkA">
                                                 <rect key="frame" x="20" y="244" width="335" height="353"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdx-31-Bha">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="353"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <gestureRecognizers/>
-                                                        <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="1nu-Ni-XsK" appends="YES" id="vDI-39-w4B"/>
-                                                            <outletCollection property="gestureRecognizers" destination="QBE-Ke-44a" appends="YES" id="vW1-9i-W0i"/>
-                                                        </connections>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="riM-ur-dO7">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="335"/>
                                                         <subviews>
@@ -130,6 +121,15 @@
                                                         <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdx-31-Bha">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="353"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <gestureRecognizers/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="1nu-Ni-XsK" appends="YES" id="vDI-39-w4B"/>
+                                                            <outletCollection property="gestureRecognizers" destination="QBE-Ke-44a" appends="YES" id="vW1-9i-W0i"/>
+                                                        </connections>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
