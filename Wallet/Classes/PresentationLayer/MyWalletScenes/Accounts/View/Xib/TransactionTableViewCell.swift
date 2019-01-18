@@ -35,6 +35,8 @@ extension TransactionTableViewCell {
         let direction = transaction.direction
         currencyLabel.text = transaction.currency.symbol
         timestampLabel.text = transaction.timestamp
+        cryptoAmountLabel.text = transaction.cryptoAmountString
+        fiatAmountlabel.text = transaction.fiatAmountString
         
         switch transaction.opponent {
         case .address(let address):
@@ -47,14 +49,10 @@ extension TransactionTableViewCell {
         case .send:
             directionLabel.text = "Sent"
             directionOpponentLabel.text = "to"
-            cryptoAmountLabel.text = "- \(transaction.cryptoAmountString)"
-            fiatAmountlabel.text = "- \(transaction.fiatAmountString)"
             directionImageView.image = UIImage(named: "SendStatusImg")
         case .receive:
             directionLabel.text = "Received"
             directionOpponentLabel.text = "from"
-            cryptoAmountLabel.text = "+ \(transaction.cryptoAmountString)"
-            fiatAmountlabel.text = "+\(transaction.fiatAmountString)"
             directionImageView.image = UIImage(named: "ReceiveStatusImg")
         }
     }

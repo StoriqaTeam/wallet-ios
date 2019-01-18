@@ -55,8 +55,9 @@ class AccountDisplayer: AccountDisplayerProtocol {
         let currency = account.currency
         let balance = denominationUnitsConverter.amountToMaxUnits(account.balance, currency: currency)
         let converter = converterFactory.createConverter(from: currency)
-        let fiat = converter.convert(amount: balance, to: .fiat)
-        let formatted = currencyFormatter.getStringFrom(amount: fiat, currency: .fiat)
+        let defaultFiat = Currency.defaultFiat
+        let fiat = converter.convert(amount: balance, to: defaultFiat)
+        let formatted = currencyFormatter.getStringFrom(amount: fiat, currency: defaultFiat)
         return formatted
     }
     
@@ -79,11 +80,6 @@ class AccountDisplayer: AccountDisplayerProtocol {
             return UIImage(named: "smallEthCard")!
         case .stq, .stqGold, .stqBlack:
             return UIImage(named: "smallStqCard-red")!
-//            return UIImage(named: "smallStqCard-black")!
-//        case .stqBlack:
-//            return UIImage(named: "smallStqBlackCard")!
-//        case .stqGold:
-//            return UIImage(named: "smallStqGoldCard")!
         }
     }
     
@@ -97,11 +93,6 @@ class AccountDisplayer: AccountDisplayerProtocol {
             return UIImage(named: "ethCard")!
         case .stq, .stqGold, .stqBlack:
             return UIImage(named: "stqCard-red")!
-//            return UIImage(named: "stqCard-black")!
-//        case .stqGold:
-//            return UIImage(named: "stqGoldCard")!
-//        case .stqBlack:
-//            return UIImage(named: "stqBlackCard")!
         }
     }
     

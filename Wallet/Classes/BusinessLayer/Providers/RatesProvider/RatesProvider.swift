@@ -5,28 +5,12 @@
 //  Created by Storiqa on 31/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
-//  swiftlint:disable switch_case_alignment
 
 import Foundation
 
-enum FiatCurrency: String {
-    case USD
-    case RUB
-    case EUR
-    
-    init(isoString: String) {
-        switch isoString {
-            case "USD": self = .USD
-            case "RUB": self = .RUB
-            case "EUR": self = .EUR
-            default: self = .USD
-        }
-    }
-}
-
 
 protocol RatesProviderProtocol {
-    func getRate(criptoISO: String, in fiat: FiatCurrency) -> Rate
+    func getRate(cripto: Currency, in fiat: Currency) -> Rate
 }
 
 
@@ -51,9 +35,9 @@ class RatesProvider: RatesProviderProtocol {
         self.ratesDataStoreService = ratesDataStoreService
     }
     
-    func getRate(criptoISO: String, in fiat: FiatCurrency) -> Rate {
-        let rates = currenctRates(for: criptoISO)
-        return rates.first(where: { $0.toISO == fiat.rawValue })!
+    func getRate(cripto: Currency, in fiat: Currency) -> Rate {
+        let rates = currentRates(for: cripto.ISO)
+        return rates.first(where: { $0.toISO == fiat.ISO })!
     }
 }
 
@@ -61,7 +45,7 @@ class RatesProvider: RatesProviderProtocol {
 // MARK: Private methods
 
 extension RatesProvider {
-    private func currenctRates(for criptoISO: String) -> [Rate] {
+    private func currentRates(for criptoISO: String) -> [Rate] {
         var rates = ratesDataStoreService.getRates(cryptoCurrency: criptoISO)
         guard rates.isEmpty else { return rates }
         rates = defaultRates.filter { $0.fromISO == criptoISO }

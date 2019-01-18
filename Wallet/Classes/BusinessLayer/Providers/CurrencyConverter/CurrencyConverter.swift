@@ -31,7 +31,7 @@ class BtcConverter: CurrencyConverterProtocol {
         case .stq:
             coef = 2760872.72401590
         case .fiat:
-            let rate = ratesProvider.getRate(criptoISO: "BTC", in: .USD)
+            let rate = ratesProvider.getRate(cripto: .btc, in: Currency.defaultFiat)
             coef = rate.value
         }
         
@@ -58,7 +58,7 @@ class EthConverter: CurrencyConverterProtocol {
         case .stq:
             coef = 86504.59914677
         case .fiat:
-            let rate = ratesProvider.getRate(criptoISO: "ETH", in: .USD)
+            let rate = ratesProvider.getRate(cripto: .eth, in: Currency.defaultFiat)
             coef = rate.value
         }
         
@@ -85,7 +85,7 @@ class StqConverter: CurrencyConverterProtocol {
         case .stq:
             coef = 1
         case .fiat:
-            let rate = ratesProvider.getRate(criptoISO: "STQ", in: .USD)
+            let rate = ratesProvider.getRate(cripto: .stq, in: Currency.defaultFiat)
             coef = rate.value
         }
         
@@ -103,7 +103,7 @@ class FiatConverter: CurrencyConverterProtocol {
     
     func convert(amount: Decimal, to currency: Currency) -> Decimal {
         let coef: Decimal
-        let rate = ratesProvider.getRate(criptoISO: currency.ISO, in: .USD)
+        let rate = ratesProvider.getRate(cripto: currency, in: Currency.defaultFiat)
         
         switch currency {
         case .btc:

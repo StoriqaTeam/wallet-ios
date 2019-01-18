@@ -63,6 +63,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      fee: feeString,
                                                      exchangeId: nil,
                                                      exchangeRate: nil,
+                                                     fiatValue: transaction.fiatValue,
+                                                     fiatCurrency: transaction.fiatCurrency,
                                                      signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
@@ -115,6 +117,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      fee: feeString,
                                                      exchangeId: exchangeId,
                                                      exchangeRate: exchangeRate,
+                                                     fiatValue: nil,
+                                                     fiatCurrency: nil,
                                                      signHeader: signHeader)
         loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
             guard let strongSelf = self else { return }
