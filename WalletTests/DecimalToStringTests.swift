@@ -57,5 +57,12 @@ class DecimalToStringTests: XCTestCase {
         XCTAssertFalse("12345.6,7.8,9.0.9,8.7,6.543".isValidDecimal())
     }
     
+    func testRoundDecimal() {
+        XCTAssertEqual(Decimal(string: "123456.7890")?.rounded(), Decimal(string: "123457"))
+        XCTAssertEqual(Decimal(string: "123456.4890")?.rounded(), Decimal(string: "123456"))
+        XCTAssertEqual(Decimal(string: "123456.1")?.rounded(), Decimal(string: "123456"))
+        XCTAssertEqual(Decimal(string: "123456.8")?.rounded(), Decimal(string: "123457"))
+    }
+    
 
 }

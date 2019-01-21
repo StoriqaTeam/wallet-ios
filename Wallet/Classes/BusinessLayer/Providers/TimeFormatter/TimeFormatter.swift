@@ -23,6 +23,6 @@ class TimeFormatter: TimeFormatterProtocol {
         if seconds > 0 { result += "\(seconds) sec" }
         if result.isEmpty { result += "0 sec" }
         
-        return result
+        return result.trim()
     }
 }

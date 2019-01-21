@@ -14,7 +14,7 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var directionImageView: UIImageView!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var cryptoAmountLabel: UILabel!
-    @IBOutlet weak var fiatAmountlabel: UILabel!
+    @IBOutlet weak var secondAmountLabel: UILabel!
     @IBOutlet weak var directionOpponentLabel: UILabel!
     @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var opponentLabel: UILabel!
@@ -36,7 +36,7 @@ extension TransactionTableViewCell {
         currencyLabel.text = transaction.currency.symbol
         timestampLabel.text = transaction.timestamp
         cryptoAmountLabel.text = transaction.cryptoAmountString
-        fiatAmountlabel.text = transaction.fiatAmountString
+        secondAmountLabel.text = transaction.secondAmountString
         
         switch transaction.opponent {
         case .address(let address):
@@ -67,8 +67,8 @@ extension TransactionTableViewCell {
         currencyLabel.font = Theme.Font.regularMedium
         cryptoAmountLabel.textColor = .white
         cryptoAmountLabel.font = Theme.Font.regularMedium
-        fiatAmountlabel.textColor = Theme.Color.Text.lightGrey
-        fiatAmountlabel.font = Theme.Font.smallMediumWeightText
+        secondAmountLabel.textColor = Theme.Color.Text.lightGrey
+        secondAmountLabel.font = Theme.Font.smallMediumWeightText
         directionOpponentLabel.textColor = Theme.Color.Text.lightGrey
         directionOpponentLabel.font = Theme.Font.smallMediumWeightText
         opponentLabel.textColor = Theme.Color.Text.lightGrey

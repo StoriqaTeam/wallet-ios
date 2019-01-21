@@ -26,7 +26,8 @@ class SendPresenter {
     
     private var storiqaLoader: StoriqaLoader!
     private var address: String = ""
-    private var isEditingAmount = false
+    private var isEditingCryptoAmount = false
+    private var isEditingFiatAmount = false
     private var feesError: String?
     private var haptic: HapticServiceProtocol
     
@@ -79,24 +80,48 @@ extension SendPresenter: SendViewOutput {
         return amount.isEmpty || amount == "." || amount == "," || amount.isValidDecimal()
     }
     
-    func amountChanged(_ amount: String) {
-        interactor.setAmount(amount.decimalValue())
+    func cryptoAmountChanged(_ amount: String) {
+        interactor.setCryptoAmount(amount.decimalValue())
     }
     
-    func amountDidBeginEditing() {
-        isEditingAmount = true
-        let amount = interactor.getAmount()
-        let currency = interactor.getCurrency()
+    func cryptoAmountDidBeginEditing() {
+        isEditingCryptoAmount = true
+        let amount = interactor.getCryptoAmount()
+        let currency = interactor.getCryptoCurrency()
         let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
-        view.setAmount(formatted)
+        view.setCryptoAmount(formatted)
+        
+        // to fix rates change
+        interactor.setCryptoAmount(amount)
     }
     
-    func amountDidEndEditing() {
-        isEditingAmount = false
-        let amount = interactor.getAmount()
-        let currency = interactor.getCurrency()
+    func cryptoAmountDidEndEditing() {
+        isEditingCryptoAmount = false
+        let amount = interactor.getCryptoAmount()
+        let currency = interactor.getCryptoCurrency()
         let formatted = getStringFrom(amount: amount, currency: currency)
-        view.setAmount(formatted)
+        view.setCryptoAmount(formatted)
+    }
+    
+    func fiatAmountChanged(_ amount: String) {
+        interactor.setFiatAmount(amount.decimalValue())
+    }
+    
+    func fiatAmountDidBeginEditing() {
+        isEditingFiatAmount = true
+        let amount = interactor.getFiatAmount()
+        let formatted = getStringAmountWithoutCurrency(amount: amount, currency: Currency.defaultFiat)
+        view.setFiatAmount(formatted)
+        
+        // to fix rates change
+        interactor.setFiatAmount(amount)
+    }
+    
+    func fiatAmountDidEndEditing() {
+        isEditingFiatAmount = false
+        let amount = interactor.getFiatAmount()
+        let formatted = getStringFrom(amount: amount, currency: Currency.defaultFiat)
+        view.setFiatAmount(formatted)
     }
     
     func receiverAddressDidChange(_ address: String) {
@@ -115,10 +140,10 @@ extension SendPresenter: SendViewOutput {
     }
     
     func sendButtonPressed() {
-        let amount = interactor.getAmount()
+        let amount = interactor.getCryptoAmount()
         let fee = interactor.getFee() ?? 0
         let total = interactor.getTotal()
-        let currency = interactor.getCurrency()
+        let currency = interactor.getCryptoCurrency()
         let amountString = getStringFrom(amount: amount, currency: currency)
         let feeString = getStringFrom(amount: fee, currency: currency)
         let totalString = getStringFrom(amount: total, currency: currency)
@@ -142,6 +167,7 @@ extension SendPresenter: SendViewOutput {
 // MARK: - SendInteractorOutput
 
 extension SendPresenter: SendInteractorOutput {
+    
     func setWrongCurrency(message: String) {
         view.setAddressError(message)
     }
@@ -159,13 +185,24 @@ extension SendPresenter: SendInteractorOutput {
     
     func updateAmount(_ amount: Decimal, currency: Currency) {
         let amountString: String = {
-            if isEditingAmount {
+            if isEditingCryptoAmount {
                 return getStringAmountWithoutCurrency(amount: amount, currency: currency)
             } else {
                 return getStringFrom(amount: amount, currency: currency)
             }
         }()
-        view.setAmount(amountString)
+        view.setCryptoAmount(amountString)
+    }
+    
+    func updateFiatAmount(_ amount: Decimal) {
+        let amountString: String = {
+            if isEditingFiatAmount {
+                return getStringAmountWithoutCurrency(amount: amount, currency: Currency.defaultFiat)
+            } else {
+                return getStringFrom(amount: amount, currency: Currency.defaultFiat)
+            }
+        }()
+        view.setFiatAmount(amountString)
     }
     
     func updatePaymentFee(_ fee: Decimal?) {
@@ -174,7 +211,7 @@ extension SendPresenter: SendInteractorOutput {
             return
         }
         
-        let currency = interactor.getCurrency()
+        let currency = interactor.getCryptoCurrency()
         let formatted = currencyFormatter.getStringFrom(amount: fee, currency: currency, maxFractionDigits: 8)
         view.setPaymentFee(formatted)
     }

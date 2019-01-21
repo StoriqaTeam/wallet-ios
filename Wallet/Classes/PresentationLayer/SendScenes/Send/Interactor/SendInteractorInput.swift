@@ -14,13 +14,15 @@ protocol SendInteractorInput: class {
     func getAccounts() -> [Account]
     func getAccountsCount() -> Int
     func getAccountIndex() -> Int
-    func getAmount() -> Decimal?
+    func getCryptoAmount() -> Decimal
+    func getFiatAmount() -> Decimal
     func getFee() -> Decimal?
     func getTotal() -> Decimal
-    func getCurrency() -> Currency
+    func getCryptoCurrency() -> Currency
     func getAddress() -> String
     
-    func setAmount(_ amount: Decimal)
+    func setCryptoAmount(_ amount: Decimal)
+    func setFiatAmount(_ amount: Decimal)
     func setCurrentAccount(index: Int, receiverAddress: String)
     func setPaymentFee(index: Int)
     func setAddress(_ address: String)

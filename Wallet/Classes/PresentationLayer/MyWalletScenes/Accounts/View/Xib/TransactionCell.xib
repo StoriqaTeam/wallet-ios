@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -97,8 +93,8 @@
                 <outlet property="directionImageView" destination="nQn-DC-Y93" id="lgz-5K-rC2"/>
                 <outlet property="directionLabel" destination="I5E-b2-s0y" id="UMS-nc-jrR"/>
                 <outlet property="directionOpponentLabel" destination="IBe-fH-g7A" id="Pt5-vw-eH0"/>
-                <outlet property="fiatAmountlabel" destination="Oab-Hn-Aro" id="RX8-0K-oHh"/>
                 <outlet property="opponentLabel" destination="jHj-S5-XFc" id="e3Q-FP-pPo"/>
+                <outlet property="secondAmountLabel" destination="Oab-Hn-Aro" id="RX8-0K-oHh"/>
                 <outlet property="timestampLabel" destination="GFd-FL-QFo" id="F2r-U9-y7R"/>
             </connections>
             <point key="canvasLocation" x="-807.20000000000005" y="20.689655172413794"/>

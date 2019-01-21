@@ -69,4 +69,9 @@ extension Decimal {
         return currencyFormatter.string(for: self) ?? "0"
     }
     
+    func rounded() -> Decimal {
+        let rounded = NSDecimalNumber(decimal: self).rounding(accordingToBehavior: nil)
+        return rounded.decimalValue
+    }
+    
 }

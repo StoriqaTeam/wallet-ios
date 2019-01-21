@@ -20,13 +20,13 @@ class CurrencyFormatterTests: XCTestCase {
         let inSTQ = formatter.getStringFrom(amount: testAmount, currency: .stq)
         let inETH = formatter.getStringFrom(amount: testAmount, currency: .eth)
         let inBTC = formatter.getStringFrom(amount: testAmount, currency: .btc)
-        let inFiat = formatter.getStringFrom(amount: testAmount, currency: .fiat)
+        let inFiat = formatter.getStringFrom(amount: testAmount, currency: .defaultFiat)
         
         
         XCTAssertEqual(inSTQ, "1\(groupingSeparator)234\(groupingSeparator)567\(groupingSeparator)890 \(Currency.stq.symbol)")
         XCTAssertEqual(inETH, "1\(groupingSeparator)234\(groupingSeparator)567\(groupingSeparator)890 \(Currency.eth.symbol)")
         XCTAssertEqual(inBTC, "1\(groupingSeparator)234\(groupingSeparator)567\(groupingSeparator)890 \(Currency.btc.symbol)")
-        XCTAssertEqual(inFiat, "\(Currency.fiat.symbol)1\(groupingSeparator)234\(groupingSeparator)567\(groupingSeparator)890")
+        XCTAssertEqual(inFiat, "\(Currency.defaultFiat.symbol)1\(groupingSeparator)234\(groupingSeparator)567\(groupingSeparator)890")
         
         XCTAssertEqual(formatter.getStringFrom(amount: 0, currency: .stq), "0 \(Currency.stq.symbol)")
         XCTAssertEqual(formatter.getStringFrom(amount: -100, currency: .stq), "-100 \(Currency.stq.symbol)")
@@ -39,13 +39,13 @@ class CurrencyFormatterTests: XCTestCase {
         let inSTQ = formatter.getStringFrom(amount: testAmount, currency: .stq)
         let inETH = formatter.getStringFrom(amount: testAmount, currency: .eth)
         let inBTC = formatter.getStringFrom(amount: testAmount, currency: .btc)
-        let inFiat = formatter.getStringFrom(amount: testAmount, currency: .fiat)
+        let inFiat = formatter.getStringFrom(amount: testAmount, currency: .defaultFiat)
         
         
         XCTAssertEqual(inSTQ, "0\(decimalSeparator)123456789012345679 \(Currency.stq.symbol)")
         XCTAssertEqual(inETH, "0\(decimalSeparator)123456789012345679 \(Currency.eth.symbol)")
         XCTAssertEqual(inBTC, "0\(decimalSeparator)12345679 \(Currency.btc.symbol)")
-        XCTAssertEqual(inFiat, "\(Currency.fiat.symbol)0\(decimalSeparator)12")
+        XCTAssertEqual(inFiat, "\(Currency.defaultFiat.symbol)0\(decimalSeparator)12")
     }
     
     func testStringFromDecimalWithoutCurrency() {
@@ -54,7 +54,7 @@ class CurrencyFormatterTests: XCTestCase {
         let inSTQ = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .stq)
         let inETH = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .eth)
         let inBTC = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .btc)
-        let inFiat = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .fiat)
+        let inFiat = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .defaultFiat)
         
         
         XCTAssertEqual(inSTQ, "1234567890")
@@ -73,7 +73,7 @@ class CurrencyFormatterTests: XCTestCase {
         let inSTQ = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .stq)
         let inETH = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .eth)
         let inBTC = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .btc)
-        let inFiat = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .fiat)
+        let inFiat = formatter.getStringWithoutCurrencyFrom(amount: testAmount, currency: .defaultFiat)
         
         
         XCTAssertEqual(inSTQ, "0\(decimalSeparator)123456789012345679")
