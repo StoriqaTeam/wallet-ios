@@ -33,11 +33,12 @@ class StoriqaLoader {
         loaderView.removeFromSuperview()
         
         UIView.animate(withDuration: 0.2, animations: {
-            self.blurImageView.alpha = 0.0
+            self.blurImageView?.alpha = 0.0
         }, completion: { (_) in
-            self.loaderView.removeFromSuperview()
-            self.blurImageView.removeFromSuperview()
+            self.loaderView?.removeFromSuperview()
+            self.blurImageView?.removeFromSuperview()
             self.loaderView = nil
+            self.blurImageView = nil
         })
     }
 }
@@ -47,6 +48,7 @@ class StoriqaLoader {
 
 extension StoriqaLoader {
     private func addBlurView() {
+        guard blurImageView == nil else { return }
         let bluredImage = captureScreen(view: parentView)
         blurImageView = UIImageView(image: bluredImage)
         self.parentView.addSubview(blurImageView)
@@ -58,6 +60,7 @@ extension StoriqaLoader {
     }
     
     private func addLoaderView() {
+        guard loaderView == nil else { return }
         loaderView = ActivityIndicatorView()
         loaderView.isUserInteractionEnabled = false
         loaderView.frame.size = CGSize(width: 80, height: 80)
