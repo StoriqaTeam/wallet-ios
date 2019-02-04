@@ -13,20 +13,27 @@ import Foundation
 protocol ExchangeProviderProtocol: class {
     var selectedAccount: Account { get }
     var recipientAccount: Account? { get }
-    var amount: Decimal { get }
+    var fromAmount: Decimal { get }
+    var toAmount: Decimal { get }
+    var mainAmount: ExchangeAmountInput { get }
     
     func setNewOrder(_ order: Order)
     func invalidateOrder()
+    func updateAmount()
     
     func getRecipientAccounts() -> [Account]
     func getOrderId() -> String?
-    func getSubtotal() -> Decimal
-    func getAmountInMinUnits() -> Decimal
+    func getFromAmountInMinUnits() -> Decimal
+    func getToAmountInMinUnits() -> Decimal
     func getRateForCurrentOrder() -> Decimal?
     func isEnoughFunds() -> Bool
     func createExchangeTransaction() -> Transaction
 }
 
+enum ExchangeAmountInput {
+    case from
+    case to
+}
 
 class ExchangeProvider: ExchangeProviderProtocol {
     
@@ -36,21 +43,15 @@ class ExchangeProvider: ExchangeProviderProtocol {
             updateRecipientAccount()
         }
     }
-    var recipientAccount: Account? {
-        didSet {
-            updateConverter()
-        }
-    }
-    
-    var amount: Decimal
+    var recipientAccount: Account?
+    var fromAmount: Decimal
+    var toAmount: Decimal
+    var mainAmount: ExchangeAmountInput
     
     private var recipientAccounts = [Account]()
-    private var amountToSend: Decimal = 0
     
     private let accountsProvider: AccountsProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
-    private let converterFactory: CurrencyConverterFactoryProtocol
-    private var currencyConverter: CurrencyConverterProtocol!
     private let orderObserver: OrderObserverProtocol
     
     init(accountsProvider: AccountsProviderProtocol,
@@ -60,16 +61,16 @@ class ExchangeProvider: ExchangeProviderProtocol {
         
         self.accountsProvider = accountsProvider
         self.denominationUnitsConverter = denominationUnitsConverter
-        self.converterFactory = converterFactory
         self.orderObserver = orderObserver
         
         // default build
-        self.amount = 0
+        self.fromAmount = 0
+        self.toAmount = 0
         self.selectedAccount = accountsProvider.getAllAccounts().first!
+        self.mainAmount = .from
 
         updateRecipientAccounts()
         recipientAccount = recipientAccounts.first
-        updateConverter()
     }
     
     func invalidateOrder() {
@@ -80,32 +81,47 @@ class ExchangeProvider: ExchangeProviderProtocol {
         orderObserver.setNewOrder(order: order)
     }
     
+    func updateAmount() {
+        guard isValidExchangeRate(),
+            let rate = orderObserver.getCurrentRate() else {
+                if mainAmount == .from {
+                    toAmount = 0
+                } else {
+                    fromAmount = 0
+                }
+                return
+        }
+        
+        if mainAmount == .from {
+            toAmount = fromAmount * rate
+        } else {
+            fromAmount = toAmount / rate
+        }
+    }
+    
     func getRecipientAccounts() -> [Account] {
         return recipientAccounts
     }
     
-    func getSubtotal() -> Decimal {
-        guard !amount.isZero else { return 0 }
-        guard isValidExchangeRate() else { return 0 }
-        guard let rate = orderObserver.getCurrentRate() else { return 0 }
-        amountToSend = amount / rate
-        return amountToSend
+    func getFromAmountInMinUnits() -> Decimal {
+        let currency = selectedAccount.currency
+        let inMinUnits = denominationUnitsConverter.amountToMinUnits(fromAmount, currency: currency)
+        return inMinUnits
     }
     
-    func getAmountInMinUnits() -> Decimal {
+    func getToAmountInMinUnits() -> Decimal {
         guard let recipientAccount = recipientAccount else {
             return 0
         }
         
         let currency = recipientAccount.currency
-        let inMinUnits = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
+        let inMinUnits = denominationUnitsConverter.amountToMinUnits(toAmount, currency: currency)
         return inMinUnits
     }
     
     func isEnoughFunds() -> Bool {
         let currency = selectedAccount.currency
-        let subtotal = getSubtotal()
-        let inMinUnits = denominationUnitsConverter.amountToMinUnits(subtotal, currency: currency)
+        let inMinUnits = denominationUnitsConverter.amountToMinUnits(fromAmount, currency: currency)
         let available = selectedAccount.balance
         return inMinUnits.isLessThanOrEqualTo(available)
     }
@@ -120,7 +136,6 @@ class ExchangeProvider: ExchangeProviderProtocol {
     }
     
     func createExchangeTransaction() -> Transaction {
-        
         let uuid = UUID().uuidString
         let timestamp = Date()
         let currency = selectedAccount.currency
@@ -128,14 +143,15 @@ class ExchangeProvider: ExchangeProviderProtocol {
         let toAddress = recipientAccount!.accountAddress
         let toAccount = TransactionAccount(accountId: recipientAccount!.id, ownerName: recipientAccount!.name)
         
-        let toValue = denominationUnitsConverter.amountToMinUnits(amount, currency: recipientAccount!.currency)
+        let fromValue = denominationUnitsConverter.amountToMinUnits(fromAmount, currency: currency)
+        let toValue = denominationUnitsConverter.amountToMinUnits(toAmount, currency: recipientAccount!.currency)
         
         let transaction = Transaction(id: uuid,
                                       fromAddress: [fromAddress],
                                       fromAccount: [],
                                       toAddress: toAddress,
                                       toAccount: toAccount,
-                                      fromValue: 0, // не используется
+                                      fromValue: fromValue, // не используется
             fromCurrency: currency,
             toValue: toValue,
             toCurrency: recipientAccount!.currency,
@@ -168,12 +184,6 @@ extension ExchangeProvider {
         if !recipientAccounts.contains(where: { $0 == recipientAccount }) {
             recipientAccount = recipientAccounts.first
         }
-    }
-    
-    private func updateConverter() {
-        // In case when there is only one account
-        let currency = recipientAccount?.currency ?? selectedAccount.currency
-        currencyConverter = converterFactory.createConverter(from: currency)
     }
     
     private func isValidExchangeRate() -> Bool {

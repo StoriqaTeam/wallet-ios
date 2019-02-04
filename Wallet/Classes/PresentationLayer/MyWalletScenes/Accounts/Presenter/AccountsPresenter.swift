@@ -153,7 +153,7 @@ extension AccountsPresenter: MyWalletToAccountsAnimatorDelegate {
 // MARK: - AccountsDataManagerDelegate
 
 extension AccountsPresenter: AccountsDataManagerDelegate {
-    func currentPageDidChange(_ newIndex: Int) {
+    func currentPageDidChange(_ newIndex: Int, manager: AccountsDataManager) {
         interactor.setCurrentAccountWith(index: newIndex)
         view.setNewPage(newIndex)
     }

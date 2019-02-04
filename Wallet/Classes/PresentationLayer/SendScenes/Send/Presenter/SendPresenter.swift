@@ -308,7 +308,7 @@ extension SendPresenter: QRScannerDelegate {
 // MARK: - AccountsDataManagerDelegate
 
 extension SendPresenter: AccountsDataManagerDelegate {
-    func currentPageDidChange(_ newIndex: Int) {
+    func currentPageDidChange(_ newIndex: Int, manager: AccountsDataManager) {
         interactor.setCurrentAccount(index: newIndex, receiverAddress: address)
         view.setNewPage(newIndex)
     }

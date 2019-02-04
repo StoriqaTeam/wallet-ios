@@ -13,16 +13,17 @@ protocol ExchangeInteractorInput: class {
     func getAccounts() -> [Account]
     func getRecipientAccounts() -> [Account]
     func getAccountIndex() -> Int
-    func getAccountsCount() -> Int
-    func getAmount() -> Decimal
-    func getGiveAmount() -> Decimal
-    func getAccountCurrency() -> Currency
-    func getRecipientCurrency() -> Currency
-    func getAccountName() -> String
-    func getRecipientAccountName() -> String
+    func getFromAmount() -> Decimal
+    func getToAmount() -> Decimal
+    func getFromCurrency() -> Currency
+    func getToCurrency() -> Currency
+    func getFromAccountName() -> String
+    func getToAccountName() -> String
     
-    func setCurrentAccount(index: Int)
-    func setAmount(_ amount: Decimal)
+    func setFromAccount(index: Int)
+    func setToAccount(index: Int)
+    func setFromAmount(_ amount: Decimal)
+    func setToAmount(_ amount: Decimal)
     
     func getTransactionBuilder() -> ExchangeProviderBuilderProtocol
     func updateState()

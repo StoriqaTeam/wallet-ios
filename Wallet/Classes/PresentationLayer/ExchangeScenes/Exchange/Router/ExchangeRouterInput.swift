@@ -10,8 +10,6 @@ import UIKit
 
 
 protocol ExchangeRouterInput: class {
-    func showRecipientAccountSelection(exchangeProviderBuilder: ExchangeProviderBuilderProtocol,
-                                       from fromViewController: UIViewController)
     func showConfirm(fromAccount: String,
                      toAccount: String,
                      amount: String,

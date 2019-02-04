@@ -23,11 +23,6 @@ class ExchangeRouter {
 // MARK: - ExchangeRouterInput
 
 extension ExchangeRouter: ExchangeRouterInput {
-    func showRecipientAccountSelection(exchangeProviderBuilder: ExchangeProviderBuilderProtocol,
-                                       from fromViewController: UIViewController) {
-        RecipientAccountsModule.create(app: app,
-                                       exchangeProviderBuilder: exchangeProviderBuilder).present(from: fromViewController)
-    }
     
     func showConfirmSucceed(popUpDelegate: PopUpSendConfirmSuccessVMDelegate, from viewController: UIViewController) {
         let viewModel = PopUpSendConfirmSuccessVM()

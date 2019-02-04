@@ -9,13 +9,14 @@
 import UIKit
 
 protocol AccountsDataManagerDelegate: class {
-    func currentPageDidChange(_ newIndex: Int)
+    func currentPageDidChange(_ newIndex: Int, manager: AccountsDataManager)
 }
 
 class AccountsDataManager: NSObject {
     enum CellType {
         case small
         case regular
+        case thin
     }
     
     weak var delegate: AccountsDataManagerDelegate?
@@ -48,6 +49,8 @@ class AccountsDataManager: NSObject {
             cellIdentifier = "SmallAccountCell"
         case .regular:
             cellIdentifier = "AccountViewCell"
+        case .thin:
+            cellIdentifier = "ThinAccountCell"
         }
         registerXib(identifier: cellIdentifier)
     }
@@ -57,21 +60,33 @@ class AccountsDataManager: NSObject {
         accountsCollectionView.reloadData()
     }
     
+    func updateAccountsAnimated(_ accounts: [Account], completion: @escaping () -> Void) {
+        self.accounts = accounts
+        
+        accountsCollectionView.performBatchUpdates({
+            let indexSet = IndexSet(integer: 0)
+            self.accountsCollectionView.reloadSections(indexSet)
+        }, completion: { (finished) in
+            if finished {
+                completion()
+            }
+        })
+    }
+    
+    
     func reloadData() {
         accountsCollectionView.reloadData()
     }
     
     func scrollTo(index: Int) {
-        guard index < accounts.count else {
-            return
-        }
+        guard index < accounts.count else { return }
         
         let prevIndex = self.indexOfMajorCell()
         let indexPath = IndexPath(row: index, section: 0)
         accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
         
         if prevIndex != index {
-            delegate?.currentPageDidChange(index)
+            delegate?.currentPageDidChange(index, manager: self)
         }
     }
     
@@ -99,6 +114,9 @@ extension AccountsDataManager: UICollectionViewDataSource {
         let amountFont: UIFont
         
         switch cellType {
+        case .thin:
+            backgroundImage = accountDisplayer.thinImage(for: account)
+            amountFont = Theme.Font.AccountCards.smallCardAmount!
         case .small:
             backgroundImage = accountDisplayer.smallImage(for: account)
             amountFont = Theme.Font.AccountCards.smallCardAmount!
@@ -157,7 +175,7 @@ extension AccountsDataManager: UICollectionViewDelegate {
                             scrollView.layoutIfNeeded()
             }, completion: nil)
             
-            delegate?.currentPageDidChange(snapToIndex)
+            delegate?.currentPageDidChange(snapToIndex, manager: self)
             
         } else {
             let indexOfMajorCell = self.indexOfMajorCell()
@@ -167,7 +185,7 @@ extension AccountsDataManager: UICollectionViewDelegate {
             accountsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             
             if indexOfCellBeforeDragging != indexOfMajorCell {
-                delegate?.currentPageDidChange(indexOfMajorCell)
+                delegate?.currentPageDidChange(indexOfMajorCell, manager: self)
             }
         }
     }

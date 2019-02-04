@@ -12,10 +12,10 @@ class AccountViewCell: UICollectionViewCell {
 
     @IBOutlet private var backgroundImageView: UIImageView!
     @IBOutlet private var smallCryptoAmountLabel: UILabel?
-    @IBOutlet private var bigCryptoAmountLabel: UILabel!
+    @IBOutlet private var bigCryptoAmountLabel: UILabel?
     @IBOutlet private var fiatAmountLabel: UILabel!
     @IBOutlet private var accountNameLabel: UILabel!
-    @IBOutlet private var currencyNameLabel: UILabel!
+    @IBOutlet private var currencyNameLabel: UILabel?
     
     func configureWith(cryptoAmount: String,
                        cryptoAmountWithoutCurrency: String,

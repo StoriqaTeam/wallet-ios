@@ -541,6 +541,7 @@
 		CE288A16219EAFCF0010FA3B /* FeeNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A15219EAFCF0010FA3B /* FeeNetworkProvider.swift */; };
 		CE288A18219EB02B0010FA3B /* API+Fees.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A17219EB02B0010FA3B /* API+Fees.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
+		CE3ED37122018D9F0031A8BA /* ThinAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3ED37022018D9F0031A8BA /* ThinAccountCell.xib */; };
 		CE41F3432181A8EB00070D5D /* UniversalLinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */; };
 		CE41F3462181AAF900070D5D /* EmailConfirm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */; };
 		CE41F3482181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */; };
@@ -1374,6 +1375,7 @@
 		CE288A17219EB02B0010FA3B /* API+Fees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Fees.swift"; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CE30D5AF8E70B137F596C8DA /* ExchangeConfirmPopUpRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpRouter.swift; sourceTree = "<group>"; };
+		CE3ED37022018D9F0031A8BA /* ThinAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThinAccountCell.xib; sourceTree = "<group>"; };
 		CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLinkParser.swift; sourceTree = "<group>"; };
 		CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailConfirm.storyboard; sourceTree = "<group>"; };
 		CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEmailConfirmSuccessVM.swift; sourceTree = "<group>"; };
@@ -4764,6 +4766,7 @@
 			children = (
 				CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */,
 				CE57C6982165F83400696FF7 /* AccountTableCell.xib */,
+				CE3ED37022018D9F0031A8BA /* ThinAccountCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -5532,6 +5535,7 @@
 				A535BA1B21CA5B5600B0BAF8 /* Montserrat-Italic.ttf in Resources */,
 				A535BA0F21CA5B5600B0BAF8 /* Montserrat-ThinItalic.ttf in Resources */,
 				CEF02F8121C3DA2C003D18FF /* AppInfo.strings in Resources */,
+				CE3ED37122018D9F0031A8BA /* ThinAccountCell.xib in Resources */,
 				A56ED379216CAE27009FA58B /* TransactionDescriptionView.xib in Resources */,
 				A5C1874E21C0EE8800779D26 /* QuickLaunch.strings in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
@@ -6599,7 +6603,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ADE2B87D000AB5C20D3AD8A0 /* Pods-Wallet.debug.xcconfig */;
 			buildSettings = {
-				APP_LINK = "applinks:stable.stq.cloud";
+				APP_LINK = "applinks:stage.stq.cloud";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon$(BUNDLE_ID_SUFFIX)";
 				BUNDLE_ID_SUFFIX = "-test";
 				CODE_SIGN_ENTITLEMENTS = Wallet/Wallet.entitlements;

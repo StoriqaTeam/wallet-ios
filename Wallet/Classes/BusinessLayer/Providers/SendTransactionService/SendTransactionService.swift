@@ -14,6 +14,8 @@ protocol SendTransactionServiceProtocol {
                          completion: @escaping (Result<String?>) -> Void)
     func sendExchangeTransaction(transaction: Transaction,
                                  fromAccount: String,
+                                 value: Decimal,
+                                 currency: Currency,
                                  exchangeId: String,
                                  exchangeRate: Decimal,
                                  completion: @escaping (Result<String?>) -> Void)
@@ -73,6 +75,8 @@ class SendTransactionService: SendTransactionServiceProtocol {
     
     func sendExchangeTransaction(transaction: Transaction,
                                  fromAccount: String,
+                                 value: Decimal,
+                                 currency: Currency,
                                  exchangeId: String,
                                  exchangeRate: Decimal,
                                  completion: @escaping (Result<String?>) -> Void) {
@@ -93,6 +97,8 @@ class SendTransactionService: SendTransactionServiceProtocol {
                                                    email: currentEmail,
                                                    transaction: transaction,
                                                    fromAccount: fromAccount,
+                                                   value: value,
+                                                   currency: currency,
                                                    exchangeId: exchangeId,
                                                    exchangeRate: exchangeRate,
                                                    completion: completion)
@@ -159,14 +165,16 @@ extension SendTransactionService {
     }
     
     
-    private func sendExchangeTransaction( authToken: String,
-                                          userId: Int,
-                                          email: String,
-                                          transaction: Transaction,
-                                          fromAccount: String,
-                                          exchangeId: String,
-                                          exchangeRate: Decimal,
-                                          completion: @escaping (Result<String?>) -> Void) {
+    private func sendExchangeTransaction(authToken: String,
+                                         userId: Int,
+                                         email: String,
+                                         transaction: Transaction,
+                                         fromAccount: String,
+                                         value: Decimal,
+                                         currency: Currency,
+                                         exchangeId: String,
+                                         exchangeRate: Decimal,
+                                         completion: @escaping (Result<String?>) -> Void) {
         
         
         let signHeader: SignHeader
@@ -181,6 +189,8 @@ extension SendTransactionService {
             transaction: transaction,
             userId: userId,
             fromAccount: fromAccount,
+            value: value,
+            currency: currency,
             authToken: authToken,
             queue: .main,
             signHeader: signHeader,

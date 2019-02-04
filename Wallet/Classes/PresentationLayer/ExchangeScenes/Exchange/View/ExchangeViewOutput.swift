@@ -12,14 +12,17 @@ import UIKit
 protocol ExchangeViewOutput: class {
     func viewIsReady()
     func viewWillAppear()
-    func accountsCollectionView(_ collectionView: UICollectionView)
+    func fromAccountsCollectionView(_ collectionView: UICollectionView)
+    func toAccountsCollectionView(_ collectionView: UICollectionView)
     func configureCollections()
     
     func isValidAmount(_ amount: String) -> Bool
-    func amountChanged(_ amount: String)
-    func amountDidBeginEditing()
-    func amountDidEndEditing()
+    func fromAmountChanged(_ amount: String)
+    func toAmountChanged(_ amount: String)
+    func fromAmountDidBeginEditing()
+    func fromAmountDidEndEditing()
+    func toAmountDidBeginEditing()
+    func toAmountDidEndEditing()
     
-    func recipientAccountPressed()
     func exchangeButtonPressed()
 }
