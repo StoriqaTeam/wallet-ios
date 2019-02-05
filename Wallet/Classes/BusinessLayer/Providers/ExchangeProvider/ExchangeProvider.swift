@@ -151,7 +151,7 @@ class ExchangeProvider: ExchangeProviderProtocol {
                                       fromAccount: [],
                                       toAddress: toAddress,
                                       toAccount: toAccount,
-                                      fromValue: fromValue, // не используется
+                                      fromValue: fromValue,
             fromCurrency: currency,
             toValue: toValue,
             toCurrency: recipientAccount!.currency,
