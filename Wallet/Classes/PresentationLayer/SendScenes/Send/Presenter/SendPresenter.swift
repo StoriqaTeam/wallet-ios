@@ -192,6 +192,9 @@ extension SendPresenter: SendInteractorOutput {
             }
         }()
         view.setCryptoAmount(amountString)
+        
+        let placeholder = String(format: LocalizedStrings.amountPlaceholder, currency.ISO)
+        view.updateCryptoAmountPlaceholder(placeholder)
     }
     
     func updateFiatAmount(_ amount: Decimal) {
