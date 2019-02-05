@@ -192,6 +192,9 @@ class TxnUpdaterTests: XCTestCase {
         dataStore.save(pendingTxn)
         
         updater.update()
+        //FIXME: test will fail, that's ok for now
+        //tx updater is currently dealing with server bug
+        //so we have one more block loaded then expected
         XCTAssertEqual(networkProvider.offsets, [0,2,4])
         XCTAssertEqual(networkProvider.blocks.count, 3)
         XCTAssertEqual(networkProvider.blocks[0], ["14","13"])
@@ -224,6 +227,9 @@ class TxnUpdaterTests: XCTestCase {
         defaults.lastTxTimastamp = 13.0
         
         updater.update()
+        //FIXME: test will fail, that's ok for now
+        //tx updater is currently dealing with server bug
+        //so we have one more block loaded then expected
         XCTAssertEqual(networkProvider.offsets, [0])
         XCTAssertEqual(networkProvider.blocks.count, 1)
         XCTAssertEqual(networkProvider.blocks[0], ["14","13"])
@@ -236,6 +242,9 @@ class TxnUpdaterTests: XCTestCase {
         defaults.lastTxTimastamp = 3.0
         
         updater.update()
+        //FIXME: test will fail, that's ok for now
+        //tx updater is currently dealing with server bug
+        //so we have one more block loaded then expected
         XCTAssertEqual(networkProvider.offsets, [0,2,4,6,8,10])
         XCTAssertEqual(networkProvider.blocks.count, 6)
         XCTAssertEqual(networkProvider.blocks[0], ["14","13"])

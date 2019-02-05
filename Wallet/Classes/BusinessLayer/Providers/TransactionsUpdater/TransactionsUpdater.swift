@@ -127,8 +127,12 @@ extension TransactionsUpdater {
     private func transactionsLoaded(_ txs: [Transaction]) {
         dataStore.save(txs)
         
-        if txs.count < limit ||
-            isTxAlreadyLoaded(txs.last!) {
+        let sorted = txs.sorted { $0.createdAt > $1.createdAt }
+        
+        // Workaround server issue. In original algorythm 'isTxAlreadyLoaded(sorted.last!)' is used
+        
+        if txs.isEmpty || txs.count < limit ||
+            isTxAlreadyLoaded(sorted.first!) {
             finish()
             defaults.lastTxTimastamp = nil
         } else {
