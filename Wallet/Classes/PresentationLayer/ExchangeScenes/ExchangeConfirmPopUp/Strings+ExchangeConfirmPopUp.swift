@@ -31,13 +31,7 @@ extension Strings {
             value: "To",
             comment: "To title")
         
-        static let amountTitle = NSLocalizedString(
-            "ExchangeConfirmPopUp.amountTitle",
-            tableName: tableName,
-            value: "Amount",
-            comment: "Amount title")
-        
-        static let confirmButton = NSLocalizedString(
+         static let confirmButton = NSLocalizedString(
             "ExchangeConfirmPopUp.confirmButton",
             tableName: tableName,
             value: "Confirm",

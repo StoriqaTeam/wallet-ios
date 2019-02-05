@@ -32,11 +32,16 @@ extension ExchangeRouter: ExchangeRouterInput {
     
     func showConfirm(fromAccount: String,
                      toAccount: String,
-                     amount: String,
+                     fromAmount: String,
+                     toAmount: String,
                      confirmTxBlock: @escaping (() -> Void),
                      from viewController: UIViewController) {
         ExchangeConfirmPopUpModule
-            .create(fromAccount: fromAccount, toAccount: toAccount, amount: amount, confirmTxBlock: confirmTxBlock)
+            .create(fromAccount: fromAccount,
+                    toAccount: toAccount,
+                    fromAmount: fromAmount,
+                    toAmount: toAmount,
+                    confirmTxBlock: confirmTxBlock)
             .present(from: viewController)
     }
     

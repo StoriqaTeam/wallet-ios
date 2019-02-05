@@ -18,13 +18,19 @@ class ExchangeConfirmPopUpPresenter {
     
     private let fromAccount: String
     private let toAccount: String
-    private let amount: String
+    private let fromAmount: String
+    private let toAmount: String
     private let confirmTxBlock: (() -> Void)
     
-    init(fromAccount: String, toAccount: String, amount: String, confirmTxBlock: @escaping (() -> Void)) {
+    init(fromAccount: String,
+         toAccount: String,
+         fromAmount: String,
+         toAmount: String,
+         confirmTxBlock: @escaping (() -> Void)) {
         self.fromAccount = fromAccount
         self.toAccount = toAccount
-        self.amount = amount
+        self.fromAmount = fromAmount
+        self.toAmount = toAmount
         self.confirmTxBlock = confirmTxBlock
     }
     
@@ -36,7 +42,7 @@ class ExchangeConfirmPopUpPresenter {
 extension ExchangeConfirmPopUpPresenter: ExchangeConfirmPopUpViewOutput {
     
     func viewIsReady() {
-        view.setupInitialState(fromAccount: fromAccount, toAccount: toAccount, amount: amount)
+        view.setupInitialState(fromAccount: fromAccount, toAccount: toAccount, fromAmount: fromAmount, toAmount: toAmount)
     }
     
     func confirmButtonTapped() {

@@ -133,9 +133,13 @@ extension ExchangePresenter: ExchangeViewOutput {
     func exchangeButtonPressed() {
         let fromAccount = interactor.getFromAccountName()
         let toAccount = interactor.getToAccountName()
-        let currency = interactor.getFromCurrency()
-        let decimalAmount = interactor.getFromAmount()
-        let amountStr = currencyFormatter.getStringFrom(amount: decimalAmount, currency: currency)
+        let fromCurrency = interactor.getFromCurrency()
+        let decimalFromAmount = interactor.getFromAmount()
+        let fromAmountStr = currencyFormatter.getStringFrom(amount: decimalFromAmount, currency: fromCurrency)
+        let toCurrency = interactor.getToCurrency()
+        let decimalToAmount = interactor.getToAmount()
+        let toAmountStr = currencyFormatter.getStringFrom(amount: decimalToAmount, currency: toCurrency)
+        
         let confirmTxBlock = { [weak self] in
             self?.storiqaLoader.startLoader()
             self?.interactor.sendTransaction()
@@ -143,7 +147,8 @@ extension ExchangePresenter: ExchangeViewOutput {
 
         router.showConfirm(fromAccount: fromAccount,
                            toAccount: toAccount,
-                           amount: amountStr,
+                           fromAmount: fromAmountStr,
+                           toAmount: toAmountStr,
                            confirmTxBlock: confirmTxBlock,
                            from: view.viewController)
     }

@@ -10,12 +10,14 @@ class ExchangeConfirmPopUpModule {
     
     class func create(fromAccount: String,
                       toAccount: String,
-                      amount: String,
+                      fromAmount: String,
+                      toAmount: String,
                       confirmTxBlock: @escaping (() -> Void)) -> ExchangeConfirmPopUpModuleInput {
         let router = ExchangeConfirmPopUpRouter()
         let presenter = ExchangeConfirmPopUpPresenter(fromAccount: fromAccount,
                                                       toAccount: toAccount,
-                                                      amount: amount,
+                                                      fromAmount: fromAmount,
+                                                      toAmount: toAmount,
                                                       confirmTxBlock: confirmTxBlock)
         let interactor = ExchangeConfirmPopUpInteractor()
         

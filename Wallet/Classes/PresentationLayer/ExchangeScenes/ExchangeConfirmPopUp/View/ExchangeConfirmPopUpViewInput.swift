@@ -10,6 +10,6 @@ import UIKit
 
 
 protocol ExchangeConfirmPopUpViewInput: class, Presentable {
-    func setupInitialState(fromAccount: String, toAccount: String, amount: String)
+    func setupInitialState(fromAccount: String, toAccount: String, fromAmount: String, toAmount: String)
     func setBackgroundBlur(image: UIImage)
 }
