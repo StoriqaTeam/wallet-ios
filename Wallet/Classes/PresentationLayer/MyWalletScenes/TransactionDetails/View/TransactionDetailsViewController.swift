@@ -96,22 +96,15 @@ extension TransactionDetailsViewController {
     private func configureAppearence(transaction: TransactionDisplayable) {
         let direction = transaction.direction
         let directionImage: UIImage?
-        let cryptoAmountString: String
-        let fiatAmountString: String
         let gradientColors: [CGColor]
         
         if direction == .receive {
             gradientColors = Theme.Color.Gradient.Details.detailBlueGradient
             directionImage = UIImage(named: "receiveIconMedium")
-            cryptoAmountString = "+ \(transaction.cryptoAmountString)"
-            fiatAmountString = "+ \(transaction.fiatAmountString)"
         } else {
             gradientColors = Theme.Color.Gradient.Details.detailsRedGradient
             directionImage = UIImage(named: "sendIconMedium")
-            cryptoAmountString = "- \(transaction.cryptoAmountString)"
-            fiatAmountString = "- \(transaction.fiatAmountString)"
         }
-        
         
         feeAmountLabel.text = "Fee \(transaction.feeAmountString)"
         gradientView.alpha = 0.31
@@ -120,8 +113,8 @@ extension TransactionDetailsViewController {
                                   startPoint: CGPoint(x: 0.5, y: 0.0),
                                   endPoint: CGPoint(x: 0.5, y: 1.0))
         directionImageView.image = directionImage
-        cryptoAmountLabel.text = cryptoAmountString
-        fiatAmountLabel.text = fiatAmountString
+        cryptoAmountLabel.text = transaction.cryptoAmountString
+        fiatAmountLabel.text = transaction.secondAmountString
     }
     
     func configureDescriptionView(transaction: TransactionDisplayable) {

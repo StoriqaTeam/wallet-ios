@@ -5,6 +5,7 @@
 //  Created by Storiqa on 29/10/2018.
 //  Copyright © 2018 Storiqa. All rights reserved.
 //
+//swiftlint:disable function_parameter_count
 
 import Foundation
 
@@ -21,6 +22,8 @@ protocol SendTransactionNetworkProviderProtocol {
     func sendExchange(transaction: Transaction,
                       userId: Int,
                       fromAccount: String,
+                      value: Decimal,
+                      currency: Currency,
                       authToken: String,
                       queue: DispatchQueue,
                       signHeader: SignHeader,
@@ -63,6 +66,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      fee: feeString,
                                                      exchangeId: nil,
                                                      exchangeRate: nil,
+                                                     fiatValue: transaction.fiatValue,
+                                                     fiatCurrency: transaction.fiatCurrency,
                                                      signHeader: signHeader)
         
         loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
@@ -90,6 +95,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
     func sendExchange(transaction: Transaction,
                       userId: Int,
                       fromAccount: String,
+                      value: Decimal,
+                      currency: Currency,
                       authToken: String,
                       queue: DispatchQueue,
                       signHeader: SignHeader,
@@ -99,8 +106,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
         
         let txId = transaction.id
         let toCurrency = transaction.toCurrency
-        let valueCurrency = toCurrency
-        let value = transaction.toValue.string
+        let valueCurrency = currency
+        let value = value.string
         let receiverType = getReceiverType(transaction: transaction)
         let feeString = transaction.fee.string
         
@@ -115,6 +122,8 @@ class SendTransactionNetworkProvider: NetworkLoadable, SendTransactionNetworkPro
                                                      fee: feeString,
                                                      exchangeId: exchangeId,
                                                      exchangeRate: exchangeRate,
+                                                     fiatValue: nil,
+                                                     fiatCurrency: nil,
                                                      signHeader: signHeader)
         loadObjectJSON(request: request, queue: queue) { [weak self] (result) in
             guard let strongSelf = self else { return }

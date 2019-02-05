@@ -14,7 +14,8 @@ protocol QRScannerDelegate: class {
 
 protocol SendTransactionProviderProtocol: class {
     
-    var amount: Decimal { get }
+    var cryptoAmount: Decimal { get }
+    var fiatAmount: Decimal { get }
     var paymentFee: Decimal? { get }
     var receiverAddress: String { get }
     var selectedAccount: Account { get }
@@ -24,6 +25,7 @@ protocol SendTransactionProviderProtocol: class {
     func getFeeAndWait() -> (fee: Decimal?, wait: String)
     func getSubtotal() -> Decimal
     func isEnoughFunds() -> Bool
+    func calculateFiatAmount()
     func createTransaction() -> Transaction
 }
 
@@ -31,33 +33,59 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     
     weak var scanDelegate: QRScannerDelegate?
     
-    var selectedAccount: Account
-    var amount: Decimal
-    var paymentFee: Decimal?
     var receiverAddress: String
+    private(set) var cryptoAmount: Decimal
+    private(set) var paymentFee: Decimal?
+    private(set) var selectedAccount: Account
+    private(set) var fiatAmount: Decimal
     private var feeIndex: Int = -1
     
     private let accountProvider: AccountsProviderProtocol
     private let feeProvider: FeeProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
+    private let converterFactory: CurrencyConverterFactoryProtocol
+    private let fromFiatConverter: CurrencyConverterProtocol
+    private var toFiatConverter: CurrencyConverterProtocol
     
     init(accountProvider: AccountsProviderProtocol,
          feeProvider: FeeProviderProtocol,
-         denominationUnitsConverter: DenominationUnitsConverterProtocol) {
+         denominationUnitsConverter: DenominationUnitsConverterProtocol,
+         converterFactory: CurrencyConverterFactoryProtocol) {
         
         self.accountProvider = accountProvider
         self.feeProvider = feeProvider
         self.denominationUnitsConverter = denominationUnitsConverter
+        self.converterFactory = converterFactory
         
         // default build
-        self.amount = 0
+        self.cryptoAmount = 0
+        self.fiatAmount = 0
         self.paymentFee = nil
         self.receiverAddress = ""
         self.selectedAccount = accountProvider.getAllAccounts().first!
+        
+        fromFiatConverter = converterFactory.createConverter(from: .defaultFiat)
+        toFiatConverter = converterFactory.createConverter(from: selectedAccount.currency)
     }
     
     
     // MARK: SendTransactionProviderProtocol
+    
+    func setSelectedAccount(_ account: Account) {
+        selectedAccount = account
+        toFiatConverter = converterFactory.createConverter(from: selectedAccount.currency)
+        calculateFiatAmount()
+    }
+    
+    func setCryptoAmount(_ amount: Decimal) {
+        cryptoAmount = amount
+        calculateFiatAmount()
+    }
+    
+    func setFiatAmount(_ amount: Decimal) {
+        fiatAmount = amount
+        cryptoAmount = fromFiatConverter.convert(amount: fiatAmount, to: selectedAccount.currency)
+    }
     
     func setPaymentFee(index: Int) {
         guard let fee = feeProvider.getFee(index: index) else {
@@ -118,14 +146,19 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
     }
     
     func getSubtotal() -> Decimal {
-        guard !amount.isZero, let paymentFee = paymentFee else {
+        guard !cryptoAmount.isZero, let paymentFee = paymentFee else {
             return 0
         }
         
         let currency = selectedAccount.currency
         let fee = denominationUnitsConverter.amountToMaxUnits(paymentFee, currency: currency)
-        let sum = amount + fee
+        let sum = cryptoAmount + fee
         return sum
+    }
+    
+    func calculateFiatAmount() {
+        let currency = Currency.defaultFiat
+        fiatAmount = toFiatConverter.convert(amount: cryptoAmount, to: currency)
     }
     
     func isEnoughFunds() -> Bool {
@@ -134,7 +167,7 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         }
         
         let currency = selectedAccount.currency
-        let inMinUnits = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
+        let inMinUnits = denominationUnitsConverter.amountToMinUnits(cryptoAmount, currency: currency)
         let sum = inMinUnits + paymentFee
         let available = selectedAccount.balance
         return sum.isLessThanOrEqualTo(available)
@@ -148,8 +181,11 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
         let toAddress = receiverAddress
         let fee = paymentFee!
         
-        let toValue = denominationUnitsConverter.amountToMinUnits(amount, currency: currency)
+        let toValue = denominationUnitsConverter.amountToMinUnits(cryptoAmount, currency: currency)
    
+        calculateFiatAmount()
+        let fiatValue = fiatAmount.string
+        
         let transaction = Transaction(id: uuid,
                                       fromAddress: [fromAddress],
                                       fromAccount: [],
@@ -164,8 +200,8 @@ class SendTransactionProvider: SendTransactionProviderProtocol {
                                       createdAt: timestamp,
                                       updatedAt: timestamp,
                                       status: .pending,
-                                      fiatValue: nil,
-                                      fiatCurrency: nil)
+                                      fiatValue: fiatValue,
+                                      fiatCurrency: Currency.defaultFiat)
         return transaction
     }
     

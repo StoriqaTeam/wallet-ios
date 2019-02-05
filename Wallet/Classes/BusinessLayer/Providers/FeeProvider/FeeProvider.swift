@@ -74,17 +74,17 @@ class FeeProvider: FeeProviderProtocol {
 // Private methods
 
 extension FeeProvider {
-    func roundedValues(_ fees: [EstimatedFee]) -> [EstimatedFee] {
+    private func roundedValues(_ fees: [EstimatedFee]) -> [EstimatedFee] {
         
         let roundedFees = fees.map { (fee) -> EstimatedFee in
             switch fee.currency {
             case .stq:
-                let newValue = Decimal(round((fee.value / pow(10, 18)).double)) * pow(10, 18)
+                let newValue = (fee.value / pow(10, 18)).rounded() * pow(10, 18)
                 let roundedFee = EstimatedFee(currency: fee.currency, value: newValue, estimatedTime: fee.estimatedTime)
                 return roundedFee
                 
             case .eth:
-                let newValue = Decimal(round((fee.value / pow(10, 12)).double)) * pow(10, 12)
+                let newValue = (fee.value / pow(10, 12)).rounded() * pow(10, 12)
                 let roundedFee = EstimatedFee(currency: fee.currency, value: newValue, estimatedTime: fee.estimatedTime)
                 return roundedFee
                 

@@ -51,7 +51,7 @@ class ExchangeInteractor {
         self.orderFactory = orderFactory
         
         let account = accountWatcher.getAccount()
-        exchangeProviderBuilder.set(account: account)
+        exchangeProviderBuilder.set(fromAccount: account)
     }
     
     deinit {
@@ -90,11 +90,11 @@ class ExchangeInteractor {
 
 extension ExchangeInteractor: ExchangeInteractorInput {
     
-    func getAccountName() -> String {
+    func getFromAccountName() -> String {
         return exchangeProvider.selectedAccount.name
     }
     
-    func getRecipientAccountName() -> String {
+    func getToAccountName() -> String {
         return exchangeProvider.recipientAccount?.name ?? ""
     }
     
@@ -112,52 +112,72 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         return index
     }
     
-    func getAccountsCount() -> Int {
-        return accountsProvider.getAllAccounts().count
+    func getFromAmount() -> Decimal {
+        return exchangeProvider.fromAmount
     }
     
-    func getAmount() -> Decimal {
-        return exchangeProvider.amount
+    func getToAmount() -> Decimal {
+        return exchangeProvider.toAmount
     }
     
-    func getGiveAmount() -> Decimal {
-        return exchangeProvider.getSubtotal()
-    }
-    
-    func getAccountCurrency() -> Currency {
+    func getFromCurrency() -> Currency {
         let account = exchangeProvider.selectedAccount
         let currency = account.currency
         return currency
     }
     
-    func getRecipientCurrency() -> Currency {
+    func getToCurrency() -> Currency {
         guard let account = exchangeProvider.recipientAccount else {
-            return getAccountCurrency()
+            return getFromCurrency()
         }
         
         let currency = account.currency
         return currency
     }
     
-    func setCurrentAccount(index: Int) {
+    func setFromAccount(index: Int) {
         let currentIndex = getAccountIndex()
         guard currentIndex != index else { return }
         
         let allAccounts = accountsProvider.getAllAccounts()
         accountWatcher.setAccount(allAccounts[index])
         let account = allAccounts[index]
-        exchangeProviderBuilder.set(account: account)
+        exchangeProviderBuilder.set(fromAccount: account)
         
         updateRecipientAccount()
-        updateAmount()
-        updateGet()
-        updateTotal()
+        updateFromAmount()
+        updateToAmount()
+        updateValidity()
+        updateRate()
     }
     
-    func setAmount(_ amount: Decimal) {
-        exchangeProviderBuilder.set(cryptoAmount: amount)
-        updateGet()
-        updateTotal()
+    
+    func setToAccount(index: Int) {
+        let recepientAccounts = exchangeProvider.getRecipientAccounts()
+        guard recepientAccounts.count > index else { return }
+        let selected = recepientAccounts[index]
+        exchangeProviderBuilder.set(toAccount: selected)
+        
+        updateFromAmount()
+        updateToAmount()
+        updateValidity()
+        updateRate()
+    }
+    
+    func setFromAmount(_ amount: Decimal) {
+        exchangeProviderBuilder.set(fromAmount: amount)
+        exchangeProvider.updateAmount()
+        updateToAmount()
+        updateValidity()
+        updateRate()
+    }
+    
+    func setToAmount(_ amount: Decimal) {
+        exchangeProviderBuilder.set(toAmount: amount)
+        exchangeProvider.updateAmount()
+        updateFromAmount()
+        updateValidity()
+        updateRate()
     }
     
     func getTransactionBuilder() -> ExchangeProviderBuilderProtocol {
@@ -166,13 +186,13 @@ extension ExchangeInteractor: ExchangeInteractorInput {
     
     func updateState() {
         let account = accountWatcher.getAccount()
-        exchangeProviderBuilder.set(account: account)
+        exchangeProviderBuilder.set(fromAccount: account)
         
         updateRecipientAccount()
-        updateGet()
-        updateGive()
-        updateAmount()
-        updateTotal()
+        updateFromAmount()
+        updateToAmount()
+        updateValidity()
+        updateRate()
     }
     
     func startObservers() {
@@ -207,10 +227,14 @@ extension ExchangeInteractor: ExchangeInteractorInput {
         let exchangeTransaction = exchangeProvider.createExchangeTransaction()
         let account = exchangeProvider.selectedAccount
         let fromAccount = account.id.lowercased()
+        let value = exchangeProvider.mainAmount == .from ? exchangeTransaction.fromValue : exchangeTransaction.toValue
+        let currency = exchangeProvider.mainAmount == .from ? exchangeTransaction.fromCurrency : exchangeTransaction.toCurrency
         
         sendTransactionService.sendExchangeTransaction(
             transaction: exchangeTransaction,
             fromAccount: fromAccount,
+            value: value,
+            currency: currency,
             exchangeId: orderId,
             exchangeRate: rate) { [weak self] (result) in
                 switch result {
@@ -249,8 +273,8 @@ extension ExchangeInteractor {
         let index = accounts.index { $0 == account } ?? 0
         
         accountWatcher.setAccount(accounts[index])
+        output.updateFromAccounts(accounts, index: index)
         updateRecipientAccount()
-        output.updateAccounts(accounts: accounts, index: index)
     }
     
     private func resolveAccountIndex(account: Account) -> Int {
@@ -260,11 +284,12 @@ extension ExchangeInteractor {
     
     private func orderDidExpire(_ order: Order?) {
         exchangeProvider.invalidateOrder()
-        updateTotal()
+        updateValidity()
+        updateRate()
     }
     
     private func orderTick(_ seconds: Int) {
-        let amount = exchangeProvider.amount
+        let amount = exchangeProvider.fromAmount
         guard !amount.isZero else {
             output.updateOrder(time: nil)
             return
@@ -280,92 +305,94 @@ extension ExchangeInteractor {
 extension ExchangeInteractor {
     
     private func updateRecipientAccount() {
-        let account = exchangeProvider.recipientAccount
-        output.updateRecipientAccount(account)
+        let toAccounts = exchangeProvider.getRecipientAccounts()
+        
+        guard !toAccounts.isEmpty,
+            let selected = exchangeProvider.recipientAccount,
+            let index = toAccounts.firstIndex(where: { $0 == selected }) else {
+                return
+        }
+        
+        output.updateToAccounts(toAccounts, index: index)
     }
     
-    private func updateAmount() {
+    private func updateFromAmount() {
+        let selectedAccount = exchangeProvider.selectedAccount
+        let amount = exchangeProvider.fromAmount
+        let currency = selectedAccount.currency
+        output.updateFromAmount(amount, currency: currency)
+    }
+    
+    private func updateToAmount() {
         guard let recipientAccount = exchangeProvider.recipientAccount else {
             return
         }
         
-        let amount = exchangeProvider.amount
+        let amount = exchangeProvider.toAmount
         let currency = recipientAccount.currency
-        output.updateAmount(amount, currency: currency)
+        output.updateToAmount(amount, currency: currency)
     }
     
-    private func updateGet() {
-        guard let recipientAccount = exchangeProvider.recipientAccount else {
-            return
-        }
+    private func updateValidity(invalid: Bool = false) {
+        let isEnough = exchangeProvider.isEnoughFunds()
+        let hasAmount = !exchangeProvider.fromAmount.isZero
+        let hasRecipient = exchangeProvider.recipientAccount != nil
+        let formIsValid = !invalid && hasAmount && hasRecipient && isEnough
         
-        let amount = exchangeProvider.amount
-        let currency = recipientAccount.currency
-        output.updateGet(amount, currency: currency)
+        output.updateIsEnoughFunds(!hasAmount || isEnough)
+        output.updateFormIsValid(formIsValid)
     }
     
-    private func updateGive() {
-        let currency = accountWatcher.getAccount().currency
-        let amount = exchangeProvider.getSubtotal()
-        output.updateGive(amount, currency: currency)
-    }
-    
-    private func updateTotal() {
-        let accountCurrency = accountWatcher.getAccount().currency
-        let amount = exchangeProvider.getAmountInMinUnits()
-        let exchangeAmount = max(1, amount)
+    private func updateRate() {
+        let isFromChanged = exchangeProvider.mainAmount == .from
+        let fromCurrency = accountWatcher.getAccount().currency
         
-        guard let recipientCurrency = exchangeProvider.recipientAccount?.currency else {
+        guard let toCurrency = exchangeProvider.recipientAccount?.currency else {
             log.error("Recipient account not found")
             output.updateFormIsValid(false)
-            output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
+            output.updateEmptyRate()
             return
         }
         
-        let isEnough = exchangeProvider.isEnoughFunds()
-        let hasAmount = !exchangeProvider.amount.isZero
+        let amount = isFromChanged ? exchangeProvider.getFromAmountInMinUnits() : exchangeProvider.getToAmountInMinUnits()
+        let amountCurrency = isFromChanged ? fromCurrency : toCurrency
+        let exchangeAmount = max(1, amount)
         
         exchangeRatesLoader.getExchangeRates(
-            from: accountCurrency,
-            to: recipientCurrency,
-            amountCurrency: recipientCurrency,
+            from: fromCurrency,
+            to: toCurrency,
+            amountCurrency: amountCurrency,
             amountInMinUnits: exchangeAmount) { [weak self]  (result) in
                 switch result {
                 case .success(let exchangeRate):
                     guard let strongSelf = self else { return }
                     
                     strongSelf.updateOrder(with: exchangeRate)
+                    strongSelf.exchangeProvider.updateAmount()
                     
-                    let total = strongSelf.exchangeProvider.getSubtotal()
-                    let formIsValid = strongSelf.isFormValid()
-                    let isEnough = strongSelf.exchangeProvider.isEnoughFunds()
-                    let hasAmount = !strongSelf.exchangeProvider.amount.isZero
+                    if isFromChanged {
+                        let updatedAmount = strongSelf.exchangeProvider.toAmount
+                        strongSelf.output.updateToAmount(updatedAmount, currency: toCurrency)
+                    } else {
+                        let updatedAmount = strongSelf.exchangeProvider.fromAmount
+                        strongSelf.output.updateFromAmount(updatedAmount, currency: fromCurrency)
+                    }
                     
-                    strongSelf.output.updateGive(total, currency: accountCurrency)
-                    strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
-                    strongSelf.output.updateFormIsValid(formIsValid)
-                    strongSelf.updateRateForOneUnit(from: accountCurrency, to: recipientCurrency)
+                    strongSelf.updateValidity()
+                    strongSelf.updateRateForOneUnit(from: fromCurrency, to: toCurrency)
                     strongSelf.removeTimerIfNeeded(amount: amount)
                     
                 case .failure(let error):
                     log.error(error)
                     guard let strongSelf = self else { return }
                     
-                    strongSelf.output.updateGive(0, currency: accountCurrency)
-                    strongSelf.output.updateIsEnoughFunds(!hasAmount || isEnough)
-                    strongSelf.output.updateFormIsValid(false)
+                    strongSelf.updateValidity(invalid: false)
+                    strongSelf.output.updateOrder(time: nil)
                     strongSelf.output.exchangeRateError(error)
-                    strongSelf.output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
+                    strongSelf.output.updateEmptyRate()
                 }
         }
     }
-    
-    private func isFormValid() -> Bool {
-        let isZeroAmount = exchangeProvider.amount.isZero
-        let hasRecipient = exchangeProvider.recipientAccount != nil
-        return !isZeroAmount && hasRecipient && exchangeProvider.isEnoughFunds()
-    }
-    
     
     private func updateOrder(with exchangeRate: ExchangeRate) {
         let order = orderFactory.createOrder(from: exchangeRate)
@@ -375,7 +402,7 @@ extension ExchangeInteractor {
     
     private func updateRateForOneUnit(from: Currency, to: Currency) {
         guard let rate = exchangeProvider.getRateForCurrentOrder() else {
-            output.updateRateFor(oneUnit: nil, fromCurrency: .fiat, toCurrency: .fiat)
+            output.updateEmptyRate()
             return
         }
         

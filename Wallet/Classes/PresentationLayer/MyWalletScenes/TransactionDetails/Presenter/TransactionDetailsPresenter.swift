@@ -100,6 +100,6 @@ extension TransactionDetailsPresenter {
     }
     
     private func getExplorer(from transaction: Transaction) -> BlockchainExplorer {
-        return transaction.fromCurrency == .btc ? .Blockcypher : .Etherscan
+        return transaction.fromCurrency == Currency.btc ? .Blockcypher : .Etherscan
     }
 }

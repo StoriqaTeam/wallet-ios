@@ -48,7 +48,7 @@
                                                 <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k58-k1-Wyg">
-                                                <rect key="frame" x="24" y="159" width="327" height="367.5"/>
+                                                <rect key="frame" x="24" y="159" width="327" height="446.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgf-ge-8Di">
                                                         <rect key="frame" x="0.0" y="0.0" width="327" height="66"/>
@@ -117,7 +117,7 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                                 <connections>
-                                                                    <action selector="amountDidChange:" destination="Bkl-J1-fPG" eventType="editingChanged" id="Z72-Oi-Hj1"/>
+                                                                    <action selector="cryptoAmountDidChange:" destination="Bkl-J1-fPG" eventType="editingChanged" id="Z72-Oi-Hj1"/>
                                                                 </connections>
                                                             </textField>
                                                         </subviews>
@@ -131,8 +131,40 @@
                                                             <constraint firstAttribute="bottom" secondItem="W2m-iJ-38i" secondAttribute="bottom" id="WT2-BZ-Guf"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNp-6b-RKK">
+                                                        <rect key="frame" x="0.0" y="168" width="327" height="56"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIAT AMOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3C-Gk-gSt">
+                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="16"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <color key="textColor" red="0.5450980392" green="0.61568627450000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xhn-Io-xGL" customClass="UnderlinedTextField" customModule="Wallet" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="16" width="327" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="D2D-ZY-cVF"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                                <connections>
+                                                                    <action selector="fiatAmountDidChange:" destination="Bkl-J1-fPG" eventType="editingChanged" id="FZc-Ai-s9N"/>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="d3C-Gk-gSt" firstAttribute="top" secondItem="wNp-6b-RKK" secondAttribute="top" id="C2d-uk-hAl"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Xhn-Io-xGL" secondAttribute="bottom" id="eAh-JV-bWd"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Xhn-Io-xGL" secondAttribute="trailing" id="jtu-uE-opL"/>
+                                                            <constraint firstItem="Xhn-Io-xGL" firstAttribute="leading" secondItem="wNp-6b-RKK" secondAttribute="leading" id="kcX-tU-flC"/>
+                                                            <constraint firstItem="d3C-Gk-gSt" firstAttribute="leading" secondItem="wNp-6b-RKK" secondAttribute="leading" id="pX7-Bs-K8v"/>
+                                                            <constraint firstItem="Xhn-Io-xGL" firstAttribute="top" secondItem="d3C-Gk-gSt" secondAttribute="bottom" id="vQd-2f-9v5"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9qM-3U-pTx">
-                                                        <rect key="frame" x="0.0" y="145" width="327" height="105"/>
+                                                        <rect key="frame" x="0.0" y="224" width="327" height="105"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Im-II-81B">
                                                                 <rect key="frame" x="0.0" y="23" width="327" height="82"/>
@@ -278,7 +310,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMC-Yd-uzj">
-                                                        <rect key="frame" x="0.0" y="273" width="327" height="94.5"/>
+                                                        <rect key="frame" x="0.0" y="352" width="327" height="94.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven’t got enough funds to send. Try to set another count." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghi-D2-tYq">
                                                                 <rect key="frame" x="44.5" y="0.0" width="238" height="31.5"/>
@@ -317,6 +349,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="lNh-cA-7ls" firstAttribute="leading" secondItem="k58-k1-Wyg" secondAttribute="leading" id="5qn-y4-68w"/>
+                                                    <constraint firstItem="wNp-6b-RKK" firstAttribute="top" secondItem="lNh-cA-7ls" secondAttribute="bottom" constant="23" id="9SV-a0-qvl"/>
                                                     <constraint firstItem="9qM-3U-pTx" firstAttribute="leading" secondItem="k58-k1-Wyg" secondAttribute="leading" id="ASh-3y-YFg"/>
                                                     <constraint firstAttribute="bottom" secondItem="HMC-Yd-uzj" secondAttribute="bottom" id="Bdl-ZD-s71"/>
                                                     <constraint firstAttribute="trailing" secondItem="lgf-ge-8Di" secondAttribute="trailing" id="EY4-qJ-ACH"/>
@@ -325,10 +358,12 @@
                                                     <constraint firstAttribute="trailing" secondItem="HMC-Yd-uzj" secondAttribute="trailing" id="Mvu-Te-K50"/>
                                                     <constraint firstAttribute="trailing" secondItem="9qM-3U-pTx" secondAttribute="trailing" id="NxK-dg-iEm"/>
                                                     <constraint firstItem="lgf-ge-8Di" firstAttribute="leading" secondItem="k58-k1-Wyg" secondAttribute="leading" id="Unw-Ou-SnP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="wNp-6b-RKK" secondAttribute="trailing" id="amP-ft-16n"/>
+                                                    <constraint firstItem="wNp-6b-RKK" firstAttribute="leading" secondItem="k58-k1-Wyg" secondAttribute="leading" id="bEO-OJ-yOM"/>
                                                     <constraint firstItem="HMC-Yd-uzj" firstAttribute="top" secondItem="9qM-3U-pTx" secondAttribute="bottom" constant="23" id="fM6-FN-5pp"/>
                                                     <constraint firstItem="lgf-ge-8Di" firstAttribute="top" secondItem="k58-k1-Wyg" secondAttribute="top" id="fbi-Ua-tqm"/>
                                                     <constraint firstItem="lNh-cA-7ls" firstAttribute="top" secondItem="lgf-ge-8Di" secondAttribute="bottom" constant="23" id="oPT-f8-wS1"/>
-                                                    <constraint firstItem="9qM-3U-pTx" firstAttribute="top" secondItem="lNh-cA-7ls" secondAttribute="bottom" id="vjk-Vg-MaY"/>
+                                                    <constraint firstItem="9qM-3U-pTx" firstAttribute="top" secondItem="wNp-6b-RKK" secondAttribute="bottom" id="y4F-0X-FpE"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -376,9 +411,11 @@
                     <connections>
                         <outlet property="accountsCollectionView" destination="eOu-o2-Ycl" id="Gh2-J5-fPS"/>
                         <outlet property="accountsPageControl" destination="pHg-dA-GeU" id="EMl-xy-pj1"/>
-                        <outlet property="amountTextField" destination="W2m-iJ-38i" id="T5J-ee-Bjd"/>
                         <outlet property="amountTitleLabel" destination="0AF-lB-Bis" id="a3H-gL-9rH"/>
+                        <outlet property="cryptoAmountTextField" destination="W2m-iJ-38i" id="T5J-ee-Bjd"/>
                         <outlet property="errorLabel" destination="ghi-D2-tYq" id="IM4-WU-uXk"/>
+                        <outlet property="fiatAmountTextField" destination="Xhn-Io-xGL" id="CKV-pT-IYU"/>
+                        <outlet property="fiatAmountTitleLabel" destination="d3C-Gk-gSt" id="93J-aj-92R"/>
                         <outlet property="loaderView" destination="nmH-Af-S9A" id="yhv-30-HBS"/>
                         <outlet property="medianWaitLabel" destination="i0o-nu-tyy" id="7UD-sV-wSu"/>
                         <outlet property="medianWaitTitleLabel" destination="B0d-3j-T5L" id="eCf-7X-8Hu"/>

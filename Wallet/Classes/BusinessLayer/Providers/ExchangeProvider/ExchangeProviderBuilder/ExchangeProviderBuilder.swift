@@ -9,9 +9,10 @@
 import Foundation
 
 protocol ExchangeProviderBuilderProtocol: class {
-    func set(account: Account)
-    func set(recipientAccount: Account)
-    func set(cryptoAmount: Decimal)
+    func set(fromAccount: Account)
+    func set(toAccount: Account)
+    func set(fromAmount: Decimal)
+    func set(toAmount: Decimal)
     func set(order: Order)
     func build() -> ExchangeProvider
     func clear()
@@ -41,16 +42,22 @@ class ExchangeProviderBuilder: ExchangeProviderBuilderProtocol {
                                             orderObserver: orderObserver)
     }
     
-    func set(account: Account) {
-        exchangeProvider.selectedAccount = account
+    func set(fromAccount: Account) {
+        exchangeProvider.selectedAccount = fromAccount
     }
     
-    func set(recipientAccount: Account) {
-        exchangeProvider.recipientAccount = recipientAccount
+    func set(toAccount: Account) {
+        exchangeProvider.recipientAccount = toAccount
     }
     
-    func set(cryptoAmount: Decimal) {
-        exchangeProvider.amount = cryptoAmount
+    func set(fromAmount: Decimal) {
+        exchangeProvider.fromAmount = fromAmount
+        exchangeProvider.mainAmount = .from
+    }
+    
+    func set(toAmount: Decimal) {
+        exchangeProvider.toAmount = toAmount
+        exchangeProvider.mainAmount = .to
     }
     
     func set(order: Order) {

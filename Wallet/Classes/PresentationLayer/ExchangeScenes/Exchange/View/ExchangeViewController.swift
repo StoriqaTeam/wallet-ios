@@ -17,20 +17,15 @@ class ExchangeViewController: UIViewController {
 
     // MARK: IBOutlets
     
-    @IBOutlet private var accountsCollectionView: UICollectionView!
-    @IBOutlet private var accountsPageControl: UIPageControl!
+    @IBOutlet private var fromAccountsCollectionView: UICollectionView!
+    @IBOutlet private var toAccountsCollectionView: UICollectionView!
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var recipientAccountTitleLabel: UILabel!
-    @IBOutlet private var recipientAccountLabel: UILabel!
-    @IBOutlet private var recipientBalanceLabel: UILabel!
-    @IBOutlet private var amountTitleLabel: UILabel!
-    @IBOutlet private var amountTextField: UITextField!
+    @IBOutlet private var fromAmountTitleLabel: UILabel!
+    @IBOutlet private var fromAmountTextField: UITextField!
+    @IBOutlet private var toAmountTitleLabel: UILabel!
+    @IBOutlet private var toAmountTextField: UITextField!
     @IBOutlet private var rateLabel: UILabel!
     @IBOutlet private var rateTimerLabel: UILabel!
-    @IBOutlet private var giveTitleLabel: UILabel!
-    @IBOutlet private var giveLabel: UILabel!
-    @IBOutlet private var getTitleLabel: UILabel!
-    @IBOutlet private var getLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var exchangeButton: GradientButton!
     
@@ -45,7 +40,8 @@ class ExchangeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.accountsCollectionView(accountsCollectionView)
+        output.fromAccountsCollectionView(fromAccountsCollectionView)
+        output.toAccountsCollectionView(toAccountsCollectionView)
         output.viewIsReady()
     }
     
@@ -72,12 +68,12 @@ class ExchangeViewController: UIViewController {
     
     // MARK: IBActions
     
-    @IBAction private func textDidChange(_ sender: UITextField) {
-        output.amountChanged(sender.text ?? "")
+    @IBAction private func fromAmountChanged(_ sender: UITextField) {
+        output.fromAmountChanged(sender.text ?? "")
     }
     
-    @IBAction private func recipientAccountPressed(_ sender: UIButton) {
-        output.recipientAccountPressed()
+    @IBAction private func toAmountChanged(_ sender: UITextField) {
+        output.toAmountChanged(sender.text ?? "")
     }
     
     @IBAction func exchangeButtonPressed(_ sender: UIButton) {
@@ -92,30 +88,27 @@ class ExchangeViewController: UIViewController {
 
 extension ExchangeViewController: ExchangeViewInput {
     
-    func setupInitialState(numberOfPages: Int) {
-        accountsPageControl.isUserInteractionEnabled = false
-        accountsPageControl.numberOfPages = numberOfPages
-        
+    func setupInitialState() {
         addNotificationObservers()
         addHideKeyboardGuesture()
         configInterface()
         localizeText()
     }
     
-    func updatePagesCount(_ count: Int) {
-        accountsPageControl.numberOfPages = count
+    func setFromAmount(_ amount: String) {
+        fromAmountTextField.text = amount
     }
     
-    func setGive(_ amount: String) {
-        UIView.transition(with: giveLabel, duration: 0.2, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
-            self.giveLabel.text = amount
-        })
+    func setToAmount(_ amount: String) {
+        toAmountTextField.text = amount
     }
     
-    func setGet(_ amount: String) {
-        UIView.transition(with: getLabel, duration: 0.2, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
-            self.getLabel.text = amount
-        })
+    func updateFromPlaceholder(_ placeholder: String) {
+        fromAmountTextField.placeholder = placeholder
+    }
+    
+    func updateToPlaceholder(_ placeholder: String) {
+        toAmountTextField.placeholder = placeholder
     }
     
     func setErrorHidden(_ hidden: Bool) {
@@ -149,20 +142,8 @@ extension ExchangeViewController: ExchangeViewInput {
         }
     }
     
-    func setNewPage(_ index: Int) {
-        accountsPageControl.currentPage = index
-    }
-    
     func setAmount(_ amount: String) {
-        amountTextField.text = amount
-    }
-    
-    func setRecipientAccount(_ recipient: String) {
-        recipientAccountLabel.text = recipient
-    }
-    
-    func setRecipientBalance(_ balance: String) {
-        recipientBalanceLabel.text = balance
+        toAmountTextField.text = amount
     }
     
     func setButtonEnabled(_ enabled: Bool) {
@@ -186,11 +167,23 @@ extension ExchangeViewController: ExchangeViewInput {
 extension ExchangeViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        output.amountDidBeginEditing()
+        switch textField {
+        case fromAmountTextField:
+            output.fromAmountDidBeginEditing()
+        case toAmountTextField:
+            output.toAmountDidBeginEditing()
+        default: break
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        output.amountDidEndEditing()
+        switch textField {
+        case fromAmountTextField:
+            output.fromAmountDidEndEditing()
+        case toAmountTextField:
+            output.toAmountDidEndEditing()
+        default: break
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -226,7 +219,7 @@ extension ExchangeViewController: UIScrollViewDelegate {
 extension ExchangeViewController {
     
     private func setNavBarTransparency() {
-        if let cellY = accountsCollectionView.layoutAttributesForItem(at: IndexPath(row: 0, section: 0))?.frame.origin.y {
+        if let cellY = fromAccountsCollectionView.layoutAttributesForItem(at: IndexPath(row: 0, section: 0))?.frame.origin.y {
             let scrollOffset = scrollView.contentOffset.y
             let delta = max(0, scrollOffset - cellY - 12)
             let alpha = 1 - (max(0, min(0.999, delta / 12)))
@@ -239,32 +232,22 @@ extension ExchangeViewController {
         view.backgroundColor = Theme.Color.backgroundColor
 
         scrollView.delegate = self
-        amountTextField.delegate = self
+        fromAmountTextField.delegate = self
+        toAmountTextField.delegate = self
         
-        recipientAccountTitleLabel.font = Theme.Font.smallMediumWeightText
-        amountTitleLabel.font = Theme.Font.smallMediumWeightText
-        giveTitleLabel.font = Theme.Font.smallMediumWeightText
-        getTitleLabel.font = Theme.Font.smallMediumWeightText
-        recipientBalanceLabel.font = Theme.Font.smallMediumWeightText
+        fromAmountTitleLabel.font = Theme.Font.smallMediumWeightText
+        toAmountTitleLabel.font = Theme.Font.smallMediumWeightText
         errorLabel.font = Theme.Font.smallText
         rateLabel.font = Theme.Font.regularMedium
         rateTimerLabel.font = Theme.Font.regularMedium
-        recipientAccountLabel.font = Theme.Font.input
-        amountTextField.font = Theme.Font.input
-        giveLabel.font = Theme.Font.input
-        getLabel.font = Theme.Font.input
+        fromAmountTextField.font = Theme.Font.input
+        toAmountTextField.font = Theme.Font.input
         
-        recipientAccountTitleLabel.textColor = Theme.Color.Text.lightGrey
-        amountTitleLabel.textColor = Theme.Color.Text.lightGrey
-        giveTitleLabel.textColor = Theme.Color.Text.lightGrey
-        getTitleLabel.textColor = Theme.Color.Text.lightGrey
-        recipientBalanceLabel.textColor = Theme.Color.Text.lightGrey.withAlphaComponent(0.8)
+        fromAmountTitleLabel.textColor = Theme.Color.Text.lightGrey
+        toAmountTitleLabel.textColor = Theme.Color.Text.lightGrey
         rateLabel.textColor = Theme.Color.mainOrange
         errorLabel.textColor = Theme.Color.Text.errorRed
         rateTimerLabel.textColor = Theme.Color.Text.main
-        recipientAccountLabel.textColor = Theme.Color.Text.main
-        giveLabel.textColor = Theme.Color.Text.main
-        getLabel.textColor = Theme.Color.Text.main
         
         errorLabel.text = ""
         errorLabel.alpha = 0
@@ -272,11 +255,8 @@ extension ExchangeViewController {
     }
     
     private func localizeText() {
-        recipientAccountTitleLabel.text = LocalizedStrings.toAccountTitle
-        giveTitleLabel.text = LocalizedStrings.giveTitle
-        getTitleLabel.text = LocalizedStrings.getTitle
-        amountTitleLabel.text = LocalizedStrings.amountTitle
-        amountTextField.placeholder = LocalizedStrings.amountPlaceholder
+        fromAmountTitleLabel.text = LocalizedStrings.fromAmountTitle
+        toAmountTitleLabel.text = LocalizedStrings.toAmountTitle
         exchangeButton.setTitle(LocalizedStrings.exchangeButton, for: .normal)
     }
 }
@@ -302,7 +282,7 @@ extension ExchangeViewController {
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
-        guard amountTextField.isFirstResponder,
+        guard toAmountTextField.isFirstResponder,
             let scrollView = scrollView,
             let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
                 return
@@ -311,7 +291,7 @@ extension ExchangeViewController {
         isKeyboardAnimating = true
         
         let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
-        let textFieldOrigin = amountTextField.convert(amountTextField.bounds, to: view).maxY + scrollView.contentOffset.y
+        let textFieldOrigin = toAmountTextField.convert(toAmountTextField.bounds, to: view).maxY + scrollView.contentOffset.y
         var delta = textFieldOrigin - keyboardOrigin + 8
         
         guard delta > 0 else { return }

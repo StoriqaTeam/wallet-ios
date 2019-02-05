@@ -83,8 +83,12 @@ extension SendInteractor: SendInteractorInput {
         return index
     }
     
-    func getAmount() -> Decimal? {
-        return sendProvider.amount
+    func getCryptoAmount() -> Decimal {
+        return sendProvider.cryptoAmount
+    }
+    
+    func getFiatAmount() -> Decimal {
+        return sendProvider.fiatAmount
     }
     
     func getFee() -> Decimal? {
@@ -96,13 +100,21 @@ extension SendInteractor: SendInteractorInput {
         return sendProvider.getSubtotal()
     }
     
-    func getCurrency() -> Currency {
+    func getCryptoCurrency() -> Currency {
         return accountWatcher.getAccount().currency
     }
     
-    func setAmount(_ amount: Decimal) {
+    func setCryptoAmount(_ amount: Decimal) {
         sendTransactionBuilder.set(cryptoAmount: amount)
         
+        updateFiatAmount()
+        updateTotal()
+    }
+    
+    func setFiatAmount(_ amount: Decimal) {
+        sendTransactionBuilder.set(fiatAmount: amount)
+        
+        updateCryptoAmount()
         updateTotal()
     }
     
@@ -134,7 +146,9 @@ extension SendInteractor: SendInteractorInput {
 
         sendTransactionBuilder.set(account: account)
         setAddress(receiverAddress, updateFeesIfNeeded: false)
-        updateAmount()
+        sendProvider.calculateFiatAmount() // to fix rates change
+        updateCryptoAmount()
+        updateFiatAmount()
         updateFeeCount()
         updateFeeAndWait()
         
@@ -288,7 +302,7 @@ extension SendInteractor {
     }
     
     private func isFormValid() -> Bool {
-        let isZeroAmount = sendProvider.amount.isZero
+        let isZeroAmount = sendProvider.cryptoAmount.isZero
         let isEmptyAddress = sendProvider.receiverAddress.isEmpty
         let hasFee = sendProvider.paymentFee != nil
         
@@ -303,11 +317,16 @@ extension SendInteractor {
         output.updateFormIsValid(formIsValid)
     }
     
-    private func updateAmount() {
+    private func updateCryptoAmount() {
         let account = accountWatcher.getAccount()
         let currency = account.currency
-        let amount = sendProvider.amount
+        let amount = sendProvider.cryptoAmount
         output.updateAmount(amount, currency: currency)
+    }
+    
+    private func updateFiatAmount() {
+        let amount = sendProvider.fiatAmount
+        output.updateFiatAmount(amount)
     }
     
     private func updateFeeAndWait() {
@@ -332,7 +351,7 @@ extension SendInteractor {
     private func updateTotal() {
         let formIsValid = isFormValid()
         let isEnough = sendProvider.isEnoughFunds()
-        let hasAmount = !sendProvider.amount.isZero
+        let hasAmount = !sendProvider.cryptoAmount.isZero
         
         output.updateIsEnoughFunds(!hasAmount || isEnough)
         output.updateFormIsValid(formIsValid)

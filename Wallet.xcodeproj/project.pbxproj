@@ -333,8 +333,6 @@
 		A56ED3A9216E3214009FA58B /* ContactsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56ED3A8216E3214009FA58B /* ContactsProvider.swift */; };
 		A57434D42175E6DA006B4CAE /* TransactionFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A57434D32175E6DA006B4CAE /* TransactionFilter.storyboard */; };
 		A57434D721764159006B4CAE /* TransactionsDateFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434D621764159006B4CAE /* TransactionsDateFilter.swift */; };
-		A57434D9217749E6006B4CAE /* ContactsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434D8217749E6006B4CAE /* ContactsMapper.swift */; };
-		A57434DF21774B37006B4CAE /* ContactsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434DE21774B37006B4CAE /* ContactsMapper.swift */; };
 		A57434E221774B6A006B4CAE /* ContactsNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434E121774B6A006B4CAE /* ContactsNetworkProvider.swift */; };
 		A57434E521774B85006B4CAE /* ContactsCacheUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434E421774B84006B4CAE /* ContactsCacheUpdater.swift */; };
 		A57434E821774BA0006B4CAE /* ContactsAddressLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434E721774BA0006B4CAE /* ContactsAddressLinker.swift */; };
@@ -541,6 +539,7 @@
 		CE288A16219EAFCF0010FA3B /* FeeNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A15219EAFCF0010FA3B /* FeeNetworkProvider.swift */; };
 		CE288A18219EB02B0010FA3B /* API+Fees.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE288A17219EB02B0010FA3B /* API+Fees.swift */; };
 		CE2C5CCD21257DDB00F153E7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */; };
+		CE3ED37122018D9F0031A8BA /* ThinAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3ED37022018D9F0031A8BA /* ThinAccountCell.xib */; };
 		CE41F3432181A8EB00070D5D /* UniversalLinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */; };
 		CE41F3462181AAF900070D5D /* EmailConfirm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */; };
 		CE41F3482181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */; };
@@ -557,6 +556,8 @@
 		CE4401A52174DCC200F7C8D8 /* ContactsSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4401A42174DCC200F7C8D8 /* ContactsSorter.swift */; };
 		CE4401A72174DD5B00F7C8D8 /* ContactsSorterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4401A62174DD5B00F7C8D8 /* ContactsSorterTests.swift */; };
 		CE45A8BE212C029F0096DD5F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45A8BD212C029F0096DD5F /* StringExtension.swift */; };
+		CE47E9342209D44100C181A0 /* ContactsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57434DE21774B37006B4CAE /* ContactsMapper.swift */; };
+		CE50BE8421ECE8630088E53D /* TimeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50BE8321ECE8630088E53D /* TimeFormatterTests.swift */; };
 		CE526C32212465A800A2EED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE526C31212465A800A2EED2 /* AppDelegate.swift */; };
 		CE526C3B212465A900A2EED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3A212465A900A2EED2 /* Assets.xcassets */; };
 		CE526C3E212465A900A2EED2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE526C3C212465A900A2EED2 /* LaunchScreen.storyboard */; };
@@ -1373,6 +1374,7 @@
 		CE288A17219EB02B0010FA3B /* API+Fees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Fees.swift"; sourceTree = "<group>"; };
 		CE2C5CCC21257DDB00F153E7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CE30D5AF8E70B137F596C8DA /* ExchangeConfirmPopUpRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmPopUpRouter.swift; sourceTree = "<group>"; };
+		CE3ED37022018D9F0031A8BA /* ThinAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThinAccountCell.xib; sourceTree = "<group>"; };
 		CE41F3422181A8EB00070D5D /* UniversalLinkParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLinkParser.swift; sourceTree = "<group>"; };
 		CE41F3452181AAF900070D5D /* EmailConfirm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailConfirm.storyboard; sourceTree = "<group>"; };
 		CE41F3472181AEF300070D5D /* PopUpEmailConfirmSuccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEmailConfirmSuccessVM.swift; sourceTree = "<group>"; };
@@ -1389,6 +1391,7 @@
 		CE4401A42174DCC200F7C8D8 /* ContactsSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSorter.swift; sourceTree = "<group>"; };
 		CE4401A62174DD5B00F7C8D8 /* ContactsSorterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSorterTests.swift; sourceTree = "<group>"; };
 		CE45A8BD212C029F0096DD5F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		CE50BE8321ECE8630088E53D /* TimeFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatterTests.swift; sourceTree = "<group>"; };
 		CE526C2E212465A800A2EED2 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE526C31212465A800A2EED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE526C3A212465A900A2EED2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -4027,6 +4030,7 @@
 				CEE84EF72189D4E000AB85F3 /* TxnUpdaterTests.swift */,
 				A5D4CE27219EE4B800317326 /* SignerTests.swift */,
 				A579E77421C90D450077FCAE /* PaymentRequestresolverTests.swift */,
+				CE50BE8321ECE8630088E53D /* TimeFormatterTests.swift */,
 			);
 			path = WalletTests;
 			sourceTree = "<group>";
@@ -4761,6 +4765,7 @@
 			children = (
 				CE57C69A2165F83D00696FF7 /* AccountTableCell.swift */,
 				CE57C6982165F83400696FF7 /* AccountTableCell.xib */,
+				CE3ED37022018D9F0031A8BA /* ThinAccountCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -5529,6 +5534,7 @@
 				A535BA1B21CA5B5600B0BAF8 /* Montserrat-Italic.ttf in Resources */,
 				A535BA0F21CA5B5600B0BAF8 /* Montserrat-ThinItalic.ttf in Resources */,
 				CEF02F8121C3DA2C003D18FF /* AppInfo.strings in Resources */,
+				CE3ED37122018D9F0031A8BA /* ThinAccountCell.xib in Resources */,
 				A56ED379216CAE27009FA58B /* TransactionDescriptionView.xib in Resources */,
 				A5C1874E21C0EE8800779D26 /* QuickLaunch.strings in Resources */,
 				CEDDDEFD21302D9400490781 /* SocialNetworkAuthView.xib in Resources */,
@@ -5714,6 +5720,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A579E77521C90D450077FCAE /* PaymentRequestresolverTests.swift in Sources */,
+				CE50BE8421ECE8630088E53D /* TimeFormatterTests.swift in Sources */,
 				A5C12E84217F261C00A7D68C /* JwtParcerTests.swift in Sources */,
 				A52FE2B221860D2300100E21 /* ChannelTests.swift in Sources */,
 				CEE84EF42189CACA00AB85F3 /* DecimalToStringTests.swift in Sources */,
@@ -5734,7 +5741,6 @@
 				CE0E5A65212D5681003E2C5E /* BaseButton.swift in Sources */,
 				CE526C6621246B8B00A2EED2 /* UIViewExtension.swift in Sources */,
 				CE64515B212FF33B00C1ABB0 /* ActivityIndicatorView.swift in Sources */,
-				A57434DF21774B37006B4CAE /* ContactsMapper.swift in Sources */,
 				A5641E3C2187618D002C2ABE /* SendTransactionNetworkProvider.swift in Sources */,
 				CE1A47DB212E9C5400418C11 /* PinContainerView.swift in Sources */,
 				CE5FAFB521529738009E707E /* QuickLaunchModuleOutput.swift in Sources */,
@@ -6055,12 +6061,12 @@
 				CEF02F7F21C3DA1B003D18FF /* Strings+AppInfo.swift in Sources */,
 				A6888E54A2AF18D001988E63 /* MainTabBarRouterInput.swift in Sources */,
 				2A54B35D5547E88D673E83CB /* MainTabBarRouter.swift in Sources */,
+				CE47E9342209D44100C181A0 /* ContactsMapper.swift in Sources */,
 				F9E1E2A5FDFCDE04A10EBF47 /* MainTabBarModuleInput.swift in Sources */,
 				1AB7CDBED5FDA6EC39631D91 /* MainTabBarModuleOutput.swift in Sources */,
 				AA6D33F045D1085DB5FDD1CC /* MainTabBarModule.swift in Sources */,
 				CAAB484F397C75347D8B8009 /* MyWalletViewInput.swift in Sources */,
 				4C0507FF9CBC5622BB373D27 /* MyWalletViewOutput.swift in Sources */,
-				A57434D9217749E6006B4CAE /* ContactsMapper.swift in Sources */,
 				788528FA82E51BB20908D6F9 /* MyWalletViewController.swift in Sources */,
 				A52C66B32167634E0073071E /* Account.swift in Sources */,
 				CEE84F03218B55BD00AB85F3 /* PopUpChangePasswordSuccessVM.swift in Sources */,
@@ -6441,7 +6447,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HS8AM3WUSX;
+				DEVELOPMENT_TEAM = GW4YYY6LD6;
 				INFOPLIST_FILE = WalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -6462,7 +6468,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HS8AM3WUSX;
+				DEVELOPMENT_TEAM = GW4YYY6LD6;
 				INFOPLIST_FILE = WalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -6595,7 +6601,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ADE2B87D000AB5C20D3AD8A0 /* Pods-Wallet.debug.xcconfig */;
 			buildSettings = {
-				APP_LINK = "applinks:stable.stq.cloud";
+				APP_LINK = "applinks:stage.stq.cloud";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon$(BUNDLE_ID_SUFFIX)";
 				BUNDLE_ID_SUFFIX = "-test";
 				CODE_SIGN_ENTITLEMENTS = Wallet/Wallet.entitlements;

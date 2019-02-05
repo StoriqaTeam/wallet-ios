@@ -33,11 +33,23 @@ extension Strings {
             tableName: "Send",
             value: "Amount",
             comment: "Amount input title")
-
+        
         static let amountPlaceholder = NSLocalizedString(
             "Send.amountPlaceholder",
             tableName: "Send",
-            value: "Enter amount here",
+            value: "Enter amount in %@",
+            comment: "Amount input placeholder")
+        
+        static let fiatAmountTitle = NSLocalizedString(
+            "Send.fiatAmountTitle",
+            tableName: "Send",
+            value: "Equivalent amount in %@",
+            comment: "Amount input title")
+        
+        static let fiatAmountPlaceholder = NSLocalizedString(
+            "Send.fiatAmountPlaceholder",
+            tableName: "Send",
+            value: "Enter amount in %@",
             comment: "Amount input placeholder")
         
         static let feeTitle = NSLocalizedString(

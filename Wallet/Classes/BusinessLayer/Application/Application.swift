@@ -139,6 +139,7 @@ class Application {
                                                                defaults: self.defaultsProvider,
                                                                accountsNetworkProvider: self.accountsNetworkProvider,
                                                                accountsDataStore: self.accountsDataStoreService,
+                                                               defaultAccountsProvider: self.defaultAccountsProvider,
                                                                signHeaderFactory: self.signHeaderFactory)
     lazy var authDataResolver: AuthDataResolverProtocol = AuthDataResolver(userDataStoreService: self.userDataStoreService)
     lazy var sendTransactionService: SendTransactionServiceProtocol = SendTransactionService(sendNetworkProvider: self.sendTransactionNetworkProvider,
@@ -181,7 +182,6 @@ class Application {
     // MARK: - Mappers -
     lazy var contactsMapper: ContactsMapper = ContactsMapper()
     lazy var transactionMapper: TransactionMapperProtocol = TransactionMapper(currencyFormatter: self.currencyFormatter,
-                                                                              converterFactory: self.constantRateFiatConverterFactory,
                                                                               transactionDirectionResolver: self.transactionDirectionResolver,
                                                                               transactionOpponentResolver: self.transactionOpponentResolver,
                                                                               denominationUnitsConverter: self.denominationUnitsConverter)

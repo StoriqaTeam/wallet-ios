@@ -12,8 +12,10 @@ import UIKit
 protocol SendViewInput: class, Presentable {
     func setupInitialState(numberOfPages: Int)
     func updatePagesCount(_ count: Int)
+    func updateCryptoAmountPlaceholder(_ placeholder: String)
     func setScannedAddress(_ address: String)
-    func setAmount(_ amount: String)
+    func setCryptoAmount(_ amount: String)
+    func setFiatAmount(_ amount: String)
     func setNewPage(_ index: Int)
     func setMedianWait(_ wait: String)
     func setPaymentFee(_ fee: String)

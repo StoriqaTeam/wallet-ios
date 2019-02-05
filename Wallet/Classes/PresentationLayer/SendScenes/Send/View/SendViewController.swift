@@ -24,7 +24,8 @@ class SendViewController: UIViewController {
     @IBOutlet private var scanQRButton: UIButton!
     @IBOutlet private var receiverTextField: UnderlinedTextField!
     @IBOutlet private var amountTitleLabel: UILabel!
-    @IBOutlet private var amountTextField: UITextField!
+    @IBOutlet private var cryptoAmountTextField: UITextField!
+    @IBOutlet private var fiatAmountTextField: UITextField!
     @IBOutlet private var paymentFeeView: UIView!
     @IBOutlet private var paymentFeeTitleLabel: UILabel!
     @IBOutlet private var paymentFeeLabel: UILabel!
@@ -33,6 +34,7 @@ class SendViewController: UIViewController {
     @IBOutlet private var paymentFeeHighLabel: UILabel!
     @IBOutlet private var medianWaitTitleLabel: UILabel!
     @IBOutlet private var medianWaitLabel: UILabel!
+    @IBOutlet private var fiatAmountTitleLabel: UILabel!
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var sendButton: GradientButton!
     @IBOutlet private var loaderView: ActivityIndicatorView!
@@ -41,6 +43,7 @@ class SendViewController: UIViewController {
     
     // MARK: Variables
     
+    private var editedTextField: UITextField?
     private let keyboardAnimationDelay = 0.5
     private var isKeyboardAnimating = false
     private var shouldAnimateLayuot = false
@@ -79,8 +82,12 @@ class SendViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction private func amountDidChange(_ sender: UITextField) {
-        output.amountChanged(sender.text ?? "")
+    @IBAction private func cryptoAmountDidChange(_ sender: UITextField) {
+        output.cryptoAmountChanged(sender.text ?? "")
+    }
+    
+    @IBAction private func fiatAmountDidChange(_ sender: UITextField) {
+        output.fiatAmountChanged(sender.text ?? "")
     }
     
     @IBAction func addressDidChange(_ sender: UITextField) {
@@ -173,8 +180,12 @@ extension SendViewController: SendViewInput {
         accountsPageControl.numberOfPages = count
     }
     
-    func setAmount(_ amount: String) {
-        amountTextField.text = amount
+    func setCryptoAmount(_ amount: String) {
+        cryptoAmountTextField.text = amount
+    }
+    
+    func setFiatAmount(_ amount: String) {
+        fiatAmountTextField.text = amount
     }
     
     func setNewPage(_ index: Int) {
@@ -206,6 +217,10 @@ extension SendViewController: SendViewInput {
             self.view.layoutIfNeeded()
         }
     }
+    
+    func updateCryptoAmountPlaceholder(_ placeholder: String) {
+        cryptoAmountTextField.placeholder = placeholder
+    }
 }
 
 
@@ -216,7 +231,9 @@ extension SendViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case receiverTextField:
-            amountTextField.becomeFirstResponder()
+            cryptoAmountTextField.becomeFirstResponder()
+        case cryptoAmountTextField:
+            fiatAmountTextField.becomeFirstResponder()
         default:
             textField.resignFirstResponder()
         }
@@ -224,18 +241,26 @@ extension SendViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        editedTextField = textField
+        
         switch textField {
-        case amountTextField:
-            output.amountDidBeginEditing()
+        case cryptoAmountTextField:
+            output.cryptoAmountDidBeginEditing()
+        case fiatAmountTextField:
+            output.fiatAmountDidBeginEditing()
         default:
             break
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        editedTextField = nil
+        
         switch textField {
-        case amountTextField:
-            output.amountDidEndEditing()
+        case cryptoAmountTextField:
+            output.cryptoAmountDidEndEditing()
+        case fiatAmountTextField:
+            output.fiatAmountDidEndEditing()
         case receiverTextField:
             output.receiverAddressDidChange(textField.text ?? "")
         default:
@@ -245,7 +270,7 @@ extension SendViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        guard textField == amountTextField else {
+        guard textField == cryptoAmountTextField || textField == fiatAmountTextField else {
             return true
         }
         
@@ -295,7 +320,8 @@ extension SendViewController {
         view.backgroundColor = Theme.Color.backgroundColor
         scrollView.backgroundColor = Theme.Color.backgroundColor
         
-        amountTextField.delegate = self
+        cryptoAmountTextField.delegate = self
+        fiatAmountTextField.delegate = self
         receiverTextField.delegate = self
         scrollView.delegate = self
         
@@ -303,6 +329,7 @@ extension SendViewController {
         
         receiverTitleLabel.font = Theme.Font.smallMediumWeightText
         amountTitleLabel.font = Theme.Font.smallMediumWeightText
+        fiatAmountTitleLabel.font = Theme.Font.smallMediumWeightText
         paymentFeeTitleLabel.font = Theme.Font.smallMediumWeightText
         medianWaitTitleLabel.font = Theme.Font.smallMediumWeightText
         paymentFeeLowLabel.font = Theme.Font.smallMediumWeightText
@@ -312,6 +339,7 @@ extension SendViewController {
         
         receiverTitleLabel.textColor = Theme.Color.Text.lightGrey
         amountTitleLabel.textColor = Theme.Color.Text.lightGrey
+        fiatAmountTitleLabel.textColor = Theme.Color.Text.lightGrey
         paymentFeeTitleLabel.textColor = Theme.Color.Text.lightGrey
         medianWaitTitleLabel.textColor = Theme.Color.Text.lightGrey
         paymentFeeLowLabel.textColor = Theme.Color.Text.lightGrey
@@ -338,7 +366,10 @@ extension SendViewController {
         receiverTextField.placeholder = LocalizedStrings.recipientInputPlaceholder
         
         amountTitleLabel.text = LocalizedStrings.amountTitle
-        amountTextField.placeholder = LocalizedStrings.amountPlaceholder
+        
+        let fiatISO = Currency.defaultFiat.ISO
+        fiatAmountTitleLabel.text = String(format: LocalizedStrings.fiatAmountTitle, fiatISO)
+        fiatAmountTextField.placeholder = String(format: LocalizedStrings.fiatAmountPlaceholder, fiatISO)
         
         paymentFeeTitleLabel.text = LocalizedStrings.feeTitle
         medianWaitTitleLabel.text = LocalizedStrings.medianWaitTitle
@@ -380,7 +411,7 @@ extension SendViewController {
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
-        guard amountTextField.isFirstResponder,
+        guard let editedTextField = editedTextField,
             let scrollView = scrollView, 
             let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
                 return
@@ -389,7 +420,7 @@ extension SendViewController {
         isKeyboardAnimating = true
         
         let keyboardOrigin = Constants.Sizes.screenHeight - keyboardFrame.cgRectValue.height
-        let textFieldOrigin = amountTextField.convert(amountTextField.bounds, to: view).maxY + scrollView.contentOffset.y
+        let textFieldOrigin = editedTextField.convert(editedTextField.bounds, to: view).maxY + scrollView.contentOffset.y
         var delta = textFieldOrigin - keyboardOrigin + 8
         
         guard delta > 0 else { return }

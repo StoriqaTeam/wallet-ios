@@ -93,7 +93,7 @@ extension DefaultAccountsProvider {
             userId: userId,
             id: uuid,
             currency: currency,
-            name: "\(currency.ISO) Account",
+            name: "\(currency.ISO) account",
             queue: .main,
             signHeader: signHeader) { [weak self] (result) in
                 switch result {

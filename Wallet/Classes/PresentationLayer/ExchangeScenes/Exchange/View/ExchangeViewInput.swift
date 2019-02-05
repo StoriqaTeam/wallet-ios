@@ -10,14 +10,11 @@ import UIKit
 
 
 protocol ExchangeViewInput: class, Presentable {
-    func setupInitialState(numberOfPages: Int)
-    func updatePagesCount(_ count: Int)
-    func setRecipientAccount(_ recipient: String)
-    func setRecipientBalance(_ balance: String)
-    func setAmount(_ amount: String)
-    func setNewPage(_ index: Int)
-    func setGive(_ amount: String)
-    func setGet(_ amount: String)
+    func setupInitialState()
+    func setFromAmount(_ amount: String)
+    func setToAmount(_ amount: String)
+    func updateFromPlaceholder(_ placeholder: String)
+    func updateToPlaceholder(_ placeholder: String)
     func setErrorHidden(_ hidden: Bool)
     func setButtonEnabled(_ enabled: Bool)
     func updateExpiredTimeLabel(_ time: String)

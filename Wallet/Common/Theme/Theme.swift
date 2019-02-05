@@ -133,6 +133,8 @@ struct Theme {
             static let title = MontserratFont.font(ofSize: 26.0, weight: .medium)
             /** 12px regular */
             static let subtitle = MontserratFont.font(ofSize: 12.0, weight: .regular)
+            /** 12px medium */
+            static let subtitleMedium = MontserratFont.font(ofSize: 12.0, weight: .medium)
             /** 16px medium */
             static let text = MontserratFont.font(ofSize: 16.0, weight: .medium)
             /** 20px medium */

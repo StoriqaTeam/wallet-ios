@@ -26,7 +26,7 @@ class RecipientAccountsInteractor {
 
 extension RecipientAccountsInteractor: RecipientAccountsInteractorInput {
     func setSelected(account: Account) {
-        exchangeProviderBuilder.set(recipientAccount: account)
+        exchangeProviderBuilder.set(toAccount: account)
     }
     
     func getAccounts() -> [Account] {

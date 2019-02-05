@@ -34,6 +34,8 @@ extension API {
             fee: String,
             exchangeId: String?,
             exchangeRate: Decimal?,
+            fiatValue: String?,
+            fiatCurrency: Currency?,
             signHeader: SignHeader)
         case createAccount(authToken: String, userId: Int, id: String, currency: Currency, name: String, signHeader: SignHeader)
         case refreshAuthToken(authToken: String, signHeader: SignHeader)
@@ -97,7 +99,7 @@ extension API.Authorized: APIMethodProtocol {
                 "Device-id": signHeader.deviceId,
                 "Sign": signHeader.signature
             ]
-        case .sendTransaction(let authToken, _, _, _, _, _, _, _, _, _, _, let signHeader):
+        case .sendTransaction(let authToken, _, _, _, _, _, _, _, _, _, _, _, _, let signHeader):
             return [
                 "accept": "application/json",
                 "Authorization": "Bearer \(authToken)",
@@ -145,6 +147,8 @@ extension API.Authorized: APIMethodProtocol {
                               let fee,
                               let exchangeId,
                               let exchangeRate,
+                              let fiatValue,
+                              let fiatCurrency,
                               _):
             let receiverAddress: String
             let type: String
@@ -174,6 +178,12 @@ extension API.Authorized: APIMethodProtocol {
                 let exchangeRate = exchangeRate {
                 params["exchangeId"] = exchangeId
                 params["exchangeRate"] = exchangeRate
+            }
+            
+            if let fiatValue = fiatValue,
+                let fiatCurrency = fiatCurrency {
+                params["fiatValue"] = fiatValue
+                params["fiatCurrency"] = fiatCurrency.ISO.lowercased()
             }
             
             return params

@@ -23,7 +23,7 @@ class TransactionDisplayable {
     
     let transaction: Transaction
     let currency: Currency
-    let fiatAmountString: String
+    let secondAmountString: String
     let cryptoAmountString: String
     let direction: Direction
     let opponent: OpponentType
@@ -33,7 +33,7 @@ class TransactionDisplayable {
     init(transaction: Transaction,
          cryptoAmountString: String,
          currency: Currency,
-         fiatAmountString: String,
+         secondAmountString: String,
          direction: Direction,
          opponent: OpponentType,
          feeAmountString: String,
@@ -42,7 +42,7 @@ class TransactionDisplayable {
         self.transaction = transaction
         self.currency = currency
         self.cryptoAmountString = cryptoAmountString
-        self.fiatAmountString = fiatAmountString
+        self.secondAmountString = secondAmountString
         self.direction = direction
         self.opponent = opponent
         self.timestamp = timestamp

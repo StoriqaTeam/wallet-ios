@@ -15,6 +15,7 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     private let accountsProvider: AccountsProviderProtocol
     private let feeProvider: FeeProviderProtocol
     private let denominationUnitsConverter: DenominationUnitsConverterProtocol
+    private let currencyConverterFactory: CurrencyConverterFactoryProtocol
     
     init(currencyConverterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
@@ -25,18 +26,24 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
         self.accountsProvider = accountsProvider
         self.feeProvider = feeProvider
         self.denominationUnitsConverter = denominationUnitsConverter
+        self.currencyConverterFactory = currencyConverterFactory
         
         defaultSendTxProvider = SendTransactionProvider(accountProvider: self.accountsProvider,
                                                         feeProvider: self.feeProvider,
-                                                        denominationUnitsConverter: self.denominationUnitsConverter)
+                                                        denominationUnitsConverter: self.denominationUnitsConverter,
+                                                        converterFactory: currencyConverterFactory)
     }
     
     func set(account: Account) {
-        defaultSendTxProvider.selectedAccount = account
+        defaultSendTxProvider.setSelectedAccount(account)
     }
     
     func set(cryptoAmount: Decimal) {
-        defaultSendTxProvider.amount = cryptoAmount
+        defaultSendTxProvider.setCryptoAmount(cryptoAmount)
+    }
+    
+    func set(fiatAmount: Decimal) {
+        defaultSendTxProvider.setFiatAmount(fiatAmount)
     }
     
     func setAddress(_ address: String) {
@@ -66,6 +73,7 @@ class SendTransactionBuilder: SendProviderBuilderProtocol {
     func clear() {
         defaultSendTxProvider = SendTransactionProvider(accountProvider: self.accountsProvider,
                                                         feeProvider: self.feeProvider,
-                                                        denominationUnitsConverter: self.denominationUnitsConverter)
+                                                        denominationUnitsConverter: self.denominationUnitsConverter,
+                                                        converterFactory: currencyConverterFactory)
     }
 }

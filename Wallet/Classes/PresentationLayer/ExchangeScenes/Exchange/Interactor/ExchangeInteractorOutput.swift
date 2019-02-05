@@ -10,17 +10,17 @@ import Foundation
 
 
 protocol ExchangeInteractorOutput: class {
-    func updateAccounts(accounts: [Account], index: Int)
-    func updateRecipientAccount(_ account: Account?)
-    func updateAmount(_ amount: Decimal, currency: Currency)
-    func updateGet(_ amount: Decimal, currency: Currency)
-    func updateGive(_ total: Decimal, currency: Currency)
+    func updateFromAccounts(_ accounts: [Account], index: Int)
+    func updateToAccounts(_ accounts: [Account], index: Int)
+    func updateFromAmount(_ amount: Decimal, currency: Currency)
+    func updateToAmount(_ amount: Decimal, currency: Currency)
     func updateIsEnoughFunds(_ enough: Bool)
     func updateFormIsValid(_ valid: Bool)
     func exchangeTxAmountOutOfLimit(min: String, max: String, currency: Currency)
     func exchangeTxFailed(message: String)
     func exchangeTxSucceed()
-    func updateRateFor(oneUnit: Decimal?, fromCurrency: Currency, toCurrency: Currency)
+    func updateEmptyRate()
+    func updateRateFor(oneUnit: Decimal, fromCurrency: Currency, toCurrency: Currency)
     func updateOrder(time: Int?)
     func exceededDayLimit(limit: String, currency: Currency)
     func exchangeRateError(_ error: Error)

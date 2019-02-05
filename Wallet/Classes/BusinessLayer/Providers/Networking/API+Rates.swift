@@ -69,9 +69,9 @@ extension API.Rates: APIMethodProtocol {
         case .getExchangeRate(_, let id, let from, let to, let amountCurrency, let amountInMinUnits, _):
             return [
                 "id": id,
-                "from": from.rawValue,
-                "to": to.rawValue,
-                "amountCurrency": amountCurrency.rawValue,
+                "from": from.ISO.lowercased(),
+                "to": to.ISO.lowercased(),
+                "amountCurrency": amountCurrency.ISO.lowercased(),
                 "amount": amountInMinUnits
             ]
         }
