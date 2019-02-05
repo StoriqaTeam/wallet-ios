@@ -217,6 +217,10 @@ extension SendViewController: SendViewInput {
             self.view.layoutIfNeeded()
         }
     }
+    
+    func updateCryptoAmountPlaceholder(_ placeholder: String) {
+        cryptoAmountTextField.placeholder = placeholder
+    }
 }
 
 
@@ -362,11 +366,10 @@ extension SendViewController {
         receiverTextField.placeholder = LocalizedStrings.recipientInputPlaceholder
         
         amountTitleLabel.text = LocalizedStrings.amountTitle
-        cryptoAmountTextField.placeholder = LocalizedStrings.amountPlaceholder
-        // FIXME: localize fiat amount title and placeholder
+        
         let fiatISO = Currency.defaultFiat.ISO
-        fiatAmountTitleLabel.text = "Amount in \(fiatISO)"
-        fiatAmountTextField.placeholder = "Enter amount in \(fiatISO)"
+        fiatAmountTitleLabel.text = String(format: LocalizedStrings.fiatAmountTitle, fiatISO)
+        fiatAmountTextField.placeholder = String(format: LocalizedStrings.fiatAmountPlaceholder, fiatISO)
         
         paymentFeeTitleLabel.text = LocalizedStrings.feeTitle
         medianWaitTitleLabel.text = LocalizedStrings.medianWaitTitle
