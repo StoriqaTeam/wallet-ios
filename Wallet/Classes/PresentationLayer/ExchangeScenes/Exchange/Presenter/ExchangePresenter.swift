@@ -21,11 +21,14 @@ class ExchangePresenter {
     private let converterFactory: CurrencyConverterFactoryProtocol
     private let currencyFormatter: CurrencyFormatterProtocol
     private let accountDisplayer: AccountDisplayerProtocol
-    private var accountsDataManager: AccountsDataManager!
+    private var fromAccountsDataManager: AccountsDataManager!
+    private var toAccountsDataManager: AccountsDataManager!
     private let haptic: HapticServiceProtocol
     
     private var storiqaLoader: StoriqaLoader!
-    private var isEditingAmount = false
+    private var isEditingFromAmount = false
+    private var isEditingToAmount = false
+    private var isRatesError = false
     
     init(converterFactory: CurrencyConverterFactoryProtocol,
          currencyFormatter: CurrencyFormatterProtocol,
@@ -45,8 +48,7 @@ class ExchangePresenter {
 extension ExchangePresenter: ExchangeViewOutput {
     
     func viewIsReady() {
-        let numberOfPages = interactor.getAccountsCount()
-        view.setupInitialState(numberOfPages: numberOfPages)
+        view.setupInitialState()
         configureNavBar()
         addLoader()
         
@@ -57,71 +59,96 @@ extension ExchangePresenter: ExchangeViewOutput {
         interactor.updateState()
     }
     
-    func accountsCollectionView(_ collectionView: UICollectionView) {
+    func fromAccountsCollectionView(_ collectionView: UICollectionView) {
         collectionView.collectionViewLayout = collectionFlowLayout
         
         let allAccounts = interactor.getAccounts()
         let accountsManager = AccountsDataManager(accounts: allAccounts,
                                                   accountDisplayer: accountDisplayer)
-        accountsManager.setCollectionView(collectionView, cellType: .small)
-        accountsDataManager = accountsManager
-        accountsDataManager.delegate = self
+        accountsManager.setCollectionView(collectionView, cellType: .thin)
+        fromAccountsDataManager = accountsManager
+        fromAccountsDataManager.delegate = self
+    }
+    
+    func toAccountsCollectionView(_ collectionView: UICollectionView) {
+        collectionView.collectionViewLayout = collectionFlowLayout
+        
+        let allAccounts = interactor.getRecipientAccounts()
+        let accountsManager = AccountsDataManager(accounts: allAccounts,
+                                                  accountDisplayer: accountDisplayer)
+        accountsManager.setCollectionView(collectionView, cellType: .thin)
+        toAccountsDataManager = accountsManager
+        toAccountsDataManager.delegate = self
     }
     
     func configureCollections() {
         let index = interactor.getAccountIndex()
-        accountsDataManager.scrollTo(index: index)
+        fromAccountsDataManager.scrollTo(index: index)
     }
     
     func isValidAmount(_ amount: String) -> Bool {
         return amount.isEmpty || amount == "." || amount == "," || amount.isValidDecimal()
     }
     
-    func amountChanged(_ amount: String) {
-        interactor.setAmount(amount.decimalValue())
+    func fromAmountChanged(_ amount: String) {
+        interactor.setFromAmount(amount.decimalValue())
     }
     
-    func amountDidBeginEditing() {
-        isEditingAmount = true
-        let amount = interactor.getAmount()
-        let currency = interactor.getRecipientCurrency()
+    func toAmountChanged(_ amount: String) {
+        interactor.setToAmount(amount.decimalValue())
+    }
+    
+    func fromAmountDidBeginEditing() {
+        isEditingFromAmount = true
+        let amount = interactor.getFromAmount()
+        let currency = interactor.getFromCurrency()
         let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
-        view.setAmount(formatted)
+        view.setFromAmount(formatted)
     }
     
-    func amountDidEndEditing() {
-        isEditingAmount = false
-        let amount = interactor.getAmount()
-        let currency = interactor.getRecipientCurrency()
+    func fromAmountDidEndEditing() {
+        isEditingFromAmount = false
+        let amount = interactor.getFromAmount()
+        let currency = interactor.getFromCurrency()
         let formatted = getStringFrom(amount: amount, currency: currency)
-        view.setAmount(formatted)
+        view.setFromAmount(formatted)
     }
     
-    func recipientAccountPressed() {
-        let accounts = interactor.getRecipientAccounts()
-        
-        guard !accounts.isEmpty else {
-            return
-        }
-        
-        let builder = interactor.getTransactionBuilder()
-        router.showRecipientAccountSelection(exchangeProviderBuilder: builder, from: view.viewController)
+    func toAmountDidBeginEditing() {
+        isEditingToAmount = true
+        let amount = interactor.getToAmount()
+        let currency = interactor.getToCurrency()
+        let formatted = getStringAmountWithoutCurrency(amount: amount, currency: currency)
+        view.setToAmount(formatted)
+    }
+    
+    func toAmountDidEndEditing() {
+        isEditingToAmount = false
+        let amount = interactor.getToAmount()
+        let currency = interactor.getToCurrency()
+        let formatted = getStringFrom(amount: amount, currency: currency)
+        view.setToAmount(formatted)
     }
     
     func exchangeButtonPressed() {
-        let fromAccount = interactor.getAccountName()
-        let toAccount = interactor.getRecipientAccountName()
-        let currency = interactor.getAccountCurrency()
-        let decimalAmount = interactor.getGiveAmount()
-        let amountStr = currencyFormatter.getStringFrom(amount: decimalAmount, currency: currency)
+        let fromAccount = interactor.getFromAccountName()
+        let toAccount = interactor.getToAccountName()
+        let fromCurrency = interactor.getFromCurrency()
+        let decimalFromAmount = interactor.getFromAmount()
+        let fromAmountStr = currencyFormatter.getStringFrom(amount: decimalFromAmount, currency: fromCurrency)
+        let toCurrency = interactor.getToCurrency()
+        let decimalToAmount = interactor.getToAmount()
+        let toAmountStr = currencyFormatter.getStringFrom(amount: decimalToAmount, currency: toCurrency)
+        
         let confirmTxBlock = { [weak self] in
             self?.storiqaLoader.startLoader()
             self?.interactor.sendTransaction()
         }
-        
+
         router.showConfirm(fromAccount: fromAccount,
                            toAccount: toAccount,
-                           amount: amountStr,
+                           fromAmount: fromAmountStr,
+                           toAmount: toAmountStr,
                            confirmTxBlock: confirmTxBlock,
                            from: view.viewController)
     }
@@ -134,7 +161,7 @@ extension ExchangePresenter: ExchangeViewOutput {
 extension ExchangePresenter: ExchangeInteractorOutput {
     
     func updateOrder(time: Int?) {
-        guard let elapsedTime = time else {
+        guard !isRatesError, let elapsedTime = time else {
             view.updateExpiredTimeLabel("")
             return
         }
@@ -148,6 +175,8 @@ extension ExchangePresenter: ExchangeInteractorOutput {
     }
     
     func updateRateFor(oneUnit: Decimal, fromCurrency: Currency, toCurrency: Currency) {
+        isRatesError = false
+        
         let fromStr = currencyFormatter.getStringFrom(amount: 1, currency: fromCurrency)
         let rateStr = currencyFormatter.getStringFrom(amount: oneUnit, currency: toCurrency)
         
@@ -155,50 +184,48 @@ extension ExchangePresenter: ExchangeInteractorOutput {
         view.updateRateLabel(text: outString)
     }
     
-    
-    func updateAccounts(accounts: [Account], index: Int) {
-        accountsDataManager?.updateAccounts(accounts)
-        accountsDataManager?.scrollTo(index: index)
-        view.updatePagesCount(accounts.count)
-        view.setNewPage(index)
+    func updateFromAccounts(_ accounts: [Account], index: Int) {
+        fromAccountsDataManager?.updateAccounts(accounts)
+        fromAccountsDataManager?.scrollTo(index: index)
     }
     
-    func updateRecipientAccount(_ account: Account?) {
-        guard let account = account else {
-            view.setRecipientAccount(LocalizedStrings.noAccountsAvailable)
-            view.setRecipientBalance("")
-            return
+    func updateToAccounts(_ accounts: [Account], index: Int) {
+        toAccountsDataManager?.updateAccountsAnimated(accounts) {[weak self] in
+            self?.toAccountsDataManager?.scrollTo(index: index)
         }
-        
-        let balance = accountDisplayer.cryptoAmount(for: account)
-        
-        view.setRecipientAccount(account.name)
-        view.setRecipientBalance(String(format: LocalizedStrings.balanceLabel, balance))
     }
     
     func exchangeRateError(_ error: Error) {
+        isRatesError = true
         view.showExchangeRateError(message: error.localizedDescription)
     }
     
-    func updateAmount(_ amount: Decimal, currency: Currency) {
+    func updateFromAmount(_ amount: Decimal, currency: Currency) {
         let amountString: String = {
-            if isEditingAmount {
+            if isEditingFromAmount {
                 return getStringAmountWithoutCurrency(amount: amount, currency: currency)
             } else {
                 return getStringFrom(amount: amount, currency: currency)
             }
         }()
-        view.setAmount(amountString)
+        view.setFromAmount(amountString)
+        
+        let placeholder = String(format: LocalizedStrings.amountPlaceholder, currency.ISO)
+        view.updateFromPlaceholder(placeholder)
     }
     
-    func updateGet(_ amount: Decimal, currency: Currency) {
-        let amountString = currencyFormatter.getStringFrom(amount: amount, currency: currency)
-        view.setGet(amountString)
-    }
-    
-    func updateGive(_ total: Decimal, currency: Currency) {
-        let totalAmountString = currencyFormatter.getStringFrom(amount: total, currency: currency)
-        view.setGive(totalAmountString)
+    func updateToAmount(_ amount: Decimal, currency: Currency) {
+        let amountString: String = {
+            if isEditingToAmount {
+                return getStringAmountWithoutCurrency(amount: amount, currency: currency)
+            } else {
+                return getStringFrom(amount: amount, currency: currency)
+            }
+        }()
+        view.setToAmount(amountString)
+        
+        let placeholder = String(format: LocalizedStrings.amountPlaceholder, currency.ISO)
+        view.updateToPlaceholder(placeholder)
     }
     
     func updateIsEnoughFunds(_ enough: Bool) {
@@ -264,9 +291,14 @@ extension ExchangePresenter: ExchangeModuleInput {
 
 extension ExchangePresenter: AccountsDataManagerDelegate {
     
-    func currentPageDidChange(_ newIndex: Int) {
-        interactor.setCurrentAccount(index: newIndex)
-        view.setNewPage(newIndex)
+    func currentPageDidChange(_ newIndex: Int, manager: AccountsDataManager) {
+        switch manager {
+        case fromAccountsDataManager:
+            interactor.setFromAccount(index: newIndex)
+        case toAccountsDataManager:
+            interactor.setToAccount(index: newIndex)
+        default: break
+        }
     }
 }
 
@@ -296,7 +328,7 @@ extension ExchangePresenter: PopUpSendConfirmSuccessVMDelegate {
 extension ExchangePresenter {
     
     private var collectionFlowLayout: UICollectionViewFlowLayout {
-        let deviceLayout = Device.model.flowLayout(type: .horizontalSmall)
+        let deviceLayout = Device.model.flowLayout(type: .horizontalThin)
         return deviceLayout
     }
     

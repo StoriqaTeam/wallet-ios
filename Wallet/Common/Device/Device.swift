@@ -36,6 +36,7 @@ enum Device: CGFloat {
         case horizontal
         case verticalSmall
         case horizontalSmall
+        case horizontalThin
     }
     
     func flowLayout(type: FlowLayoutType) -> UICollectionViewFlowLayout {
@@ -50,10 +51,14 @@ enum Device: CGFloat {
         case .horizontalSmall, .verticalSmall:
             let height = width * 0.3
             flowLayout.itemSize = CGSize(width: width, height: height)
+        case .horizontalThin:
+            let height = width * 0.175
+            flowLayout.itemSize = CGSize(width: width, height: height)
+            
         }
         
         switch type {
-        case .horizontal, .horizontalSmall:
+        case .horizontal, .horizontalSmall, .horizontalThin:
             flowLayout.minimumInteritemSpacing = inset / 2
             flowLayout.minimumLineSpacing = inset / 2
             flowLayout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)

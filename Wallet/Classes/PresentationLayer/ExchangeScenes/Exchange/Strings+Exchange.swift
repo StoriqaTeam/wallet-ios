@@ -16,35 +16,23 @@ extension Strings {
             value: "Exchange",
             comment: "Navigation bar title")
         
-        static let amountTitle = NSLocalizedString(
-            "Exchange.amountTitle",
+        static let fromAmountTitle = NSLocalizedString(
+            "Exchange.fromAmountTitle",
             tableName: "Exchange",
-            value: "Amount",
-            comment: "Amount input title")
+            value: "From",
+            comment: "From amount input title")
         
-        static let toAccountTitle = NSLocalizedString(
-            "Exchange.toAccountTitle",
+        static let toAmountTitle = NSLocalizedString(
+            "Exchange.toAmountTitle",
             tableName: "Exchange",
-            value: "To account",
-            comment: "To account input title")
-        
-        static let giveTitle = NSLocalizedString(
-            "Exchange.giveTitle",
-            tableName: "Exchange",
-            value: "You'll give",
-            comment: "Subtotal title input title")
-        
-        static let getTitle = NSLocalizedString(
-            "Exchange.getTitle",
-            tableName: "Exchange",
-            value: "You'll get",
-            comment: "Subtotal title input title")
+            value: "To",
+            comment: "To amount input title")
         
         static let amountPlaceholder = NSLocalizedString(
             "Exchange.amountPlaceholder",
             tableName: "Exchange",
-            value: "Enter amount",
-            comment: "Amount input placeholder")
+            value: "Enter amount in %@",
+            comment: "From amount input placeholder")
         
         static let exchangeButton = NSLocalizedString(
             "Exchange.exchangeButton",
@@ -57,18 +45,6 @@ extension Strings {
             tableName: "Exchange",
             value: "You don't have enough funds. Try to set lower amount.",
             comment: "Not enough error label text")
-        
-        static let noAccountsAvailable = NSLocalizedString(
-            "Exchange.noAccountsAvailable",
-            tableName: "Exchange",
-            value: "No accounts available",
-            comment: "Shown when user has only one account. Will never be shown, only in case of emerjency")
-
-        static let balanceLabel = NSLocalizedString(
-            "Exchange.balanceLabel",
-            tableName: "Exchange",
-            value: "Balance: %@",
-            comment: "Label shown with recipient account balance")
 
         static let exceedDayLimitMessage = NSLocalizedString(
             "Send.exceedDayLimitMessage",

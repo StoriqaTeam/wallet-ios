@@ -19,11 +19,11 @@ class ExchangeConfirmPopUpViewController: BasePopUpViewController {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var fromTitle: UILabel!
+    @IBOutlet private var fromAccount: UILabel!
+    @IBOutlet private var fromAmount: UILabel!
     @IBOutlet private var toTitle: UILabel!
-    @IBOutlet private var amountTitle: UILabel!
-    @IBOutlet private var fromLabel: UILabel!
-    @IBOutlet private var toLabel: UILabel!
-    @IBOutlet private var amountLabel: UILabel!
+    @IBOutlet private var toAccount: UILabel!
+    @IBOutlet private var toAmount: UILabel!
     @IBOutlet private var confirmButton: GradientButton!
     @IBOutlet private var closeButton: BaseButton!
 
@@ -56,10 +56,11 @@ class ExchangeConfirmPopUpViewController: BasePopUpViewController {
 
 extension ExchangeConfirmPopUpViewController: ExchangeConfirmPopUpViewInput {
     
-    func setupInitialState(fromAccount: String, toAccount: String, amount: String) {
-        fromLabel.text = fromAccount
-        toLabel.text = toAccount
-        amountLabel.text = amount
+    func setupInitialState(fromAccount: String, toAccount: String, fromAmount: String, toAmount: String) {
+        self.fromAccount.text = fromAccount
+        self.toAccount.text = toAccount
+        self.fromAmount.text = fromAmount
+        self.toAmount.text = toAmount
     }
 
 }
@@ -73,25 +74,24 @@ extension ExchangeConfirmPopUpViewController {
         titleLabel.font = Theme.Font.PopUp.title
         fromTitle.font = Theme.Font.PopUp.subtitle
         toTitle.font = Theme.Font.PopUp.subtitle
-        amountTitle.font = Theme.Font.PopUp.subtitle
-        fromLabel.font = Theme.Font.PopUp.text
-        toLabel.font = Theme.Font.PopUp.text
-        amountLabel.font = Theme.Font.PopUp.text
+        toAccount.font = Theme.Font.PopUp.subtitleMedium
+        fromAccount.font = Theme.Font.PopUp.subtitleMedium
+        toAmount.font = Theme.Font.PopUp.bigText
+        fromAmount.font = Theme.Font.PopUp.bigText
         
         titleLabel.textColor = Theme.Color.Text.main
         fromTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
         toTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
-        amountTitle.textColor = Theme.Color.Text.main.withAlphaComponent(0.66)
-        fromLabel.textColor = Theme.Color.Text.main
-        toLabel.textColor = Theme.Color.Text.main
-        amountLabel.textColor = Theme.Color.Text.main
+        toAccount.textColor = Theme.Color.Text.main
+        fromAccount.textColor = Theme.Color.Text.main
+        toAmount.textColor = Theme.Color.Text.main
+        fromAmount.textColor = Theme.Color.Text.main
     }
     
     private func localizeText() {
         titleLabel.text = LocalizedStrings.screenTitle
         fromTitle.text = LocalizedStrings.fromTitle
         toTitle.text = LocalizedStrings.toTitle
-        amountTitle.text = LocalizedStrings.amountTitle
         confirmButton.setTitle(LocalizedStrings.confirmButton, for: .normal)
         closeButton.setTitle(LocalizedStrings.closeButton, for: .normal)
     }
