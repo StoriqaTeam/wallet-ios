@@ -14,12 +14,15 @@ class ApplicationConfigurator: Configurable {
     private let keychain: KeychainProviderProtocol
     private let defaults: DefaultsProviderProtocol
     private let userKeyManager: UserKeyManagerProtocol
+    private let accountsProvider: AccountsProviderProtocol
+    
     let app: Application
     
     init(app: Application) {
         self.keychain = app.keychainProvider
         self.defaults = app.defaultsProvider
         self.userKeyManager = app.userKeyManager
+        self.accountsProvider = app.accountsProvider
         self.app = app
     }
     
@@ -43,7 +46,7 @@ extension ApplicationConfigurator {
             userKeyManager.clearUserKeyData()
             FirstLaunchModule.create(app: app).present()
             
-        } else if isPinSet() {
+        } else if isPinSet() && !accountsProvider.getAllAccounts().isEmpty {
             PinInputModule.create(app: app).present()
         } else {
             LoginModule.create(app: app).present()

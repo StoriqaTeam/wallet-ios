@@ -28,6 +28,7 @@ class LoginService: LoginServiceProtocol {
     private let keychain: KeychainProviderProtocol
     private let accountsNetworkProvider: AccountsNetworkProviderProtocol
     private let accountsDataStore: AccountsDataStoreServiceProtocol
+    private let defaultAccountsProvider: DefaultAccountsProviderProtocol
     private let signHeaderFactory: SignHeaderFactoryProtocol
     
     init(authTokenDefaultsProvider: AuthTokenDefaultsProviderProtocol,
@@ -39,6 +40,7 @@ class LoginService: LoginServiceProtocol {
          defaults: DefaultsProviderProtocol,
          accountsNetworkProvider: AccountsNetworkProviderProtocol,
          accountsDataStore: AccountsDataStoreServiceProtocol,
+         defaultAccountsProvider: DefaultAccountsProviderProtocol,
          signHeaderFactory: SignHeaderFactoryProtocol) {
         
         self.authTokenDefaultsProvider = authTokenDefaultsProvider
@@ -50,6 +52,7 @@ class LoginService: LoginServiceProtocol {
         self.accountsDataStore = accountsDataStore
         self.keychain = keychain
         self.defaults = defaults
+        self.defaultAccountsProvider = defaultAccountsProvider
         self.signHeaderFactory = signHeaderFactory
     }
     
@@ -180,6 +183,12 @@ extension LoginService {
             signHeader: signHeader) { [weak self] (result) in
                 switch result {
                 case .success(let accounts):
+                    guard !accounts.isEmpty else {
+                        log.error("User has no accounts. Trying to create default")
+                        self?.createDefaultAccounts(completion: completion)
+                        return
+                    }
+                    
                     log.debug(accounts.map { $0.id })
                     self?.accountsDataStore.update(accounts)
                     completion(.success(nil))
@@ -188,5 +197,17 @@ extension LoginService {
                     completion(.failure(error))
                 }
         }
+    }
+    
+    private func createDefaultAccounts(completion: @escaping (Result<String?>) -> Void) {
+        defaultAccountsProvider.create { (result) in
+            switch result {
+            case .success:
+                completion(.success(nil))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        
     }
 }
