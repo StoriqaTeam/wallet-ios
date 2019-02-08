@@ -41,12 +41,12 @@ extension User: RealmMappable {
     init?(json: JSON) {
         
         guard let id = json["id"].int,
-            let email = json["email"].string,
-            let firstName = json["firstName"].string,
-            let lastName = json["lastName"].string else {
+            let email = json["email"].string else {
             return nil
         }
         
+        let firstName = json["firstName"].stringValue
+        let lastName = json["lastName"].stringValue
         let phone = json["phone"].stringValue
         
         self.id = id
